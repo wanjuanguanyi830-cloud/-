@@ -1,0 +1,62 @@
+{
+  "ruleset_id": "jinjing",
+  "ruleset_version": "jinjing-geju-1.0.0",
+  "primary_source": {
+    "title": "太乙金鏡式經",
+    "volumes": [3, 4],
+    "scope": {
+      "volume_3": ["掩", "擊", "迫", "囚", "關", "格", "對", "提挾", "挾閉", "四郭固", "四郭杜"],
+      "volume_4": ["值事門", "執提", "提格"]
+    }
+  },
+  "reference_only": [
+    {
+      "repository": "kentang2017/kintaiyi",
+      "commit": "11f78555d5e77c81ac8af69d243a981c22934733",
+      "purpose": ["historical_examples", "skyeyes_summary_audit", "legacy_interface_shape"],
+      "may_override_primary_rules": false
+    },
+    {
+      "title": "太乙統宗寶鑑",
+      "purpose": ["variant_notes", "historical_examples"],
+      "may_override_primary_rules": false
+    },
+    {
+      "title": "太乙淘金歌",
+      "purpose": ["variant_notes", "historical_examples"],
+      "may_override_primary_rules": false
+    }
+  ],
+  "coordinates": {
+    "sixteen_ring": ["子", "丑", "艮", "寅", "卯", "辰", "巽", "巳", "午", "未", "坤", "申", "酉", "戌", "乾", "亥"],
+    "palace_ring": [8, 3, 4, 9, 2, 7, 6, 1],
+    "center_positions_are_even_ring_indices": true,
+    "intershen_positions_are_odd_ring_indices": true
+  },
+  "rules": {
+    "掩": "始擊精確落太乙正宮",
+    "擊": "始擊在太乙前／後一辰或前／後一宮",
+    "迫": "文昌與主客四將在太乙前／後一辰或前／後一宮；始擊及定目不參與",
+    "囚": "文昌精確同太乙正宮，或主客四將與太乙同宮",
+    "關": "主客四將彼此同宮",
+    "格": "始擊、客大或客參在太乙對宮",
+    "對": "文昌在太乙對宮",
+    "提挾": "太乙與四將中任兩點夾住太乙、四將或正宮文昌／始擊；間神目不作普通提挾目標",
+    "挾閉": "文昌與始擊均在間神，太乙、主將、客將共同在十六神環上夾持二目",
+    "執提": "值事門為開／生且在太乙同宮",
+    "提格": "值事門為開／生且在太乙對宮",
+    "四郭固": "由文昌囚太乙及大小將關係，或客目臨太乙位置及客將關係组成",
+    "四郭杜": "客參與文昌並、主大與客大並，並兼掩／迫／關／格／提挾"
+  },
+  "canonical_field_names": {
+    "四郭杜": ["四郭杜"],
+    "variant_terms": {"四郭社": "異文；不得成為主輸出字段"}
+  },
+  "eight_door": {
+    "cycle_years": 240,
+    "interval_years": 30,
+    "order": ["開", "休", "生", "傷", "杜", "景", "死", "驚"],
+    "zero_remainder_means": 240
+  }
+}
+

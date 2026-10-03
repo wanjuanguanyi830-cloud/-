@@ -1,0 +1,65 @@
+{
+  "reference_repository": "kentang2017/kintaiyi",
+  "reference_commit": "11f78555d5e77c81ac8af69d243a981c22934733",
+  "reference_file": "docs/example.md",
+  "source_note": "以下输入是用于回归空间规则的历史局例摘录／规范化位置。不同文献家法只作对照，不据此更改《金镜》主规则。",
+  "cases": [
+    {
+      "year": -24,
+      "kook": 10,
+      "source": "太乙淘金歌",
+      "context": {"taiyi": 4, "wenchang": "寅", "shiji": "乾", "home_big": 1, "home_vassal": 3, "away_big": 2, "away_vassal": 6},
+      "expected_keys": ["辰迫(內、文昌)"],
+      "note": "案例称内辰迫；用参考局表规范化后的文昌寅测试精确坐标。"
+    },
+    {
+      "year": 123,
+      "kook": 12,
+      "source": "太乙淘金歌",
+      "context": {"taiyi": 4, "wenchang": "辰", "shiji": "寅", "home_big": 7, "home_vassal": 1, "away_big": 1, "away_vassal": 3},
+      "expected_keys": ["擊(內辰)"],
+      "note": "太乙四宫、始击寅；寅为内辰。"
+    },
+    {
+      "year": 185,
+      "kook": 2,
+      "source": "太乙淘金歌",
+      "context": {"taiyi": 1, "wenchang": "酉", "shiji": "戌", "home_big": 6, "home_vassal": 8, "away_big": 1, "away_vassal": 3},
+      "expected_keys": ["提挾(主大、主參夾太乙)", "四郭固"],
+      "note": "四将位置据局例；固守名称只作为历史对照，格局内部仍由《金镜》复合条件计算。"
+    },
+    {
+      "year": 198,
+      "kook": 15,
+      "source": "太乙淘金歌",
+      "context": {"taiyi": 6, "wenchang": "午", "shiji": "坤", "home_big": 9, "home_vassal": 7, "away_big": 7, "away_vassal": 1},
+      "expected_keys": ["提挾(客大、客參夾太乙)"],
+      "note": "客大、客参位于太乙外侧的相邻宫位。"
+    },
+    {
+      "year": 219,
+      "kook": 36,
+      "source": "太乙淘金歌",
+      "context": {"taiyi": 4, "wenchang": "坤", "shiji": "午", "home_big": 5, "home_vassal": 5, "away_big": 7, "away_vassal": 1},
+      "expected_absent_prefixes": ["關("],
+      "note": "淘金歌称客关主目；《金镜》主算法的关只按四将同宫，故不把文昌与单将同宫扩展成关。"
+    },
+    {
+      "year": 397,
+      "kook": 70,
+      "source": "太乙淘金歌",
+      "context": {"taiyi": 9, "wenchang": "未", "shiji": "卯", "home_big": 3, "home_vassal": 9, "away_big": 4, "away_vassal": 2},
+      "expected_keys": ["提挾(太乙、主大夾客大)"],
+      "note": "历史文本明载太乙九宫、主大三宫、客大四宫；三者按八宫环形成夹持。"
+    },
+    {
+      "year": 418,
+      "kook": 19,
+      "source": "太乙淘金歌",
+      "context": {"taiyi": 8, "wenchang": "申", "shiji": "艮", "home_big": 8, "home_vassal": 4, "away_big": 2, "away_vassal": 6},
+      "expected_keys": ["擊(外宮)"],
+      "note": "始击艮在太乙八宫前一宫，按外宫击处理。"
+    }
+  ]
+}
+
