@@ -32,11 +32,10 @@
 
 ## 程序接口与兼容
 
-`rules/jinjing/geju/engine.py::analyze_geju(GejuContext)` 返回同一快照的结构化盘面与格局事件；事件包含主体、目标、精确位置、成格依据、断语和来源。`to_legacy_dict()` 生成“格局键→断语”的旧式字典形状。
+`rules/jinjing/geju/engine.py::analyze_geju(GejuContext)` 返回同一快照的结构化盘面与格局事件；事件包含主体、目标、精确位置、成格依据、断语和来源。`to_legacy_dict()` 生成“格局键→断语”的旧式字典形状；`TaiyiGejuMixin` 提供 `shi_geju(ji_style, taiyi_acumyear)` 与结构化详情方法，宿主以 `_jinjing_geju_context()` 适配自己的盘面字段。
 
-`Taiyi.shi_geju()` 属于参考项目的类接口，本库不包含 `Taiyi` 类；适配器可通过 `to_legacy_dict(analyze_geju(context))` 保持该返回形状。新算法本身不依赖或导入 `kintaiyi`。
+`Taiyi.shi_geju()` 属于参考项目的类接口，本库不包含参考项目的 `Taiyi` 类；宿主类可混入 `TaiyiGejuMixin` 并提供盘面适配方法，以保持旧字典返回形状并增加结构化详情入口。新算法本身不依赖或导入 `kintaiyi`。
 
 ## 尚未解决的范围
 
 历史局例来自《太乙淘金歌》等不同来源，不是《金镜》每条规则的独立原典证明。局例只核对可提取的位置关系和预期差异；来源未给出的主参将等信息不由程序伪造。144 局审计为类别级对照，不要求与旧 `skyeyes_summary` 标签机械全等。
-

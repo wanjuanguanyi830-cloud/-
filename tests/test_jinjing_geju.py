@@ -8,6 +8,7 @@ from rules.jinjing.geju import (
     SIXTEEN_RING,
     GEJU_RULESET_VERSION,
     GejuContext,
+    TaiyiGejuMixin,
     analyze_geju,
     chen_relation_to_taiyi,
     is_palace_flanked,
@@ -172,6 +173,18 @@ def test_legacy_dict_adapter_preserves_dictionary_of_labels_to_text():
     assert isinstance(to_legacy_dict(detail), dict)
 
 
+def test_taiyi_mixin_keeps_legacy_method_signature_and_adds_detail_method():
+    class HostBoard(TaiyiGejuMixin):
+        def _jinjing_geju_context(self, ji_style, taiyi_acumyear):
+            assert (ji_style, taiyi_acumyear) == (0, 240)
+            return context(taiyi=4, wenchang="寅")
+
+    board = HostBoard()
+    detail = board.shi_geju_detail(0, 240)
+    assert detail["規則集"] == "jinjing"
+    assert board.shi_geju(0, 240) == detail["舊式"]
+
+
 @pytest.mark.parametrize("invalid", [-1, 1.5, True, "30"])
 def test_duty_door_rejects_invalid_accumulation(invalid):
     if isinstance(invalid, int) and not isinstance(invalid, bool):
@@ -180,4 +193,3 @@ def test_duty_door_rejects_invalid_accumulation(invalid):
     else:
         with pytest.raises(TypeError):
             eight_door(invalid)
-

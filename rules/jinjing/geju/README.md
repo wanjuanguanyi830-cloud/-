@@ -31,9 +31,8 @@ detail = analyze_geju(context)
 legacy = to_legacy_dict(detail)
 ```
 
-`analyze_geju()` 返回规则集、来源、盘面快照和逐条事件；每条事件包含主体、目标、位置、成格依据、断语及出处。`to_legacy_dict()` 返回旧式“格局键→断语”字典。此规则库没有 `Taiyi` 类；后续接入实际排盘对象时，由适配器调用这两个函数，参考项目原有 `Taiyi.shi_geju()` 签名不在此模块中伪造。
+`analyze_geju()` 返回规则集、版本、来源、盘面快照和逐条事件；每条事件包含主体、目标、位置、成格依据、断语及出处。`to_legacy_dict()` 返回旧式“格局键→断语”字典。`TaiyiGejuMixin` 提供 `shi_geju(ji_style, taiyi_acumyear)` 与 `shi_geju_detail(...)` 两个兼容入口；宿主类实现 `_jinjing_geju_context()` 即可接入。此规则库不导入或依赖参考项目的 `Taiyi` 类。
 
 ## 研究边界
 
 `kintaiyi` 的 `skyeyes_summary` 和历史局例只作为固定版本的差异与回归样本。它们不修改《金镜》规则。输入中的文昌／始击须先规范到十六神位置；未归一化的旧称名会明确报错。
-

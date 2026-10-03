@@ -12,6 +12,7 @@ from .engine import (
     palace_relation_to_taiyi,
     to_legacy_dict,
 )
+from .adapter import TaiyiGejuMixin
 
 __all__ = [
     "GEJU_RULESET",
@@ -24,5 +25,5 @@ __all__ = [
     "is_palace_flanked",
     "palace_relation_to_taiyi",
     "to_legacy_dict",
+    "TaiyiGejuMixin",
 ]
-

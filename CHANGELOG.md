@@ -8,7 +8,6 @@
 - 增加卷四八门 30 年分段、240 年周期实现，覆盖余数为 0 的边界。
 - 增加历史局例与 144 局 `skyeyes_summary` 类别差异审计。
 - 主规则只来自《太乙金镜式经》；《太乙淘金歌》及参考代码仅用于历史对照。
-- 独立结构化详情接口提供 `to_legacy_dict()` 转换。参考项目的 `Taiyi.shi_geju()` 由其适配层调用，本库不定义该类。
+- 独立结构化详情接口提供 `to_legacy_dict()` 转换及 `TaiyiGejuMixin` 旧方法适配入口。
 
 测试和历史差异见 [`tests/`](tests/) 与 [`tests/reports/skyeyes_summary_audit.md`](tests/reports/skyeyes_summary_audit.md)。
-
