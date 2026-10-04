@@ -16,6 +16,8 @@ from .pan_v2 import validate_pan_v2
 AUDIT_VERSION = "taiyi-c13-legacy-audit-v1"
 
 _REPLACEMENT_ORDER = {
+    "cycles.limits.yangjiu": -2,
+    "cycles.limits.bailiu": -1,
     "source_variants.patterns.profiles": 0,
     "source_variants.military.three_doors.profiles": 1,
     "source_variants.military.five_generals.profiles": 2,
