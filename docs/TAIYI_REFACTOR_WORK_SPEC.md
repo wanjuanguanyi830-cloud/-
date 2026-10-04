@@ -337,11 +337,50 @@ canonical 7→8→9→1→2→3→4→6；36年/宫，288周期，无5。reverse
 
 详细来源边界见 `sources/c8-junshi-zhanlue-record.md`。
 
-## 9.1 后续 C9+
+## 9.1 C9 现代博弈层（已实施第一阶段）
 
-- C9：`game_theory.py` 不再 stringify 七术结果搜索“成/吉/正/利”；另做 `project_seven_method_for_game_theory(...)`，标 `derived_modern_feature=True`。
-- 审查 game_theory 是否误用洛书 1坎2坤... 与本项目太乙九宫 1乾2离3艮4震6兑7坤8坎9巽。
-- C10：Streamlit/CLI 逐步迁移读 v2。
+新增 `src/kintaiyi/game_theory.py`。C9 只做结构化现代特征投影，不把现代模型反写为古法。
+
+### C9-01 七术投影
+
+新增 `project_seven_method_for_game_theory(...)`：
+
+- 只读取 `rule_id`、`verdict`、五态、`has_qi`、`enemy_verdict` 等明确字段。
+- 禁止把整个七术结果 stringify 后搜索“成/吉/正/利”。
+- `notes/aliases/source_variants` 中的文字不得改变博弈信号。
+- `not_computable/pending` 不强行量化。
+- 所有结果标 `derived_modern_feature=True`。
+- T7-01 只投影应期，不自动生成通用吉凶分。
+
+批量入口：`project_seven_methods_for_game_theory(...)`。
+
+### C9-02 九宫体系隔离
+
+新增 `taiyi_palace_feature(...)`，博弈层固定使用太乙九宫：
+
+`1乾 2离 3艮 4震 5中 6兑 7坤 8坎 9巽`。
+
+禁止沿用参考仓库 game_theory 中的洛书宫义：
+
+`1坎 2坤 3震 4巽 6乾 7兑 8艮 9离`。
+
+中五仅保留土五行，不生成虚构的位置策略加成。
+
+### C9-03 现代模型边界
+
+`build_game_theory_feature_bundle(...)` 输出现代模型输入，并固定：
+
+- `derived_modern_feature=True`
+- `source_of_truth="structured_taiyi_results"`
+- `cross_system_palace_mapping=False`
+
+支付矩阵、权重与 Nash 均衡若后续迁入，必须保持现代派生标记，并把每个权重列为现代模型参数，不得伪称古籍原值。
+
+详细记录见 `sources/c9-game-theory-record.md`。
+
+## 9.2 后续 C10+
+
+- C10：Streamlit/CLI 逐步迁移读 v2；若目标仓库尚未具备 pan v2 集成入口，先补最小消费层，不回退到 flat 字段混读。
 
 ## 10. 验收
 
