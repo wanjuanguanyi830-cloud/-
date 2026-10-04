@@ -76,7 +76,12 @@ def test_c41_heavy_hexagram_structure_is_outer_over_inner():
     assert data["inner"]["four_image"] == "老阴"
     assert data["outer"]["four_image"] == "老阳"
     assert data["inner_moving_line"]["line"] == 3
-    assert data["ce"] == {"inner": 24, "outer": 36, "total": 60}
+    assert data["ce"] == {
+        "inner": 24,
+        "outer": 36,
+        "total": 60,
+        "total_status": "derived_sum_of_inner_outer_trigram_ce",
+    }
 
 
 def test_c41_does_not_invent_outer_moving_line():
@@ -122,3 +127,16 @@ def test_c41_invalid_trigram_rejected():
             outer_trigram="坤宫",
             year_in_inner_trigram=1,
         )
+
+
+def test_c41_total_ce_is_marked_as_derived_convenience():
+    data = compose_dayou_heavy_hexagram(
+        inner_trigram="艮",
+        outer_trigram="兑",
+        year_in_inner_trigram=24,
+    )
+    assert data["ce"]["inner"] == 28
+    assert data["ce"]["outer"] == 32
+    assert data["ce"]["total"] == 60
+    assert data["ce"]["total_status"] == "derived_sum_of_inner_outer_trigram_ce"
+    assert "正文未另立“总策”公式" in data["policy"]
