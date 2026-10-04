@@ -497,11 +497,53 @@ scenario 只接受 C11 三个 canonical 字段；不得从客将、客参等旧�
 
 详细记录见 `sources/c12-pan-adapter-record.md`。
 
-## 9.5 后续 C13+
+## 9.5 C13 legacy flat schema 迁移审计（已实施第一阶段）
 
-- 当真正 `Taiyi.pan()` / CLI / UI 文件进入目标仓库后进行实际接线。
-- 为 legacy flat schema 增加弃用审计/迁移统计，而不是删除兼容输出。
-- 继续把未迁移卷次按 canonical/source_variant/derived/pending 分层，避免全部塞进 analysis。
+新增 `src/kintaiyi/migration_audit.py`，用于量化旧 pan snapshot 的迁移状态。
+
+### C13-01 单盘审计
+
+`audit_legacy_snapshot(...)` 输出：
+
+- migrated fact keys / rate
+- quarantined keys / rate
+- unported keys / rate
+- v2 present / valid
+- structured replacement gaps
+- 是否可供 v2 core consumer 使用
+
+状态分为：
+
+- `legacy_only`
+- `v2_invalid`
+- `v2_partial_replacements`
+- `v2_core_ready_with_unported_legacy`
+- `v2_core_ready`
+
+### C13-02 structured replacement gaps
+
+只要旧 snapshot 仍含以下风险字段，就检查新 v2 是否已有正式替代：
+
+- 旧军事战略 → `analysis.military`
+- 旧七术断语 → `analysis.seven_methods`
+- 旧八占相关断语 → `analysis.eight_divinations`
+- 旧运筹博弈 → `modern.game_theory`
+
+缺替代时不得仅凭“已有 v2”宣称迁移完成。
+
+### C13-03 批量迁移统计
+
+`audit_snapshot_collection(...)` 汇总状态数量、ready 数量、平均迁移/隔离/未迁移比例，以及字段和 replacement gap 频率。
+
+所有输出标 `derived_migration_metadata=True`，不得参与古法判断。
+
+详细记录见 `sources/c13-migration-audit-record.md`。
+
+## 9.6 后续 C14+
+
+- 真正 `Taiyi.pan()` / CLI / UI 文件进入目标仓库后进行实际接线。
+- 根据 C13 的 unported 字段频率决定下一批卷次迁移优先级。
+- 未迁移卷次继续按 canonical/source_variant/derived/pending 分层，避免全部塞进 analysis。
 
 ## 10. 验收
 
