@@ -3,7 +3,11 @@ from kintaiyi.jinjing_v4_military import (
     chushi_fa,
     j4m_low_dependency_catalog,
     qifu_fa,
+    sanmen_jubu,
+    suidi_zhibian,
     taiyi_tianwai_dinei,
+    wujiang_fabu,
+    zhimen_from_cycle_count,
     zhizhen_suidi,
     zhuke_xiangguan,
 )
@@ -173,9 +177,110 @@ def test_j4m10_qifu_keeps_each_source_condition_separate():
 
 def test_low_dependency_catalog_is_explicitly_partial():
     catalog = j4m_low_dependency_catalog()
-    assert catalog["implemented"] == ["J4M-05", "J4M-06", "J4M-07", "J4M-09", "J4M-10"]
+    assert catalog["implemented"] == ["J4M-01", "J4M-02", "J4M-05", "J4M-06", "J4M-07", "J4M-08", "J4M-09", "J4M-10"]
     assert catalog["partial"] == ["J4M-03", "J4M-04"]
-    assert "J4M-01" in catalog["pending"]
-    assert "J4M-08" in catalog["pending"]
-    assert "J4M-11" in catalog["pending"]
-    assert "J4M-12" in catalog["pending"]
+    assert catalog["pending"] == ["J4M-11", "J4M-12"]
+
+
+def test_j4m01_direct_gate_cycle_is_240_with_30_per_gate():
+    assert zhimen_from_cycle_count(1)["direct_gate"] == "开"
+    assert zhimen_from_cycle_count(30)["direct_gate"] == "开"
+    assert zhimen_from_cycle_count(31)["direct_gate"] == "休"
+    assert zhimen_from_cycle_count(61)["direct_gate"] == "生"
+    assert zhimen_from_cycle_count(240)["direct_gate"] == "惊"
+    assert zhimen_from_cycle_count(241)["direct_gate"] == "开"
+
+    bad = zhimen_from_cycle_count(0)
+    assert bad["computable"] is False
+
+
+def test_j4m01_three_doors_only_claims_source_explicit_cases():
+    two_blocked = sanmen_jubu(taiyi_gate="开", tianmu_gate="生", direct_gate="景")
+    assert two_blocked["rule_id"] == "J4M-01"
+    assert two_blocked["not_ready_count"] == 2
+    assert two_blocked["three_doors_ready"] is False
+    assert two_blocked["direct_gate_auspice"] == "小吉"
+
+    three_blocked = sanmen_jubu(taiyi_gate="休", tianmu_gate="开", direct_gate="死")
+    assert three_blocked["not_ready_count"] == 3
+    assert three_blocked["three_doors_ready"] is False
+    assert three_blocked["direct_gate_auspice"] == "大凶"
+
+    unstated = sanmen_jubu(taiyi_gate="开", tianmu_gate="开")
+    assert unstated["status"] == "not_defined_by_source_passage"
+    assert unstated["three_doors_ready"] is None
+
+    missing = sanmen_jubu(taiyi_gate="开")
+    assert missing["status"] == "not_computable"
+    assert missing["three_doors_ready"] is None
+
+
+def test_j4m02_five_generals_keeps_three_blockers_separate_from_doors():
+    clear = wujiang_fabu(
+        shiji_yanji=False,
+        wenchang_qiupo=False,
+        major_minor_generals_related=False,
+        three_doors_ready=True,
+    )
+    assert clear["rule_id"] == "J4M-02"
+    assert clear["five_generals_released"] is True
+    assert clear["combined_ready"] is True
+    assert clear["engagement_allowed_by_generals"] is True
+
+    blocked = wujiang_fabu(
+        shiji_yanji=True,
+        wenchang_qiupo=False,
+        major_minor_generals_related=False,
+        three_doors_ready=True,
+    )
+    assert blocked["five_generals_released"] is False
+    assert blocked["blockers"] == ["始击有掩击"]
+    assert blocked["combined_ready"] is False
+
+    doors_blocked = wujiang_fabu(
+        shiji_yanji=False,
+        wenchang_qiupo=False,
+        major_minor_generals_related=False,
+        three_doors_ready=False,
+    )
+    assert doors_blocked["five_generals_released"] is True
+    assert doors_blocked["deployment_allowed_by_doors"] is False
+    assert doors_blocked["combined_ready"] is False
+
+    incomplete = wujiang_fabu(shiji_yanji=False)
+    assert incomplete["computable"] is False
+    assert incomplete["five_generals_released"] is None
+
+
+def test_j4m08_terrain_arm_mapping_preserves_source_ratio_text():
+    infantry = suidi_zhibian("沟堑山林川泽丘阜草木")
+    assert infantry["rule_id"] == "J4M-08"
+    assert infantry["favored"] == "步兵"
+    assert infantry["disfavored"] == "车骑"
+    assert infantry["source_ratio_text"] == "车骑三不当一步兵"
+
+    cavalry = suidi_zhibian("平陵平原广野")
+    assert cavalry["favored"] == "车骑"
+    assert cavalry["source_ratio_text"] == "步兵十不当一车骑"
+
+    missile = suidi_zhibian("平阳相远山谷幽涧仰高临下")
+    assert missile["favored"] == "弓弩"
+    assert missile["source_ratio_text"] == "短兵百不当一弓弩"
+
+    unknown = suidi_zhibian("未知地形")
+    assert unknown["computable"] is False
+    assert unknown["favored"] is None
+
+
+def test_j4m08_training_and_command_warnings_do_not_become_fake_combat_scores():
+    data = suidi_zhibian(
+        "两阵相近平地浅草",
+        soldiers_trained=False,
+        equipment_serviceable=False,
+        general_knows_warfare=False,
+        ruler_selects_generals=False,
+    )
+    assert data["favored"] == "长戟"
+    assert len(data["warnings"]) == 4
+    assert "士卒服习" in data["urgent_requirements"]
+    assert data["doctrine_chain"][-1] == "君不择将，以其国与敌"
