@@ -24,12 +24,14 @@ def test_harvard_witness_attests_ziting_text_but_not_appendix_location():
     assert witness["wenchang_nine_star_appendix"]["status"] == "not_located_in_current_online_search"
 
 
-def test_shanghai_yanyilou_witness_has_appendix_catalog_attestation_only():
+def test_shanghai_yanyilou_witness_records_prior_user_provided_file_without_claiming_current_reinspection():
     witness = zitingjing_manuscript_witnesses()["witnesses"]["shanghai_yanyilou_ming_copy"]
-    assert witness["direct_manuscript_access_in_project"] is False
+    assert witness["user_previously_provided_manuscript_file"] is True
+    assert witness["current_session_file_index_status"] == "not_retrievable_in_current_file_index"
+    assert witness["direct_text_reinspection_status"] == "pending_reinspection_from_previously_provided_file"
     assert witness["catalog_attestation"]["appendix_title"] == "附太乙文昌九星值宫术"
     assert witness["catalog_attestation"]["evidence_level"] == "catalog_attested_text_pending"
-    assert witness["resource_report"]["status"] == "secondary_resource_listing_not_inspected"
+    assert witness["resource_report"]["status"] == "previously_user_provided_file_not_currently_retrievable"
 
 
 def test_peking_university_copy_stays_unverified_until_catalog_found():
@@ -49,7 +51,8 @@ def test_wenchang_appendix_locator_stays_primary_text_pending():
     status = wenchang_nine_star_appendix_locator_status()
     assert status["status"] == "catalog_attested_primary_text_pending"
     assert status["shanghai_yanyilou"]["catalog_attested"] is True
-    assert status["shanghai_yanyilou"]["direct_text_obtained"] is False
+    assert status["shanghai_yanyilou"]["user_previously_provided_file"] is True
+    assert status["shanghai_yanyilou"]["direct_text_reinspection_status"] == "pending"
     assert status["harvard_qing_compilation"]["ziting_text_present"] is True
     assert status["harvard_qing_compilation"]["appendix_direct_text_located"] is False
     assert status["peking_university"]["holding_verified_by_library_catalog"] is False
