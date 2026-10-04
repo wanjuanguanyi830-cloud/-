@@ -9,6 +9,8 @@
 - [`rules/jinjing/geju/`](rules/jinjing/geju/)：《太乙金镜式经》主格局引擎。
 - [`rules/jinjing_v4_military.json`](rules/jinjing_v4_military.json)：四库本《太乙金镜式经》卷四军事十二法 J4M-01..12 来源限定规则表。
 - [`src/kintaiyi/`](src/kintaiyi/)：七术、八占、公共规则与五福/大游。
+- [`src/kintaiyi/variants/`](src/kintaiyi/variants/)：现代／重构运行时，与古籍 canonical 物理隔离。
+- [`rules/variants/`](rules/variants/)：现代／重构 profile 的机器规则；当前含 `modern_liunian_nayin_2026`。
 - [`docs/taiyi_v1.md`](docs/taiyi_v1.md)：v1 整合包接口、兼容边界和待校项。
 - [`rules/taiyi_v1.json`](rules/taiyi_v1.json)：canonical、原典短句、版本异文分层数据。
 - [`sources/`](sources/)：来源证据、异文、采用边界和参考快照。
@@ -23,6 +25,8 @@
 军事十二法另以四库本《太乙金镜式经》卷四正文为 `jinjing_siku_volume4` 来源层，依次编号 J4M-01..12；与 C8 `volume5_strict` 仅做 crosswalk，不因同名或近名自动合并。《金镜》与《统宗》同名术出现差异时保留独立 source profile。
 
 所有数值算法必须保留输入、精确位置、边界、版本和可回查来源。相异古籍表述进入来源说明与对照测试，不合并进《金镜》运行规则。
+
+现代《太乙数纳音体系（修正版）》独立登记为 `modern_liunian_nayin_2026`，位于 `src/kintaiyi/variants/` 与 `rules/variants/`；它不是 J4M-03 的下属变体，也不得覆盖任何古籍 canonical。
 
 七术、八占与五福/大游采用 `taiyi-t7-d8-v1` 已确认项目规范；四库为底本，《统宗》《景祐》《金钥匙》等补证和异文保留。各模块的来源边界独立；格局规则的来源限定保持原有定义。安装 `python -m pip install -e .` 后可直接导入 `kintaiyi` 与根目录旧名接口 `config`。
 
