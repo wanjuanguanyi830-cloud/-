@@ -9,6 +9,7 @@ from __future__ import annotations
 import copy
 from typing import Any
 
+from .dayou_lishu import najia_number
 from .taiyi_rules import integer
 
 C44_VERSION = "taiyi-c44-volume9-governance-change-v1"
@@ -23,6 +24,12 @@ SOURCE_WITNESS = {
 
 STEMS = tuple("甲乙丙丁戊己庚辛壬癸")
 BRANCHES = tuple("子丑寅卯辰巳午未申酉戌亥")
+SEXAGENARY = frozenset(
+    f"{stem}{branch}"
+    for stem_index, stem in enumerate(STEMS)
+    for branch_index, branch in enumerate(BRANCHES)
+    if stem_index % 2 == branch_index % 2
+)
 SIXTEEN_POINTS = tuple("子丑艮寅卯辰巽巳午未坤申酉戌乾亥")
 
 REQUIRED_GODS = ("太簇", "太阳", "阴主", "地主", "武德", "大义")
@@ -71,8 +78,8 @@ def parse_ganzhi(value: str) -> dict[str, str]:
     if not isinstance(value, str) or len(value) != 2:
         raise ValueError("创立年须为两字干支")
     stem, branch = value
-    if stem not in STEMS or branch not in BRANCHES:
-        raise ValueError("创立年须为合法干支")
+    if stem not in STEMS or branch not in BRANCHES or value not in SEXAGENARY:
+        raise ValueError("创立年须为合法六十甲子干支")
     return {"stem": stem, "branch": branch, "ganzhi": value}
 
 
@@ -195,6 +202,13 @@ def governance_change_from_evidence(
         "source_profile": "tongzong_volume9_governance_change",
         "source_witness": copy.deepcopy(SOURCE_WITNESS),
         "foundation_year": gz,
+        "foundation_ganzhi_numbers": {
+            "stem": najia_number(gz["stem"]),
+            "branch": najia_number(gz["branch"]),
+            "sum": najia_number(gz["stem"]) + najia_number(gz["branch"]),
+            "source_dependency": "C42纳甲干支数表",
+            "used_to_auto_select_year": False,
+        },
         "landing_formula_applied": False,
         "god_landings": landings,
         "events": events,
