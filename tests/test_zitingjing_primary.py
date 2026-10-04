@@ -36,6 +36,12 @@ def test_taiyi_nine_stars_primary_keeps_current_witness_reading_for_palace_three
         "region": "青州",
         "fortune": "凶",
     }
+    data = taiyi_nine_stars_primary()
+    variant = data["known_variants"][0]
+    assert variant["field"] == "palace_3_tianchong_fortune"
+    assert variant["primary_witness"] == "凶"
+    assert variant["collation_witness"] == "吉"
+    assert variant["resolution"] == "preserve_both_no_silent_merge"
 
 
 def test_wenchang_primary_relations_are_source_limited():
