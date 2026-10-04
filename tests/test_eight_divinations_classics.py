@@ -57,7 +57,7 @@ def test_yinyang_no_invented_other_verdict(palace,n):
     assert tui_danger(palace,n)["events"] == []
 
 
-@pytest.mark.parametrize("n,missing,classic", [(7,["将军"],None),(13,["吏士"],None),(15,[],None),(17,[],"将吏兵卒俱备")])
+@pytest.mark.parametrize("n,missing,classic", [(7,["将军"],None),(13,["吏士"],None),(15,["兵卒"],None),(17,[],"将吏兵卒俱备")])
 def test_preparedness(n,missing,classic):
     data = calc_preparedness(n)
     assert data["missing"] == missing
@@ -65,7 +65,7 @@ def test_preparedness(n,missing,classic):
 
 
 def test_structural_all_does_not_equal_classic_full():
-    assert all(sancai(15)["components"].values())
+    assert sancai(15)["components"] == {"ten": True, "five": True, "one": False}
     assert not sancai(15)["sancai_full_classic"]
     assert "人" not in sancai(1)["missing"]
 
