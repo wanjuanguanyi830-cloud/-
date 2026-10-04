@@ -128,7 +128,7 @@ def test_c19_catalog_marks_only_three_direct_primary_items_as_implemented():
     assert data["locators"]["nine_palace_nobles"]["collation_locator"]["source"] == "太乙统宗宝鉴卷十"
 
 
-def test_verified_primary_results_clear_only_three_of_six_c18_gaps():
+def test_verified_primary_results_do_not_substitute_for_missing_legacy_collation_profiles():
     variants = build_zitingjing_source_variants(
         results=build_c19_verified_primary_results()
     )
@@ -145,10 +145,15 @@ def test_verified_primary_results_clear_only_three_of_six_c18_gaps():
 
     report = audit_legacy_snapshot(snapshot)
 
+    # 旧flat六项源自统宗实现；即使三项已有紫庭primary，
+    # 也不能拿primary_result替代同源统宗collation profile。
     assert report["replacement_gaps"] == [
-        "source_variants.zitingjing.rules.wenchang_nine_stars.primary_result",
-        "source_variants.zitingjing.rules.three_banners.primary_result",
-        "source_variants.zitingjing.rules.nine_palace_nobles.primary_result",
+        "source_variants.zitingjing.rules.taiyi_nine_stars.collation_results.tongzong_volume6",
+        "source_variants.zitingjing.rules.wenchang_nine_stars.collation_results.tongzong_volume6",
+        "source_variants.zitingjing.rules.wenchang_changes.collation_results.tongzong_volume6",
+        "source_variants.zitingjing.rules.shiji_changes.collation_results.tongzong_volume6",
+        "source_variants.zitingjing.rules.three_banners.collation_results.tongzong_volume10",
+        "source_variants.zitingjing.rules.nine_palace_nobles.collation_results.tongzong_volume10",
     ]
     assert report["ready_for_v2_core_consumption"] is False
 
