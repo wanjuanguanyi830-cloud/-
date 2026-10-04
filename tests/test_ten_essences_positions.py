@@ -1,13 +1,19 @@
 import pytest
 
 from kintaiyi.ten_essences_positions import (
+    EIGHTWIND_PATHS,
     FLYBIRD_PATHS,
     FIVEWIND_PATHS,
     LEGACY_AUDIT,
+    TAIZUN_PATHS,
+    THREEWIND_PATHS,
     SURPLUS_REJECTION,
     c53_runtime_catalog,
+    eightwind_position,
     fivewind_position,
     flybird_position,
+    taizun_position,
+    threewind_position,
 )
 
 
@@ -141,11 +147,11 @@ def test_c53_surplus_rejections_preserve_source_boundary():
     assert "古法不载" in SURPLUS_REJECTION["五风"]["reason"]
 
 
-def test_c53_catalog_only_marks_two_position_runtimes_implemented():
+def test_c53_catalog_marks_second_batch_position_runtimes_implemented():
     data = c53_runtime_catalog()
-    assert data["implemented"] == ["飞鸟", "五风"]
+    assert data["implemented"] == ["飞鸟", "五风", "太尊", "八风", "三风"]
     assert set(data["pending"]) == {
-        "天皇", "帝符", "天时", "太尊", "五行", "八风", "三风", "太乙数"
+        "天皇", "帝符", "天时", "五行", "太乙数"
     }
     assert data["cloud_omen_runtime"] is False
     assert data["pan_contract_extended"] is False
@@ -153,3 +159,65 @@ def test_c53_catalog_only_marks_two_position_runtimes_implemented():
 
 def test_c53_never_introduces_tianyou_taiyi():
     assert "天游太乙" not in repr(c53_runtime_catalog())
+
+
+
+def test_c53_taizun_four_palace_paths():
+    assert TAIZUN_PATHS["阳"] == (8, 6, 2, 4)
+    assert TAIZUN_PATHS["阴"] == (2, 4, 8, 6)
+
+    assert [taizun_position(i, dun="阳")["palace"] for i in range(1, 5)] == [8, 6, 2, 4]
+    assert [taizun_position(i, dun="阴")["palace"] for i in range(1, 5)] == [2, 4, 8, 6]
+
+    end = taizun_position(40, dun="阳")
+    assert end["big_cycle"] == 40
+    assert end["small_cycle"] == 4
+    assert end["big_cycle_year"] == 40
+    assert end["small_cycle_year"] == 4
+    assert end["palace"] == 4
+
+
+def test_c53_eightwind_includes_middle_palace_and_full_nine_cycle():
+    assert EIGHTWIND_PATHS["阳"] == (2, 3, 4, 5, 6, 7, 8, 9, 1)
+    assert EIGHTWIND_PATHS["阴"] == (8, 7, 6, 5, 4, 3, 2, 1, 9)
+
+    yang = [eightwind_position(i, dun="阳")["palace"] for i in range(1, 10)]
+    yin = [eightwind_position(i, dun="阴")["palace"] for i in range(1, 10)]
+    assert yang == [2, 3, 4, 5, 6, 7, 8, 9, 1]
+    assert yin == [8, 7, 6, 5, 4, 3, 2, 1, 9]
+    assert 5 in yang and 5 in yin
+
+
+def test_c53_eightwind_rejects_old_eight_item_table():
+    audit = LEGACY_AUDIT["config.eightwind"]
+    assert audit["canonical_equivalent"] is False
+    assert audit["direct_small_cycle"] == 9
+    assert "漏中五" in audit["issue"]
+
+
+def test_c53_threewind_primary_path_restores_ninth_item():
+    assert THREEWIND_PATHS["阳"] == (3, 7, 2, 6, 1, 5, 9, 4, 8)
+    assert THREEWIND_PATHS["阴"] == (7, 3, 8, 4, 9, 5, 1, 6, 2)
+
+    yang = [threewind_position(i, dun="阳")["palace"] for i in range(1, 10)]
+    yin = [threewind_position(i, dun="阴")["palace"] for i in range(1, 10)]
+    assert yang == [3, 7, 2, 6, 1, 5, 9, 4, 8]
+    assert yin == [7, 3, 8, 4, 9, 5, 1, 6, 2]
+
+
+def test_c53_threewind_preserves_wujing_variant_without_overriding_primary():
+    data = threewind_position(1, dun="阳")
+    assert data["palace"] == 3
+    assert "起五宫" in data["source_witness"]["wujing_zongyao"]
+    assert data["source_witness"]["source_status"] == "direct_primary_with_collation_variant"
+
+
+@pytest.mark.parametrize(
+    "func",
+    [flybird_position, fivewind_position, taizun_position, eightwind_position, threewind_position],
+)
+def test_c53_all_implemented_positions_require_explicit_dun(func):
+    with pytest.raises(TypeError):
+        func(1)
+    with pytest.raises(ValueError, match="dun须为阳/阴"):
+        func(1, dun="冬至")
