@@ -92,7 +92,7 @@ def test_c52_traditional_aliases_normalize_without_source_loss(source, canonical
     record = ten_essence_record(source)
     assert record["name"] == canonical
     expected_ready = canonical in {
-        "天皇", "帝符", "飞鸟", "五风", "太尊", "八风", "三风", "五行", "太乙数"
+        "天皇", "帝符", "天时", "飞鸟", "五风", "太尊", "八风", "三风", "五行", "太乙数"
     }
     assert record["runtime_formula_ready"] is expected_ready
 
@@ -155,15 +155,15 @@ def test_c52_does_not_extend_pan_contract_or_cycles_root():
     assert "ten_essences" not in SOURCE_VARIANT_KEYS
 
 
-def test_c52_registry_tracks_partial_c53_runtime_without_becoming_formula_layer():
+def test_c52_registry_tracks_completed_position_runtime_without_becoming_formula_layer():
     data = ten_essences_registry()
     assert data["rule_id"] == "C52-TEN-ESSENCES-REGISTRY"
-    assert data["position_runtime_ready"] is False
-    assert data["all_position_runtime_ready"] is False
+    assert data["position_runtime_ready"] is True
+    assert data["all_position_runtime_ready"] is True
     assert data["implemented_position_runtimes"] == [
-        "飞鸟", "五风", "太尊", "八风", "三风", "五行", "天皇", "帝符"
+        "飞鸟", "五风", "太尊", "八风", "三风", "五行", "天皇", "帝符", "天时"
     ]
-    assert data["pending_position_runtimes"] == ["天时"]
+    assert data["pending_position_runtimes"] == []
     assert data["cloud_runtime_ready"] is False
     assert data["target_policy"]["legacy_top_level_promoted"] is False
 
@@ -172,7 +172,7 @@ def test_c52_registry_tracks_partial_c53_runtime_without_becoming_formula_layer(
         assert status[name] == "implemented_c53"
     assert status["天皇"] == "implemented_c55"
     assert status["帝符"] == "implemented_c55"
-    assert status["天时"] == "pending_source_formula_audit"
+    assert status["天时"] == "implemented_c56"
     assert status["太乙数"] == "implemented_c54"
 
 
@@ -263,15 +263,15 @@ def test_c52_focus_formula_skeletons_lock_direct_source_boundaries():
     assert three["runtime_rule_id"] == "C53-THREEWIND"
 
 
-def test_c52_formula_skeleton_promotes_only_c53_implemented_positions():
+def test_c52_formula_skeleton_marks_all_position_runtimes_ready_after_c56():
     data = ten_essences_registry()
-    assert data["position_runtime_ready"] is False
-    assert data["all_position_runtime_ready"] is False
+    assert data["position_runtime_ready"] is True
+    assert data["all_position_runtime_ready"] is True
 
     for name, skeleton in data["focus_formula_skeletons"].items():
         assert skeleton["runtime_formula_ready"] is (
             name in {
-                "天皇", "帝符", "飞鸟", "五风", "太尊", "八风", "三风", "五行", "太乙数"
+                "天皇", "帝符", "天时", "飞鸟", "五风", "太尊", "八风", "三风", "五行", "太乙数"
             }
         ), name
 
@@ -292,7 +292,7 @@ def test_c52_ten_essence_flying_bird_is_not_j4m_external_observation():
 
 
 def test_c52_rejected_surplus_variants_are_not_applied():
-    for name in ("天皇", "帝符", "飞鸟", "八风", "五风", "三风"):
+    for name in ("天皇", "帝符", "天时", "飞鸟", "八风", "五风", "三风"):
         variant = FOCUS_FORMULA_SKELETONS[name]["surplus_variant"]
         assert variant["apply"] is False
         assert "古" in variant["note"] or "经旨" in variant["note"]
@@ -309,7 +309,7 @@ def test_c52_fivewind_preserves_collation_variant_without_overriding_primary():
 
 
 
-def test_c52_wuxing_runtime_ready_and_tianshi_conflict_stays_pending():
+def test_c52_wuxing_and_tianshi_runtime_boundaries_are_locked():
     wuxing = FOCUS_FORMULA_SKELETONS["五行"]
     assert wuxing["big_cycle"] == 50
     assert wuxing["small_cycle"] == 5
@@ -321,10 +321,19 @@ def test_c52_wuxing_runtime_ready_and_tianshi_conflict_stays_pending():
     tianshi = FOCUS_FORMULA_SKELETONS["天时"]
     assert tianshi["big_cycle"] == 120
     assert tianshi["small_cycle"] == 12
-    assert tianshi["route"]["tongzong_start"] == "吕申（寅）"
-    assert tianshi["route"]["taibai_yang_start"] == "申"
-    assert tianshi["route"]["status"] == "source_start_conflict_unresolved"
-    assert tianshi["runtime_formula_ready"] is False
+    assert tianshi["route"]["tongzong_yang_path"] == [
+        "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥", "子", "丑"
+    ]
+    assert tianshi["route"]["tongzong_yin_path"] == [
+        "申", "酉", "戌", "亥", "子", "丑", "寅", "卯", "辰", "巳", "午", "未"
+    ]
+    assert "阳寅阴申" in tianshi["route"]["taibai_detailed_formula"]
+    assert "阳申阴寅" in tianshi["route"]["taibai_intro_summary_variant"]
+    assert tianshi["route"]["status"] == "implemented_c56_primary_with_internal_variant_preserved"
+    assert tianshi["surplus_variant"]["value"] == 2
+    assert tianshi["surplus_variant"]["apply"] is False
+    assert tianshi["runtime_formula_ready"] is True
+    assert tianshi["runtime_rule_id"] == "C56-TIANSHI"
 
 
 
