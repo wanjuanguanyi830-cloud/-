@@ -928,13 +928,122 @@ P1 前六项已经建立来源容器：
 
 详细记录见 `sources/c19-zitingjing-primary-verified-record.md`。
 
-## 9.13 后续 C20+
+## 9.13 C20 《太乙紫庭经》剩余三项证据分层（已实施）
 
-- 继续定位《太乙紫庭经》中文昌九星、三旗行宫、九宫贵神的直接文本或可靠古本见证；
-- 找到直接主来源前保持 `primary_pending`；
-- 继续把统宗卷六/卷十作为参校，不得反填主来源；
-- 完成始击“岁干×五行”灾应表的逐条校读；
-- 之后单独拆卷十五、卷十七军事 derived profile。
+### C20-01 文昌九星
+
+已找到《太乙紫庭秘诀》现代整理本目录线索：
+
+`附太乙文昌九星值宫术`
+
+因此状态改为：
+
+`catalog_attested_primary_text_pending`
+
+这只证明主来源系统中的术目归属；尚未取得可逐条校读的直接正文，所以不得生成 `primary_result`。
+
+### C20-02 三旗行宫 / 九宫贵神
+
+两项继续保留：
+
+`primary_source = 太乙紫庭经`
+
+但当前直接可定位的是《太乙统宗宝鉴》卷十参校文本：
+
+- 三旗：〈明太乙与三旗行宫会合术〉
+- 九宫贵神：〈明太乙九宫贵神术〉
+
+状态统一：
+
+`project_primary_attribution_direct_text_pending`
+
+统宗文本只作 collation，不得反填 primary。
+
+### C20-03 证据等级
+
+后续必须区分：
+
+1. direct primary text
+2. catalog-attested primary affiliation
+3. project primary attribution
+4. collation text
+
+只有第 1 级可直接生成 primary_result。
+
+详细记录见 `sources/c20-zitingjing-pending-locators-record.md`。
+
+## 9.14 C21 卷十五 / 卷十七军事 derived profiles（已实施）
+
+新增 `src/kintaiyi/military_derived_profiles.py`。
+
+### C21-01 卷十五
+
+独立 profile：
+
+`tongzong_volume15_military_application`
+
+锁定旧综合术目：
+
+- 奇兵伏兵
+- 五阵置旗
+- 出兵称神
+- 陈兵出乡
+- 选将之术
+- 教兵之术
+- 随地制变
+- 分合用兵
+- 五音风
+- 五音观风察将
+- 安营置阵
+- 风从八卦
+- 云气逆顺
+- 军势胜负
+
+固定：
+
+- `derived_military_profile=True`
+- `cross_volume_merge=False`
+- `cross_c8_merge=False`
+- `cross_j4m_merge=False`
+
+### C21-02 卷十七
+
+独立 profile：
+
+`tongzong_volume17_military_divination`
+
+锁定旧综合术目：
+
+- 出兵用时
+- 敌国动静
+- 间谍虚实
+- 敌使虚实
+- 敌兵来方
+- 见闻虚实
+- 讨捕叛亡
+- 执囚对吏
+- 求索所得
+- 孤虚对照
+- 时计诸事
+- 占望行人
+
+### C21-03 旧 flat quarantine
+
+- 军事应用 → `source_variants.military_derived.tongzong_volume15.payload`
+- 军事占断 → `source_variants.military_derived.tongzong_volume17.payload`
+
+空 profile 不清除 C13 replacement gap；必须显式有独立 payload。
+
+详细记录见 `sources/c21-military-derived-profiles-record.md`。
+
+## 9.15 后续 C22+
+
+- 把卷十五 / 卷十七综合 payload 逐条拆成独立规则单元；
+- 每个规则保留独立 source_rule_id，不再依赖“整个卷次 dict”；
+- 先处理低依赖、纯表或明确公式的规则；
+- 与 J4M/C8 重名或近名规则继续保留 crosswalk，但不自动合并；
+- 继续定位《太乙紫庭经》中文昌九星、三旗行宫、九宫贵神直接文本；
+- 完成始击变化逐岁干×五行灾应表的校读。
 
 
 ## 10. 验收
