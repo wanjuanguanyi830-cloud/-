@@ -236,16 +236,30 @@ def build_wuyun_wuyin_source_variants(
     v10 = checked(volume10_wuyun, "tongzong_volume10_wuyun", "C37-V10-WYUN")
     wy = checked(volume3_wuyin, "tongzong_volume3_wuyin", "C37-V3-WYIN")
 
+    wuyun_profiles = {
+        **({"tongzong_volume3": v3} if v3 else {}),
+        **({"tongzong_volume10": v10} if v10 else {}),
+    }
+    legacy_replacement = (
+        {
+            "source_split_complete": True,
+            "required_profiles": ["tongzong_volume3", "tongzong_volume10"],
+        }
+        if v3 and v10
+        else {}
+    )
+
     return {
         "schema_version": "1.0",
         "canonical": C37_VERSION,
         "wuyun_liuqi": {
-            "profiles": {
-                **({"tongzong_volume3": v3} if v3 else {}),
-                **({"tongzong_volume10": v10} if v10 else {}),
-            },
+            "profiles": wuyun_profiles,
+            "legacy_replacement": legacy_replacement,
             "cross_source_merge": False,
-            "policy": "卷三统行与卷十岁会分profile，不自动合并。",
+            "policy": (
+                "卷三统行与卷十岁会分profile，不自动合并；"
+                "旧混合flat只有两profile均存在时才算replacement完成。"
+            ),
         },
         "wuyin_number": {
             "profiles": {
