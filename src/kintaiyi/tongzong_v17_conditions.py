@@ -256,7 +256,7 @@ def capture_fugitive(
             hideout["recommendation"] = "不可往捕；所捕之地旺相有气"
             miss_evidence.append("所捕之地旺相有气")
         else:
-            hideout["recommendation"] = f"可按{hideout_pattern}迫之下寻其藏匿"
+            hideout["recommendation"] = f"可按{hideout_pattern}之下寻其藏匿"
 
     if catch_evidence and miss_evidence:
         verdict = "mixed_evidence"
