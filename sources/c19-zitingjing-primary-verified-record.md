@@ -102,14 +102,15 @@ https://www.shidianguji.com/zh/book/SDZJ0646/chapter/1kg32qffweib7
 当前仍保持：
 
 - 文昌九星：`catalog_attested_primary_text_pending`
-- 三旗行宫：`project_primary_attribution_direct_text_pending`
-- 九宫贵神：`project_primary_attribution_direct_text_pending`
+- 三旗行宫：`project_primary_attribution_unverified`
+- 九宫贵神：`project_primary_attribution_unverified`
 
-项目来源层级仍保持“《太乙紫庭经》主来源，统宗参校”，但在找到直接条文前：
+其中只有文昌九星已有紫庭传本目录证据；三旗行宫与九宫贵神目前仅保留项目拟定的紫庭主来源目标，尚无目录/正文归属证据。当前：
 
 - 不生成 primary_result；
 - 不借统宗公式回填；
 - C13 replacement gap 继续存在。
+- 三旗行宫 / 九宫贵神：已查的紫庭秘诀目录未见同名题目，统宗卷十有直接文本，因此不得提前标为紫庭 canonical。
 
 ## 代码
 
