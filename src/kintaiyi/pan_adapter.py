@@ -106,6 +106,31 @@ _DOOR_FIELDS = {
 }
 
 
+def _normalize_legacy_json_containers(value: Any) -> Any:
+    """把旧 snapshot 常见的整数宫位 dict key 规范为 JSON object 字符串 key。
+
+    只做容器表示转换，不改值的术义；未知复杂 key 直接拒绝。
+    """
+    if value is None or isinstance(value, (str, int, float, bool)):
+        return copy.deepcopy(value)
+    if isinstance(value, dict):
+        result: dict[str, Any] = {}
+        for key, item in value.items():
+            if isinstance(key, str):
+                new_key = key
+            elif isinstance(key, (int, float, bool)):
+                new_key = str(key)
+            else:
+                raise TypeError(f"legacy snapshot含不支持的dict key类型: {type(key).__name__}")
+            result[new_key] = _normalize_legacy_json_containers(item)
+        return result
+    if isinstance(value, (list, tuple)):
+        return [_normalize_legacy_json_containers(item) for item in value]
+    if isinstance(value, (set, frozenset)):
+        return [_normalize_legacy_json_containers(item) for item in sorted(value, key=repr)]
+    return copy.deepcopy(value)
+
+
 def _copy_if_present(source: dict[str, Any], aliases: dict[str, str]) -> tuple[dict[str, Any], set[str]]:
     out: dict[str, Any] = {}
     consumed: set[str] = set()
@@ -219,10 +244,10 @@ def extract_legacy_snapshot_facts(snapshot: dict[str, Any]) -> dict[str, Any]:
     )
 
     return {
-        "meta": meta,
-        "calendar": calendar,
-        "board": board,
-        "cycles": cycles,
+        "meta": _normalize_legacy_json_containers(meta),
+        "calendar": _normalize_legacy_json_containers(calendar),
+        "board": _normalize_legacy_json_containers(board),
+        "cycles": _normalize_legacy_json_containers(cycles),
         "consumed_legacy_keys": sorted(consumed),
         "quarantined_legacy_keys": quarantined,
         "unported_legacy_keys": unported,
