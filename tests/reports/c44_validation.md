@@ -27,3 +27,5 @@
 ```
 818 passed in 1.36s
 ```
+
+18. 创立年干支数复用 C42 表，但 `used_to_auto_select_year=False`。
