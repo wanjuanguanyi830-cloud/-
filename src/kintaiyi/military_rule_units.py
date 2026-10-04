@@ -130,12 +130,13 @@ RULE_UNITS: dict[str, dict[str, Any]] = {
     "V15-10": _rule(
         "V15-10", volume_profile="tongzong_volume15",
         payload_key="五音觀風察將",
-        source_title="五音观风察将",
+        source_title="明五音观风察将术",
         function_name="guanfeng_chajiang",
-        inputs=("wuyin_wind_result", "wind_sound"),
-        dependency_class="derived_from_rule",
-        external_inputs=("wind_sound",),
-        overlaps=("V15-09",),
+        inputs=("wind_sound_class",),
+        dependency_class="external_observation",
+        external_inputs=("wind_sound_class",),
+        overlaps=(),
+        notes="原文按风声形态辨五音察将；不得以V15-09风向五音替代实际风声。",
     ),
     "V15-11": _rule(
         "V15-11", volume_profile="tongzong_volume15",
