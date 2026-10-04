@@ -135,7 +135,7 @@ def test_c47_reuses_shared_four_image_ce_without_reusing_dayou_epoch():
 def test_c47_does_not_force_sixtyfour_hexagram_name():
     data = xiaoyou_heavy_hexagram(80)
     assert data["hexagram_name"] is None
-    assert data["hexagram_name_status"] == "not_resolved_in_c46"
+    assert data["hexagram_name_status"] == "not_resolved_in_c47"
 
 
 def test_c47_rejects_nonpositive_or_bool_year():
