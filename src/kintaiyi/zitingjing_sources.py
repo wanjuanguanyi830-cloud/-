@@ -9,36 +9,38 @@ import copy
 from typing import Any
 
 ZITINGJING_SOURCE_VERSION = "taiyi-c18-zitingjing-source-v1"
+PRIMARY_SOURCE_ID = "zitingjing"
+PRIMARY_SOURCE_TITLE = "太乙紫庭经"
 
 RULES = {
     "taiyi_nine_stars": {
         "legacy_name": "太乙九星",
-        "primary_source": "zitingjing",
+        "primary_source": PRIMARY_SOURCE_ID,
         "collation_sources": ["tongzong_volume6"],
     },
     "wenchang_nine_stars": {
         "legacy_name": "文昌九星",
-        "primary_source": "zitingjing",
+        "primary_source": PRIMARY_SOURCE_ID,
         "collation_sources": ["tongzong_volume6"],
     },
     "wenchang_changes": {
         "legacy_name": "文昌变化",
-        "primary_source": "zitingjing",
+        "primary_source": PRIMARY_SOURCE_ID,
         "collation_sources": ["tongzong_volume6"],
     },
     "shiji_changes": {
         "legacy_name": "始击变化",
-        "primary_source": "zitingjing",
+        "primary_source": PRIMARY_SOURCE_ID,
         "collation_sources": ["tongzong_volume6"],
     },
     "three_banners": {
         "legacy_name": "三旗行宫",
-        "primary_source": "zitingjing",
+        "primary_source": PRIMARY_SOURCE_ID,
         "collation_sources": ["tongzong_volume10"],
     },
     "nine_palace_nobles": {
         "legacy_name": "九宫贵神",
-        "primary_source": "zitingjing",
+        "primary_source": PRIMARY_SOURCE_ID,
         "collation_sources": ["tongzong_volume10"],
     },
 }
@@ -76,6 +78,7 @@ def build_zitingjing_rule_sources(
         "rule_key": rule_key,
         "legacy_name": meta["legacy_name"],
         "primary_source": meta["primary_source"],
+        "primary_source_title": PRIMARY_SOURCE_TITLE,
         "primary_result": primary,
         "primary_ready": primary_ready,
         "collation_sources": list(meta["collation_sources"]),
@@ -119,7 +122,8 @@ def build_zitingjing_p1_sources(
     return {
         "schema_version": "1.0",
         "canonical": ZITINGJING_SOURCE_VERSION,
-        "primary_source": "zitingjing",
+        "primary_source": PRIMARY_SOURCE_ID,
+        "primary_source_title": PRIMARY_SOURCE_TITLE,
         "rules": rules,
         "cross_source_merge": False,
         "policy": "六项规则均以《太乙紫庭经》为主来源，统宗卷六/卷十只作参校。",
