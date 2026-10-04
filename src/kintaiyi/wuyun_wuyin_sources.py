@@ -12,6 +12,7 @@ import copy
 from typing import Any
 
 from .eight_divinations import wuyin_from_calc
+from .wuyun_volume10_collation import volume10_wuyun_collation
 
 C37_VERSION = "taiyi-c37-wuyun-wuyin-sources-v1"
 
@@ -155,6 +156,7 @@ def volume10_wuyun_profile(
     """
     movement = annual_movement(year_stem)
     six_qi = six_qi_assignment(year_branch)
+    collation = volume10_wuyun_collation()
     return {
         "schema_version": "1.0",
         "canonical": C37_VERSION,
@@ -165,12 +167,18 @@ def volume10_wuyun_profile(
         "six_qi": six_qi,
         "host_qi": {"deity": "文昌", "role": "主气", "location": host_eye},
         "guest_qi": {"deity": "始击", "role": "客气", "location": guest_eye},
+        "collation": collation,
         "suihui_relations": [],
-        "suihui_status": "pending_direct_table_collation",
+        "suihui_status": "core_tables_collated_meeting_variant_pending",
+        "meeting_enum_status": collation["meeting_enum_status"],
+        "taiyi_tianfu_formula_status": collation["taiyi_tianfu_formula_status"],
+        "year_stem_only_finalizes_taiguo_buji": False,
         "cross_volume_merge": False,
         "policy": (
-            "卷十profile与卷三并列；当前只固化直接基础映射。"
-            "九宫三旗岁会、天会、逆会、太乙天符等另校，不用旧综合函数先填。"
+            "卷十五运/六气/纪名细表已由C39校勘；"
+            "天会、岁会、逆会、辐辏枚举仍有传本差异，"
+            "太乙天符须待九宫天符/三旗等结构化输入后再判，"
+            "不得退回旧综合函数或只凭年干判太过不及。"
         ),
     }
 
