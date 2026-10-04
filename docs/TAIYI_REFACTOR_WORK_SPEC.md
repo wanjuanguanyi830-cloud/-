@@ -1779,18 +1779,80 @@ C38 复用 C36 大小限时间轴与盈差；
 
 详细记录见 `sources/c38-taiyou-limit-tracks-record.md`。
 
-## 9.32 C39 紫庭旧术语库恢复骨架（已实施）
+## 9.32 C39 卷十“五运六气”细表校勘（已实施）
+
+新增：
+
+`src/kintaiyi/wuyun_volume10_collation.py`
+
+C39 在 C37 的卷十 profile 上继续校勘：
+
+- 五运配五音；
+- 六气配五行 / 化气；
+- 太过、不及、平气纪名；
+- 天会 / 岁会 / 逆会 / 辐辏枚举异文。
+
+### C39-01 已校基础表
+
+五运：
+
+- 土 → 宫 / 黄天
+- 金 → 商 / 素天
+- 水 → 羽 / 玄天
+- 木 → 角 / 苍天
+- 火 → 徵 / 丹天
+
+六气：
+
+- 厥阴 → 木 / 风
+- 少阴 → 火 / 君火
+- 太阴 → 土 / 湿
+- 少阳 → 火 / 相火
+- 阳明 → 金 / 燥
+- 太阳 → 水 / 寒
+
+OCR / 传本异文原样保留，不静默统一。
+
+### C39-02 纪名表
+
+太过、不及、平气五行纪名已经结构化，但统宗在线见证与参校读法存在：
+
+- 崇阜 / 敦阜；
+- 卑坚 / 卑监；
+- 外明 / 升明；
+- 主君 / 审平；
+
+等差异，均保持 `canonical_selected=None`。
+
+### C39-03 会类边界
+
+统宗见：
+
+- 天会
+- 岁会
+- 逆会
+- 三合辐辏则为太乙天符
+
+《太白兵备统宗宝鉴》另有“四类并列”见证。
+
+固定：
+
+- `meeting_enum_status=source_variant_unresolved`
+- 不以年干捷径直接定太过/不及；
+- 缺九宫天符 / 合会结构输入时不得生成太乙天符。
+
+## 9.33 C40 紫庭旧术语库恢复骨架（已实施）
 
 用户确认此前提供的《太乙紫庭祕訣》研易楼藏明钞本已经在本地术语主库做过初步整理；当前 GitHub 只缺旧 `terminology.json` 的迁移。
 
 新增：
 
 - `terminology/zitingjing-migration-map.json`
-- `sources/c39-zitingjing-terminology-recovery-record.md`
+- `sources/c40-zitingjing-terminology-recovery-record.md`
 - `tests/test_zitingjing_terminology_migration.py`
-- `tests/reports/c39_zitingjing_terminology_recovery_validation.md`
+- `tests/reports/c40_zitingjing_terminology_recovery_validation.md`
 
-### C39-01 不重扫
+### C40-01 不重扫
 
 后续恢复旧术语库时，不从零重新做全文术语抽取。
 
@@ -1804,7 +1866,7 @@ C38 复用 C36 大小限时间轴与盈差；
 
 再与当前 rule/source key 对齐。
 
-### C39-02 六项映射骨架
+### C40-02 六项映射骨架
 
 - 太乙九星 → `taiyi_nine_stars`
 - 文昌九星 → `wenchang_nine_stars`
@@ -1813,16 +1875,16 @@ C38 复用 C36 大小限时间轴与盈差；
 - 三旗行宫 → `three_banners`
 - 九宫贵神 → `nine_palace_nobles`
 
-### C39-03 强制空值
+### C40-03 强制空值
 
 旧术语库或扫描页未恢复前：
 
 - `manuscript_form=null`
 - `source_page=null`
 
-不得用统宗、《三才世纬》、现代材料或 OCR 猜测代填研易楼本实际字形/页码。
+不得用统宗、《三才世纬》、现代材料或 OCR 猜测代填研易楼本实际字形 / 页码。
 
-### C39-04 恢复优先级
+### C40-04 恢复优先级
 
 1. 文昌九星；
 2. 三旗行宫；
@@ -1833,23 +1895,21 @@ C38 复用 C36 大小限时间轴与盈差；
 
 前三项优先解决现有紫庭来源缺口；后三项用于补页码、原字形与旧术语 ID。
 
-### C39-05 parser 暂缓
+### C40-05 parser 暂缓
 
 未知旧 `terminology.json` 的真实 schema 前，不写猜测性 migration parser。
 
 待旧文件重新提供后，按真实 schema 写一次性 adapter。
 
-## 9.33 后续 C40+
+## 9.34 后续 C41+
 
 下一优先级：
 
-1. 卷十“岁会五运六气”细表直接校勘，补齐 C37 `suihui_status`；
-2. 卷九太游重卦、四象策数、动爻另拆，不与 C38 行限轨迹混并；
-3. 恢复旧 `terminology.json` 后按 C39 对齐研易楼明钞本；
-4. 继续寻找 / 回读文昌九星附篇正文；
-5. 三旗行宫 / 九宫贵神继续归属核证；
-6. 剩余 P2/P3 字段按 C30 固定槽位迁移。
-
+1. 卷九太游重卦、四象策数、动爻另拆，不与 C38 行限轨迹混并；
+2. 恢复旧 `terminology.json` 后按 C40 对齐研易楼明钞本；
+3. 回读文昌九星附篇正文；
+4. 三旗行宫 / 九宫贵神继续归属核证；
+5. 剩余 P2/P3 字段按 C30 固定槽位迁移。
 
 ## 10. 验收
 
