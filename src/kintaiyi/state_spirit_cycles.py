@@ -1,4 +1,4 @@
-"""C63 卷七天乙 / 地乙 / 直符三神 360/36 行宫基础层。
+"""C64 卷七天乙 / 地乙 / 直符三神 360/36 行宫基础层。
 
 直接来源：《太乙统宗宝鉴》卷七。
 三神共同结构：
@@ -21,7 +21,7 @@ from typing import Any
 
 from .taiyi_rules import integer
 
-C63_VERSION = "taiyi-c63-volume7-three-spirit-cycles-v1"
+C64_VERSION = "taiyi-c64-volume7-three-spirit-cycles-v1"
 
 TWELVE_PALACES: tuple[int | str, ...] = (
     1, 2, 3, 4, 5, 6, 7, 8, 9, "绛宫", "明堂", "玉堂"
@@ -32,19 +32,19 @@ SPIRITS = {
         "element": "金",
         "start_palace": 6,
         "source_title": "明天乙太乙金神所主术",
-        "rule_id": "C63-TIANYI",
+        "rule_id": "C64-TIANYI",
     },
     "地乙": {
         "element": "土",
         "start_palace": 9,
         "source_title": "明地乙太乙土神所主术",
-        "rule_id": "C63-DIYI",
+        "rule_id": "C64-DIYI",
     },
     "直符": {
         "element": "火",
         "start_palace": 5,
         "source_title": "明直符太乙火神所主术",
-        "rule_id": "C63-ZHIFU",
+        "rule_id": "C64-ZHIFU",
     },
 }
 
@@ -101,7 +101,7 @@ DEFERRED_LAYER = {
     "same_palace_omens": "deferred_explicit_evidence_layer",
     "auto_same_palace_inference": False,
     "reason": (
-        "卷七同宫灾应虽有直接正文，但C63只锁定位置周期；"
+        "卷七同宫灾应虽有直接正文，但C64只锁定位置周期；"
         "后续应显式声明同宫对象，不从本模块位置结果自动制造断语。"
     ),
 }
@@ -113,7 +113,7 @@ def canonical_spirit_name(name: str, *, allow_legacy_alias: bool = False) -> str
     if allow_legacy_alias and name == "值符":
         return "直符"
     if name in LEGACY_NAME_AUDIT:
-        raise ValueError(f"{name}不是C63 canonical名称")
+        raise ValueError(f"{name}不是C64 canonical名称")
     raise ValueError("未知C63神名")
 
 
@@ -163,7 +163,7 @@ def spirit_position(
 
     return {
         "schema_version": "1.0",
-        "canonical": C63_VERSION,
+        "canonical": C64_VERSION,
         "rule_id": spec["rule_id"],
         "source_profile": "tongzong_volume7_three_spirit_cycles",
         "spirit": canonical_name,
@@ -178,7 +178,7 @@ def spirit_position(
         "source_witness": copy.deepcopy(SOURCE_WITNESS),
         "policy": (
             "只按360/36、三年一宫与十二宫序计算位置；"
-            "不自动比较其他神位置，也不在C63生成同宫灾应。"
+            "不自动比较其他神位置，也不在C64生成同宫灾应。"
         ),
     }
 
@@ -197,7 +197,7 @@ def zhifu_position(accumulated_count: int) -> dict[str, Any]:
 
 def c63_catalog() -> dict[str, Any]:
     return {
-        "canonical": C63_VERSION,
+        "canonical": C64_VERSION,
         "source_profile": "tongzong_volume7_three_spirit_cycles",
         "rule_ids": {name: row["rule_id"] for name, row in SPIRITS.items()},
         "spirits": copy.deepcopy(SPIRITS),
