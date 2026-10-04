@@ -950,9 +950,11 @@ P1 六项继续放在同一来源容器中，但**不再一概宣称“紫庭主
 
 ### C19-03 始击变化
 
-核心身份 / 军事角色已固化；逐岁干×五行灾应表仍：
+核心身份 / 军事角色已固化；C31 已完成逐岁干×五行灾应 5 组×5 行校勘，状态：
 
-`pending_textual_collation`
+`collated_with_preserved_variants`
+
+OCR 校字与真异文分开保存，详见 `sources/c31-zitingjing-shiji-collation-record.md`。
 
 ### C19-04 尚未形成 primary_result
 
@@ -1012,7 +1014,7 @@ P1 六项继续放在同一来源容器中，但**不再一概宣称“紫庭主
 优先：
 
 1. 继续找“附太乙文昌九星值宫术”直接正文；
-2. 始击变化逐岁干×五行灾应表校读；
+2. 文昌九星外部参校已由 `src/kintaiyi/zitingjing_collation.py` 保存《三才世纬》卷八十一与统宗卷六多见证；星名异文及 10/30 年周期冲突保持 unresolved；
 3. 三旗 / 九宫贵神只有发现紫庭目录或正文证据后才升级 attribution；
 4. 若长期无紫庭证据，可另建统宗卷十 direct source profile，但不得反标为紫庭。
 
