@@ -1683,12 +1683,61 @@ C12 adapter 支持显式 `cycles` overlay，但仍不从 legacy flat 自动重�
 
 详细记录见 `sources/c36-yangjiu-bailiu-limits-record.md`。
 
-## 9.30 后续 C37+
+## 9.30 C37 五运六气 / 五音之数来源拆分（已实施）
+
+### C37-01 五运六气
+
+分为两个独立 profile：
+
+- 卷三 `tongzong_volume3_wuyun`：统行五运六气、主客气框架；
+- 卷十 `tongzong_volume10_wuyun`：岁会五运六气框架。
+
+禁止把两卷静默揉成一个 canonical 公式。
+
+卷十岁会/天符细表当前继续：
+
+`pending_direct_table_collation`
+
+### C37-02 五音之数
+
+“五音之数 / 五音之元”修正为卷三独立来源。
+
+算数五音复用 D8-03 已校核心：
+
+- 1/2 宫；
+- 3/4 徵；
+- 5/6 羽；
+- 7/8 商；
+- 9/10 角。
+
+明确：
+
+`number_subject_rule_d8_08_used=False`
+
+不得把 D8-08 将军/吏士/兵卒映射成五音。
+
+### C37-03 legacy replacement
+
+旧 `五运六气` 是卷三+卷十 mixed flat，因此两 profile 都存在后才清除 replacement gap。
+
+旧 `五音之数` 只需卷三 profile。
+
+### C37-04 C30 contract
+
+`source_variants` 新增：
+
+`wuyun_wuyin`
+
+完整验证：705 passed / 0 failed。
+
+详细记录见 `sources/c37-wuyun-wuyin-source-split-record.md`。
+
+## 9.31 后续 C38+
 
 下一优先级：
 
-1. 五运六气 / 五音之数继续保持跨卷 source_variant，先做卷三 / 卷十来源拆分；
-2. 明阳九百六太游行限观历术的“外卦十年一宫 / 内卦三十六年一宫”另建规则，不塞入 C36 大小限；
+1. “明阳九百六太游行限观历术”外卦十年一宫 / 内卦三十六年一宫另建规则，不塞入 C36 大小限；
+2. 卷十岁会五运六气细表继续直接校勘；
 3. 继续寻找文昌九星附篇正文；
 4. 三旗行宫 / 九宫贵神继续归属核证；
 5. 剩余 P2/P3 字段按 C30 固定槽位迁移。
