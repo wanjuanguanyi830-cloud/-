@@ -74,7 +74,11 @@
 
 `pending_reinspection_from_previously_provided_file`
 
-在重新取回此前文件并定位附篇页之前，文昌九星仍保持 `catalog_attested_text_pending`，不能只凭目录条目生成正文规则。
+此外，用户确认这份扫描本**此前已经在本地术语库做过初步整理**。当前 GitHub 的 `terminology/` 只保留入口说明，本地 `terminology.json` 尚未迁移，因此旧术语抽取结果不在仓库树中。
+
+这意味着后续应优先恢复“已有术语索引 → 明钞本页级来源”的对应关系，而不是重新从零做全文术语扫描。
+
+在重新取回此前文件并定位附篇页之前，文昌九星仍保持 `catalog_attested_primary_text_pending`，不能只凭目录条目或旧术语词条生成正文规则。
 
 ## C. 北京大学馆藏线索
 
