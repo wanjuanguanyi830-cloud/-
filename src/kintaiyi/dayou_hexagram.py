@@ -133,12 +133,14 @@ def compose_dayou_heavy_hexagram(
             "inner": inner["ce"],
             "outer": outer["ce"],
             "total": inner["ce"] + outer["ce"],
+            "total_status": "derived_sum_of_inner_outer_trigram_ce",
         },
         "epoch_formula_applied": False,
         "c38_track_used": False,
         "policy": (
             "C41只消费显式内外卦与入内卦年数；"
             "不从积年重算宫卦，不调用C38，也不使用旧+34/+50偏移。"
+            "ce.total仅为内外卦策数的结构化求和，正文未另立“总策”公式。"
         ),
     }
 
