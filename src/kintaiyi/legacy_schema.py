@@ -99,6 +99,8 @@ EYE_FIELDS = {
 
 # 旧风险字段 → 新结构必须存在的替代路径。
 QUARANTINE_REPLACEMENTS = {
+    "厄會行限": "source_variants.volume9.ehui_limit.legacy_replacement",
+    "厄会行限": "source_variants.volume9.ehui_limit.legacy_replacement",
     "五運六氣": "source_variants.wuyun_wuyin.wuyun_liuqi.legacy_replacement",
     "五运六气": "source_variants.wuyun_wuyin.wuyun_liuqi.legacy_replacement",
     "五音之數": "source_variants.wuyun_wuyin.wuyin_number.profiles.tongzong_volume3",
