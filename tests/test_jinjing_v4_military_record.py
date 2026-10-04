@@ -77,8 +77,9 @@ def test_runtime_status_matches_second_batch_implementation():
     _, rules = _rules()
     by_id = {item["id"]: item for item in rules}
 
-    assert by_id["J4M-03"]["implementation_status"] == "implemented_partial_source_specific"
-    assert by_id["J4M-03"]["runtime"].endswith(".zhuke_xiangguan")
+    assert by_id["J4M-03"]["implementation_status"] == "implemented_source_specific"
+    assert any(path.endswith(".zhuke_xiangguan") for path in by_id["J4M-03"]["runtime"])
+    assert any(path.endswith(".j4m03_eye_element_from_god") for path in by_id["J4M-03"]["runtime"])
     assert by_id["J4M-03"]["target_crosswalk"]["layer"] is None
 
     assert by_id["J4M-05"]["implementation_status"] == "implemented_source_specific"
@@ -131,13 +132,20 @@ def test_j4m04_is_now_source_complete_but_c8_crosswalk_remains_roles_only():
     assert "先胜后负" in rule["implementation_note"]
 
 
-def test_j4m03_keeps_legacy_nayin_and_taiyi_general_inference_quarantined():
+def test_j4m03_ancient_collation_resolves_two_eye_nayin_without_modern_merge():
     _, rules = _rules()
     rule = {item["id"]: item for item in rules}["J4M-03"]
 
-    assert rule["implementation_status"] == "implemented_partial_source_specific"
-    assert rule["collation_status"] == "formula_not_expanded_in_checked_jinjing_transcriptions"
+    assert rule["implementation_status"] == "implemented_source_specific"
+    assert rule["collation_status"] == "resolved_by_two_eye_nayin_collation"
+    assert rule["canonical"]["scope"] == "日计"
+    assert "文昌" in rule["canonical"]["host_eye"]
+    assert "始击" in rule["canonical"]["guest_eye"]
+    assert "日计二目纳音" in rule["collation_evidence"]["jingyou_taiyi_fuyingjing"]
+    assert "二目纳音" in rule["collation_evidence"]["taiyi_taojinge"]
+
     quarantined = " ".join(rule["legacy_reference_quarantined"])
     assert "wc_n_sj" in quarantined
     assert "主将是否与太乙同宫" in quarantined
-    assert "不能升级为 canonical" in quarantined
+    assert "现代《太乙数纳音体系（修正版）》" in quarantined
+    assert "不得静默回写" in quarantined
