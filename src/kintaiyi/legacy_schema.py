@@ -51,6 +51,21 @@ GENERAL_FIELDS = {
     "客参": "away_vassal",
 }
 
+SECTOR_GENERAL_FIELDS = {
+    "天乙": "tianyi",
+    "地乙": "diyi",
+    "四神": "four_spirits",
+    "直符": "zhifu",
+    "合神": "hegod",
+    "計神": "jigod",
+    "计神": "jigod",
+}
+
+SIXTEEN_PALACE_FIELDS = {
+    "十六宮分佈": "sixteen_palaces",
+    "十六宫分布": "sixteen_palaces",
+}
+
 CALC_FIELDS = {
     "主算": "home",
     "客算": "away",
@@ -121,6 +136,8 @@ def _migrated_targets() -> dict[str, str]:
     })
     targets.update({key: f"board.calculations.{value}" for key, value in CALC_FIELDS.items()})
     targets.update({key: f"board.generals.{value}" for key, value in GENERAL_FIELDS.items()})
+    targets.update({key: f"board.generals.{value}" for key, value in SECTOR_GENERAL_FIELDS.items()})
+    targets.update({key: f"board.{value}" for key, value in SIXTEEN_PALACE_FIELDS.items()})
     targets.update({key: f"board.doors.{value}" for key, value in DOOR_FIELDS.items()})
     targets.update(EYE_FIELDS)
     targets.update({
