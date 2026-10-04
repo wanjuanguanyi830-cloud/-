@@ -7,6 +7,7 @@ from kintaiyi.ten_essences_positions import (
     LEGACY_AUDIT,
     TAIZUN_PATHS,
     THREEWIND_PATHS,
+    WUXING_PATHS,
     SURPLUS_REJECTION,
     c53_runtime_catalog,
     eightwind_position,
@@ -14,6 +15,7 @@ from kintaiyi.ten_essences_positions import (
     flybird_position,
     taizun_position,
     threewind_position,
+    wuxing_position,
 )
 
 
@@ -149,9 +151,9 @@ def test_c53_surplus_rejections_preserve_source_boundary():
 
 def test_c53_catalog_marks_second_batch_position_runtimes_implemented():
     data = c53_runtime_catalog()
-    assert data["implemented"] == ["飞鸟", "五风", "太尊", "八风", "三风"]
+    assert data["implemented"] == ["飞鸟", "五风", "太尊", "八风", "三风", "五行"]
     assert set(data["pending"]) == {
-        "天皇", "帝符", "天时", "五行", "太乙数"
+        "天皇", "帝符", "天时", "太乙数"
     }
     assert data["cloud_omen_runtime"] is False
     assert data["pan_contract_extended"] is False
@@ -221,3 +223,27 @@ def test_c53_all_implemented_positions_require_explicit_dun(func):
         func(1)
     with pytest.raises(ValueError, match="dun须为阳/阴"):
         func(1, dun="冬至")
+
+
+
+def test_c53_wuxing_five_palace_paths():
+    assert WUXING_PATHS["阳"] == (1, 8, 3, 9, 7)
+    assert WUXING_PATHS["阴"] == (9, 2, 7, 1, 3)
+
+    assert [wuxing_position(i, dun="阳")["palace"] for i in range(1, 6)] == [1, 8, 3, 9, 7]
+    assert [wuxing_position(i, dun="阴")["palace"] for i in range(1, 6)] == [9, 2, 7, 1, 3]
+
+    end = wuxing_position(50, dun="阳")
+    assert end["big_cycle"] == 50
+    assert end["small_cycle"] == 5
+    assert end["big_cycle_year"] == 50
+    assert end["small_cycle_year"] == 5
+    assert end["palace"] == 7
+
+
+def test_c53_wuxing_does_not_reuse_legacy_function_as_truth():
+    audit = LEGACY_AUDIT["config.wuxing"]
+    assert audit["canonical_equivalent"] is False
+    assert audit["legacy_outer_modulus"] == 5
+    assert audit["direct_big_cycle"] == 50
+    assert audit["direct_small_cycle"] == 5
