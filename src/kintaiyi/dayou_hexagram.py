@@ -74,11 +74,14 @@ def _trigram(value: str) -> str:
 
 
 def four_image_ce(trigram: str) -> dict[str, Any]:
-    """返回一卦所属四象与策数。"""
+    """返回经卦所属四象、单爻策数与三爻经卦策数。"""
     name = _trigram(trigram)
+    base = copy.deepcopy(FOUR_IMAGE_CE[name])
     return {
         "trigram": name,
-        **copy.deepcopy(FOUR_IMAGE_CE[name]),
+        **base,
+        "ce_unit": "per_line",
+        "trigram_ce": base["ce"] * 3,
         "source_rule": "卷九·明太游内外重卦之策术",
     }
 
@@ -130,17 +133,20 @@ def compose_dayou_heavy_hexagram(
         "outer_moving_line": None,
         "outer_moving_line_status": "not_attested_in_direct_c41_rule",
         "ce": {
-            "inner": inner["ce"],
-            "outer": outer["ce"],
-            "total": inner["ce"] + outer["ce"],
-            "total_status": "derived_sum_of_inner_outer_trigram_ce",
+            "inner_per_line": inner["ce"],
+            "outer_per_line": outer["ce"],
+            "inner_trigram": inner["trigram_ce"],
+            "outer_trigram": outer["trigram_ce"],
+            "total": inner["trigram_ce"] + outer["trigram_ce"],
+            "total_status": "directly_confirmed_by_volume9_examples",
         },
         "epoch_formula_applied": False,
         "c38_track_used": False,
         "policy": (
             "C41只消费显式内外卦与入内卦年数；"
             "不从积年重算宫卦，不调用C38，也不使用旧+34/+50偏移。"
-            "ce.total仅为内外卦策数的结构化求和，正文未另立“总策”公式。"
+            "四象36/24/28/32为单爻策数；每个经卦三爻，"
+            "故经卦策数乘3，重卦总策为内外经卦策数之和。"
         ),
     }
 
