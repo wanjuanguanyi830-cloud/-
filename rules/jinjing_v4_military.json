@@ -285,7 +285,9 @@
         "layer": null,
         "status": "missing"
       },
-      "implementation_status": "not_implemented"
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jinjing_v4_military.fengyun_feiniao_zhuzhan",
+      "implementation_note": "以显式外部观测事件列表驱动，逐条匹配冲格迫击、扶阵、回风飞鸟、冲突阵等正文事件；无观测返回not_computable，众来噪阵因本句未单独明示结果而不补断。"
     },
     {
       "id": "J4M-12",
@@ -306,7 +308,9 @@
         "layer": null,
         "status": "missing_observation_model"
       },
-      "implementation_status": "not_implemented"
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jinjing_v4_military.yunqi_dingshengfu",
+      "implementation_note": "以云气所覆阵方位×颜色为基础表，日干、云气聚散动静及大将/参将位置分层修正；原文未列组合保持未定义，无云气返回无战或相匀，不以五行常识补表。"
     }
   ]
 }
