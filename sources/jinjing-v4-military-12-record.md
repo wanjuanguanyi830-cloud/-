@@ -307,3 +307,94 @@ J4M 只提供 source-specific 事实层。
 - 未展开的组合保持未定义
 - 外部观测不得由盘内事实伪造
 - old runtime 只能作 migration clue，不能作 canonical source
+
+
+## J4M → C8 显式 adapter
+
+新增：
+
+`src/kintaiyi/jinjing_v4_c8_adapter.py`
+
+入口：
+
+`adapt_j4m_to_c8(...)`
+
+adapter id：
+
+`jinjing-v4-to-c8-explicit-v1`
+
+### 强制来源条件
+
+只有显式：
+
+`source_profile=jinjing_siku_volume4`
+
+才允许消费 J4M 结果。
+
+任意其他 profile 均返回：
+
+`rejected_source_profile`
+
+并且每个传入结果都必须同时匹配：
+
+- `ruleset=jinjing-siku-v4-military-12`
+- `source_profile=jinjing_siku_volume4`
+- 对应 `rule_id`
+
+因此不能把《统宗》或旧 runtime 结果伪装成 J4M 注入 C8。
+
+### 当前映射
+
+J4M-01：
+
+`three_doors_ready` → C8-L2 三门上游事实
+
+J4M-02：
+
+`five_generals_released` → C8-L2 五将上游事实
+
+J4M-04：
+
+不覆盖 C8-L3，而作为：
+
+`j4m_overlay.host_guest_full`
+
+保存完整 J4M-04 source-specific 语义，包括：
+
+- context
+- roles
+- action status / advice
+- “所向必克”
+- “先胜后负”
+- start deity
+- cross-side calc reference
+
+C8-L3 自己的：
+
+- `winner=None`
+- 默认 policy
+- `source_profile=volume5_strict`
+
+均保持不变。
+
+### 明确不接入 J4M-03
+
+J4M-03 因“日计纳音以决之”仍缺可信展开公式，不进入 adapter。
+
+这保证 partial 规则不会因为组合层存在而被假装升级为 complete。
+
+### 默认 C8 不变
+
+只有主动调用 `adapt_j4m_to_c8()` 才会产生映射。
+
+直接调用：
+
+`junshi_zhanlue(...)`
+
+仍然是：
+
+`source_profile=volume5_strict`
+
+且 `source_variants=[]`。
+
+因此该 adapter 是 opt-in source bridge，不是对 C8 默认行为的替换。
