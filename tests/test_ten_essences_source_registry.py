@@ -156,7 +156,7 @@ def test_c52_registry_is_metadata_only():
     assert data["rule_id"] == "C52-TEN-ESSENCES-REGISTRY"
     assert data["position_runtime_ready"] is False
     assert data["cloud_runtime_ready"] is False
-    assert data["legacy_top_level_promoted"] if "legacy_top_level_promoted" in data else True
+    assert data["target_policy"]["legacy_top_level_promoted"] is False
     assert all(
         row["formula_status"] == "pending_source_formula_audit"
         for row in data["essences"]
