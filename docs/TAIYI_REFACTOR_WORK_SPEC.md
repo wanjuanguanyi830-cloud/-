@@ -637,6 +637,73 @@ C12 adapter 和 C13 migration audit 都读取 C14 registry，不再各自维护�
 
 先做纯表与低依赖规则 J4M-06、07、09，再接 J4M-05、10；J4M-03 需统一日计纳音与主客目五行输入；J4M-11、12 需要显式外部观测模型，无观测时返回 `not_computable`。
 
+
+## 9.8 C15 unported legacy 字段目录与迁移优先级（已实施）
+
+参考 `Taiyi.pan()` 当前主盘 108 个顶层字段中，C14 尚有 67 个 unported。C15 已全部建立目录，见 `src/kintaiyi/unported_catalog.py`。
+
+### C15-01 四层
+
+每个已知 unported 字段增加候选层：
+
+- `canonical`：来源相对明确，可逐条建 source record 后迁移；
+- `source_variant`：必须拆来源 profile，禁止静默选一套；
+- `derived`：综合包装或现代派生，不得整体标为古法 canonical；
+- `pending`：来源/输入不足，禁止猜。
+
+### C15-02 P0-P3 优先级
+
+- P0：核心盘面或高风险来源边界；
+- P1：来源较明确的独立规则 / 高风险军事层；
+- P2：辅助体系、跨卷或仍需补来源校勘；
+- P3：综合包装器或现代派生。
+
+当前 P0 重点：
+
+- 天乙 / 地乙 / 四神 / 直符 / 合神 / 计神的 board 结构；
+- 十六宫分布；
+- 推三门具不具；
+- 推五将发不发；
+- 推主客相关法；
+- 释格局。
+
+### C15-03 禁止整体迁移
+
+旧 `卷八/九/十/十一/十二/十三/十四/十八` 综合键，以及卷十五军事应用、卷十七军事占断、跨卷综合项、现代天文桥接，固定 `migrate_whole=False`。
+
+必须先拆成独立规则 / source profile，再进入 v2。
+
+### C15-04 与 C13/C14 连接
+
+C14 的 unported manifest 现在附带：
+
+- candidate_layer
+- priority
+- source_scope
+- migration_action
+- migrate_whole
+
+C13 audit 现在附带：
+
+- unported_layer_counts
+- unported_priority_counts
+- next_migration_candidates
+
+后续迁移顺序应同时参考 C15 priority 与真实 snapshot 的字段频率。
+
+详细记录见 `sources/c15-unported-catalog-record.md`。
+
+## 9.9 后续 C16+
+
+- 优先落实 C15 P0：
+  1. 十六宫分布进入 board；
+  2. 基础神将（天乙/地乙/四神/直符/合神/计神）进入 board；
+  3. 释格局拆统宗卷四 / 金镜 profile；
+  4. 三门、五将、主客相关与 J4M/C8 对齐。
+- P3 综合包装器不得抢先整体迁移。
+- 真正 `Taiyi.pan()` / UI / CLI 进入目标仓库后再做实际接线。
+
+
 ## 10. 验收
 
 每批至少运行现有 pytest/ruff（若配置存在）。不得为了兼容把已确认错误公式改回去。兼容的是 API/keys/类型，不是错误答案。
