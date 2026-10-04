@@ -8,7 +8,12 @@ from kintaiyi.zitingjing_sources import (
     build_zitingjing_p1_sources,
     build_zitingjing_rule_sources,
     build_zitingjing_source_variants,
+    PRIMARY_SOURCE_TITLE,
 )
+
+
+def test_full_primary_source_title_is_taiyi_zitingjing():
+    assert PRIMARY_SOURCE_TITLE == "太乙紫庭经"
 
 
 def test_six_p1_rules_all_use_zitingjing_primary():
