@@ -2969,15 +2969,113 @@ C57 只完成合会层。
 - `sources/c57-ten-essences-cloud-conjunctions-record.md`
 - `tests/reports/c57_validation.md`
 
-## 9.51 后续 C58+
+## 9.51 C58 十精初移宫云色时变 / 天气观察层（已实施）
+
+新增：
+
+`src/kintaiyi/ten_essences_cloud_observations.py`
+
+### C58-01 观察事件分层
+
+C58 专属：
+
+`太乙初移宫候云气`
+
+不等于 C51：
+
+`天子初登位日月旁云气`
+
+也不等于 C57 十精合会层。
+
+### C58-02 云色时变
+
+统宗当前直接见：
+
+- 青3/4 → 寅卯；
+- 白7/6 → 申酉；
+- 黑1/8 → 亥子。
+
+赤9/2 → 巳午由《太乙金镜式经》《武经总要》一致参校支持；
+统宗当前在线 OCR / 图像转写缺该句，因此标：
+
+`collation_supported_primary_online_gap`
+
+### C58-03 旧白云错误
+
+旧表白7/6 → 亥子错误。
+
+canonical：
+
+`白7/6 → 申酉`
+
+`黑1/8 → 亥子`
+
+### C58-04 观察窗口
+
+日计：
+
+- 初移宫本日；
+- 日出 / 日午 / 日晡；
+- 后二日不候。
+
+时计：
+
+- 初移宫本时；
+- 后二时不占。
+
+### C58-05 天气形态
+
+显式观察：
+
+- 纯厚 → 雨；
+- 华薄 → 风；
+- 黄雾 → 晕；
+- 黑赤 → 风；
+- 青白 → 寒；
+- 凝润 → 雾雨；
+- 如扫 → 晴；
+- 文彩轮囷萧索 → 大晴。
+
+三才世纬“黑赤风热 / 青白风寒”只作参校扩展。
+
+### C58-06 总括修饰
+
+- 旱 → 阳占；
+- 雨 → 阴占；
+- 旺相 → 变疾速。
+
+飞鸟合太乙风向存在：
+
+- 上来；
+- 下来；
+
+异文，固定 `canonical_selected=None`。
+
+当前 C52：
+
+- `cloud_conjunction_runtime_ready=True`
+- `cloud_observation_runtime_ready=True`
+- `cloud_number_omen_runtime_ready=False`
+- `cloud_runtime_ready=False`
+
+完整验证：
+
+`1161 passed / 0 failed`
+
+详细记录：
+
+- `sources/c58-ten-essences-cloud-observations-record.md`
+- `tests/reports/c58_validation.md`
+
+## 9.52 后续 C59+
 
 下一优先级：
 
-1. C58：太乙初移宫云色时变 + 天气厚薄 / 色象观察层；
-2. C59：太乙数30/40/50及与太乙/天目/飞鸟合会的天气数值层；
-3. 建立全局“旧错误公式 / 非等价旧实现”隔离清单，阻止回流 canonical；
-4. 对 C15 remaining pending / source_variant 做全局一致性清扫；
-5. 恢复旧 `terminology.json`，并继续文昌九星 / 三旗 / 九宫贵神归属核证。
+1. C59：太乙数30/40/50及与太乙/天目/飞鸟等合会天气数值层；
+2. 完成后再判断十精云气整体能否标 `cloud_runtime_ready=True`；
+3. C60 继续维护全局旧错误公式 / 非等价实现隔离；
+4. 清扫 C15 remaining pending / source_variant；
+5. 恢复旧 terminology.json，并继续文昌九星 / 三旗 / 九宫贵神归属核证。
 
 ## 10. 验收
 
