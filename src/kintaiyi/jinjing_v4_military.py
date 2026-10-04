@@ -2,7 +2,7 @@
 
 本模块只实现已经能从卷四正文直接结构化、且不需要借用其他卷次公式的规则。
 当前已实现：
-- J4M-03 推主客相关法：五行相制核心；“日计纳音”的具体附加角色保留 pending。
+- J4M-03 推主客相关法：按日计二目所临十六神的五行相制判主客；不再把“日计纳音”误读成独立当天干支纳音输入。
 - J4M-05 推出师法。
 - J4M-06 推陈兵向背。
 - J4M-07 推制阵随地法。
@@ -22,6 +22,25 @@ _WUXING_KE = {
     "水": "火",
     "火": "金",
     "金": "木",
+}
+
+_WUXING_SHENG = {
+    "木": "火",
+    "火": "土",
+    "土": "金",
+    "金": "水",
+    "水": "木",
+}
+
+# 《太乙淘金歌》“定胜负”注所列二目纳音/十六神五行。
+# 这里只用于 J4M-03 的古籍参校与输入归一化，不等于现代“双纳音”重构体系。
+_J4M03_GOD_ELEMENT = {
+    "武德": "金", "太簇": "金", "阴德": "金",
+    "吕申": "木", "高丛": "木", "大炅": "木",
+    "大义": "水", "地主": "水",
+    "大神": "火", "大威": "火",
+    "和德": "土", "太阳": "土", "天道": "土",
+    "大武": "土", "阴主": "土", "阳德": "土",
 }
 
 _CHENBING_XIANGBEI = {
@@ -409,19 +428,84 @@ def suidi_zhibian(terrain_class, *, soldiers_trained=None,
     }
 
 
-def zhuke_xiangguan(host_eye_element, guest_eye_element, *, day_nayin_element=None):
+def j4m03_eye_element_from_god(god):
+    """按古籍参校表把二目所临十六神归一为五行。
+
+    《太乙金镜式经》卷二在“上下二目”配对义中：
+    - 上目 = 始击 = 客；
+    - 下目 = 文昌 = 主。
+
+    J4M-03 正文例称“地目/天目”，此处为避免“天目”一词多义，
+    运行接口统一使用 host/guest，不再用天目/地目作参数名。
+    """
+    if god is None:
+        return None
+    return _J4M03_GOD_ELEMENT.get(god)
+
+
+def zhuke_xiangguan(host_eye_element=None, guest_eye_element=None, *,
+                    host_eye_god=None, guest_eye_god=None,
+                    calculation_scope="日计", day_nayin_element=None):
     """J4M-03 推主客相关法。
 
-    正文明确：
-    - 客目五行克主目五行 -> 客关得主人，客胜。
-    - 主目五行克客目五行 -> 主人关得客，主胜。
+    经重新校勘：
+    - 《金镜》卷四写“皆用日计纳音以决之”；
+    - 《景祐太乙福应经》对应条文作“日计二目纳音”；
+    - 《太乙淘金歌》“定胜负”明确说“以二目纳音决之，取五行生克为用”，
+      并列十六神所属金木水火土。
 
-    正文同时说“皆用日计纳音以决之”，但本段没有展开纳音如何参与上述
-    五行关系。故本函数保留 day_nayin_element 为来源输入，却不擅自用它
-    改写胜负。待后续找到明确公式后再升级。
+    因此 canonical 不再把 day_nayin_element 解释成“当天干支的六十甲子纳音”。
+    它保留为旧 API 兼容字段，但不参与 J4M-03 判定。
+
+    canonical 明确部分：
+    - 客目五行克主目五行 -> 客关得主人，客胜；
+    - 主目五行克客目五行 -> 主人关得客，主胜；
+    - 无相制时，J4M-03 本条不强宣主客胜负。
+
+    《淘金歌》另有“同音二阵平”以及相生“战必和解”的参校说明，
+    只作为 collation_hint 返回，不反写《金镜》本条的 winner。
     """
     result = _base("J4M-03", "推主客相关法")
     valid = set(_WUXING_KE)
+
+    if calculation_scope != "日计":
+        return {
+            **result,
+            "status": "not_computable",
+            "computable": False,
+            "calculation_scope": calculation_scope,
+            "required_scope": "日计",
+            "policy": "《金镜》本条明言用日计二目纳音；其他计层不得自动套用本 canonical。",
+        }
+
+    host_from_god = j4m03_eye_element_from_god(host_eye_god)
+    guest_from_god = j4m03_eye_element_from_god(guest_eye_god)
+
+    if host_eye_element is None:
+        host_eye_element = host_from_god
+    elif host_from_god is not None and host_eye_element != host_from_god:
+        return {
+            **result,
+            "status": "not_computable",
+            "computable": False,
+            "host_eye_element": host_eye_element,
+            "host_eye_god": host_eye_god,
+            "god_resolved_element": host_from_god,
+            "policy": "主目显式五行与古籍参校神名五行冲突；不自动择一。",
+        }
+
+    if guest_eye_element is None:
+        guest_eye_element = guest_from_god
+    elif guest_from_god is not None and guest_eye_element != guest_from_god:
+        return {
+            **result,
+            "status": "not_computable",
+            "computable": False,
+            "guest_eye_element": guest_eye_element,
+            "guest_eye_god": guest_eye_god,
+            "god_resolved_element": guest_from_god,
+            "policy": "客目显式五行与古籍参校神名五行冲突；不自动择一。",
+        }
 
     if host_eye_element not in valid or guest_eye_element not in valid:
         return {
@@ -430,56 +514,80 @@ def zhuke_xiangguan(host_eye_element, guest_eye_element, *, day_nayin_element=No
             "computable": False,
             "host_eye_element": host_eye_element,
             "guest_eye_element": guest_eye_element,
+            "host_eye_god": host_eye_god,
+            "guest_eye_god": guest_eye_god,
             "valid_elements": sorted(valid),
-            "policy": "只接受明确五行；不从神名或其他卷次自动反推。",
+            "known_gods": sorted(_J4M03_GOD_ELEMENT),
+            "policy": "必须给出主客二目五行，或给出可由古籍十六神表归一的神名。",
         }
 
     if _WUXING_KE[guest_eye_element] == host_eye_element:
         relation = "客关得主人"
         winner = "客"
         loser = "主"
+        canonical_outcome = "客胜"
     elif _WUXING_KE[host_eye_element] == guest_eye_element:
         relation = "主人关得客"
         winner = "主"
         loser = "客"
+        canonical_outcome = "主胜"
     else:
         relation = None
         winner = None
         loser = None
+        canonical_outcome = "本条无相制关关系"
 
-    if day_nayin_element is None:
-        nayin = {
-            "value": None,
-            "status": "missing",
-            "role": "正文要求日计纳音以决之；本段未展开具体接法",
+    if host_eye_element == guest_eye_element:
+        collation_hint = {
+            "source": "太乙淘金歌",
+            "kind": "same_element",
+            "verdict": "二阵平",
+            "canonical_override": False,
         }
-    elif day_nayin_element not in valid:
-        nayin = {
-            "value": day_nayin_element,
-            "status": "invalid",
-            "role": "只接受木火土金水；不猜测其他标签",
+    elif (_WUXING_SHENG[host_eye_element] == guest_eye_element
+          or _WUXING_SHENG[guest_eye_element] == host_eye_element):
+        collation_hint = {
+            "source": "太乙淘金歌注",
+            "kind": "generating_relation",
+            "verdict": "相生则和解",
+            "canonical_override": False,
         }
     else:
-        nayin = {
-            "value": day_nayin_element,
-            "status": "provided_role_pending",
-            "role": "已保留来源输入，但不在无明确公式时擅自修改主客胜负",
-        }
+        collation_hint = None
+
+    legacy_day_nayin = {
+        "value": day_nayin_element,
+        "status": "legacy_input_ignored" if day_nayin_element is not None else "not_used",
+        "role": (
+            "旧版接口曾把“日计纳音”误建模为独立当天干支纳音五行；"
+            "现按《福应经》“日计二目纳音”与《淘金歌》二目五行参校，不再参与判定。"
+        ),
+    }
 
     return {
         **result,
-        "status": "partial_source_specific" if relation else "no_control_relation_defined",
+        "status": "ok",
         "computable": True,
-        "fully_computable": False,
+        "fully_computable": True,
+        "calculation_scope": "日计",
         "host_eye_element": host_eye_element,
         "guest_eye_element": guest_eye_element,
+        "host_eye_god": host_eye_god,
+        "guest_eye_god": guest_eye_god,
         "relation": relation,
         "winner": winner,
         "loser": loser,
-        "day_nayin": nayin,
-        "policy": "五行相制核心按正文与古例实现；日计纳音的具体附加作用保持 pending。",
+        "canonical_outcome": canonical_outcome,
+        "collation_hint": collation_hint,
+        "legacy_day_nayin": legacy_day_nayin,
+        "eye_role_convention": {
+            "主": ["文昌", "下目", "地目（本条配对义）"],
+            "客": ["始击", "上目", "天目（本条配对义）"],
+            "warning": "“天目”在太乙文献中有多义；J4M-03 接口只用主目/客目避免歧义。",
+        },
+        "god_element_table": dict(_J4M03_GOD_ELEMENT),
+        "policy": "canonical 只以日计主客二目所临神五行相制判关胜负；淘金歌同音/相生只作参校提示。",
     }
-
 
 def zhuke_fa(context, *, three_doors_ready=None, five_generals_released=None,
              yin_yang_harmonious=None, direction=None,
@@ -1142,7 +1250,7 @@ def j4m_low_dependency_catalog():
     return {
         "ruleset": J4M_RULESET,
         "source_profile": J4M_SOURCE_PROFILE,
-        "implemented": ["J4M-01", "J4M-02", "J4M-04", "J4M-05", "J4M-06", "J4M-07", "J4M-08", "J4M-09", "J4M-10", "J4M-11", "J4M-12"],
-        "partial": ["J4M-03"],
+        "implemented": ["J4M-01", "J4M-02", "J4M-03", "J4M-04", "J4M-05", "J4M-06", "J4M-07", "J4M-08", "J4M-09", "J4M-10", "J4M-11", "J4M-12"],
+        "partial": [],
         "pending": [],
     }
