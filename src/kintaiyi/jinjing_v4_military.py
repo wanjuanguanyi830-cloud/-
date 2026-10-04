@@ -65,6 +65,264 @@ def _base(rule_id, name):
     }
 
 
+def zhimen_from_cycle_count(period_count):
+    """J4M-01 直门 240/30 轮转辅助。
+
+    正文以二百四十为一周、每三十移一门，并明言上元甲子开门直使，
+    满三十年后休门直使。这里只接收已经换算好的 1-based 周期计数，
+    不在此函数中发明年/月/日/时的历法换算。
+    """
+    result = _base("J4M-01", "推三门具不具")
+    if not isinstance(period_count, int) or isinstance(period_count, bool) or period_count <= 0:
+        return {
+            **result,
+            "status": "not_computable",
+            "computable": False,
+            "period_count": period_count,
+            "policy": "须给出正整数的周期累计数；年月日时如何取得该数由各自上游历法层负责。",
+        }
+
+    within_cycle = (period_count - 1) % 240 + 1
+    gate_index = (within_cycle - 1) // 30
+    direct_gate = _EIGHT_GATES[gate_index]
+    return {
+        **result,
+        "status": "ok",
+        "computable": True,
+        "period_count": period_count,
+        "within_240_cycle": within_cycle,
+        "block_of_30": gate_index + 1,
+        "direct_gate": direct_gate,
+        "gate_order": list(_EIGHT_GATES),
+        "auspice": _GATE_AUSPICE[direct_gate],
+        "policy": "只实现正文明确的240周、30一移；不替代第一卷时计八门算法。",
+    }
+
+
+def sanmen_jubu(*, taiyi_gate=None, tianmu_gate=None, direct_gate=None):
+    """J4M-01 推三门具不具。
+
+    原文明确覆盖的组合：
+    - 太乙、天目分临开/生二门 -> 两门不具；
+    - 太乙或天目临休门 -> 三门不具。
+
+    对同落开、同落生、只给一端等原文未在本句展开的组合，不自行类推。
+    direct_gate 仅用于保存州郡岁计直门吉凶，不替代门具判定。
+    """
+    result = _base("J4M-01", "推三门具不具")
+
+    if direct_gate is None:
+        direct_gate_auspice = None
+    elif direct_gate in _GATE_AUSPICE:
+        direct_gate_auspice = _GATE_AUSPICE[direct_gate]
+    else:
+        direct_gate_auspice = "unknown_gate"
+
+    known_gates = set(_EIGHT_GATES)
+    if taiyi_gate is not None and taiyi_gate not in known_gates:
+        return {
+            **result,
+            "status": "not_computable",
+            "computable": False,
+            "taiyi_gate": taiyi_gate,
+            "tianmu_gate": tianmu_gate,
+            "valid_gates": list(_EIGHT_GATES),
+            "policy": "太乙所临门名无效；不从宫位自动反推八门。",
+        }
+    if tianmu_gate is not None and tianmu_gate not in known_gates:
+        return {
+            **result,
+            "status": "not_computable",
+            "computable": False,
+            "taiyi_gate": taiyi_gate,
+            "tianmu_gate": tianmu_gate,
+            "valid_gates": list(_EIGHT_GATES),
+            "policy": "天目所临门名无效；不从神名或其他卷次自动反推八门。",
+        }
+
+    gates = {g for g in (taiyi_gate, tianmu_gate) if g is not None}
+    if "休" in gates:
+        status = "three_doors_not_ready"
+        not_ready_count = 3
+        three_doors_ready = False
+        source_case = "临休门"
+    elif taiyi_gate is not None and tianmu_gate is not None and gates == {"开", "生"}:
+        status = "two_doors_not_ready"
+        not_ready_count = 2
+        three_doors_ready = False
+        source_case = "太乙天目分临开生二门"
+    elif taiyi_gate is None or tianmu_gate is None:
+        status = "not_computable"
+        not_ready_count = None
+        three_doors_ready = None
+        source_case = "缺太乙或天目所临门"
+    else:
+        status = "not_defined_by_source_passage"
+        not_ready_count = None
+        three_doors_ready = None
+        source_case = "本句未展开该组合"
+
+    return {
+        **result,
+        "status": status,
+        "computable": three_doors_ready is not None,
+        "taiyi_gate": taiyi_gate,
+        "tianmu_gate": tianmu_gate,
+        "three_doors": ["开", "休", "生"],
+        "three_doors_ready": three_doors_ready,
+        "not_ready_count": not_ready_count,
+        "source_case": source_case,
+        "direct_gate": direct_gate,
+        "direct_gate_auspice": direct_gate_auspice,
+        "auspice_table": dict(_GATE_AUSPICE),
+        "policy": "只判正文明确组合；州郡岁计直门吉凶与门具事实分栏。",
+    }
+
+
+def wujiang_fabu(*, shiji_yanji=None, wenchang_qiupo=None,
+                 major_minor_generals_related=None, three_doors_ready=None):
+    """J4M-02 推五将发不发。
+
+    五将本体阻断条件：
+    - 始击有掩击；
+    - 文昌有囚迫；
+    - 主客大小将有相关。
+
+    三门具/不具作为独立上游事实保留，不用它覆盖三组五将条件。
+    """
+    result = _base("J4M-02", "推五将发不发")
+    facts = {
+        "shiji_yanji": shiji_yanji,
+        "wenchang_qiupo": wenchang_qiupo,
+        "major_minor_generals_related": major_minor_generals_related,
+    }
+    if any(v is not None and not isinstance(v, bool) for v in facts.values()):
+        return {
+            **result,
+            "status": "not_computable",
+            "computable": False,
+            **facts,
+            "three_doors_ready": three_doors_ready,
+            "policy": "掩击、囚迫、大小将相关必须是显式布尔事实；不解析旧字符串格局。",
+        }
+
+    all_known = all(isinstance(v, bool) for v in facts.values())
+    if all_known:
+        blockers = []
+        if shiji_yanji:
+            blockers.append("始击有掩击")
+        if wenchang_qiupo:
+            blockers.append("文昌有囚迫")
+        if major_minor_generals_related:
+            blockers.append("主客大小将有相关")
+        five_generals_released = not blockers
+    else:
+        blockers = None
+        five_generals_released = None
+
+    if three_doors_ready is False or five_generals_released is False:
+        combined_ready = False
+    elif three_doors_ready is True and five_generals_released is True:
+        combined_ready = True
+    else:
+        combined_ready = None
+
+    return {
+        **result,
+        "status": "ok" if all_known else "not_computable",
+        "computable": all_known,
+        **facts,
+        "blockers": blockers,
+        "five_generals_released": five_generals_released,
+        "three_doors_ready": three_doors_ready,
+        "combined_ready": combined_ready,
+        "deployment_allowed_by_doors": three_doors_ready if isinstance(three_doors_ready, bool) else None,
+        "engagement_allowed_by_generals": five_generals_released,
+        "source_notes": {
+            "三门不具": "不可出兵",
+            "五将不发": "不可临战",
+            "三门具": "五将自然相会（保存为原文说明，不覆盖三组阻断事实）",
+        },
+        "policy": "五将条件与三门条件分栏；不照搬旧 fivegenerals() 的字符串/中五混合判断。",
+    }
+
+
+def suidi_zhibian(terrain_class, *, soldiers_trained=None,
+                  equipment_serviceable=None, general_knows_warfare=None,
+                  ruler_selects_generals=None):
+    """J4M-08 推随地制变。
+
+    只按正文保存五类地形与优势兵种/兵器，以及训练、器械、将、君四层警告。
+    “三不当一/十不当一/百不当一”保留原文比例文字，不强行解释为现代战力倍数。
+    """
+    result = _base("J4M-08", "推随地制变")
+    terrain = _TERRAIN_ARMS.get(terrain_class)
+
+    if terrain is None:
+        terrain_status = "unknown"
+        terrain_payload = {
+            "terrain_class": terrain_class,
+            "known_terrain_classes": list(_TERRAIN_ARMS),
+            "favored": None,
+            "disfavored": None,
+            "source_ratio_text": None,
+        }
+    else:
+        terrain_status = "known"
+        terrain_payload = {
+            "terrain_class": terrain_class,
+            "known_terrain_classes": list(_TERRAIN_ARMS),
+            "favored": terrain["利"],
+            "disfavored": terrain["不利"],
+            "source_ratio_text": terrain["source_ratio_text"],
+            "source_scope": terrain["source_scope"],
+        }
+
+    facts = {
+        "soldiers_trained": soldiers_trained,
+        "equipment_serviceable": equipment_serviceable,
+        "general_knows_warfare": general_knows_warfare,
+        "ruler_selects_generals": ruler_selects_generals,
+    }
+    invalid = [k for k, v in facts.items() if v is not None and not isinstance(v, bool)]
+    if invalid:
+        return {
+            **result,
+            "status": "not_computable",
+            "computable": False,
+            **terrain_payload,
+            "invalid_facts": invalid,
+            "policy": "训练、器械、将知兵、君择将均须显式布尔事实。",
+        }
+
+    warnings = []
+    if soldiers_trained is False:
+        warnings.append("士不选练、卒不服习：原文列为百不当一之失")
+    if equipment_serviceable is False:
+        warnings.append("器械不利：以其卒与敌")
+    if general_knows_warfare is False:
+        warnings.append("将不知兵：以其主与敌")
+    if ruler_selects_generals is False:
+        warnings.append("君不择将：以其国与敌")
+
+    return {
+        **result,
+        "status": "ok" if terrain_status == "known" else "not_computable",
+        "computable": terrain_status == "known",
+        **terrain_payload,
+        **facts,
+        "urgent_requirements": ["士卒服习", "随其地形", "善用兵器"],
+        "warnings": warnings,
+        "doctrine_chain": [
+            "器械不利，以其卒与敌",
+            "卒不可用，以其将与敌",
+            "将不知兵，以其主与敌",
+            "君不择将，以其国与敌",
+        ],
+        "policy": "J4M-08 是地形—兵种/兵器—训练器械层；不得并入 J4M-07 阵形五行。",
+    }
+
+
 def zhuke_xiangguan(host_eye_element, guest_eye_element, *, day_nayin_element=None):
     """J4M-03 推主客相关法。
 
