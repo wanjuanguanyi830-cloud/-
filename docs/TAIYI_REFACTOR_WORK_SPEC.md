@@ -1629,15 +1629,69 @@ replacement 固定：
 
 详细记录见 `sources/c35-effective-migration-state-record.md`。
 
-## 9.29 后续 C36+
+## 9.29 C36 阳九 / 百六大小限（已实施）
+
+新增：
+
+`src/kintaiyi/limit_cycles.py`
+
+### C36-01 阳九
+
+直接来源数值：
+
+- 大限 4560；
+- 小限 456；
+- 十小限成一大限；
+- 阳盈差 130。
+
+### C36-02 百六
+
+直接来源数值：
+
+- 大限 4320；
+- 小限 288；
+- 十五小限成一大限；
+- 阴盈差 2050。
+
+### C36-03 witness volume variant
+
+识典在线见证题作《太乙统宗宝鉴》卷十；
+项目旧资料曾标作卷九。
+
+固定记录 `witness_volume_variant`，不复制算法。
+
+### C36-04 legacy quarantine
+
+旧 pan 的“陽九 / 百六”只是地支位置，不是大小限。
+
+因此 replacement：
+
+- `cycles.limits.yangjiu`
+- `cycles.limits.bailiu`
+
+不得自动搬旧值。
+
+### C36-05 pan v2
+
+`cycles` 新增：
+
+`limits`
+
+C12 adapter 支持显式 `cycles` overlay，但仍不从 legacy flat 自动重建。
+
+完整验证：666 passed / 0 failed。
+
+详细记录见 `sources/c36-yangjiu-bailiu-limits-record.md`。
+
+## 9.30 后续 C37+
 
 下一优先级：
 
-1. 整理阳九 / 百六的直接来源、周期与结构化 `cycles.limits`；
-2. 五运六气 / 五音之数继续保持跨卷 source_variant，先做来源拆分再实现；
+1. 五运六气 / 五音之数继续保持跨卷 source_variant，先做卷三 / 卷十来源拆分；
+2. 明阳九百六太游行限观历术的“外卦十年一宫 / 内卦三十六年一宫”另建规则，不塞入 C36 大小限；
 3. 继续寻找文昌九星附篇正文；
 4. 三旗行宫 / 九宫贵神继续归属核证；
-5. 剩余 P2/P3 字段按 C30 固定槽位迁移，不恢复 flat truth source。
+5. 剩余 P2/P3 字段按 C30 固定槽位迁移。
 
 
 ## 10. 验收
