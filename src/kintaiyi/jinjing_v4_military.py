@@ -1176,6 +1176,16 @@ def yunqi_dingshengfu(*, formation_direction=None, cloud_color=None,
             "policy": "cloud_present 必须显式为 True/False。",
         }
 
+    if observed_formation not in {"敌", "我"}:
+        return {
+            **result,
+            "status": "not_computable",
+            "computable": False,
+            "observed_formation": observed_formation,
+            "valid_observed_formations": ["敌", "我"],
+            "policy": "原文只比较敌阵与我阵；须显式标明云气所覆的是敌阵还是我阵。",
+        }
+
     if formation_direction not in _YUNQI_TABLE:
         return {
             **result,
@@ -1241,6 +1251,11 @@ def yunqi_dingshengfu(*, formation_direction=None, cloud_color=None,
         "computable": True,
         "cloud_present": True,
         "observed_formation": observed_formation,
+        "verdict_subject": observed_formation,
+        "perspective_note": (
+            f"基础断语作用于{observed_formation}阵；原文云‘若在我阵上亦尔’，"
+            "故沿用同一方位×颜色判表，不机械反转敌我。"
+        ),
         "formation_direction": formation_direction,
         "cloud_color": cloud_color,
         "base_verdict": item["verdict"],
