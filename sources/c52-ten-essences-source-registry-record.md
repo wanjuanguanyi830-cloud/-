@@ -262,7 +262,7 @@ C52 仍是来源注册表，不自己执行公式。
 
 - C53：飞鸟、五风、太尊、八风、三风、五行；
 - C55：天皇、帝符；
-- pending：天时。
+- C56：天时。
 
 数值 runtime：
 
@@ -270,16 +270,20 @@ C52 仍是来源注册表，不自己执行公式。
 
 固定：
 
-- `implemented_position_runtimes = 8项`
-- `pending_position_runtimes = ["天时"]`
+- `implemented_position_runtimes = 9项`
+- `pending_position_runtimes = []`
 - `implemented_number_runtimes = ["太乙数"]`
-- `all_position_runtime_ready=False`
+- `all_position_runtime_ready=True`
 
-天时继续保留来源冲突：
+天时原先的“统宗 / 太白起点冲突”已经进一步分层：
 
 - 统宗：吕申（寅）起，顺行十二辰，阴局取阳局对冲；
-- 太白兵备：阳起申、阴起寅。
+- 太白兵备同页前置总括句：阳申、阴寅；
+- 太白兵备完整推步正文：阳寅、阴申，均顺行十二宫；
+- 武经总要主条：吕申起，顺行十二辰；一见证另补阴起武德（申）。
 
-因此仍为 `source_start_conflict_unresolved`。
+C56 采用统宗主公式，并用太白完整算法段参校；太白前置总括句继续作为同书内部异文保存。
 
 帝符唯一 canonical 已转入 C55；并行期间短暂出现的 C53-DIFU 已删除。
+
+因此 C52 的职责仍只是来源注册与状态聚合，不重新实现 C53/C54/C55/C56 公式。
