@@ -106,14 +106,14 @@ def test_batch_source_variants_keep_primary_pending_by_default():
     assert all(item["canonical_selected"] is None for item in rules.values())
 
 
-def test_legacy_fields_are_quarantined_until_zitingjing_primary_exists():
+def test_legacy_ziting_fields_route_to_matching_tongzong_collation_profiles():
     expected = {
-        "太乙九星": "source_variants.zitingjing.rules.taiyi_nine_stars.primary_result",
-        "文昌九星": "source_variants.zitingjing.rules.wenchang_nine_stars.primary_result",
-        "文昌變化": "source_variants.zitingjing.rules.wenchang_changes.primary_result",
-        "始擊變化": "source_variants.zitingjing.rules.shiji_changes.primary_result",
-        "三旗行宮": "source_variants.zitingjing.rules.three_banners.primary_result",
-        "九宮貴神": "source_variants.zitingjing.rules.nine_palace_nobles.primary_result",
+        "太乙九星": "source_variants.zitingjing.rules.taiyi_nine_stars.collation_results.tongzong_volume6",
+        "文昌九星": "source_variants.zitingjing.rules.wenchang_nine_stars.collation_results.tongzong_volume6",
+        "文昌變化": "source_variants.zitingjing.rules.wenchang_changes.collation_results.tongzong_volume6",
+        "始擊變化": "source_variants.zitingjing.rules.shiji_changes.collation_results.tongzong_volume6",
+        "三旗行宮": "source_variants.zitingjing.rules.three_banners.collation_results.tongzong_volume10",
+        "九宮貴神": "source_variants.zitingjing.rules.nine_palace_nobles.collation_results.tongzong_volume10",
     }
     for key, replacement in expected.items():
         item = classify_legacy_field(key)
@@ -134,7 +134,7 @@ def _legacy_snapshot():
     }
 
 
-def test_collation_only_does_not_clear_primary_replacement_gaps():
+def test_matching_tongzong_collations_clear_legacy_flat_replacement_gaps():
     variants = build_zitingjing_source_variants(results={
         "taiyi_nine_stars": {
             "collation_results": {"tongzong_volume6": {"old": True}},
@@ -157,12 +157,11 @@ def test_collation_only_does_not_clear_primary_replacement_gaps():
     })
     snapshot = attach_v2_to_snapshot(_legacy_snapshot(), source_variants=variants)
     report = audit_legacy_snapshot(snapshot)
-    assert len(report["replacement_gaps"]) == 6
-    assert all("primary_result" in path for path in report["replacement_gaps"])
-    assert report["ready_for_v2_core_consumption"] is False
+    assert report["replacement_gaps"] == []
+    assert report["ready_for_v2_core_consumption"] is True
 
 
-def test_only_direct_text_verified_items_can_clear_primary_replacement_gaps():
+def test_primary_completion_is_independent_from_legacy_collation_replacement():
     results = {
         "taiyi_nine_stars": {
             "primary_result": {"source": "太乙紫庭经", "rule_key": "taiyi_nine_stars"},
@@ -191,12 +190,18 @@ def test_only_direct_text_verified_items_can_clear_primary_replacement_gaps():
     snapshot = attach_v2_to_snapshot(_legacy_snapshot(), source_variants=variants)
     report = audit_legacy_snapshot(snapshot)
 
-    assert report["replacement_gaps"] == [
-        "source_variants.zitingjing.rules.wenchang_nine_stars.primary_result",
-        "source_variants.zitingjing.rules.three_banners.primary_result",
-        "source_variants.zitingjing.rules.nine_palace_nobles.primary_result",
-    ]
-    assert report["ready_for_v2_core_consumption"] is False
+    # legacy flat字段已经由同源统宗collation profile替代；
+    # 紫庭primary是否完成是另一条证据状态，不属于legacy replacement gap。
+    assert report["replacement_gaps"] == []
+    assert report["ready_for_v2_core_consumption"] is True
+
+    rules = variants["zitingjing"]["rules"]
+    assert rules["taiyi_nine_stars"]["primary_ready"] is True
+    assert rules["wenchang_changes"]["primary_ready"] is True
+    assert rules["shiji_changes"]["primary_ready"] is True
+    assert rules["wenchang_nine_stars"]["primary_ready"] is False
+    assert rules["three_banners"]["primary_ready"] is False
+    assert rules["nine_palace_nobles"]["primary_ready"] is False
 
 
 def test_pending_or_unverified_ziting_items_reject_primary_result_injection():
