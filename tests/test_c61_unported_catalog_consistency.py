@@ -60,7 +60,7 @@ def test_c61_three_bases_and_wufu_preserve_volume_witness_variant():
         assert "卷六/卷七" in item["notes"]
 
 
-def test_c61_c63_tianyi_diyi_zhifu_are_direct_volume7_with_position_runtime():
+def test_c61_c64_tianyi_diyi_zhifu_are_direct_volume7_with_position_runtime():
     for key in (
         "明天乙太乙所主術",
         "明地乙太乙所主術",
@@ -70,7 +70,7 @@ def test_c61_c63_tianyi_diyi_zhifu_are_direct_volume7_with_position_runtime():
         assert item["layer"] == "canonical"
         assert item["source_scope"] == "tongzong_volume7_direct"
         assert item["source_confidence"] == "high"
-        assert item["action"] == "use_c63_three_spirit_cycle_runtime"
+        assert item["action"] == "use_c64_three_spirit_cycle_runtime"
         assert item["migrate_whole"] is False
         assert "同宫灾应仍须下一显式证据层" in item["notes"]
 
