@@ -9,6 +9,7 @@ from collections import Counter
 from typing import Any, Iterable
 
 from .legacy_schema import replacement_path_for_legacy
+from .unported_catalog import unported_catalog_report
 from .pan_adapter import extract_legacy_snapshot_facts
 from .pan_v2 import validate_pan_v2
 
@@ -66,6 +67,7 @@ def audit_legacy_snapshot(snapshot: dict[str, Any]) -> dict[str, Any]:
         "schema_version": None,
     }
     gaps = _replacement_gaps(snapshot)
+    unported_catalog = unported_catalog_report(unported)
 
     if not v2_present:
         status = "legacy_only"
@@ -95,6 +97,9 @@ def audit_legacy_snapshot(snapshot: dict[str, Any]) -> dict[str, Any]:
         "migrated_fact_keys": consumed,
         "quarantined_legacy_keys": quarantined,
         "unported_legacy_keys": unported,
+        "unported_layer_counts": unported_catalog["layer_counts"],
+        "unported_priority_counts": unported_catalog["priority_counts"],
+        "next_migration_candidates": unported_catalog["next_migration_candidates"],
         "v2_present": v2_present,
         "v2_valid": bool(v2_validation["valid"]),
         "v2_errors": list(v2_validation.get("errors", [])),
@@ -118,12 +123,16 @@ def audit_snapshot_collection(snapshots: Iterable[dict[str, Any]]) -> dict[str, 
     quarantined = Counter()
     unported = Counter()
     gaps = Counter()
+    unported_layers = Counter()
+    unported_priorities = Counter()
 
     for report in reports:
         migrated.update(report["migrated_fact_keys"])
         quarantined.update(report["quarantined_legacy_keys"])
         unported.update(report["unported_legacy_keys"])
         gaps.update(report["replacement_gaps"])
+        unported_layers.update(report["unported_layer_counts"])
+        unported_priorities.update(report["unported_priority_counts"])
 
     n = len(reports)
 
@@ -147,5 +156,7 @@ def audit_snapshot_collection(snapshots: Iterable[dict[str, Any]]) -> dict[str, 
         "quarantined_field_frequency": dict(sorted(quarantined.items())),
         "unported_field_frequency": dict(sorted(unported.items())),
         "replacement_gap_frequency": dict(sorted(gaps.items())),
+        "unported_layer_frequency": dict(sorted(unported_layers.items())),
+        "unported_priority_frequency": dict(sorted(unported_priorities.items())),
         "reports": reports,
     }
