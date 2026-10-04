@@ -2624,15 +2624,109 @@ C48 只消费 C47：
 - `sources/c51-coronation-cloud-omens-record.md`
 - `tests/reports/c51_validation.md`
 
-## 9.45 后续 C52+
+## 9.45 C52 太乙十精来源注册表（已实施）
+
+新增唯一 canonical registry：
+
+`src/kintaiyi/ten_essences_source_registry.py`
+
+### C52-01 十精名单
+
+固定次序：
+
+1. 天皇
+2. 帝符
+3. 天时
+4. 太尊
+5. 飞鸟
+6. 五行
+7. 八风
+8. 五风
+9. 三风
+10. 太乙数
+
+旧 `yunqi._TEN_JING_FN` 的“地符 / 太岁”不能作为 canonical 十精名称。
+
+### C52-02 小周数
+
+固定：
+
+`20 / 20 / 12 / 4 / 9 / 5 / 9 / 9 / 9 / 72`
+
+C52 只确认来源与小周，不迁位置公式。
+
+### C52-03 卷次边界
+
+《太乙统宗宝鉴》不同见证将十精篇编为卷十八或卷二十。
+
+固定：
+
+`volume_status="witness_volume_variant"`
+
+《武经总要》与《太白兵备统宗宝鉴》作独立参校。
+
+### C52-04 旧公式审计
+
+明确冲突：
+
+- 旧 `config.flybird`：%8；直接小周9；
+- 旧 `config.fivewind`：%29；直接小周9。
+
+其他旧函数即使周期表面相合，也仍：
+
+`runtime_ready=False`
+
+须逐项核起宫、顺逆、重留、宫序、余0及盈差。
+
+### C52-05 十精云气分层
+
+“十精太乙云气所主”保持独立 source unit。
+
+C52 不迁：
+
+- 合太乙；
+- 阴阳宫；
+- 旺相休囚；
+- 天气厚薄；
+- 风雨云雾断语。
+
+### C52-06 v2 / migration
+
+C15 中：
+
+- 帝符
+- 太尊
+- 飛鳥
+- 三風
+- 五風
+- 八風
+
+升级为：
+
+`source verified / formula pending`
+
+但：
+
+- 不扩展 pan v2 contract；
+- 不生成 legacy replacement；
+- 不写入 cycles root。
+
+clean CI：1006 passed / 0 failed。
+
+详细记录：
+
+- `sources/c52-ten-essences-source-registry-record.md`
+- `tests/reports/c52_validation.md`
+
+## 9.46 后续 C53+
 
 下一优先级：
 
-1. 回到 C15 未迁字段，优先核“帝符 / 太尊 / 飞鸟 / 三风 / 五风 / 八风”的直接来源；
-2. 若十精 / 风候跨卷，先做 source registry，不直接塞入 cycles；
-3. 恢复旧 `terminology.json` 后按 C40 对齐研易楼明钞本；
-4. 回读文昌九星附篇正文；
-5. 三旗行宫 / 九宫贵神继续归属核证。
+1. 十精位置公式逐项核源，优先修正飞鸟与五风；
+2. 飞鸟必须从旧 %8 改为直接小周9后再建 runtime；
+3. 五风必须弃旧 %29，并按直接大周90 / 小周9 / 九宫序建模；
+4. 帝符、太尊、八风、三风随后逐项拆；
+5. 十精云气断事继续独立，不与位置 runtime 混并。
 
 ## 10. 验收
 
