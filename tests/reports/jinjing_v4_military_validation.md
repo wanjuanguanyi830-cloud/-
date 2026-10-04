@@ -2,22 +2,147 @@
 
 日期：2026-10-05
 
-## 范围
+## 总结
 
-J4M 是四库本《太乙金镜式经》卷四军事十二法的独立来源层：
+J4M 来源层：
 
 - ruleset: `jinjing-siku-v4-military-12`
 - source profile: `jinjing_siku_volume4`
 - rule ids: `J4M-01..J4M-12`
 
-C8 `volume5_strict` 只与本层做 crosswalk，不把近名规则自动并入总胜负链。
+当前状态：
 
-## 当前整体状态
+- **11 条完整 source-specific runtime**
+- **1 条 partial：J4M-03**
+- **0 条 pending**
 
-完整 source-specific runtime：
+J4M-04 已从原先“C8 只覆盖角色子层”的 partial 状态升级为独立完整 runtime；C8 本身仍不自动采用该完整逻辑。
+
+## J4M-04 完成验证
+
+runtime：
+
+`kintaiyi.jinjing_v4_military.zhuke_fa`
+
+### 角色层
+
+固定：
+
+- 陈兵原野 → 先动客、后应主
+- 安居之势 → 先动主、后应客
+
+### 行动条件层
+
+当：
+
+- 三门具
+- 五将发
+- 阴阳和
+
+三项同时成立时：
+
+- `action_status=raise_forces_favorable`
+- `action_advice=称兵`
+- `source_campaign_verdict=所向必克`
+- `source_temporal_outcome=先胜后负`
+
+但：
+
+- `winner=None`
+
+因为“先胜后负”原文没有在本句指定应强拆成哪一方最终胜负。
+
+当：
+
+- 三门不具
+- 五将不发
+- 阴阳不和
+
+三项同时成立时：
+
+- `action_status=hold_and_defend`
+- `action_advice=不利举兵，宜固守吉`
+
+混合组合不扩写为完整胜负公式；若三门或五将本身失败，只保存 J4M-01/02 已明确的硬约束。
+
+### 始发神层
+
+固定：
+
+- 东 → 阴德
+- 南 → 和德
+- 西 → 大炅
+- 北 → 大武
+
+“以定主客所起归之神”之后的细推步，本段未展开，因此 runtime 只返回始发神和原文方法说明。
+
+### 互视其算层
+
+固定 cross-side reference：
+
+- 客欲知主 → 主算
+- 主人欲知客 → 客算
+
+只做引用，不把 D8-06 多少胜负反写入 J4M-04。
+
+### 可计算状态拆分
+
+J4M-04 现区分：
+
+- `role_computable`
+- `source_combination_computable`
+- `hard_constraints_computable`
+
+避免“角色已经可判，但门将阴阳条件缺失”时把所有语义压成一个布尔值。
+
+## J4M-03 校勘结论
+
+runtime：
+
+`kintaiyi.jinjing_v4_military.zhuke_xiangguan`
+
+已确认正文明确部分：
+
+- 客目克主目 → 客关得主人 → 客胜
+- 主目克客目 → 主人关得客 → 主胜
+
+仍未闭合：
+
+“皆用日计纳音以决之”。
+
+核对多种《太乙金镜式经》转录后，没有找到：
+
+- 日计纳音如何参与关法的进一步公式
+- 纳音与主目/客目同五行时的明文规则
+- 比和、生我、我生的明文胜负规则
+- 主将与太乙同宫参与本条的明文
+
+因此保持：
+
+- `implementation_status=implemented_partial_source_specific`
+- `collation_status=formula_not_expanded_in_checked_jinjing_transcriptions`
+- `fully_computable=False`
+
+## legacy `wc_n_sj` 隔离验证
+
+旧参考函数 `kentang2017/kintaiyi::wc_n_sj` 额外包含：
+
+- 纳音等于主目五行 → “主关”
+- 纳音等于客目五行 → “客关”
+- 主将是否与太乙同宫 → 改写胜负
+- 比和 / 生我 / 我生 → 判和
+
+这些没有在卷四本段得到明文支持。
+
+机器规则已写入 `legacy_reference_quarantined`，测试锁定“不能升级为 canonical”。
+
+## 当前十二法状态
+
+完整：
 
 - J4M-01 推三门具不具
 - J4M-02 推五将发不发
+- J4M-04 推主客
 - J4M-05 推出师法
 - J4M-06 推陈兵向背
 - J4M-07 推制阵随地法
@@ -30,162 +155,66 @@ C8 `volume5_strict` 只与本层做 crosswalk，不把近名规则自动并入�
 partial：
 
 - J4M-03 推主客相关法
-- J4M-04 推主客
 
-即十二法已经全部建立 runtime 入口；其中 **10 条完整 source-specific，2 条 partial**。
+## 防混法测试
 
-## 第四批：J4M-11 外部风云飞鸟观测
-
-运行入口：`fengyun_feiniao_zhuzhan(events)`。
-
-本函数只接受显式外部观测，不从盘内字段、旧 `flybird_wl` 或其他卷次自动生成风云飞鸟事实。
-
-正文明确事件逐条实现：
-
-- 太乙所在宫风云飞鸟冲格迫击太乙 → 大败之兆
-- 迫击大将宫 → 主败
-- 从主目上去击客 → 客败
-- 从客目上击主 → 主败
-- 从主人形上来 → 客败
-- 从太岁 / 太阴 / 月建上来击主人 → 主败
-- 从太岁 / 太阴 / 月建上来击客 → 客败
-- 扶主人阵 → 主胜
-- 扶客阵 → 客胜
-- 回风起伏 + 飞鸟旋转阵中 + 旗折 → 大败之兆
-- 风云冲突主人阵 → 主败
-- 风云冲突客阵 → 客败
-
-“众来噪阵”只记录观测，不强行补一个独立胜负结果，因为正文在该处未单独明示。
-
-无观测输入：
-
-- `status=not_computable`
-- `computable=False`
-
-多事件允许并存；函数逐条给出 judgment，不强制把多个兆象压缩成唯一总胜负。
-
-## 第四批：J4M-12 云气定胜负
-
-运行入口：`yunqi_dingshengfu(...)`。
-
-结构固定为四层：
-
-1. 云气所覆阵的方位 × 云气颜色
-2. 日干加重
-3. 云气聚散 / 动静修正
-4. 所临大将 / 参将修正
-
-### 北方阵
-
-- 黑：大胜；壬癸日弥佳
-- 白：欲罢阵求和
-- 青：将宽缓，急击则平
-- 红：客胜
-- 黄：大败；壬癸日弥恶
-
-### 南方阵
-
-- 赤：大胜；丙丁日弥佳
-- 青：欲罢阵求解
-- 黄：将迟钝，急击则平
-- 白：失利
-- 黑：大败；丙丁日弥恶
-
-### 西方阵
-
-- 白：大胜；庚辛日弥佳
-- 黄：欲求解
-- 黑：将宽缓，急击平
-- 青：败
-- 赤：大败；庚辛日弥恶
-
-### 东方阵
-
-- 青：大胜；甲乙日弥佳
-- 黑：欲求和
-- 赤：将迟钝，然不可击
-- 黄：大败；甲乙日弥恶
-- 白：正文未列，保持 `not_defined_by_source_passage`
-
-禁止用一般五行生克把“东方白云”等缺项补齐。
-
-## 云气形态修正
-
-实现只采用正文明确部分：
-
-- 胜气动利 → 大胜
-- 胜气断续不次或南北溃乱 → 反败
-- 败气断续溃乱 → 不至全恶
-
-“败云气坚实动大利”保存为原文修正说明，但不擅自翻成现代确定胜负公式。
-
-将位修正：
-
-- 胜气在大将上 → 大胜
-- 胜气在参将上 → 参将胜
-- 败气在大将 / 参将上 → 原文仅曰“反此”，保留该层，不扩写没有明示的结果
-
-若完全无云气：
-
-- 返回 `no_cloud`
-- 保存“无战或复相匀”
-- 不强行判某一方胜负
-
-## 防混法断言
-
-现有测试锁定：
+当前测试锁定：
 
 - J4M-01 不退化成旧 `threedoors`
 - J4M-02 不退化成旧 `fivegenerals`
-- J4M-03 ≠ J4M-04
-- J4M-05 ≠ 《统宗》卷五兵额表
-- J4M-06 ≠ 旧卷十五陈兵出乡
+- J4M-03 与 J4M-04 永不合并
+- J4M-03 不引入旧 `wc_n_sj` 的纳音同类 / 太乙同宫推断
+- J4M-04 “先胜后负”不强设 winner
+- J4M-04 混合三门/五将/阴阳组合不冒充正文完整断法
+- J4M-05 不替换为《统宗》卷五兵额表
+- J4M-06 不替换为旧卷十五陈兵出乡
 - J4M-07 ≠ J4M-08
 - J4M-08 原文比例不转现代战力分数
-- J4M-09 《金镜》profile ≠ 《统宗》profile
-- J4M-10 不调用旧卷十五近名奇伏算法
+- J4M-09 《金镜》与《统宗》profile 分离
+- J4M-10 不调用旧卷十五奇伏近名算法
 - J4M-11 无外部观测不得计算
-- J4M-11 “众来噪阵”不得补造独立胜负
 - J4M-12 原文未列颜色不得用五行补表
-- J4M-12 云气颜色、日干、形态、将位必须分层
+
+## C8 crosswalk
+
+J4M-04 machine metadata：
+
+- target layer: `C8-L3`
+- status: `source_runtime_complete_c8_roles_only`
+
+含义：
+
+- J4M-04 source-specific 已完整
+- 现有 C8-L3 仍只保存先后动静角色
+- 暂不直接改写 C8 `volume5_strict`
+
+下一步应新增显式 adapter/source profile，而不是把 J4M-04 逻辑直接塞进 C8 默认路径。
 
 ## CI
 
-外部观测规则测试提交后，GitHub Actions run `37229870037`：
+J4M-04 runtime 与测试提交后：
+
+GitHub Actions run `37230461892`：
 
 - conclusion: `success`
-- result: **331 passed in 0.31s**
+- result: **345 passed in 0.59s**
 
-机器规则 metadata 锁定后，GitHub Actions run `37229886312`：
+机器 metadata 与 J4M-03 legacy quarantine 锁定后：
+
+GitHub Actions run `37230473016`：
 
 - conclusion: `success`
-- result: **332 passed in 0.56s**
+- result: **347 passed in 0.60s**
 
-较早 run `37229846894` 的单项失败只是 runtime 先更新 catalog，而旧测试尚期待 J4M-11/12 为 pending；补上对应测试后即恢复全绿，不属于规则语义失败。
-
-## 尚未完全闭合的两条
-
-### J4M-03 推主客相关法
-
-已完成主客目五行相制核心，但正文“皆用日计纳音以决之”的具体接法仍未得到足够明确展开，因此继续保持 partial，不能用旧 `wc_n_sj` 反推 canonical。
-
-### J4M-04 推主客
-
-C8-L3 已覆盖“原野先动为客 / 安居先动为主”的动静角色层，但正文还包括：
-
-- 三门具
-- 五将发
-- 阴阳和 / 不和
-- 称兵 / 固守
-- 东阴德、南和德、西大炅、北大武为始发之神
-- 主客出入与算的关系
-
-这些尚未全部建立 J4M-04 source-specific runtime，因此仍标 partial。
+较早 run 145 / 147 的单项失败，是 runtime/catalog 先变更、旧测试尚期待 J4M-04 为 partial 的提交顺序问题；更新测试后恢复全绿，不是规则语义失败。
 
 ## 下一步
 
-卷四十二法的独立来源层已经基本闭合。下一优先级应转为：
+J4M 卷四十二法来源层已经达到可收口状态。
 
-1. 补完 J4M-04 的 source-specific 组合层
-2. 继续校勘 J4M-03 “日计纳音以决之”
-3. 再决定是否把 J4M 的明确事实以显式 source profile 接入 C8，而不是直接覆盖 C8 现有规则
+建议下一阶段：
+
+1. 新增 **J4M → C8 显式 adapter**
+2. adapter 必须要求 `source_profile=jinjing_siku_volume4`
+3. 默认 C8 `volume5_strict` 保持不变
+4. J4M-03 继续保持 partial，直到发现可信的“日计纳音”展开公式
