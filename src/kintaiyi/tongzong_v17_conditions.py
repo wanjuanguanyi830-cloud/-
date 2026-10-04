@@ -360,9 +360,14 @@ def prison_interrogation(
             "effect": "入狱易出、逢贵人解忧",
         })
 
+    adverse = taiyi_just_entered_palace or host_realm == "内"
+    favorable = easy_release
+
     if source_variant is not None:
         verdict = "variant_conflict"
-    elif easy_release and not taiyi_just_entered_palace:
+    elif favorable and adverse:
+        verdict = "mixed_evidence"
+    elif favorable:
         verdict = "易解"
     elif taiyi_just_entered_palace:
         verdict = "迟留难解"
