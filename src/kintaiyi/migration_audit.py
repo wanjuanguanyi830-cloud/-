@@ -26,6 +26,8 @@ _REPLACEMENT_ORDER = {
     "source_variants.zitingjing.rules.shiji_changes.primary_result": 7,
     "source_variants.zitingjing.rules.three_banners.primary_result": 8,
     "source_variants.zitingjing.rules.nine_palace_nobles.primary_result": 9,
+    "source_variants.military_derived.tongzong_volume15.payload": 20,
+    "source_variants.military_derived.tongzong_volume17.payload": 21,
     "analysis.military": 10,
     "analysis.seven_methods": 11,
     "analysis.eight_divinations": 12,
