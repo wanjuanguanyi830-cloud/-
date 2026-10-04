@@ -3298,11 +3298,68 @@ C15：
 - `sources/c62-imperial-inspection-record.md`
 - `tests/reports/c62_validation.md`
 
-## 9.56 后续 C63+
+## 9.56 C63 《金镜》卷四十二推法再核（已实施）
+
+C63 不新增另一套军事公式，而是复核并收紧 J4M-01..12 的来源语义。
+
+重点：
+
+- J4M-03 “日计纳音”明确指二目所临十六神五行，不引当天干支纳音；
+- J4M-12 增加云气所覆“敌阵 / 我阵”的显式主体；
+- J4M-11 / J4M-12 继续要求真实外部观测；
+- J4M-09、J4M-10 与统宗近名术继续分 profile；
+- 四库影印逐条册/叶/页 locator 仍 pending，不伪造。
+
+详细记录：
+
+- `sources/c63-jinjing-v4-military-recheck-record.md`
+
+## 9.57 C64 卷七天乙 / 地乙 / 直符三神行宫（已实施）
+
+唯一 runtime：
+
+`src/kintaiyi/state_spirit_cycles.py`
+
+共同：
+
+- 大周360；
+- 小周36；
+- 每宫3年；
+- 十二宫序：1..9、绛宫、明堂、玉堂。
+
+起宫：
+
+- 天乙：6；
+- 地乙：9；
+- 直符：5。
+
+canonical 名：
+
+`直符`
+
+旧 C15 “值符”只作题名 / legacy variant，默认不静默映射。
+
+C64 只计算位置：
+
+- `same_palace_omens_applied=False`
+- `auto_same_palace_inference=False`
+
+同宫灾应留 C65 显式证据层。
+
+完整验证：
+
+`1259 passed / 0 failed`
+
+详细记录：
+
+- `sources/c64-volume7-three-spirit-cycles-record.md`
+- `tests/reports/c64_validation.md`
+
+## 9.58 后续 C65+
 
 下一优先级：
 
-1. 卷七天乙金神 / 地乙土神 / 直符火神逐项拆 runtime；
+1. C65：卷七天乙 / 地乙 / 直符同宫灾应显式层；
 2. 君基 / 臣基 / 民基 / 五福按卷六/卷七 witness variant 拆层；
 3. 继续核“推太乙当时法”直接来源；
 4. 恢复旧 `terminology.json`；
