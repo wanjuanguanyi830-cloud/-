@@ -21,6 +21,12 @@ C43_VERSION = "taiyi-c43-volume9-ehui-v1"
 
 STEMS = tuple("甲乙丙丁戊己庚辛壬癸")
 BRANCHES = tuple("子丑寅卯辰巳午未申酉戌亥")
+SEXAGENARY = frozenset(
+    f"{stem}{branch}"
+    for stem_index, stem in enumerate(STEMS)
+    for branch_index, branch in enumerate(BRANCHES)
+    if stem_index % 2 == branch_index % 2
+)
 SIXTEEN_POINTS = tuple("子丑艮寅卯辰巽巳午未坤申酉戌乾亥")
 
 GOD_IDENTITIES = {
@@ -76,8 +82,8 @@ def parse_ganzhi(value: str) -> dict[str, str]:
     if not isinstance(value, str) or len(value) != 2:
         raise ValueError("即位年须为两字干支")
     stem, branch = value
-    if stem not in STEMS or branch not in BRANCHES:
-        raise ValueError("即位年须为合法干支")
+    if stem not in STEMS or branch not in BRANCHES or value not in SEXAGENARY:
+        raise ValueError("即位年须为合法六十甲子干支")
     return {"stem": stem, "branch": branch, "ganzhi": value}
 
 
