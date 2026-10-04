@@ -88,3 +88,19 @@ def test_runtime_status_matches_second_batch_implementation():
     assert by_id["J4M-10"]["implementation_status"] == "implemented_source_specific"
     assert by_id["J4M-10"]["runtime"].endswith(".qifu_fa")
     assert by_id["J4M-10"]["target_crosswalk"]["layer"] is None
+
+
+def test_runtime_status_matches_third_batch_implementation():
+    _, rules = _rules()
+    by_id = {item["id"]: item for item in rules}
+
+    assert by_id["J4M-01"]["implementation_status"] == "implemented_source_specific"
+    assert any(path.endswith(".sanmen_jubu") for path in by_id["J4M-01"]["runtime"])
+    assert any(path.endswith(".zhimen_from_cycle_count") for path in by_id["J4M-01"]["runtime"])
+
+    assert by_id["J4M-02"]["implementation_status"] == "implemented_source_specific"
+    assert by_id["J4M-02"]["runtime"].endswith(".wujiang_fabu")
+
+    assert by_id["J4M-08"]["implementation_status"] == "implemented_source_specific"
+    assert by_id["J4M-08"]["runtime"].endswith(".suidi_zhibian")
+    assert by_id["J4M-08"]["domain"] != by_id["J4M-07"]["domain"]
