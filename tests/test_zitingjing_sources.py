@@ -37,7 +37,13 @@ def test_six_p1_rules_keep_project_primary_target_but_record_evidence_level():
 
 
 def test_volume6_items_keep_tongzong_as_collation_only():
-    for key in ("taiyi_nine_stars", "wenchang_nine_stars", "wenchang_changes", "shiji_changes"):
+    expected_status = {
+        "taiyi_nine_stars": "primary_pending",
+        "wenchang_nine_stars": "primary_text_pending",
+        "wenchang_changes": "primary_pending",
+        "shiji_changes": "primary_pending",
+    }
+    for key, status in expected_status.items():
         data = build_zitingjing_rule_sources(
             key,
             collation_results={"tongzong_volume6": {"legacy": "参校"}},
@@ -45,7 +51,7 @@ def test_volume6_items_keep_tongzong_as_collation_only():
         assert data["primary_source"] == "zitingjing"
         assert data["primary_ready"] is False
         assert data["canonical_selected"] is None
-        assert data["status"] == "primary_pending"
+        assert data["status"] == status
         assert data["collation_results"]["tongzong_volume6"] == {"legacy": "参校"}
         assert data["cross_source_merge"] is False
 
