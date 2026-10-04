@@ -1,4 +1,4 @@
-# C18 《紫庭经》来源层验证报告
+# C18 《太乙紫庭经》来源层验证报告
 
 日期：2026-10-05
 
@@ -6,7 +6,7 @@
 
 六项规则统一：
 
-- 主要参考：《紫庭经》
+- 主要参考：《太乙紫庭经》
 - 参校：《太乙统宗宝鉴》
   - 太乙九星 / 文昌九星 / 文昌变化 / 始击变化：卷六
   - 三旗行宫 / 九宫贵神：卷十
@@ -20,7 +20,7 @@
   - `primary_ready=False`
   - `canonical_selected=None`
   - `status=primary_pending`
-- 有《紫庭经》结构化结果后：
+- 有《太乙紫庭经》结构化结果后：
   - `primary_ready=True`
   - `canonical_selected=zitingjing`
 - 主来源与参校结果并列保存，`cross_source_merge=False`。
