@@ -279,12 +279,24 @@ CATALOG["厄會行限"] = _entry(
     ),
 )
 
-for key in ("國政章易", "歲中災發"):
-    CATALOG[key] = _entry(
-        "canonical", "tongzong_volume9", "P2", "migrate_rule_after_source_record",
-        source_confidence="high", target_hint="source_variants.volume9",
-        notes="参考pan注释明确《太乙统宗宝鉴》卷九；须逐术拆分，不并入厄会行限。",
-    )
+CATALOG["國政章易"] = _entry(
+    "canonical", "tongzong_volume10_witness_project_volume9_variant", "P2",
+    "use_c44_explicit_evidence_contract", migrate_whole=False,
+    source_confidence="high",
+    target_hint="source_variants.volume9.governance_change",
+    notes=(
+        "在线统宗见证编卷十、项目旧标卷九。原文要求吕申加创立新事之年、"
+        "六神落宫、算长短和不和与格局证据；旧函数只用年支静态旋转，"
+        "且90/190与直接见证90/180不符。"
+    ),
+)
+
+CATALOG["歲中災發"] = _entry(
+    "canonical", "tongzong_volume10_witness_project_volume9_variant", "P2",
+    "migrate_rule_after_source_record", migrate_whole=False,
+    source_confidence="high", target_hint="source_variants.volume9",
+    notes="在线统宗见证编卷十、项目旧标卷九；须与国政章易、厄会行限分别建模。",
+)
 
 
 REFERENCE_PAN_UNPORTED_FIELDS = frozenset(CATALOG)
