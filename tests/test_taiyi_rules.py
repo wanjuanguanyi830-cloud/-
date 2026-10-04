@@ -42,6 +42,7 @@ def test_center_cannot_be_forced_to_sixteen_ring():
 def test_compatibility_delegates_to_canonical():
     assert config.lijin("甲子")["chain"] == ["子","卯","午","酉","子"]
     assert config.gudan(13) == config.gudan_zhanlue(13)
-    assert config._calc_jianbei(11)["length"]["length"] == "长"
+    assert config.calc_length(11)["length"] == "长"
+    assert config._calc_jianbei(11)["preparedness"]["rule_id"] == "D8-08"
     assert config.junshi_zhanlue(17)["數有所主"]["主"]["rule_id"] == "D8-08"
     assert config.returnarmy(9)["status"] == "not_computable"
