@@ -23,7 +23,7 @@ RULES = {
         "legacy_name": "文昌九星",
         "primary_source": PRIMARY_SOURCE_ID,
         "primary_evidence_level": "catalog_attested_text_pending",
-        "collation_sources": ["tongzong_volume6"],
+        "collation_sources": ["tongzong_volume6", "sancai_shiwei_volume81"],
     },
     "wenchang_changes": {
         "legacy_name": "文昌变化",
