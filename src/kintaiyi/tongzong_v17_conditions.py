@@ -135,7 +135,10 @@ def capture_fugitive(
     )
 
     catch = [item["condition"] for item in src["capture_evidence"]]
-    miss = [item["condition"] for item in src["no_capture_evidence"]]
+    miss = [
+        "天目与下目俱在外" if item["condition"] == "二目在外" else item["condition"]
+        for item in src["no_capture_evidence"]
+    ]
     for item in src["special_evidence"]:
         if item["effect"] == "得而复失":
             miss.append("天目掩太乙：得而复失")
