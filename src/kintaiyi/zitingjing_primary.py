@@ -41,22 +41,37 @@ PRIMARY_LOCATORS = {
         "witness_context": "《太乙紫庭经》卷一段落",
     },
     "wenchang_nine_stars": {
-        "status": "pending_direct_locator",
-        "section": "太乙文昌九星值宫术（待核直接文本）",
+        "status": "catalog_attested_primary_text_pending",
+        "section": "附太乙文昌九星值宫术",
         "url": None,
-        "witness_context": "已知目录线索，尚未在本在线见证中定位直接正文",
+        "catalog_witness": {
+            "title": "太乙紫庭秘诀（现代整理本目录）",
+            "url": "https://www.chinyuan.com.tw/all_book/more?id=7195",
+            "evidence": "目录列“附太乙文昌九星值宫术”",
+        },
+        "witness_context": "已有《太乙紫庭秘诀》目录级证据，但尚未取得可逐条校读的直接正文。",
     },
     "three_banners": {
-        "status": "pending_direct_locator",
+        "status": "project_primary_attribution_direct_text_pending",
         "section": None,
         "url": None,
-        "witness_context": "《太乙紫庭经》主来源身份按项目校勘原则保留；直接条文待定位",
+        "collation_locator": {
+            "source": "太乙统宗宝鉴卷十",
+            "section": "明太乙与三旗行宫会合术",
+            "url": "https://www.shidianguji.com/book/NGJ892411999009267118912/chapter/1lny52hi7lfec",
+        },
+        "witness_context": "《太乙紫庭经》主来源身份按项目校勘原则保留；当前直接可定位的是统宗参校文本。",
     },
     "nine_palace_nobles": {
-        "status": "pending_direct_locator",
+        "status": "project_primary_attribution_direct_text_pending",
         "section": None,
         "url": None,
-        "witness_context": "《太乙紫庭经》主来源身份按项目校勘原则保留；直接条文待定位",
+        "collation_locator": {
+            "source": "太乙统宗宝鉴卷十",
+            "section": "明太乙九宫贵神术",
+            "url": "https://www.shidianguji.com/book/NGJ892411999009267118912/chapter/1lny52hi7lfec",
+        },
+        "witness_context": "《太乙紫庭经》主来源身份按项目校勘原则保留；当前直接可定位的是统宗参校文本。",
     },
 }
 
