@@ -28,3 +28,8 @@ clean CI：
 ```
 1006 passed in 1.91s
 ```
+
+19. C53 已实现飞鸟、五风、太尊、八风、三风、五行六项位置 runtime。
+20. C52 `all_position_runtime_ready=False`，因为天皇/帝符/天时仍未全部完成。
+21. 天时统宗与太白兵备起点冲突保持 unresolved。
+22. 太乙数继续作为独立数值层 pending。
