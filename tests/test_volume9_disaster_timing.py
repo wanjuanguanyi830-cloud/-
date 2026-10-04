@@ -300,7 +300,8 @@ def test_c45_catalog_and_legacy_policy():
     assert item["layer"] == "canonical"
     assert item["action"] == "use_c45_two_stage_explicit_evidence"
     assert item["migrate_whole"] is False
-    assert "两" in item["notes"] or "兩" in item["notes"]
+    assert "太岁合神加岁支" in item["notes"]
+    assert "当月合神加月支" in item["notes"]
 
     legacy = classify_legacy_field("歲中災發")
     assert legacy["status"] == "quarantined"
