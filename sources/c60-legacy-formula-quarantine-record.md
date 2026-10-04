@@ -78,3 +78,42 @@ C60 每条记录必须：
 C60 是“已证实问题清单”，不是“未审旧代码自动白名单”的反面。
 
 新增旧公式时，若已有审计判定其不可直接升格，应同步进入本 registry。
+
+
+## C58 / C59 补充隔离
+
+新增：
+
+### yunqi._YUNQI_COLOR.white
+
+旧表：
+
+- 白 7 / 6 → 亥子。
+
+C58 校定：
+
+- 白 7 / 6 → 申酉；
+- 黑 1 / 8 → 亥子。
+
+因此旧白云时支：
+
+- `canonical_equivalent=False`
+- replacement: `C58-CLOUD-TIMING`
+
+### yunqi.shijing_shu
+
+360 / 72 数值核心可以作为 C54 参校，但 wrapper 同时混入天气断语。
+
+C59 又确认：
+
+- 30 / 40 是直接天气数值；
+- 50存在句读异文；
+- 旧10 / 5不是当前直接条文的独立天气特例；
+- 合天目 / 飞鸟 / 主计等必须显式关系证据。
+
+因此 replacement 同时指向：
+
+- `C54-TAIYI-NUMBER`
+- `C59-TAIYI-NUMBER-OMEN`
+
+不得只迁 C54 后保留旧天气 wrapper。
