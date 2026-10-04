@@ -181,12 +181,13 @@ for key in (
 ):
     CATALOG[key] = _entry(
         "canonical", "tongzong_volume7_direct", "P1",
-        "use_c64_three_spirit_cycle_runtime", migrate_whole=False,
+        "use_c64_c65_three_spirit_layers", migrate_whole=False,
         source_confidence="high", target_hint="source_variants.tongzong_spirit_cycles",
         notes=(
             "C64 已实现卷七天乙金神、地乙土神、直符火神360/36、三年一宫、"
-            "十二宫（一至九+绛明玉）位置周期。旧‘值符’题名只作直符变体。"
-            "同宫灾应仍须下一显式证据层，C64不自动以位置相等制造断语。"
+            "十二宫（一至九+绛明玉）位置周期；C65 已实现三神条下直接同宫灾应。"
+            "旧‘值符’题名只作直符变体；C65要求same_palace显式输入，"
+            "仍禁止仅凭C64位置相等自动制造断语。"
         ),
     )
 
