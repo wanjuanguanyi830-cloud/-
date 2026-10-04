@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "modern_liunian_nayin_2026",
+  "variant_id": "MODERN-LIUNIAN-NAYIN",
+  "type": "modern_reconstruction",
+  "canonical": false,
+  "source": "用户提供《太乙数纳音体系（修正版）》",
+  "source_characterization": "材料作者明确称第四章太乙纳音应用体系为自己构建/无师自通的现代重构。",
+  "runtime": [
+    "kintaiyi.variants.modern_liunian_nayin.modern_star_base_nayin",
+    "kintaiyi.variants.modern_liunian_nayin.modern_day_tone_sequence",
+    "kintaiyi.variants.modern_liunian_nayin.modern_star_transformed_nayin",
+    "kintaiyi.variants.modern_liunian_nayin.compare_modern_nayin_elements"
+  ],
+  "scope": {
+    "counts": [
+      "年计",
+      "月计",
+      "日计",
+      "时计"
+    ],
+    "note": "材料称四计都可以用，但相对应的历法要改变。"
+  },
+  "supported_content": [
+    "太乙五音顺序取宫徵羽商角；五行仍为宫土、徵火、羽水、商金、角木。",
+    "五音纳天干：宫徵羽商角分别纳甲丙戊庚壬，并按阴阳配对应阴干。",
+    "星神本五行可转为五音，与所落地支/四维对应律吕合成星神纳音。",
+    "引入星神变五行；按日干分组改变五音顺序。",
+    "本五行与变五行所得纳音可以比较；每个星神可形成两个纳音。",
+    "四计均可用，但年月日时对应历法输入需随计改变。",
+    "用途包括取象、能量比较、同一星神纳音比较、取数、取方位、应期及与其他体系穿插。"
+  ],
+  "implementation_boundary": [
+    "十二地支到十二律采用古典律历标准映射，作为材料所称“十二地支与十二律配合”的背景依赖。",
+    "四维自动换算默认关闭；只有显式 dimension_mode=branch_proxy 时使用材料所列乾亥、艮寅、坤申、巽巳。",
+    "日干变音只返回材料给出的五音顺序；材料未写成唯一公式的“某星神如何由该序列取得变五行”不自动推导。",
+    "本/变纳音比较只返回五行关系，不自动给吉凶或胜负。"
+  ],
+  "relation_to_ancient_rules": {
+    "j4m03": "related topic only; not a J4M-03 variant and never canonical override",
+    "policy": "不得把本 profile 的双纳音、变音顺序或现代扩展技法回写任何古籍 canonical。"
+  }
+}
