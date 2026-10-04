@@ -70,9 +70,10 @@ def test_c61_c64_tianyi_diyi_zhifu_are_direct_volume7_with_position_runtime():
         assert item["layer"] == "canonical"
         assert item["source_scope"] == "tongzong_volume7_direct"
         assert item["source_confidence"] == "high"
-        assert item["action"] == "use_c64_three_spirit_cycle_runtime"
+        assert item["action"] == "use_c64_c65_three_spirit_layers"
         assert item["migrate_whole"] is False
-        assert "同宫灾应仍须下一显式证据层" in item["notes"]
+        assert "C65 已实现" in item["notes"]
+        assert "same_palace显式输入" in item["notes"]
 
 
 def test_c61_remaining_source_verified_fields_are_not_yet_runtime_implemented():
