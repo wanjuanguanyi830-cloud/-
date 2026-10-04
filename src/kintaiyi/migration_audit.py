@@ -16,10 +16,14 @@ from .pan_v2 import validate_pan_v2
 AUDIT_VERSION = "taiyi-c13-legacy-audit-v1"
 
 _REPLACEMENT_ORDER = {
-    "analysis.military": 0,
-    "analysis.seven_methods": 1,
-    "analysis.eight_divinations": 2,
-    "modern.game_theory": 3,
+    "source_variants.patterns.profiles": 0,
+    "source_variants.military.three_doors.profiles": 1,
+    "source_variants.military.five_generals.profiles": 2,
+    "source_variants.military.host_guest_relation.profiles": 3,
+    "analysis.military": 10,
+    "analysis.seven_methods": 11,
+    "analysis.eight_divinations": 12,
+    "modern.game_theory": 13,
 }
 
 
