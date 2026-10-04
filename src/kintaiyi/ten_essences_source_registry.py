@@ -69,7 +69,7 @@ TEN_ESSENCES = (
         "name": "飞鸟",
         "small_cycle": 9,
         "kind": "position",
-        "formula_status": "pending_source_formula_audit",
+        "formula_status": "implemented_c53",
     },
     {
         "index": 6,
@@ -90,7 +90,7 @@ TEN_ESSENCES = (
         "name": "五风",
         "small_cycle": 9,
         "kind": "position",
-        "formula_status": "pending_source_formula_audit",
+        "formula_status": "implemented_c53",
     },
     {
         "index": 9,
@@ -410,7 +410,12 @@ def ten_essences_registry() -> dict[str, Any]:
         "focus_formula_skeletons": copy.deepcopy(FOCUS_FORMULA_SKELETONS),
         "cloud_omen_boundary": copy.deepcopy(CLOUD_OMEN_BOUNDARY),
         "target_policy": copy.deepcopy(TARGET_POLICY),
-        "position_runtime_ready": False,
+        "implemented_position_runtimes": ["飞鸟", "五风"],
+        "pending_position_runtimes": [
+            "天皇", "帝符", "天时", "太尊", "五行", "八风", "三风"
+        ],
+        "number_runtime_pending": ["太乙数"],
+        "all_position_runtime_ready": False,
         "cloud_runtime_ready": False,
         "policy": (
             "C52确认名单、次序、小周数，并登记已核的公式骨架与未决点；"
