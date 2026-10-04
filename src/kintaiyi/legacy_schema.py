@@ -8,6 +8,8 @@ from __future__ import annotations
 
 from typing import Any
 
+from .unported_catalog import catalog_unported_field
+
 LEGACY_SCHEMA_POLICY_VERSION = "taiyi-c14-legacy-schema-policy-v1"
 
 META_MAP = {
@@ -162,12 +164,18 @@ def classify_legacy_field(key: str) -> dict[str, Any]:
             "target": "compat.quarantined_legacy_keys",
             "replacement": QUARANTINE_REPLACEMENTS[key],
         }
+    catalog = catalog_unported_field(key)
     return {
         "policy_version": LEGACY_SCHEMA_POLICY_VERSION,
         "field": key,
         "status": "unported",
         "target": None,
         "replacement": None,
+        "candidate_layer": catalog["layer"],
+        "priority": catalog["priority"],
+        "source_scope": catalog["source_scope"],
+        "migration_action": catalog["action"],
+        "migrate_whole": catalog["migrate_whole"],
     }
 
 
