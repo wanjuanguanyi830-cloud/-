@@ -26,8 +26,11 @@ def test_modern_liunian_nayin_is_reference_only_not_jinjing_canonical():
     modern = {item["id"]: item for item in data["variants"]}["J4M03-MODERN-LIUNIAN-NAYIN"]
 
     assert modern["profile"] == "modern_liunian_nayin_2026"
-    assert modern["status"] == "reference_only_not_canonical"
-    assert modern["runtime"] is None
+    assert modern["status"] == "implemented_modern_variant"
+    assert any(path.endswith(".modern_star_base_nayin") for path in modern["runtime"])
+    assert any(path.endswith(".modern_day_tone_sequence") for path in modern["runtime"])
+    assert any(path.endswith(".modern_star_transformed_nayin") for path in modern["runtime"])
+    assert any(path.endswith(".compare_modern_nayin_elements") for path in modern["runtime"])
     text = " ".join(modern["explicit_non_equivalence"])
     assert "不能据此声称《金镜》" in text
     assert "不能把现代日干变音顺序并入" in text
@@ -45,3 +48,14 @@ def test_modern_variant_records_only_material_supported_structure():
     assert "变五行" in supported
     assert "两个纳音" in supported
     assert "四计均可用" in supported
+
+
+def test_modern_variant_runtime_boundaries_are_machine_locked():
+    data = _catalog()
+    modern = {item["id"]: item for item in data["variants"]}["J4M03-MODERN-LIUNIAN-NAYIN"]
+    boundary = " ".join(modern["implementation_boundary"])
+
+    assert "古典律历标准映射" in boundary
+    assert "dimension_mode=branch_proxy" in boundary
+    assert "不自动推导" in boundary
+    assert "不自动给吉凶或胜负" in boundary
