@@ -39,6 +39,10 @@ def test_c44_requires_full_foundation_ganzhi():
         parse_ganzhi("子")
     with pytest.raises(ValueError):
         parse_ganzhi("甲")
+    with pytest.raises(ValueError, match="六十甲子"):
+        parse_ganzhi("甲丑")
+    with pytest.raises(ValueError, match="六十甲子"):
+        parse_ganzhi("乙寅")
 
 
 def test_c44_direct_six_god_effects_are_stable():
@@ -87,6 +91,13 @@ def test_c44_long_harmonious_only_selects_far_class_not_specific_year():
         pattern_evidence={},
     )
     assert data["computable"] is True
+    assert data["foundation_ganzhi_numbers"] == {
+        "stem": 9,
+        "branch": 9,
+        "sum": 18,
+        "source_dependency": "C42纳甲干支数表",
+        "used_to_auto_select_year": False,
+    }
     assert data["timing"]["distance_class"] == "远"
     assert data["timing"]["witness_candidates"] == {
         "tongzong": [90, 180],
