@@ -19,6 +19,14 @@ from .taiyi_rules import integer
 
 C43_VERSION = "taiyi-c43-volume9-ehui-v1"
 
+SOURCE_WITNESS = {
+    "work": "太乙统宗宝鉴",
+    "online_witness_volume": 10,
+    "project_legacy_volume_label": 9,
+    "volume_status": "witness_volume_variant",
+    "section": "明阳九百六，太游行限观历术",
+}
+
 STEMS = tuple("甲乙丙丁戊己庚辛壬癸")
 BRANCHES = tuple("子丑寅卯辰巳午未申酉戌亥")
 SEXAGENARY = frozenset(
@@ -151,6 +159,7 @@ def ehui_limit_from_evidence(
         "canonical": C43_VERSION,
         "rule_id": "C43-V9-EHUI",
         "source_profile": "tongzong_volume9_ehui_limit",
+        "source_witness": copy.deepcopy(SOURCE_WITNESS),
         "enthronement": gz,
         "dayi_identity": GOD_IDENTITIES["大义"],
         "taiyang": {
