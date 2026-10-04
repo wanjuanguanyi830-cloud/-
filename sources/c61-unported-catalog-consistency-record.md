@@ -1,0 +1,132 @@
+# C61 C15 unported catalog 全局一致性清扫
+
+日期：2026-10-05
+
+## 1. 目标
+
+C61 不新增术法 runtime。
+
+本批只清扫 C15 的 67 个 legacy 顶层字段，修正已经与当前来源研究不一致的：
+
+- pending；
+- source confidence；
+- source scope；
+- migration action；
+- “已有来源”与“已有 runtime”混淆。
+
+## 2. 清扫结果
+
+67 个字段继续完整覆盖。
+
+当前 layer 统计：
+
+- canonical: 31
+- source_variant: 16
+- derived: 18
+- pending: 2
+
+严格 pending 只剩：
+
+- `推太乙當時法`
+- `文昌九星`
+
+这里的 pending 是“直接来源/正文条件仍不足以选择 canonical”，不是“尚未写代码”的同义词。
+
+## 3. 巡狩术
+
+《太乙统宗宝鉴》目录明确列于卷五。
+
+卷五正文直接见：
+
+- 太乙与天目在四维之岁，为巡狩之期；
+- 出何方，以天目/文昌所临决之；
+- 四维出方见证为：
+  - 乾 → 东方；
+  - 艮 → 南方；
+  - 巽 → 西方；
+  - 坤 → 北方；
+- 行期另提太乙囚、挟、格、对条件。
+
+因此 `明天子巡狩之期術` 从 source pending 升为：
+
+- layer: canonical
+- source_scope: `tongzong_volume5_direct`
+- action: `source_verified_split_runtime_next`
+- source_confidence: high
+- migrate_whole: false
+
+“来源已核”不等于完整 runtime 已实现。
+
+## 4. 君基 / 臣基 / 民基 / 五福
+
+《太乙统宗宝鉴》目录和正文可直接定位：
+
+- 明君基太乙所主术；
+- 明臣基太乙所主术；
+- 明民基太乙所主术；
+- 明五福太乙所主术；
+- 明五福吉算所利术。
+
+不同在线见证在卷六 / 卷七编次有差异，因此统一记：
+
+`tongzong_volume6_7_witness_variant_direct`
+
+不复制两套公式。
+
+直接正文已经可见三基、五福的：
+
+- 身份义；
+- 周法 / 小周；
+- 起点与顺行；
+- 与其他神同宫所主；
+- 五福五宫 / 45年行一宫等结构。
+
+但这些仍需逐条拆成独立 runtime，旧 flat 字段不得直接搬运。
+
+## 5. 天乙 / 地乙 / 直符
+
+卷七目录直接见：
+
+- 天乙金神；
+- 地乙土神；
+- 直符火神。
+
+因此旧字段：
+
+- `明天乙太乙所主術`
+- `明地乙太乙所主術`
+- `明值符太乙所主術`
+
+升级为：
+
+- layer: canonical
+- source_scope: `tongzong_volume7_direct`
+- action: `source_verified_split_runtime_next`
+- source_confidence: high
+
+旧字段题名与正文“金神 / 土神 / 火神”的命名差异只作为题名异文保留。
+
+## 6. 十精状态同步
+
+C57 / C58 / C59 已完成十精云气的：
+
+- 显式合会层；
+- 初移宫云色 / 天气观察层；
+- 太乙数天气层。
+
+因此 C15 中十精旧字段的备注不再写“云气层未实现”。
+
+但旧 flat 位置与旧 `yunqi` 综合 wrapper 仍不得迁入 canonical。
+
+## 7. 边界
+
+本批没有把任何 `source_verified_split_runtime_next` 改写成“runtime implemented”。
+
+后续选择实现目标时，应优先：
+
+1. 直接正文清楚；
+2. 输入边界可显式表达；
+3. 不依赖尚未迁入的整盘隐式状态；
+4. 可单独测试。
+
+巡狩术最符合这一条件。
