@@ -187,9 +187,12 @@ FOCUS_FORMULA_SKELETONS = {
         "small_cycle": 9,
         "identity": "箕星之使",
         "route": {
-            "sequence": [1, 3, 5, 7, 9, 2, 4, 6, 8],
+            "tongzong_sequence": [1, 3, 5, 7, 9, 2, 4, 6, 8],
+            "wujing_zongyao_sequence": [1, 3, 5, 9, 7, 2, 4, 6, 8],
             "mode": "先阳后阴次第",
-            "status": "direct_complete_sequence",
+            "status": "source_variant_unresolved",
+            "canonical_route": None,
+            "note": "统宗与《武经总要》在第五/第四奇宫7、9次序上冲突，不静默择本。",
         },
         "surplus_variant": {
             "year": 3,
@@ -199,7 +202,7 @@ FOCUS_FORMULA_SKELETONS = {
             "note": "古法不载，故不取用。",
         },
         "runtime_formula_ready": False,
-        "runtime_blocker": "C52只登记来源；位置runtime留待独立规则与边界测试。",
+        "runtime_blocker": "五风九宫序存在7/9次序见证冲突；解决前不得建立位置runtime。",
     },
     "三风": {
         "big_cycle": 90,
