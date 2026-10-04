@@ -157,23 +157,23 @@ CATALOG["釋格局"] = _entry(
 
 for key in ("三旗行宮", "九宮貴神"):
     CATALOG[key] = _entry(
-        "canonical", "zitingjing_primary_tongzong_volume10_secondary", "P1",
+        "canonical", "zitingjing_primary_tongzong_volume10_collation", "P1",
         "migrate_rule_from_primary_source",
         target_hint="analysis.zitingjing",
         notes=(
             "主要参考《紫庭经》；旧pan以《太乙统宗宝鉴》卷十注释，"
-            "统宗只作后收录/对照来源，不再作为主要出处。"
+            "统宗保留为重要参校来源；用于校异、补证与版本比较，但不得静默覆盖《紫庭经》主来源。"
         ),
     )
 
 for key in ("太乙九星", "文昌九星"):
     CATALOG[key] = _entry(
-        "canonical", "zitingjing_primary_tongzong_volume6_secondary", "P1",
+        "canonical", "zitingjing_primary_tongzong_volume6_collation", "P1",
         "migrate_rule_from_primary_source",
         target_hint="analysis.zitingjing",
         notes=(
             "主要参考《紫庭经》；旧pan以《太乙统宗宝鉴》卷六注释，"
-            "统宗只作后收录/对照来源，不再作为主要出处。"
+            "统宗保留为重要参校来源；用于校异、补证与版本比较，但不得静默覆盖《紫庭经》主来源。"
         ),
     )
 
@@ -222,12 +222,12 @@ CATALOG["神將所主"] = _entry(
 
 for key in ("文昌變化", "始擊變化"):
     CATALOG[key] = _entry(
-        "canonical", "zitingjing_primary_tongzong_volume6_secondary", "P1",
+        "canonical", "zitingjing_primary_tongzong_volume6_collation", "P1",
         "migrate_rule_from_primary_source",
         target_hint="analysis.zitingjing",
         notes=(
             "主要参考《紫庭经》；旧pan以《太乙统宗宝鉴》卷六注释，"
-            "统宗只作后收录/对照来源，不再作为主要出处。"
+            "统宗保留为重要参校来源；用于校异、补证与版本比较，但不得静默覆盖《紫庭经》主来源。"
         ),
     )
 
