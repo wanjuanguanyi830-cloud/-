@@ -190,6 +190,7 @@ def extract_legacy_snapshot_facts(snapshot: dict[str, Any]) -> dict[str, Any]:
 def build_v2_from_legacy_snapshot(
     snapshot: dict[str, Any],
     *,
+    cycles: dict[str, Any] | None = None,
     analysis: dict[str, Any] | None = None,
     modern: dict[str, Any] | None = None,
     source_variants: dict[str, Any] | None = None,
@@ -201,6 +202,13 @@ def build_v2_from_legacy_snapshot(
     或旧七术顶层中文断语来冒充新结构。
     """
     facts = extract_legacy_snapshot_facts(snapshot)
+
+    cycles_data = copy.deepcopy(facts["cycles"])
+    if cycles is not None:
+        if not isinstance(cycles, dict):
+            raise TypeError("cycles须为dict或None")
+        for key, value in cycles.items():
+            cycles_data[key] = copy.deepcopy(value)
 
     compat = {
         "legacy_top_level": True,
@@ -217,7 +225,7 @@ def build_v2_from_legacy_snapshot(
         meta=facts["meta"],
         calendar=facts["calendar"],
         board=facts["board"],
-        cycles=facts["cycles"],
+        cycles=cycles_data,
         analysis=copy.deepcopy(analysis or {}),
         modern=copy.deepcopy(modern or {}),
         source_variants=copy.deepcopy(source_variants or {}),
@@ -229,6 +237,7 @@ def build_v2_from_legacy_snapshot(
 def attach_v2_to_snapshot(
     snapshot: dict[str, Any],
     *,
+    cycles: dict[str, Any] | None = None,
     analysis: dict[str, Any] | None = None,
     modern: dict[str, Any] | None = None,
     source_variants: dict[str, Any] | None = None,
@@ -240,6 +249,7 @@ def attach_v2_to_snapshot(
     result = copy.deepcopy(snapshot)
     result["v2"] = build_v2_from_legacy_snapshot(
         snapshot,
+        cycles=cycles,
         analysis=analysis,
         modern=modern,
         source_variants=source_variants,
