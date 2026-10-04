@@ -60,7 +60,7 @@ def test_c61_three_bases_and_wufu_preserve_volume_witness_variant():
         assert "卷六/卷七" in item["notes"]
 
 
-def test_c61_tianyi_diyi_zhifu_are_direct_volume7():
+def test_c61_c63_tianyi_diyi_zhifu_are_direct_volume7_with_position_runtime():
     for key in (
         "明天乙太乙所主術",
         "明地乙太乙所主術",
@@ -70,8 +70,9 @@ def test_c61_tianyi_diyi_zhifu_are_direct_volume7():
         assert item["layer"] == "canonical"
         assert item["source_scope"] == "tongzong_volume7_direct"
         assert item["source_confidence"] == "high"
-        assert item["action"] == "source_verified_split_runtime_next"
+        assert item["action"] == "use_c63_three_spirit_cycle_runtime"
         assert item["migrate_whole"] is False
+        assert "同宫灾应仍须下一显式证据层" in item["notes"]
 
 
 def test_c61_remaining_source_verified_fields_are_not_yet_runtime_implemented():
@@ -81,9 +82,6 @@ def test_c61_remaining_source_verified_fields_are_not_yet_runtime_implemented():
         "明民基太乙所主術",
         "明五福太乙所主術",
         "明五福吉算所主術",
-        "明天乙太乙所主術",
-        "明地乙太乙所主術",
-        "明值符太乙所主術",
     )
     for key in fields:
         item = catalog_unported_field(key)
