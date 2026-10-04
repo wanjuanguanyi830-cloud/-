@@ -25,7 +25,7 @@
       "id": "J4M03-MODERN-LIUNIAN-NAYIN",
       "type": "modern_reconstruction",
       "profile": "modern_liunian_nayin_2026",
-      "status": "reference_only_not_canonical",
+      "status": "implemented_modern_variant",
       "source": "用户提供《太乙数纳音体系（修正版）》",
       "source_characterization": "材料作者明确称该体系为自己构建/无师自通的现代纳音应用体系。",
       "supported_content": [
@@ -42,7 +42,18 @@
         "不能把现代日干变音顺序并入 J4M-03 canonical。",
         "不能由该体系改写 J4M-03 canonical winner。"
       ],
-      "runtime": null
+      "runtime": [
+        "kintaiyi.modern_nayin_variant.modern_star_base_nayin",
+        "kintaiyi.modern_nayin_variant.modern_day_tone_sequence",
+        "kintaiyi.modern_nayin_variant.modern_star_transformed_nayin",
+        "kintaiyi.modern_nayin_variant.compare_modern_nayin_elements"
+      ],
+      "implementation_boundary": [
+        "十二地支到十二律采用古典律历标准映射，作为材料所称“十二地支与十二律配合”的背景依赖。",
+        "四维自动换算默认关闭；只有显式 dimension_mode=branch_proxy 时使用材料所列乾亥、艮寅、坤申、巽巳。",
+        "日干变音只返回材料给出的五音顺序；材料未写成唯一公式的“某星神如何由该序列取得变五行”不自动推导。",
+        "本/变纳音比较只返回五行关系，不自动给吉凶或胜负。"
+      ]
     },
     {
       "id": "J4M03-LEGACY-WCNSJ",
