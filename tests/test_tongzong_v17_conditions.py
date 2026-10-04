@@ -124,7 +124,7 @@ def test_v17_07_hideout_pattern_recommends_search_when_not_wang_xiang():
         hideout_pattern="迫",
         hideout_qi_state="休",
     )
-    assert data["hideout"]["recommendation"] == "可按迫迫之下寻其藏匿"
+    assert data["hideout"]["recommendation"] == "可按迫之下寻其藏匿"
     assert data["verdict"] == "未定"
 
 
