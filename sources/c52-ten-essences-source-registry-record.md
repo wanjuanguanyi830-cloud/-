@@ -254,76 +254,32 @@ C53 开始逐项核十精位置公式。
 只有直接公式、边界和测试全部完成后，才可建立位置 runtime。
 
 
-## 10. C53 实施状态
+## 10. 后续 runtime 状态
 
-C52 仍是来源注册表，但位置 runtime 已由 C53 分批实现。
+C52 仍是来源注册表，不自己执行公式。
 
-当前已实现：
+当前位置 runtime：
 
-- 飞鸟：C53-FLYBIRD
-- 五风：C53-FIVEWIND
-- 太尊：C53-TAIZUN
-- 八风：C53-EIGHTWIND
-- 三风：C53-THREEWIND
-- 五行：C53-WUXING
+- C53：飞鸟、五风、太尊、八风、三风、五行；
+- C55：天皇、帝符；
+- pending：天时。
 
-当前位置 pending：
+数值 runtime：
 
-- 天皇
-- 帝符
-- 天时
-
-数值层 pending：
-
-- 太乙数
+- C54：太乙数。
 
 固定：
 
+- `implemented_position_runtimes = 8项`
+- `pending_position_runtimes = ["天时"]`
+- `implemented_number_runtimes = ["太乙数"]`
 - `all_position_runtime_ready=False`
-- `implemented_position_runtimes` 与 `pending_position_runtimes` 分开保存；
-- C52 registry 仍不自己执行位置公式；
-- C53 runtime 只消费 C52 已校来源边界。
 
-天时当前保留来源冲突：
+天时继续保留来源冲突：
 
-- 统宗：命起吕申（寅），顺行十二辰，阴局取阳局对冲；
+- 统宗：吕申（寅）起，顺行十二辰，阴局取阳局对冲；
 - 太白兵备：阳起申、阴起寅。
 
-因此天时继续 `source_start_conflict_unresolved`。
+因此仍为 `source_start_conflict_unresolved`。
 
-## 11. C54 / C55 后续实施状态
-
-C52 继续只作为来源注册层，不自己执行公式。
-
-后续已完成：
-
-- 太乙数：`C54-TAIYI-NUMBER`；
-- 天皇：`C55-TIANHUANG`；
-- 帝符：`C55-DIFU`。
-
-当前位置 runtime 已完成八项：
-
-- 飞鸟
-- 五风
-- 太尊
-- 八风
-- 三风
-- 五行
-- 天皇
-- 帝符
-
-唯一仍 pending 的位置项：
-
-- 天时
-
-帝符四正重留已正规化为四处：
-
-- 地主 / 子
-- 高丛 / 卯
-- 大威 / 午
-- 太簇 / 酉
-
-不是“4神 + 4宫 = 8次重留”。
-
-帝符盈差 17 / 70 异读均被正文否定，因此只留 witness，不应用。
-
+帝符唯一 canonical 已转入 C55；并行期间短暂出现的 C53-DIFU 已删除。
