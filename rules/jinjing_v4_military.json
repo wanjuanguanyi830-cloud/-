@@ -81,7 +81,13 @@
       },
       "implementation_status": "implemented_partial_source_specific",
       "runtime": "kintaiyi.jinjing_v4_military.zhuke_xiangguan",
-      "implementation_note": "已实现主客目五行相制核心及两类胜负；正文所称“日计纳音以决之”的具体附加接法未展开，显式保留 pending，不擅自推演。"
+      "implementation_note": "已实现主客目五行相制核心及两类胜负；多种《金镜》转录均只见“皆用日计纳音以决之”，未见纳音如何接入的展开公式，因此继续显式保留 partial。",
+      "collation_status": "formula_not_expanded_in_checked_jinjing_transcriptions",
+      "legacy_reference_quarantined": [
+        "旧 wc_n_sj 以日计纳音等于主/客目五行来标“主关/客关”",
+        "旧 wc_n_sj 引入主将是否与太乙同宫来改写主客胜负",
+        "以上两项均未见卷四本段明文，不能升级为 canonical"
+      ]
     },
     {
       "id": "J4M-04",
@@ -100,9 +106,11 @@
       ],
       "target_crosswalk": {
         "layer": "C8-L3",
-        "status": "partial_roles_only"
+        "status": "source_runtime_complete_c8_roles_only"
       },
-      "implementation_status": "partially_implemented"
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jinjing_v4_military.zhuke_fa",
+      "implementation_note": "完整保存陈兵原野/安居之势角色、三门五将阴阳和不和的行动姿态、东阴德南和德西大炅北大武始发神、主客互视其算。原文“先胜后负”只作时序断语，不强指定winner；混合门将阴阳组合不扩写。"
     },
     {
       "id": "J4M-05",
