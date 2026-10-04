@@ -61,11 +61,20 @@
 - 181 页
 - 约 328MB
 
-但项目当前没有直接读取该 181 页 PDF，所以证据等级保持：
+用户已明确：**此前已经提供过这份上海研易楼明抄本文件**。
 
-`catalog_attested_text_pending`
+因此原先“项目没有直接收到/读取该文件”的表述撤销。
 
-不能把目录条目当成正文。
+当前事实应拆成两层：
+
+- file provenance：`user_previously_provided_manuscript_file=True`
+- current session retrieval：当前可检索附件/Library 索引未重新挂载该文件
+
+所以现在不是“文件从未提供”，而是：
+
+`pending_reinspection_from_previously_provided_file`
+
+在重新取回此前文件并定位附篇页之前，文昌九星仍保持 `catalog_attested_text_pending`，不能只凭目录条目生成正文规则。
 
 ## C. 北京大学馆藏线索
 
@@ -110,7 +119,7 @@
 
 下一动作：
 
-1. 优先取得研易楼明抄本 / 2015 仿刻本附篇页；
+1. 优先重新定位用户此前已经提供的研易楼明抄本文件，并直接校读“附太乙文昌九星值宫术”页；
 2. 继续核哈佛抄本是否有异题同术；
 3. 查北京大学官方馆藏目录。
 
