@@ -157,12 +157,17 @@ CATALOG["釋格局"] = _entry(
 
 for key in ("三旗行宮", "九宮貴神"):
     CATALOG[key] = _entry(
-        "canonical", "zitingjing_primary_tongzong_volume10_collation", "P1",
-        "migrate_rule_from_primary_source",
-        target_hint="analysis.zitingjing",
+        "source_variant",
+        "zitingjing_project_attribution_unverified_vs_tongzong_volume10_direct",
+        "P1",
+        "verify_primary_attribution_then_select_profile",
+        migrate_whole=False,
+        source_confidence="medium",
+        target_hint="source_variants.zitingjing",
         notes=(
-            "主要参考《太乙紫庭经》；旧pan以《太乙统宗宝鉴》卷十注释，"
-            "统宗保留为重要参校来源；用于校异、补证与版本比较，但不得静默覆盖《太乙紫庭经》主来源。"
+            "项目曾指定《太乙紫庭经》为主来源目标，但当前已查《太乙紫庭秘诀》"
+            "十二卷及附录目录未见同名题目；《太乙统宗宝鉴》卷十有直接可定位文本。"
+            "在取得紫庭目录/正文证据前不得把两项标成紫庭canonical。"
         ),
     )
 
