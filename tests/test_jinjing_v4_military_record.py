@@ -149,3 +149,16 @@ def test_j4m03_ancient_collation_resolves_two_eye_nayin_without_modern_merge():
     assert "主将是否与太乙同宫" in quarantined
     assert "现代《太乙数纳音体系（修正版）》" in quarantined
     assert "不得静默回写" in quarantined
+
+
+def test_all_twelve_rules_are_complete_and_have_runtime_entries():
+    _, rules = _rules()
+    assert len(rules) == 12
+    for item in rules:
+        assert item["implementation_status"] == "implemented_source_specific"
+        runtime = item["runtime"]
+        if isinstance(runtime, list):
+            assert runtime
+            assert all(path.startswith("kintaiyi.jinjing_v4_military.") for path in runtime)
+        else:
+            assert runtime.startswith("kintaiyi.jinjing_v4_military.")
