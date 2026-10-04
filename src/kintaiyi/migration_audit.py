@@ -8,26 +8,26 @@ from __future__ import annotations
 from collections import Counter
 from typing import Any, Iterable
 
+from .legacy_schema import replacement_path_for_legacy
 from .pan_adapter import extract_legacy_snapshot_facts
 from .pan_v2 import validate_pan_v2
 
 AUDIT_VERSION = "taiyi-c13-legacy-audit-v1"
 
-_OLD_MILITARY = {"軍事戰略", "军事战略"}
-_OLD_GAME_THEORY = {"運籌博弈分析", "运筹博弈分析"}
-_OLD_SEVEN_METHODS = {
-    "推雷公入水", "推臨津問道", "推临津问道", "推獅子反擲", "推狮子反掷",
-    "推白雲捲空", "推白云卷空", "推猛虎相拒", "推白龍得雲", "推白龙得云",
-    "推回軍無言", "推回军无言",
-}
-_OLD_EIGHT_DIVINATIONS = {
-    "推多少以占勝負", "推多少以占胜负",
-    "推孤單以占成敗", "推孤单以占成败",
-    "推陰陽以占厄會", "推阴阳以占厄会",
+_REPLACEMENT_ORDER = {
+    "analysis.military": 0,
+    "analysis.seven_methods": 1,
+    "analysis.eight_divinations": 2,
+    "modern.game_theory": 3,
 }
 
 
-def _nonempty_dict(value: Any) -> bool:
+def _path_has_nonempty_dict(root: dict[str, Any], dotted_path: str) -> bool:
+    value: Any = root
+    for part in dotted_path.split("."):
+        if not isinstance(value, dict) or part not in value:
+            return False
+        value = value[part]
     return isinstance(value, dict) and bool(value)
 
 
@@ -36,22 +36,13 @@ def _replacement_gaps(snapshot: dict[str, Any]) -> list[str]:
     if not isinstance(v2, dict):
         return ["v2"]
 
-    analysis = v2.get("analysis") if isinstance(v2.get("analysis"), dict) else {}
-    modern = v2.get("modern") if isinstance(v2.get("modern"), dict) else {}
-
-    gaps: list[str] = []
-    keys = set(snapshot)
-
-    if keys & _OLD_MILITARY and not _nonempty_dict(analysis.get("military")):
-        gaps.append("analysis.military")
-    if keys & _OLD_SEVEN_METHODS and not _nonempty_dict(analysis.get("seven_methods")):
-        gaps.append("analysis.seven_methods")
-    if keys & _OLD_EIGHT_DIVINATIONS and not _nonempty_dict(analysis.get("eight_divinations")):
-        gaps.append("analysis.eight_divinations")
-    if keys & _OLD_GAME_THEORY and not _nonempty_dict(modern.get("game_theory")):
-        gaps.append("modern.game_theory")
-
-    return gaps
+    gaps = {
+        path
+        for key in snapshot
+        if (path := replacement_path_for_legacy(key)) is not None
+        and not _path_has_nonempty_dict(v2, path)
+    }
+    return sorted(gaps, key=lambda path: (_REPLACEMENT_ORDER.get(path, 99), path))
 
 
 def audit_legacy_snapshot(snapshot: dict[str, Any]) -> dict[str, Any]:
