@@ -24,6 +24,7 @@ where = [".", "src"]
 include = ["kintaiyi*", "rules*"]
 
 [tool.setuptools.package-data]
-rules = ["taiyi_v1.json", "jinjing_v4_military.json", "j4m03_nayin_variants.json"]
+rules = ["taiyi_v1.json", "jinjing_v4_military.json"]
 "rules.jinjing.geju" = ["ruleset.json"]
+"rules.variants" = ["modern_liunian_nayin.json"]
 
