@@ -3397,13 +3397,118 @@ C15 三项现由：
 - `sources/c65-volume7-three-spirit-conjunctions-record.md`
 - `tests/reports/c65_validation.md`
 
-## 9.59 后续 C66+
+## 9.59 C66 君基 / 臣基 / 民基三基位置周期（已实施）
+
+唯一 runtime：
+
+`src/kintaiyi/three_bases_cycles.py`
+
+三基共同：
+
+- 邦盈差250；
+- 顺行十二辰；
+- 卷六 / 卷七只作 witness volume variant。
+
+君基：
+
+- 大周3600；
+- 小周360；
+- 30年一邦；
+- 午起。
+
+臣基：
+
+- 大周360；
+- 小周36；
+- 3年一邦；
+- 午起。
+
+民基：
+
+- 大周360；
+- 小周12；
+- 1年一邦；
+- 来源“戍邦”按地支位置正规化为戌，原字保留 witness。
+
+参校算例已锁：
+
+- 君基余200 → 子邦第20年；
+- 臣基余2 → 午邦第2年。
+
+C66 不自动应用三基与五福 / 三神等同宫断语。
+
+C15 三基 action：
+
+`use_c66_three_bases_cycle_runtime`
+
+完整验证：
+
+`1299 passed / 0 failed`
+
+详细记录：
+
+- `sources/c66-three-bases-cycles-record.md`
+- `tests/reports/c66_validation.md`
+
+## 9.60 C67 五福位置来源 profile（已实施）
+
+唯一 runtime：
+
+`src/kintaiyi/wufu_source_profiles.py`
+
+C67 禁止默认来源；调用方必须显式选择：
+
+`source_profile="tongzong" | "jinjing"`
+
+### 统宗 profile
+
+- 宫盈差115；
+- 大周2250；
+- 小周225；
+- 45年一宫；
+- 乾 → 艮 → 巽 → 坤 → 中。
+
+### 金镜 profile
+
+- 不采用统宗115盈差；
+- 225年一周；
+- 45年一宫；
+- 同样乾 → 艮 → 巽 → 坤 → 中。
+
+稳定共同核心可以共用，但统宗的115 / 2250不得写回金镜，金镜的无盈差算法也不得覆盖统宗。
+
+后期《太白兵备统宗宝鉴》另见 +250 与225/250周数字样冲突：
+
+- 只登记为 pending variant；
+- `implemented=False`
+- `canonical_selected=None`
+
+C67 不解释：
+
+- 五福吉算受益对象；
+- 五福同宫断语。
+
+C15：
+
+- `明五福太乙所主術` → `use_c67_wufu_tongzong_profile`
+- `明五福吉算所主術` 继续独立待实现。
+
+完整验证：
+
+`1314 passed / 0 failed`
+
+详细记录：
+
+- `sources/c67-wufu-source-profiles-record.md`
+- `tests/reports/c67_validation.md`
+
+## 9.61 后续 C68+
 
 下一优先级：
 
-1. 核清君基 / 臣基 / 民基三基在卷六/卷七见证中的公式一致性，优先拆位置周期；
-2. 五福位置与五福吉算分层，不把“神位周期”与“吉算利谁”混成一项；
-3. 继续核“推太乙当时法”直接来源；
+1. C68 五福吉算数列：当前OCR在2/12、3/13等关键空格处粘连；须取得可核影印页或更干净独立见证后再落表，禁止按个位规律脑补；
+2. 继续核“推太乙当时法”直接来源；
+3. 三基 / 五福同宫断语继续按显式关系层拆分，不由位置自动制造；
 4. 恢复旧 `terminology.json`；
 5. 回读文昌九星附篇正文及三旗 / 九宫贵神归属。
 
