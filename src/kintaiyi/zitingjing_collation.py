@@ -12,7 +12,7 @@ from typing import Any
 
 WENCHANG_NINE_STARS_COLLATION_VERSION = "wenchang-nine-stars-collation-v1"
 
-SANCai_SHIWEI_WITNESS = {
+SANCAI_SHIWEI_WITNESS = {
     "source_id": "sancai_shiwei_volume81",
     "title": "三才世纬",
     "author": "[明]佚名",
@@ -94,7 +94,7 @@ TONGZONG_NGJ_WITNESS = {
 def wenchang_nine_stars_collation_witnesses() -> dict[str, Any]:
     """返回参校见证，不选择 canonical。"""
     witnesses = [
-        copy.deepcopy(SANCai_SHIWEI_WITNESS),
+        copy.deepcopy(SANCAI_SHIWEI_WITNESS),
         copy.deepcopy(TONGZONG_CADAL_WITNESS),
         copy.deepcopy(TONGZONG_NGJ_WITNESS),
     ]
@@ -149,4 +149,4 @@ def tongzong_volume6_wenchang_collation_payload() -> dict[str, Any]:
 
 def sancai_shiwei_wenchang_collation_payload() -> dict[str, Any]:
     """供 C18 source container 的《三才世纬》外部参校使用。"""
-    return copy.deepcopy(SANCai_SHIWEI_WITNESS)
+    return copy.deepcopy(SANCAI_SHIWEI_WITNESS)
