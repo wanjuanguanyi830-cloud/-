@@ -539,11 +539,51 @@ scenario 只接受 C11 三个 canonical 字段；不得从客将、客参等旧�
 
 详细记录见 `sources/c13-migration-audit-record.md`。
 
-## 9.6 后续 C14+
+## 9.6 C14 legacy schema policy 单一真源（已实施）
+
+新增 `src/kintaiyi/legacy_schema.py`，统一定义旧 flat 字段迁移策略。
+
+每个旧字段只能处于：
+
+- `migrated_fact`
+- `quarantined`
+- `unported`
+- `embedded_v2`
+
+### C14-01 migrated fact target
+
+已迁移事实必须有唯一 v2 target path，例如：
+
+- 太乙落宮 → `board.taiyi.palace`
+- 主算 → `board.calculations.home`
+- 主將 → `board.generals.home_general`
+- 八門分佈 → `board.doors.distribution`
+
+### C14-02 quarantined replacement
+
+风险旧字段必须声明新结构 replacement path，例如：
+
+- 軍事戰略 → `analysis.military`
+- 旧七术 → `analysis.seven_methods`
+- 旧八占相关断语 → `analysis.eight_divinations`
+- 運籌博弈分析 → `modern.game_theory`
+
+### C14-03 unknown stays unported
+
+未知旧字段不得猜目标；保持 `target=None`。
+
+### C14-04 C12/C13 去重
+
+C12 adapter 和 C13 migration audit 都读取 C14 registry，不再各自维护字段名单。
+
+详细记录见 `sources/c14-legacy-schema-policy-record.md`。
+
+## 9.7 后续 C15+
 
 - 真正 `Taiyi.pan()` / CLI / UI 文件进入目标仓库后进行实际接线。
 - 根据 C13 的 unported 字段频率决定下一批卷次迁移优先级。
 - 未迁移卷次继续按 canonical/source_variant/derived/pending 分层，避免全部塞进 analysis。
+- 新增字段时先更新 C14 registry，再修改 adapter/audit。
 
 ## 10. 验收
 
