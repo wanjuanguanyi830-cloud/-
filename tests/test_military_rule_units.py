@@ -82,7 +82,7 @@ def test_j4m_and_c8_overlap_is_metadata_not_equivalence():
 def test_external_observation_rules_declare_external_inputs():
     assert rule_unit("V15-09")["external_inputs"] == ["wind_direction_branch"]
     assert rule_unit("V15-12")["external_inputs"] == ["wind_palace"]
-    assert rule_unit("V15-13")["external_inputs"] == ["cloud_from_palace"]
+    assert rule_unit("V15-13")["external_inputs"] == ["cloud_from_direction"]
 
 
 def test_c21_profiles_now_expose_rule_id_crosswalk():
