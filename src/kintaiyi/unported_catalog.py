@@ -134,8 +134,14 @@ CATALOG["八宮旺衰"] = _entry(
 )
 
 CATALOG["推太乙當時法"] = _entry(
-    "pending", "source_pending", "P2", "source_verify_before_migration",
-    source_confidence="low", target_hint="analysis.rules",
+    "canonical", "jinjing_volume1_direct", "P1",
+    "use_c69_current_time_core_partial", migrate_whole=False,
+    source_confidence="high", target_hint="analysis.rules.jinjing_current_time",
+    notes=(
+        "C69 已核《太乙金镜式经》卷一原题并实现十日干朝暮天乙治神表、"
+        "魁罡禁居与十二天将直接主事/吉凶。完整‘二至以后日度所在加时位’仍需上游日度+时支排式，"
+        "故C69明确complete_current_time_formula=False；旧flat不得冒充完整术。"
+    ),
 )
 
 # 与当前 J4M / C8 已存在明确来源边界冲突，必须先拆 source profile。
