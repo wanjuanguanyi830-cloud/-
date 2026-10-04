@@ -32,6 +32,11 @@ def _complete(**overrides):
             "source_status": "explicit_upstream_evidence",
         },
         "pattern_evidence": [],
+        "four_spirit_evidence": {
+            "太阳合神": "未",
+            "阴主合神": "丑",
+            "status": "explicit_source_evidence",
+        },
     }
     kwargs.update(overrides)
     return taiyi_lishu_evidence_bundle(**kwargs)
@@ -52,6 +57,7 @@ def test_c50_incomplete_bundle_lists_each_missing_evidence_class():
     assert data["status"] == "evidence_bundle_partial"
     joined = "；".join(data["pending"])
     assert "C43" in joined
+    assert "合神四神期" in joined
     assert "C41" in joined
     assert "C47" in joined
     assert "运气爻卦象" in joined
@@ -90,22 +96,25 @@ def test_c50_records_ganzhi_numbers_but_not_as_lifespan_formula():
 
 
 @pytest.mark.parametrize(
-    "color,element,number",
+    "color,element,sheng,cheng",
     [
-        ("黄", "土", 5),
-        ("白", "金", 9),
-        ("青", "木", 3),
-        ("黑", "水", 6),
-        ("赤", "火", 7),
+        ("黄", "土", 5, 10),
+        ("白", "金", 4, 9),
+        ("青", "木", 3, 8),
+        ("黑", "水", 1, 6),
+        ("赤", "火", 2, 7),
     ],
 )
-def test_c50_coronation_cloud_numbers_are_source_table_only(
-    color, element, number
+def test_c50_coronation_cloud_numbers_preserve_sheng_cheng_pair(
+    color, element, sheng, cheng
 ):
     data = coronation_cloud_evidence(color)
     assert data["color"] == color
     assert data["element"] == element
-    assert data["number"] == number
+    assert data["sheng_number"] == sheng
+    assert data["cheng_number"] == cheng
+    assert data["selected_number"] is None
+    assert data["number_selection_status"] == "source_pair_preserved_unselected"
     assert data["interpretation_applied"] is False
 
 
@@ -118,18 +127,24 @@ def test_c50_cloud_observation_is_optional_and_does_not_change_completion():
 
     assert with_cloud["evidence_bundle_complete"] is True
     assert with_cloud["cloud"]["provided"] is True
-    assert with_cloud["cloud"]["number"] == 9
+    assert with_cloud["cloud"]["sheng_number"] == 4
+    assert with_cloud["cloud"]["cheng_number"] == 9
+    assert with_cloud["cloud"]["selected_number"] is None
     assert with_cloud["final_lifespan_years"] is None
 
 
-def test_c50_cloud_table_is_fixed():
-    assert CORONATION_CLOUD_NUMBERS == {
-        "黄": {"element": "土", "number": 5},
-        "白": {"element": "金", "number": 9},
-        "青": {"element": "木", "number": 3},
-        "黑": {"element": "水", "number": 6},
-        "赤": {"element": "火", "number": 7},
-    }
+def test_c50_cloud_table_preserves_primary_witness_and_collation_pairs():
+    assert CORONATION_CLOUD_NUMBERS["黄"]["sheng_number"] == 5
+    assert CORONATION_CLOUD_NUMBERS["黄"]["cheng_number"] == 10
+    assert CORONATION_CLOUD_NUMBERS["白"]["sheng_number"] == 4
+    assert CORONATION_CLOUD_NUMBERS["白"]["cheng_number"] == 9
+    assert CORONATION_CLOUD_NUMBERS["青"]["sheng_number"] == 3
+    assert CORONATION_CLOUD_NUMBERS["青"]["cheng_number"] == 8
+    assert "八数当用成数" in CORONATION_CLOUD_NUMBERS["青"]["tongzong_online_witness"]
+    assert CORONATION_CLOUD_NUMBERS["黑"]["sheng_number"] == 1
+    assert CORONATION_CLOUD_NUMBERS["黑"]["cheng_number"] == 6
+    assert CORONATION_CLOUD_NUMBERS["赤"]["sheng_number"] == 2
+    assert CORONATION_CLOUD_NUMBERS["赤"]["cheng_number"] == 7
     with pytest.raises(ValueError):
         coronation_cloud_evidence("紫")
 
@@ -179,3 +194,29 @@ def test_c50_preserves_upstream_evidence_without_recalculation():
     assert data["xiaoyou"] == xiaoyou
     assert data["taiyi_yunqi_hexagram_evidence"] == yunqi
     assert data["four_spirit_formula_reconstructed"] is False
+
+
+def test_c50_four_spirit_check_is_required_for_complete_bundle():
+    data = _complete(four_spirit_evidence=None)
+    assert data["evidence_bundle_complete"] is False
+    assert data["four_spirit_checked"] is False
+    assert "合神四神期" in "；".join(data["pending"])
+
+
+def test_c50_four_spirit_evidence_is_preserved_not_reconstructed():
+    evidence = {
+        "太阳": "午",
+        "太阳合神": "未",
+        "阴主": "子",
+        "阴主合神": "丑",
+        "source_status": "explicit",
+    }
+    data = _complete(four_spirit_evidence=evidence)
+    assert data["four_spirit_checked"] is True
+    assert data["four_spirit_evidence"] == evidence
+    assert data["four_spirit_formula_reconstructed"] is False
+
+
+def test_c50_rejects_bad_four_spirit_container():
+    with pytest.raises(TypeError, match="four_spirit_evidence"):
+        _complete(four_spirit_evidence=["午", "未", "子", "丑"])
