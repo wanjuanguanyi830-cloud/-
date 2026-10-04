@@ -1592,15 +1592,52 @@ V17-06/07/08/09 的唯一 canonical runtime 固定为：
 
 详细记录见 `sources/c34-wenchang-nine-stars-collation-record.md`。
 
-## 9.28 后续 C35+
+## 9.28 C35 有效迁移状态修正（已实施）
+
+### C35-01 J4M-11
+
+“推太乙风云飞鸟助战法”已不再是 pending。
+
+J4M-11 已有完整 source-specific runtime，并要求真实外部观测。
+
+旧 `flybird_wl` 只根据盘内飞鸟位置生成断语，因此降为 legacy quarantine。
+
+replacement 固定：
+
+`source_variants.military.weather_bird_support.profiles.jinjing_siku_volume4`
+
+只有经 J4M-11 profile/ruleset/rule_id 校验的结果才可清除迁移缺口。
+
+### C35-02 legacy flat 与主来源研究分离
+
+旧 pan 六项紫庭相关 flat 来自统宗实现，因此迁移 replacement 改为：
+
+- 太乙九星 / 文昌九星 / 文昌变化 / 始击变化 → `tongzong_volume6` collation；
+- 三旗行宫 / 九宫贵神 → `tongzong_volume10` collation。
+
+旧 flat 是否已结构化迁移，不再要求尚未取得的紫庭 `primary_result`。
+
+### C35-03 文昌九星
+
+文昌九星历史候选改为：
+
+`pending / primary_text_pending`
+
+继续允许外部参校，但不得实现 canonical 推步。
+
+完整验证：655 passed / 0 failed。
+
+详细记录见 `sources/c35-effective-migration-state-record.md`。
+
+## 9.29 后续 C36+
 
 下一优先级：
 
-1. 继续寻找“附太乙文昌九星值宫术”可逐条校读正文；未找到前保持 `primary_text_pending`；
-2. 三旗行宫、九宫贵神继续做出处归属核证，当前保持 `project_primary_attribution_unverified`；
-3. 对剩余 unported / pending 字段按 C30 固定槽位继续迁移；
-4. 检查目标仓库是否已有真实 `Taiyi.pan()` / UI / CLI；若有，只经 C30 contract 接线；
-5. 清理其他重复 runtime / legacy wrapper，保持单一真源。
+1. 整理阳九 / 百六的直接来源、周期与结构化 `cycles.limits`；
+2. 五运六气 / 五音之数继续保持跨卷 source_variant，先做来源拆分再实现；
+3. 继续寻找文昌九星附篇正文；
+4. 三旗行宫 / 九宫贵神继续归属核证；
+5. 剩余 P2/P3 字段按 C30 固定槽位迁移，不恢复 flat truth source。
 
 
 ## 10. 验收
