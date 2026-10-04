@@ -41,14 +41,14 @@ TEN_ESSENCES = (
         "name": "天皇",
         "small_cycle": 20,
         "kind": "position",
-        "formula_status": "pending_source_formula_audit",
+        "formula_status": "implemented_c55",
     },
     {
         "index": 2,
         "name": "帝符",
         "small_cycle": 20,
         "kind": "position",
-        "formula_status": "pending_source_formula_audit",
+        "formula_status": "implemented_c55",
     },
     {
         "index": 3,
@@ -110,6 +110,29 @@ TEN_ESSENCES = (
 
 
 FOCUS_FORMULA_SKELETONS = {
+    "天皇": {
+        "big_cycle": 200,
+        "small_cycle": 20,
+        "identity": "紫微垣勾陈中星",
+        "route": {
+            "start": "武德（申）",
+            "mode": "顺行十六宫间之神；阴局取阳局对冲",
+            "repeat_on_gods": ["阴德", "和德", "大炅", "大武"],
+            "repeat_on_positions": ["乾", "艮", "巽", "坤"],
+            "repeat_count": 4,
+            "status": "implemented_c55_tongzong_primary",
+            "collation_variant": "武经一见证另载阴起吕申逆行，仅保留异文",
+        },
+        "surplus_variant": {
+            "witness_values": {"volume18": 14, "volume20": 14},
+            "source_status": "explicitly_rejected_by_source",
+            "apply": False,
+            "note": "诸家经旨并无所加之术，依古法不取。",
+        },
+        "runtime_formula_ready": True,
+        "runtime_rule_id": "C55-TIANHUANG",
+        "runtime_profile": "tongzong_ten_essences_sixteen_god_routes",
+    },
     "太乙数": {
         "big_cycle": 360,
         "small_cycle": 72,
@@ -144,19 +167,23 @@ FOCUS_FORMULA_SKELETONS = {
         "small_cycle": 20,
         "identity": "天节之使",
         "route": {
-            "start": "阴主",
-            "mode": "顺行十六宫间之神",
-            "repeat_on": ["地主", "高丛", "大威", "太簇", "坎", "离", "震", "兑"],
-            "status": "direct_complete_structure",
+            "start": "阴主（戌）",
+            "mode": "顺行十六宫间之神；阴局取阳局对冲",
+            "repeat_on_gods": ["地主", "高丛", "大威", "太簇"],
+            "repeat_on_positions": ["子", "卯", "午", "酉"],
+            "repeat_count": 4,
+            "status": "implemented_c55_tongzong_primary",
+            "collation_variant": "武经一见证另载阴起太阳逆行，仅保留异文",
         },
         "surplus_variant": {
-            "value": 70,
+            "witness_values": {"volume18": 17, "volume20_or_ocr_variant": 70},
             "source_status": "explicitly_rejected_by_source",
             "apply": False,
-            "note": "诸家经旨并无所加之术，依古法不取。",
+            "note": "17/70见证异读均不采用；正文明确诸家经旨并无所加之术。",
         },
-        "runtime_formula_ready": False,
-        "runtime_blocker": "十六神重留路线尚未写成独立可审计步进器。",
+        "runtime_formula_ready": True,
+        "runtime_rule_id": "C55-DIFU",
+        "runtime_profile": "tongzong_ten_essences_sixteen_god_routes",
     },
     "太尊": {
         "big_cycle": 40,
@@ -486,10 +513,10 @@ def ten_essences_registry() -> dict[str, Any]:
         "focus_formula_skeletons": copy.deepcopy(FOCUS_FORMULA_SKELETONS),
         "cloud_omen_boundary": copy.deepcopy(CLOUD_OMEN_BOUNDARY),
         "target_policy": copy.deepcopy(TARGET_POLICY),
-        "implemented_position_runtimes": ["飞鸟", "五风", "太尊", "八风", "三风", "五行"],
-        "pending_position_runtimes": [
-            "天皇", "帝符", "天时"
+        "implemented_position_runtimes": [
+            "飞鸟", "五风", "太尊", "八风", "三风", "五行", "天皇", "帝符"
         ],
+        "pending_position_runtimes": ["天时"],
         "implemented_number_runtimes": ["太乙数"],
         "number_runtime_pending": [],
         "position_runtime_ready": False,
