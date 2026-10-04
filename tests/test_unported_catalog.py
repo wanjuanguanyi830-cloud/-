@@ -138,13 +138,10 @@ def test_c13_audit_now_surfaces_next_migration_candidates():
         "卷十二": {"legacy": True},
     })
     report = audit_legacy_snapshot(snapshot)
-    # C16已把十六宫分布迁入board；C13只应继续报告尚未迁移的字段。
+    # C16已把十六宫分布迁入board；C17又把释格局改为quarantined source-profile字段。
     assert "十六宮分佈" in report["migrated_fact_keys"]
-    assert report["unported_priority_counts"] == {"P0": 1, "P3": 1}
-    assert report["unported_layer_counts"] == {
-        "derived": 1,
-        "source_variant": 1,
-    }
-    assert [item["field"] for item in report["next_migration_candidates"]] == [
-        "釋格局",
-    ]
+    assert "釋格局" in report["quarantined_legacy_keys"]
+    assert report["replacement_gaps"] == ["source_variants.patterns.profiles"]
+    assert report["unported_priority_counts"] == {"P3": 1}
+    assert report["unported_layer_counts"] == {"derived": 1}
+    assert report["next_migration_candidates"] == []
