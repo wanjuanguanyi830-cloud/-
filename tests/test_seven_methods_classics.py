@@ -54,31 +54,38 @@ def test_derived_four_generals_model_b_and_environment_controls_general():
     assert data["missing"] == []
 
 
-def test_derived_dragon_severe_control_overrides_good_qi():
+def test_derived_dragon_severe_control_is_separate_from_good_qi():
     data = t7.dragon(9, 6, 3, 2, 8)
     assert data["generals"]["home_general"]["state"] == "相"
     assert data["generals"]["home_general"]["has_qi"]
     assert data["conflicts"]["home"]["severe"]
-    assert data["generals"]["home_general"]["verdict"] == "出战必死"
+    assert data["generals"]["home_general"]["verdict"] == "宜出军/下营"
+    assert data["conflicts"]["home"]["death_risk"]
 
 
 def test_derived_explicit_xing_table_and_vassal_control():
     assert t7.general_conflict(3, 6, xing_pairs={(6, 3)})["severe"]
     assert t7.general_conflict(3, 6)["pending"]
-    assert t7.general_conflict(3, 6, 9)["events"] == [{"relation": "克", "target": "home_vassal"}]
+    assert t7.general_conflict(3, 6, 9)["events"] == [{"relation": "克", "target": "home_assistant"}]
 
 
 def test_derived_fire_stage_priority_cloud_and_tiger():
-    assert t7.cloud(4, 8)["home"]["verdict"] == "不可触犯"
-    assert t7.cloud(8, 4)["home"]["verdict"] == "强"
-    # 古法冠带/临官词义，直接给十六宫anchor核对气势解释。
-    assert t7._cloud_general("丑")["verdict"] == "善战/精锐"
-    assert t7._cloud_general("寅")["verdict"] == "善战/精锐"
+    旺 = t7.cloud(4, 8)["home"]
+    assert 旺["verdict"] == "主胜"
+    assert 旺["stage_advice"] == "不可触犯"
+    assert t7.cloud(8, 4)["home"]["verdict"] == "主胜"
+    from kintaiyi.taiyi_rules import dashen_qi_from_sector
+    assert dashen_qi_from_sector("丑")["stage"] == "冠带"
     assert t7.tiger(6)["dashen"]["stage"] == "胎"
-    assert t7.tiger(6)["verdict"] == "敌营不久破/可攻"
-    # 辰 anchor → 未：五态休而火阶段衰，须判破营。
-    assert t7.tiger("辰")["dashen"]["state"] == "休"
-    assert t7.tiger("辰")["verdict"] == "敌营不久破/可攻"
+    assert t7.tiger(6)["verdict"] == "可攻"
+    # 太乙2→酉死：猛虎层依死可攻；白龙仍以五态与阶段独立分析。
+    assert t7.tiger(2)["dashen"]["stage"] == "死"
+    assert t7.tiger(2)["verdict"] == "可攻"
+    leigong = t7.leigong(2, 6, 6, 6, 6)
+    dragon = t7.dragon(2, 6, 6, 6, 6)
+    assert leigong["generals"]["home_general"]["military_suitable"]
+    assert dragon["generals"]["home_general"]["state"] == "旺"
+    assert dragon["generals"]["home_general"]["military_suitable"]
 
 
 def test_derived_lion_ordinary_branch_remains_candidate():
@@ -90,3 +97,4 @@ def test_derived_lion_ordinary_branch_remains_candidate():
 
 def test_derived_missing_second_cloud_general_is_structured():
     assert t7.cloud(7)["missing"] == ["away_general"]
+

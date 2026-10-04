@@ -11,7 +11,7 @@ def test_builder_emits_complete_v2_root_and_required_children():
     assert data["schema_version"] == "2.0"
     assert set(data) == {
         "schema_version", "meta", "calendar", "board", "cycles",
-        "analysis", "modern", "source_variants", "compat",
+        "analysis", "modern", "source_variants", "derived", "pending", "compat",
     }
     assert set(data["board"]) >= {"taiyi", "eyes", "calculations", "generals", "doors"}
     assert set(data["cycles"]) >= {

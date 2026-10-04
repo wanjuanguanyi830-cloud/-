@@ -45,3 +45,6 @@ def test_compatibility_delegates_to_canonical():
     assert config._calc_jianbei(11)["length"]["length"] == "长"
     assert config.junshi_zhanlue(17)["數有所主"]["主"]["rule_id"] == "D8-08"
     assert config.returnarmy(9)["status"] == "not_computable"
+    assert config._GENERAL_WX["home_general"] == "金"
+    assert config._GENERAL_WX["home_assistant"] == "水"
+

@@ -5,5 +5,6 @@
   {"id":"EX-T7-04","source_example":true,"derived_case":false,"source":"用户确认的古例，原典页码待补","method":"tiger","args":[3],"expected":{"position":"巽","state":"相","verdict":"不可攻"},"source_text":"庚午下营，太乙三艮"},
   {"id":"EX-T7-05","source_example":true,"derived_case":false,"source":"用户确认的古例，原典页码待补","method":"leigong","kwargs":{"taiyi":6,"home_general":8,"away_general":9},"expected":{"position":"子","element":"水","home_state":"旺","away_state":"相"}},
   {"id":"EX-T7-06","source_example":true,"derived_case":false,"source":"用户确认的古例，原典页码待补","method":"dragon","kwargs":{"taiyi":9,"home_general":6,"away_general":3},"expected":{"position":"坤","element":"土","home_state":"相","away_state":"旺"}},
-  {"id":"EX-T7-07","source_example":true,"derived_case":false,"source":"用户确认的古例，原典页码待补","method":"returnarmy","kwargs":{"enemy_arrival_taiyi":2,"home_general":6,"away_general":9},"expected":{"position":"酉","element":"金","away_state":"死","enemy_verdict":"无伏、自破、可攻"},"derived_fields":["home_general=6为运行接口所需补充输入，非古例内容"]}
+  {"id":"EX-T7-07","source_example":true,"derived_case":false,"source":"用户确认的古例，原典页码待补","method":"returnarmy","kwargs":{"enemy_arrival_taiyi":2,"home_general":6,"away_general":9},"expected":{"position":"酉","element":"金","away_state":"死","enemy_verdict":"无伏兵、自破、可攻"},"derived_fields":["home_general=6为运行接口所需补充输入，非古例内容"]}
 ]
+

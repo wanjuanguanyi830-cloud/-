@@ -14,22 +14,12 @@ from __future__ import annotations
 
 from typing import Any
 
-from .taiyi_rules import PALACE_WX, integer
+from .taiyi_rules import NINE_PALACE_TRIGRAM, PALACE_WX, integer
 
 GAME_THEORY_FEATURE_VERSION = "taiyi-game-theory-c9-v1"
 
-# 本项目太乙九宫，不是洛书 1坎2坤3震4巽6乾7兑8艮9离。
-TAIYI_PALACE_TRIGRAM = {
-    1: "乾",
-    2: "离",
-    3: "艮",
-    4: "震",
-    5: "中",
-    6: "兑",
-    7: "坤",
-    8: "坎",
-    9: "巽",
-}
+# C9读共享太乙九宫映射，不自行维护另一份卦名表。
+TAIYI_PALACE_TRIGRAM = NINE_PALACE_TRIGRAM
 
 _QI_SCORE = {"旺": 2.0, "相": 1.0, "休": 0.0, "囚": -1.0, "死": -2.0}
 
@@ -106,7 +96,7 @@ def _project_t7_04(result: dict[str, Any], out: dict[str, Any]) -> None:
     if not out["computable"]:
         return
     verdict = result.get("verdict")
-    if verdict == "敌营不久破/可攻":
+    if verdict in ("可攻", "敌营不久破/可攻"):
         out["signal"] = "attack_window_open"
         out["score"] = 1.0
         out["strategy_adjustments"] = {"attack_enemy": 1.0}
@@ -114,7 +104,7 @@ def _project_t7_04(result: dict[str, Any], out: dict[str, Any]) -> None:
         out["signal"] = "attack_window_closed"
         out["score"] = -1.0
         out["strategy_adjustments"] = {"attack_enemy": -1.0}
-    elif verdict == "无明确断语":
+    elif verdict in ("原典未明言", "无明确断语"):
         out["signal"] = "indeterminate"
         out["score"] = 0.0
     else:
@@ -129,8 +119,10 @@ def _project_t7_05(result: dict[str, Any], out: dict[str, Any]) -> None:
     if not isinstance(generals, dict):
         out["signal"] = "unknown"
         return
-    home = [_qi_state_score((generals.get(k) or {}).get("state")) for k in ("home_general", "home_vassal")]
-    away = [_qi_state_score((generals.get(k) or {}).get("state")) for k in ("away_general", "away_vassal")]
+    home = [_qi_state_score((generals.get(k) or {}).get("state"))
+            for k in ("home_general", "home_assistant", "home_vassal")]
+    away = [_qi_state_score((generals.get(k) or {}).get("state"))
+            for k in ("away_general", "away_assistant", "away_vassal")]
     home = [x for x in home if x is not None]
     away = [x for x in away if x is not None]
     if not home or not away:
@@ -176,7 +168,7 @@ def _project_t7_07(result: dict[str, Any], out: dict[str, Any]) -> None:
     if not out["computable"]:
         return
     enemy_verdict = result.get("enemy_verdict")
-    if enemy_verdict == "无伏、自破、可攻":
+    if enemy_verdict in ("无伏兵、自破、可攻", "无伏、自破、可攻"):
         out["signal"] = "ambush_risk_low"
         out["score"] = 1.0
         out["strategy_adjustments"] = {"advance": 1.0}
@@ -188,7 +180,7 @@ def _project_t7_07(result: dict[str, Any], out: dict[str, Any]) -> None:
         out["signal"] = "unknown"
         out["notes"].append("T7-07缺明确 enemy_verdict，不从 aliases/notes 猜测。")
 
-    if result.get("home_verdict") == "宜自设伏":
+    if result.get("home_verdict") in ("本军宜伏", "宜自设伏"):
         out["strategy_adjustments"]["own_ambush"] = 1.0
 
 
@@ -203,7 +195,8 @@ _PROJECTORS = {
 }
 
 
-def project_seven_method_for_game_theory(method_result: dict[str, Any]) -> dict[str, Any]:
+def project_seven_method_for_game_theory(method_result: dict[str, Any],
+                                         perspective: str = "home") -> dict[str, Any]:
     """把一个结构化七术结果投影为现代博弈特征。
 
     只读明确字段；任何额外 prose、notes、aliases 中出现的“吉/利/成/正”
@@ -211,8 +204,11 @@ def project_seven_method_for_game_theory(method_result: dict[str, Any]) -> dict[
     """
     if not isinstance(method_result, dict):
         raise TypeError("method_result须为dict")
+    if perspective not in ("home", "away"):
+        raise ValueError("perspective须为home或away")
     rule_id = method_result.get("rule_id")
     out = _base_projection(rule_id, method_result)
+    out["perspective"] = perspective
     projector = _PROJECTORS.get(rule_id)
     if projector is None:
         out["computable"] = False
@@ -220,13 +216,21 @@ def project_seven_method_for_game_theory(method_result: dict[str, Any]) -> dict[
         out["notes"].append("仅支持T7-01..07结构化结果。")
         return out
     projector(method_result, out)
+    if perspective == "away":
+        if isinstance(out["score"], (int, float)) and not isinstance(out["score"], bool):
+            out["score"] = -out["score"]
+        out["strategy_adjustments"] = {
+            key: -value if isinstance(value, (int, float)) and not isinstance(value, bool) else value
+            for key, value in out["strategy_adjustments"].items()
+        }
+        out["notes"].append("数值特征按客方视角取反；signal仍描述原七术字段表达的事件。")
     return out
 
 
-def project_seven_methods_for_game_theory(methods: Any) -> dict[str, Any]:
+def project_seven_methods_for_game_theory(methods: Any, perspective: str = "home") -> dict[str, Any]:
     """批量投影七术；接受 dict.values 或 iterable。"""
     values = methods.values() if isinstance(methods, dict) else methods
-    projected = [project_seven_method_for_game_theory(item) for item in values]
+    projected = [project_seven_method_for_game_theory(item, perspective=perspective) for item in values]
     return {
         "canonical": GAME_THEORY_FEATURE_VERSION,
         "derived_modern_feature": True,
@@ -254,14 +258,16 @@ def taiyi_palace_feature(palace: int) -> dict[str, Any]:
 
 
 def build_game_theory_feature_bundle(*, seven_methods: Any = (), taiyi_palace: int | None = None,
-                                     military: dict[str, Any] | None = None) -> dict[str, Any]:
+                                     military: dict[str, Any] | None = None,
+                                     perspective: str = "home") -> dict[str, Any]:
     """组合现代博弈输入特征；不反写古法结果，不在此求 Nash。"""
-    seven = project_seven_methods_for_game_theory(seven_methods)
+    seven = project_seven_methods_for_game_theory(seven_methods, perspective=perspective)
     return {
         "canonical": GAME_THEORY_FEATURE_VERSION,
         "derived_modern_feature": True,
         "source_of_truth": "structured_taiyi_results",
         "seven_methods": seven,
+        "perspective": perspective,
         "taiyi_palace": taiyi_palace_feature(taiyi_palace) if taiyi_palace is not None else None,
         "military": military,
         "cross_system_palace_mapping": False,
