@@ -106,6 +106,29 @@ def test_c51_dark_cloud_and_five_color_cloud_are_form_evidence():
     assert five["form_effects"] == ["国代绵远寿昌", "子孙兴旺"]
 
 
+def test_c51_dark_cloud_can_be_observed_without_single_color():
+    data = coronation_cloud_omens(
+        day_ganzhi="甲子",
+        cloud_form="阴云",
+    )
+    assert data["cloud"]["provided"] is False
+    assert data["relation_checked"] is False
+    assert data["relation_status"] == "not_computable_without_single_color"
+    assert data["relations"] == []
+    assert data["form_effects"] == ["位祚不久"]
+
+
+def test_c51_five_color_cloud_can_be_observed_without_single_color():
+    data = coronation_cloud_omens(
+        day_ganzhi="甲子",
+        cloud_form="五色彩云",
+    )
+    assert data["cloud"]["provided"] is False
+    assert data["relation_checked"] is False
+    assert data["relations"] == []
+    assert data["form_effects"] == ["国代绵远寿昌", "子孙兴旺"]
+
+
 def test_c51_cloud_numbers_keep_sheng_cheng_pair_unselected():
     data = coronation_cloud_omens(
         day_ganzhi="甲子",
@@ -156,6 +179,11 @@ def test_c51_legacy_reference_is_not_equivalent():
     assert any("日支" in item for item in LEGACY_REFERENCE_AUDIT["issues"])
     assert any("己列为4" in item for item in LEGACY_REFERENCE_AUDIT["issues"])
     assert any("if/elif" in item for item in LEGACY_REFERENCE_AUDIT["issues"])
+
+
+def test_c51_requires_at_least_one_cloud_observation():
+    with pytest.raises(ValueError, match="至少一种"):
+        coronation_cloud_omens(day_ganzhi="甲子")
 
 
 def test_c51_rejects_invalid_cloud_form_color_or_ganzhi():
