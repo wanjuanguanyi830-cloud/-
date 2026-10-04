@@ -127,7 +127,7 @@ def adapt_j4m_to_c8(*, source_profile,
         "policy": [
             "J4M-01/02 只作为 C8-L2 上游事实。",
             "J4M-04 作为显式 overlay，不替换 C8-L3。",
-            "J4M-03 不进入 adapter，因日计纳音公式仍 partial。",
+            "J4M-03 不进入 adapter；其 canonical 已独立完成，但 C8 当前没有对应的独立关法 layer，禁止硬塞进现有胜负链。",
             "未显式调用本 adapter 时，C8 volume5_strict 行为完全不变。",
         ],
     }
