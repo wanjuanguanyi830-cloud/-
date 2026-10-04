@@ -78,14 +78,16 @@ def test_zitingjing_is_primary_for_nine_star_and_change_rules():
         assert "参校来源" in item["notes"]
 
 
-def test_zitingjing_is_primary_for_three_banners_and_nine_palace_nobles():
+def test_three_banners_and_nine_palace_nobles_keep_unverified_ziting_attribution_separate():
     for key in ("三旗行宮", "九宮貴神"):
         item = catalog_unported_field(key)
-        assert item["layer"] == "canonical"
-        assert item["source_scope"] == "zitingjing_primary_tongzong_volume10_collation"
+        assert item["layer"] == "source_variant"
+        assert item["source_scope"] == "zitingjing_project_attribution_unverified_vs_tongzong_volume10_direct"
         assert item["priority"] == "P1"
-        assert "主要参考《太乙紫庭经》" in item["notes"]
-        assert "参校来源" in item["notes"]
+        assert item["migrate_whole"] is False
+        assert item["action"] == "verify_primary_attribution_then_select_profile"
+        assert "未见同名题目" in item["notes"]
+        assert "不得把两项标成紫庭canonical" in item["notes"]
 
 
 def test_volume3_10_cross_volume_fields_are_source_variants():
