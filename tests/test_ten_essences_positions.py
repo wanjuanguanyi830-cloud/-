@@ -155,9 +155,10 @@ def test_c53_catalog_tracks_own_runtimes_and_delegates_other_layers():
     assert data["delegated_position_runtimes"] == {
         "天皇": "C55-TIANHUANG",
         "帝符": "C55-DIFU",
+        "天时": "C56-TIANSHI",
     }
     assert data["number_runtime"] == "C54-TAIYI-NUMBER"
-    assert data["pending"] == ["天时"]
+    assert data["pending"] == []
     assert data["cloud_omen_runtime"] is False
     assert data["pan_contract_extended"] is False
 
