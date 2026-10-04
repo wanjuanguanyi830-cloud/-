@@ -91,7 +91,8 @@ def test_c52_traditional_aliases_normalize_without_source_loss(source, canonical
     assert canonical_ten_essence_name(source) == canonical
     record = ten_essence_record(source)
     assert record["name"] == canonical
-    assert record["runtime_formula_ready"] is False
+    expected_ready = canonical in {"飞鸟", "五风"}
+    assert record["runtime_formula_ready"] is expected_ready
 
 
 def test_c52_old_flybird_cycle_conflicts_with_direct_small_cycle():
@@ -152,15 +153,24 @@ def test_c52_does_not_extend_pan_contract_or_cycles_root():
     assert "ten_essences" not in SOURCE_VARIANT_KEYS
 
 
-def test_c52_registry_is_metadata_only():
+def test_c52_registry_tracks_partial_c53_runtime_without_becoming_formula_layer():
     data = ten_essences_registry()
     assert data["rule_id"] == "C52-TEN-ESSENCES-REGISTRY"
     assert data["position_runtime_ready"] is False
+    assert data["all_position_runtime_ready"] is False
+    assert data["implemented_position_runtimes"] == ["飞鸟", "五风"]
+    assert set(data["pending_position_runtimes"]) == {
+        "天皇", "帝符", "天时", "太尊", "五行", "八风", "三风"
+    }
     assert data["cloud_runtime_ready"] is False
     assert data["target_policy"]["legacy_top_level_promoted"] is False
+
+    status = {row["name"]: row["formula_status"] for row in data["essences"]}
+    assert status["飞鸟"] == "implemented_c53"
+    assert status["五风"] == "implemented_c53"
     assert all(
-        row["formula_status"] == "pending_source_formula_audit"
-        for row in data["essences"]
+        status[name] == "pending_source_formula_audit"
+        for name in ("天皇", "帝符", "天时", "太尊", "五行", "八风", "三风", "太乙数")
     )
 
 
@@ -210,7 +220,7 @@ def test_c52_focus_formula_skeletons_lock_direct_source_boundaries():
     assert five["route"]["jingyou_sequence"] == [1, 3, 5, 7, 9, 2, 4, 6, 8]
     assert five["route"]["jinjing_volume7_sequence"] == [1, 3, 5, 7, 9, 2, 4, 6, 8]
     assert five["route"]["wujing_zongyao_variant_sequence"] == [1, 3, 5, 9, 7, 2, 4, 6, 8]
-    assert five["route"]["status"] == "primary_direct_collated_with_preserved_variant"
+    assert five["route"]["status"] == "implemented_c53_profile_selection"
     assert five["route"]["canonical_route_for_tongzong_profile"] == [
         1, 3, 5, 7, 9, 2, 4, 6, 8
     ]
@@ -223,20 +233,21 @@ def test_c52_focus_formula_skeletons_lock_direct_source_boundaries():
     assert "不得自行补第九项" in three["route"]["note"]
 
 
-def test_c52_formula_skeleton_never_promotes_runtime_readiness():
+def test_c52_formula_skeleton_promotes_only_c53_implemented_positions():
     data = ten_essences_registry()
     assert data["position_runtime_ready"] is False
+    assert data["all_position_runtime_ready"] is False
+
     for name, skeleton in data["focus_formula_skeletons"].items():
-        assert skeleton["runtime_formula_ready"] is False, name
+        assert skeleton["runtime_formula_ready"] is (name in {"飞鸟", "五风"}), name
 
     five = ten_essence_record("五風")
-    assert five["formula_skeleton"]["route"]["status"] == (
-        "primary_direct_collated_with_preserved_variant"
-    )
+    assert five["formula_skeleton"]["route"]["status"] == "implemented_c53_profile_selection"
     assert five["formula_skeleton"]["route"]["canonical_route_for_tongzong_profile"] == [
         1, 3, 5, 7, 9, 2, 4, 6, 8
     ]
-    assert five["runtime_formula_ready"] is False
+    assert five["runtime_formula_ready"] is True
+    assert five["formula_skeleton"]["runtime_rule_id"] == "C53-FIVEWIND"
 
 
 def test_c52_ten_essence_flying_bird_is_not_j4m_external_observation():
@@ -258,5 +269,6 @@ def test_c52_fivewind_preserves_collation_variant_without_overriding_primary():
     assert five["route"]["tongzong_sequence"][3:5] == [7, 9]
     assert five["route"]["wujing_zongyao_variant_sequence"][3:5] == [9, 7]
     assert five["route"]["wujing_zongyao_parallel_sequence"][3:5] == [7, 9]
-    assert five["runtime_formula_ready"] is False
-    assert "C53" in five["runtime_blocker"]
+    assert five["runtime_formula_ready"] is True
+    assert five["runtime_rule_id"] == "C53-FIVEWIND"
+    assert five["runtime_profile"] == "tongzong_primary_taibai_collation"
