@@ -9,6 +9,8 @@ from __future__ import annotations
 import copy
 from typing import Any
 
+from .military_rule_units import payload_key_to_rule_id
+
 MILITARY_DERIVED_VERSION = "taiyi-c21-military-derived-v1"
 
 VOLUME15_PROFILE = "tongzong_volume15_military_application"
@@ -99,6 +101,10 @@ def build_volume15_military_profile(
         "cross_c8_merge": False,
         "cross_j4m_merge": False,
         "expected_topics": list(VOLUME15_TOPICS),
+        "rule_units": {
+            key: payload_key_to_rule_id()[key]
+            for key in VOLUME15_TOPICS
+        },
         "payload": data,
         "unknown_topics": unknown,
         "complete": bool(data) and not unknown and set(data) == set(VOLUME15_TOPICS),
@@ -125,6 +131,10 @@ def build_volume17_military_profile(
         "cross_c8_merge": False,
         "cross_j4m_merge": False,
         "expected_topics": list(VOLUME17_TOPICS),
+        "rule_units": {
+            key: payload_key_to_rule_id()[key]
+            for key in VOLUME17_TOPICS
+        },
         "payload": data,
         "unknown_topics": unknown,
         "complete": bool(data) and not unknown and set(data) == set(VOLUME17_TOPICS),
