@@ -6,16 +6,34 @@
   "epoch": "五福规则累计年序 N；具体历元锚点尚未在本记录绑定",
   "coordinate_space": "nine_palace",
   "order": [
-    {"nine_palace": 1, "name": "乾"},
-    {"nine_palace": 3, "name": "艮"},
-    {"nine_palace": 9, "name": "巽"},
-    {"nine_palace": 7, "name": "坤"},
-    {"nine_palace": 5, "name": "中"}
+    {
+      "nine_palace": 1,
+      "name": "乾"
+    },
+    {
+      "nine_palace": 3,
+      "name": "艮"
+    },
+    {
+      "nine_palace": 9,
+      "name": "巽"
+    },
+    {
+      "nine_palace": 7,
+      "name": "坤"
+    },
+    {
+      "nine_palace": 5,
+      "name": "中"
+    }
   ],
   "years_per_position": 45,
   "cycle_years": 225,
   "formula": "step = floor((N-1)/45) mod 5; palace = order[step].nine_palace",
-  "source_basis": ["SRC-TY-BASE-MOTION-2026-10-04"],
+  "source_basis": [
+    "SRC-TY-BASE-MOTION-2026-10-04",
+    "SRC-PRIOR-CHAT-FD506FC7"
+  ],
   "variants": [
     {
       "claim": "其他资料如见不同顺序",
@@ -24,5 +42,14 @@
       "note": "本轮已确认顺序作为 canonical；未在本次合并中推定或补造其他版本的具体顺序。"
     }
   ],
-  "status": "canonical"
+  "status": "canonical",
+  "adoption_reason": "《金镜》宫名次序与开元十二年积13331年校验：模225余56，艮宫第11年。",
+  "source_examples": [
+    {
+      "accumulated_year": 13331,
+      "remainder225": 56,
+      "nine_palace": 3,
+      "year_in_position": 11
+    }
+  ]
 }

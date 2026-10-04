@@ -11,8 +11,16 @@
   "years_per_position": null,
   "cycle_years": null,
   "formula": null,
-  "source_basis": ["SRC-TY-BASE-MOTION-2026-10-04"],
+  "source_basis": [
+    "SRC-TY-BASE-MOTION-2026-10-04"
+  ],
   "variants": [],
-  "status": "candidate",
-  "scope_note": "仅记录已确认的24年一卦、4年一爻；卦序、起卦历元及与小游太乙宫位算法的关系尚未确定。本条不得与 rules/xiaoyou/xiaoyou.json 合并计算。"
+  "status": "canonical",
+  "scope_note": "正式采用已确认的24年一卦、4年一爻；本条采用范围限于时间分段与独立建模。卦序、起卦历元及完整公式未给定，保持空值，另行补录。",
+  "adoption_scope": [
+    "24年一卦",
+    "4年一爻",
+    "独立于小游太乙九宫运行"
+  ],
+  "definition_completeness": "partial"
 }

@@ -3,7 +3,20 @@
   "rule_set_id": "taiyi-three-bases",
   "coordinate_space": "earthly_branch",
   "direction": "forward",
-  "order": ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"],
+  "order": [
+    "子",
+    "丑",
+    "寅",
+    "卯",
+    "辰",
+    "巳",
+    "午",
+    "未",
+    "申",
+    "酉",
+    "戌",
+    "亥"
+  ],
   "system_horizon_years": 360,
   "rules": [
     {
@@ -13,11 +26,28 @@
       "system": "三基",
       "epoch": "该规则累计年序 N；起点为午，具体纪元锚点依所采用明代本的历元定义绑定",
       "start_position": "午",
-      "order": ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"],
+      "order": [
+        "子",
+        "丑",
+        "寅",
+        "卯",
+        "辰",
+        "巳",
+        "午",
+        "未",
+        "申",
+        "酉",
+        "戌",
+        "亥"
+      ],
       "years_per_position": 30,
       "cycle_years": 360,
       "formula": "step = floor((N-1)/30); branch = order[(index(午)+step) mod 12]",
-      "source_basis": ["SRC-TY-BASE-MOTION-2026-10-04", "SRC-KINTAIYI-REFERENCE-11F78555"],
+      "source_basis": [
+        "SRC-TY-BASE-MOTION-2026-10-04",
+        "SRC-KINTAIYI-REFERENCE-11F78555",
+        "SRC-PRIOR-CHAT-FD506FC7"
+      ],
       "variants": [
         {
           "claim": "四库本作君基起戌",
@@ -35,11 +65,28 @@
       "system": "三基",
       "epoch": "该规则累计年序 N；起点为午，具体纪元锚点依所采用明代本的历元定义绑定",
       "start_position": "午",
-      "order": ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"],
+      "order": [
+        "子",
+        "丑",
+        "寅",
+        "卯",
+        "辰",
+        "巳",
+        "午",
+        "未",
+        "申",
+        "酉",
+        "戌",
+        "亥"
+      ],
       "years_per_position": 3,
       "cycle_years": 36,
       "formula": "step = floor((N-1)/3); branch = order[(index(午)+step) mod 12]",
-      "source_basis": ["SRC-TY-BASE-MOTION-2026-10-04", "SRC-KINTAIYI-REFERENCE-11F78555"],
+      "source_basis": [
+        "SRC-TY-BASE-MOTION-2026-10-04",
+        "SRC-KINTAIYI-REFERENCE-11F78555",
+        "SRC-PRIOR-CHAT-FD506FC7"
+      ],
       "variants": [
         {
           "claim": "四库本作臣基起戌",
@@ -63,11 +110,28 @@
       "system": "三基",
       "epoch": "该规则累计年序 N；起点为戌，具体纪元锚点依所采用明代本的历元定义绑定",
       "start_position": "戌",
-      "order": ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"],
+      "order": [
+        "子",
+        "丑",
+        "寅",
+        "卯",
+        "辰",
+        "巳",
+        "午",
+        "未",
+        "申",
+        "酉",
+        "戌",
+        "亥"
+      ],
       "years_per_position": 1,
       "cycle_years": 12,
       "formula": "step = floor((N-1)/1); branch = order[(index(戌)+step) mod 12]",
-      "source_basis": ["SRC-TY-BASE-MOTION-2026-10-04", "SRC-KINTAIYI-REFERENCE-11F78555"],
+      "source_basis": [
+        "SRC-TY-BASE-MOTION-2026-10-04",
+        "SRC-KINTAIYI-REFERENCE-11F78555",
+        "SRC-PRIOR-CHAT-FD506FC7"
+      ],
       "variants": [
         {
           "claim": "四库本作民基起戌",
@@ -79,5 +143,6 @@
       "status": "canonical"
     }
   ],
-  "collation_note": "主规则采用明代本整理：君基、臣基起午，民基起戌。四库本‘君基、臣基、民基皆起戌’保留为异文，其中君基、臣基起戌不采用。"
+  "collation_note": "主规则采用明代本整理：君基、臣基起午，民基起戌。四库本‘君基、臣基、民基皆起戌’保留为异文，其中君基、臣基起戌不采用。",
+  "adoption_reason": "原聊天据《太乙秘书》《太乙淘金歌》支持君臣起午、民基起戌；《太乙秘书》以南面而治解释君基午起。明代《三才世纬》明确记加邦盈差二百五十及命起午邦。"
 }

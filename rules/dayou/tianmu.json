@@ -3,41 +3,143 @@
   "canonical_name": "大游天目",
   "category": "天目运行",
   "system": "大游太乙",
-  "epoch": "起点为天道；具体年序与历元换算待校勘",
+  "epoch": "同大游上元体系：甲寅；N为该体系专用一基积算数",
   "coordinate_space": "sixteen_spirit_path_with_nine_palace_mapping",
-  "start": {"branch": "未", "spirit": "天道", "nine_palace": 7},
+  "start": {
+    "branch": "未",
+    "spirit": "天道",
+    "nine_palace": 7
+  },
   "direction": "forward",
   "order": [
-    {"step": 1, "branch": "未", "spirit": "天道", "nine_palace": 7},
-    {"step": 2, "branch": "坤", "spirit": "大武", "nine_palace": 7},
-    {"step": 3, "branch": "坤", "spirit": "大武", "nine_palace": 7},
-    {"step": 4, "branch": "申", "spirit": "武德", "nine_palace": 6},
-    {"step": 5, "branch": "酉", "spirit": "太簇", "nine_palace": 6},
-    {"step": 6, "branch": "戌", "spirit": "阴主", "nine_palace": 1},
-    {"step": 7, "branch": "乾", "spirit": "阴德", "nine_palace": 1},
-    {"step": 8, "branch": "乾", "spirit": "阴德", "nine_palace": 1},
-    {"step": 9, "branch": "亥", "spirit": "大义", "nine_palace": 8},
-    {"step": 10, "branch": "子", "spirit": "地主", "nine_palace": 8},
-    {"step": 11, "branch": "丑", "spirit": "阳德", "nine_palace": 3},
-    {"step": 12, "branch": "艮", "spirit": "和德", "nine_palace": 3},
-    {"step": 13, "branch": "寅", "spirit": "吕申", "nine_palace": 4},
-    {"step": 14, "branch": "卯", "spirit": "高丛", "nine_palace": 4},
-    {"step": 15, "branch": "辰", "spirit": "太阳", "nine_palace": 9},
-    {"step": 16, "branch": "巽", "spirit": "大炅", "nine_palace": 9},
-    {"step": 17, "branch": "巳", "spirit": "大神", "nine_palace": 2},
-    {"step": 18, "branch": "午", "spirit": "大威", "nine_palace": 2}
+    {
+      "step": 1,
+      "branch": "未",
+      "spirit": "天道",
+      "nine_palace": 7
+    },
+    {
+      "step": 2,
+      "branch": "坤",
+      "spirit": "大武",
+      "nine_palace": 7
+    },
+    {
+      "step": 3,
+      "branch": "坤",
+      "spirit": "大武",
+      "nine_palace": 7
+    },
+    {
+      "step": 4,
+      "branch": "申",
+      "spirit": "武德",
+      "nine_palace": 6
+    },
+    {
+      "step": 5,
+      "branch": "酉",
+      "spirit": "太簇",
+      "nine_palace": 6
+    },
+    {
+      "step": 6,
+      "branch": "戌",
+      "spirit": "阴主",
+      "nine_palace": 1
+    },
+    {
+      "step": 7,
+      "branch": "乾",
+      "spirit": "阴德",
+      "nine_palace": 1
+    },
+    {
+      "step": 8,
+      "branch": "乾",
+      "spirit": "阴德",
+      "nine_palace": 1
+    },
+    {
+      "step": 9,
+      "branch": "亥",
+      "spirit": "大义",
+      "nine_palace": 8
+    },
+    {
+      "step": 10,
+      "branch": "子",
+      "spirit": "地主",
+      "nine_palace": 8
+    },
+    {
+      "step": 11,
+      "branch": "丑",
+      "spirit": "阳德",
+      "nine_palace": 3
+    },
+    {
+      "step": 12,
+      "branch": "艮",
+      "spirit": "和德",
+      "nine_palace": 3
+    },
+    {
+      "step": 13,
+      "branch": "寅",
+      "spirit": "吕申",
+      "nine_palace": 4
+    },
+    {
+      "step": 14,
+      "branch": "卯",
+      "spirit": "高丛",
+      "nine_palace": 4
+    },
+    {
+      "step": 15,
+      "branch": "辰",
+      "spirit": "太阳",
+      "nine_palace": 9
+    },
+    {
+      "step": 16,
+      "branch": "巽",
+      "spirit": "大炅",
+      "nine_palace": 9
+    },
+    {
+      "step": 17,
+      "branch": "巳",
+      "spirit": "大神",
+      "nine_palace": 2
+    },
+    {
+      "step": 18,
+      "branch": "午",
+      "spirit": "大威",
+      "nine_palace": 2
+    }
   ],
   "years_per_position": null,
   "cycle_years": null,
-  "current_path_summary": {"金镜推法总数": 72, "整理路径步数": 18, "status": "candidate"},
-  "formula": "按当前整理记录保存18步路径；72→18的计步／周期换算及单步时间值待校勘",
-  "source_basis": ["SRC-TY-BASE-MOTION-2026-10-04", "SRC-KINTAIYI-REFERENCE-11F78555"],
+  "current_path_summary": {
+    "金镜推法总数": 72,
+    "整理路径步数": 18,
+    "status": "canonical"
+  },
+  "formula": "r72 = N % 72 or 72; S = r72 % 18 or 18; path_position = order[S-1]",
+  "source_basis": [
+    "SRC-TY-BASE-MOTION-2026-10-04",
+    "SRC-KINTAIYI-REFERENCE-11F78555",
+    "SRC-PRIOR-CHAT-FD506FC7"
+  ],
   "variants": [
     {
       "claim": "参数表出现216；金镜实际推法整理为72→18",
       "status": "variant",
       "adopted": false,
-      "note": "保留为内部异文／待校勘项。现阶段将18步路径登记为候选整理，不裁定216与72的最终关系。"
+      "note": "216作为独立内部异文／待校勘项保留；正式采用已确认的18步路径与72→18推法摘要。216与72的关系不改变已确认路径的采用状态。"
     },
     {
       "claim": "旧参考实现 bigyo_tianmu() 中的 %180 / +214 逻辑",
@@ -46,5 +148,20 @@
       "note": "只记录为历史参考实现，不作为正式算法。具体参考代码位置见来源记录。"
     }
   ],
-  "status": "candidate"
+  "status": "canonical",
+  "adoption_scope": [
+    "起未·天道",
+    "顺行十六神",
+    "大武、阴德各重留一算",
+    "18步路径",
+    "当前采用推法摘要72→18"
+  ],
+  "unresolved_fields": [
+    "参数表216与正文72元法之间的版本／参数关系",
+    "原典版本、卷页定位与公历年份到专用积算数的完整换算"
+  ],
+  "yuan_fa": 72,
+  "path_cycle_steps": 18,
+  "input_count_system": "大游天目专用积算数；不得直接混用其他系统的accnum",
+  "adoption_reason": "原聊天明确据《太乙金镜式经》实际推法‘以七十二去之，再以十八去之’，起天道顺行十六神，大武与阴德各重留一算。"
 }

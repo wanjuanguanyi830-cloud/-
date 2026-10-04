@@ -5,7 +5,16 @@
   "system": "大游",
   "epoch": "上元甲寅；N为自本规则历元起的一基累计年序",
   "coordinate_space": "nine_palace",
-  "order": [7, 8, 9, 1, 2, 3, 4, 6],
+  "order": [
+    7,
+    8,
+    9,
+    1,
+    2,
+    3,
+    4,
+    6
+  ],
   "excluded_nine_palace": 5,
   "direction": "forward",
   "years_per_position": 36,
@@ -14,7 +23,11 @@
   "yuan_fa_years": 4320,
   "ji_fa_years": 720,
   "formula": "step = ((N-1)//36) % 8; nine_palace = order[step]",
-  "source_basis": ["SRC-TY-BASE-MOTION-2026-10-04", "SRC-KINTAIYI-REFERENCE-11F78555"],
+  "source_basis": [
+    "SRC-TY-BASE-MOTION-2026-10-04",
+    "SRC-KINTAIYI-REFERENCE-11F78555",
+    "SRC-PRIOR-CHAT-FD506FC7"
+  ],
   "variants": [
     {
       "claim": "kentang2017/kintaiyi config.bigyo() 使用旧实现逻辑",
@@ -23,5 +36,15 @@
       "note": "只供追溯旧实现；本规则按显式上元、顺序和36年分段表达，不照搬该函数。"
     }
   ],
-  "status": "canonical"
+  "status": "canonical",
+  "adoption_reason": "《金镜》开元十二年积13331年校验：模4320余371，再模288余83，9宫第11年。",
+  "source_examples": [
+    {
+      "accumulated_year": 13331,
+      "remainder4320": 371,
+      "remainder288": 83,
+      "nine_palace": 9,
+      "year_in_position": 11
+    }
+  ]
 }

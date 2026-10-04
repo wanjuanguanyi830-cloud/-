@@ -46,6 +46,8 @@ class BaseMotionRuleTests(unittest.TestCase):
         self.assertEqual(palace_at(rule, 46), 3)
         self.assertEqual(palace_at(rule, 225), 5)
         self.assertEqual(palace_at(rule, 226), 1)
+        self.assertEqual(palace_at(rule, 13331), 3)
+        self.assertEqual((13331 - 1) % 45 + 1, 11)
 
     def test_dayou_36_and_288_year_boundaries(self):
         rule = load("rules/dayou/dayou.json")
@@ -54,6 +56,8 @@ class BaseMotionRuleTests(unittest.TestCase):
         self.assertEqual(palace_at(rule, 37), 8)
         self.assertEqual(palace_at(rule, 288), 6)
         self.assertEqual(palace_at(rule, 289), 7)
+        self.assertEqual(palace_at(rule, 13331), 9)
+        self.assertEqual((13331 - 1) % 36 + 1, 11)
         self.assertNotIn(5, rule["order"])
 
     def test_xiaoyou_3_24_and_240_year_boundaries(self):
@@ -69,6 +73,8 @@ class BaseMotionRuleTests(unittest.TestCase):
         orbit = load("rules/xiaoyou/orbit_into_gua.json")
         self.assertEqual((orbit["hexagram_years"], orbit["line_years"]), (24, 4))
         self.assertIsNone(orbit["order"])
+        self.assertEqual(orbit["status"], "canonical")
+        self.assertEqual(orbit["definition_completeness"], "partial")
 
     def test_four_taiyi_three_year_boundaries(self):
         rule_set = load("rules/base_motion/four_taiyi.json")
@@ -93,11 +99,20 @@ class BaseMotionRuleTests(unittest.TestCase):
     def test_dayou_tianmu_keeps_18_steps_and_open_216_variant(self):
         record = load("rules/dayou/tianmu.json")
         self.assertEqual(len(record["order"]), 18)
+        self.assertEqual(record["status"], "canonical")
+        self.assertIsNone(record["years_per_position"])
+        self.assertIsNone(record["cycle_years"])
         marker = lambda entry: (entry["branch"], entry["spirit"], entry["nine_palace"])
         self.assertEqual(marker(record["order"][1]), marker(record["order"][2]))
         self.assertEqual(marker(record["order"][6]), marker(record["order"][7]))
         self.assertEqual(record["current_path_summary"]["金镜推法总数"], 72)
         self.assertTrue(any("216" in item["claim"] for item in record["variants"]))
+        self.assertEqual(record["yuan_fa"], 72)
+        self.assertEqual(record["path_cycle_steps"], 18)
+        for n, expected in ((1, 1), (18, 18), (19, 1), (72, 18), (73, 1)):
+            r72 = n % record["yuan_fa"] or record["yuan_fa"]
+            step = r72 % record["path_cycle_steps"] or record["path_cycle_steps"]
+            self.assertEqual(record["order"][step - 1]["step"], expected)
 
 
 if __name__ == "__main__":
