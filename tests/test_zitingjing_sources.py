@@ -16,7 +16,7 @@ def test_full_primary_source_title_is_taiyi_zitingjing():
     assert PRIMARY_SOURCE_TITLE == "太乙紫庭经"
 
 
-def test_six_p1_rules_all_use_zitingjing_primary():
+def test_six_p1_rules_keep_project_primary_target_but_record_evidence_level():
     assert set(RULES) == {
         "taiyi_nine_stars",
         "wenchang_nine_stars",
@@ -27,6 +27,13 @@ def test_six_p1_rules_all_use_zitingjing_primary():
     }
     for meta in RULES.values():
         assert meta["primary_source"] == "zitingjing"
+
+    assert RULES["taiyi_nine_stars"]["primary_evidence_level"] == "direct_text_verified"
+    assert RULES["wenchang_changes"]["primary_evidence_level"] == "direct_text_verified"
+    assert RULES["shiji_changes"]["primary_evidence_level"] == "direct_text_verified"
+    assert RULES["wenchang_nine_stars"]["primary_evidence_level"] == "catalog_attested_text_pending"
+    assert RULES["three_banners"]["primary_evidence_level"] == "project_attribution_unverified"
+    assert RULES["nine_palace_nobles"]["primary_evidence_level"] == "project_attribution_unverified"
 
 
 def test_volume6_items_keep_tongzong_as_collation_only():
@@ -43,13 +50,16 @@ def test_volume6_items_keep_tongzong_as_collation_only():
         assert data["cross_source_merge"] is False
 
 
-def test_volume10_items_keep_tongzong_as_collation_only():
+def test_volume10_items_keep_tongzong_as_collation_only_and_primary_unverified():
     for key in ("three_banners", "nine_palace_nobles"):
         data = build_zitingjing_rule_sources(
             key,
             collation_results={"tongzong_volume10": {"legacy": "参校"}},
         )
         assert data["primary_ready"] is False
+        assert data["primary_result_allowed"] is False
+        assert data["primary_evidence_level"] == "project_attribution_unverified"
+        assert data["status"] == "primary_attribution_unverified"
         assert data["canonical_selected"] is None
         assert data["collation_sources"] == ["tongzong_volume10"]
 
@@ -146,24 +156,50 @@ def test_collation_only_does_not_clear_primary_replacement_gaps():
     assert report["ready_for_v2_core_consumption"] is False
 
 
-def test_zitingjing_primary_results_clear_replacement_gaps_while_collation_remains():
-    results = {}
-    for key, meta in RULES.items():
-        collation = meta["collation_sources"][0]
-        results[key] = {
-            "primary_result": {"source": "太乙紫庭经", "rule_key": key},
-            "collation_results": {collation: {"source": "统宗参校", "rule_key": key}},
-        }
+def test_only_direct_text_verified_items_can_clear_primary_replacement_gaps():
+    results = {
+        "taiyi_nine_stars": {
+            "primary_result": {"source": "太乙紫庭经", "rule_key": "taiyi_nine_stars"},
+            "collation_results": {"tongzong_volume6": {"source": "统宗参校"}},
+        },
+        "wenchang_changes": {
+            "primary_result": {"source": "太乙紫庭经", "rule_key": "wenchang_changes"},
+            "collation_results": {"tongzong_volume6": {"source": "统宗参校"}},
+        },
+        "shiji_changes": {
+            "primary_result": {"source": "太乙紫庭经", "rule_key": "shiji_changes"},
+            "collation_results": {"tongzong_volume6": {"source": "统宗参校"}},
+        },
+        "wenchang_nine_stars": {
+            "collation_results": {"tongzong_volume6": {"source": "统宗参校"}},
+        },
+        "three_banners": {
+            "collation_results": {"tongzong_volume10": {"source": "统宗参校"}},
+        },
+        "nine_palace_nobles": {
+            "collation_results": {"tongzong_volume10": {"source": "统宗参校"}},
+        },
+    }
 
     variants = build_zitingjing_source_variants(results=results)
     snapshot = attach_v2_to_snapshot(_legacy_snapshot(), source_variants=variants)
     report = audit_legacy_snapshot(snapshot)
 
-    assert report["replacement_gaps"] == []
-    assert report["ready_for_v2_core_consumption"] is True
-    assert report["quarantined_key_count"] == 6
-    assert variants["zitingjing"]["rules"]["taiyi_nine_stars"]["collation_results"]
+    assert report["replacement_gaps"] == [
+        "source_variants.zitingjing.rules.wenchang_nine_stars.primary_result",
+        "source_variants.zitingjing.rules.three_banners.primary_result",
+        "source_variants.zitingjing.rules.nine_palace_nobles.primary_result",
+    ]
+    assert report["ready_for_v2_core_consumption"] is False
 
+
+def test_pending_or_unverified_ziting_items_reject_primary_result_injection():
+    for key in ("wenchang_nine_stars", "three_banners", "nine_palace_nobles"):
+        with pytest.raises(ValueError, match="不得注入primary_result"):
+            build_zitingjing_rule_sources(
+                key,
+                primary_result={"fake": True},
+            )
 
 def test_legacy_flat_values_are_not_auto_promoted_into_primary_source():
     snapshot = attach_v2_to_snapshot(_legacy_snapshot())
