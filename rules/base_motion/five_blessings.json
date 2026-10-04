@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "canonical_name": "五福太乙",
+  "category": "太乙运行",
+  "system": "五福",
+  "epoch": "五福规则累计年序 N；具体历元锚点尚未在本记录绑定",
+  "coordinate_space": "nine_palace",
+  "order": [
+    {"nine_palace": 1, "name": "乾"},
+    {"nine_palace": 3, "name": "艮"},
+    {"nine_palace": 9, "name": "巽"},
+    {"nine_palace": 7, "name": "坤"},
+    {"nine_palace": 5, "name": "中"}
+  ],
+  "years_per_position": 45,
+  "cycle_years": 225,
+  "formula": "step = floor((N-1)/45) mod 5; palace = order[step].nine_palace",
+  "source_basis": ["SRC-TY-BASE-MOTION-2026-10-04"],
+  "variants": [
+    {
+      "claim": "其他资料如见不同顺序",
+      "status": "variant",
+      "adopted": false,
+      "note": "本轮已确认顺序作为 canonical；未在本次合并中推定或补造其他版本的具体顺序。"
+    }
+  ],
+  "status": "canonical"
+}

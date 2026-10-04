@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "canonical_name": "小游太乙",
+  "category": "太乙运行",
+  "system": "小游",
+  "epoch": "演纪上元甲子；N为自上元起的一基累计年序",
+  "coordinate_space": "nine_palace",
+  "order": [1, 2, 3, 4, 6, 7, 8, 9],
+  "excluded_nine_palace": 5,
+  "direction": "forward",
+  "years_per_position": 3,
+  "cycle_years": 24,
+  "great_cycle_years": 240,
+  "formula": "step = floor((N-1)/3) mod 8; nine_palace = order[step]",
+  "segments": [
+    {"years": [1, 3], "nine_palace": 1},
+    {"years": [4, 6], "nine_palace": 2},
+    {"years": [7, 9], "nine_palace": 3},
+    {"years": [10, 12], "nine_palace": 4},
+    {"years": [13, 15], "nine_palace": 6},
+    {"years": [16, 18], "nine_palace": 7},
+    {"years": [19, 21], "nine_palace": 8},
+    {"years": [22, 24], "nine_palace": 9}
+  ],
+  "source_basis": ["SRC-TY-BASE-MOTION-2026-10-04", "SRC-KINTAIYI-REFERENCE-11F78555"],
+  "variants": [
+    {
+      "claim": "kentang2017/kintaiyi config.smyo()",
+      "status": "deprecated_reference",
+      "adopted": false,
+      "note": "历史参考实现；不作为本库 canonical 规则。"
+    }
+  ],
+  "status": "canonical"
+}

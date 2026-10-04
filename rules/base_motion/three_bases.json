@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0.0",
+  "rule_set_id": "taiyi-three-bases",
+  "coordinate_space": "earthly_branch",
+  "direction": "forward",
+  "order": ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"],
+  "system_horizon_years": 360,
+  "rules": [
+    {
+      "id": "jun-ji",
+      "canonical_name": "君基太乙",
+      "category": "三基太乙",
+      "system": "三基",
+      "epoch": "该规则累计年序 N；起点为午，具体纪元锚点依所采用明代本的历元定义绑定",
+      "start_position": "午",
+      "order": ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"],
+      "years_per_position": 30,
+      "cycle_years": 360,
+      "formula": "step = floor((N-1)/30); branch = order[(index(午)+step) mod 12]",
+      "source_basis": ["SRC-TY-BASE-MOTION-2026-10-04", "SRC-KINTAIYI-REFERENCE-11F78555"],
+      "variants": [
+        {
+          "claim": "四库本作君基起戌",
+          "status": "variant",
+          "adopted": false,
+          "note": "本库校勘记录视为误文；主规则采用明代本整理的君基起午。底本卷页定位待补。"
+        }
+      ],
+      "status": "canonical"
+    },
+    {
+      "id": "chen-ji",
+      "canonical_name": "臣基太乙",
+      "category": "三基太乙",
+      "system": "三基",
+      "epoch": "该规则累计年序 N；起点为午，具体纪元锚点依所采用明代本的历元定义绑定",
+      "start_position": "午",
+      "order": ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"],
+      "years_per_position": 3,
+      "cycle_years": 36,
+      "formula": "step = floor((N-1)/3); branch = order[(index(午)+step) mod 12]",
+      "source_basis": ["SRC-TY-BASE-MOTION-2026-10-04", "SRC-KINTAIYI-REFERENCE-11F78555"],
+      "variants": [
+        {
+          "claim": "四库本作臣基起戌",
+          "status": "variant",
+          "adopted": false,
+          "note": "本库校勘记录视为误文；主规则采用明代本整理的臣基起午。底本卷页定位待补。"
+        },
+        {
+          "claim": "臣基36年一小周；置于三基总体系时与360年君基周并列说明",
+          "status": "canonical",
+          "adopted": true,
+          "note": "不可把臣基小周36年误记成君基或三基总周期。"
+        }
+      ],
+      "status": "canonical"
+    },
+    {
+      "id": "min-ji",
+      "canonical_name": "民基太乙",
+      "category": "三基太乙",
+      "system": "三基",
+      "epoch": "该规则累计年序 N；起点为戌，具体纪元锚点依所采用明代本的历元定义绑定",
+      "start_position": "戌",
+      "order": ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"],
+      "years_per_position": 1,
+      "cycle_years": 12,
+      "formula": "step = floor((N-1)/1); branch = order[(index(戌)+step) mod 12]",
+      "source_basis": ["SRC-TY-BASE-MOTION-2026-10-04", "SRC-KINTAIYI-REFERENCE-11F78555"],
+      "variants": [
+        {
+          "claim": "四库本作民基起戌",
+          "status": "variant",
+          "adopted": true,
+          "note": "此起点与采用的明代本整理相同；异文记载为三基皆起戌的整组说法，不因民基这一项相合而采用四库本的君基、臣基起戌。"
+        }
+      ],
+      "status": "canonical"
+    }
+  ],
+  "collation_note": "主规则采用明代本整理：君基、臣基起午，民基起戌。四库本‘君基、臣基、民基皆起戌’保留为异文，其中君基、臣基起戌不采用。"
+}

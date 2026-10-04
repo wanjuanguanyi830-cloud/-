@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "canonical_name": "小游轨运入卦",
+  "category": "轨运入卦",
+  "system": "小游轨运",
+  "epoch": null,
+  "coordinate_space": "hexagram_and_line_time_segments",
+  "order": null,
+  "hexagram_years": 24,
+  "line_years": 4,
+  "years_per_position": null,
+  "cycle_years": null,
+  "formula": null,
+  "source_basis": ["SRC-TY-BASE-MOTION-2026-10-04"],
+  "variants": [],
+  "status": "candidate",
+  "scope_note": "仅记录已确认的24年一卦、4年一爻；卦序、起卦历元及与小游太乙宫位算法的关系尚未确定。本条不得与 rules/xiaoyou/xiaoyou.json 合并计算。"
+}

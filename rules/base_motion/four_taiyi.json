@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "rule_set_id": "taiyi-four-running-positions",
+  "category": "四太乙运行",
+  "system": "四神、天乙、地乙、直符太乙",
+  "coordinate_space": "running_palace",
+  "epoch": "周期相对累计年序 N；本规则不替各家另行指定历元",
+  "order": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+  "direction": "forward",
+  "years_per_position": 3,
+  "cycle_years": 36,
+  "formula": "step = floor((N-1)/3); running_palace = ((start_offset+step) mod 12)+1",
+  "rules": [
+    {"id": "four-spirit", "canonical_name": "四神太乙", "category": "四太乙", "system": "四神", "epoch": "周期相对累计年序 N", "order": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "start_running_palace": 1, "start_name": "乾", "start_offset": 0, "years_per_position": 3, "cycle_years": 36, "formula": "((0+floor((N-1)/3)) mod 12)+1", "source_basis": ["SRC-TY-BASE-MOTION-2026-10-04"], "variants": [], "status": "canonical"},
+    {"id": "tian-yi", "canonical_name": "天乙太乙", "category": "四太乙", "system": "天乙", "epoch": "周期相对累计年序 N", "order": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "start_running_palace": 6, "start_name": "兑", "start_offset": 5, "years_per_position": 3, "cycle_years": 36, "formula": "((5+floor((N-1)/3)) mod 12)+1", "source_basis": ["SRC-TY-BASE-MOTION-2026-10-04"], "variants": [], "status": "canonical"},
+    {"id": "di-yi", "canonical_name": "地乙太乙", "category": "四太乙", "system": "地乙", "epoch": "周期相对累计年序 N", "order": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "start_running_palace": 9, "start_name": "巽", "start_offset": 8, "years_per_position": 3, "cycle_years": 36, "formula": "((8+floor((N-1)/3)) mod 12)+1", "source_basis": ["SRC-TY-BASE-MOTION-2026-10-04"], "variants": [], "status": "canonical"},
+    {"id": "zhi-fu", "canonical_name": "直符太乙", "category": "四太乙", "system": "直符", "epoch": "周期相对累计年序 N", "order": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "start_running_palace": 5, "start_name": "中", "start_offset": 4, "years_per_position": 3, "cycle_years": 36, "formula": "((4+floor((N-1)/3)) mod 12)+1", "source_basis": ["SRC-TY-BASE-MOTION-2026-10-04"], "variants": [], "status": "canonical"}
+  ],
+  "running_palace_order": ["乾", "离", "艮", "震", "中", "兑", "坤", "坎", "巽", "绛宫", "明堂", "玉堂"],
+  "source_basis": ["SRC-TY-BASE-MOTION-2026-10-04"],
+  "variants": [],
+  "status": "canonical"
+}

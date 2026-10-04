@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "canonical_name": "大游太乙",
+  "category": "太乙运行",
+  "system": "大游",
+  "epoch": "上元甲寅；N为自本规则历元起的一基累计年序",
+  "coordinate_space": "nine_palace",
+  "order": [7, 8, 9, 1, 2, 3, 4, 6],
+  "excluded_nine_palace": 5,
+  "direction": "forward",
+  "years_per_position": 36,
+  "cycle_years": 288,
+  "great_cycle_years": 4320,
+  "yuan_fa_years": 4320,
+  "ji_fa_years": 720,
+  "formula": "step = ((N-1)//36) % 8; nine_palace = order[step]",
+  "source_basis": ["SRC-TY-BASE-MOTION-2026-10-04", "SRC-KINTAIYI-REFERENCE-11F78555"],
+  "variants": [
+    {
+      "claim": "kentang2017/kintaiyi config.bigyo() 使用旧实现逻辑",
+      "status": "deprecated_reference",
+      "adopted": false,
+      "note": "只供追溯旧实现；本规则按显式上元、顺序和36年分段表达，不照搬该函数。"
+    }
+  ],
+  "status": "canonical"
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "canonical_name": "十六神规范名与九宫关系",
+  "coordinate_space": "sixteen_spirit_to_nine_palace",
+  "spirits": [
+    {"marker": "子·地主", "branch": "子", "spirit": "地主", "nine_palace": 8},
+    {"marker": "丑·阳德", "branch": "丑", "spirit": "阳德", "nine_palace": 3},
+    {"marker": "艮·和德", "branch": "艮", "spirit": "和德", "nine_palace": 3},
+    {"marker": "寅·吕申", "branch": "寅", "spirit": "吕申", "nine_palace": 4},
+    {"marker": "卯·高丛", "branch": "卯", "spirit": "高丛", "nine_palace": 4},
+    {"marker": "辰·太阳", "branch": "辰", "spirit": "太阳", "nine_palace": 9},
+    {"marker": "巽·大炅", "branch": "巽", "spirit": "大炅", "nine_palace": 9},
+    {"marker": "巳·大神", "branch": "巳", "spirit": "大神", "nine_palace": 2},
+    {"marker": "午·大威", "branch": "午", "spirit": "大威", "nine_palace": 2},
+    {"marker": "未·天道", "branch": "未", "spirit": "天道", "nine_palace": 7},
+    {"marker": "坤·大武", "branch": "坤", "spirit": "大武", "nine_palace": 7},
+    {"marker": "申·武德", "branch": "申", "spirit": "武德", "nine_palace": 6},
+    {"marker": "酉·太簇", "branch": "酉", "spirit": "太簇", "nine_palace": 6},
+    {"marker": "戌·阴主", "branch": "戌", "spirit": "阴主", "nine_palace": 1},
+    {"marker": "乾·阴德", "branch": "乾", "spirit": "阴德", "nine_palace": 1},
+    {"marker": "亥·大义", "branch": "亥", "spirit": "大义", "nine_palace": 8}
+  ],
+  "aliases": [
+    {"alias": "大旲", "canonical_name": "大炅", "status": "variant", "note": "仅作为原文／OCR别名保留；规范输出一律使用‘大炅’。"}
+  ],
+  "source_basis": ["SRC-TY-BASE-MOTION-2026-10-04"],
+  "status": "canonical"
+}
