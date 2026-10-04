@@ -141,14 +141,13 @@ def test_catalog_report_exposes_layer_and_priority_counts():
     report = unported_catalog_report(["十六宮分佈", "釋格局", "卷十二", "推太乙當時法"])
     assert report["field_count"] == 4
     assert report["layer_counts"] == {
-        "canonical": 1,
+        "canonical": 2,
         "derived": 1,
-        "pending": 1,
         "source_variant": 1,
     }
-    assert report["priority_counts"] == {"P0": 2, "P2": 1, "P3": 1}
+    assert report["priority_counts"] == {"P0": 2, "P1": 1, "P3": 1}
     assert {item["field"] for item in report["next_migration_candidates"]} == {
-        "十六宮分佈", "釋格局"
+        "十六宮分佈", "釋格局", "推太乙當時法"
     }
 
 
