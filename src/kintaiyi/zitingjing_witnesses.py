@@ -47,7 +47,9 @@ WITNESSES = {
         "copy_description": "研易楼藏明钞本（现代整理本出版说明及二级资源页如此称）",
         "holding": "上海图书馆",
         "holding_evidence": "publisher_description_secondary",
-        "direct_manuscript_access_in_project": False,
+        "user_previously_provided_manuscript_file": True,
+        "current_session_file_index_status": "not_retrievable_in_current_file_index",
+        "direct_text_reinspection_status": "pending_reinspection_from_previously_provided_file",
         "modern_edition": {
             "title": "太乙紫庭秘诀",
             "editor": "吴炜维",
@@ -63,7 +65,7 @@ WITNESSES = {
         "resource_report": {
             "reported_pages": 181,
             "reported_size": "328MB",
-            "status": "secondary_resource_listing_not_inspected",
+            "status": "previously_user_provided_file_not_currently_retrievable",
         },
     },
     "peking_university_reported_copy": {
@@ -110,7 +112,8 @@ def wenchang_nine_star_appendix_locator_status() -> dict[str, Any]:
         "status": "catalog_attested_primary_text_pending",
         "shanghai_yanyilou": {
             "catalog_attested": True,
-            "direct_text_obtained": False,
+            "user_previously_provided_file": True,
+            "direct_text_reinspection_status": "pending",
         },
         "harvard_qing_compilation": {
             "ziting_text_present": True,
@@ -124,7 +127,7 @@ def wenchang_nine_star_appendix_locator_status() -> dict[str, Any]:
         },
         "primary_result_allowed": False,
         "next_action": (
-            "优先取得上海研易楼底本/2015仿刻本附篇页；"
+            "优先重新定位用户此前提供的上海研易楼明抄本并直接校读附篇；"
             "其次核哈佛抄本是否另有同术异题；"
             "再核北京大学馆藏目录。"
         ),
