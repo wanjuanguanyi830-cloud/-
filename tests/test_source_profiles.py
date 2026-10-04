@@ -2,12 +2,14 @@ import pytest
 
 from kintaiyi.legacy_schema import classify_legacy_field
 from kintaiyi.migration_audit import audit_legacy_snapshot
+from kintaiyi.jinjing_v4_military import fengyun_feiniao_zhuzhan
 from kintaiyi.pan_adapter import attach_v2_to_snapshot
 from kintaiyi.source_profiles import (
     MILITARY_P0_CROSSWALK,
     build_military_p0_source_variants,
     build_p0_source_variants,
     build_pattern_source_variants,
+    build_weather_bird_source_variant,
 )
 
 
@@ -137,3 +139,78 @@ def test_legacy_source_sensitive_values_never_enter_analysis_implicitly():
     assert v2["analysis"]["military"] == {}
     assert "釋格局" in v2["compat"]["quarantined_legacy_keys"]
     assert "推三門具不具" in v2["compat"]["quarantined_legacy_keys"]
+
+
+def test_c35_weather_bird_legacy_field_requires_explicit_j4m11_profile():
+    item = classify_legacy_field("推太乙風雲飛鳥助戰法")
+    assert item["status"] == "quarantined"
+    assert item["replacement"] == (
+        "source_variants.military.weather_bird_support.profiles.jinjing_siku_volume4"
+    )
+
+
+def test_c35_weather_bird_profile_accepts_only_valid_j4m11_result():
+    result = fengyun_feiniao_zhuzhan([
+        {
+            "phenomenon": "飞鸟",
+            "action": "扶",
+            "target": "主人阵",
+        }
+    ])
+    wrapped = build_weather_bird_source_variant(jinjing_result=result)
+    profile = wrapped["profiles"]["jinjing_siku_volume4"]
+    assert profile["rule_id"] == "J4M-11"
+    assert profile["computable"] is True
+    assert wrapped["observation_required"] is True
+    assert wrapped["legacy_flat_auto_promoted"] is False
+
+
+def test_c35_weather_bird_profile_rejects_wrong_rule():
+    with pytest.raises(ValueError, match="J4M-11"):
+        build_weather_bird_source_variant(jinjing_result={
+            "source_profile": "jinjing_siku_volume4",
+            "ruleset": "jinjing-siku-v4-military-12",
+            "rule_id": "J4M-12",
+        })
+
+
+def test_c35_weather_bird_structured_profile_clears_legacy_gap():
+    result = fengyun_feiniao_zhuzhan([
+        {
+            "phenomenon": "飞鸟",
+            "action": "扶",
+            "target": "主人阵",
+        }
+    ])
+    source_variants = {
+        "military": {
+            "weather_bird_support": build_weather_bird_source_variant(
+                jinjing_result=result
+            )
+        }
+    }
+    snapshot = attach_v2_to_snapshot(
+        {
+            "太乙落宮": 1,
+            "太乙": "乾",
+            "推太乙風雲飛鳥助戰法": "旧flybird_wl断语",
+        },
+        source_variants=source_variants,
+    )
+    report = audit_legacy_snapshot(snapshot)
+    assert report["replacement_gaps"] == []
+    assert "推太乙風雲飛鳥助戰法" in report["quarantined_legacy_keys"]
+    assert report["ready_for_v2_core_consumption"] is True
+
+
+def test_c35_legacy_weather_bird_flat_value_never_auto_promotes():
+    snapshot = attach_v2_to_snapshot({
+        "太乙落宮": 1,
+        "太乙": "乾",
+        "推太乙風雲飛鳥助戰法": "旧flybird_wl断语",
+    })
+    report = audit_legacy_snapshot(snapshot)
+    assert report["replacement_gaps"] == [
+        "source_variants.military.weather_bird_support.profiles.jinjing_siku_volume4"
+    ]
+    assert snapshot["v2"]["analysis"]["military"] == {}
