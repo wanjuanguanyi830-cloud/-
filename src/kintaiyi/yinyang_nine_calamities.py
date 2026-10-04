@@ -1,4 +1,4 @@
-"""C47 《太乙统宗宝鉴》阴阳九厄水旱灾期。
+"""C46 《太乙统宗宝鉴》阴阳九厄水旱灾期。
 
 九段长度合计4560；旧 guiyun.yinyang_jiu_e 把各段长度误当逐项累计阈值。
 本模块按段长先构造累计边界，再定位当前厄会。
@@ -11,7 +11,7 @@ from typing import Any
 
 from .taiyi_rules import integer
 
-C47_VERSION = "taiyi-c46-yinyang-nine-calamities-v1"
+C46_VERSION = "taiyi-c46-yinyang-nine-calamities-v1"
 
 SOURCE_WITNESS = {
     "work": "太乙统宗宝鉴",
@@ -96,7 +96,7 @@ def yinyang_nine_calamities(accumulated_year: int) -> dict[str, Any]:
             selected = row
             break
     if selected is None:
-        raise RuntimeError("C47九厄时间轴内部错误")
+        raise RuntimeError("C46九厄时间轴内部错误")
 
     year_in_segment = cycle_year - selected["start_year"] + 1
     years_to_segment_end = selected["end_year"] - cycle_year
@@ -109,8 +109,8 @@ def yinyang_nine_calamities(accumulated_year: int) -> dict[str, Any]:
 
     return {
         "schema_version": "1.0",
-        "canonical": C47_VERSION,
-        "rule_id": "C47-YJ-9E",
+        "canonical": C46_VERSION,
+        "rule_id": "C46-YJ-9E",
         "source_profile": "tongzong_yinyang_nine_calamities",
         "source_witness": copy.deepcopy(SOURCE_WITNESS),
         "accumulated_year": accumulated_year,
@@ -142,8 +142,8 @@ def yinyang_nine_calamities(accumulated_year: int) -> dict[str, Any]:
 def c46_catalog() -> dict[str, Any]:
     timeline = calamity_timeline()
     return {
-        "canonical": C47_VERSION,
-        "rule_id": "C47-YJ-9E",
+        "canonical": C46_VERSION,
+        "rule_id": "C46-YJ-9E",
         "source_profile": "tongzong_yinyang_nine_calamities",
         "segment_count": len(timeline),
         "total_segment_years": sum(row["duration_years"] for row in timeline),
