@@ -49,13 +49,16 @@ for key in ("入轉日", "入轉餘", "朓胸定數", "定朔大餘進退", "定
         notes="参考实现明确含现代天文映射；古法与现代桥接需分层。",
     )
 
-# 卷九相关基础限数：可作为古法候选，但仍需逐条补原文记录。
+# 阳九/百六大小限：在线统宗见证题卷十；项目旧资料作卷九，保留卷次variant。
 for key in ("陽九", "百六"):
     CATALOG[key] = _entry(
-        "canonical", "tongzong_volume9_related", "P1",
-        "verify_source_then_migrate", source_confidence="medium",
+        "canonical", "tongzong_volume10_witness_project_volume9_variant", "P1",
+        "use_c36_limit_cycles", source_confidence="high",
         target_hint="cycles.limits",
-        notes="参考pan与卷九综合层均使用；迁移前补逐条来源。",
+        notes=(
+            "C36 已核直接条文：阳九4560/456加130，百六4320/288加2050。"
+            "旧pan同名字段只是地支位置，已quarantine，不得直接搬入cycles.limits。"
+        ),
     )
 
 # 基础盘面神将事实：结构上应进入 board，但准确卷次仍待统一来源记录。
