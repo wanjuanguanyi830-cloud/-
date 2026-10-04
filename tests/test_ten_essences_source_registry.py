@@ -3,6 +3,7 @@ import pytest
 from kintaiyi.pan_v2_contract import SOURCE_VARIANT_KEYS
 from kintaiyi.ten_essences_source_registry import (
     CLOUD_OMEN_BOUNDARY,
+    FOCUS_FORMULA_SKELETONS,
     LEGACY_FORMULA_AUDIT,
     LEGACY_NAME_AUDIT,
     SOURCE_WITNESS,
@@ -178,3 +179,63 @@ def test_c52_reclassifies_old_pan_fields_as_source_verified_formula_pending(fiel
 def test_c52_registry_never_introduces_tianyou_taiyi():
     serialized = repr(ten_essences_registry())
     assert "天游太乙" not in serialized
+
+
+def test_c52_focus_formula_skeletons_lock_direct_source_boundaries():
+    difu = FOCUS_FORMULA_SKELETONS["帝符"]
+    assert difu["big_cycle"] == 200
+    assert difu["small_cycle"] == 20
+    assert difu["route"]["start"] == "阴主"
+    assert difu["route"]["repeat_on"] == [
+        "地主", "高丛", "大威", "太簇", "坎", "离", "震", "兑"
+    ]
+    assert difu["surplus_variant"]["value"] == 70
+    assert difu["surplus_variant"]["apply"] is False
+
+    taizun = FOCUS_FORMULA_SKELETONS["太尊"]
+    assert taizun["big_cycle"] == 40
+    assert taizun["small_cycle"] == 4
+    assert taizun["route"]["canonical_route"] is None
+    assert taizun["runtime_formula_ready"] is False
+
+    bird = FOCUS_FORMULA_SKELETONS["飞鸟"]
+    assert bird["big_cycle"] == 90
+    assert bird["small_cycle"] == 9
+    assert bird["surplus_variant"]["value"] == 3
+    assert bird["surplus_variant"]["apply"] is False
+    assert bird["same_name_boundary"]["j4m11_external_bird_observation"] is False
+
+    five = FOCUS_FORMULA_SKELETONS["五风"]
+    assert five["route"]["sequence"] == [1, 3, 5, 7, 9, 2, 4, 6, 8]
+    assert five["route"]["status"] == "direct_complete_sequence"
+
+    three = FOCUS_FORMULA_SKELETONS["三风"]
+    assert three["route"]["source_sequence"] == [3, 7, 2, 6, 1, 5, 4, 8]
+    assert len(three["route"]["source_sequence"]) == 8
+    assert three["route"]["canonical_route"] is None
+    assert "不得自行补第九项" in three["route"]["note"]
+
+
+def test_c52_formula_skeleton_never_promotes_runtime_readiness():
+    data = ten_essences_registry()
+    assert data["position_runtime_ready"] is False
+    for name, skeleton in data["focus_formula_skeletons"].items():
+        assert skeleton["runtime_formula_ready"] is False, name
+
+    five = ten_essence_record("五風")
+    assert five["formula_skeleton"]["route"]["status"] == "direct_complete_sequence"
+    assert five["runtime_formula_ready"] is False
+
+
+def test_c52_ten_essence_flying_bird_is_not_j4m_external_observation():
+    bird = ten_essence_record("飛鳥")
+    boundary = bird["formula_skeleton"]["same_name_boundary"]
+    assert boundary["j4m11_external_bird_observation"] is False
+    assert "不得互相代替" in boundary["policy"]
+
+
+def test_c52_rejected_surplus_variants_are_not_applied():
+    for name in ("帝符", "飞鸟", "八风", "五风", "三风"):
+        variant = FOCUS_FORMULA_SKELETONS[name]["surplus_variant"]
+        assert variant["apply"] is False
+        assert "古" in variant["note"] or "经旨" in variant["note"]
