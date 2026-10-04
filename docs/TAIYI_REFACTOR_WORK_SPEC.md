@@ -730,21 +730,69 @@ C15 目录保留历史候选记录，但 C14/C13 当前迁移状态优先；C13 
 
 详细记录见 `sources/c16-board-facts-record.md`。
 
-## 9.10 后续 C17+
+## 9.10 C17 P0 来源隔离（已实施）
 
-继续落实剩余 P0：
+剩余 P0 不做“公式合并”，而是建立 source-profile 容器。
 
-1. `释格局` 拆统宗卷四 / 金镜 profile；
-2. `推三门具不具`、`推五将发不发`、`推主客相关法` 与 J4M/C8 对齐。
+### C17-01 格局
 
-之后再进入 P1：
+新增 `build_pattern_source_variants(...)`：
+
+- `tongzong_volume4`
+- `jinjing_geju`
+
+`jinjing_geju` 指目标仓库 source-limited 格局引擎；主体来源卷三，值事门相关规则引用卷四。不得把整套金镜格局误标为“卷四”。
+
+固定：
+
+- `canonical_selected=None`
+- `cross_source_merge=False`
+
+### C17-02 三门 / 五将
+
+- J4M-01 ↔ 三门
+- J4M-02 ↔ 五将
+- C8-L2 只消费/归一化上游事实，不是 J4M-01/02 公式实现。
+
+因此 crosswalk 固定：
+
+`c8_equivalent_formula=False`
+
+### C17-03 主客相关
+
+J4M-03“主客相关法”与 C8-L3“主客动静/先后”不得合并。
+
+`host_guest_relation` 不允许把 `c8_upstream` 登记成直接替代 profile。
+
+### C17-04 legacy quarantine
+
+以下旧 flat 字段从 unported 转为 quarantined：
+
+- 释格局
+- 推三门具不具
+- 推五将发不发
+- 推主客相关法
+
+replacement path 分别指向具体 `source_variants.*.profiles`。
+
+仅有空容器不能清除 C13 replacement gap；必须存在真实结构化 profile 结果。
+
+详细记录见 `sources/c17-source-profiles-record.md`。
+
+## 9.11 后续 C18+
+
+进入 P1：
 
 - 太乙九星 / 文昌九星；
 - 文昌变化 / 始击变化；
 - 三旗行宫 / 九宫贵神；
 - 卷十五、卷十七军事层按独立 derived profile 拆分。
 
-P3 综合包装器不得整体迁移。
+继续遵守：
+
+- P3 综合包装器不得整体迁移；
+- source_variant 不得自动选 canonical；
+- J4M 当前 implemented/partial/pending 状态变化只更新对应 profile 内容，不改变来源隔离架构。
 
 
 ## 10. 验收
