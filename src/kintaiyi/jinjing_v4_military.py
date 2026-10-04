@@ -1,7 +1,13 @@
 """四库本《太乙金镜式经》卷四军事十二法的来源限定实现。
 
 本模块只实现已经能从卷四正文直接结构化、且不需要借用其他卷次公式的规则。
-当前第一批：J4M-06 推陈兵向背、J4M-07 推制阵随地法、J4M-09 推太乙在天外地内法。
+当前已实现：
+- J4M-03 推主客相关法：五行相制核心；“日计纳音”的具体附加角色保留 pending。
+- J4M-05 推出师法。
+- J4M-06 推陈兵向背。
+- J4M-07 推制阵随地法。
+- J4M-09 推太乙在天外地内法。
+- J4M-10 推奇伏法。
 
 禁止把《太乙统宗宝鉴》卷五或旧项目卷十五的近名函数静默并入本模块。
 """
@@ -9,6 +15,14 @@
 J4M_RULESET = "jinjing-siku-v4-military-12"
 J4M_SOURCE_PROFILE = "jinjing_siku_volume4"
 
+
+_WUXING_KE = {
+    "木": "土",
+    "土": "水",
+    "水": "火",
+    "火": "金",
+    "金": "木",
+}
 
 _CHENBING_XIANGBEI = {
     1: {"出军": "西北", "战利": "东南", "背地": "深涧隐匿之地", "阵": "方阵", "旗": "白旗"},
@@ -35,6 +49,11 @@ _TERRAIN_FORMATIONS = {
     "左右势高": {"宜阵": "曲阵", "所利": "利以吞敌"},
 }
 
+_CHUSHI_CALCS = {12, 22, 32}
+_THREE_LUCKY_GATES = {"开", "休", "生"}
+_FUBING_CALCS = {12, 22, 32}
+_HIDDEN_CALCS = {11, 21, 31}
+
 
 def _base(rule_id, name):
     return {
@@ -43,6 +62,150 @@ def _base(rule_id, name):
         "rule_id": rule_id,
         "name": name,
         "source_scope": "太乙金镜式经_四库本_卷四",
+    }
+
+
+def zhuke_xiangguan(host_eye_element, guest_eye_element, *, day_nayin_element=None):
+    """J4M-03 推主客相关法。
+
+    正文明确：
+    - 客目五行克主目五行 -> 客关得主人，客胜。
+    - 主目五行克客目五行 -> 主人关得客，主胜。
+
+    正文同时说“皆用日计纳音以决之”，但本段没有展开纳音如何参与上述
+    五行关系。故本函数保留 day_nayin_element 为来源输入，却不擅自用它
+    改写胜负。待后续找到明确公式后再升级。
+    """
+    result = _base("J4M-03", "推主客相关法")
+    valid = set(_WUXING_KE)
+
+    if host_eye_element not in valid or guest_eye_element not in valid:
+        return {
+            **result,
+            "status": "not_computable",
+            "computable": False,
+            "host_eye_element": host_eye_element,
+            "guest_eye_element": guest_eye_element,
+            "valid_elements": sorted(valid),
+            "policy": "只接受明确五行；不从神名或其他卷次自动反推。",
+        }
+
+    if _WUXING_KE[guest_eye_element] == host_eye_element:
+        relation = "客关得主人"
+        winner = "客"
+        loser = "主"
+    elif _WUXING_KE[host_eye_element] == guest_eye_element:
+        relation = "主人关得客"
+        winner = "主"
+        loser = "客"
+    else:
+        relation = None
+        winner = None
+        loser = None
+
+    if day_nayin_element is None:
+        nayin = {
+            "value": None,
+            "status": "missing",
+            "role": "正文要求日计纳音以决之；本段未展开具体接法",
+        }
+    elif day_nayin_element not in valid:
+        nayin = {
+            "value": day_nayin_element,
+            "status": "invalid",
+            "role": "只接受木火土金水；不猜测其他标签",
+        }
+    else:
+        nayin = {
+            "value": day_nayin_element,
+            "status": "provided_role_pending",
+            "role": "已保留来源输入，但不在无明确公式时擅自修改主客胜负",
+        }
+
+    return {
+        **result,
+        "status": "partial_source_specific" if relation else "no_control_relation_defined",
+        "computable": True,
+        "fully_computable": False,
+        "host_eye_element": host_eye_element,
+        "guest_eye_element": guest_eye_element,
+        "relation": relation,
+        "winner": winner,
+        "loser": loser,
+        "day_nayin": nayin,
+        "policy": "五行相制核心按正文与古例实现；日计纳音的具体附加作用保持 pending。",
+    }
+
+
+def chushi_fa(calc_value, *, three_doors_ready=None,
+              five_generals_released=None, exit_gate=None):
+    """J4M-05 推出师法。
+
+    正文条件分栏：
+    - 算十二、二十二、三十二；
+    - 五将发；
+    - 三门具；
+    - 出军取开、休、生三吉门。
+    """
+    result = _base("J4M-05", "推出师法")
+    calc_ready = calc_value in _CHUSHI_CALCS
+
+    if exit_gate is None:
+        gate_valid = None
+    else:
+        gate_valid = exit_gate in _THREE_LUCKY_GATES
+
+    known_prerequisites = (
+        isinstance(three_doors_ready, bool)
+        and isinstance(five_generals_released, bool)
+    )
+    source_prerequisites_ready = (
+        calc_ready
+        and three_doors_ready is True
+        and five_generals_released is True
+    ) if known_prerequisites else None
+
+    if calc_ready is False:
+        status = "hold"
+        deployment_ready = False
+        verdict = "算非十二、二十二、三十二，本条不据此许出师略地"
+    elif three_doors_ready is False or five_generals_released is False:
+        status = "hold"
+        deployment_ready = False
+        verdict = "三门不具或五将不发，不可据本法出兵略地"
+    elif not known_prerequisites:
+        status = "not_computable"
+        deployment_ready = None
+        verdict = "缺三门具/五将发的上游事实"
+    elif gate_valid is False:
+        status = "hold"
+        deployment_ready = False
+        verdict = "出军门不在开、休、生三吉门"
+    elif gate_valid is None:
+        status = "ready_pending_gate"
+        deployment_ready = None
+        verdict = "算、三门、五将条件已具；仍须择开、休、生三吉门出军"
+    else:
+        status = "ready"
+        deployment_ready = True
+        verdict = "可依本法出兵略地"
+
+    return {
+        **result,
+        "status": status,
+        "computable": status != "not_computable",
+        "calc_value": calc_value,
+        "eligible_calcs": sorted(_CHUSHI_CALCS),
+        "calc_ready": calc_ready,
+        "three_doors_ready": three_doors_ready,
+        "five_generals_released": five_generals_released,
+        "source_prerequisites_ready": source_prerequisites_ready,
+        "exit_gate": exit_gate,
+        "lucky_gates": ["开", "休", "生"],
+        "exit_gate_valid": gate_valid,
+        "deployment_ready": deployment_ready,
+        "verdict": verdict,
+        "policy": "不得以《统宗》卷五人君出师略地的兵额表替代本法。",
     }
 
 
@@ -153,14 +316,82 @@ def taiyi_tianwai_dinei(taiyi_palace, *, three_doors_ready=None,
     }
 
 
+def qifu_fa(*, army_size=None, calc_value=None, tianmu_location=None,
+            yanpo=None, terrain=None, enemy_urgent=False):
+    """J4M-10 推奇伏法。
+
+    分别保存：
+    - 奇兵约三成；
+    - 天目所临为大煞定位输入；
+    - 12/22/32 为伏兵时；
+    - 11/21/31 为伏藏隐迹、山林沟涧之时；
+    - 伏兵取掩迫之时；
+    - 敌急则伏于要害。
+
+    不调用旧卷十五 qibing_fubing。
+    """
+    result = _base("J4M-10", "推奇伏法")
+
+    if army_size is None:
+        odd_force_count = None
+        odd_force_count_status = "not_requested"
+    elif not isinstance(army_size, int) or isinstance(army_size, bool) or army_size <= 0:
+        odd_force_count = None
+        odd_force_count_status = "invalid_army_size"
+    elif army_size % 10 == 0:
+        odd_force_count = army_size * 3 // 10
+        odd_force_count_status = "exact_from_three_tenths"
+    else:
+        odd_force_count = None
+        odd_force_count_status = "ratio_known_rounding_unspecified"
+
+    ambush_time = calc_value in _FUBING_CALCS if calc_value is not None else None
+    concealment_time = calc_value in _HIDDEN_CALCS if calc_value is not None else None
+
+    if yanpo is True:
+        yanpo_status = "favorable_required_timing_present"
+    elif yanpo is False:
+        yanpo_status = "required_timing_absent"
+    else:
+        yanpo_status = "unknown"
+
+    recommendations = []
+    if concealment_time is True:
+        recommendations.append("藏于山林沟涧")
+    if enemy_urgent:
+        recommendations.append("伏于要害")
+
+    return {
+        **result,
+        "status": "ok",
+        "computable": True,
+        "army_size": army_size,
+        "odd_force_ratio": {"numerator": 3, "denominator": 10},
+        "odd_force_count": odd_force_count,
+        "odd_force_count_status": odd_force_count_status,
+        "calc_value": calc_value,
+        "ambush_calcs": sorted(_FUBING_CALCS),
+        "concealment_calcs": sorted(_HIDDEN_CALCS),
+        "ambush_time": ambush_time,
+        "concealment_time": concealment_time,
+        "tianmu_location": tianmu_location,
+        "great_kill_location": tianmu_location,
+        "great_kill_location_note": "正文以天目所临之下为大煞之地",
+        "yanpo": yanpo,
+        "yanpo_status": yanpo_status,
+        "terrain": terrain,
+        "enemy_urgent": bool(enemy_urgent),
+        "recommendations": recommendations,
+        "policy": "奇兵比例、伏兵时、隐迹时、大煞位、掩迫与要害分栏；不借卷十五近名算法补充。",
+    }
+
+
 def j4m_low_dependency_catalog():
-    """供文档/UI 查询的第一批已实现规则，不参与自动综合胜负。"""
+    """供文档/UI 查询的已实现规则，不参与自动综合胜负。"""
     return {
         "ruleset": J4M_RULESET,
         "source_profile": J4M_SOURCE_PROFILE,
-        "implemented": ["J4M-06", "J4M-07", "J4M-09"],
-        "pending": [
-            "J4M-01", "J4M-02", "J4M-03", "J4M-04", "J4M-05",
-            "J4M-08", "J4M-10", "J4M-11", "J4M-12",
-        ],
+        "implemented": ["J4M-05", "J4M-06", "J4M-07", "J4M-09", "J4M-10"],
+        "partial": ["J4M-03", "J4M-04"],
+        "pending": ["J4M-01", "J4M-02", "J4M-08", "J4M-11", "J4M-12"],
     }
