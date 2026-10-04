@@ -15,19 +15,30 @@ def test_c61_layer_counts_after_source_reclassification():
     data = unported_catalog_report(REFERENCE_PAN_UNPORTED_FIELDS)
     assert data["field_count"] == 67
     assert data["layer_counts"] == {
-        "canonical": 31,
+        "canonical": 32,
         "derived": 18,
-        "pending": 2,
+        "pending": 1,
         "source_variant": 16,
     }
 
 
-def test_c61_only_two_strict_pending_fields_remain():
+def test_c61_only_one_strict_pending_field_remains_after_c69():
     pending = sorted(
         key for key, item in CATALOG.items()
         if item["layer"] == "pending"
     )
-    assert pending == ["推太乙當時法", "文昌九星"]
+    assert pending == ["文昌九星"]
+
+
+def test_c61_c69_current_time_is_direct_jinjing_partial_runtime():
+    item = catalog_unported_field("推太乙當時法")
+    assert item["layer"] == "canonical"
+    assert item["source_scope"] == "jinjing_volume1_direct"
+    assert item["priority"] == "P1"
+    assert item["action"] == "use_c69_current_time_core_partial"
+    assert item["source_confidence"] == "high"
+    assert item["migrate_whole"] is False
+    assert "complete_current_time_formula=False" in item["notes"]
 
 
 def test_c61_c62_imperial巡狩_is_direct_volume5_and_runtime_implemented():
