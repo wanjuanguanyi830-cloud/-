@@ -1406,15 +1406,82 @@ V17-09 求索所得不调用 V17-D1。
 
 详细记录见 `sources/c28-tongzong-v17-high-record.md`。
 
-## 9.22 后续 C29+
+## 9.22 C29 C19 来源记录清理（已实施）
 
-卷十七 V17-01..11 主体结构化完成后，下一步优先：
+已完成：
 
-1. C19 九星链接与“配干”残留已在 C29 清理；
-2. 继续定位文昌九星、三旗行宫、九宫贵神直接主来源；
-3. 完成〈始击变化〉逐岁干×五行灾应表校读；
-4. 复核 V17-D1 等跨卷 helper，只保留 derived 身份；
-5. 开始对 pan v2 的 analysis/source_variants 做最终聚合契约，不回退 legacy flat truth source。
+- 《太乙紫庭经》〈释九宫所值九星〉链接统一为 `1kg32q85u4tgl`；
+- 撤销未完成逐字校勘的“配干”字段；
+- 九星主来源表当前只固化宫、星、分野、吉凶；
+- 文昌九星改为 `catalog_attested_primary_text_pending`；
+- 三旗行宫 / 九宫贵神改为 `project_primary_attribution_direct_text_pending`。
+
+来源层级不变：
+
+- 《太乙紫庭经》主来源；
+- 《太乙统宗宝鉴》参校。
+
+## 9.23 C30 pan v2 最终聚合契约（已实施）
+
+新增 `src/kintaiyi/pan_v2_contract.py`。
+
+### C30-01 analysis
+
+固定四槽：
+
+- patterns
+- eight_divinations
+- seven_methods
+- military
+
+`analysis.military` 只放 C8 等明确 canonical/组合层。
+
+卷十五/卷十七 derived military profile 禁止放入 analysis.military。
+
+### C30-02 source_variants
+
+固定四槽：
+
+- patterns
+- military
+- zitingjing
+- military_derived
+
+不同来源槽不自动深合并。
+
+### C30-03 modern
+
+现代博弈固定进入：
+
+`modern.game_theory`
+
+并强制：
+
+`derived_modern_feature=True`
+
+### C30-04 legacy 防回流
+
+旧 flat 风险键不得重新进入 analysis。
+
+C30 validator 在 C11 schema validator 上继续检查：
+
+- derived profile 层级；
+- modern marker；
+- source_variants 根槽；
+- legacy flat 回流；
+- aggregation contract 标记。
+
+详细记录见 `sources/c30-pan-v2-contract-record.md`。
+
+## 9.24 后续 C31+
+
+下一优先级：
+
+1. 继续定位《太乙紫庭经》文昌九星、三旗行宫、九宫贵神直接主来源；
+2. 完成〈始击变化〉逐岁干×五行灾应表的逐项校读；
+3. 复核 V17-D1 等跨卷 helper 的 derived 边界；
+4. 真正 `Taiyi.pan()` / UI / CLI 进入目标仓库后，只通过 C30 contract 接线；
+5. 逐步把剩余 unported/pending 项迁入固定 v2 槽位，禁止再扩展 flat truth source。
 
 
 ## 10. 验收
