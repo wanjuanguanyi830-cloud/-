@@ -21,7 +21,7 @@ def test_lossy_projection(sector, palace):
     assert c.sector_to_nine_palace(sector) == palace
 
 
-@pytest.mark.parametrize("sector,landing", zip(c.SIXTEEN, "卯 辰 巽 巳 午 未 坤 申 酉 戌 乾 亥 子 丑 艮 寅".split()))
+@pytest.mark.parametrize("sector,landing", zip(c.SIXTEEN, ["卯", "辰", "巽", "巳", "午", "未", "坤", "申", "酉", "戌", "乾", "亥", "子", "丑", "艮", "寅"]))
 def test_dashen_full_ring(sector, landing):
     assert c.dashen_from_sector(sector) == landing
     assert c.rotate_sixteen(sector, -16) == sector
@@ -48,7 +48,7 @@ def test_all_25_states(subject, states):
 
 
 def test_fire_stages_are_separate_and_complete():
-    assert [c.fire_twelve_stage(s) for s in "寅卯辰巳午未申酉戌亥子丑"] == "长生 沐浴 冠带 临官 帝旺 衰 病 死 墓 绝 胎 养".split()
+    assert [c.fire_twelve_stage(s) for s in "寅卯辰巳午未申酉戌亥子丑"] == ["长生", "沐浴", "冠带", "临官", "帝旺", "衰", "病", "死", "墓", "绝", "胎", "养"]
     assert all(c.fire_twelve_stage(s) is None for s in "艮巽坤乾")
 
 

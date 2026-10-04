@@ -1,10 +1,10 @@
 """Canonical coordinate systems and five-state rules; no calendar or UI imports."""
 
-SIXTEEN = tuple("子 丑 艮 寅 卯 辰 巽 巳 午 未 坤 申 酉 戌 乾 亥".split())
+SIXTEEN = tuple(["子", "丑", "艮", "寅", "卯", "辰", "巽", "巳", "午", "未", "坤", "申", "酉", "戌", "乾", "亥"])
 BRANCHES = tuple("子丑寅卯辰巳午未申酉戌亥")
 STEMS = tuple("甲乙丙丁戊己庚辛壬癸")
-GODS = tuple("地主 阳德 和德 吕申 高丛 太阳 大炅 大神 大威 天道 大武 武德 太簇 阴主 阴德 大义".split())
-ELEMENTS = tuple("水 土 土 木 木 土 木 火 火 土 土 金 金 土 金 水".split())
+GODS = tuple(["地主", "阳德", "和德", "吕申", "高丛", "太阳", "大炅", "大神", "大威", "天道", "大武", "武德", "太簇", "阴主", "阴德", "大义"])
+ELEMENTS = tuple(["水", "土", "土", "木", "木", "土", "木", "火", "火", "土", "土", "金", "金", "土", "金", "水"])
 SECTOR_GODS = dict(zip(SIXTEEN, GODS))
 GOD_SECTORS = dict(zip(GODS, SIXTEEN))
 SECTOR_ELEMENTS = dict(zip(SIXTEEN, ELEMENTS))
@@ -32,7 +32,7 @@ GENERAL_ELEMENTS = {"太乙": "木", "始击": "火", "文昌": "土", "主大�
 ROLE_ELEMENTS = {"home_general": "金", "home_assistant": "水", "home_vassal": "水",
                  "away_general": "水", "away_assistant": "木", "away_vassal": "木"}
 FIRE_STAGES = dict(zip(tuple("寅卯辰巳午未申酉戌亥子丑"),
-                       "长生 沐浴 冠带 临官 帝旺 衰 病 死 墓 绝 胎 养".split()))
+                       ["长生", "沐浴", "冠带", "临官", "帝旺", "衰", "病", "死", "墓", "绝", "胎", "养"]))
 CORNER_SECTORS = {"艮": frozenset("丑艮寅"), "巽": frozenset("辰巽巳"),
                   "坤": frozenset("未坤申"), "乾": frozenset("戌乾亥")}
 

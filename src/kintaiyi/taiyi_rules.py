@@ -46,9 +46,8 @@ def dashen_qi(anchor):
 
 
 def calc_components(n):
-    integer(n, 1, 40)
-    unit = n % 10
-    return {"ten": n >= 10, "five": unit >= 5, "one": unit % 5 != 0}
+    from .eight_divinations import calc_components as canonical_components
+    return canonical_components(n)
 
 
 def sexagenary_year(value):
