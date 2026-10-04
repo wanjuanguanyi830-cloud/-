@@ -585,13 +585,18 @@ C12 adapter 和 C13 migration audit 都读取 C14 registry，不再各自维护�
 - 未迁移卷次继续按 canonical/source_variant/derived/pending 分层，避免全部塞进 analysis。
 - 新增字段时先更新 C14 registry，再修改 adapter/audit。
 
-## 9.7 《太乙金镜式经》卷四军事十二法来源层（J4M，已建档第一阶段）
+## 9.7 《太乙金镜式经》卷四军事十二法来源层（J4M，12/12 complete）
 
-新增 `rules/jinjing_v4_military.json` 与 `sources/jinjing-v4-military-12-record.md`。
+来源层：
+
+- machine rules: `rules/jinjing_v4_military.json`
+- runtime: `src/kintaiyi/jinjing_v4_military.py`
+- source record: `sources/jinjing-v4-military-12-record.md`
+- source profile: `jinjing_siku_volume4`
 
 ### J4M-01..12 固定顺序
 
-以四库本《太乙金镜式经》卷四**正文小标题顺序**为 canonical：
+以四库本《太乙金镜式经》卷四正文小标题顺序为 canonical：
 
 1. 推三门具不具
 2. 推五将发不发
@@ -606,37 +611,115 @@ C12 adapter 和 C13 migration audit 都读取 C14 registry，不再各自维护�
 11. 推太乙风云飞鸟助战法
 12. 推阵有风云气定胜负
 
-卷首目录的短题/异写只记 `toc_aliases`，不得另建重复术。
+当前状态：
+
+- `implemented = J4M-01..12`
+- `partial = []`
+- `pending = []`
+
+目录短题/异写只作 alias，不另建重复术。
+
+### J4M-03 日计二目纳音
+
+J4M-03 已完成重新校勘，不再把“日计纳音”建模成一个独立当天干支六十甲子纳音变量。
+
+古籍证据链：
+
+- 《金镜》卷四：“皆用日计纳音以决之”“所谓关者，取五行相制之道”；
+- 《景祐太乙福应经》对应转录：“日计二目纳音”；
+- 《太乙淘金歌》：“二目纳音何以定”“以二目纳音决之，取五行生克为用”；
+- 《金镜》卷二：上目始击属客，下目文昌属主。
+
+canonical：
+
+- 客目五行克主目五行 → 客关得主人 → 客胜；
+- 主目五行克客目五行 → 主人关得客 → 主胜；
+- 无相制关系 → 本条不强设 winner。
+
+《淘金歌》“同音二阵平 / 相生和解”只作 `collation_hint`，不覆盖《金镜》winner。
+
+旧 `day_nayin_element` 仅保留兼容并标 `legacy_input_ignored`。
 
 ### J4M 与 C8 的边界
 
 - J4M 是《金镜》卷四 source profile。
-- C8 当前 `volume5_strict` 是旧 `junshi_zhanlue` 拆分后的组合边界。
-- crosswalk 只说明语义落点，不能把 partial 误标为 implemented。
-- J4M-03“主客相关法”与 J4M-04“推主客”必须分层。
-- J4M-07“制阵随地”与 J4M-08“随地制变”必须分层。
-- J4M-05 不得用《统宗》卷五的兵额表替代。
+- C8 默认仍为 `volume5_strict`。
+- 显式 adapter: `src/kintaiyi/jinjing_v4_c8_adapter.py`。
+- J4M-01/02 只映射为 C8-L2 上游三门/五将事实。
+- J4M-04 完整结果只作为 overlay，不覆盖 C8-L3。
+- J4M-03 虽已 complete，但 C8 当前无独立“关法” layer，因此仍不进入 adapter。
+- J4M-03 与 J4M-04 永不合并。
+- J4M-07 与 J4M-08 永不合并。
+- J4M-05 不得用《统宗》卷五兵额表替代。
 - J4M-06 不得用旧卷十五“陈兵出乡”替代。
 
 ### J4M-09 来源差异
 
-四库本《金镜》卷四正文列：
+《金镜》卷四：
 
 - 8/3/4：地内助主；
 - 9/2/7/6：天外助客；
-- 1 宫未列入该段地内组。
+- 1 宫未列入本段地内组。
 
-《太乙统宗宝鉴》卷五同名术列：
+《太乙统宗宝鉴》卷五：
 
 - 1/8/3/4：天内助主；
 - 9/2/7/6：天外助客。
 
-必须保存为两个 source profile；禁止用旧代码 `[1,8,3,4]` 静默覆盖《金镜》卷四记录。
+必须保存为独立 source profile；禁止静默合并。
 
-### 后续实现顺序
+### J4M-11 / 12 外部观测
 
-先做纯表与低依赖规则 J4M-06、07、09，再接 J4M-05、10；J4M-03 需统一日计纳音与主客目五行输入；J4M-11、12 需要显式外部观测模型，无观测时返回 `not_computable`。
+- J4M-11 风云飞鸟必须由外部观测事件驱动；
+- J4M-12 云气定胜负必须显式输入云气方位/颜色/形态等；
+- 无观测不得从盘内字段伪造。
 
+## 9.7A 现代《太乙数纳音体系（修正版）》独立 profile
+
+该现代体系**不属于 J4M-03**。
+
+固定路径：
+
+- runtime: `src/kintaiyi/variants/modern_liunian_nayin.py`
+- machine rules: `rules/variants/modern_liunian_nayin.json`
+- source record: `sources/modern-liunian-nayin-record.md`
+- validation: `tests/reports/modern_liunian_nayin_validation.md`
+
+固定标识：
+
+- profile: `modern_liunian_nayin_2026`
+- variant id: `MODERN-LIUNIAN-NAYIN`
+- `type=modern_reconstruction`
+- `canonical=false`
+
+材料支持：
+
+- 宫徵羽商角；
+- 五音纳甲丙戊庚壬并按阴阳配阴干；
+- 星神本五行 → 五音；
+- 地支 / 四维 → 律吕；
+- 合成星神纳音；
+- 日干变音顺序；
+- 本/变两个纳音可作关系比较；
+- 年/月/日/时四计均可扩展使用，但上游历法输入随计改变。
+
+边界：
+
+- 十二地支到十二律采用古典律历标准映射作为背景依赖；
+- 四维只有显式 `dimension_mode=branch_proxy` 才取乾亥、艮寅、坤申、巽巳；
+- 材料未写成唯一公式的“星神如何由日干序列自动取得变五行”不得补算；
+- 本/变纳音五行比较只返回关系，不自动给吉凶/胜负；
+- 不得进入 J4M → C8 adapter；
+- 不得覆盖任何古籍 canonical。
+
+已删除旧错误路径：
+
+- `src/kintaiyi/modern_nayin_variant.py`
+- `rules/j4m03_nayin_variants.json`
+- `tests/test_modern_nayin_variant.py`
+- `tests/test_j4m03_nayin_variants.py`
+
+防回归测试：`tests/test_modern_variant_namespace.py`。
 
 ## 9.8 C15 unported legacy 字段目录与迁移优先级（已实施）
 
