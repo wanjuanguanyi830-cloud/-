@@ -7,6 +7,7 @@
 - [`terminology/`](terminology/)：术语库与结构定义。
 - [`rules/`](rules/)：按来源与家法隔离的规则和算法。
 - [`rules/jinjing/geju/`](rules/jinjing/geju/)：《太乙金镜式经》主格局引擎。
+- [`rules/jinjing_v4_military.json`](rules/jinjing_v4_military.json)：四库本《太乙金镜式经》卷四军事十二法 J4M-01..12 来源限定规则表。
 - [`src/kintaiyi/`](src/kintaiyi/)：七术、八占、公共规则与五福/大游。
 - [`docs/taiyi_v1.md`](docs/taiyi_v1.md)：v1 整合包接口、兼容边界和待校项。
 - [`rules/taiyi_v1.json`](rules/taiyi_v1.json)：canonical、原典短句、版本异文分层数据。
@@ -18,6 +19,8 @@
 ## 规则来源
 
 本次格局主规则唯一采用《太乙金镜式经》卷三，八门值事周期采用卷四。`kentang2017/kintaiyi` 只作为固定版本参考实现、历史局例和旧 `skyeyes_summary` 对照来源；它不属于本仓库的写入目标，也不决定《金镜》主规则。
+
+军事十二法另以四库本《太乙金镜式经》卷四正文为 `jinjing_siku_volume4` 来源层，依次编号 J4M-01..12；与 C8 `volume5_strict` 仅做 crosswalk，不因同名或近名自动合并。《金镜》与《统宗》同名术出现差异时保留独立 source profile。
 
 所有数值算法必须保留输入、精确位置、边界、版本和可回查来源。相异古籍表述进入来源说明与对照测试，不合并进《金镜》运行规则。
 

@@ -54,6 +54,7 @@ def test_extracts_only_snapshot_facts_without_recomputing():
     assert facts["board"]["calculations"]["home"]["value"] == 15
     assert facts["board"]["calculations"]["home"]["legacy_description"] == ["旧描述可能过时"]
     assert facts["board"]["generals"]["home_general"]["palace"] == 6
+    assert facts["board"]["doors"]["distribution"] == {"1": "開"}
     assert facts["cycles"]["three_bases"]["ruler"] == 3
 
 

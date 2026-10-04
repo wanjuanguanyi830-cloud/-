@@ -13,97 +13,46 @@ import copy
 from typing import Any
 
 from .pan_v2 import build_pan_v2
+from .legacy_schema import (
+    CALENDAR_MAP as _CALENDAR_MAP,
+    CALC_FIELDS as _CALC_FIELDS,
+    CYCLE_FIELDS as _CYCLE_FIELDS,
+    DOOR_FIELDS as _DOOR_FIELDS,
+    GENERAL_FIELDS as _GENERAL_FIELDS,
+    SECTOR_GENERAL_FIELDS as _SECTOR_GENERAL_FIELDS,
+    SIXTEEN_PALACE_FIELDS as _SIXTEEN_PALACE_FIELDS,
+    META_MAP as _META_MAP,
+    QUARANTINED_LEGACY_KEYS as _QUARANTINED_LEGACY_KEYS,
+    SIMPLE_BOARD_FACTS as _SIMPLE_BOARD_FACTS,
+)
 
 ADAPTER_VERSION = "taiyi-c12-snapshot-adapter-v1"
 
-# 这些旧字段有已知跨卷混合/现代派生风险，只能留在 compat 审计信息中。
-_QUARANTINED_LEGACY_KEYS = {
-    "軍事戰略",
-    "军事战略",
-    "運籌博弈分析",
-    "运筹博弈分析",
-    "推雷公入水",
-    "推臨津問道",
-    "推临津问道",
-    "推獅子反擲",
-    "推狮子反掷",
-    "推白雲捲空",
-    "推白云卷空",
-    "推猛虎相拒",
-    "推白龍得雲",
-    "推白龙得云",
-    "推回軍無言",
-    "推回军无言",
-    "推多少以占勝負",
-    "推多少以占胜负",
-    "推孤單以占成敗",
-    "推孤单以占成败",
-    "推陰陽以占厄會",
-    "推阴阳以占厄会",
-}
+def _normalize_legacy_json_containers(value: Any) -> Any:
+    """把旧 snapshot 常见的整数宫位 dict key 规范为 JSON object 字符串 key。
 
-_META_MAP = {
-    "太乙計": "calculation_style",
-    "太乙计": "calculation_style",
-    "太乙公式類別": "accumulation_method",
-    "太乙公式类别": "accumulation_method",
-    "紀元": "epoch",
-    "纪元": "epoch",
-    "局式": "layout",
-    "五子元局": "five_yuan_layout",
-}
-
-_CALENDAR_MAP = {
-    "公元日期": "gregorian",
-    "干支": "ganzhi",
-    "農曆": "lunar",
-    "农历": "lunar",
-    "年號": "reign_title",
-    "年号": "reign_title",
-    "太歲": "year_branch",
-    "太岁": "year_branch",
-}
-
-_SIMPLE_BOARD_FACTS = {
-    "太乙落宮": ("taiyi", "palace"),
-    "太乙落宫": ("taiyi", "palace"),
-    "太乙": ("taiyi", "sector"),
-}
-
-_GENERAL_FIELDS = {
-    "主將": "home_general",
-    "主将": "home_general",
-    "主參": "home_vassal",
-    "主参": "home_vassal",
-    "客將": "away_general",
-    "客将": "away_general",
-    "客參": "away_vassal",
-    "客参": "away_vassal",
-}
-
-_CALC_FIELDS = {
-    "主算": "home",
-    "客算": "away",
-    "定算": "settled",
-}
-
-_CYCLE_FIELDS = {
-    "君基": ("three_bases", "ruler"),
-    "臣基": ("three_bases", "minister"),
-    "民基": ("three_bases", "people"),
-    "五福": ("five_blessings", "legacy_value"),
-    "大游": ("big_wander", "legacy_value"),
-    "大遊": ("big_wander", "legacy_value"),
-    "小游": ("small_wander", "legacy_value"),
-    "小遊": ("small_wander", "legacy_value"),
-}
-
-_DOOR_FIELDS = {
-    "八門值事": "duty",
-    "八门值事": "duty",
-    "八門分佈": "distribution",
-    "八门分布": "distribution",
-}
+    只做容器表示转换，不改值的术义；未知复杂 key 直接拒绝。
+    """
+    if value is None or isinstance(value, (str, int, float, bool)):
+        return copy.deepcopy(value)
+    if isinstance(value, dict):
+        result: dict[str, Any] = {}
+        for key, item in value.items():
+            if isinstance(key, str):
+                new_key = key
+            elif isinstance(key, (int, float, bool)):
+                new_key = str(key)
+            else:
+                raise TypeError(f"legacy snapshot含不支持的dict key类型: {type(key).__name__}")
+            if new_key in result:
+                raise ValueError("legacy snapshot键转换后重复")
+            result[new_key] = _normalize_legacy_json_containers(item)
+        return result
+    if isinstance(value, (list, tuple)):
+        return [_normalize_legacy_json_containers(item) for item in value]
+    if isinstance(value, (set, frozenset)):
+        return [_normalize_legacy_json_containers(item) for item in sorted(value, key=repr)]
+    return copy.deepcopy(value)
 
 
 def _copy_if_present(source: dict[str, Any], aliases: dict[str, str]) -> tuple[dict[str, Any], set[str]]:
@@ -164,6 +113,7 @@ def extract_legacy_snapshot_facts(snapshot: dict[str, Any]) -> dict[str, Any]:
         "calculations": {},
         "generals": {},
         "doors": {},
+        "sixteen_palaces": {},
     }
 
     for legacy_key, (section, field) in _SIMPLE_BOARD_FACTS.items():
@@ -179,6 +129,16 @@ def extract_legacy_snapshot_facts(snapshot: dict[str, Any]) -> dict[str, Any]:
     for legacy_key, new_key in _GENERAL_FIELDS.items():
         if legacy_key in snapshot and new_key not in board["generals"]:
             board["generals"][new_key] = {"palace": copy.deepcopy(snapshot[legacy_key])}
+            consumed.add(legacy_key)
+
+    for legacy_key, new_key in _SECTOR_GENERAL_FIELDS.items():
+        if legacy_key in snapshot and new_key not in board["generals"]:
+            board["generals"][new_key] = {"sector": copy.deepcopy(snapshot[legacy_key])}
+            consumed.add(legacy_key)
+
+    for legacy_key, new_key in _SIXTEEN_PALACE_FIELDS.items():
+        if legacy_key in snapshot and not board.get(new_key):
+            board[new_key] = copy.deepcopy(snapshot[legacy_key])
             consumed.add(legacy_key)
 
     # 只搬已知盘面“眼”事实；不调用五行、九宫或七术算法。
@@ -227,10 +187,10 @@ def extract_legacy_snapshot_facts(snapshot: dict[str, Any]) -> dict[str, Any]:
     )
 
     return {
-        "meta": meta,
-        "calendar": calendar,
-        "board": board,
-        "cycles": cycles,
+        "meta": _normalize_legacy_json_containers(meta),
+        "calendar": _normalize_legacy_json_containers(calendar),
+        "board": _normalize_legacy_json_containers(board),
+        "cycles": _normalize_legacy_json_containers(cycles),
         "consumed_legacy_keys": sorted(consumed),
         "quarantined_legacy_keys": quarantined,
         "unported_legacy_keys": unported,

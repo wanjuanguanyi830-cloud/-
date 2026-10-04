@@ -20,7 +20,7 @@ from .taiyi_cycles import (
 
 SCHEMA_VERSION = "2.0"
 
-BOARD_KEYS = ("taiyi", "eyes", "calculations", "generals", "doors")
+BOARD_KEYS = ("taiyi", "eyes", "calculations", "generals", "doors", "sixteen_palaces")
 CYCLE_KEYS = ("three_bases", "five_blessings", "big_wander", "small_wander", "four_taiyi")
 ANALYSIS_KEYS = ("patterns", "eight_divinations", "seven_methods", "military")
 SCENARIO_KEYS = (

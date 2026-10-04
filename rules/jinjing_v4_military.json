@@ -1,0 +1,312 @@
+{
+  "ruleset_id": "jinjing-siku-v4-military-12",
+  "ruleset_version": "1.0",
+  "source": {
+    "work": "太乙金镜式经",
+    "edition": "四库全书本",
+    "volume": 4,
+    "profile": "jinjing_siku_volume4",
+    "canonical_order": "正文小标题顺序",
+    "note": "目录标题与正文小标题存在若干异文；本规则表以正文小标题为 canonical，目录写法保存在 toc_aliases。"
+  },
+  "separation_policy": [
+    "本表只记录四库本《太乙金镜式经》卷四十二法，不自动并入《太乙统宗宝鉴》卷五或旧代码同名函数。",
+    "同名、近名规则必须按来源分别实现；来源差异先记 variant，不用某一旧实现覆盖另一来源。",
+    "C8 现有 volume5_strict 组合层仅做 crosswalk；未标 implemented 的条目不得视为已实现。"
+  ],
+  "rules": [
+    {
+      "id": "J4M-01",
+      "body_title": "推三门具不具",
+      "toc_aliases": [
+        "推三门具不具"
+      ],
+      "domain": "三门",
+      "canonical_summary": "以开、休、生三门及太乙、天目所临判断门具不具；年月日时直使另有直门推法。",
+      "dependencies": [
+        "八门直使",
+        "太乙所临",
+        "天目所临"
+      ],
+      "target_crosswalk": {
+        "layer": "C8-L2",
+        "status": "partial_upstream_only"
+      },
+      "implementation_status": "implemented_source_specific",
+      "runtime": [
+        "kintaiyi.jinjing_v4_military.sanmen_jubu",
+        "kintaiyi.jinjing_v4_military.zhimen_from_cycle_count"
+      ],
+      "implementation_note": "实现太乙/天目分临开生二门为两门不具、临休门为三门不具；其余正文未展开组合保持未定义。另实现240一周、30一移的直门轮转与州郡岁计门吉凶。"
+    },
+    {
+      "id": "J4M-02",
+      "body_title": "推五将发不发",
+      "toc_aliases": [
+        "推五将发不发"
+      ],
+      "domain": "五将",
+      "canonical_summary": "始击无掩击、文昌无囚迫、主客大小将无相关，并与门具条件合参，以判五将发不发。",
+      "dependencies": [
+        "始击格局",
+        "文昌格局",
+        "主客大小将关系",
+        "三门"
+      ],
+      "target_crosswalk": {
+        "layer": "C8-L2",
+        "status": "partial_upstream_only"
+      },
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jinjing_v4_military.wujiang_fabu",
+      "implementation_note": "分栏保存始击掩击、文昌囚迫、主客大小将相关三组阻断条件，并把三门具/不具作为独立上游事实；不解析旧格局字符串。"
+    },
+    {
+      "id": "J4M-03",
+      "body_title": "推主客相关法",
+      "toc_aliases": [
+        "推主客相关"
+      ],
+      "domain": "主客五行相关",
+      "canonical_summary": "以主客两目所临五行相制并参日计纳音，判主人关客、客关主人及胜负；不得与先后动静之“推主客”合并。",
+      "dependencies": [
+        "主目",
+        "客目",
+        "五行",
+        "日计纳音"
+      ],
+      "target_crosswalk": {
+        "layer": null,
+        "status": "missing_distinct_layer"
+      },
+      "implementation_status": "implemented_partial_source_specific",
+      "runtime": "kintaiyi.jinjing_v4_military.zhuke_xiangguan",
+      "implementation_note": "已实现主客目五行相制核心及两类胜负；正文所称“日计纳音以决之”的具体附加接法未展开，显式保留 pending，不擅自推演。"
+    },
+    {
+      "id": "J4M-04",
+      "body_title": "推主客",
+      "toc_aliases": [
+        "推主客"
+      ],
+      "domain": "主客先后动静",
+      "canonical_summary": "陈兵原野先动为客、后应为主；安居之势先动为主、后至为客，并参三门、五将、阴阳和不和决定称兵或固守。",
+      "dependencies": [
+        "行动场景",
+        "先后次序",
+        "三门",
+        "五将",
+        "阴阳和不和"
+      ],
+      "target_crosswalk": {
+        "layer": "C8-L3",
+        "status": "partial_roles_only"
+      },
+      "implementation_status": "partially_implemented"
+    },
+    {
+      "id": "J4M-05",
+      "body_title": "推出师法",
+      "toc_aliases": [
+        "推出师"
+      ],
+      "domain": "出师略地",
+      "canonical_summary": "以算得十二、二十二、三十二并参五将发、三门具及三吉门，判断是否可出兵略地。",
+      "dependencies": [
+        "算数",
+        "三门",
+        "五将",
+        "开休生三吉门"
+      ],
+      "target_crosswalk": {
+        "layer": null,
+        "status": "missing_do_not_substitute_chushi_luedi"
+      },
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jinjing_v4_military.chushi_fa",
+      "implementation_note": "分栏判断12/22/32、三门具、五将发与开休生三吉门；不使用统宗卷五兵额表。"
+    },
+    {
+      "id": "J4M-06",
+      "body_title": "推陈兵向背",
+      "toc_aliases": [
+        "推障向背法"
+      ],
+      "domain": "陈兵向背与阵旗",
+      "canonical_summary": "按算数表定出军方向、战利方向、所背地形、阵型与旗色；正文明确列出一、二、四、五、六、九。",
+      "dependencies": [
+        "算数"
+      ],
+      "target_crosswalk": {
+        "layer": null,
+        "status": "missing_do_not_substitute_chenbing_chuxiang"
+      },
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jinjing_v4_military.chenbing_xiangbei",
+      "implementation_note": "只接受正文明确的算类编号1/2/4/5/6/9；不自动把任意算数取个位。"
+    },
+    {
+      "id": "J4M-07",
+      "body_title": "推制阵随地法",
+      "toc_aliases": [
+        "推置阵随地法"
+      ],
+      "domain": "地形制阵",
+      "canonical_summary": "曲阵属水、锐阵属火、直阵属木、方阵属金、圆阵属土；阵形随地势而定，并可用五行生克参胜负。",
+      "dependencies": [
+        "地形",
+        "主客阵形",
+        "五行"
+      ],
+      "target_crosswalk": {
+        "layer": null,
+        "status": "missing"
+      },
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jinjing_v4_military.zhizhen_suidi",
+      "implementation_note": "实现五类地形与五阵五行映射；未知地形不类推。"
+    },
+    {
+      "id": "J4M-08",
+      "body_title": "推随地制变",
+      "toc_aliases": [
+        "推随地置变"
+      ],
+      "domain": "临敌随形制变",
+      "canonical_summary": "将士训练、地形与兵器为临战急务；不同地形利步兵、车骑、长兵、弓弩等，核心是临敌随形制变。",
+      "dependencies": [
+        "地形",
+        "兵种",
+        "器械",
+        "训练状态"
+      ],
+      "target_crosswalk": {
+        "layer": null,
+        "status": "missing"
+      },
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jinjing_v4_military.suidi_zhibian",
+      "implementation_note": "实现五类地形与优势兵种/兵器映射，并保留三不当一、十不当一、百不当一原文比例文字；训练、器械、将知兵、君择将只作事实/警告层，不转成现代战力分数。"
+    },
+    {
+      "id": "J4M-09",
+      "body_title": "推太乙在天外地内法",
+      "toc_aliases": [
+        "推太乙在天外地内法"
+      ],
+      "domain": "太乙助主客",
+      "canonical_summary": "四库本《金镜》卷四正文记八、三、四为地内助主，九、二、七、六为天外助客，并要求门具将发后再决胜；一宫在本卷文字中未列入地内组。",
+      "dependencies": [
+        "太乙宫",
+        "三门",
+        "五将"
+      ],
+      "canonical": {
+        "inner_palaces_help_host": [
+          8,
+          3,
+          4
+        ],
+        "outer_palaces_help_guest": [
+          9,
+          2,
+          7,
+          6
+        ],
+        "palace_1": "not_listed_in_jinjing_siku_v4_text"
+      },
+      "source_variants": {
+        "tongzong_volume5": {
+          "inner_palaces_help_host": [
+            1,
+            8,
+            3,
+            4
+          ],
+          "outer_palaces_help_guest": [
+            9,
+            2,
+            7,
+            6
+          ],
+          "status": "separate_source_variant"
+        }
+      },
+      "target_crosswalk": {
+        "layer": null,
+        "status": "previously_quarantined_as_cross_source_mix"
+      },
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jinjing_v4_military.taiyi_tianwai_dinei",
+      "implementation_note": "仅实现金镜卷四profile；1宫不从统宗variant补入。"
+    },
+    {
+      "id": "J4M-10",
+      "body_title": "推奇伏法",
+      "toc_aliases": [
+        "推奇兵伏兵法"
+      ],
+      "domain": "奇兵伏兵",
+      "canonical_summary": "奇兵取军数约三成；伏兵随地伏形，结合天目大煞、十二/二十二/三十二、十一/二十一/三十一及掩迫时机使用。",
+      "dependencies": [
+        "兵数",
+        "天目",
+        "算数",
+        "掩迫",
+        "地形"
+      ],
+      "target_crosswalk": {
+        "layer": null,
+        "status": "missing"
+      },
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jinjing_v4_military.qifu_fa",
+      "implementation_note": "奇兵三成、12/22/32伏兵、11/21/31伏藏、天目大煞、掩迫时机与贼急要害均分栏；不借卷十五近名算法。"
+    },
+    {
+      "id": "J4M-11",
+      "body_title": "推太乙风云飞鸟助战法",
+      "toc_aliases": [
+        "推风云飞鸟助战法"
+      ],
+      "domain": "风云飞鸟助战",
+      "canonical_summary": "观察风云飞鸟冲格、迫击、扶阵及其来自太乙、主客目、将宫、太岁太阴月建等方向，以判主客利害。",
+      "dependencies": [
+        "风云飞鸟观测",
+        "太乙宫",
+        "主目",
+        "客目",
+        "将宫",
+        "太岁",
+        "太阴",
+        "月建"
+      ],
+      "target_crosswalk": {
+        "layer": null,
+        "status": "missing"
+      },
+      "implementation_status": "not_implemented"
+    },
+    {
+      "id": "J4M-12",
+      "body_title": "推阵有风云气定胜负",
+      "toc_aliases": [
+        "推对阵有云气定胜负"
+      ],
+      "domain": "对阵云气",
+      "canonical_summary": "按敌我方位、云气颜色、日干、云气聚散动静及云气所在将位综合判断胜负；无云气时另作处理。",
+      "dependencies": [
+        "敌我方位",
+        "云气颜色",
+        "日干",
+        "云气形态",
+        "云气所临将位"
+      ],
+      "target_crosswalk": {
+        "layer": null,
+        "status": "missing_observation_model"
+      },
+      "implementation_status": "not_implemented"
+    }
+  ]
+}

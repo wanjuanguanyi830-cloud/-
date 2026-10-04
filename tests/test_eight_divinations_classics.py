@@ -66,6 +66,7 @@ def test_preparedness(n,missing,classic):
 
 def test_structural_all_does_not_equal_classic_full():
     assert sancai(15)["components"] == {"ten": True, "five": True, "one": False}
+    assert "人" in sancai(15)["missing"]
     assert not sancai(15)["sancai_full_classic"]
     assert "人" not in sancai(1)["missing"]
 

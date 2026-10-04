@@ -452,11 +452,348 @@ builder 输出可直接由 C10 `v2_consumer.py` 消费。
 
 详细记录见 `sources/c11-pan-v2-builder-record.md`。
 
-## 9.4 后续 C12+
+## 9.4 C12 legacy pan snapshot adapter（已实施第一阶段）
 
-- 等真正 `Taiyi.pan()` 或应用入口进入目标仓库后，把 snapshot 接入 `build_pan_v2`。
-- UI/CLI 只读 C10 view model。
-- 继续清理旧 flat schema，仅保留显式 compat 投影，不让旧字段重新成为算法真源。
+新增 `src/kintaiyi/pan_adapter.py`，用于未来把旧 `Taiyi.pan()` flat snapshot 接到 C11 `build_pan_v2`。
+
+### C12-01 只搬事实
+
+允许从旧 snapshot 搬运明确盘面事实：
+
+- meta/calendar
+- 太乙落宫与旧 sector
+- 文昌/始击/定目
+- 主算/客算/定算旧容器
+- 主将/主参/客将/客参
+- 八门
+- 君基/臣基/民基、五福、大小游
+
+adapter 不调用任何古法算法。
+
+### C12-02 隔离旧混合层
+
+旧 `軍事戰略`、旧七术顶层断语、旧 `運籌博弈分析` 等不得自动提升为 v2。
+
+它们只进入 `compat.quarantined_legacy_keys` 审计记录，并固定：
+
+- `legacy_analysis_promoted=False`
+- `legacy_modern_promoted=False`
+
+### C12-03 structured 输入必须显式提供
+
+新的 `analysis.eight_divinations`、`analysis.seven_methods`、`analysis.military` 和 `modern.game_theory` 由调用方显式传入。
+
+不得从旧 prose/string 断语反推。
+
+### C12-04 scenario 不推断
+
+scenario 只接受 C11 三个 canonical 字段；不得从客将、客参等旧盘字段自动生成敌军事件输入。
+
+### C12-05 兼容接线
+
+`attach_v2_to_snapshot(...)` 返回旧 snapshot 副本并新增 `result["v2"]`，不原地修改输入。
+
+未来真正 `Taiyi.pan()` 进入目标仓库时，只需在 return 前调用本适配器；新 UI/CLI 继续只读 C10 strict consumer。
+
+详细记录见 `sources/c12-pan-adapter-record.md`。
+
+## 9.5 C13 legacy flat schema 迁移审计（已实施第一阶段）
+
+新增 `src/kintaiyi/migration_audit.py`，用于量化旧 pan snapshot 的迁移状态。
+
+### C13-01 单盘审计
+
+`audit_legacy_snapshot(...)` 输出：
+
+- migrated fact keys / rate
+- quarantined keys / rate
+- unported keys / rate
+- v2 present / valid
+- structured replacement gaps
+- 是否可供 v2 core consumer 使用
+
+状态分为：
+
+- `legacy_only`
+- `v2_invalid`
+- `v2_partial_replacements`
+- `v2_core_ready_with_unported_legacy`
+- `v2_core_ready`
+
+### C13-02 structured replacement gaps
+
+只要旧 snapshot 仍含以下风险字段，就检查新 v2 是否已有正式替代：
+
+- 旧军事战略 → `analysis.military`
+- 旧七术断语 → `analysis.seven_methods`
+- 旧八占相关断语 → `analysis.eight_divinations`
+- 旧运筹博弈 → `modern.game_theory`
+
+缺替代时不得仅凭“已有 v2”宣称迁移完成。
+
+### C13-03 批量迁移统计
+
+`audit_snapshot_collection(...)` 汇总状态数量、ready 数量、平均迁移/隔离/未迁移比例，以及字段和 replacement gap 频率。
+
+所有输出标 `derived_migration_metadata=True`，不得参与古法判断。
+
+详细记录见 `sources/c13-migration-audit-record.md`。
+
+## 9.6 C14 legacy schema policy 单一真源（已实施）
+
+新增 `src/kintaiyi/legacy_schema.py`，统一定义旧 flat 字段迁移策略。
+
+每个旧字段只能处于：
+
+- `migrated_fact`
+- `quarantined`
+- `unported`
+- `embedded_v2`
+
+### C14-01 migrated fact target
+
+已迁移事实必须有唯一 v2 target path，例如：
+
+- 太乙落宮 → `board.taiyi.palace`
+- 主算 → `board.calculations.home`
+- 主將 → `board.generals.home_general`
+- 八門分佈 → `board.doors.distribution`
+
+### C14-02 quarantined replacement
+
+风险旧字段必须声明新结构 replacement path，例如：
+
+- 軍事戰略 → `analysis.military`
+- 旧七术 → `analysis.seven_methods`
+- 旧八占相关断语 → `analysis.eight_divinations`
+- 運籌博弈分析 → `modern.game_theory`
+
+### C14-03 unknown stays unported
+
+未知旧字段不得猜目标；保持 `target=None`。
+
+### C14-04 C12/C13 去重
+
+C12 adapter 和 C13 migration audit 都读取 C14 registry，不再各自维护字段名单。
+
+详细记录见 `sources/c14-legacy-schema-policy-record.md`。
+
+## 9.7 后续 C15+
+
+- 真正 `Taiyi.pan()` / CLI / UI 文件进入目标仓库后进行实际接线。
+- 根据 C13 的 unported 字段频率决定下一批卷次迁移优先级。
+- 未迁移卷次继续按 canonical/source_variant/derived/pending 分层，避免全部塞进 analysis。
+- 新增字段时先更新 C14 registry，再修改 adapter/audit。
+
+## 9.7 《太乙金镜式经》卷四军事十二法来源层（J4M，已建档第一阶段）
+
+新增 `rules/jinjing_v4_military.json` 与 `sources/jinjing-v4-military-12-record.md`。
+
+### J4M-01..12 固定顺序
+
+以四库本《太乙金镜式经》卷四**正文小标题顺序**为 canonical：
+
+1. 推三门具不具
+2. 推五将发不发
+3. 推主客相关法
+4. 推主客
+5. 推出师法
+6. 推陈兵向背
+7. 推制阵随地法
+8. 推随地制变
+9. 推太乙在天外地内法
+10. 推奇伏法
+11. 推太乙风云飞鸟助战法
+12. 推阵有风云气定胜负
+
+卷首目录的短题/异写只记 `toc_aliases`，不得另建重复术。
+
+### J4M 与 C8 的边界
+
+- J4M 是《金镜》卷四 source profile。
+- C8 当前 `volume5_strict` 是旧 `junshi_zhanlue` 拆分后的组合边界。
+- crosswalk 只说明语义落点，不能把 partial 误标为 implemented。
+- J4M-03“主客相关法”与 J4M-04“推主客”必须分层。
+- J4M-07“制阵随地”与 J4M-08“随地制变”必须分层。
+- J4M-05 不得用《统宗》卷五的兵额表替代。
+- J4M-06 不得用旧卷十五“陈兵出乡”替代。
+
+### J4M-09 来源差异
+
+四库本《金镜》卷四正文列：
+
+- 8/3/4：地内助主；
+- 9/2/7/6：天外助客；
+- 1 宫未列入该段地内组。
+
+《太乙统宗宝鉴》卷五同名术列：
+
+- 1/8/3/4：天内助主；
+- 9/2/7/6：天外助客。
+
+必须保存为两个 source profile；禁止用旧代码 `[1,8,3,4]` 静默覆盖《金镜》卷四记录。
+
+### 后续实现顺序
+
+先做纯表与低依赖规则 J4M-06、07、09，再接 J4M-05、10；J4M-03 需统一日计纳音与主客目五行输入；J4M-11、12 需要显式外部观测模型，无观测时返回 `not_computable`。
+
+
+## 9.8 C15 unported legacy 字段目录与迁移优先级（已实施）
+
+参考 `Taiyi.pan()` 当前主盘 108 个顶层字段中，C14 尚有 67 个 unported。C15 已全部建立目录，见 `src/kintaiyi/unported_catalog.py`。
+
+### C15-01 四层
+
+每个已知 unported 字段增加候选层：
+
+- `canonical`：来源相对明确，可逐条建 source record 后迁移；
+- `source_variant`：必须拆来源 profile，禁止静默选一套；
+- `derived`：综合包装或现代派生，不得整体标为古法 canonical；
+- `pending`：来源/输入不足，禁止猜。
+
+### C15-02 P0-P3 优先级
+
+- P0：核心盘面或高风险来源边界；
+- P1：来源较明确的独立规则 / 高风险军事层；
+- P2：辅助体系、跨卷或仍需补来源校勘；
+- P3：综合包装器或现代派生。
+
+当前 P0 重点：
+
+- 天乙 / 地乙 / 四神 / 直符 / 合神 / 计神的 board 结构；
+- 十六宫分布；
+- 推三门具不具；
+- 推五将发不发；
+- 推主客相关法；
+- 释格局。
+
+### C15-03 禁止整体迁移
+
+旧 `卷八/九/十/十一/十二/十三/十四/十八` 综合键，以及卷十五军事应用、卷十七军事占断、跨卷综合项、现代天文桥接，固定 `migrate_whole=False`。
+
+必须先拆成独立规则 / source profile，再进入 v2。
+
+### C15-04 与 C13/C14 连接
+
+C14 的 unported manifest 现在附带：
+
+- candidate_layer
+- priority
+- source_scope
+- migration_action
+- migrate_whole
+
+C13 audit 现在附带：
+
+- unported_layer_counts
+- unported_priority_counts
+- next_migration_candidates
+
+后续迁移顺序应同时参考 C15 priority 与真实 snapshot 的字段频率。
+
+详细记录见 `sources/c15-unported-catalog-record.md`。
+
+## 9.9 C16 P0 第一批 board 结构事实（已实施）
+
+已落实 C15 P0 中不依赖军事断语的一批。
+
+### C16-01 十六宫分布
+
+`board` 新增必需子区段：
+
+`board.sixteen_palaces`
+
+旧 `十六宮分佈` 由 C12 adapter 原样搬运，不重新调用旧 `sixteen_gong(...)` 算法。
+
+C14 当前状态已改为：
+
+`migrated_fact -> board.sixteen_palaces`
+
+### C16-02 六个基础神将
+
+以下旧字段迁入 `board.generals`：
+
+- 天乙 → `tianyi.sector`
+- 地乙 → `diyi.sector`
+- 四神 → `four_spirits.sector`
+- 直符 → `zhifu.sector`
+- 合神 → `hegod.sector`
+- 计神 → `jigod.sector`
+
+这些旧值是十六神/支位文字，不得套主客大将的 `palace` 字段。
+
+### C16-03 审计状态
+
+上述 7 个字段从 unported 转为 migrated_fact。
+
+C15 目录保留历史候选记录，但 C14/C13 当前迁移状态优先；C13 不再把它们列入 next migration candidates。
+
+详细记录见 `sources/c16-board-facts-record.md`。
+
+## 9.10 C17 P0 来源隔离（已实施）
+
+剩余 P0 不做“公式合并”，而是建立 source-profile 容器。
+
+### C17-01 格局
+
+新增 `build_pattern_source_variants(...)`：
+
+- `tongzong_volume4`
+- `jinjing_geju`
+
+`jinjing_geju` 指目标仓库 source-limited 格局引擎；主体来源卷三，值事门相关规则引用卷四。不得把整套金镜格局误标为“卷四”。
+
+固定：
+
+- `canonical_selected=None`
+- `cross_source_merge=False`
+
+### C17-02 三门 / 五将
+
+- J4M-01 ↔ 三门
+- J4M-02 ↔ 五将
+- C8-L2 只消费/归一化上游事实，不是 J4M-01/02 公式实现。
+
+因此 crosswalk 固定：
+
+`c8_equivalent_formula=False`
+
+### C17-03 主客相关
+
+J4M-03“主客相关法”与 C8-L3“主客动静/先后”不得合并。
+
+`host_guest_relation` 不允许把 `c8_upstream` 登记成直接替代 profile。
+
+### C17-04 legacy quarantine
+
+以下旧 flat 字段从 unported 转为 quarantined：
+
+- 释格局
+- 推三门具不具
+- 推五将发不发
+- 推主客相关法
+
+replacement path 分别指向具体 `source_variants.*.profiles`。
+
+仅有空容器不能清除 C13 replacement gap；必须存在真实结构化 profile 结果。
+
+详细记录见 `sources/c17-source-profiles-record.md`。
+
+## 9.11 后续 C18+
+
+进入 P1：
+
+- 太乙九星 / 文昌九星；
+- 文昌变化 / 始击变化；
+- 三旗行宫 / 九宫贵神；
+- 卷十五、卷十七军事层按独立 derived profile 拆分。
+
+继续遵守：
+
+- P3 综合包装器不得整体迁移；
+- source_variant 不得自动选 canonical；
+- J4M 当前 implemented/partial/pending 状态变化只更新对应 profile 内容，不改变来源隔离架构。
+
 
 ## 10. 验收
 
