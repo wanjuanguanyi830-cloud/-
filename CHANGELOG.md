@@ -11,3 +11,7 @@
 - 独立结构化详情接口提供 `to_legacy_dict()` 转换及 `TaiyiGejuMixin` 旧方法适配入口。
 
 测试和历史差异见 [`tests/`](tests/) 与 [`tests/reports/skyeyes_summary_audit.md`](tests/reports/skyeyes_summary_audit.md)。
+
+## 2026-10-04：太乙七术＋八占＋公共规则层 v1
+
+新增独立七术、八占、公共规则、五福/大游与旧名兼容入口。项目canonical与异文/短句/古例/推导例分层保存；缺输入或未确认规则明确返回不可计算或待校。完整记录见 `docs/taiyi_v1.md`。已有格局规则及其测试保留。

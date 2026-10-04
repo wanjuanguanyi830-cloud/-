@@ -7,6 +7,9 @@
 - [`terminology/`](terminology/)：术语库与结构定义。
 - [`rules/`](rules/)：按来源与家法隔离的规则和算法。
 - [`rules/jinjing/geju/`](rules/jinjing/geju/)：《太乙金镜式经》主格局引擎。
+- [`src/kintaiyi/`](src/kintaiyi/)：七术、八占、公共规则与五福/大游。
+- [`docs/taiyi_v1.md`](docs/taiyi_v1.md)：v1 整合包接口、兼容边界和待校项。
+- [`rules/taiyi_v1.json`](rules/taiyi_v1.json)：canonical、原典短句、版本异文分层数据。
 - [`sources/`](sources/)：来源证据、异文、采用边界和参考快照。
 - [`tests/`](tests/)：规则回归、历史局例输入和差异报告。
 - [`CHANGELOG.md`](CHANGELOG.md)：本库实质变更记录。
@@ -17,6 +20,8 @@
 本次格局主规则唯一采用《太乙金镜式经》卷三，八门值事周期采用卷四。`kentang2017/kintaiyi` 只作为固定版本参考实现、历史局例和旧 `skyeyes_summary` 对照来源；它不属于本仓库的写入目标，也不决定《金镜》主规则。
 
 所有数值算法必须保留输入、精确位置、边界、版本和可回查来源。相异古籍表述进入来源说明与对照测试，不合并进《金镜》运行规则。
+
+七术、八占与五福/大游采用 `taiyi-t7-d8-v1` 已确认项目规范；四库为底本，《统宗》《景祐》《金钥匙》等补证和异文保留。各模块的来源边界独立；格局规则的来源限定保持原有定义。安装 `python -m pip install -e .` 后可直接导入 `kintaiyi` 与根目录旧名接口 `config`。
 
 ## 运行测试
 
