@@ -2746,7 +2746,7 @@ C53 catalog 只声明本模块六项；其他层委托：
 - 天皇 → C55-TIANHUANG；
 - 帝符 → C55-DIFU；
 - 太乙数 → C54-TAIYI-NUMBER；
-- 天时 → pending。
+- 天时 → C56-TIANSHI。
 
 ## 9.47 C54 十精太乙数（已实施）
 
@@ -2890,15 +2890,94 @@ C52 registry 当前：
 - `sources/c56-ten-essences-tianshi-record.md`
 - `tests/reports/c56_validation.md`
 
-## 9.50 后续 C57+
+## 9.50 C57 十精太乙云气显式合会层（已实施）
+
+新增：
+
+`src/kintaiyi/ten_essences_cloud_omens.py`
+
+### C57-01 显式合会，不自动同宫
+
+C57 只解释调用方显式给出的：
+
+- 合太乙；
+- 合天目；
+- 十精之间合会；
+- 旺相 / 非旺相；
+- 太乙所在阴 / 阳宫；
+- 太尊、飞鸟少数直接宫位断语。
+
+固定：
+
+- `auto_position_lookup_used=False`
+- 不读取 C53/C55/C56 落宫自动制造“合”
+- 无合会时也须显式传空 list
+
+### C57-02 飞鸟层级分离
+
+十精飞鸟是推步神位。
+
+J4M-11 飞鸟是真实外部观测。
+
+两者不得互相替代。
+
+### C57-03 见证异文
+
+保留：
+
+- 天皇合飞鸟：“有阴雨 / 小阴雨”；
+- 天皇合天时：“阴昏 / 小昏”；
+- 三风合天时：“小阴雨 / 小阴风”；
+- 五行、八风条“地符 / 帝符”名称异文。
+
+只有稳定核心可正规化；真异文固定 unresolved。
+
+### C57-04 张良总括句
+
+统宗在线与《三才世纬》对“阳宫暗 / 晴旱”及“五行是否列入”有差异。
+
+固定：
+
+- `canonical_selected=None`
+- `runtime_applied=False`
+
+总括句不覆盖各十精逐条直接断语。
+
+### C57-05 十精云气尚未全完成
+
+C57 只完成合会层。
+
+仍 pending：
+
+- 太乙初移宫云色时变；
+- 天气纯厚 / 薄、黄雾、黑赤、青白等形态；
+- 天旱取阳 / 天雨取阴总括；
+- 旺相使变速修饰；
+- 太乙数30 / 40 / 50等天气断语。
+
+因此 C52 registry 固定：
+
+- `cloud_conjunction_runtime_ready=True`
+- `cloud_runtime_ready=False`
+
+完整验证：
+
+`1115 passed / 0 failed`
+
+详细记录：
+
+- `sources/c57-ten-essences-cloud-conjunctions-record.md`
+- `tests/reports/c57_validation.md`
+
+## 9.51 后续 C58+
 
 下一优先级：
 
-1. 建立全局“旧错误公式 / 非等价旧实现”隔离清单，阻止重新进入 canonical 调用链；
-2. 十精云气所主另起观察 / 合会层，禁止由位置直接伪造天气；
-3. 对 C15 remaining pending / source_variant 做全局一致性清扫；
-4. 恢复旧 `terminology.json`；
-5. 回读文昌九星正文及三旗 / 九宫贵神归属。
+1. C58：太乙初移宫云色时变 + 天气厚薄 / 色象观察层；
+2. C59：太乙数30/40/50及与太乙/天目/飞鸟合会的天气数值层；
+3. 建立全局“旧错误公式 / 非等价旧实现”隔离清单，阻止回流 canonical；
+4. 对 C15 remaining pending / source_variant 做全局一致性清扫；
+5. 恢复旧 `terminology.json`，并继续文昌九星 / 三旗 / 九宫贵神归属核证。
 
 ## 10. 验收
 
