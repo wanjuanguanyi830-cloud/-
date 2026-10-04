@@ -206,8 +206,10 @@ def test_c52_focus_formula_skeletons_lock_direct_source_boundaries():
     assert bird["same_name_boundary"]["j4m11_external_bird_observation"] is False
 
     five = FOCUS_FORMULA_SKELETONS["五风"]
-    assert five["route"]["sequence"] == [1, 3, 5, 7, 9, 2, 4, 6, 8]
-    assert five["route"]["status"] == "direct_complete_sequence"
+    assert five["route"]["tongzong_sequence"] == [1, 3, 5, 7, 9, 2, 4, 6, 8]
+    assert five["route"]["wujing_zongyao_sequence"] == [1, 3, 5, 9, 7, 2, 4, 6, 8]
+    assert five["route"]["status"] == "source_variant_unresolved"
+    assert five["route"]["canonical_route"] is None
 
     three = FOCUS_FORMULA_SKELETONS["三风"]
     assert three["route"]["source_sequence"] == [3, 7, 2, 6, 1, 5, 4, 8]
@@ -223,7 +225,8 @@ def test_c52_formula_skeleton_never_promotes_runtime_readiness():
         assert skeleton["runtime_formula_ready"] is False, name
 
     five = ten_essence_record("五風")
-    assert five["formula_skeleton"]["route"]["status"] == "direct_complete_sequence"
+    assert five["formula_skeleton"]["route"]["status"] == "source_variant_unresolved"
+    assert five["formula_skeleton"]["route"]["canonical_route"] is None
     assert five["runtime_formula_ready"] is False
 
 
@@ -239,3 +242,11 @@ def test_c52_rejected_surplus_variants_are_not_applied():
         variant = FOCUS_FORMULA_SKELETONS[name]["surplus_variant"]
         assert variant["apply"] is False
         assert "古" in variant["note"] or "经旨" in variant["note"]
+
+
+def test_c52_fivewind_route_conflict_blocks_c53_runtime():
+    five = FOCUS_FORMULA_SKELETONS["五风"]
+    assert five["route"]["tongzong_sequence"][3:5] == [7, 9]
+    assert five["route"]["wujing_zongyao_sequence"][3:5] == [9, 7]
+    assert five["runtime_formula_ready"] is False
+    assert "冲突" in five["runtime_blocker"]
