@@ -77,7 +77,7 @@
 
 要求：
 
-- foundation_ganzhi
+- foundation_ganzhi（必须是真实六十甲子组合）
 - god_landings
 - calc_length
 - calc_harmonious
@@ -104,3 +104,18 @@
 ```
 
 当前基线：818 passed / 0 failed。
+
+
+## 干支数只作结构化事实
+
+C44 复用 C42 已校纳甲干支数表，记录创立年：
+
+- 天干数；
+- 地支数；
+- 干支和数。
+
+但固定：
+
+`used_to_auto_select_year=False`
+
+这些数字不能自动把 90/180 或 9/18/28 任何一个见证年数选为 canonical。
