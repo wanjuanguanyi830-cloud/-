@@ -83,6 +83,7 @@ def disaster_month_from_evidence(
     year_branch: str,
     year_hegod_anchor: str,
     wenchang_landing_after_year_addition: str,
+    tianmu_landing_after_year_addition: str | None = None,
     palace_polarity: str | None = None,
     wenchang_same_as_taiyi: bool | None = None,
     pattern_evidence: list[str] | None = None,
@@ -97,6 +98,16 @@ def disaster_month_from_evidence(
     opposite = opposite_point(landing)
     month = month_for_point(landing)
     opposite_month = month_for_point(opposite)
+    tianmu = (
+        _point(tianmu_landing_after_year_addition, "tianmu_landing_after_year_addition")
+        if tianmu_landing_after_year_addition is not None
+        else None
+    )
+    tianmu_opposite = opposite_point(tianmu) if tianmu is not None else None
+    tianmu_month = month_for_point(tianmu) if tianmu is not None else None
+    tianmu_opposite_month = (
+        month_for_point(tianmu_opposite) if tianmu_opposite is not None else None
+    )
 
     if palace_polarity not in (None, "阳", "阴"):
         raise ValueError("palace_polarity须为阳/阴或None")
@@ -108,7 +119,14 @@ def disaster_month_from_evidence(
     if month is None:
         pending.append("文昌落四维宫时，当前直接条文未给月份换算，不自行折月")
     if opposite_month is None:
-        pending.append("冲处落四维宫时，当前直接条文未给月份换算")
+        pending.append("文昌冲处落四维宫时，当前直接条文未给月份换算")
+    if tianmu is None:
+        pending.append("须提供同一岁加法后的天目所临")
+    else:
+        if tianmu_month is None:
+            pending.append("天目落四维宫时，当前直接条文未给月份换算")
+        if tianmu_opposite_month is None:
+            pending.append("天目冲处落四维宫时，当前直接条文未给月份换算")
     if palace_polarity is None:
         pending.append("须由上游明确文昌所临宫为阳宫或阴宫")
     if wenchang_same_as_taiyi is None:
@@ -141,6 +159,26 @@ def disaster_month_from_evidence(
         "opposite_landing": opposite,
         "disaster_month": month,
         "opposite_disaster_month": opposite_month,
+        "tianmu_landing": tianmu,
+        "tianmu_opposite_landing": tianmu_opposite,
+        "tianmu_disaster_month": tianmu_month,
+        "tianmu_opposite_disaster_month": tianmu_opposite_month,
+        "month_candidates": [
+            {
+                "target": "文昌",
+                "landing": landing,
+                "month": month,
+                "opposite_landing": opposite,
+                "opposite_month": opposite_month,
+            },
+            {
+                "target": "天目",
+                "landing": tianmu,
+                "month": tianmu_month,
+                "opposite_landing": tianmu_opposite,
+                "opposite_month": tianmu_opposite_month,
+            },
+        ],
         "palace_polarity": palace_polarity,
         "water_drought": water_drought,
         "wenchang_same_as_taiyi": wenchang_same_as_taiyi,
@@ -155,7 +193,7 @@ def disaster_month_from_evidence(
         "pending": pending,
         "legacy_yang_palace_guess_used": False,
         "policy": (
-            "月份只按显式文昌落支及其冲支换算；"
+            "月份分别按显式文昌、天目落支及各自冲支换算；"
             "文昌宫性由上游给定，不从十六点自造阴阳宫表。"
             "太乙同宫与格掩迫击挟提只作年度不协/不稔证据，不改月份。"
         ),
@@ -167,6 +205,7 @@ def disaster_day_from_evidence(
     month_branch: str,
     month_hegod_anchor: str,
     wenchang_landing_after_month_addition: str,
+    tianmu_landing_after_month_addition: str | None = None,
 ) -> dict[str, Any]:
     """日层：输出灾发日支候选及冲支，不伪造具体月日数字。"""
     month_branch = _branch(month_branch, "month_branch")
@@ -176,6 +215,15 @@ def disaster_day_from_evidence(
         "wenchang_landing_after_month_addition",
     )
     opposite = opposite_point(landing)
+    tianmu = (
+        _point(tianmu_landing_after_month_addition, "tianmu_landing_after_month_addition")
+        if tianmu_landing_after_month_addition is not None
+        else None
+    )
+    tianmu_opposite = opposite_point(tianmu) if tianmu is not None else None
+    pending = []
+    if tianmu is None:
+        pending.append("须提供同一月加法后的天目所临")
 
     return {
         "schema_version": "1.0",
@@ -187,12 +235,44 @@ def disaster_day_from_evidence(
         "month_hegod_anchor": hegod,
         "addition_formula_applied": False,
         "wenchang_landing": landing,
-        "disaster_day_branch": landing,
-        "opposite_day_branch": opposite,
+        "disaster_day_point": landing,
+        "disaster_day_branch": landing if landing in BRANCHES else None,
+        "opposite_day_point": opposite,
+        "opposite_day_branch": opposite if opposite in BRANCHES else None,
+        "tianmu_landing": tianmu,
+        "tianmu_day_point": tianmu,
+        "tianmu_day_branch": tianmu if tianmu in BRANCHES else None,
+        "tianmu_opposite_day_point": tianmu_opposite,
+        "tianmu_opposite_day_branch": (
+            tianmu_opposite if tianmu_opposite in BRANCHES else None
+        ),
+        "day_candidates": [
+            {
+                "target": "文昌",
+                "landing": landing,
+                "branch": landing if landing in BRANCHES else None,
+                "opposite_landing": opposite,
+                "opposite_branch": opposite if opposite in BRANCHES else None,
+            },
+            {
+                "target": "天目",
+                "landing": tianmu,
+                "branch": tianmu if tianmu in BRANCHES else None,
+                "opposite_landing": tianmu_opposite,
+                "opposite_branch": (
+                    tianmu_opposite if tianmu_opposite in BRANCHES else None
+                ),
+            },
+        ],
         "specific_calendar_day": None,
-        "specific_calendar_day_status": "source_only_gives_landing_branch_period",
-        "computable": True,
-        "policy": "第二阶段只落到支位及冲支；无另一步历法换算时不伪造某月某日数字。",
+        "specific_calendar_day_status": "source_gives_sixteen_point_period_not_calendar_day_number",
+        "computable": not pending,
+        "status": "computed_from_explicit_source_evidence" if not pending else "not_computable",
+        "pending": pending,
+        "policy": (
+            "第二阶段分别保存文昌、天目落点及冲处；十六宫四维不是地支，"
+            "因此只在落十二支时填day_branch。无另一步历法换算时不伪造某月某日数字。"
+        ),
     }
 
 
