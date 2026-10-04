@@ -19,6 +19,8 @@ from .legacy_schema import (
     CYCLE_FIELDS as _CYCLE_FIELDS,
     DOOR_FIELDS as _DOOR_FIELDS,
     GENERAL_FIELDS as _GENERAL_FIELDS,
+    SECTOR_GENERAL_FIELDS as _SECTOR_GENERAL_FIELDS,
+    SIXTEEN_PALACE_FIELDS as _SIXTEEN_PALACE_FIELDS,
     META_MAP as _META_MAP,
     QUARANTINED_LEGACY_KEYS as _QUARANTINED_LEGACY_KEYS,
     SIMPLE_BOARD_FACTS as _SIMPLE_BOARD_FACTS,
@@ -109,6 +111,7 @@ def extract_legacy_snapshot_facts(snapshot: dict[str, Any]) -> dict[str, Any]:
         "calculations": {},
         "generals": {},
         "doors": {},
+        "sixteen_palaces": {},
     }
 
     for legacy_key, (section, field) in _SIMPLE_BOARD_FACTS.items():
@@ -124,6 +127,16 @@ def extract_legacy_snapshot_facts(snapshot: dict[str, Any]) -> dict[str, Any]:
     for legacy_key, new_key in _GENERAL_FIELDS.items():
         if legacy_key in snapshot and new_key not in board["generals"]:
             board["generals"][new_key] = {"palace": copy.deepcopy(snapshot[legacy_key])}
+            consumed.add(legacy_key)
+
+    for legacy_key, new_key in _SECTOR_GENERAL_FIELDS.items():
+        if legacy_key in snapshot and new_key not in board["generals"]:
+            board["generals"][new_key] = {"sector": copy.deepcopy(snapshot[legacy_key])}
+            consumed.add(legacy_key)
+
+    for legacy_key, new_key in _SIXTEEN_PALACE_FIELDS.items():
+        if legacy_key in snapshot and not board.get(new_key):
+            board[new_key] = copy.deepcopy(snapshot[legacy_key])
             consumed.add(legacy_key)
 
     # 只搬已知盘面“眼”事实；不调用五行、九宫或七术算法。
