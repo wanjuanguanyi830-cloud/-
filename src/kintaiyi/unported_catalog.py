@@ -293,9 +293,13 @@ CATALOG["國政章易"] = _entry(
 
 CATALOG["歲中災發"] = _entry(
     "canonical", "tongzong_volume10_witness_project_volume9_variant", "P2",
-    "migrate_rule_after_source_record", migrate_whole=False,
-    source_confidence="high", target_hint="source_variants.volume9",
-    notes="在线统宗见证编卷十、项目旧标卷九；须与国政章易、厄会行限分别建模。",
+    "use_c45_two_stage_explicit_evidence", migrate_whole=False,
+    source_confidence="high",
+    target_hint="source_variants.volume9.disaster_timing",
+    notes=(
+        "原文先以太岁合神加岁支求灾发月及冲月，再以当月合神加月支求日支期。"
+        "旧suizhong_zaifa只做简化月层offset并自建阳宫集合，不能直接迁。"
+    ),
 )
 
 
