@@ -3161,17 +3161,28 @@ C59 只解释显式太乙数与关系证据，不自动从积年调用 C54，也
 - `promotion_allowed=False`
 - `canonical_equivalent=False`
 
-C58 / C59 新增隔离：
+C58 / C59 与旧 `yunqi` 新增隔离：
 
 - 旧 `yunqi._YUNQI_COLOR["白"]`：白7/6误配亥子；replacement → C58-CLOUD-TIMING；
-- `yunqi.shijing_shu`：数值核心可参校，但旧wrapper混入天气、未保存50句读异文；replacement → C54 + C59。
+- 旧 `yunqi._YUNQI_COLOR` 整表：混有错误/无直接支持的色数映射，不得整体提升；
+- `yunqi.shijing_shu`：数值核心可参校，但旧wrapper混入天气、未保存50句读异文；replacement → C54 + C59；
+- `yunqi._shu_duanyu`：旧10/5独立特例与50混层 → C59；
+- `yunqi._JING_HEHUI`：旧名、条件与断语压缩问题 → C57；
+- `yunqi.shijing_luo`：继承错误旧十精函数表 → C52/C53/C55/C56；
+- `yunqi.yunqi_hehui`：仅凭宫位相等自动制造合会 → C57；
+- `yunqi.yunqi_zongduan` / `yunqi.zonghe`：把位置、数值、自动同宫、云色和天气重新混层，仅保留历史展示意义。
 
 未知旧实现不因“未登记”自动变 canonical。
+
+C60 扩展后的 clean baseline：
+
+`1197 passed / 0 failed`
 
 详细记录：
 
 - `sources/c60-legacy-formula-quarantine-record.md`
 - `tests/test_c60_legacy_formula_quarantine.py`
+- `tests/reports/c60_validation.md`
 
 ## 9.54 后续 C61+
 
