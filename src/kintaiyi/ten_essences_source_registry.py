@@ -108,6 +108,123 @@ TEN_ESSENCES = (
     },
 )
 
+
+FOCUS_FORMULA_SKELETONS = {
+    "帝符": {
+        "big_cycle": 200,
+        "small_cycle": 20,
+        "identity": "天节之使",
+        "route": {
+            "start": "阴主",
+            "mode": "顺行十六宫间之神",
+            "repeat_on": ["地主", "高丛", "大威", "太簇", "坎", "离", "震", "兑"],
+            "status": "direct_complete_structure",
+        },
+        "surplus_variant": {
+            "value": 70,
+            "source_status": "explicitly_rejected_by_source",
+            "apply": False,
+            "note": "诸家经旨并无所加之术，依古法不取。",
+        },
+        "runtime_formula_ready": False,
+        "runtime_blocker": "十六神重留路线尚未写成独立可审计步进器。",
+    },
+    "太尊": {
+        "big_cycle": 40,
+        "small_cycle": 4,
+        "identity": "黄星之长",
+        "route": {
+            "source_text": "命起至大簇大威高丛逆行八六四四正之宫",
+            "status": "text_requires_collation",
+            "canonical_route": None,
+        },
+        "runtime_formula_ready": False,
+        "runtime_blocker": "正文路线OCR/断句未校清，不以旧mod4反推路线。",
+    },
+    "飞鸟": {
+        "big_cycle": 90,
+        "small_cycle": 9,
+        "identity": "弋七星之使、朱雀之体",
+        "route": {
+            "source_text": "命起一宫阴德，顺行九宫",
+            "status": "route_start_layout_requires_collation",
+            "canonical_route": None,
+        },
+        "surplus_variant": {
+            "value": 3,
+            "source_status": "explicitly_rejected_by_source",
+            "apply": False,
+            "note": "古法皆无所加，故不取用。",
+        },
+        "same_name_boundary": {
+            "j4m11_external_bird_observation": False,
+            "policy": "十精飞鸟是推步神位；J4M-11飞鸟是外部观测，不得互相代替。",
+        },
+        "runtime_formula_ready": False,
+        "runtime_blocker": "九宫起行布局尚需逐字校清；旧config.flybird的8周期已判冲突。",
+    },
+    "八风": {
+        "big_cycle": 90,
+        "small_cycle": 9,
+        "identity": "毕星之使",
+        "route": {
+            "source_text": "命起大威二宫，次和德三宫，顺行九宫",
+            "status": "route_sequence_requires_full_collation",
+            "canonical_route": None,
+        },
+        "surplus_variant": {
+            "year": 4,
+            "month_day_hour": 2,
+            "source_status": "explicitly_rejected_by_source",
+            "apply": False,
+            "note": "古法不载，故不取用。",
+        },
+        "runtime_formula_ready": False,
+        "runtime_blocker": "完整九宫序尚未逐项展开核定。",
+    },
+    "五风": {
+        "big_cycle": 90,
+        "small_cycle": 9,
+        "identity": "箕星之使",
+        "route": {
+            "sequence": [1, 3, 5, 7, 9, 2, 4, 6, 8],
+            "mode": "先阳后阴次第",
+            "status": "direct_complete_sequence",
+        },
+        "surplus_variant": {
+            "year": 3,
+            "day": 6,
+            "source_status": "explicitly_rejected_by_source",
+            "apply": False,
+            "note": "古法不载，故不取用。",
+        },
+        "runtime_formula_ready": False,
+        "runtime_blocker": "C52只登记来源；位置runtime留待独立规则与边界测试。",
+    },
+    "三风": {
+        "big_cycle": 90,
+        "small_cycle": 9,
+        "identity": "心星之使",
+        "route": {
+            "source_sequence": [3, 7, 2, 6, 1, 5, 4, 8],
+            "status": "source_sequence_incomplete_or_ocr_requires_collation",
+            "canonical_route": None,
+            "note": "当前见证仅显八项，而小周为9；不得自行补第九项。",
+        },
+        "surplus_variant": {
+            "year": 8,
+            "month": 5,
+            "day": 2,
+            "hour": 5,
+            "source_status": "explicitly_rejected_by_source",
+            "apply": False,
+            "note": "古法无此，故不取用。",
+        },
+        "runtime_formula_ready": False,
+        "runtime_blocker": "第九路线项未校清。",
+    },
+}
+
 NAME_ALIASES = {
     "天皇": "天皇",
     "帝符": "帝符",
@@ -272,6 +389,7 @@ def ten_essence_record(name: str, *, allow_legacy_alias: bool = False) -> dict[s
         "source_profile": "tongzong_ten_essences_registry",
         "source_witness": copy.deepcopy(SOURCE_WITNESS),
         **copy.deepcopy(row),
+        "formula_skeleton": copy.deepcopy(FOCUS_FORMULA_SKELETONS.get(canonical)),
         "runtime_formula_ready": False,
     }
 
@@ -286,12 +404,13 @@ def ten_essences_registry() -> dict[str, Any]:
         "essences": copy.deepcopy(list(TEN_ESSENCES)),
         "legacy_name_audit": copy.deepcopy(LEGACY_NAME_AUDIT),
         "legacy_formula_audit": copy.deepcopy(LEGACY_FORMULA_AUDIT),
+        "focus_formula_skeletons": copy.deepcopy(FOCUS_FORMULA_SKELETONS),
         "cloud_omen_boundary": copy.deepcopy(CLOUD_OMEN_BOUNDARY),
         "target_policy": copy.deepcopy(TARGET_POLICY),
         "position_runtime_ready": False,
         "cloud_runtime_ready": False,
         "policy": (
-            "C52只确认名单、次序、小周数与来源边界；"
-            "旧位置公式无论周期是否相合都不能自动升为canonical。"
+            "C52确认名单、次序、小周数，并登记已核的公式骨架与未决点；"
+            "公式骨架不等于runtime就绪。旧位置公式无论周期是否相合都不能自动升为canonical。"
         ),
     }
