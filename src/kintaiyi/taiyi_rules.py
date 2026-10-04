@@ -77,7 +77,7 @@ def dashen_qi(anchor):
 def calc_components(n):
     """R-CAL-01：十/五/一存在结构，不自动赋予古籍俱足标签。"""
     integer(n, 1, 40)
-    return {"ten": n >= 10, "five": n % 10 >= 5, "one": n % 10 != 0}
+    unit = n % 10\n    return {"ten": n >= 10, "five": unit >= 5, "one": unit % 5 != 0}
 
 
 def sexagenary_year(value):
