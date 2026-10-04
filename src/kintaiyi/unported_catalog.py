@@ -142,10 +142,15 @@ for key in (
     )
 
 CATALOG["推太乙風雲飛鳥助戰法"] = _entry(
-    "pending", "jinjing_v4_J4M-11_and_tongzong_variants", "P1",
-    "define_observation_model_then_split_sources", migrate_whole=False,
-    source_confidence="high", target_hint="analysis.military.weather_bird_support",
-    notes="需要显式风云飞鸟观测；无观测应not_computable。",
+    "source_variant", "jinjing_siku_volume4_J4M-11_vs_legacy_flybird_wl", "P1",
+    "use_structured_j4m11_observation_profile", migrate_whole=False,
+    source_confidence="high",
+    target_hint="source_variants.military.weather_bird_support",
+    notes=(
+        "J4M-11 已有完整 source-specific runtime，并要求显式外部风云飞鸟观测。"
+        "旧 flybird_wl 仅从盘内飞鸟位置生成断语，已降为 legacy quarantine，"
+        "不得再作为未迁移公式候选。"
+    ),
 )
 
 CATALOG["釋格局"] = _entry(
@@ -171,16 +176,27 @@ for key in ("三旗行宮", "九宮貴神"):
         ),
     )
 
-for key in ("太乙九星", "文昌九星"):
-    CATALOG[key] = _entry(
-        "canonical", "zitingjing_primary_tongzong_volume6_collation", "P1",
-        "migrate_rule_from_primary_source",
-        target_hint="analysis.zitingjing",
-        notes=(
-            "主要参考《太乙紫庭经》；旧pan以《太乙统宗宝鉴》卷六注释，"
-            "统宗保留为重要参校来源；用于校异、补证与版本比较，但不得静默覆盖《太乙紫庭经》主来源。"
-        ),
-    )
+CATALOG["太乙九星"] = _entry(
+    "canonical", "zitingjing_direct_primary_tongzong_volume6_collation", "P1",
+    "migrate_rule_from_verified_primary_source",
+    target_hint="source_variants.zitingjing",
+    notes=(
+        "《太乙紫庭经》〈释九宫所值九星〉直接正文已定位；"
+        "统宗卷六继续作参校，旧 flat 统宗结果只进入 collation_results。"
+    ),
+)
+
+CATALOG["文昌九星"] = _entry(
+    "pending", "zitingjing_catalog_attested_text_pending_tongzong_volume6_collation", "P1",
+    "await_primary_text_keep_collation_only", migrate_whole=False,
+    source_confidence="medium",
+    target_hint="source_variants.zitingjing",
+    notes=(
+        "目前仅有《太乙紫庭秘诀》目录“附太乙文昌九星值宫术”证据；"
+        "正文未取得，10年/30年周期又存在参校冲突。旧 flat 统宗实现只可进入"
+        " collation_results，不得升为《太乙紫庭经》primary_result。"
+    ),
+)
 
 for key in ("五運六氣", "五音之數"):
     CATALOG[key] = _entry(
