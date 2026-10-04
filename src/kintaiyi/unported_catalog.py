@@ -201,13 +201,25 @@ CATALOG["文昌九星"] = _entry(
     ),
 )
 
-for key in ("五運六氣", "五音之數"):
-    CATALOG[key] = _entry(
-        "source_variant", "tongzong_volume3_and_volume10", "P1",
-        "split_cross_volume_sources", migrate_whole=False,
-        target_hint="source_variants.wuyun_wuyin",
-        notes="参考pan注释本身标卷三/卷十，不能压成单一来源。",
-    )
+CATALOG["五運六氣"] = _entry(
+    "source_variant", "tongzong_volume3_tongxing_vs_volume10_suihui", "P1",
+    "use_c37_split_profiles", migrate_whole=False,
+    target_hint="source_variants.wuyun_wuyin.wuyun_liuqi",
+    notes=(
+        "卷三为“统行五运六气”，卷十为“岁会五运六气”；"
+        "旧pan把两卷揉成一项，C37要求两profile并列后才算legacy replacement完成。"
+    ),
+)
+
+CATALOG["五音之數"] = _entry(
+    "canonical", "tongzong_volume3_direct", "P1",
+    "reuse_d8_03_core_with_volume3_source", migrate_whole=False,
+    target_hint="source_variants.wuyun_wuyin.wuyin_number",
+    notes=(
+        "五音之数与五音之元均直接列于统宗卷三，不属卷十。"
+        "算数到五音复用已校D8-03核心；禁止误用D8-08数有所主。"
+    ),
+)
 
 for key, volume in {
     "卷十二": "tongzong_volume12",
