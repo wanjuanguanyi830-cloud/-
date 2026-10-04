@@ -1,6 +1,7 @@
 from kintaiyi.jinjing_v4_military import (
     chenbing_xiangbei,
     chushi_fa,
+    j4m03_eye_element_from_god,
     j4m_low_dependency_catalog,
     qifu_fa,
     sanmen_jubu,
@@ -86,31 +87,80 @@ def test_j4m09_does_not_declare_decisive_readiness_without_doors_and_generals():
     assert blocked["decisive_ready"] is False
 
 
-def test_j4m03_host_guest_control_follows_explicit_five_element_examples():
+def test_j4m03_host_guest_control_follows_two_eye_five_element_examples():
     guest_wins = zhuke_xiangguan("木", "金")
     assert guest_wins["rule_id"] == "J4M-03"
     assert guest_wins["relation"] == "客关得主人"
     assert guest_wins["winner"] == "客"
-    assert guest_wins["fully_computable"] is False
-    assert guest_wins["day_nayin"]["status"] == "missing"
+    assert guest_wins["fully_computable"] is True
+    assert guest_wins["calculation_scope"] == "日计"
 
-    host_wins = zhuke_xiangguan("土", "水", day_nayin_element="金")
+    host_wins = zhuke_xiangguan("土", "水")
     assert host_wins["relation"] == "主人关得客"
     assert host_wins["winner"] == "主"
-    assert host_wins["day_nayin"]["status"] == "provided_role_pending"
+    assert host_wins["fully_computable"] is True
 
     no_control = zhuke_xiangguan("木", "水")
     assert no_control["relation"] is None
     assert no_control["winner"] is None
-    assert no_control["status"] == "no_control_relation_defined"
+    assert no_control["status"] == "ok"
+    assert no_control["canonical_outcome"] == "本条无相制关关系"
 
 
-def test_j4m03_does_not_invent_day_nayin_effect():
+def test_j4m03_can_resolve_elements_from_ancient_sixteen_god_table():
+    assert j4m03_eye_element_from_god("高丛") == "木"
+    assert j4m03_eye_element_from_god("太簇") == "金"
+    assert j4m03_eye_element_from_god("阳德") == "土"
+    assert j4m03_eye_element_from_god("地主") == "水"
+
+    source_example = zhuke_xiangguan(
+        host_eye_god="高丛",
+        guest_eye_god="太簇",
+    )
+    assert source_example["host_eye_element"] == "木"
+    assert source_example["guest_eye_element"] == "金"
+    assert source_example["relation"] == "客关得主人"
+    assert source_example["winner"] == "客"
+
+    second_example = zhuke_xiangguan(
+        host_eye_god="地主",
+        guest_eye_god="阴主",
+    )
+    assert second_example["host_eye_element"] == "水"
+    assert second_example["guest_eye_element"] == "土"
+    assert second_example["relation"] == "客关得主人"
+    assert second_example["winner"] == "客"
+
+
+def test_j4m03_legacy_day_nayin_input_is_quarantined_not_used():
     data = zhuke_xiangguan("木", "金", day_nayin_element="火")
     assert data["winner"] == "客"
-    assert data["day_nayin"]["value"] == "火"
-    assert data["day_nayin"]["status"] == "provided_role_pending"
-    assert data["fully_computable"] is False
+    assert data["legacy_day_nayin"]["value"] == "火"
+    assert data["legacy_day_nayin"]["status"] == "legacy_input_ignored"
+    assert data["fully_computable"] is True
+
+
+def test_j4m03_taojinge_same_or_generating_relation_is_collation_hint_only():
+    same = zhuke_xiangguan("木", "木")
+    assert same["winner"] is None
+    assert same["collation_hint"]["verdict"] == "二阵平"
+    assert same["collation_hint"]["canonical_override"] is False
+
+    generating = zhuke_xiangguan("金", "土")
+    assert generating["winner"] is None
+    assert generating["collation_hint"]["verdict"] == "相生则和解"
+    assert generating["collation_hint"]["canonical_override"] is False
+
+
+def test_j4m03_requires_day_count_scope_and_disambiguates_eye_names():
+    wrong_scope = zhuke_xiangguan("木", "金", calculation_scope="时计")
+    assert wrong_scope["computable"] is False
+    assert wrong_scope["required_scope"] == "日计"
+
+    data = zhuke_xiangguan("木", "金")
+    assert "文昌" in data["eye_role_convention"]["主"]
+    assert "始击" in data["eye_role_convention"]["客"]
+    assert "多义" in data["eye_role_convention"]["warning"]
 
 
 def test_j4m05_campaign_requires_calc_doors_generals_and_lucky_gate():
@@ -180,8 +230,8 @@ def test_j4m10_qifu_keeps_each_source_condition_separate():
 
 def test_low_dependency_catalog_is_explicitly_partial():
     catalog = j4m_low_dependency_catalog()
-    assert catalog["implemented"] == ["J4M-01", "J4M-02", "J4M-04", "J4M-05", "J4M-06", "J4M-07", "J4M-08", "J4M-09", "J4M-10", "J4M-11", "J4M-12"]
-    assert catalog["partial"] == ["J4M-03"]
+    assert catalog["implemented"] == ["J4M-01", "J4M-02", "J4M-03", "J4M-04", "J4M-05", "J4M-06", "J4M-07", "J4M-08", "J4M-09", "J4M-10", "J4M-11", "J4M-12"]
+    assert catalog["partial"] == []
     assert catalog["pending"] == []
 
 
