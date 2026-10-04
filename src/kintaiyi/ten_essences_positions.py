@@ -1,4 +1,4 @@
-"""C53 十精位置 runtime：飞鸟、五风、太尊、八风、三风。
+"""C53 九宫/四正型十精位置 runtime：飞鸟、五风、太尊、八风、三风、五行。
 
 直接来源：
 - 《太乙统宗宝鉴》十精太乙所主
@@ -31,40 +31,6 @@ PALACE_LABELS = {
     7: "坤",
     8: "坎",
     9: "巽",
-}
-
-SIXTEEN_SPIRIT_LOCATIONS = {
-    "武德": "申",
-    "大簇": "酉",
-    "阴主": "戌",
-    "阳德": "乾",
-    "大义": "亥",
-    "地主": "子",
-    "阴德": "丑",
-    "和德": "艮",
-    "吕申": "寅",
-    "高丛": "卯",
-    "太阳": "辰",
-    "大炅": "巽",
-    "大神": "巳",
-    "大威": "午",
-    "天道": "未",
-    "大武": "坤",
-}
-
-DIFU_PATHS = {
-    "阳": (
-        "阴主", "阳德", "大义", "地主", "地主",
-        "阴德", "和德", "吕申", "高丛", "高丛",
-        "太阳", "大炅", "大神", "大威", "大威",
-        "天道", "大武", "武德", "大簇", "大簇",
-    ),
-    "阴": (
-        "太阳", "大炅", "大神", "大威", "大威",
-        "天道", "大武", "武德", "大簇", "大簇",
-        "阴主", "阳德", "大义", "地主", "地主",
-        "阴德", "和德", "吕申", "高丛", "高丛",
-    ),
 }
 
 FLYBIRD_PATHS = {
@@ -141,26 +107,6 @@ SOURCE_WITNESS = {
         ),
         "source_status": "direct_primary_with_collation_variant",
     },
-    "帝符": {
-        "work": "太乙统宗宝鉴",
-        "witness_volumes": [18, 20],
-        "big_cycle": 200,
-        "small_cycle": 20,
-        "tongzong": (
-            "命起阴主，顺行十六宫间之神；"
-            "遇地主、高丛、大威、大簇四正之地重留一算；"
-            "阴局取阳局对冲"
-        ),
-        "wujing_zongyao": (
-            "帝符小周二十，命起阴主，顺行十六神，"
-            "至地主、高丛、大威、大簇重留一算"
-        ),
-        "taibai_bingbei": (
-            "阳起戌阴主，阴起辰太阳，顺行正间十六宫；"
-            "行至坎震离兑四正之宫重留一算"
-        ),
-        "source_status": "direct_route_with_independent_collation",
-    },
     "五行": {
         "work": "太乙统宗宝鉴",
         "witness_volumes": [18, 20],
@@ -200,16 +146,6 @@ LEGACY_AUDIT = {
         "direct_small_cycle": 9,
         "issue": "旧%8并按八宫表返回，遗漏中五且与直接小周9冲突。",
     },
-    "config.kingfu": {
-        "canonical_equivalent": False,
-        "legacy_outer_modulus": 20,
-        "direct_big_cycle": 200,
-        "direct_small_cycle": 20,
-        "issue": (
-            "旧函数只按%20旋转且未显式保存四正重留20步路径；"
-            "C53按直接十六神路线重建。"
-        ),
-    },
     "config.wuxing": {
         "canonical_equivalent": False,
         "legacy_outer_modulus": 5,
@@ -248,11 +184,6 @@ LEGACY_AUDIT = {
 }
 
 SURPLUS_REJECTION = {
-    "帝符": {
-        "legacy_or_variant_surplus": {"spirit": 70},
-        "apply": False,
-        "reason": "正文明确诸家经旨并无所加之术，依古法不取神盈差七十。",
-    },
     "飞鸟": {
         "legacy_or_variant_surplus": {"palace": 3},
         "apply": False,
@@ -422,44 +353,6 @@ def wuxing_position(accumulated_count: int, *, dun: str) -> dict[str, Any]:
     )
 
 
-def difu_position(accumulated_count: int, *, dun: str) -> dict[str, Any]:
-    """十精帝符位置：200大周、20小周、十六神四正重留。"""
-    dun = _dun(dun)
-    cycle = _cycle_state(
-        accumulated_count,
-        big_cycle=200,
-        small_cycle=20,
-    )
-    path = DIFU_PATHS[dun]
-    index = cycle["small_cycle_year"] - 1
-    spirit = path[index]
-
-    return {
-        "schema_version": "1.0",
-        "canonical": C53_VERSION,
-        "rule_id": "C53-DIFU",
-        "source_profile": "tongzong_ten_essences_positions",
-        "essence": "帝符",
-        "dun": dun,
-        **cycle,
-        "path": list(path),
-        "path_index": index + 1,
-        "spirit": spirit,
-        "location": SIXTEEN_SPIRIT_LOCATIONS[spirit],
-        "repeated_stop": (
-            index > 0 and path[index - 1] == spirit
-        ),
-        "surplus_applied": False,
-        "surplus_policy": copy.deepcopy(SURPLUS_REJECTION["帝符"]),
-        "source_witness": copy.deepcopy(SOURCE_WITNESS["帝符"]),
-        "cloud_omen_applied": False,
-        "policy": (
-            "帝符按十六神源路径建20步小周，地主/高丛/大威/大簇各重留一次。"
-            "阴局使用对冲起点太阳；不采用被正文否定的神盈差七十。"
-        ),
-    }
-
-
 def c53_runtime_catalog() -> dict[str, Any]:
     return {
         "canonical": C53_VERSION,
@@ -470,10 +363,14 @@ def c53_runtime_catalog() -> dict[str, Any]:
             "C53-EIGHTWIND",
             "C53-THREEWIND",
             "C53-WUXING",
-            "C53-DIFU",
         ],
-        "implemented": ["飞鸟", "五风", "太尊", "八风", "三风", "五行", "帝符"],
-        "pending": ["天皇", "天时", "太乙数"],
+        "implemented": ["飞鸟", "五风", "太尊", "八风", "三风", "五行"],
+        "delegated_position_runtimes": {
+            "天皇": "C55-TIANHUANG",
+            "帝符": "C55-DIFU",
+        },
+        "number_runtime": "C54-TAIYI-NUMBER",
+        "pending": ["天时"],
         "legacy_audit": copy.deepcopy(LEGACY_AUDIT),
         "surplus_rejection": copy.deepcopy(SURPLUS_REJECTION),
         "cloud_omen_runtime": False,
