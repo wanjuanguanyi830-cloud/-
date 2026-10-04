@@ -159,9 +159,9 @@ RULE_UNITS: dict[str, dict[str, Any]] = {
         payload_key="雲氣逆順",
         source_title="云气所起逆顺",
         function_name="yunqi_nishun",
-        inputs=("home_cal", "away_cal", "cloud_from_palace"),
+        inputs=("home_cal", "away_cal", "cloud_from_direction"),
         dependency_class="external_observation",
-        external_inputs=("cloud_from_palace",),
+        external_inputs=("cloud_from_direction",),
     ),
     "V15-14": _rule(
         "V15-14", volume_profile="tongzong_volume15",
