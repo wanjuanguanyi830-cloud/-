@@ -26,3 +26,14 @@
 - 删除旧 `src/kintaiyi/modern_nayin_variant.py` 与 `rules/j4m03_nayin_variants.json`。
 - J4M-03 只保留古籍 canonical / ancient collation；旧 `wc_n_sj` 继续 quarantined。
 - 新增命名空间防回归测试，禁止旧 import / 旧 JSON 路径恢复。
+
+
+## 2026-10-05 — C39 紫庭旧术语库恢复骨架
+
+- 确认研易楼藏明钞《太乙紫庭祕訣》此前已在本地术语库做过初步整理。
+- 当前 GitHub 尚未迁入本地 `terminology.json`，因此不重新做全文术语扫描。
+- 新增 `terminology/zitingjing-migration-map.json`。
+- 固定六项紫庭相关术语到当前 rule/source key 的恢复映射。
+- `manuscript_form` 与 `source_page` 在旧术语库或扫描页恢复前必须保持 null。
+- 文昌九星外部异文仅用于旧词条命中，不得代填研易楼本 canonical 字形。
+- 三旗行宫 / 九宫贵神即使旧术语库存在词条，也不能单凭词条存在升级紫庭来源等级。
