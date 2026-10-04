@@ -863,197 +863,158 @@ replacement path 分别指向具体 `source_variants.*.profiles`。
 
 详细记录见 `sources/c17-source-profiles-record.md`。
 
-## 9.11 C18 《太乙紫庭经》主来源 / 统宗参校层（已实施第一阶段）
+## 9.11 C18 紫庭项目主来源目标 / 统宗参校层（证据分级）
 
-P1 前六项已经建立来源容器：
+P1 六项继续放在同一来源容器中，但**不再一概宣称“紫庭主来源已确认”**：
 
-- 太乙九星 / 文昌九星；
-- 文昌变化 / 始击变化；
-- 三旗行宫 / 九宫贵神。
+- 太乙九星
+- 文昌九星
+- 文昌变化
+- 始击变化
+- 三旗行宫
+- 九宫贵神
 
-### C18-01 来源层级
+### C18-01 三档证据
 
-固定：
+`direct_text_verified`：
 
-- **主要参考：《太乙紫庭经》**
-- **参校来源：《太乙统宗宝鉴》卷六 / 卷十**
-  - 太乙九星、文昌九星、文昌变化、始击变化：统宗卷六参校；
-  - 三旗行宫、九宫贵神：统宗卷十参校。
+- 太乙九星
+- 文昌变化
+- 始击变化
 
-“参校”可用于校异、补证、版本对读；不得静默覆盖《太乙紫庭经》主来源。
+`catalog_attested_text_pending`：
 
-### C18-02 来源容器
+- 文昌九星
 
-新增 `src/kintaiyi/zitingjing_sources.py`。
+`project_attribution_unverified`：
 
-每条规则分别保存：
+- 三旗行宫
+- 九宫贵神
 
-- `primary_source="zitingjing"`
+统宗参校：
+
+- 前四项：卷六
+- 三旗 / 九宫贵神：卷十
+
+### C18-02 primary_result 门禁
+
+`src/kintaiyi/zitingjing_sources.py` 固定：
+
+- `primary_evidence_level`
+- `primary_result_allowed`
 - `primary_result`
-- `collation_sources`
 - `collation_results`
 - `canonical_selected`
 - `cross_source_merge=False`
 
-仅有统宗参校结果时：
+只有：
 
-- `primary_ready=False`
-- `canonical_selected=None`
-- `status="primary_pending"`
+`primary_evidence_level=direct_text_verified`
 
-只有存在《太乙紫庭经》结构化主来源结果时，才允许：
+才允许注入非空 `primary_result`。
 
-`canonical_selected="zitingjing"`
+目录证据或项目拟定归属均不能清除 C13 replacement gap。
 
 ### C18-03 legacy quarantine
 
-旧 `pan()` 中这六项当前实现来自统宗系代码，不能直接升为新 canonical。
-
-因此 C14 将它们改为 quarantined，并要求 replacement path 指向对应：
+旧 flat 六项继续 quarantined；replacement path 仍指向：
 
 `source_variants.zitingjing.rules.<rule>.primary_result`
 
-只有参校结果、没有主来源结果时，C13 replacement gap 仍然存在。
+这表示迁移必须等待对应主来源证据满足门槛，不表示六项都已经有紫庭 canonical。
 
-### C18-04 参校不是弃用
+详细记录：
 
-统宗卷六/卷十继续保留在 `collation_results` 中，用于：
+- `sources/c18-zitingjing-primary-record.md`
+- `sources/c20-zitingjing-pending-locators-record.md`
 
-- 校异；
-- 补证；
-- 对读；
-- 记录后世收录差异。
+## 9.12 C19 紫庭直接主来源第一批（已实施）
 
-禁止把“参校”理解为“不使用统宗”。
+已直接定位并结构化：
 
-详细记录见 `sources/c18-zitingjing-primary-record.md`。
+1. 太乙九星：〈释九宫所值九星〉
+2. 文昌变化：〈释天目变化〉
+3. 始击变化：〈始击变化〉核心层
 
-## 9.12 C19 《太乙紫庭经》直接主来源第一批（已实施）
+对应 runtime：
 
-识典在线见证已经直接定位：
-
-1. 〈释九宫所值九星〉
-2. 〈释天目变化〉
-3. 〈始击变化〉
-
-新增 `src/kintaiyi/zitingjing_primary.py`。
+`src/kintaiyi/zitingjing_primary.py`
 
 ### C19-01 太乙九星
 
-已结构化《太乙紫庭经》当前在线见证中的：
-
-- 1..9 九宫；
-- 天蓬、天芮、天冲、天辅、天禽、天心、天柱、天任、天英；
-- 九州分野；
-- 当前见证所记吉凶；
-- 二隐七彰、四吉五凶等来源级摘要。
-
-本批只建立静态主来源表，不把后世卷次的九星推步公式自动并入。
+保留当前在线见证的九宫、九星、分野、吉凶；天冲“凶”与统宗后出“吉”并列记录，不静默统一。
 
 ### C19-02 文昌变化
 
-按〈释天目变化〉结构化：
-
-- 文昌=天目；
-- 属土、辅相象；
-- 同宫=囚；
-- 前一宫=外迫；
-- 后一宫=内迫；
-- 相冲=对；
-- 文昌与始击同宫=二目相关；
-- 二目相关的主/客有利宫组。
-
-具体五行旺相算法保持独立，不在本篇重复实现。
+保存囚、内迫、外迫、对、二目相关等直接规则；旺相计算仍调用独立五行层。
 
 ### C19-03 始击变化
 
-按〈始击变化〉先固化第一层：
+核心身份 / 军事角色已固化；逐岁干×五行灾应表仍：
 
-- 荧惑之精；
-- 南方 / 夏 / 火；
-- 客目；
-- 利客、应敌；
-- 临军先举。
+`pending_textual_collation`
 
-逐岁干×五行灾应表暂记 `pending_textual_collation`，待完成OCR与异文校读。
+### C19-04 尚未形成 primary_result
 
-### C19-04 天冲吉凶异文
+- 文昌九星：有目录证据、正文待取得
+- 三旗行宫：紫庭归属尚未证实
+- 九宫贵神：紫庭归属尚未证实
 
-当前《太乙紫庭经》在线见证〈释九宫所值九星〉三宫天冲记“凶”，全表正好四吉五凶。
+`build_c19_verified_primary_results()` 只返回前三个 direct-text 项。
 
-同一在线书目后出的《太白兵备统宗宝鉴》卷十〈明太乙九星所主术〉则出现三宫天冲“吉”的读法。
-
-因此固定：
-
-- `primary_witness="凶"`
-- `collation_witness="吉"`
-- `resolution="preserve_both_no_silent_merge"`
-
-禁止无痕统一。
-
-### C19-05 尚未直接定位
-
-以下三项仍保持主来源 pending：
-
-- 文昌九星
-- 三旗行宫
-- 九宫贵神
-
-不得用统宗参校公式回填 `primary_result`。
-
-`build_c19_verified_primary_results()` 当前只提供：
-
-- taiyi_nine_stars
-- wenchang_changes
-- shiji_changes
-
-送入 C18 source container 后，六项 replacement gap 从 6 降为 3。
-
-详细记录见 `sources/c19-zitingjing-primary-verified-record.md`。
-
-## 9.13 C20 《太乙紫庭经》剩余三项证据分层（已实施）
+## 9.13 C20 剩余三项证据分层（已实施修正）
 
 ### C20-01 文昌九星
 
-已找到《太乙紫庭秘诀》现代整理本目录线索：
+两份现代整理本《太乙紫庭秘诀》目录均列：
 
 `附太乙文昌九星值宫术`
 
-因此状态改为：
+状态：
 
 `catalog_attested_primary_text_pending`
 
-这只证明主来源系统中的术目归属；尚未取得可逐条校读的直接正文，所以不得生成 `primary_result`。
+这足以证明其与紫庭传本系统的目录关联，但不足以结构化正文，因此：
 
-### C20-02 三旗行宫 / 九宫贵神
+- `primary_result_allowed=False`
+- 继续寻找直接正文
 
-两项继续保留：
+### C20-02 三旗行宫
 
-`primary_source = 太乙紫庭经`
+已查的《太乙紫庭秘诀》十二卷及附录目录中**未见“三旗行宫”同名题目**。
 
-但当前直接可定位的是《太乙统宗宝鉴》卷十参校文本：
+状态：
 
-- 三旗：〈明太乙与三旗行宫会合术〉
-- 九宫贵神：〈明太乙九宫贵神术〉
+`project_primary_attribution_unverified`
 
-状态统一：
+《太乙统宗宝鉴》卷十有直接可定位：
 
-`project_primary_attribution_direct_text_pending`
+〈明太乙与三旗行宫会合术〉
 
-统宗文本只作 collation，不得反填 primary。
+因此 P1 目录改为 `source_variant`，在证明紫庭归属前不得标为紫庭 canonical。
 
-### C20-03 证据等级
+### C20-03 九宫贵神
 
-后续必须区分：
+已查的紫庭秘诀目录中**未见“九宫贵神”同名题目**。
 
-1. direct primary text
-2. catalog-attested primary affiliation
-3. project primary attribution
-4. collation text
+状态：
 
-只有第 1 级可直接生成 primary_result。
+`project_primary_attribution_unverified`
 
-详细记录见 `sources/c20-zitingjing-pending-locators-record.md`。
+《太乙统宗宝鉴》卷十有直接可定位：
+
+〈明太乙九宫贵神术〉
+
+唐王起〈定祀九宫仪注议〉可证明更早的九宫贵神系统背景，但不是紫庭正文。
+
+### C20-04 后续顺序
+
+优先：
+
+1. 继续找“附太乙文昌九星值宫术”直接正文；
+2. 始击变化逐岁干×五行灾应表校读；
+3. 三旗 / 九宫贵神只有发现紫庭目录或正文证据后才升级 attribution；
+4. 若长期无紫庭证据，可另建统宗卷十 direct source profile，但不得反标为紫庭。
 
 ## 9.14 C21 卷十五 / 卷十七军事 derived profiles（已实施）
 
