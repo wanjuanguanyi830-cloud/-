@@ -16,31 +16,37 @@ RULES = {
     "taiyi_nine_stars": {
         "legacy_name": "太乙九星",
         "primary_source": PRIMARY_SOURCE_ID,
+        "primary_evidence_level": "direct_text_verified",
         "collation_sources": ["tongzong_volume6"],
     },
     "wenchang_nine_stars": {
         "legacy_name": "文昌九星",
         "primary_source": PRIMARY_SOURCE_ID,
+        "primary_evidence_level": "catalog_attested_text_pending",
         "collation_sources": ["tongzong_volume6"],
     },
     "wenchang_changes": {
         "legacy_name": "文昌变化",
         "primary_source": PRIMARY_SOURCE_ID,
+        "primary_evidence_level": "direct_text_verified",
         "collation_sources": ["tongzong_volume6"],
     },
     "shiji_changes": {
         "legacy_name": "始击变化",
         "primary_source": PRIMARY_SOURCE_ID,
+        "primary_evidence_level": "direct_text_verified",
         "collation_sources": ["tongzong_volume6"],
     },
     "three_banners": {
         "legacy_name": "三旗行宫",
         "primary_source": PRIMARY_SOURCE_ID,
+        "primary_evidence_level": "project_attribution_unverified",
         "collation_sources": ["tongzong_volume10"],
     },
     "nine_palace_nobles": {
         "legacy_name": "九宫贵神",
         "primary_source": PRIMARY_SOURCE_ID,
+        "primary_evidence_level": "project_attribution_unverified",
         "collation_sources": ["tongzong_volume10"],
     },
 }
@@ -69,8 +75,25 @@ def build_zitingjing_rule_sources(
     if unknown:
         raise ValueError(f"未知参校来源: {', '.join(unknown)}")
 
+    evidence_level = meta["primary_evidence_level"]
+    primary_result_allowed = evidence_level == "direct_text_verified"
+    if primary_result is not None and not primary_result_allowed:
+        raise ValueError(
+            f"{rule_key}尚无可逐条校读的《太乙紫庭经》直接正文，"
+            "不得注入primary_result"
+        )
+
     primary = copy.deepcopy(primary_result) if primary_result is not None else None
     primary_ready = isinstance(primary, dict) and bool(primary)
+
+    if primary_ready:
+        status = "primary_ready"
+    elif evidence_level == "direct_text_verified":
+        status = "primary_pending"
+    elif evidence_level == "catalog_attested_text_pending":
+        status = "primary_text_pending"
+    else:
+        status = "primary_attribution_unverified"
 
     return {
         "schema_version": "1.0",
@@ -79,16 +102,19 @@ def build_zitingjing_rule_sources(
         "legacy_name": meta["legacy_name"],
         "primary_source": meta["primary_source"],
         "primary_source_title": PRIMARY_SOURCE_TITLE,
+        "primary_evidence_level": evidence_level,
+        "primary_result_allowed": primary_result_allowed,
         "primary_result": primary,
         "primary_ready": primary_ready,
         "collation_sources": list(meta["collation_sources"]),
         "collation_results": collations,
         "canonical_selected": "zitingjing" if primary_ready else None,
         "cross_source_merge": False,
-        "status": "primary_ready" if primary_ready else "primary_pending",
+        "status": status,
         "policy": (
-            "《太乙紫庭经》为主要参考；《太乙统宗宝鉴》仅作参校。"
-            "参校可用于校异、补证、版本比较，但不得静默覆盖主来源。"
+            "《太乙紫庭经》是项目拟定的主来源目标，但证据等级必须逐条记录。"
+            "只有已定位直接正文的项目可注入primary_result；目录证据或项目归属"
+            "不能代替正文。统宗只作参校，不得静默覆盖。"
         ),
     }
 
@@ -126,7 +152,8 @@ def build_zitingjing_p1_sources(
         "primary_source_title": PRIMARY_SOURCE_TITLE,
         "rules": rules,
         "cross_source_merge": False,
-        "policy": "六项规则均以《太乙紫庭经》为主来源，统宗卷六/卷十只作参校。",
+        "policy": ("六项均保留《太乙紫庭经》为项目主来源目标，但证据等级不同；"
+                   "只有direct_text_verified可生成primary_result。统宗卷六/卷十只作参校。"),
     }
 
 
