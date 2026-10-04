@@ -452,11 +452,56 @@ builder 输出可直接由 C10 `v2_consumer.py` 消费。
 
 详细记录见 `sources/c11-pan-v2-builder-record.md`。
 
-## 9.4 后续 C12+
+## 9.4 C12 legacy pan snapshot adapter（已实施第一阶段）
 
-- 等真正 `Taiyi.pan()` 或应用入口进入目标仓库后，把 snapshot 接入 `build_pan_v2`。
-- UI/CLI 只读 C10 view model。
-- 继续清理旧 flat schema，仅保留显式 compat 投影，不让旧字段重新成为算法真源。
+新增 `src/kintaiyi/pan_adapter.py`，用于未来把旧 `Taiyi.pan()` flat snapshot 接到 C11 `build_pan_v2`。
+
+### C12-01 只搬事实
+
+允许从旧 snapshot 搬运明确盘面事实：
+
+- meta/calendar
+- 太乙落宫与旧 sector
+- 文昌/始击/定目
+- 主算/客算/定算旧容器
+- 主将/主参/客将/客参
+- 八门
+- 君基/臣基/民基、五福、大小游
+
+adapter 不调用任何古法算法。
+
+### C12-02 隔离旧混合层
+
+旧 `軍事戰略`、旧七术顶层断语、旧 `運籌博弈分析` 等不得自动提升为 v2。
+
+它们只进入 `compat.quarantined_legacy_keys` 审计记录，并固定：
+
+- `legacy_analysis_promoted=False`
+- `legacy_modern_promoted=False`
+
+### C12-03 structured 输入必须显式提供
+
+新的 `analysis.eight_divinations`、`analysis.seven_methods`、`analysis.military` 和 `modern.game_theory` 由调用方显式传入。
+
+不得从旧 prose/string 断语反推。
+
+### C12-04 scenario 不推断
+
+scenario 只接受 C11 三个 canonical 字段；不得从客将、客参等旧盘字段自动生成敌军事件输入。
+
+### C12-05 兼容接线
+
+`attach_v2_to_snapshot(...)` 返回旧 snapshot 副本并新增 `result["v2"]`，不原地修改输入。
+
+未来真正 `Taiyi.pan()` 进入目标仓库时，只需在 return 前调用本适配器；新 UI/CLI 继续只读 C10 strict consumer。
+
+详细记录见 `sources/c12-pan-adapter-record.md`。
+
+## 9.5 后续 C13+
+
+- 当真正 `Taiyi.pan()` / CLI / UI 文件进入目标仓库后进行实际接线。
+- 为 legacy flat schema 增加弃用审计/迁移统计，而不是删除兼容输出。
+- 继续把未迁移卷次按 canonical/source_variant/derived/pending 分层，避免全部塞进 analysis。
 
 ## 10. 验收
 
