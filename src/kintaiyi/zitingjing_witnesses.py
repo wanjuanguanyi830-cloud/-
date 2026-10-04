@@ -50,6 +50,8 @@ WITNESSES = {
         "user_previously_provided_manuscript_file": True,
         "current_session_file_index_status": "not_retrievable_in_current_file_index",
         "direct_text_reinspection_status": "pending_reinspection_from_previously_provided_file",
+        "prior_terminology_extraction_status": "preliminary_completed_locally",
+        "prior_terminology_repository_status": "local_terminology_json_not_migrated",
         "modern_edition": {
             "title": "太乙紫庭秘诀",
             "editor": "吴炜维",
