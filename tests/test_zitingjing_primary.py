@@ -81,9 +81,12 @@ def test_c19_catalog_marks_only_three_direct_primary_items_as_implemented():
         "three_banners",
         "nine_palace_nobles",
     ]
-    assert data["locators"]["wenchang_nine_stars"]["status"] == "pending_direct_locator"
-    assert data["locators"]["three_banners"]["status"] == "pending_direct_locator"
-    assert data["locators"]["nine_palace_nobles"]["status"] == "pending_direct_locator"
+    assert data["locators"]["wenchang_nine_stars"]["status"] == "catalog_attested_primary_text_pending"
+    assert data["locators"]["wenchang_nine_stars"]["catalog_witness"]["evidence"] == "目录列“附太乙文昌九星值宫术”"
+    assert data["locators"]["three_banners"]["status"] == "project_primary_attribution_direct_text_pending"
+    assert data["locators"]["three_banners"]["collation_locator"]["source"] == "太乙统宗宝鉴卷十"
+    assert data["locators"]["nine_palace_nobles"]["status"] == "project_primary_attribution_direct_text_pending"
+    assert data["locators"]["nine_palace_nobles"]["collation_locator"]["source"] == "太乙统宗宝鉴卷十"
 
 
 def test_verified_primary_results_clear_only_three_of_six_c18_gaps():
