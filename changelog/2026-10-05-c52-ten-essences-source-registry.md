@@ -13,3 +13,7 @@
 - C15 六个旧顶层字段改为 source verified / formula pending。
 - 本批不扩展 pan v2 contract，不写入 cycles。
 - clean CI：1006 passed / 0 failed。
+
+- C53 已实现飞鸟、五风、太尊、八风、三风、五行六项位置 runtime。
+- C52 registry 改为记录 partial runtime 状态，不再把六项全部写成 pending。
+- 天时起点冲突继续 unresolved；帝符重留步进继续 pending；太乙数留待独立数值层。
