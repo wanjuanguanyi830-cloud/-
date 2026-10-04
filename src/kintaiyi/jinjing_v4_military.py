@@ -101,6 +101,39 @@ _TERRAIN_ARMS = {
 }
 
 
+_J4M11_ANCHORS = {"太乙所在宫", "大将宫", "主目", "客目", "主人形", "太岁", "太阴", "月建", "主人阵", "客阵", "阵中"}
+_J4M11_PHENOMENA = {"风", "云", "飞鸟", "风云", "风云飞鸟"}
+
+_YUNQI_TABLE = {
+    "北": {
+        "黑": {"verdict": "大胜", "qi_class": "胜气", "day_stems_good": ["壬", "癸"]},
+        "白": {"verdict": "欲罢阵求和", "qi_class": "和解"},
+        "青": {"verdict": "将宽缓，急击则平", "qi_class": "迟缓"},
+        "红": {"verdict": "客胜", "qi_class": "客胜"},
+        "黄": {"verdict": "大败", "qi_class": "败气", "day_stems_bad": ["壬", "癸"]},
+    },
+    "南": {
+        "赤": {"verdict": "大胜", "qi_class": "胜气", "day_stems_good": ["丙", "丁"]},
+        "青": {"verdict": "欲罢阵求解", "qi_class": "和解"},
+        "黄": {"verdict": "将迟钝，急击则平", "qi_class": "迟缓"},
+        "白": {"verdict": "失利", "qi_class": "不利"},
+        "黑": {"verdict": "大败", "qi_class": "败气", "day_stems_bad": ["丙", "丁"]},
+    },
+    "西": {
+        "白": {"verdict": "大胜", "qi_class": "胜气", "day_stems_good": ["庚", "辛"]},
+        "黄": {"verdict": "欲求解", "qi_class": "和解"},
+        "黑": {"verdict": "将宽缓，急击平", "qi_class": "迟缓"},
+        "青": {"verdict": "败", "qi_class": "败气"},
+        "赤": {"verdict": "大败", "qi_class": "败气", "day_stems_bad": ["庚", "辛"]},
+    },
+    "东": {
+        "青": {"verdict": "大胜", "qi_class": "胜气", "day_stems_good": ["甲", "乙"]},
+        "黑": {"verdict": "欲求和", "qi_class": "和解"},
+        "赤": {"verdict": "将迟钝，然不可击", "qi_class": "迟缓勿击"},
+        "黄": {"verdict": "大败", "qi_class": "败气", "day_stems_bad": ["甲", "乙"]},
+    },
+}
+
 def _base(rule_id, name):
     return {
         "ruleset": J4M_RULESET,
@@ -690,12 +723,278 @@ def qifu_fa(*, army_size=None, calc_value=None, tianmu_location=None,
     }
 
 
+
+def fengyun_feiniao_zhuzhan(events):
+    """J4M-11 推太乙风云飞鸟助战法。
+
+    events 必须是外部观测事实列表；每条只匹配正文明确事件。
+    不从太乙盘位、天气 API 或旧 flybird_wl 自动伪造观测。
+    """
+    result = _base("J4M-11", "推太乙风云飞鸟助战法")
+    if not events:
+        return {
+            **result,
+            "status": "not_computable",
+            "computable": False,
+            "events": events,
+            "judgments": [],
+            "policy": "无风、云、飞鸟外部观测时不得从盘内字段推造结果。",
+        }
+    if not isinstance(events, list) or any(not isinstance(e, dict) for e in events):
+        return {
+            **result,
+            "status": "not_computable",
+            "computable": False,
+            "events": events,
+            "judgments": [],
+            "policy": "events 必须是观测字典列表。",
+        }
+
+    judgments = []
+    for index, event in enumerate(events):
+        phenomenon = event.get("phenomenon")
+        action = event.get("action")
+        source_anchor = event.get("source_anchor")
+        target = event.get("target")
+        flag_broken = event.get("flag_broken")
+        birds_circling = event.get("birds_circling")
+        returning_wind = event.get("returning_wind")
+        crowd_noisy = event.get("crowd_noisy")
+
+        judgment = {
+            "index": index,
+            "phenomenon": phenomenon,
+            "action": action,
+            "source_anchor": source_anchor,
+            "target": target,
+            "matched": True,
+            "winner": None,
+            "loser": None,
+            "omen": None,
+            "source_case": None,
+        }
+
+        if phenomenon is not None and phenomenon not in _J4M11_PHENOMENA:
+            judgment.update(
+                matched=False,
+                source_case="未知观测类型",
+                note="只接受风、云、飞鸟及其组合；不类推其他自然现象。",
+            )
+        elif source_anchor == "太乙所在宫" and target == "太乙" and action in {"冲格", "迫击", "冲格迫击"}:
+            judgment.update(
+                omen="大败之兆",
+                source_case="太乙所在宫风云飞鸟冲格迫击太乙",
+            )
+        elif target == "大将宫" and action in {"迫击", "冲击"}:
+            judgment.update(
+                loser="主",
+                source_case="迫击大将宫",
+            )
+        elif source_anchor == "主目" and target == "客" and action in {"击", "去击"}:
+            judgment.update(
+                loser="客",
+                source_case="从主目上去击客",
+            )
+        elif source_anchor == "客目" and target == "主" and action == "击":
+            judgment.update(
+                loser="主",
+                source_case="从客目上击主",
+            )
+        elif source_anchor == "主人形" and action in {"来", "上来"}:
+            judgment.update(
+                loser="客",
+                source_case="从主人形上来",
+            )
+        elif source_anchor in {"太岁", "太阴", "月建"} and action == "击" and target in {"主人", "主"}:
+            judgment.update(
+                loser="主",
+                source_case=f"从{source_anchor}上来击主人",
+            )
+        elif source_anchor in {"太岁", "太阴", "月建"} and action == "击" and target == "客":
+            judgment.update(
+                loser="客",
+                source_case=f"从{source_anchor}上来击客",
+            )
+        elif action == "扶" and target in {"主人阵", "主阵"}:
+            judgment.update(
+                winner="主",
+                source_case="扶主人阵",
+            )
+        elif action == "扶" and target == "客阵":
+            judgment.update(
+                winner="客",
+                source_case="扶客阵",
+            )
+        elif returning_wind is True and birds_circling is True and flag_broken is True:
+            judgment.update(
+                omen="大败之兆",
+                source_case="回风起伏、飞鸟旋转阵中且旗折",
+            )
+        elif action == "冲突" and target in {"主人阵", "主阵"}:
+            judgment.update(
+                loser="主",
+                source_case="风云冲突主人阵",
+            )
+        elif action == "冲突" and target == "客阵":
+            judgment.update(
+                loser="客",
+                source_case="风云冲突客阵",
+            )
+        elif crowd_noisy is True or action == "噪阵":
+            judgment.update(
+                matched=False,
+                source_case="众来噪阵",
+                note="正文提及众来噪阵，但本句未单独明示其独立胜负结果，故只记观测不补断。",
+            )
+        else:
+            judgment.update(
+                matched=False,
+                source_case="正文未覆盖该观测组合",
+                note="不把旧 flybird_wl 或近似空间关系补入《金镜》卷四 canonical。",
+            )
+
+        judgments.append(judgment)
+
+    matched = [j for j in judgments if j["matched"]]
+    return {
+        **result,
+        "status": "ok" if matched else "not_defined_by_source_passage",
+        "computable": bool(matched),
+        "events": events,
+        "judgments": judgments,
+        "observation_schema": {
+            "phenomenon": sorted(_J4M11_PHENOMENA),
+            "source_anchor": sorted(_J4M11_ANCHORS),
+            "fields": [
+                "phenomenon", "action", "source_anchor", "target",
+                "returning_wind", "birds_circling", "flag_broken", "crowd_noisy",
+            ],
+        },
+        "policy": "逐条解释外部观测；允许同日多事件并存，不强制折算为单一总胜负。",
+    }
+
+
+def yunqi_dingshengfu(*, formation_direction=None, cloud_color=None,
+                      observed_formation="敌", day_stem=None,
+                      cloud_present=True, continuity=None,
+                      disorder=None, motion_advantage=None,
+                      over_general=None):
+    """J4M-12 推阵有风云气定胜负。
+
+    以“云气所覆阵的方位 + 颜色”为基础表，再分栏保存日干、聚散动静、
+    大将/参将位置修正。无云气时返回原文“无战或相匀”，不造胜负。
+    """
+    result = _base("J4M-12", "推阵有风云气定胜负")
+
+    if cloud_present is False:
+        return {
+            **result,
+            "status": "no_cloud",
+            "computable": True,
+            "cloud_present": False,
+            "verdict": None,
+            "source_note": "若都无云气，多少方分无战或复相匀",
+            "policy": "无云气不强判胜负。",
+        }
+
+    if cloud_present is not True:
+        return {
+            **result,
+            "status": "not_computable",
+            "computable": False,
+            "cloud_present": cloud_present,
+            "policy": "cloud_present 必须显式为 True/False。",
+        }
+
+    if formation_direction not in _YUNQI_TABLE:
+        return {
+            **result,
+            "status": "not_computable",
+            "computable": False,
+            "formation_direction": formation_direction,
+            "valid_directions": list(_YUNQI_TABLE),
+            "policy": "须给出云气所覆阵的东/南/西/北方位。",
+        }
+
+    table = _YUNQI_TABLE[formation_direction]
+    if cloud_color not in table:
+        return {
+            **result,
+            "status": "not_defined_by_source_passage",
+            "computable": False,
+            "formation_direction": formation_direction,
+            "cloud_color": cloud_color,
+            "defined_colors": list(table),
+            "policy": "该方位正文未列此颜色时保持未定义，不以五行生克补表。",
+        }
+
+    item = dict(table[cloud_color])
+    day_modifier = None
+    if day_stem is not None:
+        if day_stem in item.get("day_stems_good", []):
+            day_modifier = "弥佳"
+        elif day_stem in item.get("day_stems_bad", []):
+            day_modifier = "弥恶"
+
+    morphology = []
+    effective_verdict = item["verdict"]
+    qi_class = item["qi_class"]
+
+    if qi_class == "胜气":
+        if motion_advantage is True:
+            morphology.append("胜气动利：大胜")
+        if continuity == "断续" or disorder in {"南北溃乱", "溃乱"}:
+            morphology.append("虽得胜云气，断续不次或南北溃乱：反败")
+            effective_verdict = "败"
+    elif qi_class == "败气":
+        if continuity == "坚实" and motion_advantage is True:
+            morphology.append("败云气坚实而动利：保留原文修正，不擅自翻成确定胜负")
+        if continuity == "断续" or disorder in {"溃乱", "断续溃乱"}:
+            morphology.append("败气断续溃乱：不至全恶")
+
+    general_modifier = None
+    if over_general is not None:
+        if over_general not in {"大将", "参将"}:
+            general_modifier = "invalid_general_position"
+        elif qi_class == "胜气" and over_general == "大将":
+            general_modifier = "胜云气在大将上：大胜"
+        elif qi_class == "胜气" and over_general == "参将":
+            general_modifier = "胜云气在参将上：参将胜"
+        elif qi_class == "败气":
+            general_modifier = f"败云气在{over_general}上：原文曰反此，不扩写未明细节"
+        else:
+            general_modifier = f"{qi_class}不在正文“大将/参将胜败气”修正规则内"
+
+    return {
+        **result,
+        "status": "ok",
+        "computable": True,
+        "cloud_present": True,
+        "observed_formation": observed_formation,
+        "formation_direction": formation_direction,
+        "cloud_color": cloud_color,
+        "base_verdict": item["verdict"],
+        "qi_class": qi_class,
+        "day_stem": day_stem,
+        "day_modifier": day_modifier,
+        "continuity": continuity,
+        "disorder": disorder,
+        "motion_advantage": motion_advantage,
+        "morphology_modifiers": morphology,
+        "over_general": over_general,
+        "general_modifier": general_modifier,
+        "effective_verdict": effective_verdict,
+        "defined_color_table": {k: v["verdict"] for k, v in table.items()},
+        "policy": "基础颜色表、日干、云气聚散动静、所临将位分层；未知颜色/未明反义不以五行常识补齐。",
+    }
+
+
 def j4m_low_dependency_catalog():
     """供文档/UI 查询的已实现规则，不参与自动综合胜负。"""
     return {
         "ruleset": J4M_RULESET,
         "source_profile": J4M_SOURCE_PROFILE,
-        "implemented": ["J4M-01", "J4M-02", "J4M-05", "J4M-06", "J4M-07", "J4M-08", "J4M-09", "J4M-10"],
+        "implemented": ["J4M-01", "J4M-02", "J4M-05", "J4M-06", "J4M-07", "J4M-08", "J4M-09", "J4M-10", "J4M-11", "J4M-12"],
         "partial": ["J4M-03", "J4M-04"],
-        "pending": ["J4M-11", "J4M-12"],
+        "pending": [],
     }
