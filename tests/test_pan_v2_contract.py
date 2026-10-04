@@ -162,3 +162,30 @@ def test_c37_wuyun_wuyin_can_flow_through_structured_pan_contract():
     )
     assert payload["source_variants"]["wuyun_wuyin"]["wuyin_number"]["profiles"]["tongzong_volume3"]["rule_id"] == "C37-V3-WYIN"
     assert validate_structured_pan_v2(payload)["valid"] is True
+
+
+def test_c43_volume9_is_allowed_as_dedicated_source_variant_slot():
+    data = build_source_variants_contract(
+        volume9={
+            "ehui_limit": {
+                "legacy_replacement": {
+                    "source_replacement_complete": True,
+                    "rule_id": "C43-V9-EHUI",
+                }
+            }
+        }
+    )
+    assert set(data) == {"volume9"}
+    assert data["volume9"]["ehui_limit"]["legacy_replacement"]["rule_id"] == "C43-V9-EHUI"
+
+
+def test_c43_volume9_can_flow_through_structured_pan_contract():
+    payload = build_structured_pan_v2(
+        volume9_variants={
+            "ehui_limit": {
+                "result": {"rule_id": "C43-V9-EHUI"},
+            }
+        }
+    )
+    assert payload["source_variants"]["volume9"]["ehui_limit"]["result"]["rule_id"] == "C43-V9-EHUI"
+    assert validate_structured_pan_v2(payload)["valid"] is True
