@@ -2818,15 +2818,121 @@ clean CI：1006 passed / 0 failed。
 - `sources/c53-ten-essences-positions-record.md`
 - `tests/reports/c53_validation.md`
 
-## 9.47 后续 C54+
+## 9.47 C54 十精太乙数数值层（已实施）
+
+唯一 runtime：
+
+`src/kintaiyi/ten_essences_number.py`
+
+固定：
+
+- 周法 360；
+- 元法 72；
+- 输出范围 1..72；
+- 余0按周期末项处理；
+- 不把特殊数值自动解释为天气断语。
+
+旧 `yunqi.shijing_shu` 只认可 360→72 数值核心相合；其附带天气断语 wrapper 不得整体升为 canonical。
+
+详细记录：
+
+- `sources/c54-ten-essences-number-record.md`
+- `tests/reports/c54_validation.md`
+
+## 9.48 C55 天皇 / 帝符十六神重留（已实施）
+
+新增：
+
+`src/kintaiyi/ten_essences_sixteen_gods.py`
+
+### C55-01 天皇
+
+- 大周 200；
+- 小周 20；
+- 阳起申位武德；
+- 顺行十六神；
+- 阴德 / 和德 / 大炅 / 大武四维各重留一算；
+- 阴局按统宗取阳局对冲。
+
+20算为“16神 + 4处重留”，不是20个不同神位。
+
+### C55-02 帝符
+
+- 大周 200；
+- 小周 20；
+- 阳起戌位阴主；
+- 顺行十六神；
+- 地主 / 高丛 / 大威 / 太簇四正各重留一算；
+- 四神分别对应子 / 卯 / 午 / 酉；
+- 阴局按统宗取阳局对冲。
+
+旧来源骨架曾把四个神名与四个宫名并列为八项，现已更正为同四处的一一对应关系。
+
+### C55-03 异文不乱合
+
+《武经总要》另见天皇 / 帝符阴局逆行读法。
+
+C55 固定：
+
+- 统宗为主 profile；
+- 逆行读法只作 source variant；
+- 不静默合并成一条混合公式。
+
+帝符盈差见 17 / 70 异读，但正文明确不取；两值均保留见证且 `apply=False`。
+
+### C55-04 旧公式隔离
+
+旧：
+
+- `config.tian_wang`
+- `config.kingfu`
+
+即使小周20相合，也继续：
+
+`canonical_equivalent=False`
+
+因为 canonical 还要求明确十六神路线、四处重留、阴局对冲与盈差边界。
+
+### C55-05 当前十精状态
+
+已实现位置层：
+
+- C53：飞鸟、五风、太尊、八风、三风、五行；
+- C55：天皇、帝符。
+
+已实现数值层：
+
+- C54：太乙数。
+
+仍 pending：
+
+- 天时。
+
+天时冲突：
+
+- 统宗：阳局吕申（寅）起，阴局取对冲申；
+- 太白兵备：阳申、阴寅。
+
+因此当前不宣称跨来源唯一 canonical 起点。
+
+C55 收口 clean CI：
+
+`1080 passed / 0 failed`
+
+详细记录：
+
+- `sources/c55-ten-essences-sixteen-gods-record.md`
+- `tests/reports/c55_validation.md`
+
+## 9.49 后续 C56+
 
 下一优先级：
 
-1. 单独实现“太乙数”72数值层，不把它伪装成宫位；
-2. 天皇 / 帝符按十六神重留路线逐项建立可审计步进器；
-3. 天时先解决统宗 / 太白兵备起点冲突，再决定 source profile；
-4. 十精云气所主另起观察/合会层；
-5. 继续恢复旧 `terminology.json` 与文昌九星正文。
+1. 天时不强选统一起点，改建显式 source-profile runtime；
+2. 十精云气所主另起观察 / 合会层，不与位置、数值层混并；
+3. 继续恢复旧 `terminology.json` 与文昌九星直接正文；
+4. 对 C15 remaining pending / source_variant 做一次全局一致性清扫；
+5. 建立“错误公式隔离清单”，确保旧公式不会重新进入 canonical 调用链。
 
 ## 10. 验收
 
