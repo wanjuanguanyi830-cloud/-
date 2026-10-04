@@ -117,3 +117,101 @@ C59 又确认：
 - `C59-TAIYI-NUMBER-OMEN`
 
 不得只迁 C54 后保留旧天气 wrapper。
+
+
+## C57–C59 旧 yunqi 综合包装器隔离
+
+进一步审计旧 `yunqi.py` 后，新增以下 quarantine。
+
+### yunqi._YUNQI_COLOR
+
+不只白云一项有问题。旧整表还混入：
+
+- 黄5；
+- 黑6；
+- 红2/7；
+
+等当前“太乙初移宫云色时变”直接条文未支持的独立计数 / 色名。
+
+因此整表不得整体升格。
+
+replacement：
+
+- `C58-CLOUD-TIMING`
+- `C58-WEATHER-OBSERVATION`
+
+### yunqi._shu_duanyu
+
+旧特殊数断语同时存在：
+
+- 数10独立“大风”无直接条文；
+- 数5独立“地数”无直接天气条文；
+- 把数40的黄雾混入数50；
+- 没有保存数50句读异文。
+
+replacement：
+
+`C59-TAIYI-NUMBER-OMEN`
+
+### yunqi._JING_HEHUI
+
+旧表：
+
+- 使用“地符”旧名；
+- 多条合会 / 宫位断语被压缩或错配；
+- 缺旺相、阴阳宫与异文条件。
+
+replacement：
+
+`C57-TEN-ESSENCE-CLOUD-CONJUNCTION`
+
+### yunqi.shijing_luo
+
+该 wrapper 直接遍历错误旧 `_TEN_JING_FN`，继承：
+
+- 地符 / 帝符名称问题；
+- 太岁替代太乙数；
+- 多项旧位置公式。
+
+因此不得作为十精位置真源。
+
+replacement 由 C52/C53/C55/C56 分层承担。
+
+### yunqi.yunqi_hehui
+
+旧函数仅因“宫号相等”就自动制造“合太乙”。
+
+C57 已固定：
+
+- 合会必须显式输入；
+- `auto_position_lookup_used=False`。
+
+因此旧自动同宫推断整体 quarantine。
+
+### yunqi.yunqi_zongduan / yunqi.zonghe
+
+两者会把以下内容重新揉成一个旧综合层：
+
+- 旧十精落宫；
+- 太乙数；
+- 自动同宫；
+- 旧云色表；
+- 子房总诀；
+- 天气断语。
+
+C52–C59 已明确拆层，所以这两个 wrapper 只能作为历史展示/兼容参考，不能再作为 canonical 真源。
+
+对应 replacement：
+
+- C57 合会层；
+- C58 观察层；
+- C59 数值天气层；
+- 必要时由 C52/C53/C55/C56 提供位置与注册事实。
+
+## 最新验证
+
+C60 扩展后的全量 CI：
+
+```
+1197 passed in 1.47s
+```
