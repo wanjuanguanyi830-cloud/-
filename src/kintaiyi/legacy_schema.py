@@ -99,6 +99,16 @@ EYE_FIELDS = {
 
 # 旧风险字段 → 新结构必须存在的替代路径。
 QUARANTINE_REPLACEMENTS = {
+    "太乙九星": "source_variants.zitingjing.rules.taiyi_nine_stars.primary_result",
+    "文昌九星": "source_variants.zitingjing.rules.wenchang_nine_stars.primary_result",
+    "文昌變化": "source_variants.zitingjing.rules.wenchang_changes.primary_result",
+    "文昌变化": "source_variants.zitingjing.rules.wenchang_changes.primary_result",
+    "始擊變化": "source_variants.zitingjing.rules.shiji_changes.primary_result",
+    "始击变化": "source_variants.zitingjing.rules.shiji_changes.primary_result",
+    "三旗行宮": "source_variants.zitingjing.rules.three_banners.primary_result",
+    "三旗行宫": "source_variants.zitingjing.rules.three_banners.primary_result",
+    "九宮貴神": "source_variants.zitingjing.rules.nine_palace_nobles.primary_result",
+    "九宫贵神": "source_variants.zitingjing.rules.nine_palace_nobles.primary_result",
     "釋格局": "source_variants.patterns.profiles",
     "释格局": "source_variants.patterns.profiles",
     "推三門具不具": "source_variants.military.three_doors.profiles",
