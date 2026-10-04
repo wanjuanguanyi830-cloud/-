@@ -4,3 +4,6 @@
 
 本次格局规则记录见 [`jinjing-geju-rule-record.md`](jinjing-geju-rule-record.md)。
 
+
+- [`jinjing-v4-military-12-record.md`](jinjing-v4-military-12-record.md)：《太乙金镜式经》卷四军事十二法来源层。
+- [`modern-liunian-nayin-record.md`](modern-liunian-nayin-record.md)：现代《太乙数纳音体系（修正版）》独立重构 profile；不属 J4M canonical。
