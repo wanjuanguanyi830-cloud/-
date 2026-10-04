@@ -8,7 +8,6 @@
 - source profile: `jinjing_siku_volume4`
 - runtime: `src/kintaiyi/jinjing_v4_military.py`
 - machine rules: `rules/jinjing_v4_military.json`
-- J4M-03 variant catalog: `rules/j4m03_nayin_variants.json`
 
 本层不得自动并入 C8 `volume5_strict`，也不得以《太乙统宗宝鉴》、现代重构材料或旧代码近名函数静默覆盖。
 
@@ -156,57 +155,16 @@
 
 但 J4M-03 的古代太乙参校文本已经直接把“二目纳音”落实为二目所临十六神的五行生克，因此 **不能再因为通用纳音法存在，就额外给 J4M-03 塞入一个当天干支六十甲子纳音变量**。
 
-## 现代《太乙数纳音体系（修正版）》单独建 variant
+## 相关现代 profile（不属 J4M）
 
-用户提供的现代材料明确说明其第四章太乙纳音应用体系属于作者自行构建 / 无师自通的现代重构。
+用户提供的《太乙数纳音体系（修正版）》已经移出 J4M 命名空间，独立登记为：
 
-现登记：
+- runtime: `src/kintaiyi/variants/modern_liunian_nayin.py`
+- rules: `rules/variants/modern_liunian_nayin.json`
+- source record: `sources/modern-liunian-nayin-record.md`
+- profile: `modern_liunian_nayin_2026`
 
-`J4M03-MODERN-LIUNIAN-NAYIN`
-
-profile：
-
-`modern_liunian_nayin_2026`
-
-只保存该材料明确支持的结构：
-
-- 太乙五音顺序：宫徵羽商角
-- 五音纳天干：宫徵羽商角 → 甲丙戊庚壬，并配阴干
-- 星神本五行 → 五音
-- 星神所落地支/四维 → 律吕
-- 五音与律吕合成星神纳音
-- 引入变五行与按日干改变的五音顺序
-- 每个星神可得本/变两个纳音
-- 本五行与变五行所得纳音可以比较
-- 四计均可使用，但历法输入随计改变
-- 可用于取象、能量比较、取数、方位、应期等
-
-该 variant 当前是：
-
-`implemented_modern_variant`
-
-runtime：
-
-- `kintaiyi.modern_nayin_variant.modern_star_base_nayin()`
-- `kintaiyi.modern_nayin_variant.modern_day_tone_sequence()`
-- `kintaiyi.modern_nayin_variant.modern_star_transformed_nayin()`
-- `kintaiyi.modern_nayin_variant.compare_modern_nayin_elements()`
-
-实现边界：
-
-- 十二地支到十二律采用古典律历标准映射，作为材料所称“十二地支与十二律配合”的背景依赖；
-- 四维不会自动换算，只有显式 `dimension_mode=branch_proxy` 时才使用材料列出的乾→亥、艮→寅、坤→申、巽→巳；
-- 日干只返回材料明确给出的变音顺序，不自动替作者决定“某星神由该序列取得哪一个变五行”；
-- 本/变纳音比较只返回五行关系，不自动生成吉凶或胜负。
-
-材料中的示例“太乙木→角音→纳壬；落子→壬子→桑柘木”已作为 runtime 单元测试固定。
-
-即使已经可运行，也仍然：
-
-- `canonical=False`
-- `source_class=modern_reconstruction`
-
-不得据此声称《金镜》“日计二目纳音”原义就是现代“双纳音”体系。
+它与 J4M-03 只有“纳音”主题相关，不是 J4M-03 的规则变体，也不得回写《金镜》canonical。
 
 ## legacy wc_n_sj 单独隔离
 
