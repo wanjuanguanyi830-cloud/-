@@ -3355,12 +3355,54 @@ C64 只计算位置：
 - `sources/c64-volume7-three-spirit-cycles-record.md`
 - `tests/reports/c64_validation.md`
 
-## 9.58 后续 C65+
+## 9.58 C65 卷七三神同宫灾应显式层（已实施）
+
+唯一 runtime：
+
+`src/kintaiyi/state_spirit_conjunctions.py`
+
+C65 只解释卷七三神条直接列出的同宫 pair。
+
+固定：
+
+- `auto_position_lookup_used=False`
+- `auto_same_palace_inference_used=False`
+- `same_palace` 必须显式输入。
+
+直接 pair 共12条：
+
+- 天乙：地乙 / 直符 / 四神 / 大游 / 小游；
+- 地乙：直符 / 四神 / 大游 / 小游；
+- 直符：四神 / 大游 / 小游。
+
+未列 pair 不类推。
+
+C15 三项现由：
+
+- C64 位置周期；
+- C65 同宫灾应；
+
+共同替代，action：
+
+`use_c64_c65_three_spirit_layers`
+
+仍 `migrate_whole=False`。
+
+完整验证：
+
+`1283 passed / 0 failed`
+
+详细记录：
+
+- `sources/c65-volume7-three-spirit-conjunctions-record.md`
+- `tests/reports/c65_validation.md`
+
+## 9.59 后续 C66+
 
 下一优先级：
 
-1. C65：卷七天乙 / 地乙 / 直符同宫灾应显式层；
-2. 君基 / 臣基 / 民基 / 五福按卷六/卷七 witness variant 拆层；
+1. 核清君基 / 臣基 / 民基三基在卷六/卷七见证中的公式一致性，优先拆位置周期；
+2. 五福位置与五福吉算分层，不把“神位周期”与“吉算利谁”混成一项；
 3. 继续核“推太乙当时法”直接来源；
 4. 恢复旧 `terminology.json`；
 5. 回读文昌九星附篇正文及三旗 / 九宫贵神归属。
