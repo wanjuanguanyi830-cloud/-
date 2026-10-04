@@ -1,4 +1,4 @@
-"""C46 《太乙统宗宝鉴》卷九小游轨运、重卦与动爻。
+"""C47 《太乙统宗宝鉴》卷九小游轨运、重卦与动爻。
 
 直接来源：
 - 明小游轨运内卦所在术
@@ -20,7 +20,7 @@ from typing import Any
 from .dayou_hexagram import FOUR_IMAGE_CE
 from .taiyi_rules import integer
 
-C46_VERSION = "taiyi-c46-xiaoyou-hexagram-v1"
+C47_VERSION = "taiyi-c47-xiaoyou-hexagram-v1"
 
 XIAOYOU_TRIGRAM_PATH = ("乾", "离", "艮", "震", "兑", "坤", "坎", "巽")
 
@@ -91,8 +91,8 @@ def xiaoyou_inner_track(accumulated_year: int) -> dict[str, Any]:
 
     return {
         "schema_version": "1.0",
-        "canonical": C46_VERSION,
-        "rule_id": "C46-XY-INNER",
+        "canonical": C47_VERSION,
+        "rule_id": "C47-XY-INNER",
         "source_profile": "tongzong_volume9_xiaoyou",
         "accumulated_year": year,
         "big_cycle": 1920,
@@ -120,8 +120,8 @@ def xiaoyou_outer_track(accumulated_year: int) -> dict[str, Any]:
 
     return {
         "schema_version": "1.0",
-        "canonical": C46_VERSION,
-        "rule_id": "C46-XY-OUTER",
+        "canonical": C47_VERSION,
+        "rule_id": "C47-XY-OUTER",
         "source_profile": "tongzong_volume9_xiaoyou",
         "accumulated_year": year,
         "epoch_cycle": 360,
@@ -160,8 +160,8 @@ def xiaoyou_heavy_hexagram(accumulated_year: int) -> dict[str, Any]:
 
     return {
         "schema_version": "1.0",
-        "canonical": C46_VERSION,
-        "rule_id": "C46-XY-HEX",
+        "canonical": C47_VERSION,
+        "rule_id": "C47-XY-HEX",
         "source_profile": "tongzong_volume9_xiaoyou",
         "accumulated_year": integer(accumulated_year, 1),
         "inner": inner,
@@ -181,7 +181,7 @@ def xiaoyou_heavy_hexagram(accumulated_year: int) -> dict[str, Any]:
             "total": inner_ce["trigram_ce"] + outer_ce["trigram_ce"],
         },
         "hexagram_name": None,
-        "hexagram_name_status": "not_resolved_in_c46",
+        "hexagram_name_status": "not_resolved_in_c47",
         "c38_track_used": False,
         "dayou_epoch_offset_used": False,
         "policy": (
@@ -194,7 +194,7 @@ def xiaoyou_heavy_hexagram(accumulated_year: int) -> dict[str, Any]:
 def xiaoyou_source_profile() -> dict[str, Any]:
     return {
         "schema_version": "1.0",
-        "canonical": C46_VERSION,
+        "canonical": C47_VERSION,
         "source_profile": "tongzong_volume9_xiaoyou",
         "source_witness": copy.deepcopy(SOURCE_WITNESS),
         "path": list(XIAOYOU_TRIGRAM_PATH),
