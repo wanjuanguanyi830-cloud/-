@@ -1779,15 +1779,76 @@ C38 复用 C36 大小限时间轴与盈差；
 
 详细记录见 `sources/c38-taiyou-limit-tracks-record.md`。
 
-## 9.32 后续 C39+
+## 9.32 C39 紫庭旧术语库恢复骨架（已实施）
+
+用户确认此前提供的《太乙紫庭祕訣》研易楼藏明钞本已经在本地术语主库做过初步整理；当前 GitHub 只缺旧 `terminology.json` 的迁移。
+
+新增：
+
+- `terminology/zitingjing-migration-map.json`
+- `sources/c39-zitingjing-terminology-recovery-record.md`
+- `tests/test_zitingjing_terminology_migration.py`
+- `tests/reports/c39_zitingjing_terminology_recovery_validation.md`
+
+### C39-01 不重扫
+
+后续恢复旧术语库时，不从零重新做全文术语抽取。
+
+先恢复：
+
+- old term id
+- manuscript form
+- source page
+- source section
+- old definition / notes / aliases
+
+再与当前 rule/source key 对齐。
+
+### C39-02 六项映射骨架
+
+- 太乙九星 → `taiyi_nine_stars`
+- 文昌九星 → `wenchang_nine_stars`
+- 文昌变化 → `wenchang_changes`
+- 始击变化 → `shiji_changes`
+- 三旗行宫 → `three_banners`
+- 九宫贵神 → `nine_palace_nobles`
+
+### C39-03 强制空值
+
+旧术语库或扫描页未恢复前：
+
+- `manuscript_form=null`
+- `source_page=null`
+
+不得用统宗、《三才世纬》、现代材料或 OCR 猜测代填研易楼本实际字形/页码。
+
+### C39-04 恢复优先级
+
+1. 文昌九星；
+2. 三旗行宫；
+3. 九宫贵神；
+4. 太乙九星；
+5. 文昌变化；
+6. 始击变化。
+
+前三项优先解决现有紫庭来源缺口；后三项用于补页码、原字形与旧术语 ID。
+
+### C39-05 parser 暂缓
+
+未知旧 `terminology.json` 的真实 schema 前，不写猜测性 migration parser。
+
+待旧文件重新提供后，按真实 schema 写一次性 adapter。
+
+## 9.33 后续 C40+
 
 下一优先级：
 
 1. 卷十“岁会五运六气”细表直接校勘，补齐 C37 `suihui_status`；
 2. 卷九太游重卦、四象策数、动爻另拆，不与 C38 行限轨迹混并；
-3. 继续寻找文昌九星附篇正文；
-4. 三旗行宫 / 九宫贵神继续归属核证；
-5. 剩余 P2/P3 字段按 C30 固定槽位迁移。
+3. 恢复旧 `terminology.json` 后按 C39 对齐研易楼明钞本；
+4. 继续寻找 / 回读文昌九星附篇正文；
+5. 三旗行宫 / 九宫贵神继续归属核证；
+6. 剩余 P2/P3 字段按 C30 固定槽位迁移。
 
 
 ## 10. 验收
