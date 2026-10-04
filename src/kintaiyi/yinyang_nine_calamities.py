@@ -35,6 +35,15 @@ CALAMITY_SEGMENTS = (
 )
 
 TEXTUAL_NOTES = {
+    "fourth_duration": {
+        "online_witnesses": [702, 720],
+        "normalized_duration_years": 720,
+        "reason": (
+            "部分在线见证OCR见七百二年，另见证明确七百二十年；"
+            "九段采用720时总长恰为阳九一元4560，采用702则仅4542。"
+        ),
+        "status": "ocr_corrected_by_parallel_witness_and_internal_arithmetic",
+    },
     "fourth_label": {
         "online_ocr": "四阳七灾水七年",
         "normalized": "四阴七灾水七年",
