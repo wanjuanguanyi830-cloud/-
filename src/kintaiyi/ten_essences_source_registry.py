@@ -457,11 +457,24 @@ LEGACY_FORMULA_AUDIT = {
 }
 
 CLOUD_OMEN_BOUNDARY = {
-    "status": "separate_source_unit",
+    "status": "layered_runtime_in_progress",
     "runtime_in_c52": False,
+    "conjunction_runtime": {
+        "implemented": True,
+        "rule_id": "C57-TEN-ESSENCE-CLOUD-CONJUNCTION",
+        "module": "ten_essences_cloud_omens",
+        "auto_position_lookup_used": False,
+    },
+    "pending_layers": [
+        "太乙初移宫云色时变",
+        "天气厚薄与颜色形态",
+        "天旱取阳/天雨取阴总括",
+        "旺相使变速总括",
+        "太乙数30/40/50等天气断语",
+    ],
     "reason": (
-        "“十精太乙云气所主”包含同宫、阴阳宫、旺相休囚、天气厚薄色象等条件，"
-        "不得在名称/周期注册阶段顺带迁入。"
+        "C57已实现显式同宫/合会、旺相/非旺相、阴阳宫及少数宫位直断；"
+        "但云色时变、天气形态与太乙数天气层仍未完成，所以十精云气整体不得标全完成。"
     ),
 }
 
@@ -532,6 +545,10 @@ def ten_essences_registry() -> dict[str, Any]:
         "position_runtime_ready": True,
         "position_runtime_ready_semantics": "compat_aggregate_all_positions_ready",
         "all_position_runtime_ready": True,
+        "cloud_conjunction_runtime_ready": True,
+        "cloud_conjunction_rule_id": "C57-TEN-ESSENCE-CLOUD-CONJUNCTION",
+        "cloud_observation_runtime_ready": False,
+        "cloud_number_omen_runtime_ready": False,
         "cloud_runtime_ready": False,
         "policy": (
             "C52确认名单、次序、小周数，并登记已核的公式骨架与未决点；"
