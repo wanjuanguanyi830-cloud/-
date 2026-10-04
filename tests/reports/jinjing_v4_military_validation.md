@@ -167,38 +167,15 @@ runtime 参数统一使用：
 
 J4M-03 已由太乙内部“二目纳音”参校直接解释。
 
-## 现代《太乙数纳音体系（修正版）》variant
+## 相关现代 profile 已移出 J4M
 
-新增机器表：
+现代《太乙数纳音体系（修正版）》现独立为：
 
-`rules/j4m03_nayin_variants.json`
+- `src/kintaiyi/variants/modern_liunian_nayin.py`
+- `rules/variants/modern_liunian_nayin.json`
+- `tests/reports/modern_liunian_nayin_validation.md`
 
-modern profile：
-
-`modern_liunian_nayin_2026`
-
-状态：
-
-`implemented_modern_variant`
-
-材料明确支持并记录：
-
-- 宫徵羽商角
-- 五音纳甲丙戊庚壬
-- 星神本五行转五音
-- 星神所落地支/四维转律吕
-- 合成星神纳音
-- 变五行
-- 日干五音顺序
-- 每个星神两个纳音
-- 本/变纳音比较
-- 四计可用但历法输入随计改变
-
-同时机器规则锁定：
-
-- 不能据此声称《金镜》原义就是现代双纳音体系
-- 不能把现代日干变音顺序写入 J4M-03 canonical
-- 不能用 modern variant 改写 canonical winner
+它不再以 J4M-03 variant 命名；J4M 本报告只验证古籍 canonical / ancient collation。
 
 ## legacy wc_n_sj variant
 
@@ -260,104 +237,6 @@ J4M 卷四军事十二法 source layer 现可正式视为：
 后续不应再以 modern 或 legacy 反写 canonical。
 
 
-## 现代 variant runtime 验证
+## 现代 profile 独立验证
 
-新增：
-
-- `src/kintaiyi/modern_nayin_variant.py`
-- `tests/test_modern_nayin_variant.py`
-
-profile：
-
-`modern_liunian_nayin_2026`
-
-该模块明确：
-
-- `source_class=modern_reconstruction`
-- `canonical=False`
-
-### 已实现
-
-1. `modern_star_base_nayin()`
-   - 星神本五行 → 五音
-   - 五音 → 天干对
-   - 所落地支 → 十二律 / 阴阳
-   - 合成干支
-   - 查六十甲子纳音
-
-2. `modern_day_tone_sequence()`
-   - 甲己：宫徵羽商角
-   - 乙庚：徵羽商角宫
-   - 丙辛：羽商角宫徵
-   - 壬丁：商角宫徵羽
-   - 癸戊：角宫徵羽商
-
-3. `modern_star_transformed_nayin()`
-   - 只接受上游显式 `transformed_tone`
-   - 不从日干序列擅自补“星神如何取得变五行”的公式
-
-4. `compare_modern_nayin_elements()`
-   - 返回比和 / 生 / 克关系
-   - `verdict=None`
-   - 不把关系自动翻译成胜负
-
-### 材料示例复现
-
-材料例：
-
-- 太乙属木
-- 木为角音
-- 角音纳壬
-- 落子取阳干壬
-- 得壬子
-- 壬子为桑柘木
-
-runtime 测试固定得到：
-
-`木 + 子 -> 角 -> 壬 -> 壬子 -> 桑柘木`
-
-### 四维边界
-
-材料对四维给出多种可能处理，因此默认不自动换算。
-
-只有：
-
-`dimension_mode=branch_proxy`
-
-才启用：
-
-- 乾 → 亥
-- 艮 → 寅
-- 坤 → 申
-- 巽 → 巳
-
-避免把“十六律四清音”尚未完整展开的部分强写成唯一表。
-
-### 十二律背景依赖
-
-材料明确使用“十二地支与十二律配合”，但没有在现代应用章节重新逐项列完。
-
-runtime 采用古典律历标准背景映射：
-
-- 子黄钟
-- 丑大吕
-- 寅太簇
-- 卯夹钟
-- 辰姑洗
-- 巳仲吕
-- 午蕤宾
-- 未林钟
-- 申夷则
-- 酉南吕
-- 戌无射
-- 亥应钟
-
-该映射是背景依赖，不等于把古典一般纳音公式并入 J4M-03 canonical。
-
-### 三层隔离继续锁定
-
-- ancient canonical: J4M-03
-- modern reconstruction: `modern_liunian_nayin_2026`
-- legacy: `kentang2017_wc_n_sj`
-
-三者不得静默合并。
+现代纳音 runtime 的测试与边界已经移至 `tests/reports/modern_liunian_nayin_validation.md`，不再计入 J4M 规则层说明。
