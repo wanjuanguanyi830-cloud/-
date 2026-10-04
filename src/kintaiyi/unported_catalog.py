@@ -153,11 +153,12 @@ for key, hint in {
 
 CATALOG["明天子巡狩之期術"] = _entry(
     "canonical", "tongzong_volume5_direct", "P1",
-    "source_verified_split_runtime_next", migrate_whole=False,
-    source_confidence="high", target_hint="analysis.rules.imperial巡狩",
+    "use_c62_imperial_inspection_runtime", migrate_whole=False,
+    source_confidence="high", target_hint="analysis.rules.imperial_inspection",
     notes=(
-        "C61 已核《太乙统宗宝鉴》卷五直接正文：太乙与天目在四维之岁为巡狩期，"
-        "出方取天目/文昌所临，行期月另参囚挟格对。旧flat不得直接搬为完整规则。"
+        "C62 已按卷五直接正文建立巡狩runtime：太乙与天目均在四维才成立巡狩年，"
+        "出方按天目四维定东南西北；囚/挟/格/对仅作为显式行月条件。"
+        "原文此段未给月份数值换算，C62不自行造月；旧flat不得整项搬运。"
     ),
 )
 
