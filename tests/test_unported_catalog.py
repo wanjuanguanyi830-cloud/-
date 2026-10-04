@@ -176,3 +176,20 @@ def test_c13_audit_now_surfaces_next_migration_candidates():
     assert report["unported_priority_counts"] == {"P3": 1}
     assert report["unported_layer_counts"] == {"derived": 1}
     assert report["next_migration_candidates"] == []
+
+
+
+def test_c53_ten_essence_old_fields_use_position_runtime_except_difu():
+    difu = catalog_unported_field("帝符")
+    assert difu["action"] == "use_c52_source_registry_formula_pending"
+    assert difu["target_hint"] == "source_variants.ten_essences"
+    assert "重留步进" in difu["notes"]
+
+    for key in ("太尊", "飛鳥", "三風", "五風", "八風"):
+        item = catalog_unported_field(key)
+        assert item["layer"] == "canonical"
+        assert item["action"] == "use_c53_position_runtime"
+        assert item["target_hint"] == "source_variants.ten_essences.positions"
+        assert item["migrate_whole"] is False
+        assert item["source_confidence"] == "high"
+        assert "旧flat值不直接搬运" in item["notes"]
