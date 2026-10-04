@@ -1,8 +1,11 @@
 from kintaiyi.jinjing_v4_military import (
     chenbing_xiangbei,
+    chushi_fa,
     j4m_low_dependency_catalog,
+    qifu_fa,
     taiyi_tianwai_dinei,
     zhizhen_suidi,
+    zhuke_xiangguan,
 )
 
 
@@ -76,10 +79,103 @@ def test_j4m09_does_not_declare_decisive_readiness_without_doors_and_generals():
     assert blocked["decisive_ready"] is False
 
 
+def test_j4m03_host_guest_control_follows_explicit_five_element_examples():
+    guest_wins = zhuke_xiangguan("木", "金")
+    assert guest_wins["rule_id"] == "J4M-03"
+    assert guest_wins["relation"] == "客关得主人"
+    assert guest_wins["winner"] == "客"
+    assert guest_wins["fully_computable"] is False
+    assert guest_wins["day_nayin"]["status"] == "missing"
+
+    host_wins = zhuke_xiangguan("土", "水", day_nayin_element="金")
+    assert host_wins["relation"] == "主人关得客"
+    assert host_wins["winner"] == "主"
+    assert host_wins["day_nayin"]["status"] == "provided_role_pending"
+
+    no_control = zhuke_xiangguan("木", "水")
+    assert no_control["relation"] is None
+    assert no_control["winner"] is None
+    assert no_control["status"] == "no_control_relation_defined"
+
+
+def test_j4m03_does_not_invent_day_nayin_effect():
+    data = zhuke_xiangguan("木", "金", day_nayin_element="火")
+    assert data["winner"] == "客"
+    assert data["day_nayin"]["value"] == "火"
+    assert data["day_nayin"]["status"] == "provided_role_pending"
+    assert data["fully_computable"] is False
+
+
+def test_j4m05_campaign_requires_calc_doors_generals_and_lucky_gate():
+    ready = chushi_fa(
+        12,
+        three_doors_ready=True,
+        five_generals_released=True,
+        exit_gate="开",
+    )
+    assert ready["rule_id"] == "J4M-05"
+    assert ready["deployment_ready"] is True
+    assert ready["status"] == "ready"
+
+    pending_gate = chushi_fa(
+        22,
+        three_doors_ready=True,
+        five_generals_released=True,
+    )
+    assert pending_gate["source_prerequisites_ready"] is True
+    assert pending_gate["deployment_ready"] is None
+    assert pending_gate["status"] == "ready_pending_gate"
+
+    bad_calc = chushi_fa(
+        13,
+        three_doors_ready=True,
+        five_generals_released=True,
+        exit_gate="生",
+    )
+    assert bad_calc["deployment_ready"] is False
+    assert bad_calc["calc_ready"] is False
+
+    bad_gate = chushi_fa(
+        32,
+        three_doors_ready=True,
+        five_generals_released=True,
+        exit_gate="杜",
+    )
+    assert bad_gate["deployment_ready"] is False
+    assert bad_gate["exit_gate_valid"] is False
+
+
+def test_j4m10_qifu_keeps_each_source_condition_separate():
+    hundred = qifu_fa(
+        army_size=100,
+        calc_value=12,
+        tianmu_location="高丛",
+        yanpo=True,
+        terrain="山林",
+    )
+    assert hundred["rule_id"] == "J4M-10"
+    assert hundred["odd_force_count"] == 30
+    assert hundred["ambush_time"] is True
+    assert hundred["concealment_time"] is False
+    assert hundred["great_kill_location"] == "高丛"
+    assert hundred["yanpo_status"] == "favorable_required_timing_present"
+
+    hidden = qifu_fa(calc_value=21, enemy_urgent=True)
+    assert hidden["ambush_time"] is False
+    assert hidden["concealment_time"] is True
+    assert "藏于山林沟涧" in hidden["recommendations"]
+    assert "伏于要害" in hidden["recommendations"]
+
+    odd_size = qifu_fa(army_size=101)
+    assert odd_size["odd_force_count"] is None
+    assert odd_size["odd_force_count_status"] == "ratio_known_rounding_unspecified"
+
+
 def test_low_dependency_catalog_is_explicitly_partial():
     catalog = j4m_low_dependency_catalog()
-    assert catalog["implemented"] == ["J4M-06", "J4M-07", "J4M-09"]
-    assert "J4M-03" in catalog["pending"]
+    assert catalog["implemented"] == ["J4M-05", "J4M-06", "J4M-07", "J4M-09", "J4M-10"]
+    assert catalog["partial"] == ["J4M-03", "J4M-04"]
+    assert "J4M-01" in catalog["pending"]
     assert "J4M-08" in catalog["pending"]
     assert "J4M-11" in catalog["pending"]
     assert "J4M-12" in catalog["pending"]
