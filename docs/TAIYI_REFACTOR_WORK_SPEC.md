@@ -3067,15 +3067,121 @@ canonical：
 - `sources/c58-ten-essences-cloud-observations-record.md`
 - `tests/reports/c58_validation.md`
 
-## 9.52 后续 C59+
+## 9.52 C59 十精太乙数天气 / 合会断语层（已实施）
+
+唯一 canonical runtime：
+
+`src/kintaiyi/ten_essences_number_omens.py`
+
+### C59-01 数值层与天气层分离
+
+C54 只计算 1..72 太乙数。
+
+C59 只解释显式太乙数与关系证据，不自动从积年调用 C54，也不从位置层制造关系。
+
+### C59-02 稳定数值断语
+
+- 30 → 日晕、大风；
+- 40 → 阴雨、黄雾。
+
+旧数10 / 数5独立天气断语当前无直接条文支持，不采用。
+
+### C59-03 数50异文
+
+武经与金镜 / 统宗对数50句读不同：
+
+- 一支见“50 → 日晕大风”；
+- 一支更接近“50 + 天目旺相合 → 日晕”。
+
+固定：
+
+- `canonical_selected=None`
+- standalone 50 不强判
+- 与天目旺相的共同支持“日晕”可作为安全交集，同时保留异文
+
+### C59-04 显式关系
+
+支持：
+
+- 合太乙；
+- 冲太乙；
+- 合天目；
+- 太乙挟天目；
+- 合飞鸟；
+- 与天地并；
+- 与天地相当；
+- 合太乙飞鸟；
+- 合主计。
+
+合天目须显式旺相；
+合飞鸟须显式飞鸟宫；
+合主计保留天10、地9及武经主计8细节。
+
+固定：
+
+- `auto_number_lookup_used=False`
+- `auto_relation_inference_used=False`
+
+### C59-05 单一真源
+
+并行重复 `ten_essences_number_weather.py` 已删除。
+
+当前 C52 十精云气三层：
+
+- C57 合会层；
+- C58 外部云气观察层；
+- C59 太乙数天气层。
+
+因此：
+
+- `cloud_conjunction_runtime_ready=True`
+- `cloud_observation_runtime_ready=True`
+- `cloud_number_omen_runtime_ready=True`
+- `cloud_runtime_ready=True`
+
+“ready”只表示三层都有可审计 runtime；来源异文仍保持 unresolved。
+
+当前 clean baseline：
+
+`1182 passed / 0 failed`
+
+详细记录：
+
+- `sources/c59-ten-essences-number-omens-record.md`
+- `tests/reports/c59_validation.md`
+
+## 9.53 C60 旧错误公式 / 非等价实现隔离（已实施并持续维护）
+
+唯一治理层：
+
+`src/kintaiyi/legacy_formula_quarantine.py`
+
+所有登记项固定：
+
+- `promotion_allowed=False`
+- `canonical_equivalent=False`
+
+C58 / C59 新增隔离：
+
+- 旧 `yunqi._YUNQI_COLOR["白"]`：白7/6误配亥子；replacement → C58-CLOUD-TIMING；
+- `yunqi.shijing_shu`：数值核心可参校，但旧wrapper混入天气、未保存50句读异文；replacement → C54 + C59。
+
+未知旧实现不因“未登记”自动变 canonical。
+
+详细记录：
+
+- `sources/c60-legacy-formula-quarantine-record.md`
+- `tests/test_c60_legacy_formula_quarantine.py`
+
+## 9.54 后续 C61+
 
 下一优先级：
 
-1. C59：太乙数30/40/50及与太乙/天目/飞鸟等合会天气数值层；
-2. 完成后再判断十精云气整体能否标 `cloud_runtime_ready=True`；
-3. C60 继续维护全局旧错误公式 / 非等价实现隔离；
-4. 清扫 C15 remaining pending / source_variant；
-5. 恢复旧 terminology.json，并继续文昌九星 / 三旗 / 九宫贵神归属核证。
+1. 对 C15 remaining pending / source_variant 做全局一致性清扫；
+2. 按清扫结果选择下一条有直接来源、可独立实现的规则；
+3. 恢复旧 `terminology.json` 后按 C40 对齐研易楼明钞本；
+4. 回读文昌九星附篇正文；
+5. 三旗行宫 / 九宫贵神继续归属核证。
 
 ## 10. 验收
 
