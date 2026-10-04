@@ -457,7 +457,7 @@ LEGACY_FORMULA_AUDIT = {
 }
 
 CLOUD_OMEN_BOUNDARY = {
-    "status": "layered_runtime_in_progress",
+    "status": "layered_runtime_complete_with_preserved_variants",
     "runtime_in_c52": False,
     "conjunction_runtime": {
         "implemented": True,
@@ -471,12 +471,17 @@ CLOUD_OMEN_BOUNDARY = {
         "module": "ten_essences_cloud_observations",
         "external_observation_required": True,
     },
-    "pending_layers": [
-        "太乙数30/40/50及与太乙/天目/飞鸟等天气断语",
-    ],
+    "number_omen_runtime": {
+        "implemented": True,
+        "rule_id": "C59-TAIYI-NUMBER-OMEN",
+        "module": "ten_essences_number_omens",
+        "auto_number_lookup_used": False,
+        "auto_relation_inference_used": False,
+    },
+    "pending_layers": [],
     "reason": (
-        "C57已实现显式同宫/合会、旺相/非旺相、阴阳宫及少数宫位直断；"
-        "但云色时变、天气形态与太乙数天气层仍未完成，所以十精云气整体不得标全完成。"
+        "C57实现显式合会，C58实现初移宫云色/天气观察，C59实现太乙数天气断语；"
+        "三层均禁止从其他runtime自动制造关系或观察。异文保留不妨碍结构层完成。"
     ),
 }
 
@@ -551,8 +556,13 @@ def ten_essences_registry() -> dict[str, Any]:
         "cloud_conjunction_rule_id": "C57-TEN-ESSENCE-CLOUD-CONJUNCTION",
         "cloud_observation_runtime_ready": True,
         "cloud_observation_rule_ids": ["C58-CLOUD-TIMING", "C58-WEATHER-OBSERVATION"],
-        "cloud_number_omen_runtime_ready": False,
-        "cloud_runtime_ready": False,
+        "cloud_number_omen_runtime_ready": True,
+        "cloud_number_omen_rule_id": "C59-TAIYI-NUMBER-OMEN",
+        "cloud_runtime_ready": True,
+        "cloud_runtime_ready_semantics": (
+            "C57合会层+C58外部观察层+C59太乙数断语层均有runtime；"
+            "未决异文仍保留为unresolved，不等于强行统一。"
+        ),
         "policy": (
             "C52确认名单、次序、小周数，并登记已核的公式骨架与未决点；"
             "公式骨架不等于runtime就绪。旧位置公式无论周期是否相合都不能自动升为canonical。"
