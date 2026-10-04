@@ -107,23 +107,34 @@ C19 固定记为：
 
 状态：
 
-`bibliographic_anchor_only`
+`catalog_attested_primary_text_pending`
 
 不得直接把旧统宗卷六函数升成主来源公式。
 
 ### 6. 三旗行宫 / 九宫贵神
 
-项目来源策略仍以《太乙紫庭经》传统为主要参考，统宗卷十为重要参校。
+重新核对两份《太乙紫庭秘诀》现代整理目录后，当前目录中未见：
 
-但当前在线检索尚未找到二者在《太乙紫庭经》中的直接同名篇目，因此状态固定：
+- 三旗行宫
+- 九宫贵神
 
-`pending_direct_primary_location`
+因此不能继续把二者写成“紫庭篇目已知、只差正文链接”。
 
-在找到主来源正文前：
+当前状态统一为：
 
-- 统宗卷十结果可放 collation_results；
-- 不得形成 primary_result；
-- 不得清除 C13 replacement gap。
+`project_primary_attribution_unverified`
+
+已知直接文本：
+
+- 《太乙统宗宝鉴》卷十〈明太乙与三旗行宫会合术〉
+- 《太乙统宗宝鉴》卷十〈明太乙九宫贵神术〉
+
+规则：
+
+- 不得形成紫庭 `primary_result`
+- 不得把统宗文本改标成紫庭
+- C13 replacement gap 继续存在
+- 后续需先证明紫庭目录/正文归属，再决定是否升级来源等级
 
 ## 代码
 
