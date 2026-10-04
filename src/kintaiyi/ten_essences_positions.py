@@ -58,6 +58,11 @@ THREEWIND_PATHS = {
     "阴": (7, 3, 8, 4, 9, 5, 1, 6, 2),
 }
 
+WUXING_PATHS = {
+    "阳": (1, 8, 3, 9, 7),
+    "阴": (9, 2, 7, 1, 3),
+}
+
 SOURCE_WITNESS = {
     "飞鸟": {
         "work": "太乙统宗宝鉴",
@@ -102,6 +107,19 @@ SOURCE_WITNESS = {
         ),
         "source_status": "direct_primary_with_collation_variant",
     },
+    "五行": {
+        "work": "太乙统宗宝鉴",
+        "witness_volumes": [18, 20],
+        "big_cycle": 50,
+        "small_cycle": 5,
+        "tongzong": "命起一八三九七宫，周而复始；阴局取阳局对冲",
+        "wujing_zongyao": "五行小周五，命起一宫，次八三九七",
+        "taibai_bingbei": (
+            "阳起乾一，顺行坎八、艮三、巽九、坤七；"
+            "阴起巽九，顺行离二、坤七、乾一、艮三"
+        ),
+        "source_status": "direct_route_with_independent_collation",
+    },
     "五风": {
         "work": "太乙统宗宝鉴",
         "witness_volumes": [18, 20],
@@ -127,6 +145,13 @@ LEGACY_AUDIT = {
         "direct_big_cycle": 90,
         "direct_small_cycle": 9,
         "issue": "旧%8并按八宫表返回，遗漏中五且与直接小周9冲突。",
+    },
+    "config.wuxing": {
+        "canonical_equivalent": False,
+        "legacy_outer_modulus": 5,
+        "direct_big_cycle": 50,
+        "direct_small_cycle": 5,
+        "issue": "旧周期表面相合，但未保存阴阳两条来源路径；C53以直接路径重建，不直接复用旧函数。",
     },
     "config.taijun": {
         "canonical_equivalent": False,
@@ -315,6 +340,19 @@ def threewind_position(accumulated_count: int, *, dun: str) -> dict[str, Any]:
     )
 
 
+def wuxing_position(accumulated_count: int, *, dun: str) -> dict[str, Any]:
+    """十精五行位置：50大周、5小周。"""
+    return _position(
+        essence="五行",
+        accumulated_count=accumulated_count,
+        dun=dun,
+        paths=WUXING_PATHS,
+        rule_id="C53-WUXING",
+        big_cycle=50,
+        small_cycle=5,
+    )
+
+
 def c53_runtime_catalog() -> dict[str, Any]:
     return {
         "canonical": C53_VERSION,
@@ -324,9 +362,10 @@ def c53_runtime_catalog() -> dict[str, Any]:
             "C53-TAIZUN",
             "C53-EIGHTWIND",
             "C53-THREEWIND",
+            "C53-WUXING",
         ],
-        "implemented": ["飞鸟", "五风", "太尊", "八风", "三风"],
-        "pending": ["天皇", "帝符", "天时", "五行", "太乙数"],
+        "implemented": ["飞鸟", "五风", "太尊", "八风", "三风", "五行"],
+        "pending": ["天皇", "帝符", "天时", "太乙数"],
         "legacy_audit": copy.deepcopy(LEGACY_AUDIT),
         "surplus_rejection": copy.deepcopy(SURPLUS_REJECTION),
         "cloud_omen_runtime": False,
