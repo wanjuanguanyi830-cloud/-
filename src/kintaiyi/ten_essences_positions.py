@@ -368,9 +368,10 @@ def c53_runtime_catalog() -> dict[str, Any]:
         "delegated_position_runtimes": {
             "天皇": "C55-TIANHUANG",
             "帝符": "C55-DIFU",
+            "天时": "C56-TIANSHI",
         },
         "number_runtime": "C54-TAIYI-NUMBER",
-        "pending": ["天时"],
+        "pending": [],
         "legacy_audit": copy.deepcopy(LEGACY_AUDIT),
         "surplus_rejection": copy.deepcopy(SURPLUS_REJECTION),
         "cloud_omen_runtime": False,
