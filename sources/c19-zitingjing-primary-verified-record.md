@@ -18,13 +18,12 @@
 主来源章节：
 
 - 〈释九宫所值九星〉
-- https://www.shidianguji.com/zh/book/SDZJ0646/chapter/1kg32q85u4gth
+- https://www.shidianguji.com/zh/book/SDZJ0646/chapter/1kg32q85u4tgl
 
 C19 已结构化：
 
 - 九宫 1..9
 - 天蓬 / 天芮 / 天冲 / 天辅 / 天禽 / 天心 / 天柱 / 天任 / 天英
-- 配干
 - 九州分野
 - 当前见证所记吉凶
 - “二隐七彰”“四吉五凶”等来源级摘要
@@ -102,9 +101,9 @@ https://www.shidianguji.com/zh/book/SDZJ0646/chapter/1kg32qffweib7
 
 当前仍保持：
 
-- 文昌九星：`pending_direct_locator`
-- 三旗行宫：`pending_direct_locator`
-- 九宫贵神：`pending_direct_locator`
+- 文昌九星：`catalog_attested_primary_text_pending`
+- 三旗行宫：`project_primary_attribution_direct_text_pending`
+- 九宫贵神：`project_primary_attribution_direct_text_pending`
 
 项目来源层级仍保持“《太乙紫庭经》主来源，统宗参校”，但在找到直接条文前：
 
@@ -126,3 +125,10 @@ https://www.shidianguji.com/zh/book/SDZJ0646/chapter/1kg32qffweib7
 - shiji_changes
 
 送入 C18 source container 后，六项 replacement gap 会从 6 个降为 3 个。
+
+
+## C29 校核修正
+
+- 九星主来源链接统一为 `1kg32q85u4tgl`。
+- 早期记录中的“配干”已撤销：当前 C19 canonical 表只保留已核稳的宫、星、分野、吉凶。
+- 剩余三项定位状态与 C20 证据等级统一，不再使用笼统 `pending_direct_locator`。
