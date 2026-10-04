@@ -74,7 +74,7 @@ def test_zitingjing_is_primary_for_nine_star_and_change_rules():
         assert item["layer"] == "canonical"
         assert item["source_scope"] == "zitingjing_primary_tongzong_volume6_collation"
         assert item["priority"] == "P1"
-        assert "主要参考《紫庭经》" in item["notes"]
+        assert "主要参考《太乙紫庭经》" in item["notes"]
         assert "参校来源" in item["notes"]
 
 
@@ -84,7 +84,7 @@ def test_zitingjing_is_primary_for_three_banners_and_nine_palace_nobles():
         assert item["layer"] == "canonical"
         assert item["source_scope"] == "zitingjing_primary_tongzong_volume10_collation"
         assert item["priority"] == "P1"
-        assert "主要参考《紫庭经》" in item["notes"]
+        assert "主要参考《太乙紫庭经》" in item["notes"]
         assert "参校来源" in item["notes"]
 
 
