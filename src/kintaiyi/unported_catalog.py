@@ -79,12 +79,13 @@ for key, target in {
 # C52 已确认这些旧顶层字段属于十精体系；C53 已完成其中五项位置 runtime。
 CATALOG["帝符"] = _entry(
     "canonical", "tongzong_ten_essences_volume18_20_variant", "P2",
-    "use_c52_source_registry_formula_pending", migrate_whole=False,
+    "use_c55_sixteen_god_runtime", migrate_whole=False,
     source_confidence="high",
-    target_hint="source_variants.ten_essences",
+    target_hint="source_variants.ten_essences.positions",
     notes=(
-        "C52 已核帝符大周200/小周20与十六神重留结构；"
-        "但重留步进尚未独立实现，旧config.kingfu不得作为canonical真源。"
+        "C55 已按统宗大周200/小周20建立帝符十六神四正重留runtime；"
+        "旧config.kingfu仅周期表面相合，不得作为canonical真源。"
+        "帝符盈差17/70异读均已隔离且不应用。"
     ),
 )
 
