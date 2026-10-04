@@ -46,20 +46,46 @@ C41 只消费显式：
 - 上下卦结构
 - 内外四象
 - 内外策数
-- 总策数（仅作内策+外策的结构化求和）
+- 单爻策数、三爻经卦策数与重卦总策数
 - 内卦动爻
 
-## 总策字段边界
+## 策数层级修正
 
-卷九正文直接给出八卦所属四象及各自策数；runtime 为方便结构化同时返回：
+卷九给出的：
 
-`ce.total = inner.ce + outer.ce`
+- 乾 36
+- 坤 24
+- 震坎艮 28
+- 巽离兑 32
 
-但该字段固定标：
+在历数算例中实际作为**单爻策数**使用。
 
-`total_status="derived_sum_of_inner_outer_trigram_ce"`
+每个经卦三爻，因此：
 
-即它是对内外卦策数的求和，不表示原文另立了一条“总策公式”。后续“历数长短”若需要除策，仍必须按该术原文另行校勘，不能仅凭这个 convenience total 代替。
+- `trigram_ce = per_line_ce × 3`
+
+重卦六爻的总策：
+
+- `total = inner_trigram_ce + outer_trigram_ce`
+
+例如：
+
+- 乾内 + 震外 → 108 + 84 = 192
+- 坤内 + 乾外 → 72 + 108 = 180
+
+这两个数与卷九后续历数算例使用的重卦策数吻合。
+
+因此当前 runtime 固定：
+
+- `inner_per_line`
+- `outer_per_line`
+- `inner_trigram`
+- `outer_trigram`
+- `total`
+- `total_status="directly_confirmed_by_volume9_examples"`
+
+旧“36/24/28/32直接当整经卦策数再相加”的实现已撤销。
+
 
 ## 外卦动爻
 
