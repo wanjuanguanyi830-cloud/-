@@ -62,7 +62,7 @@ TEN_ESSENCES = (
         "name": "太尊",
         "small_cycle": 4,
         "kind": "position",
-        "formula_status": "pending_source_formula_audit",
+        "formula_status": "implemented_c53",
     },
     {
         "index": 5,
@@ -83,7 +83,7 @@ TEN_ESSENCES = (
         "name": "八风",
         "small_cycle": 9,
         "kind": "position",
-        "formula_status": "pending_source_formula_audit",
+        "formula_status": "implemented_c53",
     },
     {
         "index": 8,
@@ -97,7 +97,7 @@ TEN_ESSENCES = (
         "name": "三风",
         "small_cycle": 9,
         "kind": "position",
-        "formula_status": "pending_source_formula_audit",
+        "formula_status": "implemented_c53",
     },
     {
         "index": 10,
@@ -134,12 +134,16 @@ FOCUS_FORMULA_SKELETONS = {
         "small_cycle": 4,
         "identity": "黄星之长",
         "route": {
-            "source_text": "命起至大簇大威高丛逆行八六四四正之宫",
-            "status": "text_requires_collation",
-            "canonical_route": None,
+            "tongzong_sequence": [8, 6, 2, 4],
+            "wujing_zongyao_sequence": [8, 6, 2, 4],
+            "taibai_yang_path": [8, 6, 2, 4],
+            "taibai_yin_path": [2, 4, 8, 6],
+            "status": "implemented_c53_direct_with_collation",
+            "canonical_route_for_tongzong_profile": [8, 6, 2, 4],
         },
-        "runtime_formula_ready": False,
-        "runtime_blocker": "正文路线OCR/断句未校清，不以旧mod4反推路线。",
+        "runtime_formula_ready": True,
+        "runtime_rule_id": "C53-TAIZUN",
+        "runtime_profile": "tongzong_primary_taibai_collation",
     },
     "飞鸟": {
         "big_cycle": 90,
@@ -171,9 +175,11 @@ FOCUS_FORMULA_SKELETONS = {
         "small_cycle": 9,
         "identity": "毕星之使",
         "route": {
-            "source_text": "命起大威二宫，次和德三宫，顺行九宫",
-            "status": "route_sequence_requires_full_collation",
-            "canonical_route": None,
+            "tongzong_yang_path": [2, 3, 4, 5, 6, 7, 8, 9, 1],
+            "wujing_zongyao_yang_path": [2, 3, 4, 5, 6, 7, 8, 9, 1],
+            "taibai_yang_path": [2, 3, 4, 5, 6, 7, 8, 9, 1],
+            "taibai_yin_path": [8, 7, 6, 5, 4, 3, 2, 1, 9],
+            "status": "implemented_c53_direct_with_collation",
         },
         "surplus_variant": {
             "year": 4,
@@ -182,8 +188,9 @@ FOCUS_FORMULA_SKELETONS = {
             "apply": False,
             "note": "古法不载，故不取用。",
         },
-        "runtime_formula_ready": False,
-        "runtime_blocker": "完整九宫序尚未逐项展开核定。",
+        "runtime_formula_ready": True,
+        "runtime_rule_id": "C53-EIGHTWIND",
+        "runtime_profile": "tongzong_primary_taibai_collation",
     },
     "五风": {
         "big_cycle": 90,
@@ -224,10 +231,14 @@ FOCUS_FORMULA_SKELETONS = {
         "small_cycle": 9,
         "identity": "心星之使",
         "route": {
-            "source_sequence": [3, 7, 2, 6, 1, 5, 4, 8],
-            "status": "source_sequence_incomplete_or_ocr_requires_collation",
-            "canonical_route": None,
-            "note": "当前见证仅显八项，而小周为9；不得自行补第九项。",
+            "tongzong_sequence": [3, 7, 2, 6, 1, 5, 9, 4, 8],
+            "taibai_yang_path": [3, 7, 2, 6, 1, 5, 9, 4, 8],
+            "taibai_yin_path": [7, 3, 8, 4, 9, 5, 1, 6, 2],
+            "wujing_zongyao_variant_text": "命起五宫，次七二六一五九四八",
+            "status": "implemented_c53_primary_with_preserved_variant",
+            "selected_profile": "tongzong_primary_taibai_collation",
+            "cross_source_canonical_selected": None,
+            "note": "统宗与太白兵备阳序相合；武经总要起五宫读法作为异文保留。",
         },
         "surplus_variant": {
             "year": 8,
@@ -238,8 +249,9 @@ FOCUS_FORMULA_SKELETONS = {
             "apply": False,
             "note": "古法无此，故不取用。",
         },
-        "runtime_formula_ready": False,
-        "runtime_blocker": "第九路线项未校清。",
+        "runtime_formula_ready": True,
+        "runtime_rule_id": "C53-THREEWIND",
+        "runtime_profile": "tongzong_primary_taibai_collation",
     },
 }
 
@@ -430,9 +442,9 @@ def ten_essences_registry() -> dict[str, Any]:
         "focus_formula_skeletons": copy.deepcopy(FOCUS_FORMULA_SKELETONS),
         "cloud_omen_boundary": copy.deepcopy(CLOUD_OMEN_BOUNDARY),
         "target_policy": copy.deepcopy(TARGET_POLICY),
-        "implemented_position_runtimes": ["飞鸟", "五风"],
+        "implemented_position_runtimes": ["飞鸟", "五风", "太尊", "八风", "三风"],
         "pending_position_runtimes": [
-            "天皇", "帝符", "天时", "太尊", "五行", "八风", "三风"
+            "天皇", "帝符", "天时", "五行"
         ],
         "number_runtime_pending": ["太乙数"],
         "position_runtime_ready": False,
