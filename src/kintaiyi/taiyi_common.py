@@ -133,3 +133,15 @@ def general_palace_qi(general_palace, dashen_sector):
     element = nine_palace_element(general_palace)
     return {**qi_relation(element, detail["element"]), "palace_id": general_palace,
             "palace_element": element, "landing": detail, "model": "B"}
+
+
+def sector_opposition(sector):
+    return rotate_sixteen(sector, 8)
+
+
+def nine_palace_opposition(palace):
+    integer(palace, 1, 9)
+    if palace == 5:
+        return {"computable": False, "missing_inputs": [], "reason": "中宫对冲来源待校", "status": "pending"}
+    opposite = {1: 9, 9: 1, 3: 7, 7: 3, 2: 8, 8: 2, 4: 6, 6: 4}[palace]
+    return {"computable": True, "palace_id": palace, "opposite_palace_id": opposite}

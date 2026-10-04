@@ -56,3 +56,14 @@ def test_base_and_four_taiyi_methods_never_use_72_layouts():
     assert snapshot.skyyi(0,0) == 12
     with pytest.raises(ValueError):
         snapshot.accnum(2,0)
+
+
+def test_ruler_meeting_uses_heaven_not_ordinary_taiyi():
+    class Facts(TaiyiCanonicalMixin):
+        def accnum(self, *args):
+            return 10154539
+
+        def ty(self, *args):
+            raise AssertionError("君基+天乙不能使用普通太乙")
+    fact = Facts().ming_kingbase(0,0)
+    assert fact["heaven_palace_id"] == 12 and fact["heaven_sector"] == "寅"

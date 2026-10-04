@@ -66,3 +66,11 @@ def test_eyes_preserve_dual_elements():
     for sector, palace, element in (("辰", 9, "木"), ("戌", 1, "金")):
         data = c.sector_detail(sector)
         assert (data["element"], data["nine_palace"], data["nine_palace_element"]) == ("土", palace, element)
+
+
+def test_oppositions_do_not_invent_center_mapping():
+    for a, b in (("戌","辰"),("乾","巽"),("亥","巳"),("丑","未"),("艮","坤"),("寅","申"),("子","午"),("卯","酉")):
+        assert c.sector_opposition(a) == b and c.sector_opposition(b) == a
+    for a, b in ((1,9),(3,7),(2,8),(4,6)):
+        assert c.nine_palace_opposition(a)["opposite_palace_id"] == b
+    assert c.nine_palace_opposition(5)["status"] == "pending"

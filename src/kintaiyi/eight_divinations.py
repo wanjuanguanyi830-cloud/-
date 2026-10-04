@@ -177,8 +177,18 @@ def analyze_eight_divinations(taiyi_palace, skyeyes_sector, home_cal, away_cal,
         ("D8-04", lambda n: gudan_analysis(n)),
         ("D8-08", lambda n: calc_preparedness(n)),
     )
-    data = {key: _result(key, home=fn(home_cal), away=fn(away_cal)) for key, fn in methods}
-    data["D8-05"] = neiwai_attack(skyeyes_sector)
-    data["D8-06"] = calc_amount_victory(home_cal, away_cal)
-    data["D8-07"] = yinyang_adversity(taiyi_palace, home_cal, away_cal)
+    def unavailable(rule_id, missing):
+        return _result(rule_id, computable=False, missing_inputs=missing, reason="缺八占输入")
+
+    missing_cal = [key for key, n in (("home_cal", home_cal), ("away_cal", away_cal)) if n is None]
+    data = {key: _result(key, computable=not missing_cal, missing_inputs=missing_cal,
+                        reason="缺八占算数" if missing_cal else None,
+                        home=fn(home_cal) if home_cal is not None else unavailable(key, ["home_cal"]),
+                        away=fn(away_cal) if away_cal is not None else unavailable(key, ["away_cal"]))
+            for key, fn in methods}
+    data["D8-05"] = neiwai_attack(skyeyes_sector) if skyeyes_sector is not None else unavailable("D8-05", ["skyeyes_sector"])
+    data["D8-06"] = calc_amount_victory(home_cal, away_cal) if not missing_cal else unavailable("D8-06", missing_cal)
+    missing_adversity = ["taiyi_palace"] if taiyi_palace is None else []
+    missing_adversity += missing_cal
+    data["D8-07"] = yinyang_adversity(taiyi_palace, home_cal, away_cal) if not missing_adversity else unavailable("D8-07", missing_adversity)
     return {key: data[key] for key in sorted(data)}

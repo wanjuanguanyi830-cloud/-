@@ -7,7 +7,16 @@ from __future__ import annotations
 
 import copy
 import json
-from typing import Any
+from typing import Any, TypedDict
+
+from .eight_divinations import analyze_eight_divinations, sancai_analysis
+from .four_taiyi import four_taiyi_positions
+from .junshi_zhanlue import junshi_zhanlue
+from .seven_methods import analyze_seven_methods
+from .taiyi_common import NINE_PALACES, ROLE_ELEMENTS, integer, sector_detail
+from .taiyi_cycles import (
+    big_wander, five_blessings, minister_base, people_base, ruler_base, small_wander,
+)
 
 SCHEMA_VERSION = "2.0"
 
@@ -61,14 +70,16 @@ def _normalize_scenario(scenario: dict[str, Any] | None) -> dict[str, Any]:
 def _force_center_sector_null(board: dict[str, Any]) -> None:
     """中五无 Sector16；只修表示层，不计算宫位。"""
     taiyi = board.get("taiyi")
-    if isinstance(taiyi, dict) and taiyi.get("palace") == 5:
+    if isinstance(taiyi, dict) and taiyi.get("palace_id", taiyi.get("palace")) == 5:
         taiyi["sector"] = None
 
     generals = board.get("generals")
     if isinstance(generals, dict):
         for general in generals.values():
-            if isinstance(general, dict) and general.get("palace") == 5:
+            if isinstance(general, dict) and general.get("palace_id", general.get("palace")) == 5:
                 general["sector"] = None
+                if "representative_sector" in general:
+                    general["representative_sector"] = None
 
     calculations = board.get("calculations")
     if isinstance(calculations, dict):
@@ -150,13 +161,13 @@ def validate_pan_v2(payload: dict[str, Any]) -> dict[str, Any]:
                 errors.append(f"缺board.{key}")
 
         taiyi = board.get("taiyi")
-        if isinstance(taiyi, dict) and taiyi.get("palace") == 5 and taiyi.get("sector") is not None:
+        if isinstance(taiyi, dict) and taiyi.get("palace_id", taiyi.get("palace")) == 5 and taiyi.get("sector") is not None:
             errors.append("board.taiyi中五sector必须为null")
 
         generals = board.get("generals")
         if isinstance(generals, dict):
             for name, general in generals.items():
-                if isinstance(general, dict) and general.get("palace") == 5 and general.get("sector") is not None:
+                if isinstance(general, dict) and general.get("palace_id", general.get("palace")) == 5 and (general.get("sector") is not None or general.get("representative_sector") is not None):
                     errors.append(f"board.generals.{name}中五sector必须为null")
                 if isinstance(general, dict):
                     if "intrinsic_element" in general and "palace_element" not in general:
@@ -185,3 +196,111 @@ def validate_pan_v2(payload: dict[str, Any]) -> dict[str, Any]:
         "warnings": warnings,
         "schema_version": payload.get("schema_version"),
     }
+
+
+class PanCoreSnapshot(TypedDict, total=False):
+    accumulated_year: int
+    year_accumulated_year: int
+    ji_style: int
+    taiyi_acumyear: int
+    taiyi_palace: int
+    wenchang_sector: str
+    shiji_sector: str
+    dingmu_sector: str
+    home_cal: int
+    away_cal: int
+    fixed_cal: int
+    home_general: int
+    home_assistant: int
+    away_general: int
+    away_assistant: int
+    day_taiyi_palace: int
+    four_taiyi_yuan: int
+    big_wander_profile: str
+    doors: dict[str, Any]
+    calendar: dict[str, Any]
+    patterns: dict[str, Any]
+
+
+def _missing_fact(name):
+    return {"computable": False, "missing_inputs": [name], "reason": "snapshot缺明确输入"}
+
+
+def _calc_number(value, name):
+    if value is None:
+        return _missing_fact(name)
+    facts = sancai_analysis(value)
+    return {"computable": True, "value": value, "components": facts["components"],
+            "missing_components": facts["missing_components"], "classic_tags": facts["classic_tags"],
+            "parity": "odd" if value % 2 else "even", "last_digit": value % 10}
+
+
+def _palace_fact(value, name):
+    if value is None:
+        return _missing_fact(name)
+    return {**NINE_PALACES[integer(value, 1, 9)], "palace": value, "computable": True}
+
+
+def build_pan_v2_from_snapshot(snapshot: PanCoreSnapshot, *, scenario=None):
+    """Canonical builder from explicit numeric/coordinate inputs; no Taiyi import.
+
+    Missing event, calendar and cycle inputs remain structured unavailable facts.
+    The older build_pan_v2 remains a pure assembler for already computed facts.
+    """
+    if not isinstance(snapshot, dict):
+        raise TypeError("snapshot须为dict")
+    snapshot = copy.deepcopy(snapshot)
+    scenario = _normalize_scenario(scenario)
+    acc = snapshot.get("accumulated_year")
+    year_acc = snapshot.get("year_accumulated_year")
+    if year_acc is None and snapshot.get("ji_style") == 0:
+        year_acc = acc  # selected accumulation is explicitly annual in this case.
+    taiyi = _palace_fact(snapshot.get("taiyi_palace"), "taiyi_palace")
+    eyes = {}
+    for role, input_name in (("skyeyes", "wenchang_sector"), ("shiji", "shiji_sector"), ("dingmu", "dingmu_sector")):
+        value = snapshot.get(input_name)
+        eyes[role] = {**sector_detail(value), "computable": True} if value is not None else _missing_fact(input_name)
+    generals = {}
+    for role in ("home_general", "home_assistant", "away_general", "away_assistant"):
+        fact = _palace_fact(snapshot.get(role), role)
+        generals[role] = {**fact, "role": role, "intrinsic_element": ROLE_ELEMENTS[role]}
+        if fact["computable"]:
+            generals[role]["palace_element"] = fact["element"]
+            generals[role]["representative_sector"] = fact["sector"]
+    calculations = {role: _calc_number(snapshot.get(key), key) for role, key in
+                    (("home", "home_cal"), ("away", "away_cal"), ("fixed", "fixed_cal"))}
+    cycle_data = {
+        "three_bases": {role: fn(acc) if acc is not None else _missing_fact("accumulated_year")
+                        for role, fn in (("ruler", ruler_base), ("minister", minister_base), ("people", people_base))},
+        "five_blessings": five_blessings(acc) if acc is not None else _missing_fact("accumulated_year"),
+        "small_wander": small_wander(acc) if acc is not None else _missing_fact("accumulated_year"),
+        "big_wander": big_wander(year_acc, profile=snapshot.get("big_wander_profile", "tongzong"))
+                      if year_acc is not None else _missing_fact("year_accumulated_year"),
+        "four_taiyi": four_taiyi_positions(acc, yuan=snapshot.get("four_taiyi_yuan", 1))
+                      if acc is not None else _missing_fact("accumulated_year"),
+    }
+    cycle_data["big_wander"].update({"year_accumulated_year": year_acc, "selected_accumulated_year": acc})
+    d8 = analyze_eight_divinations(snapshot.get("taiyi_palace"), snapshot.get("wenchang_sector"),
+                                   snapshot.get("home_cal"), snapshot.get("away_cal"))
+    t7 = analyze_seven_methods(
+        home_general=snapshot.get("home_general"), home_assistant=snapshot.get("home_assistant"),
+        away_general=snapshot.get("away_general"), away_assistant=snapshot.get("away_assistant"),
+        day_taiyi_palace=snapshot.get("day_taiyi_palace"), scenario=scenario,
+    )
+    military = junshi_zhanlue(home_cal=snapshot.get("home_cal"), away_cal=snapshot.get("away_cal"),
+                             taiyi=snapshot.get("taiyi_palace"), skyeyes=snapshot.get("wenchang_sector"))
+    return build_pan_v2(
+        meta={"accumulated_year": acc, "year_accumulated_year": year_acc,
+              "ji_style": snapshot.get("ji_style"), "taiyi_acumyear": snapshot.get("taiyi_acumyear"),
+              "source_profile": "project_canonical", "four_taiyi_yuan": snapshot.get("four_taiyi_yuan", 1),
+              "four_taiyi_yuan_basis": "explicit" if "four_taiyi_yuan" in snapshot else "base_start"},
+        calendar=snapshot.get("calendar", {}),
+        board={"taiyi": taiyi, "eyes": eyes, "calculations": calculations,
+               "generals": generals, "doors": snapshot.get("doors", _missing_fact("doors"))},
+        cycles=cycle_data,
+        analysis={"patterns": snapshot.get("patterns", _missing_fact("patterns")),
+                  "eight_divinations": d8, "seven_methods": t7, "military": military},
+        modern={}, source_variants={"seven_methods": {k: v["variants"] for k, v in t7.items()},
+                                   "eight_divinations": {"D8-02": {side: d8["D8-02"][side].get("variants", []) for side in ("home", "away")}}},
+        scenario=scenario,
+    )

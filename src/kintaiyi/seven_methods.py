@@ -4,7 +4,7 @@ import warnings
 from .taiyi_common import (
     BRANCHES, CORNER_SECTORS, OVERCOMES, ROLE_ELEMENTS, STEMS,
     dashen_from_nine_palace, dashen_from_sector, dashen_self_qi,
-    general_palace_qi, nine_palace_element, sexagenary_year,
+    general_palace_qi, integer, nine_palace_element, sexagenary_year,
 )
 
 NAMES = {"T7-01": "临津问道", "T7-02": "狮子反掷", "T7-03": "白云卷空",
@@ -63,6 +63,8 @@ def lion_reverse_throw(enemy_start_year_branch=None):
 
 
 def _cloud_side(palace, label):
+    if palace is not None:
+        integer(palace, 1, 9)
     if palace is None or palace == 5:
         return {"computable": False, "general_palace": palace, "reason": "缺大将" if palace is None else "杜塞",
                 "strength": None}
@@ -98,6 +100,7 @@ def fierce_tiger(enemy_camp_day_taiyi_palace=None):
     inputs = {"enemy_camp_day_taiyi_palace": enemy_camp_day_taiyi_palace}
     if enemy_camp_day_taiyi_palace is None:
         return _wrap("T7-04", inputs, missing=["enemy_camp_day_taiyi_palace"])
+    integer(enemy_camp_day_taiyi_palace, 1, 9)
     if enemy_camp_day_taiyi_palace == 5:
         return _wrap("T7-04", inputs, reason="杜塞：中五无大神落辰")
     qi = _qi(dashen_from_nine_palace(enemy_camp_day_taiyi_palace))
@@ -113,6 +116,7 @@ def _mode_b(rule_id, event_name, taiyi, generals):
     missing = [k for k, v in inputs.items() if v is None]
     if taiyi is None:
         return inputs, {}, {}, missing, None
+    integer(taiyi, 1, 9)
     if taiyi == 5:
         return inputs, {}, {}, missing, "杜塞：中五无大神落辰"
     landing = dashen_from_nine_palace(taiyi)

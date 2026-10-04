@@ -25,10 +25,13 @@
 
 ## 运行测试
 
+2026-10-05 的 C1–C7 canonical 核心、周期、四太乙和双轨 snapshot 接口见 [pan v2 schema](docs/pan_v2_schema.md)。目标仓库不含日期排盘引擎；新增 `Taiyi(snapshot).pan(...)` 使用明确盘面输入，外部历法引擎可接入 collector 与 mixin。参考仓库日期构造器尚未移植。
+
 在 Python 3.10+ 环境安装 `pytest` 后，从仓库根目录运行：
 
 ```powershell
 python -m pytest
+python -m ruff check src config.py
 python tests/test_skyeyes_summary_audit.py
 ```
 
