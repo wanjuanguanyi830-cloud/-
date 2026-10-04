@@ -47,3 +47,17 @@ C55 收口完整 CI：
 ```
 1080 passed in 0.95s
 ```
+
+
+29. C56 天时完成 120/12 runtime：阳寅起、阴申起，均顺行十二支。
+30. 太白兵备前置总括句“阳申阴寅”保留为同书内部异文；完整推步正文“阳寅阴申”用于参校。
+31. 邦盈差二明确拒绝，`apply=False`。
+32. C52 `implemented_position_runtimes` 现为9项，`pending_position_runtimes=[]`。
+33. C52 `all_position_runtime_ready=True`；太乙数继续由 C54 独立数值层提供。
+34. “全部位置 ready”不代表十精云气断事 ready；`cloud_runtime_ready=False` 不变。
+
+C56 收口完整 CI：
+
+```
+1095 passed in 1.85s
+```
