@@ -103,6 +103,8 @@ QUARANTINE_REPLACEMENTS = {
     "厄会行限": "source_variants.volume9.ehui_limit.legacy_replacement",
     "國政章易": "source_variants.volume9.governance_change.legacy_replacement",
     "国政章易": "source_variants.volume9.governance_change.legacy_replacement",
+    "歲中災發": "source_variants.volume9.disaster_timing.legacy_replacement",
+    "岁中灾发": "source_variants.volume9.disaster_timing.legacy_replacement",
     "五運六氣": "source_variants.wuyun_wuyin.wuyun_liuqi.legacy_replacement",
     "五运六气": "source_variants.wuyun_wuyin.wuyun_liuqi.legacy_replacement",
     "五音之數": "source_variants.wuyun_wuyin.wuyin_number.profiles.tongzong_volume3",
