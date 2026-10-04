@@ -234,8 +234,134 @@ def shiji_changes_primary_core() -> dict[str, Any]:
             "临分野可主乱、贼、疾、丧、兵、饥等灾应",
             "变化不可执一途而断",
         ],
-        "detailed_year_stem_element_table_status": "pending_textual_collation",
-        "policy": "本批只固化直接核心事实；逐岁五行灾应待完成OCR/异文校勘后再结构化。",
+        "detailed_year_stem_element_table_status": "collation_in_progress",
+        "year_element_collation": shiji_year_element_collation(),
+        "policy": (
+            "核心事实已固化；逐岁干×五行灾应以校勘表附入。"
+            "OCR冲突行不得在完成异本校勘前正规化为canonical五行。"
+        ),
+    }
+
+
+# C31 〈始击变化〉逐岁干×五行灾应的校勘层。
+# 只保存当前在线见证可辨读的结构事实；OCR冲突项不得静默正规化。
+SHIJI_YEAR_ELEMENT_COLLATION = {
+    "甲乙": {
+        "rows": [
+            {"witness_label": "水", "element": "水", "status": "stable",
+             "effects": ["北方兵动", "算和则冬有和亲", "岁稔", "见证邻文有大水语"]},
+            {"witness_label": "金", "element": "金", "status": "stable",
+             "effects": ["西方兵起", "东方有败"]},
+            {"witness_label": "木", "element": "木", "status": "stable_with_ocr_gap",
+             "effects": ["东方兵起", "舟车事兴"], "uncertain_text": "岁□"},
+            {"witness_label": "火", "element": "火", "status": "stable",
+             "effects": ["南方兵动", "夏旱火热", "民流亡", "疾病", "所临分野多灾"]},
+        ],
+        "missing_elements": ["土"],
+        "status": "incomplete_primary_witness_or_ocr",
+    },
+    "丙丁": {
+        "rows": [
+            {"witness_label": "水", "element": "水", "status": "stable_with_ocr_noise",
+             "effects": ["东北兵起", "夏大水", "民流亡"]},
+            {"witness_label": "火", "element": "火", "status": "stable",
+             "effects": ["南方有变", "兵动", "大旱", "民饥", "疾病", "兵革"]},
+            {"witness_label": "土", "element": "土", "status": "stable",
+             "effects": ["东方兵起", "居中宫"]},
+            {"witness_label": "木", "element": "木", "status": "stable",
+             "effects": ["春冬东方有和亲"]},
+            {"witness_label": "金", "element": "金", "status": "stable",
+             "effects": ["西方兵动", "金银贵", "重臣被诛"]},
+        ],
+        "missing_elements": [],
+        "status": "complete_five_elements",
+    },
+    "戊己": {
+        "rows": [
+            {"witness_label": "水", "element": None, "candidate_element": "木",
+             "status": "ocr_element_conflict",
+             "effects": ["东方兵动"]},
+            {"witness_label": "火", "element": "火", "status": "stable",
+             "effects": ["南方有兵", "蝗虫", "谷贵", "大旱", "民流移"]},
+            {"witness_label": "土", "element": "土", "status": "stable",
+             "effects": ["中宫忧", "土功", "山崩地动"]},
+            {"witness_label": "金", "element": "金", "status": "stable",
+             "effects": ["西方兵起", "与北方相争"]},
+            {"witness_label": "水", "element": "水", "status": "stable",
+             "effects": ["征伐北方", "大臣被诛", "夏旱", "冬大水雨雪"]},
+        ],
+        "missing_elements": ["木"],
+        "status": "duplicate_water_missing_wood_ocr_conflict",
+    },
+    "庚辛": {
+        "rows": [
+            {"witness_label": "木", "element": "木", "status": "stable",
+             "effects": ["东方兵兴", "民流移"]},
+            {"witness_label": "金", "element": "金", "status": "stable",
+             "effects": ["西方兵动"]},
+            {"witness_label": "水", "element": "水", "status": "stable",
+             "effects": ["北方兵起"]},
+            {"witness_label": "火", "element": "火", "status": "stable_with_ocr_noise",
+             "effects": ["南方兵动", "中国火灾", "掩捕袭夺", "岁旱", "金属器物贵"]},
+            {"witness_label": "土", "element": "土", "status": "stable",
+             "effects": ["邻国兵兴", "中国兵兴", "民丰", "夏大旱"]},
+        ],
+        "missing_elements": [],
+        "status": "complete_five_elements",
+    },
+    "壬癸": {
+        "rows": [
+            {"witness_label": "水", "element": "水", "status": "stable",
+             "effects": ["北方有兵"]},
+            {"witness_label": "金", "element": "金", "status": "stable",
+             "effects": ["西方进宝", "大丰", "民和"]},
+            {"witness_label": "火", "element": "火", "status": "stable_with_ocr_noise",
+             "effects": ["南方多灾", "夏旱", "秋冬大水霜雪"]},
+            {"witness_label": "木", "element": "木", "status": "stable_with_ocr_noise",
+             "effects": ["东方兵起", "疾病"]},
+            {"witness_label": "王", "element": None, "candidate_element": "土",
+             "status": "ocr_element_conflict",
+             "effects": ["中国有兵"]},
+        ],
+        "missing_elements": ["土"],
+        "status": "final_label_ocr_conflict",
+    },
+}
+
+
+def shiji_year_element_collation() -> dict[str, Any]:
+    """返回〈始击变化〉逐岁干×五行灾应的当前校勘表。
+
+    stable 项可作主来源结构事实；ocr_element_conflict 项只作待校见证。
+    """
+    stable_count = 0
+    unresolved = []
+    for stem_group, group in SHIJI_YEAR_ELEMENT_COLLATION.items():
+        for row in group["rows"]:
+            if row["status"].startswith("stable") and row.get("element"):
+                stable_count += 1
+            if row["status"] == "ocr_element_conflict":
+                unresolved.append({
+                    "stem_group": stem_group,
+                    "witness_label": row["witness_label"],
+                    "candidate_element": row.get("candidate_element"),
+                })
+    return {
+        "canonical": C19_VERSION,
+        "rule_key": "shiji_changes",
+        "primary_source": PRIMARY_SOURCE_ID,
+        "primary_source_title": PRIMARY_SOURCE_TITLE,
+        "source_locator": copy.deepcopy(PRIMARY_LOCATORS["shiji_changes"]),
+        "source_status": "direct_primary_text_collation_in_progress",
+        "stem_groups": copy.deepcopy(SHIJI_YEAR_ELEMENT_COLLATION),
+        "stable_row_count": stable_count,
+        "unresolved_rows": unresolved,
+        "normalization_complete": not unresolved
+            and all(not group["missing_elements"] for group in SHIJI_YEAR_ELEMENT_COLLATION.values()),
+        "policy": (
+            "OCR疑字只保存witness_label与candidate_element；"
+            "未完成异本校勘前不得把候选字改写成canonical五行。"
+        ),
     }
 
 
