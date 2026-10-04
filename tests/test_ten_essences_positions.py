@@ -149,12 +149,15 @@ def test_c53_surplus_rejections_preserve_source_boundary():
     assert "古法不载" in SURPLUS_REJECTION["五风"]["reason"]
 
 
-def test_c53_catalog_marks_second_batch_position_runtimes_implemented():
+def test_c53_catalog_tracks_own_runtimes_and_delegates_other_layers():
     data = c53_runtime_catalog()
     assert data["implemented"] == ["飞鸟", "五风", "太尊", "八风", "三风", "五行"]
-    assert set(data["pending"]) == {
-        "天皇", "帝符", "天时", "太乙数"
+    assert data["delegated_position_runtimes"] == {
+        "天皇": "C55-TIANHUANG",
+        "帝符": "C55-DIFU",
     }
+    assert data["number_runtime"] == "C54-TAIYI-NUMBER"
+    assert data["pending"] == ["天时"]
     assert data["cloud_omen_runtime"] is False
     assert data["pan_contract_extended"] is False
 
