@@ -32,7 +32,12 @@
         "layer": "C8-L2",
         "status": "partial_upstream_only"
       },
-      "implementation_status": "pending_source_specific_formula"
+      "implementation_status": "implemented_source_specific",
+      "runtime": [
+        "kintaiyi.jinjing_v4_military.sanmen_jubu",
+        "kintaiyi.jinjing_v4_military.zhimen_from_cycle_count"
+      ],
+      "implementation_note": "实现太乙/天目分临开生二门为两门不具、临休门为三门不具；其余正文未展开组合保持未定义。另实现240一周、30一移的直门轮转与州郡岁计门吉凶。"
     },
     {
       "id": "J4M-02",
@@ -52,7 +57,9 @@
         "layer": "C8-L2",
         "status": "partial_upstream_only"
       },
-      "implementation_status": "pending_source_specific_formula"
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jinjing_v4_military.wujiang_fabu",
+      "implementation_note": "分栏保存始击掩击、文昌囚迫、主客大小将相关三组阻断条件，并把三门具/不具作为独立上游事实；不解析旧格局字符串。"
     },
     {
       "id": "J4M-03",
@@ -177,7 +184,9 @@
         "layer": null,
         "status": "missing"
       },
-      "implementation_status": "not_implemented"
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jinjing_v4_military.suidi_zhibian",
+      "implementation_note": "实现五类地形与优势兵种/兵器映射，并保留三不当一、十不当一、百不当一原文比例文字；训练、器械、将知兵、君择将只作事实/警告层，不转成现代战力分数。"
     },
     {
       "id": "J4M-09",
