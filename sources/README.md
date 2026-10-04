@@ -10,4 +10,4 @@
 
 - [`c20-wenchang-nine-stars-collation-record.md`](c20-wenchang-nine-stars-collation-record.md)：文昌九星《三才世纬》/统宗卷六外部参校、星名与10/30年周期异文。
 
-- [`c39-zitingjing-terminology-recovery-record.md`](c39-zitingjing-terminology-recovery-record.md)：研易楼明钞本既有本地术语整理的恢复映射骨架；不重做全文术语扫描。
+- [`c40-zitingjing-terminology-recovery-record.md`](c39-zitingjing-terminology-recovery-record.md)：研易楼明钞本既有本地术语整理的恢复映射骨架；不重做全文术语扫描。
