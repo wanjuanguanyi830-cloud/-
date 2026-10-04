@@ -99,6 +99,10 @@ EYE_FIELDS = {
 
 # 旧风险字段 → 新结构必须存在的替代路径。
 QUARANTINE_REPLACEMENTS = {
+    "軍事應用": "source_variants.military_derived.tongzong_volume15.payload",
+    "军事应用": "source_variants.military_derived.tongzong_volume15.payload",
+    "軍事占斷": "source_variants.military_derived.tongzong_volume17.payload",
+    "军事占断": "source_variants.military_derived.tongzong_volume17.payload",
     "太乙九星": "source_variants.zitingjing.rules.taiyi_nine_stars.primary_result",
     "文昌九星": "source_variants.zitingjing.rules.wenchang_nine_stars.primary_result",
     "文昌變化": "source_variants.zitingjing.rules.wenchang_changes.primary_result",
