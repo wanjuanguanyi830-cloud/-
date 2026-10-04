@@ -211,24 +211,33 @@ RULE_UNITS: dict[str, dict[str, Any]] = {
         payload_key="間諜虛實",
         source_title="明敌国有无间谍窥探术",
         function_name="jianmie_xushi",
-        inputs=("taiyi", "shiji", "away_general", "skyeyes"),
+        inputs=(
+            "shiji_realm", "away_general_realm", "away_vassal_realm",
+            "skyeyes_realm", "away_general_at_skyeyes",
+        ),
         dependency_class="medium",
+        notes="内外深浅由上游结构化；本条不复刻旧_realm_of_gong近似。",
     ),
     "V17-04": _rule(
         "V17-04", volume_profile="tongzong_volume17",
         payload_key="敵使虛實",
         source_title="明敌使虚实之术",
         function_name="dishi_xushi",
-        inputs=("taiyi", "shiji", "away_general"),
+        inputs=("taiyi_element", "shiji_element", "away_general_element"),
         dependency_class="medium",
+        notes="直接比较五行制化证据；不在本条猜十六神/九宫五行。",
     ),
     "V17-05": _rule(
         "V17-05", volume_profile="tongzong_volume17",
         payload_key="敵兵來方",
         source_title="明敌人来方将卒多寡",
         function_name="dibing_laifang",
-        inputs=("taiyi", "away_cal", "shiji", "yin_yang"),
+        inputs=(
+            "away_cal", "time_yinyang", "calc_harmony",
+            "shiji_relative_position",
+        ),
         dependency_class="medium",
+        notes="来方按客目左/右/前/后；兵众须满足16以上且阴阳和。",
     ),
     "V17-06": _rule(
         "V17-06", volume_profile="tongzong_volume17",
@@ -307,8 +316,9 @@ RULE_UNITS: dict[str, dict[str, Any]] = {
         payload_key="占望行人",
         source_title="占望行人及贼来与不来",
         function_name="zhanwang_xingren",
-        inputs=("taiyi", "home_cal", "away_cal", "skyeyes", "shiji", "patterns"),
+        inputs=("travel_direction", "guest_calc", "has_yanji", "has_guange"),
         dependency_class="medium",
+        notes="四方来否按原文数对；南方来数存在版本异文，必须保留。",
     ),
 }
 
