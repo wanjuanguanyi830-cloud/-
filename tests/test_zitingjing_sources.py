@@ -52,7 +52,7 @@ def test_volume10_items_keep_tongzong_as_collation_only():
 def test_primary_result_can_coexist_with_collation_without_merge():
     data = build_zitingjing_rule_sources(
         "taiyi_nine_stars",
-        primary_result={"source": "紫庭经", "table": [1, 2, 3]},
+        primary_result={"source": "太乙紫庭经", "table": [1, 2, 3]},
         collation_results={"tongzong_volume6": {"source": "统宗", "table": [1, 2, 4]}},
     )
     assert data["primary_ready"] is True
@@ -146,7 +146,7 @@ def test_zitingjing_primary_results_clear_replacement_gaps_while_collation_remai
     for key, meta in RULES.items():
         collation = meta["collation_sources"][0]
         results[key] = {
-            "primary_result": {"source": "紫庭经", "rule_key": key},
+            "primary_result": {"source": "太乙紫庭经", "rule_key": key},
             "collation_results": {collation: {"source": "统宗参校", "rule_key": key}},
         }
 
