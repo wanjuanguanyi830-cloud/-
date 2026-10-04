@@ -131,9 +131,10 @@ def test_c55_old_cycle_match_does_not_promote_legacy_formula():
     assert LEGACY_AUDIT["config.kingfu"]["canonical_equivalent"] is False
 
 
-def test_c55_catalog_keeps_tianshi_pending_and_cloud_omens_separate():
+def test_c55_catalog_delegates_tianshi_and_keeps_cloud_omens_separate():
     data = c55_catalog()
     assert data["implemented"] == ["天皇", "帝符"]
-    assert data["pending_position"] == ["天时"]
+    assert data["delegated_position_runtime"] == {"天时": "C56-TIANSHI"}
+    assert data["pending_position"] == []
     assert data["repeat_counts"] == {"天皇": 4, "帝符": 4}
     assert data["cloud_omen_runtime"] is False
