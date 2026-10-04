@@ -104,12 +104,21 @@ def test_unknown_rule_id_is_rejected():
         rule_unit("V17-99")
 
 
-def test_reference_function_dependencies_are_preserved_as_metadata():
+def test_source_limited_dependencies_are_preserved_as_metadata():
     assert rule_unit("V15-02")["inputs"] == ["home_cal", "away_cal"]
     assert rule_unit("V15-05")["inputs"] == []
-    assert rule_unit("V17-04")["inputs"] == ["taiyi", "shiji", "away_general"]
+    assert rule_unit("V17-03")["inputs"] == [
+        "shiji_realm", "away_general_realm", "away_vassal_realm",
+        "skyeyes_realm", "away_general_at_skyeyes",
+    ]
+    assert rule_unit("V17-04")["inputs"] == [
+        "taiyi_element", "shiji_element", "away_general_element"
+    ]
+    assert rule_unit("V17-05")["inputs"] == [
+        "away_cal", "time_yinyang", "calc_harmony", "shiji_relative_position"
+    ]
     assert rule_unit("V17-11")["inputs"] == [
-        "taiyi", "home_cal", "away_cal", "skyeyes", "shiji", "patterns"
+        "travel_direction", "guest_calc", "has_yanji", "has_guange"
     ]
 
 
