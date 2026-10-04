@@ -60,14 +60,17 @@ def test_c37_volume3_wuyun_does_not_compute_volume10_suihui():
     assert data["tianfu_computed"] is False
 
 
-def test_c37_volume10_wuyun_keeps_suihui_pending_instead_of_copying_old_combined_formula():
+def test_c37_volume10_wuyun_uses_c39_collation_without_copying_old_formula():
     data = volume10_wuyun_profile("乙", "酉", host_eye="文昌", guest_eye="始击")
     assert data["source_profile"] == "tongzong_volume10_wuyun"
     assert data["rule_id"] == "C37-V10-WYUN"
     assert data["five_movement"]["movement"] == "金运"
     assert data["six_qi"]["sitian"] == {"qi": "阳明", "transformation": "燥"}
     assert data["suihui_relations"] == []
-    assert data["suihui_status"] == "pending_direct_table_collation"
+    assert data["suihui_status"] == "core_tables_collated_meeting_variant_pending"
+    assert data["collation"]["core_tables_status"] == "collated"
+    assert data["meeting_enum_status"] == "source_variant_unresolved"
+    assert data["year_stem_only_finalizes_taiguo_buji"] is False
     assert data["cross_volume_merge"] is False
 
 
