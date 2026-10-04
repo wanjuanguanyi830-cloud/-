@@ -22,6 +22,13 @@ SOURCE_WITNESS = {
     "work": "太乙统宗宝鉴",
     "section": "明太乙历数之期术",
     "online_witness_volume": 10,
+    "collation": [
+        {
+            "work": "太白兵备统宗宝鉴",
+            "section": "释大游太乙观历数",
+            "role": "important_collation",
+        }
+    ],
     "source_principles": [
         "帝王应天顺人始终之期",
         "常以即位年支加大义，视太阳、阴主四神之下为厄会之期",
@@ -35,11 +42,59 @@ SOURCE_WITNESS = {
 ALLOWED_PATTERNS = frozenset({"囚", "迫", "击", "格", "掩", "挟"})
 
 CORONATION_CLOUD_NUMBERS = {
-    "黄": {"element": "土", "number": 5},
-    "白": {"element": "金", "number": 9},
-    "青": {"element": "木", "number": 3},
-    "黑": {"element": "水", "number": 6},
-    "赤": {"element": "火", "number": 7},
+    "黄": {
+        "element": "土",
+        "sheng_number": 5,
+        "cheng_number": 10,
+        "tongzong_online_witness": "黄云属土，其数五",
+    },
+    "白": {
+        "element": "金",
+        "sheng_number": 4,
+        "cheng_number": 9,
+        "tongzong_online_witness": "白云属金，其数九",
+    },
+    "青": {
+        "element": "木",
+        "sheng_number": 3,
+        "cheng_number": 8,
+        "tongzong_online_witness": "青云属木，其数三；又云八数当用成数",
+    },
+    "黑": {
+        "element": "水",
+        "sheng_number": 1,
+        "cheng_number": 6,
+        "tongzong_online_witness": "黑云属水，其数六",
+    },
+    "赤": {
+        "element": "火",
+        "sheng_number": 2,
+        "cheng_number": 7,
+        "tongzong_online_witness": "赤云属火，其数七",
+    },
+}
+
+SCOPE = {
+    "subject": "帝王应天顺人始终之期",
+    "independent_total_year_formula_attested": False,
+    "base_ehui_method": {
+        "accession_year_branch_plus": "大义",
+        "primary_targets": ["太阳", "阴主"],
+        "hegod_extension": True,
+        "four_period_structure": "太阳及其合神、阴主及其合神",
+        "runtime_dependencies": ["C43-V9-EHUI", "explicit_four_spirit_evidence"],
+    },
+    "correction_layers": [
+        "太乙入运气爻卦象",
+        "太游轨运卦爻",
+        "小游轨运卦爻",
+        "内外极限",
+        "囚迫击格掩挟",
+    ],
+    "explicit_exclusions": {
+        "C42": "卷九历数长短/安居策数纳甲算法，不等于C50帝王始终总纲",
+        "single_formula": "当前直接正文未给可替代全部证据层的单一终年公式",
+    },
 }
 
 LEGACY_BOUNDARY = {
@@ -54,13 +109,16 @@ LEGACY_BOUNDARY = {
 
 
 def coronation_cloud_evidence(color: str | None) -> dict[str, Any]:
-    """只结构化登位日旁云的颜色五行数，不解释后代兴衰。"""
+    """只结构化登位日旁云的五行生数/成数，不擅选单一数。"""
     if color is None:
         return {
             "provided": False,
             "color": None,
             "element": None,
-            "number": None,
+            "sheng_number": None,
+            "cheng_number": None,
+            "selected_number": None,
+            "number_selection_status": "not_observed",
             "interpretation_applied": False,
         }
     if color not in CORONATION_CLOUD_NUMBERS:
@@ -70,9 +128,16 @@ def coronation_cloud_evidence(color: str | None) -> dict[str, Any]:
         "provided": True,
         "color": color,
         "element": row["element"],
-        "number": row["number"],
+        "sheng_number": row["sheng_number"],
+        "cheng_number": row["cheng_number"],
+        "selected_number": None,
+        "number_selection_status": "source_pair_preserved_unselected",
+        "tongzong_online_witness": row["tongzong_online_witness"],
         "interpretation_applied": False,
-        "policy": "只保存原文颜色五行数；后续子嗣/在位长短语句OCR不稳，本层不自动解释。",
+        "policy": (
+            "统宗在线见证多见单值并保留青木3/8提示；"
+            "太白兵备参校明确五行生数/成数双值。C50保留双值，不擅选单一数。"
+        ),
     }
 
 
@@ -110,6 +175,7 @@ def taiyi_lishu_evidence_bundle(
     xiaoyou_hexagram: dict[str, Any] | None = None,
     taiyi_yunqi_hexagram_evidence: dict[str, Any] | None = None,
     pattern_evidence: list[str] | None = None,
+    four_spirit_evidence: dict[str, Any] | None = None,
     cloud_color: str | None = None,
 ) -> dict[str, Any]:
     """构建卷十历数之期证据束；即使证据齐全也不伪造最终寿数。"""
@@ -129,11 +195,17 @@ def taiyi_lishu_evidence_bundle(
         raise TypeError("taiyi_yunqi_hexagram_evidence须为dict或None")
 
     patterns, patterns_checked = _patterns(pattern_evidence)
+    if four_spirit_evidence is not None and not isinstance(four_spirit_evidence, dict):
+        raise TypeError("four_spirit_evidence须为dict或None")
+    four_spirit = copy.deepcopy(four_spirit_evidence or {})
+    four_spirit_checked = four_spirit_evidence is not None
     cloud = coronation_cloud_evidence(cloud_color)
 
     pending = []
     if ehui is None:
         pending.append("缺太阳/阴主厄会证据（可由C43提供）")
+    if not four_spirit_checked:
+        pending.append("缺太阳/阴主及其合神四神期的显式证据")
     if dayou is None:
         pending.append("缺太游轨运卦爻证据（C41）")
     if xiaoyou is None:
@@ -160,7 +232,10 @@ def taiyi_lishu_evidence_bundle(
             "source_dependency": "C42纳甲干支数表",
             "used_as_final_lifespan_formula": False,
         },
+        "scope": copy.deepcopy(SCOPE),
         "ehui": copy.deepcopy(ehui) if ehui is not None else {},
+        "four_spirit_evidence": four_spirit,
+        "four_spirit_checked": four_spirit_checked,
         "dayou": copy.deepcopy(dayou) if dayou is not None else {},
         "xiaoyou": copy.deepcopy(xiaoyou) if xiaoyou is not None else {},
         "taiyi_yunqi_hexagram_evidence": copy.deepcopy(
@@ -198,6 +273,7 @@ def c50_catalog() -> dict[str, Any]:
             "小游轨运卦爻",
             "囚迫击格掩挟检查",
         ],
+        "scope": copy.deepcopy(SCOPE),
         "cloud_numbers": copy.deepcopy(CORONATION_CLOUD_NUMBERS),
         "legacy_boundary": copy.deepcopy(LEGACY_BOUNDARY),
         "final_lifespan_formula": None,
