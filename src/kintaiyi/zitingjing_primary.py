@@ -25,7 +25,7 @@ PRIMARY_LOCATORS = {
     "taiyi_nine_stars": {
         "status": "verified_direct",
         "section": "释九宫所值九星",
-        "url": "https://www.shidianguji.com/zh/book/SDZJ0646/chapter/1kg32q85u4gth",
+        "url": "https://www.shidianguji.com/zh/book/SDZJ0646/chapter/1kg32q85u4tgl",
         "witness_context": "《太乙紫庭经》表、序之后的卷一首段",
     },
     "wenchang_changes": {
@@ -79,15 +79,15 @@ PRIMARY_LOCATORS = {
 # 〈释九宫所值九星〉的主来源表。
 # “吉凶”按当前在线见证文字记录；若其他古本异文，进入 variant_note，不静默改表。
 TAIYI_NINE_STARS_PRIMARY = (
-    {"palace": 1, "star": "天蓬", "stem": "戊", "region": "冀州", "fortune": "凶"},
-    {"palace": 2, "star": "天芮", "stem": "己", "region": "荆州", "fortune": "凶"},
-    {"palace": 3, "star": "天冲", "stem": "庚", "region": "青州", "fortune": "凶"},
-    {"palace": 4, "star": "天辅", "stem": "辛", "region": "徐州", "fortune": "吉"},
-    {"palace": 5, "star": "天禽", "stem": "壬", "region": "豫州", "fortune": "吉"},
-    {"palace": 6, "star": "天心", "stem": "癸", "region": "雍州", "fortune": "吉"},
-    {"palace": 7, "star": "天柱", "stem": "丁", "region": "梁益州", "fortune": "凶"},
-    {"palace": 8, "star": "天任", "stem": "丙", "region": "兖州", "fortune": "吉"},
-    {"palace": 9, "star": "天英", "stem": "乙", "region": "扬州", "fortune": "凶"},
+    {"palace": 1, "star": "天蓬", "region": "冀州", "fortune": "凶"},
+    {"palace": 2, "star": "天芮", "region": "荆州", "fortune": "凶"},
+    {"palace": 3, "star": "天冲", "region": "青州", "fortune": "凶"},
+    {"palace": 4, "star": "天辅", "region": "徐州", "fortune": "吉"},
+    {"palace": 5, "star": "天禽", "region": "豫州", "fortune": "吉"},
+    {"palace": 6, "star": "天心", "region": "雍州", "fortune": "吉"},
+    {"palace": 7, "star": "天柱", "region": "梁益州", "fortune": "凶"},
+    {"palace": 8, "star": "天任", "region": "兖州", "fortune": "吉"},
+    {"palace": 9, "star": "天英", "region": "扬州", "fortune": "凶"},
 )
 
 
@@ -190,6 +190,25 @@ def shiji_changes_primary_core() -> dict[str, Any]:
             "role": "客目",
             "favors": "客",
             "initiative": "临军先举",
+        },
+        "relations": {
+            "covers_taiyi": {
+                "pattern": "掩",
+                "effect": "掩袭篡夺之事",
+            },
+            "covers_wenchang": {
+                "pattern": "关",
+                "decision_basis": "旺宫者胜",
+                "home_favored_palaces": [1, 8, 3, 7],
+                "away_favored_palaces": [4, 9, 2, 6],
+            },
+            "covers_home_general_or_vassal": {
+                "effect": "不论旺宫，必败死",
+            },
+            "adjacent_to_taiyi": {
+                "pattern": "击",
+                "effect": "有兵逼之灾",
+            },
         },
         "observational_principles": [
             "出则有兵、入则兵散",
