@@ -91,7 +91,7 @@ def test_c52_traditional_aliases_normalize_without_source_loss(source, canonical
     assert canonical_ten_essence_name(source) == canonical
     record = ten_essence_record(source)
     assert record["name"] == canonical
-    expected_ready = canonical in {"飞鸟", "五风", "太尊", "八风", "三风"}
+    expected_ready = canonical in {"飞鸟", "五风", "太尊", "八风", "三风", "五行"}
     assert record["runtime_formula_ready"] is expected_ready
 
 
@@ -158,19 +158,19 @@ def test_c52_registry_tracks_partial_c53_runtime_without_becoming_formula_layer(
     assert data["rule_id"] == "C52-TEN-ESSENCES-REGISTRY"
     assert data["position_runtime_ready"] is False
     assert data["all_position_runtime_ready"] is False
-    assert data["implemented_position_runtimes"] == ["飞鸟", "五风", "太尊", "八风", "三风"]
+    assert data["implemented_position_runtimes"] == ["飞鸟", "五风", "太尊", "八风", "三风", "五行"]
     assert set(data["pending_position_runtimes"]) == {
-        "天皇", "帝符", "天时", "五行"
+        "天皇", "帝符", "天时"
     }
     assert data["cloud_runtime_ready"] is False
     assert data["target_policy"]["legacy_top_level_promoted"] is False
 
     status = {row["name"]: row["formula_status"] for row in data["essences"]}
-    for name in ("飞鸟", "五风", "太尊", "八风", "三风"):
+    for name in ("飞鸟", "五风", "太尊", "八风", "三风", "五行"):
         assert status[name] == "implemented_c53"
     assert all(
         status[name] == "pending_source_formula_audit"
-        for name in ("天皇", "帝符", "天时", "五行", "太乙数")
+        for name in ("天皇", "帝符", "天时", "太乙数")
     )
 
 
@@ -248,7 +248,7 @@ def test_c52_formula_skeleton_promotes_only_c53_implemented_positions():
 
     for name, skeleton in data["focus_formula_skeletons"].items():
         assert skeleton["runtime_formula_ready"] is (
-            name in {"飞鸟", "五风", "太尊", "八风", "三风"}
+            name in {"飞鸟", "五风", "太尊", "八风", "三风", "五行"}
         ), name
 
     five = ten_essence_record("五風")
@@ -282,3 +282,22 @@ def test_c52_fivewind_preserves_collation_variant_without_overriding_primary():
     assert five["runtime_formula_ready"] is True
     assert five["runtime_rule_id"] == "C53-FIVEWIND"
     assert five["runtime_profile"] == "tongzong_primary_taibai_collation"
+
+
+
+def test_c52_wuxing_runtime_ready_and_tianshi_conflict_stays_pending():
+    wuxing = FOCUS_FORMULA_SKELETONS["五行"]
+    assert wuxing["big_cycle"] == 50
+    assert wuxing["small_cycle"] == 5
+    assert wuxing["route"]["tongzong_yang_path"] == [1, 8, 3, 9, 7]
+    assert wuxing["route"]["taibai_yin_path"] == [9, 2, 7, 1, 3]
+    assert wuxing["runtime_formula_ready"] is True
+    assert wuxing["runtime_rule_id"] == "C53-WUXING"
+
+    tianshi = FOCUS_FORMULA_SKELETONS["天时"]
+    assert tianshi["big_cycle"] == 120
+    assert tianshi["small_cycle"] == 12
+    assert tianshi["route"]["tongzong_start"] == "吕申（寅）"
+    assert tianshi["route"]["taibai_yang_start"] == "申"
+    assert tianshi["route"]["status"] == "source_start_conflict_unresolved"
+    assert tianshi["runtime_formula_ready"] is False
