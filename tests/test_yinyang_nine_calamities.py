@@ -117,6 +117,14 @@ def test_c46_each_segment_start_is_classified_correctly(cycle_year, index, name,
 
 
 def test_c46_preserves_fourth_and_ninth_ocr_conflicts():
+    fourth_duration = TEXTUAL_NOTES["fourth_duration"]
+    assert fourth_duration["online_witnesses"] == [702, 720]
+    assert fourth_duration["normalized_duration_years"] == 720
+    assert "4560" in fourth_duration["reason"]
+    assert fourth_duration["status"] == (
+        "ocr_corrected_by_parallel_witness_and_internal_arithmetic"
+    )
+
     fourth = TEXTUAL_NOTES["fourth_label"]
     ninth = TEXTUAL_NOTES["ninth_disaster_years"]
 
