@@ -142,16 +142,23 @@ def test_c52_old_ten_jing_function_map_has_name_set_error():
     assert "太乙数" in audit["reason"]
 
 
-def test_c52_cloud_omens_remain_layered_and_not_owned_by_c52():
-    assert CLOUD_OMEN_BOUNDARY["status"] == "layered_runtime_in_progress"
+def test_c52_cloud_omens_are_layered_complete_but_not_owned_by_c52():
+    assert CLOUD_OMEN_BOUNDARY["status"] == "layered_runtime_complete_with_preserved_variants"
     assert CLOUD_OMEN_BOUNDARY["runtime_in_c52"] is False
     assert CLOUD_OMEN_BOUNDARY["conjunction_runtime"]["implemented"] is True
     assert CLOUD_OMEN_BOUNDARY["conjunction_runtime"]["rule_id"] == (
         "C57-TEN-ESSENCE-CLOUD-CONJUNCTION"
     )
     assert CLOUD_OMEN_BOUNDARY["conjunction_runtime"]["auto_position_lookup_used"] is False
-    assert "太乙数30/40/50等天气断语" in CLOUD_OMEN_BOUNDARY["pending_layers"]
-    assert "云色" in CLOUD_OMEN_BOUNDARY["reason"]
+    assert CLOUD_OMEN_BOUNDARY["observation_runtime"]["implemented"] is True
+    assert CLOUD_OMEN_BOUNDARY["observation_runtime"]["rule_ids"] == [
+        "C58-CLOUD-TIMING", "C58-WEATHER-OBSERVATION"
+    ]
+    assert CLOUD_OMEN_BOUNDARY["number_omen_runtime"]["implemented"] is True
+    assert CLOUD_OMEN_BOUNDARY["number_omen_runtime"]["rule_id"] == (
+        "C59-TAIYI-NUMBER-OMEN"
+    )
+    assert CLOUD_OMEN_BOUNDARY["pending_layers"] == []
 
 
 def test_c52_does_not_extend_pan_contract_or_cycles_root():
@@ -170,7 +177,12 @@ def test_c52_registry_tracks_completed_position_runtime_without_becoming_formula
         "飞鸟", "五风", "太尊", "八风", "三风", "五行", "天皇", "帝符", "天时"
     ]
     assert data["pending_position_runtimes"] == []
-    assert data["cloud_runtime_ready"] is False
+    assert data["cloud_conjunction_runtime_ready"] is True
+    assert data["cloud_observation_runtime_ready"] is True
+    assert data["cloud_number_omen_runtime_ready"] is True
+    assert data["cloud_number_omen_rule_id"] == "C59-TAIYI-NUMBER-OMEN"
+    assert data["cloud_runtime_ready"] is True
+    assert "保留为unresolved" in data["cloud_runtime_ready_semantics"]
     assert data["target_policy"]["legacy_top_level_promoted"] is False
 
     status = {row["name"]: row["formula_status"] for row in data["essences"]}
