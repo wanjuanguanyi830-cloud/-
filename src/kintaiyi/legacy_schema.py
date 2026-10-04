@@ -99,6 +99,15 @@ EYE_FIELDS = {
 
 # 旧风险字段 → 新结构必须存在的替代路径。
 QUARANTINE_REPLACEMENTS = {
+    "釋格局": "source_variants.patterns.profiles",
+    "释格局": "source_variants.patterns.profiles",
+    "推三門具不具": "source_variants.military.three_doors.profiles",
+    "推三门具不具": "source_variants.military.three_doors.profiles",
+    "推五將發不發": "source_variants.military.five_generals.profiles",
+    "推五将发不发": "source_variants.military.five_generals.profiles",
+    "推主客相闗法": "source_variants.military.host_guest_relation.profiles",
+    "推主客相關法": "source_variants.military.host_guest_relation.profiles",
+    "推主客相关法": "source_variants.military.host_guest_relation.profiles",
     "軍事戰略": "analysis.military",
     "军事战略": "analysis.military",
     "運籌博弈分析": "modern.game_theory",
