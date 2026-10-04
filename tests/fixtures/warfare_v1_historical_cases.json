@@ -1,0 +1,183 @@
+{
+  "ruleset_version": "1.0.0",
+  "citation_status_note": "These cases reproduce the prior discussion's source summaries. Exact edition, page/image coordinates, and quotations remain incomplete; they are regression fixtures, not verified transcriptions.",
+  "cases": [
+    {
+      "case_id": "T7-01-LINJIN-001",
+      "rule_id": "T7-01",
+      "case_kind": "historical_case",
+      "source": {"collection": "四库全书本", "title": "待补", "juan": 6, "chapter": "临津问道", "edition": "待补", "page_or_image": null, "quotation": null, "citation_status": "locator-incomplete"},
+      "inputs": {"start_branch": "子"},
+      "expected_steps": [{"step": "连续吕申加位", "values": ["子", "卯", "午", "酉", "子"]}],
+      "expected": {"破年支": "卯", "破月支": "午", "破日支": "酉", "破时支": "子", "推步": ["子", "卯", "午", "酉", "子"], "曆法落實": null},
+      "source_outcome": {"破年": "丁卯年", "破月": "五月", "破日": "酉日", "破时": "子时"},
+      "notes": ["不由支序反推公历或年干。"]
+    },
+    {
+      "case_id": "T7-02-LION-001",
+      "rule_id": "T7-02",
+      "case_kind": "historical_case",
+      "source": {"collection": "四库全书本", "title": "待补", "juan": 6, "chapter": "狮子反掷", "edition": "待补", "page_or_image": null, "quotation": null, "citation_status": "locator-incomplete"},
+      "inputs": {"start_branch": "戌"},
+      "expected_steps": [{"step": "大神落点", "value": "丑"}, {"step": "火生土", "value": "休"}],
+      "expected": {"大神落點": "丑", "宮": 3, "五態": "休", "可破": true, "應期": null},
+      "source_outcome": {"记载应期": "辛卯年破"},
+      "notes": ["辛卯仅是原例所记结果，不作为程序推导应期。"]
+    },
+    {
+      "case_id": "T7-03-WHITE-CLOUD-001",
+      "rule_id": "T7-03",
+      "case_kind": "historical_case",
+      "source": {"collection": "四库全书本", "title": "待补", "juan": 6, "chapter": "白云卷空", "edition": "待补", "page_or_image": null, "quotation": null, "citation_status": "locator-incomplete"},
+      "inputs": {"home_general": 7, "away_general": 3},
+      "expected_steps": [{"step": "主大将", "point": "乾", "state": "囚"}, {"step": "客大将", "point": "巽", "state": "相"}],
+      "expected": {"主": {"大神落點": "乾", "五態": "囚", "強弱": "弱"}, "客": {"大神落點": "巽", "五態": "相", "強弱": "強"}, "勝勢": "客"},
+      "source_outcome": {"胜势": "客胜"},
+      "notes": ["主客大将分别计算。"]
+    },
+    {
+      "case_id": "T7-04-TIGER-001",
+      "rule_id": "T7-04",
+      "case_kind": "historical_case",
+      "source": {"collection": "四库全书本", "title": "待补", "juan": 6, "chapter": "猛虎相拒", "edition": "待补", "page_or_image": null, "quotation": null, "citation_status": "locator-incomplete"},
+      "inputs": {"encampment_taiyi_palace": 3},
+      "expected_steps": [{"step": "吕申加太乙3宫", "point": "巽", "state": "相"}],
+      "expected": {"大神落點": "巽", "宮": 9, "五態": "相", "斷": "敵營不可攻"},
+      "source_outcome": {"断": "此营不可攻"},
+      "notes": []
+    },
+    {
+      "case_id": "T7-05-THUNDER-001",
+      "rule_id": "T7-05",
+      "case_kind": "historical_case",
+      "source": {"collection": "四库全书本", "title": "待补", "juan": 6, "chapter": "雷公入水", "edition": "待补", "page_or_image": null, "quotation": null, "citation_status": "locator-incomplete"},
+      "inputs": {"taiyi_palace": 6, "generals": {"主大将": 8, "客大将": 9}},
+      "expected_steps": [{"step": "大神下宫", "palace": 8, "element": "水"}, {"step": "主大将乘气", "state": "旺"}, {"step": "客大将乘气", "state": "相"}],
+      "expected": {"大神落點": "子", "環境五行": "水", "四將": {"主大將": {"五態": "旺"}, "客大將": {"五態": "相"}}},
+      "source_outcome": null,
+      "notes": ["原例只给主大将、客大将；未补造两个参将输入。"]
+    },
+    {
+      "case_id": "T7-06-DRAGON-001",
+      "rule_id": "T7-06",
+      "case_kind": "historical_case",
+      "source": {"collection": "四库全书本", "title": "待补", "juan": 6, "chapter": "白龙得云", "edition": "待补", "page_or_image": null, "quotation": null, "citation_status": "locator-incomplete"},
+      "inputs": {"taiyi_palace": 9, "home_big": 6, "away_big": 3},
+      "expected_steps": [{"step": "大神下宫", "palace": 7, "element": "土"}, {"step": "主大将乘气", "state": "相"}, {"step": "客大将乘气", "state": "旺"}],
+      "expected": {"大神落點": "坤", "環境五行": "土", "主大將": {"五態": "相"}, "客大將": {"五態": "旺"}, "刑克": {"刑條件": null}},
+      "source_outcome": {"主": "宜屯军下营", "客": "亦利下营"},
+      "notes": ["原例并见将帅刑克的另条断法；本条夹具只锁定所述两将乘气结果。"]
+    },
+    {
+      "case_id": "T7-07-RETURN-001",
+      "rule_id": "T7-07",
+      "case_kind": "historical_case",
+      "source": {"collection": "四库全书本", "title": "待补", "juan": 6, "chapter": "回军无言", "edition": "待补", "page_or_image": null, "quotation": null, "citation_status": "locator-incomplete"},
+      "inputs": {"enemy_arrival_taiyi": 2, "away_general": 9},
+      "expected_steps": [{"step": "初来太乙2宫", "point": "酉", "element": "金"}, {"step": "金克客大将木", "state": "死"}],
+      "expected": {"大神落點": "酉", "環境五行": "金", "敵軍": {"五態": "死"}, "敵軍伏兵判斷": "敵自破，可攻"},
+      "source_outcome": {"结论": "客无伏兵，自破，可立即攻"},
+      "notes": ["不得用客大将宫替代敌军初来时的太乙宫。"]
+    },
+    {
+      "case_id": "D8-02-LENGTH-001",
+      "rule_id": "D8-02",
+      "case_kind": "historical_case",
+      "source": {"title": "统宗宝鉴", "collection": null, "juan": null, "chapter": "推长短以占缓急", "edition": "待补", "page_or_image": null, "quotation": null, "citation_status": "locator-incomplete"},
+      "inputs": {"n": 31},
+      "expected_steps": [{"step": "长短门槛", "value": "长"}],
+      "expected": {"算": 31, "长短": "長"},
+      "source_outcome": {"断例": "贞观四年主算31，李靖深入破突厥"},
+      "notes": ["11以上为长，10以下为短。"]
+    },
+    {
+      "case_id": "D8-04-SINGLE-001",
+      "rule_id": "D8-04",
+      "case_kind": "historical_case",
+      "source": {"title": "统宗宝鉴", "collection": null, "juan": null, "chapter": "推孤单以占成败", "edition": "待补", "page_or_image": null, "quotation": null, "citation_status": "locator-incomplete"},
+      "inputs": {"n": 3},
+      "expected_steps": [{"step": "个位", "value": "单阳"}],
+      "expected": {"狀態": "單陽", "不利方": "主"},
+      "source_outcome": {"断例": "唐昭宗主算单三"},
+      "notes": []
+    },
+    {
+      "case_id": "D8-08-OWNERS-001",
+      "rule_id": "D8-08",
+      "case_kind": "historical_case",
+      "source": {"title": "统宗宝鉴", "collection": null, "juan": null, "chapter": "推所主以占吉凶", "edition": "待补", "page_or_image": null, "quotation": null, "citation_status": "locator-incomplete"},
+      "inputs": {"n": 17},
+      "expected_steps": [{"step": "十／五／一", "values": [true, true, true]}],
+      "expected": {"將軍": true, "吏士": true, "兵卒": true, "俱備": true},
+      "source_outcome": {"断例": "天宝十年客算17，将吏兵卒皆备"},
+      "notes": []
+    },
+    {
+      "case_id": "D8-01-STRUCTURE-033",
+      "rule_id": "D8-01",
+      "case_kind": "structural",
+      "source": null,
+      "inputs": {"n": 33},
+      "expected_steps": [{"step": "十／五／一", "values": [true, false, true]}],
+      "expected": {"天": true, "地": false, "人": true, "狀態": ["無地"], "災象": ["地變"]},
+      "source_outcome": null,
+      "notes": ["规则结构检查，不冒充古籍原例。"]
+    },
+    {
+      "case_id": "D8-03-TONE-010",
+      "rule_id": "D8-03",
+      "case_kind": "structural",
+      "source": null,
+      "inputs": {"n": 10},
+      "expected_steps": [{"step": "算尾", "value": 10}],
+      "expected": {"算尾": 10, "五音": "角", "正比": "比角", "五行": "木", "所主": "疾病"},
+      "source_outcome": null,
+      "notes": ["个位0按10处理；五音十项表的结构检查。"]
+    },
+    {
+      "case_id": "D8-04-DOUBLE-YANG-013",
+      "rule_id": "D8-04",
+      "case_kind": "structural",
+      "source": null,
+      "inputs": {"n": 13},
+      "expected_steps": [{"step": "十位孤阳与个位单阳", "value": "重阳"}],
+      "expected": {"狀態": "重陽", "不利方": "主", "厄類": "火"},
+      "source_outcome": null,
+      "notes": ["算法组合示例；不是额外古籍课例。"]
+    },
+    {
+      "case_id": "D8-05-INNER-001",
+      "rule_id": "D8-05",
+      "case_kind": "structural",
+      "source": null,
+      "inputs": {"skyeye": "大炅"},
+      "expected_steps": [{"step": "固定内外区", "value": "外"}],
+      "expected": {"位置": "巽", "天目所在": "外", "可攻": "內"},
+      "source_outcome": null,
+      "notes": ["不输入太乙宫；检验固定分区。"]
+    },
+    {
+      "case_id": "D8-06-EQUAL-001",
+      "rule_id": "D8-06",
+      "case_kind": "structural",
+      "source": null,
+      "inputs": {"home": 17, "away": 17},
+      "expected_steps": [],
+      "expected": {"基礎結果": "同數", "古法明文斷語": null},
+      "source_outcome": null,
+      "notes": ["卷六未给平局断语，算法必须保留空值。"]
+    },
+    {
+      "case_id": "D8-07-DOUBLE-YANG-001",
+      "rule_id": "D8-07",
+      "case_kind": "structural",
+      "source": null,
+      "inputs": {"taiyi_palace": 3, "n": 17, "side": "主"},
+      "expected_steps": [{"step": "阳宫加奇数", "value": "重阳厄火"}],
+      "expected": {"宮陰陽": "陽", "狀態": "重陽", "災類": "火", "應方": "主"},
+      "source_outcome": null,
+      "notes": []
+    }
+  ]
+}
+
