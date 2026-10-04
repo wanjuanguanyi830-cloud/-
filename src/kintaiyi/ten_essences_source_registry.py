@@ -146,9 +146,11 @@ FOCUS_FORMULA_SKELETONS = {
         "small_cycle": 9,
         "identity": "弋七星之使、朱雀之体",
         "route": {
-            "source_text": "命起一宫阴德，顺行九宫",
-            "status": "route_start_layout_requires_collation",
-            "canonical_route": None,
+            "tongzong": "命起一宫，顺行九宫",
+            "taibai_bingbei": "阳起乾一、阴起巽九，阳顺阴逆，游行九宫",
+            "yang_path": [1, 2, 3, 4, 5, 6, 7, 8, 9],
+            "yin_path": [9, 8, 7, 6, 5, 4, 3, 2, 1],
+            "status": "implemented_c53_tongzong_taibai_profile",
         },
         "surplus_variant": {
             "value": 3,
@@ -160,8 +162,9 @@ FOCUS_FORMULA_SKELETONS = {
             "j4m11_external_bird_observation": False,
             "policy": "十精飞鸟是推步神位；J4M-11飞鸟是外部观测，不得互相代替。",
         },
-        "runtime_formula_ready": False,
-        "runtime_blocker": "九宫起行布局尚需逐字校清；旧config.flybird的8周期已判冲突。",
+        "runtime_formula_ready": True,
+        "runtime_rule_id": "C53-FLYBIRD",
+        "runtime_profile": "tongzong_primary_taibai_collation",
     },
     "八风": {
         "big_cycle": 90,
@@ -192,13 +195,17 @@ FOCUS_FORMULA_SKELETONS = {
             "jinjing_volume7_sequence": [1, 3, 5, 7, 9, 2, 4, 6, 8],
             "wujing_zongyao_variant_sequence": [1, 3, 5, 9, 7, 2, 4, 6, 8],
             "wujing_zongyao_parallel_sequence": [1, 3, 5, 7, 9, 2, 4, 6, 8],
-            "mode": "先阳后阴次第",
-            "status": "primary_direct_collated_with_preserved_variant",
+            "taibai_yang_path": [1, 3, 5, 7, 9, 2, 4, 6, 8],
+            "taibai_yin_path": [9, 7, 5, 3, 1, 8, 6, 4, 2],
+            "mode": "先奇后耦；阳顺阴逆",
+            "status": "implemented_c53_profile_selection",
+            "selected_profile": "tongzong_primary_taibai_collation",
             "canonical_route_for_tongzong_profile": [1, 3, 5, 7, 9, 2, 4, 6, 8],
             "cross_source_canonical_selected": None,
+            "unselected_source_variant": "wujing_zongyao_135972468",
             "note": (
-                "统宗主见证、景祐、金镜卷七及武经另一转录支持7在9前；"
-                "武经一转录见9在7前，作为参校异文保留，不覆盖统宗profile。"
+                "C53选择统宗主见证，并以景祐、金镜、太白兵备及武经平行转录同序参校；"
+                "武经一转录9在7前继续作为异文保留，不宣称跨传本唯一。"
             ),
         },
         "surplus_variant": {
@@ -208,11 +215,9 @@ FOCUS_FORMULA_SKELETONS = {
             "apply": False,
             "note": "古法不载，故不取用。",
         },
-        "runtime_formula_ready": False,
-        "runtime_blocker": (
-            "C52只登记公式骨架；统宗profile路线已可定，"
-            "位置runtime需在C53独立实现并锁定余0边界。"
-        ),
+        "runtime_formula_ready": True,
+        "runtime_rule_id": "C53-FIVEWIND",
+        "runtime_profile": "tongzong_primary_taibai_collation",
     },
     "三风": {
         "big_cycle": 90,
@@ -403,7 +408,12 @@ def ten_essence_record(name: str, *, allow_legacy_alias: bool = False) -> dict[s
         "source_witness": copy.deepcopy(SOURCE_WITNESS),
         **copy.deepcopy(row),
         "formula_skeleton": copy.deepcopy(FOCUS_FORMULA_SKELETONS.get(canonical)),
-        "runtime_formula_ready": False,
+        "runtime_formula_ready": bool(
+            FOCUS_FORMULA_SKELETONS.get(canonical, {}).get(
+                "runtime_formula_ready",
+                row["formula_status"].startswith("implemented_"),
+            )
+        ),
     }
 
 
