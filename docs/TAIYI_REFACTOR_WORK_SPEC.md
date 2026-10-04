@@ -378,9 +378,39 @@ canonical 7→8→9→1→2→3→4→6；36年/宫，288周期，无5。reverse
 
 详细记录见 `sources/c9-game-theory-record.md`。
 
-## 9.2 后续 C10+
+## 9.2 C10 v2 消费层（已实施第一阶段）
 
-- C10：Streamlit/CLI 逐步迁移读 v2；若目标仓库尚未具备 pan v2 集成入口，先补最小消费层，不回退到 flat 字段混读。
+目标仓库当前尚无完整 `Taiyi.pan()` / Streamlit / CLI 主入口，因此先新增 `src/kintaiyi/v2_consumer.py` 作为未来展示层公共入口。
+
+### C10-01 严格 v2 解析
+
+`resolve_v2_payload(...)` 只接受：
+
+- 直接 `schema_version="2.0"` 的 v2；
+- legacy pan 容器内明确存在的 `result["v2"]`。
+
+只有旧中文 flat 字段时返回 `not_computable`，不得自动拼装“假 v2”。
+
+### C10-02 子层读取
+
+`read_v2_section/read_v2_analysis/read_v2_board` 缺字段时必须显式给出 `missing_inputs`，不得回退读取旧顶层同名/近义字段。
+
+### C10-03 未来 UI/CLI 视图模型
+
+`build_v2_view_model(...)` 只组织已有 v2 根区段，并固定：
+
+- `consumer_mode="v2_strict"`
+- `legacy_fallback_used=False`
+
+当真正 UI/CLI 入口进入目标仓库后，展示层只调用这个消费层。
+
+详细记录见 `sources/c10-v2-consumer-record.md`。
+
+## 9.3 后续 C11+
+
+- 补真正的 pan v2 producer / 主程序接线（若后续仓库加入 `Taiyi.pan()`）。
+- UI/CLI 只读 v2 view model。
+- 继续清理旧 flat schema，仅保留显式 compat 投影，不让旧字段重新成为算法真源。
 
 ## 10. 验收
 
