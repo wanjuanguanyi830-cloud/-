@@ -147,6 +147,105 @@ QUARANTINE: dict[str, dict[str, Any]] = {
         replacement_layer="ten_essences.cloud_observations",
         source_module="ten_essences_cloud_observations",
     ),
+    "yunqi._YUNQI_COLOR": _q(
+        "yunqi._YUNQI_COLOR",
+        category="mixed_wrong_and_unsupported_cloud_table",
+        reason=(
+            "旧表除白7/6→亥子错误外，还混入黄5、黑6、红2/7等"
+            "当前直接十精初移宫云色时变条未支持的独立计数/色名；不得整体升格。"
+        ),
+        replacement_rule_ids=("C58-CLOUD-TIMING", "C58-WEATHER-OBSERVATION"),
+        replacement_layer="ten_essences.cloud_observations",
+        source_module="ten_essences_cloud_observations",
+    ),
+    "yunqi._shu_duanyu": _q(
+        "yunqi._shu_duanyu",
+        category="wrong_special_number_omens",
+        reason=(
+            "旧函数把数10/5做成独立特例，并把数40的黄雾混到数50；"
+            "数50本身又存在统宗/金镜与武经句读异文。"
+        ),
+        replacement_rule_ids=("C59-TAIYI-NUMBER-OMEN",),
+        replacement_layer="ten_essences.number_omens",
+        source_module="ten_essences_number_omens",
+    ),
+    "yunqi._JING_HEHUI": _q(
+        "yunqi._JING_HEHUI",
+        category="mixed_inaccurate_conjunction_table",
+        reason=(
+            "旧表含地符旧名、若干宫位/合会断语错配与过度摘要，"
+            "且未保存旺相、阴阳宫及真实异文条件。"
+        ),
+        replacement_rule_ids=("C57-TEN-ESSENCE-CLOUD-CONJUNCTION",),
+        replacement_layer="ten_essences.cloud_conjunctions",
+        source_module="ten_essences_cloud_omens",
+    ),
+    "yunqi.shijing_luo": _q(
+        "yunqi.shijing_luo",
+        category="derived_from_wrong_legacy_ten_essence_map",
+        reason=(
+            "旧落宫wrapper直接遍历错误的_TEN_JING_FN，"
+            "继承地符/太岁错名及多项旧位置公式，不能作为十精位置真源。"
+        ),
+        replacement_rule_ids=(
+            "C52-TEN-ESSENCES-REGISTRY",
+            "C53-FLYBIRD",
+            "C53-FIVEWIND",
+            "C53-TAIZUN",
+            "C53-EIGHTWIND",
+            "C53-THREEWIND",
+            "C53-WUXING",
+            "C55-TIANHUANG",
+            "C55-DIFU",
+            "C56-TIANSHI",
+        ),
+        replacement_layer="ten_essences.positions",
+        source_module="ten_essences_source_registry",
+    ),
+    "yunqi.yunqi_hehui": _q(
+        "yunqi.yunqi_hehui",
+        category="automatic_relation_inference",
+        reason=(
+            "旧函数仅凭旧落宫数相等自动制造‘合太乙’，并用简化阴阳宫集合补断；"
+            "C57要求合会事实显式输入，禁止从位置自动生成。"
+        ),
+        replacement_rule_ids=("C57-TEN-ESSENCE-CLOUD-CONJUNCTION",),
+        replacement_layer="ten_essences.cloud_conjunctions",
+        source_module="ten_essences_cloud_omens",
+    ),
+    "yunqi.yunqi_zongduan": _q(
+        "yunqi.yunqi_zongduan",
+        category="mixed_layers_and_auto_inference",
+        reason=(
+            "旧综合wrapper把错误位置、太乙数、自动同宫、云色表和子房总诀一次混合；"
+            "C52-C59已拆成独立来源层，禁止回写成单一canonical公式。"
+        ),
+        replacement_rule_ids=(
+            "C52-TEN-ESSENCES-REGISTRY",
+            "C57-TEN-ESSENCE-CLOUD-CONJUNCTION",
+            "C58-CLOUD-TIMING",
+            "C58-WEATHER-OBSERVATION",
+            "C59-TAIYI-NUMBER-OMEN",
+        ),
+        replacement_layer="ten_essences.layered_runtime",
+        source_module="ten_essences_source_registry",
+    ),
+    "yunqi.zonghe": _q(
+        "yunqi.zonghe",
+        category="legacy_composite_wrapper",
+        reason=(
+            "旧总合继续依赖yunqi_zongduan并自动计算同宫，"
+            "只能作为历史展示包装器，不能成为任何来源层真源。"
+        ),
+        replacement_rule_ids=(
+            "C57-TEN-ESSENCE-CLOUD-CONJUNCTION",
+            "C58-CLOUD-TIMING",
+            "C58-WEATHER-OBSERVATION",
+            "C59-TAIYI-NUMBER-OMEN",
+        ),
+        replacement_layer="ten_essences.layered_runtime",
+        source_module="ten_essences_source_registry",
+    ),
 
     # 卷九/十等已明确不等价的旧实现。
     "guiyun.yinyang_jiu_e": _q(
