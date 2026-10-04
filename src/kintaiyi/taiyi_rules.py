@@ -51,14 +51,7 @@ def calc_components(n):
 
 
 def sexagenary_year(value):
-    if value in BRANCHES:
-        return None, value
-    if not isinstance(value, str) or len(value) != 2:
-        raise ValueError("须为年支或有效干支年")
-    cycle = [STEMS[i % 10] + BRANCHES[i % 12] for i in range(60)]
-    if value not in cycle:
-        raise ValueError("无效干支配对")
-    return cycle.index(value), value[1]
+    return _c.sexagenary_year(value)
 
 
 def result(rule_id, **fields):

@@ -1,10 +1,10 @@
 """Canonical coordinate systems and five-state rules; no calendar or UI imports."""
 
-SIXTEEN = tuple(["子", "丑", "艮", "寅", "卯", "辰", "巽", "巳", "午", "未", "坤", "申", "酉", "戌", "乾", "亥"])
+SIXTEEN = ("子", "丑", "艮", "寅", "卯", "辰", "巽", "巳", "午", "未", "坤", "申", "酉", "戌", "乾", "亥")
 BRANCHES = tuple("子丑寅卯辰巳午未申酉戌亥")
 STEMS = tuple("甲乙丙丁戊己庚辛壬癸")
-GODS = tuple(["地主", "阳德", "和德", "吕申", "高丛", "太阳", "大炅", "大神", "大威", "天道", "大武", "武德", "太簇", "阴主", "阴德", "大义"])
-ELEMENTS = tuple(["水", "土", "土", "木", "木", "土", "木", "火", "火", "土", "土", "金", "金", "土", "金", "水"])
+GODS = ("地主", "阳德", "和德", "吕申", "高丛", "太阳", "大炅", "大神", "大威", "天道", "大武", "武德", "太簇", "阴主", "阴德", "大义")
+ELEMENTS = ("水", "土", "土", "木", "木", "土", "木", "火", "火", "土", "土", "金", "金", "土", "金", "水")
 SECTOR_GODS = dict(zip(SIXTEEN, GODS))
 GOD_SECTORS = dict(zip(GODS, SIXTEEN))
 SECTOR_ELEMENTS = dict(zip(SIXTEEN, ELEMENTS))
@@ -43,6 +43,15 @@ def integer(value, minimum=0, maximum=None):
     if (minimum is not None and value < minimum) or (maximum is not None and value > maximum):
         raise ValueError("数值超出范围")
     return value
+
+
+def sexagenary_year(value):
+    if isinstance(value, str) and value in BRANCHES:
+        return None, value
+    cycle = [STEMS[i % 10] + BRANCHES[i % 12] for i in range(60)]
+    if not isinstance(value, str) or value not in cycle:
+        raise ValueError("须为年支或有效干支年")
+    return cycle.index(value), value[1]
 
 
 def validate_sector(sector):
