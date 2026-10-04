@@ -76,13 +76,19 @@ for key, target in {
         notes="先迁结构事实；来源卷次需单独留证，不从旧断语推导。",
     )
 
-# 这些周期/十精类字段在旧盘中是直接输出，但当前工作规格尚未完成逐项来源校勘。
+# C52 已确认这些旧顶层字段属于十精体系；名单/小周数已核，
+# 但旧 config.py 位置公式仍未逐项校验，因此只升级来源状态，不迁 runtime。
 for key in ("帝符", "太尊", "飛鳥", "三風", "五風", "八風"):
     CATALOG[key] = _entry(
-        "pending", "cycle_or_ten-essences_source_pending", "P2",
-        "source_verify_before_migration", source_confidence="low",
-        target_hint="cycles",
-        notes="不得仅凭旧函数名决定卷次或canonical位置。",
+        "canonical", "tongzong_ten_essences_volume18_20_variant", "P2",
+        "use_c52_source_registry_formula_pending", migrate_whole=False,
+        source_confidence="high",
+        target_hint="source_variants.ten_essences",
+        notes=(
+            "C52 已核十精完整名单及小周数，并记录卷十八/卷二十见证异文。"
+            "位置公式尚未逐项审计；旧flybird %8与直接小周9冲突，"
+            "旧fivewind %29与直接小周9冲突，不得进入cycles真源。"
+        ),
     )
 
 CATALOG["金函玉鏡"] = _entry(
