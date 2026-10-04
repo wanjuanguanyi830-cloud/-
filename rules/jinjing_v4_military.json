@@ -72,7 +72,9 @@
         "layer": null,
         "status": "missing_distinct_layer"
       },
-      "implementation_status": "not_implemented"
+      "implementation_status": "implemented_partial_source_specific",
+      "runtime": "kintaiyi.jinjing_v4_military.zhuke_xiangguan",
+      "implementation_note": "已实现主客目五行相制核心及两类胜负；正文所称“日计纳音以决之”的具体附加接法未展开，显式保留 pending，不擅自推演。"
     },
     {
       "id": "J4M-04",
@@ -113,7 +115,9 @@
         "layer": null,
         "status": "missing_do_not_substitute_chushi_luedi"
       },
-      "implementation_status": "not_implemented"
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jinjing_v4_military.chushi_fa",
+      "implementation_note": "分栏判断12/22/32、三门具、五将发与开休生三吉门；不使用统宗卷五兵额表。"
     },
     {
       "id": "J4M-06",
@@ -246,7 +250,9 @@
         "layer": null,
         "status": "missing"
       },
-      "implementation_status": "not_implemented"
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jinjing_v4_military.qifu_fa",
+      "implementation_note": "奇兵三成、12/22/32伏兵、11/21/31伏藏、天目大煞、掩迫时机与贼急要害均分栏；不借卷十五近名算法。"
     },
     {
       "id": "J4M-11",
