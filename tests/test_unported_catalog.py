@@ -42,12 +42,13 @@ def test_old_military_core_fields_are_not_promoted_without_source_profile():
         assert item["migrate_whole"] is False
 
 
-def test_weather_bird_military_rule_requires_observation_model():
+def test_weather_bird_military_rule_is_now_source_variant_with_j4m11_runtime():
     item = catalog_unported_field("推太乙風雲飛鳥助戰法")
-    assert item["layer"] == "pending"
+    assert item["layer"] == "source_variant"
     assert item["priority"] == "P1"
     assert item["migrate_whole"] is False
-    assert "observation_model" in item["action"]
+    assert item["action"] == "use_structured_j4m11_observation_profile"
+    assert "J4M-11 已有完整" in item["notes"]
 
 
 def test_volume_wrappers_are_derived_and_never_migrated_wholesale():
@@ -68,14 +69,21 @@ def test_volume15_and_17_military_stay_separate_from_c8_and_j4m():
     assert v15["migrate_whole"] is v17["migrate_whole"] is False
 
 
-def test_zitingjing_is_primary_for_nine_star_and_change_rules():
-    for key in ("太乙九星", "文昌九星", "文昌變化", "始擊變化"):
+def test_verified_ziting_rules_remain_canonical_candidates():
+    for key in ("太乙九星", "文昌變化", "始擊變化"):
         item = catalog_unported_field(key)
         assert item["layer"] == "canonical"
-        assert item["source_scope"] == "zitingjing_primary_tongzong_volume6_collation"
         assert item["priority"] == "P1"
-        assert "主要参考《太乙紫庭经》" in item["notes"]
-        assert "参校来源" in item["notes"]
+        assert "zitingjing" in item["source_scope"]
+
+
+def test_wenchang_nine_stars_stays_pending_until_primary_text_is_found():
+    item = catalog_unported_field("文昌九星")
+    assert item["layer"] == "pending"
+    assert item["priority"] == "P1"
+    assert item["migrate_whole"] is False
+    assert item["action"] == "await_primary_text_keep_collation_only"
+    assert "10年/30年周期" in item["notes"]
 
 
 def test_three_banners_and_nine_palace_nobles_keep_unverified_ziting_attribution_separate():
