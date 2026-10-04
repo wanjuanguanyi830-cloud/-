@@ -142,10 +142,16 @@ def test_c52_old_ten_jing_function_map_has_name_set_error():
     assert "太乙数" in audit["reason"]
 
 
-def test_c52_cloud_omens_remain_separate_source_unit():
-    assert CLOUD_OMEN_BOUNDARY["status"] == "separate_source_unit"
+def test_c52_cloud_omens_remain_layered_and_not_owned_by_c52():
+    assert CLOUD_OMEN_BOUNDARY["status"] == "layered_runtime_in_progress"
     assert CLOUD_OMEN_BOUNDARY["runtime_in_c52"] is False
-    assert "旺相休囚" in CLOUD_OMEN_BOUNDARY["reason"]
+    assert CLOUD_OMEN_BOUNDARY["conjunction_runtime"]["implemented"] is True
+    assert CLOUD_OMEN_BOUNDARY["conjunction_runtime"]["rule_id"] == (
+        "C57-TEN-ESSENCE-CLOUD-CONJUNCTION"
+    )
+    assert CLOUD_OMEN_BOUNDARY["conjunction_runtime"]["auto_position_lookup_used"] is False
+    assert "太乙数30/40/50等天气断语" in CLOUD_OMEN_BOUNDARY["pending_layers"]
+    assert "云色" in CLOUD_OMEN_BOUNDARY["reason"]
 
 
 def test_c52_does_not_extend_pan_contract_or_cycles_root():
