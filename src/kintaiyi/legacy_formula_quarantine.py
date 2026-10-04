@@ -1,4 +1,4 @@
-"""C57 旧错误公式 / 非等价旧实现隔离注册表。
+"""C58 旧错误公式 / 非等价旧实现隔离注册表。
 
 本模块不是新的算法来源，而是治理层：
 - 把已经核定为错误、过度简化、混层或非 canonical 等价的旧实现集中登记；
@@ -14,7 +14,7 @@ from __future__ import annotations
 import copy
 from typing import Any
 
-C57_VERSION = "taiyi-c57-legacy-formula-quarantine-v1"
+C58_VERSION = "taiyi-c58-legacy-formula-quarantine-v1"
 
 
 def _q(
@@ -211,8 +211,8 @@ def quarantine_registry() -> dict[str, Any]:
     records = [copy.deepcopy(QUARANTINE[key]) for key in sorted(QUARANTINE)]
     return {
         "schema_version": "1.0",
-        "canonical": C57_VERSION,
-        "rule_id": "C57-LEGACY-QUARANTINE",
+        "canonical": C58_VERSION,
+        "rule_id": "C58-LEGACY-QUARANTINE",
         "record_count": len(records),
         "records": records,
         "all_promotion_blocked": all(not row["promotion_allowed"] for row in records),
