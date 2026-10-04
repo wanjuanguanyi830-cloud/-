@@ -711,6 +711,7 @@ canonical：
 - 本/变纳音五行比较只返回关系，不自动给吉凶/胜负；
 - 不得进入 J4M → C8 adapter；
 - 不得覆盖任何古籍 canonical。
+- 可通过 `src/kintaiyi/variants/profile_bundle.py` 显式包装后传入 `build_pan_v2(modern=...)`；默认 modern section 不自动启用任何 profile，也不得写入 `analysis` / `source_variants`。
 
 已删除旧错误路径：
 
