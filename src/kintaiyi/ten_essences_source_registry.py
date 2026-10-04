@@ -188,11 +188,18 @@ FOCUS_FORMULA_SKELETONS = {
         "identity": "箕星之使",
         "route": {
             "tongzong_sequence": [1, 3, 5, 7, 9, 2, 4, 6, 8],
-            "wujing_zongyao_sequence": [1, 3, 5, 9, 7, 2, 4, 6, 8],
+            "jingyou_sequence": [1, 3, 5, 7, 9, 2, 4, 6, 8],
+            "jinjing_volume7_sequence": [1, 3, 5, 7, 9, 2, 4, 6, 8],
+            "wujing_zongyao_variant_sequence": [1, 3, 5, 9, 7, 2, 4, 6, 8],
+            "wujing_zongyao_parallel_sequence": [1, 3, 5, 7, 9, 2, 4, 6, 8],
             "mode": "先阳后阴次第",
-            "status": "source_variant_unresolved",
-            "canonical_route": None,
-            "note": "统宗与《武经总要》在第五/第四奇宫7、9次序上冲突，不静默择本。",
+            "status": "primary_direct_collated_with_preserved_variant",
+            "canonical_route_for_tongzong_profile": [1, 3, 5, 7, 9, 2, 4, 6, 8],
+            "cross_source_canonical_selected": None,
+            "note": (
+                "统宗主见证、景祐、金镜卷七及武经另一转录支持7在9前；"
+                "武经一转录见9在7前，作为参校异文保留，不覆盖统宗profile。"
+            ),
         },
         "surplus_variant": {
             "year": 3,
@@ -202,7 +209,10 @@ FOCUS_FORMULA_SKELETONS = {
             "note": "古法不载，故不取用。",
         },
         "runtime_formula_ready": False,
-        "runtime_blocker": "五风九宫序存在7/9次序见证冲突；解决前不得建立位置runtime。",
+        "runtime_blocker": (
+            "C52只登记公式骨架；统宗profile路线已可定，"
+            "位置runtime需在C53独立实现并锁定余0边界。"
+        ),
     },
     "三风": {
         "big_cycle": 90,
