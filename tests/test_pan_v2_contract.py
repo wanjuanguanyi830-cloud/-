@@ -133,3 +133,32 @@ def test_no_legacy_flat_analysis_reconstruction():
     assert payload["analysis"]["military"] == {}
     assert payload["source_variants"] == {}
     assert "軍事戰略" not in payload["analysis"]
+
+
+def test_c37_wuyun_wuyin_is_allowed_as_dedicated_source_variant_slot():
+    data = build_source_variants_contract(
+        wuyun_wuyin={
+            "wuyun_liuqi": {
+                "profiles": {
+                    "tongzong_volume3": {"rule_id": "C37-V3-WYUN"},
+                    "tongzong_volume10": {"rule_id": "C37-V10-WYUN"},
+                }
+            }
+        }
+    )
+    assert set(data) == {"wuyun_wuyin"}
+    assert data["wuyun_wuyin"]["wuyun_liuqi"]["profiles"]["tongzong_volume3"]["rule_id"] == "C37-V3-WYUN"
+
+
+def test_c37_wuyun_wuyin_can_flow_through_structured_pan_contract():
+    payload = build_structured_pan_v2(
+        wuyun_wuyin_variants={
+            "wuyin_number": {
+                "profiles": {
+                    "tongzong_volume3": {"rule_id": "C37-V3-WYIN"}
+                }
+            }
+        }
+    )
+    assert payload["source_variants"]["wuyun_wuyin"]["wuyin_number"]["profiles"]["tongzong_volume3"]["rule_id"] == "C37-V3-WYIN"
+    assert validate_structured_pan_v2(payload)["valid"] is True
