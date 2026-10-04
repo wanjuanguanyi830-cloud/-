@@ -32,7 +32,6 @@ def test_taiyi_nine_stars_primary_keeps_current_witness_reading_for_palace_three
     assert item == {
         "palace": 3,
         "star": "天冲",
-        "stem": "庚",
         "region": "青州",
         "fortune": "凶",
     }
@@ -66,6 +65,11 @@ def test_shiji_primary_core_does_not_pretend_detailed_table_is_finished():
     assert data["identity"]["element"] == "火"
     assert data["military_role"]["role"] == "客目"
     assert data["military_role"]["favors"] == "客"
+    assert data["relations"]["covers_taiyi"]["pattern"] == "掩"
+    assert data["relations"]["covers_wenchang"]["pattern"] == "关"
+    assert data["relations"]["covers_wenchang"]["home_favored_palaces"] == [1, 8, 3, 7]
+    assert data["relations"]["covers_wenchang"]["away_favored_palaces"] == [4, 9, 2, 6]
+    assert data["relations"]["adjacent_to_taiyi"]["pattern"] == "击"
     assert data["detailed_year_stem_element_table_status"] == "pending_textual_collation"
 
 
