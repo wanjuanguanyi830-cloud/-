@@ -30,15 +30,17 @@ def test_c61_only_two_strict_pending_fields_remain():
     assert pending == ["推太乙當時法", "文昌九星"]
 
 
-def test_c61_imperial巡狩_is_direct_volume5_source_verified():
+def test_c61_c62_imperial巡狩_is_direct_volume5_and_runtime_implemented():
     item = catalog_unported_field("明天子巡狩之期術")
     assert item["layer"] == "canonical"
     assert item["source_scope"] == "tongzong_volume5_direct"
     assert item["priority"] == "P1"
-    assert item["action"] == "source_verified_split_runtime_next"
+    assert item["action"] == "use_c62_imperial_inspection_runtime"
     assert item["source_confidence"] == "high"
     assert item["migrate_whole"] is False
+    assert item["target_hint"] == "analysis.rules.imperial_inspection"
     assert "四维" in item["notes"]
+    assert "不自行造月" in item["notes"]
 
 
 def test_c61_three_bases_and_wufu_preserve_volume_witness_variant():
@@ -72,9 +74,8 @@ def test_c61_tianyi_diyi_zhifu_are_direct_volume7():
         assert item["migrate_whole"] is False
 
 
-def test_c61_source_verified_is_not_same_as_runtime_implemented():
+def test_c61_remaining_source_verified_fields_are_not_yet_runtime_implemented():
     fields = (
-        "明天子巡狩之期術",
         "明君基太乙所主術",
         "明臣基太乙所主術",
         "明民基太乙所主術",
