@@ -179,11 +179,12 @@ def test_c13_audit_now_surfaces_next_migration_candidates():
 
 
 
-def test_c53_ten_essence_old_fields_use_position_runtime_except_difu():
+def test_c55_difu_and_c53_other_ten_essence_old_fields_use_runtime():
     difu = catalog_unported_field("帝符")
-    assert difu["action"] == "use_c52_source_registry_formula_pending"
-    assert difu["target_hint"] == "source_variants.ten_essences"
-    assert "重留步进" in difu["notes"]
+    assert difu["action"] == "use_c55_sixteen_god_runtime"
+    assert difu["target_hint"] == "source_variants.ten_essences.positions"
+    assert "四正重留runtime" in difu["notes"]
+    assert "17/70" in difu["notes"]
 
     for key in ("太尊", "飛鳥", "三風", "五風", "八風"):
         item = catalog_unported_field(key)
