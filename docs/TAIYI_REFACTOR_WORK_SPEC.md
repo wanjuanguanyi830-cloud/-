@@ -1517,15 +1517,81 @@ helper 不：
 
 详细记录见 `sources/c32-cross-volume-guxu-record.md`。
 
-## 9.26 后续 C33+
+## 9.26 C33 卷十七条件 runtime 去重（已实施）
+
+V17-06/07/08/09 的唯一 canonical runtime 固定为：
+
+`src/kintaiyi/tongzong_v17_structured.py`
+
+旧：
+
+`src/kintaiyi/tongzong_v17_conditions.py`
+
+已改为 compatibility adapter，只保留旧函数名与旧字段形状。
+
+固定返回：
+
+- `compat_adapter=True`
+- `canonical_runtime="tongzong_v17_structured"`
+
+并同步修正 canonical 两处来源逻辑：
+
+- “门不具或将不发”任一为 false 即成立；
+- 始击/下目在内属于 V17-07 捕得证据。
+
+禁止在 compatibility adapter 重新维护第二套古法公式。
+
+详细记录见 `sources/c33-v17-runtime-dedup-record.md`。
+
+## 9.27 C34 文昌九星外部参校层（已实施）
+
+文昌九星继续保持：
+
+`primary_evidence_level="catalog_attested_text_pending"`
+
+《太乙紫庭秘诀》目录可证“附太乙文昌九星值宫术”这一术目，但尚未取得可逐条校读正文，因此：
+
+- `primary_result=None`
+- `canonical_selected=None`
+- 不实现 canonical 推步。
+
+新增外部参校：
+
+- 《三才世纬》卷八十一；
+- 《太乙统宗宝鉴》卷六 CADAL；
+- 《太乙统宗宝鉴》卷六 NGJ。
+
+已记录星名异文：
+
+- 明雄 / 明维；
+- 阴玄 / 阴德；
+- 招摇 / 招煥；
+- 雄明 / 维明。
+
+值宫周期存在 10 年 / 30 年冲突，且 CADAL 同一见证内部即有：
+
+- 叙述句 10 年一宫；
+- 推法宫率 30；
+- 小周 270；
+- 大周 2700。
+
+因此周期固定：
+
+`unresolved`
+
+不得据任一参校见证生成紫庭 canonical runtime。
+
+详细记录见 `sources/c34-wenchang-nine-stars-collation-record.md`。
+
+## 9.28 后续 C35+
 
 下一优先级：
 
-1. 文昌九星继续寻找可逐条校读的《太乙紫庭秘诀/经》附篇正文；未找到前保持 primary_text_pending；
-2. 三旗行宫、九宫贵神继续做出处归属核证，不把统宗卷十反写为紫庭 primary；
-3. 对剩余 unported/pending 字段按 C30 固定槽位继续迁移；
-4. 清理重复的卷十七条件实现，只保留一个 canonical runtime 模块或明确 compatibility wrapper；
-5. 真正 `Taiyi.pan()` / UI / CLI 进入目标仓库后，仅通过 C30 contract 接线。
+1. 继续寻找“附太乙文昌九星值宫术”可逐条校读正文；未找到前保持 `primary_text_pending`；
+2. 三旗行宫、九宫贵神继续做出处归属核证，当前保持 `project_primary_attribution_unverified`；
+3. 对剩余 unported / pending 字段按 C30 固定槽位继续迁移；
+4. 检查目标仓库是否已有真实 `Taiyi.pan()` / UI / CLI；若有，只经 C30 contract 接线；
+5. 清理其他重复 runtime / legacy wrapper，保持单一真源。
 
 
 ## 10. 验收
