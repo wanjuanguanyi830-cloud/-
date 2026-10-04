@@ -33,6 +33,19 @@ def test_projection_reads_explicit_t7_04_verdict_only():
     assert data["score"] == 1.0
 
 
+def test_projection_accepts_canonical_t7_04_and_perspective():
+    canonical = {
+        "rule_id": "T7-04", "status": "ok", "verdict": "可攻",
+        "notes": ["不根据吉凶文字扩展"],
+    }
+    home = project_seven_method_for_game_theory(canonical)
+    away = project_seven_method_for_game_theory(canonical, perspective="away")
+    assert home["signal"] == away["signal"] == "attack_window_open"
+    assert home["score"] == 1.0 and away["score"] == -1.0
+    assert away["derived_modern_feature"] is True
+    assert away["perspective"] == "away"
+
+
 def test_timing_method_does_not_become_generic_good_or_bad():
     result = {
         "rule_id": "T7-01",
@@ -60,6 +73,16 @@ def test_not_computable_stays_unscored():
     assert data["computable"] is False
     assert data["score"] is None
     assert data["signal"] is None
+
+
+def test_projection_accepts_canonical_t7_07_verdict_and_assistant_field():
+    result = {
+        "rule_id": "T7-07", "status": "ok",
+        "enemy_verdict": "无伏兵、自破、可攻", "home_verdict": "本军宜伏",
+    }
+    data = project_seven_method_for_game_theory(result)
+    assert data["signal"] == "ambush_risk_low"
+    assert data["strategy_adjustments"] == {"advance": 1.0, "own_ambush": 1.0}
 
 
 def test_real_seven_method_outputs_can_be_projected():

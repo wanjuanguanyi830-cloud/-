@@ -30,6 +30,8 @@ def _sample_v2():
         },
         "modern": {},
         "source_variants": {},
+        "derived": [],
+        "pending": [],
         "compat": {"legacy_top_level": True, "legacy_schema": "pan-v1-flat"},
     }
 

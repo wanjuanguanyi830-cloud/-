@@ -9,11 +9,13 @@ CASES = json.loads((ROOT / "tests/fixtures/eight_divinations_cases.json").read_t
 
 
 def test_categories_variants_and_source_layers_are_complete():
+    assert RECORD["schema_version"] == "2.0"
     assert [row["id"] for row in RECORD["categories"]["seven_methods"]] == [f"T7-{i:02d}" for i in range(1,8)]
     assert [row["id"] for row in RECORD["categories"]["eight_divinations"]] == [f"D8-{i:02d}" for i in range(1,9)]
-    assert [row["id"] for row in RECORD["variants"]] == [f"VAR-{i:03d}" for i in range(1,11)]
+    assert [row["id"] for row in RECORD["variants"]] == [f"VAR-{i:03d}" for i in range(1,17)]
     assert RECORD["source_excerpts"] and RECORD["pending"]
     assert all(row["status"] == "confirmed" for row in RECORD["variants"])
+    assert RECORD["derived"]
 
 
 @pytest.mark.parametrize("case", CASES, ids=lambda c: c["id"])
@@ -26,3 +28,4 @@ def test_derived_d8_records_are_callable_and_keep_category(case):
         data = fn(*values) if isinstance(values,list) else fn(values)
         assert data["rule_id"] == case["rule_id"]
         assert data["category"] == "eight_divinations"
+

@@ -17,6 +17,8 @@ V2_ROOT_KEYS = (
     "analysis",
     "modern",
     "source_variants",
+    "derived",
+    "pending",
     "compat",
 )
 
@@ -153,6 +155,8 @@ def build_v2_view_model(data: dict[str, Any]) -> dict[str, Any]:
         "analysis": payload.get("analysis"),
         "modern": payload.get("modern"),
         "source_variants": payload.get("source_variants"),
+        "derived": payload.get("derived"),
+        "pending": payload.get("pending"),
         "compat": payload.get("compat"),
         "missing_root_sections": resolved["missing_root_sections"],
         "legacy_fallback_used": False,
