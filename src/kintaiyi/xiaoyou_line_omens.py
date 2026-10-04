@@ -26,6 +26,10 @@ SOURCE_WITNESS = {
         "normalized": "格、对",
         "status": "ocr_or_layout_variant_preserved",
     },
+    "collation_witness": {
+        "work": "太白兵备统宗宝鉴",
+        "role": "参校，不覆盖统宗主见证",
+    },
 }
 
 LINE_RULES = {
@@ -49,12 +53,16 @@ STEM_OMENS = {
         "witness_text": "风宣疾病",
         "uncertain_text": ["风宣"],
         "status": "partial_text_uncertain",
+        "collation_text": "疾病风雷",
+        "collation_effects": ["疾病", "风雷"],
     },
     "乙": {
         "effects": ["疾病"],
         "witness_text": "风宣疾病",
         "uncertain_text": ["风宣"],
         "status": "partial_text_uncertain",
+        "collation_text": "疾病风雷",
+        "collation_effects": ["疾病", "风雷"],
     },
     "丙": {
         "effects": ["大旱", "亢怪", "口舌妖言", "后宫有谋"],
@@ -73,24 +81,32 @@ STEM_OMENS = {
         "witness_text": "飞蝗土工，及生大丧",
         "uncertain_text": [],
         "status": "stable",
+        "collation_text": "蝗虫生，土官兴，陵寝废，大丧举",
+        "collation_effects": ["蝗虫生", "土官兴", "陵寝废", "大丧举"],
     },
     "己": {
         "effects": ["飞蝗", "土工", "大丧"],
         "witness_text": "飞蝗土工，及生大丧",
         "uncertain_text": [],
         "status": "stable",
+        "collation_text": "蝗虫生，土官兴，陵寝废，大丧举",
+        "collation_effects": ["蝗虫生", "土官兴", "陵寝废", "大丧举"],
     },
     "庚": {
         "effects": ["兵革攻战", "贼盗相伤", "国界不安"],
         "witness_text": "有兵革攻战，贼盗相伤，国界不安，甚则夭慧变现",
         "uncertain_text": ["夭慧变现"],
         "status": "partial_text_uncertain",
+        "collation_text": "妖彗变现",
+        "collation_effects": ["兵革攻战", "盗贼相伤", "国界不安", "妖彗变现"],
     },
     "辛": {
         "effects": ["兵革攻战", "贼盗相伤", "国界不安"],
         "witness_text": "有兵革攻战，贼盗相伤，国界不安，甚则夭慧变现",
         "uncertain_text": ["夭慧变现"],
         "status": "partial_text_uncertain",
+        "collation_text": "妖彗变现",
+        "collation_effects": ["兵革攻战", "盗贼相伤", "国界不安", "妖彗变现"],
     },
     "壬": {
         "effects": ["淋雨阴沉", "大水溢川", "后妃不安"],
@@ -117,6 +133,21 @@ STEM_REGIONS = {
     "辛": "西域",
     "壬": "燕冀",
     "癸": "北狄",
+}
+
+STEM_REGION_COLLATION = {
+    "丁": {
+        "primary_tongzong": "蛮",
+        "taibai_bingbei": "南海",
+        "status": "collation_variant_preserved",
+        "primary_selected": "蛮",
+    },
+    "辛": {
+        "primary_tongzong": "西域",
+        "taibai_bingbei": ["西戎", "梁", "益"],
+        "status": "collation_variant_preserved",
+        "primary_selected": "西域",
+    },
 }
 
 BRANCH_REGIONS = {
@@ -188,9 +219,9 @@ def _line_assessment(
     elif line in (2, 5):
         verdict = "安平"
     elif line == 3:
-        verdict = "凶变，内极尚轻"
+        verdict = "事多凶变"
     else:
-        verdict = "凶变，外极为重"
+        verdict = "事多凶变"
 
     return {
         "line": line,
@@ -198,6 +229,12 @@ def _line_assessment(
         "calc_harmonious": calc_harmonious,
         "has_response": has_response,
         "verdict": verdict,
+        "source_status": (
+            "not_defined_by_source_passage"
+            if verdict == "mixed_evidence"
+            else "direct" if not pending
+            else "not_computable"
+        ),
         "computable": not pending,
         "pending": pending,
     }
@@ -237,7 +274,11 @@ def _najia(value: tuple[str, str] | list[str] | None) -> dict[str, Any]:
         "branch": branch,
         "stem_omens": copy.deepcopy(STEM_OMENS[stem]),
         "stem_region": STEM_REGIONS[stem],
+        "stem_region_collation": copy.deepcopy(STEM_REGION_COLLATION.get(stem)),
         "branch_region": BRANCH_REGIONS[branch],
+        "pair_semantics": (
+            "纳甲干支配对只验证天干与地支字符；不按六十甲子日辰合法性校验。"
+        ),
     }
 
 
@@ -277,6 +318,12 @@ def xiaoyou_line_omens(
         if patterns
         else []
     )
+    if patterns and line == 3:
+        pattern_severity = "内极尚轻"
+    elif patterns and line == 6:
+        pattern_severity = "外极为重"
+    else:
+        pattern_severity = None
 
     return {
         "schema_version": "1.0",
@@ -298,6 +345,7 @@ def xiaoyou_line_omens(
         },
         "pattern_evidence": patterns,
         "pattern_omens": pattern_omen,
+        "pattern_severity": pattern_severity,
         "patterns_aggravate_only": True,
         "najia": najia,
         "computable": not pending,
@@ -319,6 +367,7 @@ def c48_catalog() -> dict[str, Any]:
         "rule_id": "C48-XY-OMEN",
         "source_profile": "tongzong_volume10_xiaoyou_line_omens",
         "stem_regions": copy.deepcopy(STEM_REGIONS),
+        "stem_region_collation": copy.deepcopy(STEM_REGION_COLLATION),
         "branch_regions": copy.deepcopy(BRANCH_REGIONS),
         "source_patterns": sorted(SOURCE_PATTERNS),
         "legacy_reference_audit": copy.deepcopy(LEGACY_REFERENCE_AUDIT),
