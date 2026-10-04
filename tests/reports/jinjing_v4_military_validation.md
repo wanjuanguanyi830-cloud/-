@@ -2,261 +2,259 @@
 
 日期：2026-10-05
 
-## 总结
-
-J4M 来源层：
+## 总体状态
 
 - ruleset: `jinjing-siku-v4-military-12`
 - source profile: `jinjing_siku_volume4`
 - rule ids: `J4M-01..J4M-12`
 
-当前状态：
+当前：
 
-- **11 条完整 source-specific runtime**
-- **1 条 partial：J4M-03**
+- **12 条 complete source-specific runtime**
+- **0 条 partial**
 - **0 条 pending**
 
-J4M-04 已从原先“C8 只覆盖角色子层”的 partial 状态升级为独立完整 runtime；C8 本身仍不自动采用该完整逻辑。
+## J4M-03 重新校勘结论
 
-## J4M-04 完成验证
+此前状态：
 
-runtime：
+`implemented_partial_source_specific`
 
-`kintaiyi.jinjing_v4_military.zhuke_fa`
+原因是把《金镜》“皆用日计纳音以决之”理解成“还缺一个独立当天干支纳音输入”。
 
-### 角色层
+重新检索古籍后，该理解已修正。
 
-固定：
+### 证据链
 
-- 陈兵原野 → 先动客、后应主
-- 安居之势 → 先动主、后应客
+1. 《太乙金镜式经》卷四：
+   - 客关得主人 → 客胜
+   - 主人关得客 → 主胜
+   - “皆用日计纳音以决之”
+   - “所谓关者，取五行相制之道”
 
-### 行动条件层
+2. 《景祐太乙福应经》卷四“释主客相关”：
+   - 现存转录作“皆用曰计二目纳音以决之”
+   - “曰”视为 OCR 可疑字
+   - 关键补字是“二目”
 
-当：
+3. 《太乙淘金歌》“定胜负”：
+   - “二目纳音何以定”
+   - “以二目纳音决之，取五行生克为用”
+   - 明列十六神五行
+   - 主目克客 → 主胜
+   - 客目克主 → 客胜
+   - 同音 → 二阵平（另有“三阵平”转录）
+   - 相生例 → 战必和解
 
-- 三门具
-- 五将发
-- 阴阳和
+4. 《太乙金镜式经》卷二：
+   - 上目 = 始击 = 属客
+   - 下目 = 文昌 = 属主
 
-三项同时成立时：
+由此把 J4M-03 解释为：
 
-- `action_status=raise_forces_favorable`
-- `action_advice=称兵`
-- `source_campaign_verdict=所向必克`
-- `source_temporal_outcome=先胜后负`
+**日计主客二目所临十六神，以其五行关系决“关”。**
 
-但：
+不再额外引入一个独立的六十甲子“当天纳音五行”。
 
-- `winner=None`
+## J4M-03 runtime
 
-因为“先胜后负”原文没有在本句指定应强拆成哪一方最终胜负。
+入口：
 
-当：
+- `j4m03_eye_element_from_god()`
+- `zhuke_xiangguan()`
 
-- 三门不具
-- 五将不发
-- 阴阳不和
+### 十六神五行参校表
 
-三项同时成立时：
+金：
 
-- `action_status=hold_and_defend`
-- `action_advice=不利举兵，宜固守吉`
+- 武德
+- 太簇
+- 阴德
 
-混合组合不扩写为完整胜负公式；若三门或五将本身失败，只保存 J4M-01/02 已明确的硬约束。
+木：
 
-### 始发神层
+- 吕申
+- 高丛
+- 大炅
 
-固定：
+水：
 
-- 东 → 阴德
-- 南 → 和德
-- 西 → 大炅
-- 北 → 大武
+- 大义
+- 地主
 
-“以定主客所起归之神”之后的细推步，本段未展开，因此 runtime 只返回始发神和原文方法说明。
+火：
 
-### 互视其算层
+- 大神
+- 大威
 
-固定 cross-side reference：
+土：
 
-- 客欲知主 → 主算
-- 主人欲知客 → 客算
+- 和德
+- 太阳
+- 天道
+- 大武
+- 阴主
+- 阳德
 
-只做引用，不把 D8-06 多少胜负反写入 J4M-04。
+### canonical 判法
 
-### 可计算状态拆分
+- 客目克主目 → `relation=客关得主人` → `winner=客`
+- 主目克客目 → `relation=主人关得客` → `winner=主`
+- 无相制 → `winner=None`
 
-J4M-04 现区分：
+现：
 
-- `role_computable`
-- `source_combination_computable`
-- `hard_constraints_computable`
+- `fully_computable=True`
+- `status=ok`
 
-避免“角色已经可判，但门将阴阳条件缺失”时把所有语义压成一个布尔值。
+### 非 canonical 参校提示
 
-## J4M-03 校勘结论
+《淘金歌》：
 
-runtime：
+- 同音 → 二阵平
+- 相生 → 和解
 
-`kintaiyi.jinjing_v4_military.zhuke_xiangguan`
+只写入：
 
-已确认正文明确部分：
+`collation_hint`
 
-- 客目克主目 → 客关得主人 → 客胜
-- 主目克客目 → 主人关得客 → 主胜
+且：
 
-仍未闭合：
+`canonical_override=False`
 
-“皆用日计纳音以决之”。
+因此不会把后出参校文本的“和/平”强行改成《金镜》本条 winner。
 
-核对多种《太乙金镜式经》转录后，没有找到：
+## “天目”多义防错
 
-- 日计纳音如何参与关法的进一步公式
-- 纳音与主目/客目同五行时的明文规则
-- 比和、生我、我生的明文胜负规则
-- 主将与太乙同宫参与本条的明文
+测试锁定：
 
-因此保持：
+- 本条主目：文昌 / 下目 / 地目（配对义）
+- 本条客目：始击 / 上目 / 天目（配对义）
 
-- `implementation_status=implemented_partial_source_specific`
-- `collation_status=formula_not_expanded_in_checked_jinjing_transcriptions`
-- `fully_computable=False`
+不允许仅凭“天目”二字自动判其为文昌或始击。
 
-## legacy `wc_n_sj` 隔离验证
+runtime 参数统一使用：
 
-旧参考函数 `kentang2017/kintaiyi::wc_n_sj` 额外包含：
+- `host_eye_*`
+- `guest_eye_*`
 
-- 纳音等于主目五行 → “主关”
-- 纳音等于客目五行 → “客关”
-- 主将是否与太乙同宫 → 改写胜负
-- 比和 / 生我 / 我生 → 判和
+## 旧 day_nayin_element 已降为兼容字段
 
-这些没有在卷四本段得到明文支持。
+旧接口：
 
-机器规则已写入 `legacy_reference_quarantined`，测试锁定“不能升级为 canonical”。
+`day_nayin_element`
 
-## 当前十二法状态
+现状态：
 
-完整：
+`legacy_input_ignored`
 
-- J4M-01 推三门具不具
-- J4M-02 推五将发不发
-- J4M-04 推主客
-- J4M-05 推出师法
-- J4M-06 推陈兵向背
-- J4M-07 推制阵随地法
-- J4M-08 推随地制变
-- J4M-09 推太乙在天外地内法
-- J4M-10 推奇伏法
-- J4M-11 推太乙风云飞鸟助战法
-- J4M-12 推阵有风云气定胜负
+它不再参与 J4M-03 胜负。
 
-partial：
+测试保证即使传入该字段，也不会改变由二目五行相制得到的结果。
 
-- J4M-03 推主客相关法
+## 通用纳音与 J4M-03 分离
 
-## 防混法测试
+一般六十甲子纳音古法如《梦溪笔谈》所述：
 
-当前测试锁定：
+- 六十律旋相为宫
+- 一律含五音
+- 十二律纳六十音
+- 同类娶妻
+- 隔八生子
+- 仲 / 孟 / 季递传
 
-- J4M-01 不退化成旧 `threedoors`
-- J4M-02 不退化成旧 `fivegenerals`
-- J4M-03 与 J4M-04 永不合并
-- J4M-03 不引入旧 `wc_n_sj` 的纳音同类 / 太乙同宫推断
-- J4M-04 “先胜后负”不强设 winner
-- J4M-04 混合三门/五将/阴阳组合不冒充正文完整断法
-- J4M-05 不替换为《统宗》卷五兵额表
-- J4M-06 不替换为旧卷十五陈兵出乡
-- J4M-07 ≠ J4M-08
-- J4M-08 原文比例不转现代战力分数
-- J4M-09 《金镜》与《统宗》profile 分离
-- J4M-10 不调用旧卷十五奇伏近名算法
-- J4M-11 无外部观测不得计算
-- J4M-12 原文未列颜色不得用五行补表
+该背景不等于 J4M-03 要额外计算一个当天六十甲子纳音。
 
-## C8 crosswalk
+J4M-03 已由太乙内部“二目纳音”参校直接解释。
 
-J4M-04 machine metadata：
+## 现代《太乙数纳音体系（修正版）》variant
 
-- target layer: `C8-L3`
-- status: `source_runtime_complete_c8_roles_only`
+新增机器表：
 
-含义：
+`rules/j4m03_nayin_variants.json`
 
-- J4M-04 source-specific 已完整
-- 现有 C8-L3 仍只保存先后动静角色
-- 暂不直接改写 C8 `volume5_strict`
+modern profile：
 
-下一步应新增显式 adapter/source profile，而不是把 J4M-04 逻辑直接塞进 C8 默认路径。
+`modern_liunian_nayin_2026`
+
+状态：
+
+`reference_only_not_canonical`
+
+材料明确支持并记录：
+
+- 宫徵羽商角
+- 五音纳甲丙戊庚壬
+- 星神本五行转五音
+- 星神所落地支/四维转律吕
+- 合成星神纳音
+- 变五行
+- 日干五音顺序
+- 每个星神两个纳音
+- 本/变纳音比较
+- 四计可用但历法输入随计改变
+
+同时机器规则锁定：
+
+- 不能据此声称《金镜》原义就是现代双纳音体系
+- 不能把现代日干变音顺序写入 J4M-03 canonical
+- 不能用 modern variant 改写 canonical winner
+
+## legacy wc_n_sj variant
+
+另存：
+
+`J4M03-LEGACY-WCNSJ`
+
+状态：
+
+`quarantined`
+
+禁止进入 canonical。
+
+## catalog 状态
+
+`j4m_low_dependency_catalog()`：
+
+- implemented: `J4M-01..J4M-12`
+- partial: `[]`
+- pending: `[]`
+
+## C8 边界
+
+J4M-03 现在虽已 complete，但仍不进入 J4M → C8 adapter。
+
+原因已从旧的“partial”改为：
+
+**C8 当前没有独立关法 layer。**
+
+禁止：
+
+- 硬并入 C8-L3 主客动静
+- 用它覆盖 D8-06 多少占胜负
+- 自动加入默认 `volume5_strict` 总胜负链
 
 ## CI
 
-J4M-04 runtime 与测试提交后：
+J4M-03 runtime / metadata / variant catalog 修正后：
 
-GitHub Actions run `37230461892`：
-
-- conclusion: `success`
-- result: **345 passed in 0.59s**
-
-机器 metadata 与 J4M-03 legacy quarantine 锁定后：
-
-GitHub Actions run `37230473016`：
+GitHub Actions run `37231852841`：
 
 - conclusion: `success`
-- result: **347 passed in 0.60s**
+- result: **464 passed in 0.77s**
 
-较早 run 145 / 147 的单项失败，是 runtime/catalog 先变更、旧测试尚期待 J4M-04 为 partial 的提交顺序问题；更新测试后恢复全绿，不是规则语义失败。
+较早 run 199 / 203 / 204 的 J4M 红灯主要来自提交顺序中旧测试仍期待 J4M-03 为 partial；更新锁定测试后恢复全绿。
 
-## 下一步
+## 阶段结论
 
-J4M 卷四十二法来源层已经达到可收口状态。
+J4M 卷四军事十二法 source layer 现可正式视为：
 
-建议下一阶段：
+**12 / 12 complete**
 
-1. 新增 **J4M → C8 显式 adapter**
-2. adapter 必须要求 `source_profile=jinjing_siku_volume4`
-3. 默认 C8 `volume5_strict` 保持不变
-4. J4M-03 继续保持 partial，直到发现可信的“日计纳音”展开公式
+同时保留三层隔离：
 
+1. ancient canonical / ancient collation
+2. modern reconstruction
+3. legacy implementation
 
-## 显式 J4M → C8 adapter 验证
-
-新增模块：
-
-`src/kintaiyi/jinjing_v4_c8_adapter.py`
-
-测试：
-
-`tests/test_jinjing_v4_c8_adapter.py`
-
-验证点：
-
-- 非 `jinjing_siku_volume4` profile 必须拒绝。
-- J4M-01 只能映射为 C8-L2 `three_doors` 上游事实。
-- J4M-02 只能映射为 C8-L2 `five_generals` 上游事实。
-- J4M-04 完整结果只能作为 `j4m_overlay.host_guest_full` 保存。
-- overlay 的“所向必克 / 先胜后负 / 始发神”等不得覆盖 C8-L3。
-- C8-L3 `winner` 仍为 `None`。
-- adapter 调用后的内部 C8 仍声明 `source_profile=volume5_strict`。
-- 直接调用默认 `junshi_zhanlue(...)` 时行为完全不依赖 adapter。
-- J4M-03 不进入 adapter。
-
-GitHub Actions run `37230702184`：
-
-- conclusion: `success`
-- result: **352 passed in 0.62s**
-
-run `37230683383` 的红灯来自并行紫庭经 C19 测试，不是 adapter；专门 adapter 测试提交后全库恢复全绿。
-
-## 当前 J4M 阶段结论
-
-卷四十二法来源层现已形成：
-
-- 11 条 complete source-specific runtime
-- 1 条 partial（J4M-03）
-- 显式 J4M → C8 adapter
-- 默认 C8 profile 不变
-- source variant 不静默合并
-
-后续若继续，应优先处理 J4M-03 的外部校勘证据，而不是再从旧代码推测“日计纳音”公式。
+后续不应再以 modern 或 legacy 反写 canonical。
