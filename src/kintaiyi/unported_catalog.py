@@ -176,16 +176,26 @@ for key in (
         ),
     )
 
-for key in ("明五福太乙所主術", "明五福吉算所主術"):
-    CATALOG[key] = _entry(
-        "canonical", "tongzong_volume6_7_witness_variant_direct", "P1",
-        "source_verified_split_runtime_next", migrate_whole=False,
-        source_confidence="high", target_hint="source_variants.tongzong_state_cycles.wufu",
-        notes=(
-            "C61 已核五福直接正文及卷六/卷七编次variant。"
-            "五福神位周期与五福吉算受益对象必须拆成两层，不能因同一旧flat分组而合并。"
-        ),
-    )
+CATALOG["明五福太乙所主術"] = _entry(
+    "canonical", "tongzong_volume6_7_witness_variant_direct", "P1",
+    "use_c67_wufu_tongzong_profile", migrate_whole=False,
+    source_confidence="high", target_hint="source_variants.tongzong_state_cycles.wufu.position",
+    notes=(
+        "C67 已将五福位置按来源profile分开：统宗为宫盈差115、大周2250、小周225、"
+        "45年一宫；金镜为无该盈差、225一周。C15本字段来自统宗，必须显式选tongzong profile。"
+        "五福吉算另层，旧flat仍不得整体搬运。"
+    ),
+)
+
+CATALOG["明五福吉算所主術"] = _entry(
+    "canonical", "tongzong_volume6_7_witness_variant_direct", "P1",
+    "source_verified_split_runtime_next", migrate_whole=False,
+    source_confidence="high", target_hint="source_variants.tongzong_state_cycles.wufu.auspicious_numbers",
+    notes=(
+        "C61 已核五福吉算直接正文。其225年/45年宫段与受益对象数列必须独立于C67位置profile；"
+        "数列OCR/句读需逐项锁定后再实现。"
+    ),
+)
 
 for key in (
     "明天乙太乙所主術", "明地乙太乙所主術", "明值符太乙所主術",
