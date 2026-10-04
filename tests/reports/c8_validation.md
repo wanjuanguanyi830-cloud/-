@@ -39,7 +39,7 @@ one = unit % 5 != 0
 
 在修正公式及接入 C8 兼容入口后，GitHub Actions 全量测试结果为：
 
-- 204 passed
+- 210 passed
 - 2 failed
 
 两条失败均来自 `tests/test_eight_divinations_classics.py` 的旧预期：
@@ -54,6 +54,7 @@ one = unit % 5 != 0
 ## C8 验收结论
 
 - C8 分层结构：通过。
+- C8 来源边界元数据（`volume5_strict` / `cross_volume_merge=False`）：通过。
 - `数有所主` / 五音拆分：通过。
 - 主客动静不覆盖 D8-06：通过。
 - 三门五将不在综合层偷算：通过。
