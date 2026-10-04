@@ -45,6 +45,7 @@ def test_c45_source_example_wenchang_chen_means_march_and_opposite_september():
         year_branch="子",
         year_hegod_anchor="丑",
         wenchang_landing_after_year_addition="辰",
+        tianmu_landing_after_year_addition="酉",
         palace_polarity="阳",
         wenchang_same_as_taiyi=False,
         pattern_evidence=[],
@@ -54,6 +55,8 @@ def test_c45_source_example_wenchang_chen_means_march_and_opposite_september():
     assert data["opposite_landing"] == "戌"
     assert data["opposite_disaster_month"] == 9
     assert data["water_drought"] == "旱"
+    assert data["tianmu_disaster_month"] == 8
+    assert data["tianmu_opposite_disaster_month"] == 2
     assert data["computable"] is True
 
 
@@ -62,6 +65,7 @@ def test_c45_does_not_guess_palace_polarity_from_point():
         year_branch="子",
         year_hegod_anchor="丑",
         wenchang_landing_after_year_addition="辰",
+        tianmu_landing_after_year_addition="酉",
         wenchang_same_as_taiyi=False,
         pattern_evidence=[],
     )
@@ -77,6 +81,7 @@ def test_c45_yang_means_drought_yin_means_water_only_when_explicit():
         year_branch="子",
         year_hegod_anchor="丑",
         wenchang_landing_after_year_addition="辰",
+        tianmu_landing_after_year_addition="酉",
         palace_polarity="阳",
         wenchang_same_as_taiyi=False,
         pattern_evidence=[],
@@ -85,6 +90,7 @@ def test_c45_yang_means_drought_yin_means_water_only_when_explicit():
         year_branch="子",
         year_hegod_anchor="丑",
         wenchang_landing_after_year_addition="辰",
+        tianmu_landing_after_year_addition="酉",
         palace_polarity="阴",
         wenchang_same_as_taiyi=False,
         pattern_evidence=[],
@@ -98,6 +104,7 @@ def test_c45_same_taiyi_or_source_pattern_marks_annual_disorder_but_not_month():
         year_branch="子",
         year_hegod_anchor="丑",
         wenchang_landing_after_year_addition="辰",
+        tianmu_landing_after_year_addition="酉",
         palace_polarity="阳",
         wenchang_same_as_taiyi=True,
         pattern_evidence=[],
@@ -110,6 +117,7 @@ def test_c45_same_taiyi_or_source_pattern_marks_annual_disorder_but_not_month():
         year_branch="子",
         year_hegod_anchor="丑",
         wenchang_landing_after_year_addition="辰",
+        tianmu_landing_after_year_addition="酉",
         palace_polarity="阳",
         wenchang_same_as_taiyi=False,
         pattern_evidence=["格", "挟"],
@@ -123,6 +131,7 @@ def test_c45_no_taiyi_same_palace_and_no_patterns_means_no_disorder_trigger():
         year_branch="子",
         year_hegod_anchor="丑",
         wenchang_landing_after_year_addition="辰",
+        tianmu_landing_after_year_addition="酉",
         palace_polarity="阳",
         wenchang_same_as_taiyi=False,
         pattern_evidence=[],
@@ -136,6 +145,7 @@ def test_c45_four_corner_landing_does_not_invent_month():
         year_branch="子",
         year_hegod_anchor="丑",
         wenchang_landing_after_year_addition="艮",
+        tianmu_landing_after_year_addition="酉",
         palace_polarity="阳",
         wenchang_same_as_taiyi=False,
         pattern_evidence=[],
@@ -152,6 +162,7 @@ def test_c45_requires_explicit_pattern_check():
         year_branch="子",
         year_hegod_anchor="丑",
         wenchang_landing_after_year_addition="辰",
+        tianmu_landing_after_year_addition="酉",
         palace_polarity="阳",
         wenchang_same_as_taiyi=False,
     )
@@ -165,12 +176,52 @@ def test_c45_day_stage_returns_branch_and_opposite_not_fake_calendar_day():
         month_branch="辰",
         month_hegod_anchor="午",
         wenchang_landing_after_month_addition="酉",
+        tianmu_landing_after_month_addition="子",
     )
     assert data["disaster_day_branch"] == "酉"
     assert data["opposite_day_branch"] == "卯"
     assert data["specific_calendar_day"] is None
-    assert data["specific_calendar_day_status"] == "source_only_gives_landing_branch_period"
+    assert data["specific_calendar_day_status"] == "source_gives_sixteen_point_period_not_calendar_day_number"
+    assert data["tianmu_day_branch"] == "子"
+    assert data["tianmu_opposite_day_branch"] == "午"
     assert data["addition_formula_applied"] is False
+
+
+def test_c45_day_four_dimension_point_is_not_mislabeled_as_branch():
+    data = disaster_day_from_evidence(
+        month_branch="辰",
+        month_hegod_anchor="午",
+        wenchang_landing_after_month_addition="艮",
+        tianmu_landing_after_month_addition="巽",
+    )
+    assert data["disaster_day_point"] == "艮"
+    assert data["disaster_day_branch"] is None
+    assert data["opposite_day_point"] == "坤"
+    assert data["opposite_day_branch"] is None
+    assert data["tianmu_day_point"] == "巽"
+    assert data["tianmu_day_branch"] is None
+    assert data["computable"] is True
+
+
+def test_c45_missing_tianmu_keeps_each_stage_incomplete():
+    month = disaster_month_from_evidence(
+        year_branch="子",
+        year_hegod_anchor="丑",
+        wenchang_landing_after_year_addition="辰",
+        palace_polarity="阳",
+        wenchang_same_as_taiyi=False,
+        pattern_evidence=[],
+    )
+    assert month["computable"] is False
+    assert "天目所临" in "；".join(month["pending"])
+
+    day = disaster_day_from_evidence(
+        month_branch="辰",
+        month_hegod_anchor="午",
+        wenchang_landing_after_month_addition="酉",
+    )
+    assert day["computable"] is False
+    assert "天目所临" in "；".join(day["pending"])
 
 
 def _month():
@@ -178,6 +229,7 @@ def _month():
         year_branch="子",
         year_hegod_anchor="丑",
         wenchang_landing_after_year_addition="辰",
+        tianmu_landing_after_year_addition="酉",
         palace_polarity="阳",
         wenchang_same_as_taiyi=False,
         pattern_evidence=[],
@@ -189,6 +241,7 @@ def _day():
         month_branch="辰",
         month_hegod_anchor="午",
         wenchang_landing_after_month_addition="酉",
+        tianmu_landing_after_month_addition="子",
     )
 
 
@@ -223,6 +276,7 @@ def test_c45_rejects_unknown_pattern_or_invalid_branch():
             year_branch="子",
             year_hegod_anchor="丑",
             wenchang_landing_after_year_addition="辰",
+            tianmu_landing_after_year_addition="酉",
             palace_polarity="阳",
             wenchang_same_as_taiyi=False,
             pattern_evidence=["杜"],
