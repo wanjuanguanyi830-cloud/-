@@ -57,11 +57,16 @@ def test_c61_c66_three_bases_use_runtime_and_preserve_volume_variant():
         assert item["migrate_whole"] is False
         assert "邦盈差250" in item["notes"]
 
-    for key in ("明五福太乙所主術", "明五福吉算所主術"):
-        item = catalog_unported_field(key)
-        assert item["action"] == "source_verified_split_runtime_next"
-        assert item["migrate_whole"] is False
-        assert "两层" in item["notes"]
+    wufu = catalog_unported_field("明五福太乙所主術")
+    assert wufu["action"] == "use_c67_wufu_tongzong_profile"
+    assert wufu["migrate_whole"] is False
+    assert "宫盈差115" in wufu["notes"]
+    assert "金镜" in wufu["notes"]
+
+    wufu_numbers = catalog_unported_field("明五福吉算所主術")
+    assert wufu_numbers["action"] == "source_verified_split_runtime_next"
+    assert wufu_numbers["migrate_whole"] is False
+    assert "独立于C67" in wufu_numbers["notes"]
 
 
 def test_c61_c64_tianyi_diyi_zhifu_are_direct_volume7_with_position_runtime():
@@ -81,10 +86,7 @@ def test_c61_c64_tianyi_diyi_zhifu_are_direct_volume7_with_position_runtime():
 
 
 def test_c61_remaining_source_verified_fields_are_not_yet_runtime_implemented():
-    fields = (
-        "明五福太乙所主術",
-        "明五福吉算所主術",
-    )
+    fields = ("明五福吉算所主術",)
     for key in fields:
         item = catalog_unported_field(key)
         assert item["action"] == "source_verified_split_runtime_next"
