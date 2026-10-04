@@ -1,4 +1,4 @@
-"""C18 《紫庭经》主来源 / 《太乙统宗宝鉴》参校来源容器。
+"""C18 《太乙紫庭经》主来源 / 《太乙统宗宝鉴》参校来源容器。
 
 本模块只管理来源层级和结构化结果，不实现六项术法本身。
 """
@@ -46,7 +46,7 @@ RULES = {
 
 def _validate_rule(rule_key: str) -> dict[str, Any]:
     if rule_key not in RULES:
-        raise ValueError(f"未知《紫庭经》P1规则: {rule_key}")
+        raise ValueError(f"未知《太乙紫庭经》P1规则: {rule_key}")
     return RULES[rule_key]
 
 
@@ -84,7 +84,7 @@ def build_zitingjing_rule_sources(
         "cross_source_merge": False,
         "status": "primary_ready" if primary_ready else "primary_pending",
         "policy": (
-            "《紫庭经》为主要参考；《太乙统宗宝鉴》仅作参校。"
+            "《太乙紫庭经》为主要参考；《太乙统宗宝鉴》仅作参校。"
             "参校可用于校异、补证、版本比较，但不得静默覆盖主来源。"
         ),
     }
@@ -103,7 +103,7 @@ def build_zitingjing_p1_sources(
         raise TypeError("results须为dict")
     unknown = sorted(set(supplied) - set(RULES))
     if unknown:
-        raise ValueError(f"未知《紫庭经》P1规则: {', '.join(unknown)}")
+        raise ValueError(f"未知《太乙紫庭经》P1规则: {', '.join(unknown)}")
 
     rules = {}
     for key in RULES:
@@ -122,7 +122,7 @@ def build_zitingjing_p1_sources(
         "primary_source": "zitingjing",
         "rules": rules,
         "cross_source_merge": False,
-        "policy": "六项规则均以《紫庭经》为主来源，统宗卷六/卷十只作参校。",
+        "policy": "六项规则均以《太乙紫庭经》为主来源，统宗卷六/卷十只作参校。",
     }
 
 
