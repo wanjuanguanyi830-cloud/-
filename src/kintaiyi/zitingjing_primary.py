@@ -234,11 +234,11 @@ def shiji_changes_primary_core() -> dict[str, Any]:
             "临分野可主乱、贼、疾、丧、兵、饥等灾应",
             "变化不可执一途而断",
         ],
-        "detailed_year_stem_element_table_status": "collation_in_progress",
+        "detailed_year_stem_element_table_status": "collated_with_preserved_variants",
         "year_element_collation": shiji_year_element_collation(),
         "policy": (
-            "核心事实已固化；逐岁干×五行灾应以校勘表附入。"
-            "OCR冲突行不得在完成异本校勘前正规化为canonical五行。"
+            "逐岁干×五行已形成25项正规化表；"
+            "OCR校字保留原读法，真正内容异文继续并列，不无痕统一。"
         ),
     }
 
@@ -249,49 +249,55 @@ SHIJI_YEAR_ELEMENT_COLLATION = {
     "甲乙": {
         "rows": [
             {"witness_label": "水", "element": "水", "status": "stable",
-             "effects": ["北方兵动", "算和则冬有和亲", "岁稔", "见证邻文有大水语"]},
+             "effects": ["北方兵动", "算和则冬有和亲", "岁稔", "大水"]},
             {"witness_label": "金", "element": "金", "status": "stable",
              "effects": ["西方兵起", "东方有败"]},
-            {"witness_label": "木", "element": "木", "status": "stable_with_ocr_gap",
-             "effects": ["东方兵起", "舟车事兴"], "uncertain_text": "岁□"},
+            {"witness_label": "木", "element": "木", "status": "stable_with_minor_ocr_gap",
+             "effects": ["东方兵起", "舟车事兴"],
+             "collation_note": "主见证末字缺；《太乙秘书》参校作岁丰。"},
             {"witness_label": "火", "element": "火", "status": "stable",
              "effects": ["南方兵动", "夏旱火热", "民流亡", "疾病", "所临分野多灾"]},
+            {"witness_label": "土", "element": "土", "status": "stable_across_collation",
+             "effects": ["中宫兵动", "与太乙掩迫格则臣下谋上", "废将辅", "土工兴作"],
+             "collation_note": "该句接在甲乙火项后的下一段，非丙丁组。"},
         ],
-        "missing_elements": ["土"],
-        "status": "incomplete_primary_witness_or_ocr",
+        "missing_elements": [],
+        "status": "complete_five_elements",
     },
     "丙丁": {
         "rows": [
-            {"witness_label": "水", "element": "水", "status": "stable_with_ocr_noise",
+            {"witness_label": "水", "element": "水", "status": "stable_with_minor_ocr_noise",
              "effects": ["东北兵起", "夏大水", "民流亡"]},
             {"witness_label": "火", "element": "火", "status": "stable",
              "effects": ["南方有变", "兵动", "大旱", "民饥", "疾病", "兵革"]},
-            {"witness_label": "土", "element": "土", "status": "stable",
-             "effects": ["东方兵起", "居中宫"]},
+            {"witness_label": "土", "element": "土", "status": "stable_with_wording_variants",
+             "effects": ["中宫相关兵忧"],
+             "collation_note": "各见证在“东夷/东京/中宫忧变”等字句有差异，暂只保留共同核心。"},
             {"witness_label": "木", "element": "木", "status": "stable",
              "effects": ["春冬东方有和亲"]},
             {"witness_label": "金", "element": "金", "status": "stable",
              "effects": ["西方兵动", "金银贵", "重臣被诛"]},
         ],
         "missing_elements": [],
-        "status": "complete_five_elements",
+        "status": "complete_five_elements_with_wording_variants",
     },
     "戊己": {
         "rows": [
-            {"witness_label": "水", "element": None, "candidate_element": "木",
-             "status": "ocr_element_conflict",
-             "effects": ["东方兵动"]},
+            {"witness_label": "水", "element": "木", "status": "ocr_corrected_by_collation",
+             "effects": ["东方兵动"],
+             "collation_witnesses": ["太乙秘书", "太乙统宗宝鉴卷六"],
+             "correction": "识典《太乙紫庭经》OCR首字作水；两参校见证均作木，且本组随后另有水项。"},
             {"witness_label": "火", "element": "火", "status": "stable",
              "effects": ["南方有兵", "蝗虫", "谷贵", "大旱", "民流移"]},
             {"witness_label": "土", "element": "土", "status": "stable",
-             "effects": ["中宫忧", "土功", "山崩地动"]},
+             "effects": ["中宫忧", "土工", "山崩地动"]},
             {"witness_label": "金", "element": "金", "status": "stable",
              "effects": ["西方兵起", "与北方相争"]},
             {"witness_label": "水", "element": "水", "status": "stable",
              "effects": ["征伐北方", "大臣被诛", "夏旱", "冬大水雨雪"]},
         ],
-        "missing_elements": ["木"],
-        "status": "duplicate_water_missing_wood_ocr_conflict",
+        "missing_elements": [],
+        "status": "complete_after_ocr_collation",
     },
     "庚辛": {
         "rows": [
@@ -301,66 +307,85 @@ SHIJI_YEAR_ELEMENT_COLLATION = {
              "effects": ["西方兵动"]},
             {"witness_label": "水", "element": "水", "status": "stable",
              "effects": ["北方兵起"]},
-            {"witness_label": "火", "element": "火", "status": "stable_with_ocr_noise",
-             "effects": ["南方兵动", "中国火灾", "掩捕袭夺", "岁旱", "金属器物贵"]},
-            {"witness_label": "土", "element": "土", "status": "stable",
-             "effects": ["邻国兵兴", "中国兵兴", "民丰", "夏大旱"]},
+            {"witness_label": "火", "element": "火", "status": "stable_with_minor_ocr_noise",
+             "effects": ["南方兵动", "中国火灾", "掩捕袭夺", "岁旱", "金银贵"]},
+            {"witness_label": "土", "element": "土", "status": "textual_variant",
+             "effects": ["中国或邻国兵兴", "民丰"],
+             "variants": {
+                 "taiyi_zitingjing_online": "夏大旱",
+                 "taiyi_mishu_and_tongzong_collation": "夏大水",
+             },
+             "resolution": "preserve_both_no_silent_merge"},
         ],
         "missing_elements": [],
-        "status": "complete_five_elements",
+        "status": "complete_five_elements_with_textual_variant",
     },
     "壬癸": {
         "rows": [
-            {"witness_label": "水", "element": "水", "status": "stable",
-             "effects": ["北方有兵"]},
+            {"witness_label": "水", "element": "水", "status": "stable_with_wording_variants",
+             "effects": ["北方或西北有兵", "冬寒霜雪"]},
             {"witness_label": "金", "element": "金", "status": "stable",
              "effects": ["西方进宝", "大丰", "民和"]},
-            {"witness_label": "火", "element": "火", "status": "stable_with_ocr_noise",
+            {"witness_label": "火", "element": "火", "status": "stable_with_minor_ocr_noise",
              "effects": ["南方多灾", "夏旱", "秋冬大水霜雪"]},
-            {"witness_label": "木", "element": "木", "status": "stable_with_ocr_noise",
-             "effects": ["东方兵起", "疾病"]},
-            {"witness_label": "王", "element": None, "candidate_element": "土",
-             "status": "ocr_element_conflict",
-             "effects": ["中国有兵"]},
+            {"witness_label": "木", "element": "木", "status": "stable_with_wording_variants",
+             "effects": ["东方兵事", "疾病"]},
+            {"witness_label": "王", "element": "土", "status": "ocr_corrected_by_collation",
+             "effects": ["中国有兵"],
+             "collation_witnesses": ["太乙秘书", "太乙统宗宝鉴卷六", "太白兵备统宗宝鉴另一识典见证"],
+             "correction": "主在线OCR作王；多参校见证均作土。"},
         ],
-        "missing_elements": ["土"],
-        "status": "final_label_ocr_conflict",
+        "missing_elements": [],
+        "status": "complete_after_ocr_collation",
     },
 }
 
 
 def shiji_year_element_collation() -> dict[str, Any]:
-    """返回〈始击变化〉逐岁干×五行灾应的当前校勘表。
+    """返回〈始击变化〉逐岁干×五行灾应的校勘表。
 
-    stable 项可作主来源结构事实；ocr_element_conflict 项只作待校见证。
+    OCR字符误识可用多见证参校纠正；真正内容异文则必须并列保留。
     """
-    stable_count = 0
-    unresolved = []
+    normalized_rows = 0
+    ocr_corrections = []
+    textual_variants = []
     for stem_group, group in SHIJI_YEAR_ELEMENT_COLLATION.items():
         for row in group["rows"]:
-            if row["status"].startswith("stable") and row.get("element"):
-                stable_count += 1
-            if row["status"] == "ocr_element_conflict":
-                unresolved.append({
+            if row.get("element"):
+                normalized_rows += 1
+            if row["status"] == "ocr_corrected_by_collation":
+                ocr_corrections.append({
                     "stem_group": stem_group,
                     "witness_label": row["witness_label"],
-                    "candidate_element": row.get("candidate_element"),
+                    "normalized_element": row["element"],
+                    "collation_witnesses": copy.deepcopy(row["collation_witnesses"]),
                 })
+            if row["status"] == "textual_variant":
+                textual_variants.append({
+                    "stem_group": stem_group,
+                    "element": row["element"],
+                    "variants": copy.deepcopy(row["variants"]),
+                    "resolution": row["resolution"],
+                })
+    complete = (
+        normalized_rows == 25
+        and all(not group["missing_elements"] for group in SHIJI_YEAR_ELEMENT_COLLATION.values())
+    )
     return {
         "canonical": C19_VERSION,
         "rule_key": "shiji_changes",
         "primary_source": PRIMARY_SOURCE_ID,
         "primary_source_title": PRIMARY_SOURCE_TITLE,
         "source_locator": copy.deepcopy(PRIMARY_LOCATORS["shiji_changes"]),
-        "source_status": "direct_primary_text_collation_in_progress",
+        "source_status": "direct_primary_text_collated",
         "stem_groups": copy.deepcopy(SHIJI_YEAR_ELEMENT_COLLATION),
-        "stable_row_count": stable_count,
-        "unresolved_rows": unresolved,
-        "normalization_complete": not unresolved
-            and all(not group["missing_elements"] for group in SHIJI_YEAR_ELEMENT_COLLATION.values()),
+        "normalized_row_count": normalized_rows,
+        "ocr_corrections": ocr_corrections,
+        "textual_variants": textual_variants,
+        "normalization_complete": complete,
         "policy": (
-            "OCR疑字只保存witness_label与candidate_element；"
-            "未完成异本校勘前不得把候选字改写成canonical五行。"
+            "明确OCR误识可在多见证一致时校正并保留原witness_label；"
+            "内容层异文不得以多数表决静默覆盖，必须并列保存。"
         ),
     }
 
