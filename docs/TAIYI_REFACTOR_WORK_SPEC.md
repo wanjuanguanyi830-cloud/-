@@ -2417,12 +2417,71 @@ C48 只消费 C47：
 
 详细记录见 `sources/c48-xiaoyou-line-omens-record.md`。
 
-## 9.42 后续 C49+
+## 9.42 C49 太游 / 小游行宫卦不同术（已实施）
+
+新增：
+
+`src/kintaiyi/taiyou_xiaoyou_distinction.py`
+
+### C49-01 本术不是“当前两卦不等”
+
+原文固定：
+
+- 太游：36年行一内卦，得乾天之策；
+- 小游：24年行一内卦，得坤地之策；
+- 二者有尊卑上下之别。
+
+但原文同时明确：
+
+- 太游得乾天之策仍可行坤；
+- 小游得坤地之策仍可行乾。
+
+因此乾 / 坤之策是率义，不是卦位限制。
+
+### C49-02 canonical 差异
+
+- 太游内卦依赖 C38-BL-INNER；
+- 小游内卦依赖 C47-XY-INNER；
+- 36 / 24 周期职责固定不同。
+
+固定：
+
+`systems_distinct=True`
+
+`distinct_by_current_trigram_inequality=False`
+
+### C49-03 当前同 / 异卦
+
+允许比较当前内卦，但只标：
+
+`semantic_status="derived_observation_not_source_verdict"`
+
+当前同卦不取消制度差异；
+当前异卦也不是本术唯一判据。
+
+### C49-04 旧实现
+
+旧 `guiyun.zonghe()['行宮卦異']` 只有：
+
+`dayou["內卦"] != xiaoyou["內卦"]`
+
+因此：
+
+`canonical_equivalent=False`
+
+完整验证：927 passed / 0 failed。
+
+详细记录：
+
+- `sources/c49-taiyou-xiaoyou-distinction-record.md`
+- `tests/reports/c49_validation.md`
+
+## 9.43 后续 C50+
 
 下一优先级：
 
-1. 拆“明太、小游行宫卦不同术”，明确 C38/C47 两套周期职责；
-2. 再拆“明太乙历数之期术”，避免与 C42 帝祚历数混并；
+1. 拆“明太乙历数之期术”，确认其为概念总纲还是独立算法；
+2. 若无独立公式，只建立 source scope，不复制 C42 帝祚历数；
 3. 恢复旧 `terminology.json` 后按 C40 对齐研易楼明钞本；
 4. 回读文昌九星附篇正文；
 5. 三旗行宫 / 九宫贵神继续归属核证。
