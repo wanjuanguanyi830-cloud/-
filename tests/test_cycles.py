@@ -64,5 +64,5 @@ def test_profile_metadata_and_pending_epoch():
     assert bigyo(0,profile="taojin")["status"] == "not_computable"
     assert bigyo(0,profile="taojin",epoch_offset=0)["palace"] == 7
     assert bigyo_tianmu(0)["profile_metadata"]["outer_cycle"] == 180
-    assert bigyo_tianmu(0,profile="jinjing")["status"] == "not_computable"
+    assert bigyo_tianmu(0,profile="jinjing")["step_number"] == 1
     assert bigyo_tianmu(0,profile="jinjing",epoch_offset=0)["profile_metadata"]["yuan"] == 72

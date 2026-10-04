@@ -44,6 +44,8 @@ def _normalize_legacy_json_containers(value: Any) -> Any:
                 new_key = str(key)
             else:
                 raise TypeError(f"legacy snapshot含不支持的dict key类型: {type(key).__name__}")
+            if new_key in result:
+                raise ValueError("legacy snapshot键转换后重复")
             result[new_key] = _normalize_legacy_json_containers(item)
         return result
     if isinstance(value, (list, tuple)):
@@ -156,6 +158,14 @@ def extract_legacy_snapshot_facts(snapshot: dict[str, Any]) -> dict[str, Any]:
     for legacy_key, new_key in _DOOR_FIELDS.items():
         if legacy_key in snapshot and new_key not in board["doors"]:
             board["doors"][new_key] = copy.deepcopy(snapshot[legacy_key])
+            if new_key == "distribution" and isinstance(board["doors"][new_key], dict):
+                distribution = board["doors"][new_key]
+                if any(isinstance(key, bool) or not isinstance(key, (str, int)) for key in distribution):
+                    raise TypeError("八门分布键须为宫号整数或字符串")
+                converted = {str(key): value for key, value in distribution.items()}
+                if len(converted) != len(distribution):
+                    raise ValueError("八门分布键转换后重复")
+                board["doors"][new_key] = converted
             consumed.add(legacy_key)
 
     cycles: dict[str, Any] = {

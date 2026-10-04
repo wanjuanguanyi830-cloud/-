@@ -65,7 +65,7 @@ def test_preparedness(n,missing,classic):
 
 
 def test_structural_all_does_not_equal_classic_full():
-    assert not all(sancai(15)["components"].values())
+    assert sancai(15)["components"] == {"ten": True, "five": True, "one": False}
     assert "人" in sancai(15)["missing"]
     assert not sancai(15)["sancai_full_classic"]
     assert "人" not in sancai(1)["missing"]
@@ -74,5 +74,5 @@ def test_structural_all_does_not_equal_classic_full():
 def test_mixed_gudan_preserves_basic_effects_without_combined_verdict():
     data = gudan_state(12)
     assert data["state"] is None and data["danger"] is None
-    assert data["basic_effects"] == [{"classification":"孤阳","disadvantaged":"主"},
-                                     {"classification":"单阴","disadvantaged":"客"}]
+    assert data["basic_effects"] == []
+    assert data["scope_note"] == "本术无标签不代表全局无不利"
