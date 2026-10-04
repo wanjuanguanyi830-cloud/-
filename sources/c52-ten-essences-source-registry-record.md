@@ -9,7 +9,7 @@ C52 只锁定：
 - 卷十八 / 卷二十见证编次差异；
 - 旧 `config.py` / `yunqi.py` 的名称与周期冲突。
 
-C52 **不迁移十精位置公式**，也不迁十精云气断事。
+C52 本身**不执行十精位置公式**，也不迁十精云气断事；已校公式由后续 C53 runtime 消费。
 
 canonical：
 
@@ -252,3 +252,41 @@ C53 开始逐项核十精位置公式。
 6. 三风。
 
 只有直接公式、边界和测试全部完成后，才可建立位置 runtime。
+
+
+## 10. C53 实施状态
+
+C52 仍是来源注册表，但位置 runtime 已由 C53 分批实现。
+
+当前已实现：
+
+- 飞鸟：C53-FLYBIRD
+- 五风：C53-FIVEWIND
+- 太尊：C53-TAIZUN
+- 八风：C53-EIGHTWIND
+- 三风：C53-THREEWIND
+- 五行：C53-WUXING
+
+当前位置 pending：
+
+- 天皇
+- 帝符
+- 天时
+
+数值层 pending：
+
+- 太乙数
+
+固定：
+
+- `all_position_runtime_ready=False`
+- `implemented_position_runtimes` 与 `pending_position_runtimes` 分开保存；
+- C52 registry 仍不自己执行位置公式；
+- C53 runtime 只消费 C52 已校来源边界。
+
+天时当前保留来源冲突：
+
+- 统宗：命起吕申（寅），顺行十二辰，阴局取阳局对冲；
+- 太白兵备：阳起申、阴起寅。
+
+因此天时继续 `source_start_conflict_unresolved`。
