@@ -46,32 +46,51 @@ PRIMARY_LOCATORS = {
         "url": None,
         "catalog_witness": {
             "title": "太乙紫庭秘诀（现代整理本目录）",
-            "url": "https://www.chinyuan.com.tw/all_book/more?id=7195",
-            "evidence": "目录列“附太乙文昌九星值宫术”",
+            "urls": [
+                "https://www.chinyuan.com.tw/all_book/more?id=7195",
+                "https://www.xinyi.hk/goods-7102.html",
+            ],
+            "evidence": "两处现代整理本目录均列“附太乙文昌九星值宫术”",
         },
-        "witness_context": "已有《太乙紫庭秘诀》目录级证据，但尚未取得可逐条校读的直接正文。",
+        "witness_context": "可确认该术附属于现存《太乙紫庭秘诀》传本系统，但尚未取得可逐条校读的直接正文。",
     },
     "three_banners": {
-        "status": "project_primary_attribution_direct_text_pending",
+        "status": "project_primary_attribution_unverified",
         "section": None,
         "url": None,
+        "catalog_check": {
+            "ziting_mijue_catalog_result": "not_found",
+            "checked_catalogs": [
+                "https://www.chinyuan.com.tw/all_book/more?id=7195",
+                "https://www.xinyi.hk/goods-7102.html",
+            ],
+            "note": "已查《太乙紫庭秘诀》十二卷及附录目录未见“三旗行宫”题名。",
+        },
         "collation_locator": {
             "source": "太乙统宗宝鉴卷十",
             "section": "明太乙与三旗行宫会合术",
             "url": "https://www.shidianguji.com/book/NGJ892411999009267118912/chapter/1lny52hi7lfec",
         },
-        "witness_context": "《太乙紫庭经》主来源身份按项目校勘原则保留；当前直接可定位的是统宗参校文本。",
+        "witness_context": "项目曾指定《太乙紫庭经》为主来源目标，但当前未取得目录或正文归属证据；统宗卷十有直接可定位文本。",
     },
     "nine_palace_nobles": {
-        "status": "project_primary_attribution_direct_text_pending",
+        "status": "project_primary_attribution_unverified",
         "section": None,
         "url": None,
+        "catalog_check": {
+            "ziting_mijue_catalog_result": "not_found",
+            "checked_catalogs": [
+                "https://www.chinyuan.com.tw/all_book/more?id=7195",
+                "https://www.xinyi.hk/goods-7102.html",
+            ],
+            "note": "已查《太乙紫庭秘诀》十二卷及附录目录未见“九宫贵神”题名。",
+        },
         "collation_locator": {
             "source": "太乙统宗宝鉴卷十",
             "section": "明太乙九宫贵神术",
             "url": "https://www.shidianguji.com/book/NGJ892411999009267118912/chapter/1lny52hi7lfec",
         },
-        "witness_context": "《太乙紫庭经》主来源身份按项目校勘原则保留；当前直接可定位的是统宗参校文本。",
+        "witness_context": "项目曾指定《太乙紫庭经》为主来源目标，但当前未取得目录或正文归属证据；统宗卷十有直接可定位文本。",
     },
 }
 
