@@ -164,15 +164,26 @@ CATALOG["明天子巡狩之期術"] = _entry(
 
 for key in (
     "明君基太乙所主術", "明臣基太乙所主術", "明民基太乙所主術",
-    "明五福太乙所主術", "明五福吉算所主術",
 ):
     CATALOG[key] = _entry(
         "canonical", "tongzong_volume6_7_witness_variant_direct", "P1",
-        "source_verified_split_runtime_next", migrate_whole=False,
-        source_confidence="high", target_hint="source_variants.tongzong_state_cycles",
+        "use_c66_three_bases_cycle_runtime", migrate_whole=False,
+        source_confidence="high", target_hint="source_variants.tongzong_state_cycles.three_bases",
         notes=(
-            "C61 已核直接正文；CADAL/NGJ见证在卷六/卷七编次存在差异。"
-            "君臣民三基、五福位置与同宫断语须逐条拆runtime，不把卷号差异复制成两套公式。"
+            "C66 已按直接正文建立三基位置：共加邦盈差250；君基3600/360、30年一邦午起，"
+            "臣基360/36、3年一邦午起，民基360/12、1年一邦戌起。"
+            "卷六/卷七仅作见证编次variant，不复制算法；同宫断语仍须显式关系层。"
+        ),
+    )
+
+for key in ("明五福太乙所主術", "明五福吉算所主術"):
+    CATALOG[key] = _entry(
+        "canonical", "tongzong_volume6_7_witness_variant_direct", "P1",
+        "source_verified_split_runtime_next", migrate_whole=False,
+        source_confidence="high", target_hint="source_variants.tongzong_state_cycles.wufu",
+        notes=(
+            "C61 已核五福直接正文及卷六/卷七编次variant。"
+            "五福神位周期与五福吉算受益对象必须拆成两层，不能因同一旧flat分组而合并。"
         ),
     )
 
