@@ -91,7 +91,7 @@ def test_c52_traditional_aliases_normalize_without_source_loss(source, canonical
     assert canonical_ten_essence_name(source) == canonical
     record = ten_essence_record(source)
     assert record["name"] == canonical
-    expected_ready = canonical in {"飞鸟", "五风"}
+    expected_ready = canonical in {"飞鸟", "五风", "太尊", "八风", "三风"}
     assert record["runtime_formula_ready"] is expected_ready
 
 
@@ -158,19 +158,19 @@ def test_c52_registry_tracks_partial_c53_runtime_without_becoming_formula_layer(
     assert data["rule_id"] == "C52-TEN-ESSENCES-REGISTRY"
     assert data["position_runtime_ready"] is False
     assert data["all_position_runtime_ready"] is False
-    assert data["implemented_position_runtimes"] == ["飞鸟", "五风"]
+    assert data["implemented_position_runtimes"] == ["飞鸟", "五风", "太尊", "八风", "三风"]
     assert set(data["pending_position_runtimes"]) == {
-        "天皇", "帝符", "天时", "太尊", "五行", "八风", "三风"
+        "天皇", "帝符", "天时", "五行"
     }
     assert data["cloud_runtime_ready"] is False
     assert data["target_policy"]["legacy_top_level_promoted"] is False
 
     status = {row["name"]: row["formula_status"] for row in data["essences"]}
-    assert status["飞鸟"] == "implemented_c53"
-    assert status["五风"] == "implemented_c53"
+    for name in ("飞鸟", "五风", "太尊", "八风", "三风"):
+        assert status[name] == "implemented_c53"
     assert all(
         status[name] == "pending_source_formula_audit"
-        for name in ("天皇", "帝符", "天时", "太尊", "五行", "八风", "三风", "太乙数")
+        for name in ("天皇", "帝符", "天时", "五行", "太乙数")
     )
 
 
@@ -205,8 +205,10 @@ def test_c52_focus_formula_skeletons_lock_direct_source_boundaries():
     taizun = FOCUS_FORMULA_SKELETONS["太尊"]
     assert taizun["big_cycle"] == 40
     assert taizun["small_cycle"] == 4
-    assert taizun["route"]["canonical_route"] is None
-    assert taizun["runtime_formula_ready"] is False
+    assert taizun["route"]["tongzong_sequence"] == [8, 6, 2, 4]
+    assert taizun["route"]["taibai_yin_path"] == [2, 4, 8, 6]
+    assert taizun["runtime_formula_ready"] is True
+    assert taizun["runtime_rule_id"] == "C53-TAIZUN"
 
     bird = FOCUS_FORMULA_SKELETONS["飞鸟"]
     assert bird["big_cycle"] == 90
@@ -226,11 +228,17 @@ def test_c52_focus_formula_skeletons_lock_direct_source_boundaries():
     ]
     assert five["route"]["cross_source_canonical_selected"] is None
 
+    eight = FOCUS_FORMULA_SKELETONS["八风"]
+    assert eight["route"]["tongzong_yang_path"] == [2, 3, 4, 5, 6, 7, 8, 9, 1]
+    assert eight["route"]["taibai_yin_path"] == [8, 7, 6, 5, 4, 3, 2, 1, 9]
+    assert eight["runtime_formula_ready"] is True
+
     three = FOCUS_FORMULA_SKELETONS["三风"]
-    assert three["route"]["source_sequence"] == [3, 7, 2, 6, 1, 5, 4, 8]
-    assert len(three["route"]["source_sequence"]) == 8
-    assert three["route"]["canonical_route"] is None
-    assert "不得自行补第九项" in three["route"]["note"]
+    assert three["route"]["tongzong_sequence"] == [3, 7, 2, 6, 1, 5, 9, 4, 8]
+    assert three["route"]["taibai_yin_path"] == [7, 3, 8, 4, 9, 5, 1, 6, 2]
+    assert "起五宫" in three["route"]["wujing_zongyao_variant_text"]
+    assert three["runtime_formula_ready"] is True
+    assert three["runtime_rule_id"] == "C53-THREEWIND"
 
 
 def test_c52_formula_skeleton_promotes_only_c53_implemented_positions():
@@ -239,7 +247,9 @@ def test_c52_formula_skeleton_promotes_only_c53_implemented_positions():
     assert data["all_position_runtime_ready"] is False
 
     for name, skeleton in data["focus_formula_skeletons"].items():
-        assert skeleton["runtime_formula_ready"] is (name in {"飞鸟", "五风"}), name
+        assert skeleton["runtime_formula_ready"] is (
+            name in {"飞鸟", "五风", "太尊", "八风", "三风"}
+        ), name
 
     five = ten_essence_record("五風")
     assert five["formula_skeleton"]["route"]["status"] == "implemented_c53_profile_selection"
