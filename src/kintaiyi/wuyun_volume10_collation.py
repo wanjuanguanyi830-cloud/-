@@ -24,12 +24,33 @@ MOVEMENT_TONES = {
 }
 
 SIX_QI_ELEMENTS = {
-    "厥阴": {"element": "木", "qi": "风", "transformation": "风化"},
-    "少阴": {"element": "火", "qi": "君火", "transformation": "热化"},
-    "太阴": {"element": "土", "qi": "湿", "transformation": "雨化"},
-    "少阳": {"element": "火", "qi": "相火", "transformation": "相火化"},
-    "阳明": {"element": "金", "qi": "燥", "transformation": "清化"},
-    "太阳": {"element": "水", "qi": "寒", "transformation": "寒化"},
+    "厥阴": {
+        "element": "木", "qi": "风",
+        "tongzong_witness": "厥阴风木风化", "collation": "风化",
+    },
+    "少阴": {
+        "element": "火", "qi": "君火",
+        "tongzong_witness": "少阴君火势化", "collation": "热化",
+        "status": "ocr_or_textual_variant_preserved",
+    },
+    "太阴": {
+        "element": "土", "qi": "湿",
+        "tongzong_witness": "太阴温土雨化", "collation": "湿土雨化",
+        "status": "ocr_or_textual_variant_preserved",
+    },
+    "少阳": {
+        "element": "火", "qi": "相火",
+        "tongzong_witness": "少阳相火水化", "collation": "暑化",
+        "status": "ocr_or_textual_variant_preserved",
+    },
+    "阳明": {
+        "element": "金", "qi": "燥",
+        "tongzong_witness": "阳明燥金清化", "collation": "清化",
+    },
+    "太阳": {
+        "element": "水", "qi": "寒",
+        "tongzong_witness": "太阳寒水寒化", "collation": "寒化",
+    },
 }
 
 # 统宗在线见证中个别字存在OCR/传本文字差异；不静默归一。
