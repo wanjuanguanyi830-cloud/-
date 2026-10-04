@@ -68,12 +68,24 @@ def test_volume15_and_17_military_stay_separate_from_c8_and_j4m():
     assert v15["migrate_whole"] is v17["migrate_whole"] is False
 
 
-def test_volume6_standalone_rules_are_canonical_candidates():
+def test_zitingjing_is_primary_for_nine_star_and_change_rules():
     for key in ("太乙九星", "文昌九星", "文昌變化", "始擊變化"):
         item = catalog_unported_field(key)
         assert item["layer"] == "canonical"
-        assert item["source_scope"] == "tongzong_volume6"
+        assert item["source_scope"] == "zitingjing_primary_tongzong_volume6_collation"
         assert item["priority"] == "P1"
+        assert "主要参考《紫庭经》" in item["notes"]
+        assert "参校来源" in item["notes"]
+
+
+def test_zitingjing_is_primary_for_three_banners_and_nine_palace_nobles():
+    for key in ("三旗行宮", "九宮貴神"):
+        item = catalog_unported_field(key)
+        assert item["layer"] == "canonical"
+        assert item["source_scope"] == "zitingjing_primary_tongzong_volume10_collation"
+        assert item["priority"] == "P1"
+        assert "主要参考《紫庭经》" in item["notes"]
+        assert "参校来源" in item["notes"]
 
 
 def test_volume3_10_cross_volume_fields_are_source_variants():
