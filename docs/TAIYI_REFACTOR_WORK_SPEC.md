@@ -406,10 +406,56 @@ canonical 7→8→9→1→2→3→4→6；36年/宫，288周期，无5。reverse
 
 详细记录见 `sources/c10-v2-consumer-record.md`。
 
-## 9.3 后续 C11+
+## 9.3 C11 pan v2 producer（已实施第一阶段）
 
-- 补真正的 pan v2 producer / 主程序接线（若后续仓库加入 `Taiyi.pan()`）。
-- UI/CLI 只读 v2 view model。
+新增 `src/kintaiyi/pan_v2.py`，只负责组装已经算出的事实，不导入 `Taiyi`，不复制任何古法算法。
+
+### C11-01 完整根结构
+
+`build_pan_v2(...)` 固定输出 schema 2.0 的：
+
+- meta
+- calendar
+- board
+- cycles
+- analysis
+- modern
+- source_variants
+- compat
+
+并补齐 board/cycles/analysis 的规定子层。
+
+### C11-02 中五与类型边界
+
+- `palace=5` 时 `sector=None`。
+- 中五不得伪装为 Sector16。
+- 天目 sector_element / nine_palace_element 分层保留。
+- generals intrinsic_element / palace_element 分层保留。
+
+### C11-03 scenario
+
+只接受：
+
+- enemy_start_year_branch
+- enemy_camp_day_taiyi_palace
+- enemy_first_arrival_taiyi_palace
+
+禁止新增“用客将代敌初来太乙”之类替代字段。
+
+### C11-04 JSON-safe 与 validator
+
+- tuple/set 规范为 JSON-safe list。
+- 未知对象直接 TypeError，不自动字符串化。
+- `validate_pan_v2(...)` 只验证 schema/表示层不变量，不验证古法答案。
+
+builder 输出可直接由 C10 `v2_consumer.py` 消费。
+
+详细记录见 `sources/c11-pan-v2-builder-record.md`。
+
+## 9.4 后续 C12+
+
+- 等真正 `Taiyi.pan()` 或应用入口进入目标仓库后，把 snapshot 接入 `build_pan_v2`。
+- UI/CLI 只读 C10 view model。
 - 继续清理旧 flat schema，仅保留显式 compat 投影，不让旧字段重新成为算法真源。
 
 ## 10. 验收
