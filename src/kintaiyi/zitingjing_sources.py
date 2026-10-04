@@ -124,3 +124,11 @@ def build_zitingjing_p1_sources(
         "cross_source_merge": False,
         "policy": "六项规则均以《紫庭经》为主来源，统宗卷六/卷十只作参校。",
     }
+
+
+def build_zitingjing_source_variants(
+    *,
+    results: dict[str, dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    """返回可直接合入 pan_v2.source_variants 的根容器。"""
+    return {"zitingjing": build_zitingjing_p1_sources(results=results)}
