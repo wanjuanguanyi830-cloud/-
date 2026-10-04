@@ -218,3 +218,45 @@ J4M 卷四十二法来源层已经达到可收口状态。
 2. adapter 必须要求 `source_profile=jinjing_siku_volume4`
 3. 默认 C8 `volume5_strict` 保持不变
 4. J4M-03 继续保持 partial，直到发现可信的“日计纳音”展开公式
+
+
+## 显式 J4M → C8 adapter 验证
+
+新增模块：
+
+`src/kintaiyi/jinjing_v4_c8_adapter.py`
+
+测试：
+
+`tests/test_jinjing_v4_c8_adapter.py`
+
+验证点：
+
+- 非 `jinjing_siku_volume4` profile 必须拒绝。
+- J4M-01 只能映射为 C8-L2 `three_doors` 上游事实。
+- J4M-02 只能映射为 C8-L2 `five_generals` 上游事实。
+- J4M-04 完整结果只能作为 `j4m_overlay.host_guest_full` 保存。
+- overlay 的“所向必克 / 先胜后负 / 始发神”等不得覆盖 C8-L3。
+- C8-L3 `winner` 仍为 `None`。
+- adapter 调用后的内部 C8 仍声明 `source_profile=volume5_strict`。
+- 直接调用默认 `junshi_zhanlue(...)` 时行为完全不依赖 adapter。
+- J4M-03 不进入 adapter。
+
+GitHub Actions run `37230702184`：
+
+- conclusion: `success`
+- result: **352 passed in 0.62s**
+
+run `37230683383` 的红灯来自并行紫庭经 C19 测试，不是 adapter；专门 adapter 测试提交后全库恢复全绿。
+
+## 当前 J4M 阶段结论
+
+卷四十二法来源层现已形成：
+
+- 11 条 complete source-specific runtime
+- 1 条 partial（J4M-03）
+- 显式 J4M → C8 adapter
+- 默认 C8 profile 不变
+- source variant 不静默合并
+
+后续若继续，应优先处理 J4M-03 的外部校勘证据，而不是再从旧代码推测“日计纳音”公式。
