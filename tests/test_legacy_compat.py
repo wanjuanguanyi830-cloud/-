@@ -67,3 +67,9 @@ def test_ruler_meeting_uses_heaven_not_ordinary_taiyi():
             raise AssertionError("君基+天乙不能使用普通太乙")
     fact = Facts().ming_kingbase(0,0)
     assert fact["heaven_palace_id"] == 12 and fact["heaven_sector"] == "寅"
+
+
+def test_legacy_json_conversion_cannot_drop_colliding_keys():
+    from kintaiyi.pan_adapter import build_v2_from_legacy_snapshot
+    with pytest.raises(ValueError, match="重复"):
+        build_v2_from_legacy_snapshot({"局式": {1: "first", "1": "second"}})

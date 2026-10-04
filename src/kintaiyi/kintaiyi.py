@@ -7,6 +7,7 @@ already supplies accnum. No calendar inputs are invented.
 import copy
 
 from .four_taiyi import four_taiyi_position
+from .taiyi_common import integer
 from .taiyi_cycles import minister_base, people_base, ruler_base
 
 
@@ -63,6 +64,8 @@ class Taiyi(TaiyiCanonicalMixin):
         return self.snapshot["accumulated_year"]
 
     def _validate_selection(self, ji_style, taiyi_acumyear):
+        integer(ji_style, 0, 4)
+        integer(taiyi_acumyear, 0, 3)
         for name, requested in (("ji_style", ji_style), ("taiyi_acumyear", taiyi_acumyear)):
             if name in self.snapshot and self.snapshot[name] != requested:
                 raise ValueError(f"snapshot的{name}与请求不符")

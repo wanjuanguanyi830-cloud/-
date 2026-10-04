@@ -134,3 +134,9 @@ def test_modern_projection_is_added_only_when_enabled():
 def test_invalid_scenario_rejected_instead_of_silently_ignored():
     with pytest.raises(ValueError):
         Taiyi(snapshot()).pan(0,0, scenario={"current_date_as_enemy_arrival": 7})
+
+
+def test_selection_flags_reject_bool_and_unknown_profiles():
+    for style, profile in ((True,0),(5,0),(0,4)):
+        with pytest.raises((TypeError,ValueError)):
+            Taiyi({}).pan(style, profile)
