@@ -54,6 +54,52 @@ _THREE_LUCKY_GATES = {"开", "休", "生"}
 _FUBING_CALCS = {12, 22, 32}
 _HIDDEN_CALCS = {11, 21, 31}
 
+_EIGHT_GATES = ["开", "休", "生", "伤", "杜", "景", "死", "惊"]
+_SANMEN = {"开", "休", "生"}
+_GATE_AUSPICE = {
+    "开": "大吉",
+    "休": "大吉",
+    "生": "大吉",
+    "景": "小吉",
+    "死": "大凶",
+    "惊": "大凶",
+    "伤": "大凶",
+    "杜": "大凶",
+}
+
+_TERRAIN_ARMS = {
+    "沟堑山林川泽丘阜草木": {
+        "利": "步兵",
+        "不利": "车骑",
+        "source_ratio_text": "车骑三不当一步兵",
+        "source_scope": "五丈之沟、居堑之水、山林积石、川泽丘阜、草木所临",
+    },
+    "平陵平原广野": {
+        "利": "车骑",
+        "不利": "步兵",
+        "source_ratio_text": "步兵十不当一车骑",
+        "source_scope": "土水平陵、曼衍相属、平原广野",
+    },
+    "两阵相近平地浅草": {
+        "利": "长戟",
+        "不利": "剑楯",
+        "source_ratio_text": "剑楯三不当一长戟",
+        "source_scope": "两阵相近、平地浅草、可前可后",
+    },
+    "萑苇竹萧蒙笼草木": {
+        "利": "矛锤",
+        "不利": "弓弩",
+        "source_ratio_text": "弓弩三不当一矛锤",
+        "source_scope": "萑苇竹萧、草木蒙笼、枝叶接茂",
+    },
+    "平阳相远山谷幽涧仰高临下": {
+        "利": "弓弩",
+        "不利": "短兵",
+        "source_ratio_text": "短兵百不当一弓弩",
+        "source_scope": "平阳相远、山谷幽涧、仰高临下",
+    },
+}
+
 
 def _base(rule_id, name):
     return {
@@ -649,7 +695,7 @@ def j4m_low_dependency_catalog():
     return {
         "ruleset": J4M_RULESET,
         "source_profile": J4M_SOURCE_PROFILE,
-        "implemented": ["J4M-05", "J4M-06", "J4M-07", "J4M-09", "J4M-10"],
+        "implemented": ["J4M-01", "J4M-02", "J4M-05", "J4M-06", "J4M-07", "J4M-08", "J4M-09", "J4M-10"],
         "partial": ["J4M-03", "J4M-04"],
-        "pending": ["J4M-01", "J4M-02", "J4M-08", "J4M-11", "J4M-12"],
+        "pending": ["J4M-11", "J4M-12"],
     }
