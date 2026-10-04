@@ -779,29 +779,77 @@ replacement path 分别指向具体 `source_variants.*.profiles`。
 
 详细记录见 `sources/c17-source-profiles-record.md`。
 
-## 9.11 后续 C18+
+## 9.11 C18 《紫庭经》主来源 / 统宗参校层（已实施第一阶段）
 
-进入 P1：
+P1 前六项已经建立来源容器：
 
 - 太乙九星 / 文昌九星；
 - 文昌变化 / 始击变化；
-- 三旗行宫 / 九宫贵神；
-- 卷十五、卷十七军事层按独立 derived profile 拆分。
+- 三旗行宫 / 九宫贵神。
 
-其中前六项的来源层级固定为：
+### C18-01 来源层级
+
+固定：
 
 - **主要参考：《紫庭经》**
 - **参校来源：《太乙统宗宝鉴》卷六 / 卷十**
   - 太乙九星、文昌九星、文昌变化、始击变化：统宗卷六参校；
   - 三旗行宫、九宫贵神：统宗卷十参校。
 
-“参校”用于校异、补证、版本对读；不得把统宗参校文本静默提升为主来源，也不得因旧 `pan()` 注释写卷六/卷十而反转来源层级。
+“参校”可用于校异、补证、版本对读；不得静默覆盖《紫庭经》主来源。
 
-继续遵守：
+### C18-02 来源容器
 
-- P3 综合包装器不得整体迁移；
-- source_variant 不得自动选 canonical；
-- J4M 当前 implemented/partial/pending 状态变化只更新对应 profile 内容，不改变来源隔离架构。
+新增 `src/kintaiyi/zitingjing_sources.py`。
+
+每条规则分别保存：
+
+- `primary_source="zitingjing"`
+- `primary_result`
+- `collation_sources`
+- `collation_results`
+- `canonical_selected`
+- `cross_source_merge=False`
+
+仅有统宗参校结果时：
+
+- `primary_ready=False`
+- `canonical_selected=None`
+- `status="primary_pending"`
+
+只有存在《紫庭经》结构化主来源结果时，才允许：
+
+`canonical_selected="zitingjing"`
+
+### C18-03 legacy quarantine
+
+旧 `pan()` 中这六项当前实现来自统宗系代码，不能直接升为新 canonical。
+
+因此 C14 将它们改为 quarantined，并要求 replacement path 指向对应：
+
+`source_variants.zitingjing.rules.<rule>.primary_result`
+
+只有参校结果、没有主来源结果时，C13 replacement gap 仍然存在。
+
+### C18-04 参校不是弃用
+
+统宗卷六/卷十继续保留在 `collation_results` 中，用于：
+
+- 校异；
+- 补证；
+- 对读；
+- 记录后世收录差异。
+
+禁止把“参校”理解为“不使用统宗”。
+
+详细记录见 `sources/c18-zitingjing-primary-record.md`。
+
+## 9.12 后续 C19+
+
+- 逐条整理《紫庭经》六项正文和表格，形成真正 `primary_result`；
+- 同步保存统宗卷六/卷十参校差异；
+- 若主来源与参校本不一致，进入 source_variant/variant_note，不做无痕合并；
+- 卷十五、卷十七军事层继续按独立 derived profile 拆分。
 
 
 ## 10. 验收
