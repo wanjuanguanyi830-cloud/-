@@ -207,9 +207,14 @@ def test_c52_focus_formula_skeletons_lock_direct_source_boundaries():
 
     five = FOCUS_FORMULA_SKELETONS["五风"]
     assert five["route"]["tongzong_sequence"] == [1, 3, 5, 7, 9, 2, 4, 6, 8]
-    assert five["route"]["wujing_zongyao_sequence"] == [1, 3, 5, 9, 7, 2, 4, 6, 8]
-    assert five["route"]["status"] == "source_variant_unresolved"
-    assert five["route"]["canonical_route"] is None
+    assert five["route"]["jingyou_sequence"] == [1, 3, 5, 7, 9, 2, 4, 6, 8]
+    assert five["route"]["jinjing_volume7_sequence"] == [1, 3, 5, 7, 9, 2, 4, 6, 8]
+    assert five["route"]["wujing_zongyao_variant_sequence"] == [1, 3, 5, 9, 7, 2, 4, 6, 8]
+    assert five["route"]["status"] == "primary_direct_collated_with_preserved_variant"
+    assert five["route"]["canonical_route_for_tongzong_profile"] == [
+        1, 3, 5, 7, 9, 2, 4, 6, 8
+    ]
+    assert five["route"]["cross_source_canonical_selected"] is None
 
     three = FOCUS_FORMULA_SKELETONS["三风"]
     assert three["route"]["source_sequence"] == [3, 7, 2, 6, 1, 5, 4, 8]
@@ -225,8 +230,12 @@ def test_c52_formula_skeleton_never_promotes_runtime_readiness():
         assert skeleton["runtime_formula_ready"] is False, name
 
     five = ten_essence_record("五風")
-    assert five["formula_skeleton"]["route"]["status"] == "source_variant_unresolved"
-    assert five["formula_skeleton"]["route"]["canonical_route"] is None
+    assert five["formula_skeleton"]["route"]["status"] == (
+        "primary_direct_collated_with_preserved_variant"
+    )
+    assert five["formula_skeleton"]["route"]["canonical_route_for_tongzong_profile"] == [
+        1, 3, 5, 7, 9, 2, 4, 6, 8
+    ]
     assert five["runtime_formula_ready"] is False
 
 
@@ -244,9 +253,10 @@ def test_c52_rejected_surplus_variants_are_not_applied():
         assert "古" in variant["note"] or "经旨" in variant["note"]
 
 
-def test_c52_fivewind_route_conflict_blocks_c53_runtime():
+def test_c52_fivewind_preserves_collation_variant_without_overriding_primary():
     five = FOCUS_FORMULA_SKELETONS["五风"]
     assert five["route"]["tongzong_sequence"][3:5] == [7, 9]
-    assert five["route"]["wujing_zongyao_sequence"][3:5] == [9, 7]
+    assert five["route"]["wujing_zongyao_variant_sequence"][3:5] == [9, 7]
+    assert five["route"]["wujing_zongyao_parallel_sequence"][3:5] == [7, 9]
     assert five["runtime_formula_ready"] is False
-    assert "冲突" in five["runtime_blocker"]
+    assert "C53" in five["runtime_blocker"]
