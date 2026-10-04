@@ -76,7 +76,7 @@ TEN_ESSENCES = (
         "name": "五行",
         "small_cycle": 5,
         "kind": "position",
-        "formula_status": "pending_source_formula_audit",
+        "formula_status": "implemented_c53",
     },
     {
         "index": 7,
@@ -110,6 +110,21 @@ TEN_ESSENCES = (
 
 
 FOCUS_FORMULA_SKELETONS = {
+    "天时": {
+        "big_cycle": 120,
+        "small_cycle": 12,
+        "identity": "鸡星之使",
+        "route": {
+            "tongzong_start": "吕申（寅）",
+            "tongzong_mode": "顺行十二辰，阴局取阳局对冲",
+            "taibai_yang_start": "申",
+            "taibai_yin_start": "寅",
+            "status": "source_start_conflict_unresolved",
+            "canonical_selected": None,
+        },
+        "runtime_formula_ready": False,
+        "runtime_blocker": "统宗主见证与太白兵备参校的阳局起点相反，未解决前不实现。",
+    },
     "帝符": {
         "big_cycle": 200,
         "small_cycle": 20,
@@ -168,6 +183,21 @@ FOCUS_FORMULA_SKELETONS = {
         },
         "runtime_formula_ready": True,
         "runtime_rule_id": "C53-FLYBIRD",
+        "runtime_profile": "tongzong_primary_taibai_collation",
+    },
+    "五行": {
+        "big_cycle": 50,
+        "small_cycle": 5,
+        "identity": "五星之使",
+        "route": {
+            "tongzong_yang_path": [1, 8, 3, 9, 7],
+            "wujing_zongyao_yang_path": [1, 8, 3, 9, 7],
+            "taibai_yang_path": [1, 8, 3, 9, 7],
+            "taibai_yin_path": [9, 2, 7, 1, 3],
+            "status": "implemented_c53_direct_with_collation",
+        },
+        "runtime_formula_ready": True,
+        "runtime_rule_id": "C53-WUXING",
         "runtime_profile": "tongzong_primary_taibai_collation",
     },
     "八风": {
@@ -442,9 +472,9 @@ def ten_essences_registry() -> dict[str, Any]:
         "focus_formula_skeletons": copy.deepcopy(FOCUS_FORMULA_SKELETONS),
         "cloud_omen_boundary": copy.deepcopy(CLOUD_OMEN_BOUNDARY),
         "target_policy": copy.deepcopy(TARGET_POLICY),
-        "implemented_position_runtimes": ["飞鸟", "五风", "太尊", "八风", "三风"],
+        "implemented_position_runtimes": ["飞鸟", "五风", "太尊", "八风", "三风", "五行"],
         "pending_position_runtimes": [
-            "天皇", "帝符", "天时", "五行"
+            "天皇", "帝符", "天时"
         ],
         "number_runtime_pending": ["太乙数"],
         "position_runtime_ready": False,
