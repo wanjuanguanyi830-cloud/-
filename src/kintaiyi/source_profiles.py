@@ -8,6 +8,8 @@ from __future__ import annotations
 import copy
 from typing import Any
 
+from .jinjing_v4_military import J4M_RULESET, J4M_SOURCE_PROFILE
+
 SOURCE_PROFILE_VERSION = "taiyi-c17-source-profiles-v1"
 
 PATTERN_PROFILE_KEYS = (
@@ -134,5 +136,42 @@ def build_p0_source_variants(
             three_doors_profiles=three_doors_profiles,
             five_generals_profiles=five_generals_profiles,
             host_guest_relation_profiles=host_guest_relation_profiles,
+        ),
+    }
+
+
+
+def build_weather_bird_source_variant(
+    *,
+    jinjing_result: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """保存 J4M-11 风云飞鸟外部观测结果。
+
+    旧 pan.flybird_wl 仅按盘内飞鸟位置生成断语，不得作为本 profile 替代。
+    """
+    profiles: dict[str, Any] = {}
+    if jinjing_result is not None:
+        if not isinstance(jinjing_result, dict):
+            raise TypeError("jinjing_result须为dict或None")
+        if jinjing_result.get("source_profile") != J4M_SOURCE_PROFILE:
+            raise ValueError("J4M-11 source_profile mismatch")
+        if jinjing_result.get("ruleset") != J4M_RULESET:
+            raise ValueError("J4M-11 ruleset mismatch")
+        if jinjing_result.get("rule_id") != "J4M-11":
+            raise ValueError("jinjing_result必须来自J4M-11")
+        profiles["jinjing_siku_volume4"] = copy.deepcopy(jinjing_result)
+
+    return {
+        "schema_version": "1.0",
+        "canonical": SOURCE_PROFILE_VERSION,
+        "category": "military_weather_bird_support",
+        "profiles": profiles,
+        "canonical_selected": None,
+        "cross_source_merge": False,
+        "observation_required": True,
+        "legacy_flat_auto_promoted": False,
+        "policy": (
+            "只接经J4M-11验证的外部风云飞鸟观测结果；"
+            "旧flybird_wl盘内推断不得自动升为source profile。"
         ),
     }
