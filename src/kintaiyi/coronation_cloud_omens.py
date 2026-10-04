@@ -61,7 +61,15 @@ SOURCE_WITNESS = {
         "五色彩云国代绵远寿昌，子孙兴旺",
         "以干为日，以支为辰",
     ],
-    "element_mapping_collation": "五行大义·论配支干",
+    "element_mapping_collation": {
+        "work": "五行大义",
+        "section": "第五论配支干",
+        "role": "background_dependency",
+        "rule": (
+            "干为日、支为辰；甲乙寅卯木，丙丁巳午火，"
+            "戊己辰戌丑未土，庚辛申酉金，壬癸亥子水"
+        ),
+    },
 }
 
 RELATION_EFFECTS = {
@@ -90,7 +98,19 @@ LEGACY_REFERENCE_AUDIT = {
 }
 
 
-def _relation_flags(cloud_element: str, day_element: str, chen_element: str) -> dict[str, bool]:
+def _relation_flags(
+    cloud_element: str | None,
+    day_element: str,
+    chen_element: str,
+) -> dict[str, bool]:
+    if cloud_element is None:
+        return {
+            "云生日": False,
+            "云生辰": False,
+            "云克日": False,
+            "日生云": False,
+            "比和": False,
+        }
     return {
         "云生日": ELEMENT_GENERATES[cloud_element] == day_element,
         "云生辰": ELEMENT_GENERATES[cloud_element] == chen_element,
@@ -103,7 +123,7 @@ def _relation_flags(cloud_element: str, day_element: str, chen_element: str) -> 
 def coronation_cloud_omens(
     *,
     day_ganzhi: str,
-    cloud_color: str,
+    cloud_color: str | None = None,
     cloud_form: str | None = None,
 ) -> dict[str, Any]:
     """按“干为日、支为辰”分别判断云气生克。"""
@@ -111,6 +131,8 @@ def coronation_cloud_omens(
     if cloud_form not in (None, "阴云", "五色彩云"):
         raise ValueError("cloud_form须为阴云/五色彩云或None")
 
+    if cloud_color is None and cloud_form is None:
+        raise ValueError("须提供cloud_color或cloud_form至少一种云气观察")
     cloud = coronation_cloud_evidence(cloud_color)
     cloud_element = cloud["element"]
     day_element = STEM_ELEMENT[gz["stem"]]
@@ -141,6 +163,12 @@ def coronation_cloud_omens(
         "chen_element": chen_element,
         "cloud": cloud,
         "relation_flags": flags,
+        "relation_checked": cloud_element is not None,
+        "relation_status": (
+            "computed_from_single_color_element"
+            if cloud_element is not None
+            else "not_computable_without_single_color"
+        ),
         "relations": relations,
         "relation_effects": effects,
         "cloud_form": cloud_form,
@@ -160,7 +188,8 @@ def coronation_cloud_omens(
         "specific_period": None,
         "overall_single_verdict": None,
         "policy": (
-            "日=日干、辰=日支，分别比较五行。"
+            "日=日干、辰=日支，干支五行采用《五行大义·论配支干》背景依赖。"
+            "有单一云色时才计算五种生克；阴云或五色彩云可只凭形态保留直接断义。"
             "五种生克关系可同时成立时并列保存，不用if/elif压成单一断语。"
             "干支数只求和；云气生数/成数与年/月/日时尺度均不擅自选取。"
         ),
