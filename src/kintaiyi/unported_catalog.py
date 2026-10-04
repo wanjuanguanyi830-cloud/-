@@ -76,18 +76,28 @@ for key, target in {
         notes="先迁结构事实；来源卷次需单独留证，不从旧断语推导。",
     )
 
-# C52 已确认这些旧顶层字段属于十精体系；名单/小周数已核，
-# 但旧 config.py 位置公式仍未逐项校验，因此只升级来源状态，不迁 runtime。
-for key in ("帝符", "太尊", "飛鳥", "三風", "五風", "八風"):
+# C52 已确认这些旧顶层字段属于十精体系；C53 已完成其中五项位置 runtime。
+CATALOG["帝符"] = _entry(
+    "canonical", "tongzong_ten_essences_volume18_20_variant", "P2",
+    "use_c52_source_registry_formula_pending", migrate_whole=False,
+    source_confidence="high",
+    target_hint="source_variants.ten_essences",
+    notes=(
+        "C52 已核帝符大周200/小周20与十六神重留结构；"
+        "但重留步进尚未独立实现，旧config.kingfu不得作为canonical真源。"
+    ),
+)
+
+for key in ("太尊", "飛鳥", "三風", "五風", "八風"):
     CATALOG[key] = _entry(
         "canonical", "tongzong_ten_essences_volume18_20_variant", "P2",
-        "use_c52_source_registry_formula_pending", migrate_whole=False,
+        "use_c53_position_runtime", migrate_whole=False,
         source_confidence="high",
-        target_hint="source_variants.ten_essences",
+        target_hint="source_variants.ten_essences.positions",
         notes=(
-            "C52 已核十精完整名单及小周数，并记录卷十八/卷二十见证异文。"
-            "位置公式尚未逐项审计；旧flybird %8与直接小周9冲突，"
-            "旧fivewind %29与直接小周9冲突，不得进入cycles真源。"
+            "C53 已按直接来源建立位置runtime；旧flat值不直接搬运，"
+            "应由显式阴阳遁与对应大周/小周重新计算。"
+            "十精云气断事仍属独立source unit。"
         ),
     )
 
