@@ -1434,15 +1434,96 @@ C30 validator 在 C11 schema validator 上继续检查：
 
 详细记录见 `sources/c30-pan-v2-contract-record.md`。
 
-## 9.24 后续 C31+
+## 9.24 C31 《太乙紫庭经》始击校勘与证据等级（已实施）
+
+### C31-01 始击十干岁 × 五行
+
+〈始击变化〉逐岁干 × 五行灾应已整理为：
+
+- 甲乙；
+- 丙丁；
+- 戊己；
+- 庚辛；
+- 壬癸；
+
+共 5 × 5 = 25 个正规化元素槽位。
+
+### C31-02 OCR 校字
+
+经《太乙秘书》、统宗卷六等参校：
+
+- 戊己首项在线 OCR “水”校为木，同时保留 witness_label；
+- 壬癸末项在线 OCR “王”校为土，同时保留 witness_label；
+- 甲乙土项确认接续于本组，不归入丙丁。
+
+OCR 校字不等于提升参校本为主来源。
+
+### C31-03 真异文
+
+庚辛岁土为始击：
+
+- 当前紫庭在线见证：夏大旱；
+- 《太乙秘书》/统宗参校：夏大水。
+
+固定 `preserve_both_no_silent_merge`。
+
+### C31-04 剩余三项证据等级
+
+- 文昌九星：`catalog_attested_text_pending`
+- 三旗行宫：`project_primary_attribution_unverified`
+- 九宫贵神：`project_primary_attribution_unverified`
+
+三旗/九宫贵神当前只有统宗卷十直接文本，不能标成已证实紫庭 canonical。
+
+详细记录见 `sources/c31-zitingjing-shiji-collation-record.md`。
+
+## 9.25 C32 V17-D1 跨卷 derived helper（已实施）
+
+V17-D1 只对照：
+
+- D8-05 内外占攻击；
+- V17-09 求索所得。
+
+新增 `src/kintaiyi/cross_volume_helpers.py`。
+
+### C32-01 输入锁定
+
+仅接受：
+
+- `attack_result.rule_id == "D8-05"`
+- `request_result.source_rule_id == "V17-09"`
+
+### C32-02 不重算
+
+helper 不：
+
+- 重新算内外；
+- 重跑求索；
+- 解析格局/断语；
+- 修改来源结果。
+
+### C32-03 derived 身份
+
+固定：
+
+- `source_rule_id="V17-D1"`
+- `source_status="derived_cross_volume_helper"`
+- `canonical_source_rule=False`
+- `canonical_source_rule_count=0`
+
+永不进入 V17-01..11 canonical source rule 集。
+
+详细记录见 `sources/c32-cross-volume-guxu-record.md`。
+
+## 9.26 后续 C33+
 
 下一优先级：
 
-1. 继续定位《太乙紫庭经》文昌九星、三旗行宫、九宫贵神直接主来源；
-2. 完成〈始击变化〉逐岁干×五行灾应表的逐项校读；
-3. 复核 V17-D1 等跨卷 helper 的 derived 边界；
-4. 真正 `Taiyi.pan()` / UI / CLI 进入目标仓库后，只通过 C30 contract 接线；
-5. 逐步把剩余 unported/pending 项迁入固定 v2 槽位，禁止再扩展 flat truth source。
+1. 文昌九星继续寻找可逐条校读的《太乙紫庭秘诀/经》附篇正文；未找到前保持 primary_text_pending；
+2. 三旗行宫、九宫贵神继续做出处归属核证，不把统宗卷十反写为紫庭 primary；
+3. 对剩余 unported/pending 字段按 C30 固定槽位继续迁移；
+4. 清理重复的卷十七条件实现，只保留一个 canonical runtime 模块或明确 compatibility wrapper；
+5. 真正 `Taiyi.pan()` / UI / CLI 进入目标仓库后，仅通过 C30 contract 接线。
 
 
 ## 10. 验收
