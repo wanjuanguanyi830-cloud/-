@@ -101,7 +101,7 @@ GENERAL_RULES = {
         "source_status": "direct",
     },
     "天后": {
-        "relative": "后1",
+        "relative": "后一",
         "element": "水",
         "matters": ["蔽匿", "妇人", "淫乱事"],
         "verdict": None,
