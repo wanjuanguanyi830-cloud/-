@@ -15,6 +15,8 @@ from typing import Any
 
 C50_VERSION = "taiyi-c50-imperial-lishu-scope-v1"
 
+SOURCE_PATTERNS = frozenset({"囚", "迫", "击", "格", "掩", "挟"})
+
 SOURCE_WITNESS = {
     "work": "太乙统宗宝鉴",
     "volume": 10,
@@ -42,25 +44,37 @@ SCOPE = {
             "合神四神扩展在C50只登记source scope，不重算落点。"
         ),
     },
-    "correction_layers": [
+    "required_evidence_layers": [
+        {
+            "layer": "太乙入运气爻卦象",
+            "dependency": "explicit_taiyi_yunqi_evidence",
+            "role": "required_evidence",
+        },
+        {
+            "layer": "太游轨运卦爻与内外极限",
+            "dependency": "C41",
+            "role": "required_evidence",
+        },
+        {
+            "layer": "小游轨运卦爻与内外极限",
+            "dependency": "C47",
+            "role": "required_evidence",
+        },
+        {
+            "layer": "囚迫击格掩挟等格局",
+            "dependency": "pattern_evidence",
+            "role": "required_evidence",
+        },
+    ],
+    "optional_correction_layers": [
         {
             "layer": "太游阳九百六行限",
             "dependency": "C38",
             "role": "correction_evidence",
         },
         {
-            "layer": "小游轨运卦爻",
-            "dependency": "C47",
-            "role": "correction_evidence",
-        },
-        {
             "layer": "小游行爻灾祥",
             "dependency": "C48",
-            "role": "correction_evidence",
-        },
-        {
-            "layer": "囚迫击格掩挟等格局",
-            "dependency": "pattern_evidence",
             "role": "correction_evidence",
         },
     ],
@@ -129,6 +143,8 @@ def _validate_optional_rule(
 def assemble_imperial_lishu_evidence(
     *,
     ehui: dict[str, Any] | None = None,
+    taiyi_yunqi_evidence: dict[str, Any] | None = None,
+    dayou_hexagram: dict[str, Any] | None = None,
     taiyou_inner: dict[str, Any] | None = None,
     xiaoyou_hexagram: dict[str, Any] | None = None,
     xiaoyou_omens: dict[str, Any] | None = None,
@@ -140,6 +156,18 @@ def assemble_imperial_lishu_evidence(
         ehui,
         expected_rule_id="C43-V9-EHUI",
         label="ehui",
+    )
+    if taiyi_yunqi_evidence is None:
+        yunqi_data = {}
+    elif not isinstance(taiyi_yunqi_evidence, dict):
+        raise TypeError("taiyi_yunqi_evidence须为dict或None")
+    else:
+        yunqi_data = copy.deepcopy(taiyi_yunqi_evidence)
+
+    dayou_data = _validate_optional_rule(
+        dayou_hexagram,
+        expected_rule_id="C41-DY-HEX",
+        label="dayou_hexagram",
     )
     taiyou_data = _validate_optional_rule(
         taiyou_inner,
@@ -165,6 +193,9 @@ def assemble_imperial_lishu_evidence(
     ):
         raise TypeError("pattern_evidence须为字符串list或None")
     else:
+        unknown = [item for item in pattern_evidence if item not in SOURCE_PATTERNS]
+        if unknown:
+            raise ValueError(f"未知C50格局：{unknown[0]}")
         patterns = list(pattern_evidence)
         patterns_checked = True
 
@@ -184,14 +215,24 @@ def assemble_imperial_lishu_evidence(
         pending.append("缺基础厄会C43证据")
     if not hegod_checked:
         pending.append("缺太阳/阴主合神四神期的显式核对")
+    if not yunqi_data:
+        pending.append("缺太乙入运气爻卦象显式证据")
+    if not dayou_data:
+        pending.append("缺太游轨运卦爻与内外极限C41证据")
+    if not xiaoyou_data:
+        pending.append("缺小游轨运卦爻与内外极限C47证据")
     if not patterns_checked:
         pending.append("缺囚迫击格掩挟等格局核对；无格局时传空list")
 
-    correction_layers = {
-        "taiyou_inner": taiyou_data,
+    required_evidence = {
+        "taiyi_yunqi": yunqi_data,
+        "dayou_hexagram": dayou_data,
         "xiaoyou_hexagram": xiaoyou_data,
-        "xiaoyou_omens": omen_data,
         "pattern_evidence": patterns,
+    }
+    optional_corrections = {
+        "taiyou_inner": taiyou_data,
+        "xiaoyou_omens": omen_data,
     }
 
     return {
@@ -202,7 +243,8 @@ def assemble_imperial_lishu_evidence(
         "scope": imperial_lishu_scope(),
         "base_ehui": ehui_data,
         "hegod_period_evidence": hegod,
-        "correction_layers": correction_layers,
+        "required_evidence": required_evidence,
+        "optional_corrections": optional_corrections,
         "evidence_ready": not pending,
         "status": "evidence_bundle_ready" if not pending else "partial_evidence",
         "pending": pending,
@@ -211,6 +253,8 @@ def assemble_imperial_lishu_evidence(
         "single_formula_applied": False,
         "policy": (
             "即使证据齐备，C50也只返回证据包；"
+            "太乙运气、C41太游、C47小游与格局核对属于原文明示必参层，"
+            "C38阳九百六行限与C48小游灾祥可作辅助校验。"
             "当前来源未给可由这些层自动折算成单一帝王终年的统一公式。"
         ),
     }
@@ -222,5 +266,6 @@ def c50_catalog() -> dict[str, Any]:
         "rule_id": "C50-V10-LISHU-SCOPE",
         "source_profile": "tongzong_volume10_imperial_lishu_scope",
         "scope": copy.deepcopy(SCOPE),
+        "source_patterns": sorted(SOURCE_PATTERNS),
         "legacy_reference_audit": copy.deepcopy(LEGACY_REFERENCE_AUDIT),
     }
