@@ -104,12 +104,26 @@ TEN_ESSENCES = (
         "name": "太乙数",
         "small_cycle": 72,
         "kind": "number",
-        "formula_status": "pending_source_formula_audit",
+        "formula_status": "implemented_c54",
     },
 )
 
 
 FOCUS_FORMULA_SKELETONS = {
+    "太乙数": {
+        "big_cycle": 360,
+        "small_cycle": 72,
+        "kind": "number",
+        "route": {
+            "mode": "命起一数",
+            "range": [1, 72],
+            "status": "implemented_c54_number_layer",
+        },
+        "runtime_formula_ready": True,
+        "runtime_rule_id": "C54-TAIYI-NUMBER",
+        "runtime_profile": "tongzong_ten_essences_number",
+        "cloud_omen_boundary": "special-number weather omens deferred",
+    },
     "天时": {
         "big_cycle": 120,
         "small_cycle": 12,
@@ -476,7 +490,8 @@ def ten_essences_registry() -> dict[str, Any]:
         "pending_position_runtimes": [
             "天皇", "帝符", "天时"
         ],
-        "number_runtime_pending": ["太乙数"],
+        "implemented_number_runtimes": ["太乙数"],
+        "number_runtime_pending": [],
         "position_runtime_ready": False,
         "position_runtime_ready_semantics": "compat_aggregate_all_positions_ready",
         "all_position_runtime_ready": False,
