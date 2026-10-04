@@ -98,12 +98,21 @@ def test_three_banners_and_nine_palace_nobles_keep_unverified_ziting_attribution
         assert "不得把两项标成紫庭canonical" in item["notes"]
 
 
-def test_volume3_10_cross_volume_fields_are_source_variants():
-    for key in ("五運六氣", "五音之數"):
-        item = catalog_unported_field(key)
-        assert item["layer"] == "source_variant"
-        assert item["source_scope"] == "tongzong_volume3_and_volume10"
-        assert item["migrate_whole"] is False
+def test_wuyun_liuqi_is_split_volume3_volume10_source_variant():
+    item = catalog_unported_field("五運六氣")
+    assert item["layer"] == "source_variant"
+    assert item["source_scope"] == "tongzong_volume3_tongxing_vs_volume10_suihui"
+    assert item["action"] == "use_c37_split_profiles"
+    assert item["migrate_whole"] is False
+
+
+def test_wuyin_number_is_volume3_canonical_and_reuses_d8_03_only():
+    item = catalog_unported_field("五音之數")
+    assert item["layer"] == "canonical"
+    assert item["source_scope"] == "tongzong_volume3_direct"
+    assert item["action"] == "reuse_d8_03_core_with_volume3_source"
+    assert "D8-03" in item["notes"]
+    assert "D8-08" in item["notes"]
 
 
 def test_volume1_moon_pipeline_stays_derived_modern_bridge():
