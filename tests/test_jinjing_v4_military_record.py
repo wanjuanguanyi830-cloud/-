@@ -71,3 +71,20 @@ def test_jinjing_and_tongzong_taiyi_inner_outer_profiles_are_not_silently_merged
     tongzong = rule["source_variants"]["tongzong_volume5"]
     assert tongzong["inner_palaces_help_host"] == [1, 8, 3, 4]
     assert tongzong["status"] == "separate_source_variant"
+
+
+def test_runtime_status_matches_second_batch_implementation():
+    _, rules = _rules()
+    by_id = {item["id"]: item for item in rules}
+
+    assert by_id["J4M-03"]["implementation_status"] == "implemented_partial_source_specific"
+    assert by_id["J4M-03"]["runtime"].endswith(".zhuke_xiangguan")
+    assert by_id["J4M-03"]["target_crosswalk"]["layer"] is None
+
+    assert by_id["J4M-05"]["implementation_status"] == "implemented_source_specific"
+    assert by_id["J4M-05"]["runtime"].endswith(".chushi_fa")
+    assert "兵额表" in by_id["J4M-05"]["implementation_note"]
+
+    assert by_id["J4M-10"]["implementation_status"] == "implemented_source_specific"
+    assert by_id["J4M-10"]["runtime"].endswith(".qifu_fa")
+    assert by_id["J4M-10"]["target_crosswalk"]["layer"] is None
