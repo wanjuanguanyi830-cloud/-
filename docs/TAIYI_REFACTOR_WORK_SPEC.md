@@ -693,15 +693,58 @@ C13 audit 现在附带：
 
 详细记录见 `sources/c15-unported-catalog-record.md`。
 
-## 9.9 后续 C16+
+## 9.9 C16 P0 第一批 board 结构事实（已实施）
 
-- 优先落实 C15 P0：
-  1. 十六宫分布进入 board；
-  2. 基础神将（天乙/地乙/四神/直符/合神/计神）进入 board；
-  3. 释格局拆统宗卷四 / 金镜 profile；
-  4. 三门、五将、主客相关与 J4M/C8 对齐。
-- P3 综合包装器不得抢先整体迁移。
-- 真正 `Taiyi.pan()` / UI / CLI 进入目标仓库后再做实际接线。
+已落实 C15 P0 中不依赖军事断语的一批。
+
+### C16-01 十六宫分布
+
+`board` 新增必需子区段：
+
+`board.sixteen_palaces`
+
+旧 `十六宮分佈` 由 C12 adapter 原样搬运，不重新调用旧 `sixteen_gong(...)` 算法。
+
+C14 当前状态已改为：
+
+`migrated_fact -> board.sixteen_palaces`
+
+### C16-02 六个基础神将
+
+以下旧字段迁入 `board.generals`：
+
+- 天乙 → `tianyi.sector`
+- 地乙 → `diyi.sector`
+- 四神 → `four_spirits.sector`
+- 直符 → `zhifu.sector`
+- 合神 → `hegod.sector`
+- 计神 → `jigod.sector`
+
+这些旧值是十六神/支位文字，不得套主客大将的 `palace` 字段。
+
+### C16-03 审计状态
+
+上述 7 个字段从 unported 转为 migrated_fact。
+
+C15 目录保留历史候选记录，但 C14/C13 当前迁移状态优先；C13 不再把它们列入 next migration candidates。
+
+详细记录见 `sources/c16-board-facts-record.md`。
+
+## 9.10 后续 C17+
+
+继续落实剩余 P0：
+
+1. `释格局` 拆统宗卷四 / 金镜 profile；
+2. `推三门具不具`、`推五将发不发`、`推主客相关法` 与 J4M/C8 对齐。
+
+之后再进入 P1：
+
+- 太乙九星 / 文昌九星；
+- 文昌变化 / 始击变化；
+- 三旗行宫 / 九宫贵神；
+- 卷十五、卷十七军事层按独立 derived profile 拆分。
+
+P3 综合包装器不得整体迁移。
 
 
 ## 10. 验收
