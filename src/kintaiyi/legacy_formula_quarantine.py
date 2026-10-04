@@ -127,11 +127,25 @@ QUARANTINE: dict[str, dict[str, Any]] = {
     "yunqi.shijing_shu": _q(
         "yunqi.shijing_shu",
         category="mixed_layers",
-        reason="360→72数值核心可参校，但旧wrapper把特殊数值直接混入天气断语，整体不可升格。",
-        replacement_rule_ids=("C54-TAIYI-NUMBER",),
-        replacement_layer="ten_essences.number",
-        source_module="ten_essences_number",
+        reason=(
+            "360→72数值核心可参校，但旧wrapper把特殊数值直接混入天气断语，"
+            "且未保存数50句读异文与主计/天目/飞鸟显式关系。整体不可升格。"
+        ),
+        replacement_rule_ids=("C54-TAIYI-NUMBER", "C59-TAIYI-NUMBER-OMEN"),
+        replacement_layer="ten_essences.number_and_weather",
+        source_module="ten_essences_number_omens",
         severity="medium",
+    ),
+    "yunqi._YUNQI_COLOR.white": _q(
+        "yunqi._YUNQI_COLOR.white",
+        category="wrong_cloud_timing_mapping",
+        reason=(
+            "旧表把白云7/6配亥子；统宗、金镜、武经平行见证均支持"
+            "白7/6→申酉，亥子属于黑1/8。"
+        ),
+        replacement_rule_ids=("C58-CLOUD-TIMING",),
+        replacement_layer="ten_essences.cloud_observations",
+        source_module="ten_essences_cloud_observations",
     ),
 
     # 卷九/十等已明确不等价的旧实现。
