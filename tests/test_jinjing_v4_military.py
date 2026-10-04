@@ -409,6 +409,8 @@ def test_j4m12_cloud_color_table_and_day_stem_modifiers():
     assert north["base_verdict"] == "大胜"
     assert north["qi_class"] == "胜气"
     assert north["day_modifier"] == "弥佳"
+    assert north["verdict_subject"] == "敌"
+    assert "敌阵" in north["perspective_note"]
 
     south_bad = yunqi_dingshengfu(
         formation_direction="南",
@@ -527,3 +529,24 @@ def test_j4m04_unknown_context_is_not_inferred():
     )
     assert data["computable"] is False
     assert data["status"] == "not_computable"
+
+
+def test_j4m12_same_source_table_can_apply_to_our_formation_without_side_inversion():
+    ours = yunqi_dingshengfu(
+        formation_direction="北",
+        cloud_color="黑",
+        observed_formation="我",
+        day_stem="壬",
+    )
+    assert ours["base_verdict"] == "大胜"
+    assert ours["verdict_subject"] == "我"
+    assert "我阵" in ours["perspective_note"]
+
+    invalid = yunqi_dingshengfu(
+        formation_direction="北",
+        cloud_color="黑",
+        observed_formation="未知",
+    )
+    assert invalid["computable"] is False
+    assert invalid["status"] == "not_computable"
+    assert invalid["valid_observed_formations"] == ["敌", "我"]
