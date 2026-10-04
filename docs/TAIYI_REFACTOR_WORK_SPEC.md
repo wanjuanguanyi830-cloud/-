@@ -917,11 +917,20 @@ P1 六项继续放在同一来源容器中，但**不再一概宣称“紫庭主
 
 ### C18-03 legacy quarantine
 
-旧 flat 六项继续 quarantined；replacement path 仍指向：
+旧 flat 六项继续 quarantined；由于旧 flat 实现本身来自《太乙统宗宝鉴》，replacement path 现在指向同源参校 profile：
 
-`source_variants.zitingjing.rules.<rule>.primary_result`
+- 太乙九星 / 文昌九星 / 文昌变化 / 始击变化 → `collation_results.tongzong_volume6`
+- 三旗行宫 / 九宫贵神 → `collation_results.tongzong_volume10`
 
-这表示迁移必须等待对应主来源证据满足门槛，不表示六项都已经有紫庭 canonical。
+这只表示“旧实现已被同源结构化参校结果替代”；它**不代表紫庭 primary 已完成**。
+
+紫庭 canonical 完成度仍单独由：
+
+- `primary_evidence_level`
+- `primary_ready`
+- `primary_result`
+
+判断。
 
 详细记录：
 
