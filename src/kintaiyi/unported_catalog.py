@@ -98,7 +98,8 @@ for key in ("太尊", "飛鳥", "三風", "五風", "八風"):
         notes=(
             "C53 已按直接来源建立位置runtime；旧flat值不直接搬运，"
             "应由显式阴阳遁与对应大周/小周重新计算。"
-            "十精云气断事仍属独立source unit。"
+            "十精云气已由C57合会、C58观察、C59数值天气三层独立实现，"
+            "仍不得把旧flat位置值或旧yunqi综合wrapper直接搬运。"
         ),
     )
 
@@ -150,15 +151,42 @@ for key, hint in {
         notes="旧flat结果不得静默覆盖J4M与C8/Tongzong来源差异。",
     )
 
+CATALOG["明天子巡狩之期術"] = _entry(
+    "canonical", "tongzong_volume5_direct", "P1",
+    "source_verified_split_runtime_next", migrate_whole=False,
+    source_confidence="high", target_hint="analysis.rules.imperial巡狩",
+    notes=(
+        "C61 已核《太乙统宗宝鉴》卷五直接正文：太乙与天目在四维之岁为巡狩期，"
+        "出方取天目/文昌所临，行期月另参囚挟格对。旧flat不得直接搬为完整规则。"
+    ),
+)
+
 for key in (
-    "明天子巡狩之期術", "明君基太乙所主術", "明臣基太乙所主術",
-    "明民基太乙所主術", "明五福太乙所主術", "明五福吉算所主術",
+    "明君基太乙所主術", "明臣基太乙所主術", "明民基太乙所主術",
+    "明五福太乙所主術", "明五福吉算所主術",
+):
+    CATALOG[key] = _entry(
+        "canonical", "tongzong_volume6_7_witness_variant_direct", "P1",
+        "source_verified_split_runtime_next", migrate_whole=False,
+        source_confidence="high", target_hint="source_variants.tongzong_state_cycles",
+        notes=(
+            "C61 已核直接正文；CADAL/NGJ见证在卷六/卷七编次存在差异。"
+            "君臣民三基、五福位置与同宫断语须逐条拆runtime，不把卷号差异复制成两套公式。"
+        ),
+    )
+
+for key in (
     "明天乙太乙所主術", "明地乙太乙所主術", "明值符太乙所主術",
 ):
     CATALOG[key] = _entry(
-        "pending", "source_pending", "P2", "source_verify_before_migration",
-        source_confidence="low", target_hint="analysis.rules",
-        notes="旧pan无卷次注释；需先建source record。",
+        "canonical", "tongzong_volume7_direct", "P1",
+        "source_verified_split_runtime_next", migrate_whole=False,
+        source_confidence="high", target_hint="source_variants.tongzong_spirit_cycles",
+        notes=(
+            "C61 已核卷七天乙金神、地乙土神、直符火神直接正文。"
+            "旧字段题名有‘天乙太乙/天乙金神’等简写差异，先保留题名异文，"
+            "位置周期与同宫灾应逐条迁移。"
+        ),
     )
 
 CATALOG["推太乙風雲飛鳥助戰法"] = _entry(
