@@ -44,16 +44,66 @@ THREE_TALENT_OMENS = {
 }
 
 STEM_OMENS = {
-    "甲": ["风异", "疾病"],
-    "乙": ["风异", "疾病"],
-    "丙": ["大旱", "亢怪", "口舌妖言", "后宫有谋"],
-    "丁": ["大旱", "亢怪", "口舌妖言", "后宫有谋"],
-    "戊": ["飞蝗", "土工", "大丧"],
-    "己": ["飞蝗", "土工", "大丧"],
-    "庚": ["兵革攻战", "贼盗相伤", "国界不安", "天象变现"],
-    "辛": ["兵革攻战", "贼盗相伤", "国界不安", "天象变现"],
-    "壬": ["淋雨阴沉", "大水溢川", "后妃不安"],
-    "癸": ["淋雨阴沉", "大水溢川", "后妃不安"],
+    "甲": {
+        "effects": ["疾病"],
+        "witness_text": "风宣疾病",
+        "uncertain_text": ["风宣"],
+        "status": "partial_text_uncertain",
+    },
+    "乙": {
+        "effects": ["疾病"],
+        "witness_text": "风宣疾病",
+        "uncertain_text": ["风宣"],
+        "status": "partial_text_uncertain",
+    },
+    "丙": {
+        "effects": ["大旱", "亢怪", "口舌妖言", "后宫有谋"],
+        "witness_text": "大旱亢怪，口舌妖言，及后宫有谋",
+        "uncertain_text": [],
+        "status": "stable",
+    },
+    "丁": {
+        "effects": ["大旱", "亢怪", "口舌妖言", "后宫有谋"],
+        "witness_text": "大旱亢怪，口舌妖言，及后宫有谋",
+        "uncertain_text": [],
+        "status": "stable",
+    },
+    "戊": {
+        "effects": ["飞蝗", "土工", "大丧"],
+        "witness_text": "飞蝗土工，及生大丧",
+        "uncertain_text": [],
+        "status": "stable",
+    },
+    "己": {
+        "effects": ["飞蝗", "土工", "大丧"],
+        "witness_text": "飞蝗土工，及生大丧",
+        "uncertain_text": [],
+        "status": "stable",
+    },
+    "庚": {
+        "effects": ["兵革攻战", "贼盗相伤", "国界不安"],
+        "witness_text": "有兵革攻战，贼盗相伤，国界不安，甚则夭慧变现",
+        "uncertain_text": ["夭慧变现"],
+        "status": "partial_text_uncertain",
+    },
+    "辛": {
+        "effects": ["兵革攻战", "贼盗相伤", "国界不安"],
+        "witness_text": "有兵革攻战，贼盗相伤，国界不安，甚则夭慧变现",
+        "uncertain_text": ["夭慧变现"],
+        "status": "partial_text_uncertain",
+    },
+    "壬": {
+        "effects": ["淋雨阴沉", "大水溢川", "后妃不安"],
+        "witness_text": "淋雨阴沉，大水溢川，后妃不安之事",
+        "uncertain_text": [],
+        "status": "stable",
+    },
+    "癸": {
+        "effects": ["淋雨阴沉", "大水溢川", "后妃不安"],
+        "witness_text": "淋雨阴沉，大水溢川，后妃不安之事",
+        "uncertain_text": [],
+        "status": "stable",
+    },
 }
 
 STEM_REGIONS = {
