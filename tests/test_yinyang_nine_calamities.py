@@ -6,25 +6,25 @@ from kintaiyi.yinyang_nine_calamities import (
     SOURCE_WITNESS,
     TEXTUAL_NOTES,
     calamity_timeline,
-    c46_catalog,
+    c47_catalog,
     yinyang_nine_calamities,
 )
 
 
-def test_c46_records_witness_volume_variant():
+def test_c47_records_witness_volume_variant():
     assert SOURCE_WITNESS["online_witness_volume"] == 10
     assert SOURCE_WITNESS["project_legacy_volume_label"] == 9
     assert SOURCE_WITNESS["volume_status"] == "witness_volume_variant"
 
 
-def test_c46_segment_lengths_sum_to_exact_yangjiu_cycle():
+def test_c47_segment_lengths_sum_to_exact_yangjiu_cycle():
     assert [row["duration_years"] for row in CALAMITY_SEGMENTS] == [
         106, 374, 480, 720, 720, 600, 600, 480, 480
     ]
     assert sum(row["duration_years"] for row in CALAMITY_SEGMENTS) == 4560
 
 
-def test_c46_disaster_years_sum_to_fifty_seven():
+def test_c47_disaster_years_sum_to_fifty_seven():
     assert [row["disaster_years"] for row in CALAMITY_SEGMENTS] == [
         9, 9, 9, 7, 7, 5, 5, 3, 3
     ]
@@ -33,7 +33,7 @@ def test_c46_disaster_years_sum_to_fifty_seven():
     assert sum(row["polarity"] == "阴" for row in CALAMITY_SEGMENTS) == 4
 
 
-def test_c46_cumulative_boundaries_are_built_from_segment_lengths():
+def test_c47_cumulative_boundaries_are_built_from_segment_lengths():
     timeline = calamity_timeline()
     assert [row["start_year"] for row in timeline] == [
         1, 107, 481, 961, 1681, 2401, 3001, 3601, 4081
@@ -46,7 +46,7 @@ def test_c46_cumulative_boundaries_are_built_from_segment_lengths():
     ]
 
 
-def test_c46_first_segment_disaster_starts_in_last_nine_years():
+def test_c47_first_segment_disaster_starts_in_last_nine_years():
     before = yinyang_nine_calamities(97 - 130 + 4560)
     start = yinyang_nine_calamities(98 - 130 + 4560)
     end = yinyang_nine_calamities(106 - 130 + 4560)
@@ -63,7 +63,7 @@ def test_c46_first_segment_disaster_starts_in_last_nine_years():
     assert end["disaster_year_index"] == 9
 
 
-def test_c46_second_segment_uses_374_as_length_not_absolute_threshold():
+def test_c47_second_segment_uses_374_as_length_not_absolute_threshold():
     end_second = yinyang_nine_calamities(350)
     start_third = yinyang_nine_calamities(351)
 
@@ -81,7 +81,7 @@ def test_c46_second_segment_uses_374_as_length_not_absolute_threshold():
     assert start_third["in_disaster_period"] is False
 
 
-def test_c46_exact_4560_end_maps_to_ninth_segment_not_zero_year():
+def test_c47_exact_4560_end_maps_to_ninth_segment_not_zero_year():
     data = yinyang_nine_calamities(4430)
     assert data["cycle_remainder"] == 0
     assert data["cycle_year"] == 4560
@@ -106,7 +106,7 @@ def test_c46_exact_4560_end_maps_to_ninth_segment_not_zero_year():
         (4081, 9, "九阳三灾", "旱"),
     ],
 )
-def test_c46_each_segment_start_is_classified_correctly(cycle_year, index, name, disaster):
+def test_c47_each_segment_start_is_classified_correctly(cycle_year, index, name, disaster):
     accumulated = (cycle_year - 130) % 4560
     data = yinyang_nine_calamities(accumulated)
     assert data["cycle_year"] == cycle_year
@@ -116,7 +116,7 @@ def test_c46_each_segment_start_is_classified_correctly(cycle_year, index, name,
     assert data["year_in_segment"] == 1
 
 
-def test_c46_preserves_fourth_and_ninth_ocr_conflicts():
+def test_c47_preserves_fourth_and_ninth_ocr_conflicts():
     fourth = TEXTUAL_NOTES["fourth_label"]
     ninth = TEXTUAL_NOTES["ninth_disaster_years"]
 
@@ -130,14 +130,14 @@ def test_c46_preserves_fourth_and_ninth_ocr_conflicts():
     assert ninth["status"] == "ocr_corrected_by_internal_arithmetic"
 
 
-def test_c46_legacy_reference_is_not_equivalent():
+def test_c47_legacy_reference_is_not_equivalent():
     assert LEGACY_REFERENCE_AUDIT["canonical_equivalent"] is False
     assert any("累计阈值" in item for item in LEGACY_REFERENCE_AUDIT["issues"])
     assert any("cumulative" in item for item in LEGACY_REFERENCE_AUDIT["issues"])
 
 
-def test_c46_catalog_summarizes_internal_invariants():
-    data = c46_catalog()
+def test_c47_catalog_summarizes_internal_invariants():
+    data = c47_catalog()
     assert data["segment_count"] == 9
     assert data["total_segment_years"] == 4560
     assert data["total_disaster_years"] == 57
@@ -145,7 +145,7 @@ def test_c46_catalog_summarizes_internal_invariants():
     assert data["yin_count"] == 4
 
 
-def test_c46_rejects_negative_or_non_integer_accumulated_year():
+def test_c47_rejects_negative_or_non_integer_accumulated_year():
     with pytest.raises(ValueError):
         yinyang_nine_calamities(-1)
     with pytest.raises(TypeError):
