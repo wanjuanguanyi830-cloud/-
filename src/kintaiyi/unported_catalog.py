@@ -181,12 +181,12 @@ for key in (
 ):
     CATALOG[key] = _entry(
         "canonical", "tongzong_volume7_direct", "P1",
-        "source_verified_split_runtime_next", migrate_whole=False,
+        "use_c63_three_spirit_cycle_runtime", migrate_whole=False,
         source_confidence="high", target_hint="source_variants.tongzong_spirit_cycles",
         notes=(
-            "C61 已核卷七天乙金神、地乙土神、直符火神直接正文。"
-            "旧字段题名有‘天乙太乙/天乙金神’等简写差异，先保留题名异文，"
-            "位置周期与同宫灾应逐条迁移。"
+            "C63 已实现卷七天乙金神、地乙土神、直符火神360/36、三年一宫、"
+            "十二宫（一至九+绛明玉）位置周期。旧‘值符’题名只作直符变体。"
+            "同宫灾应仍须下一显式证据层，C63不自动以位置相等制造断语。"
         ),
     )
 
