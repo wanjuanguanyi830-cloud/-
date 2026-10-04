@@ -284,3 +284,10 @@ def test_c27_catalog_lists_four_rules_and_two_variants():
         "V17-06_doors_ready_bad_news",
         "V17-08_prison_entry_conditions",
     ]
+
+
+def test_c33_conditions_module_is_only_compat_adapter():
+    data = c27_catalog()
+    assert data["compat_adapter"] is True
+    assert data["canonical_runtime"] == "tongzong_v17_structured"
+    assert "不维护第二套古法公式" in data["policy"]
