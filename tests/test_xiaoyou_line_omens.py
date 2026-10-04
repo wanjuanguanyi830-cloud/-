@@ -7,6 +7,7 @@ from kintaiyi.xiaoyou_line_omens import (
     SOURCE_WITNESS,
     STEM_OMENS,
     STEM_REGIONS,
+    STEM_REGION_COLLATION,
     THREE_TALENT_OMENS,
     c48_catalog,
     xiaoyou_line_omens,
@@ -112,10 +113,12 @@ def test_c48_inner_and_outer_extremes_keep_severity_difference():
         pattern_evidence=[],
         moving_line_najia=("甲", "子"),
     )
-    assert inner["line_assessment"]["verdict"] == "凶变，内极尚轻"
+    assert inner["line_assessment"]["verdict"] == "事多凶变"
     assert inner["line_assessment"]["severity"] == "较轻"
-    assert outer["line_assessment"]["verdict"] == "凶变，外极为重"
+    assert inner["pattern_severity"] is None
+    assert outer["line_assessment"]["verdict"] == "事多凶变"
     assert outer["line_assessment"]["severity"] == "较重"
+    assert outer["pattern_severity"] is None
 
 
 @pytest.mark.parametrize(
@@ -142,7 +145,21 @@ def test_c48_pattern_evidence_only_adds_aggravating_omens():
     )
     assert data["line_assessment"]["verdict"] == "安平"
     assert data["pattern_omens"] == ["水旱灾伤", "兵刃饥馑", "疾疫流亡"]
+    assert data["pattern_severity"] is None
     assert data["patterns_aggravate_only"] is True
+
+    inner = xiaoyou_line_omens(
+        _x47(9),
+        pattern_evidence=["关"],
+        moving_line_najia=("甲", "子"),
+    )
+    outer = xiaoyou_line_omens(
+        _x47(21),
+        pattern_evidence=["格"],
+        moving_line_najia=("甲", "子"),
+    )
+    assert inner["pattern_severity"] == "内极尚轻"
+    assert outer["pattern_severity"] == "外极为重"
 
 
 def test_c48_requires_explicit_pattern_check_even_when_none_present():
@@ -267,6 +284,52 @@ def test_c48_rejects_unknown_pattern_or_bad_najia():
             pattern_evidence=[],
             moving_line_najia=("甲", "艮"),
         )
+
+
+def test_c48_najia_pair_is_not_sexagenary_day_validation():
+    data = xiaoyou_line_omens(
+        _x47(5),
+        pattern_evidence=[],
+        moving_line_najia=("甲", "寅"),
+    )
+    assert data["najia"]["stem"] == "甲"
+    assert data["najia"]["branch"] == "寅"
+    assert "不按六十甲子" in data["najia"]["pair_semantics"]
+
+
+def test_c48_preserves_taibai_collation_without_overwriting_primary():
+    assert STEM_REGION_COLLATION["丁"] == {
+        "primary_tongzong": "蛮",
+        "taibai_bingbei": "南海",
+        "status": "collation_variant_preserved",
+        "primary_selected": "蛮",
+    }
+    assert STEM_REGION_COLLATION["辛"]["primary_tongzong"] == "西域"
+    assert STEM_REGION_COLLATION["辛"]["taibai_bingbei"] == ["西戎", "梁", "益"]
+
+    ding = xiaoyou_line_omens(
+        _x47(5),
+        pattern_evidence=[],
+        moving_line_najia=("丁", "巳"),
+    )
+    assert ding["najia"]["stem_region"] == "蛮"
+    assert ding["najia"]["stem_region_collation"]["taibai_bingbei"] == "南海"
+
+    assert STEM_OMENS["甲"]["effects"] == ["疾病"]
+    assert STEM_OMENS["甲"]["collation_effects"] == ["疾病", "风雷"]
+    assert "妖彗变现" in STEM_OMENS["庚"]["collation_effects"]
+
+
+def test_c48_mixed_initial_fourth_case_is_not_source_defined():
+    data = xiaoyou_line_omens(
+        _x47(1),
+        calc_harmonious=True,
+        has_response=False,
+        pattern_evidence=[],
+        moving_line_najia=("甲", "子"),
+    )
+    assert data["line_assessment"]["verdict"] == "mixed_evidence"
+    assert data["line_assessment"]["source_status"] == "not_defined_by_source_passage"
 
 
 def test_c48_catalog_marks_legacy_summary_as_non_equivalent():
