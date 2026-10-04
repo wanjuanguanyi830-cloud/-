@@ -13,6 +13,14 @@ from .taiyi_rules import integer
 
 C44_VERSION = "taiyi-c44-volume9-governance-change-v1"
 
+SOURCE_WITNESS = {
+    "work": "太乙统宗宝鉴",
+    "online_witness_volume": 10,
+    "project_legacy_volume_label": 9,
+    "volume_status": "witness_volume_variant",
+    "section": "明国政革易，法令变更术",
+}
+
 STEMS = tuple("甲乙丙丁戊己庚辛壬癸")
 BRANCHES = tuple("子丑寅卯辰巳午未申酉戌亥")
 SIXTEEN_POINTS = tuple("子丑艮寅卯辰巽巳午未坤申酉戌乾亥")
@@ -185,6 +193,7 @@ def governance_change_from_evidence(
         "canonical": C44_VERSION,
         "rule_id": "C44-V9-GOV",
         "source_profile": "tongzong_volume9_governance_change",
+        "source_witness": copy.deepcopy(SOURCE_WITNESS),
         "foundation_year": gz,
         "landing_formula_applied": False,
         "god_landings": landings,
