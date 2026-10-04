@@ -465,12 +465,14 @@ CLOUD_OMEN_BOUNDARY = {
         "module": "ten_essences_cloud_omens",
         "auto_position_lookup_used": False,
     },
+    "observation_runtime": {
+        "implemented": True,
+        "rule_ids": ["C58-CLOUD-TIMING", "C58-WEATHER-OBSERVATION"],
+        "module": "ten_essences_cloud_observations",
+        "external_observation_required": True,
+    },
     "pending_layers": [
-        "太乙初移宫云色时变",
-        "天气厚薄与颜色形态",
-        "天旱取阳/天雨取阴总括",
-        "旺相使变速总括",
-        "太乙数30/40/50等天气断语",
+        "太乙数30/40/50及与太乙/天目/飞鸟等天气断语",
     ],
     "reason": (
         "C57已实现显式同宫/合会、旺相/非旺相、阴阳宫及少数宫位直断；"
@@ -547,7 +549,8 @@ def ten_essences_registry() -> dict[str, Any]:
         "all_position_runtime_ready": True,
         "cloud_conjunction_runtime_ready": True,
         "cloud_conjunction_rule_id": "C57-TEN-ESSENCE-CLOUD-CONJUNCTION",
-        "cloud_observation_runtime_ready": False,
+        "cloud_observation_runtime_ready": True,
+        "cloud_observation_rule_ids": ["C58-CLOUD-TIMING", "C58-WEATHER-OBSERVATION"],
         "cloud_number_omen_runtime_ready": False,
         "cloud_runtime_ready": False,
         "policy": (
