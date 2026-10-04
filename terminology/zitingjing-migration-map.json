@@ -1,0 +1,182 @@
+{
+  "schema_version": "1.0",
+  "catalog_id": "zitingjing-terminology-migration-v1",
+  "manuscript_source_id": "shanghai_yanyilou_ming_copy",
+  "manuscript_title": "太乙紫庭祕訣",
+  "prior_local_terminology_status": "preliminary_completed_locally",
+  "current_repository_status": "local_terminology_json_not_migrated",
+  "policy": [
+    "本文件是旧本地术语库的迁移骨架，不是重建后的完整terminology.json。",
+    "不得把外部参校异文直接当成研易楼明钞本文字。",
+    "source_page、manuscript_form、old_term_record_id 等字段必须由旧术语库或扫描页回填，未知时保持null。",
+    "规则归属与术语词形分开；术语存在不等于规则canonical来源已证。"
+  ],
+  "fields_to_recover": [
+    "old_term_record_id",
+    "manuscript_form",
+    "source_page",
+    "source_section",
+    "old_definition",
+    "old_notes",
+    "old_aliases"
+  ],
+  "entries": [
+    {
+      "key": "taiyi_nine_stars",
+      "preferred_term": "太乙九星",
+      "aliases": [
+        "太乙九星",
+        "太乙九星術",
+        "释九宫所值九星",
+        "釋九宮所值九星"
+      ],
+      "terminology_status": "existing_term_expected_in_local_store",
+      "current_rule_status": "direct_text_verified",
+      "rule_key": "taiyi_nine_stars",
+      "runtime": "kintaiyi.zitingjing_primary.taiyi_nine_stars_primary",
+      "source_refs": [
+        "c19-zitingjing-primary-verified-record"
+      ],
+      "manuscript_form": null,
+      "source_page": null
+    },
+    {
+      "key": "wenchang_nine_stars",
+      "preferred_term": "文昌九星",
+      "aliases": [
+        "文昌九星",
+        "文昌九星值宫术",
+        "文昌九星值宮術",
+        "附太乙文昌九星值宫术",
+        "附太乙文昌九星值宮術"
+      ],
+      "terminology_status": "existing_term_expected_in_local_store",
+      "current_rule_status": "catalog_attested_primary_text_pending",
+      "rule_key": "wenchang_nine_stars",
+      "runtime": null,
+      "source_refs": [
+        "c20-zitingjing-pending-locators-record",
+        "c20-wenchang-nine-stars-collation-record",
+        "c34-wenchang-nine-stars-collation-record"
+      ],
+      "manuscript_form": null,
+      "source_page": null,
+      "external_collation_variant_groups": [
+        [
+          "明雄",
+          "明维",
+          "明維"
+        ],
+        [
+          "阴玄",
+          "陰玄",
+          "阴德",
+          "陰德"
+        ],
+        [
+          "招摇",
+          "招搖",
+          "招煥"
+        ],
+        [
+          "华明",
+          "華明"
+        ],
+        [
+          "雄明",
+          "维明",
+          "維明"
+        ]
+      ],
+      "variant_policy": "这些只用于旧术语库命中与异文对照；研易楼本实际字形未回填前不选canonical。"
+    },
+    {
+      "key": "wenchang_changes",
+      "preferred_term": "文昌变化",
+      "aliases": [
+        "文昌变化",
+        "文昌變化",
+        "天目变化",
+        "天目變化",
+        "释天目变化",
+        "釋天目變化"
+      ],
+      "terminology_status": "existing_term_expected_in_local_store",
+      "current_rule_status": "direct_text_verified",
+      "rule_key": "wenchang_changes",
+      "runtime": "kintaiyi.zitingjing_primary.wenchang_changes_primary",
+      "source_refs": [
+        "c19-zitingjing-primary-verified-record"
+      ],
+      "manuscript_form": null,
+      "source_page": null
+    },
+    {
+      "key": "shiji_changes",
+      "preferred_term": "始击变化",
+      "aliases": [
+        "始击变化",
+        "始擊變化"
+      ],
+      "terminology_status": "existing_term_expected_in_local_store",
+      "current_rule_status": "direct_primary_text_collated",
+      "rule_key": "shiji_changes",
+      "runtime": "kintaiyi.zitingjing_primary.shiji_changes_primary_core",
+      "source_refs": [
+        "c19-zitingjing-primary-verified-record",
+        "c31-zitingjing-shiji-collation-record"
+      ],
+      "manuscript_form": null,
+      "source_page": null,
+      "collation_status": "25 rows collated with OCR corrections and preserved textual variants"
+    },
+    {
+      "key": "three_banners",
+      "preferred_term": "三旗行宫",
+      "aliases": [
+        "三旗",
+        "三旗行宫",
+        "三旗行宮"
+      ],
+      "terminology_status": "existing_term_or_related_terms_expected_in_local_store",
+      "current_rule_status": "zitingjing_attribution_unverified",
+      "rule_key": "three_banners",
+      "runtime": null,
+      "source_refs": [
+        "c20-zitingjing-pending-locators-record"
+      ],
+      "manuscript_form": null,
+      "source_page": null,
+      "source_boundary": "统宗卷十有直接术文；紫庭归属未证。旧术语条目不能据此自动升为紫庭canonical。"
+    },
+    {
+      "key": "nine_palace_nobles",
+      "preferred_term": "九宫贵神",
+      "aliases": [
+        "九宫贵神",
+        "九宮貴神",
+        "九宫贵神术",
+        "九宮貴神術"
+      ],
+      "terminology_status": "existing_term_or_related_terms_expected_in_local_store",
+      "current_rule_status": "zitingjing_attribution_unverified",
+      "rule_key": "nine_palace_nobles",
+      "runtime": null,
+      "source_refs": [
+        "c20-zitingjing-pending-locators-record"
+      ],
+      "manuscript_form": null,
+      "source_page": null,
+      "source_boundary": "统宗卷十有直接术文；紫庭归属未证。历史九宫贵神体系也不能替代紫庭来源证明。"
+    }
+  ],
+  "recovery_order": [
+    "wenchang_nine_stars",
+    "three_banners",
+    "nine_palace_nobles",
+    "taiyi_nine_stars",
+    "wenchang_changes",
+    "shiji_changes"
+  ],
+  "recovery_reason": "前三项可直接解决当前紫庭来源/正文缺口；后三项已有结构化规则，优先用于核对旧术语字形与页码。"
+}
