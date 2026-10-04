@@ -91,7 +91,9 @@ def test_c52_traditional_aliases_normalize_without_source_loss(source, canonical
     assert canonical_ten_essence_name(source) == canonical
     record = ten_essence_record(source)
     assert record["name"] == canonical
-    expected_ready = canonical in {"飞鸟", "五风", "太尊", "八风", "三风", "五行", "太乙数"}
+    expected_ready = canonical in {
+        "天皇", "帝符", "飞鸟", "五风", "太尊", "八风", "三风", "五行", "太乙数"
+    }
     assert record["runtime_formula_ready"] is expected_ready
 
 
@@ -158,20 +160,19 @@ def test_c52_registry_tracks_partial_c53_runtime_without_becoming_formula_layer(
     assert data["rule_id"] == "C52-TEN-ESSENCES-REGISTRY"
     assert data["position_runtime_ready"] is False
     assert data["all_position_runtime_ready"] is False
-    assert data["implemented_position_runtimes"] == ["飞鸟", "五风", "太尊", "八风", "三风", "五行"]
-    assert set(data["pending_position_runtimes"]) == {
-        "天皇", "帝符", "天时"
-    }
+    assert data["implemented_position_runtimes"] == [
+        "飞鸟", "五风", "太尊", "八风", "三风", "五行", "天皇", "帝符"
+    ]
+    assert data["pending_position_runtimes"] == ["天时"]
     assert data["cloud_runtime_ready"] is False
     assert data["target_policy"]["legacy_top_level_promoted"] is False
 
     status = {row["name"]: row["formula_status"] for row in data["essences"]}
     for name in ("飞鸟", "五风", "太尊", "八风", "三风", "五行"):
         assert status[name] == "implemented_c53"
-    assert all(
-        status[name] == "pending_source_formula_audit"
-        for name in ("天皇", "帝符", "天时")
-    )
+    assert status["天皇"] == "implemented_c55"
+    assert status["帝符"] == "implemented_c55"
+    assert status["天时"] == "pending_source_formula_audit"
     assert status["太乙数"] == "implemented_c54"
 
 
@@ -179,10 +180,10 @@ def test_c52_c53_reclassify_old_pan_fields_by_actual_runtime_status():
     difu = catalog_unported_field("帝符")
     assert difu["layer"] == "canonical"
     assert difu["source_scope"] == "tongzong_ten_essences_volume18_20_variant"
-    assert difu["action"] == "use_c52_source_registry_formula_pending"
+    assert difu["action"] == "use_c55_sixteen_god_runtime"
     assert difu["migrate_whole"] is False
     assert difu["source_confidence"] == "high"
-    assert difu["target_hint"] == "source_variants.ten_essences"
+    assert difu["target_hint"] == "source_variants.ten_essences.positions"
 
     for field in ("太尊", "飛鳥", "三風", "五風", "八風"):
         item = catalog_unported_field(field)
@@ -201,15 +202,27 @@ def test_c52_registry_never_introduces_tianyou_taiyi():
 
 
 def test_c52_focus_formula_skeletons_lock_direct_source_boundaries():
+    tianhuang = FOCUS_FORMULA_SKELETONS["天皇"]
+    assert tianhuang["big_cycle"] == 200
+    assert tianhuang["small_cycle"] == 20
+    assert tianhuang["route"]["start"] == "武德（申）"
+    assert tianhuang["route"]["repeat_on_gods"] == ["阴德", "和德", "大炅", "大武"]
+    assert tianhuang["route"]["repeat_on_positions"] == ["乾", "艮", "巽", "坤"]
+    assert tianhuang["route"]["repeat_count"] == 4
+    assert tianhuang["runtime_rule_id"] == "C55-TIANHUANG"
+
     difu = FOCUS_FORMULA_SKELETONS["帝符"]
     assert difu["big_cycle"] == 200
     assert difu["small_cycle"] == 20
-    assert difu["route"]["start"] == "阴主"
-    assert difu["route"]["repeat_on"] == [
-        "地主", "高丛", "大威", "太簇", "坎", "离", "震", "兑"
-    ]
-    assert difu["surplus_variant"]["value"] == 70
+    assert difu["route"]["start"] == "阴主（戌）"
+    assert difu["route"]["repeat_on_gods"] == ["地主", "高丛", "大威", "太簇"]
+    assert difu["route"]["repeat_on_positions"] == ["子", "卯", "午", "酉"]
+    assert difu["route"]["repeat_count"] == 4
+    assert difu["surplus_variant"]["witness_values"] == {
+        "volume18": 17, "volume20_or_ocr_variant": 70
+    }
     assert difu["surplus_variant"]["apply"] is False
+    assert difu["runtime_rule_id"] == "C55-DIFU"
 
     taizun = FOCUS_FORMULA_SKELETONS["太尊"]
     assert taizun["big_cycle"] == 40
@@ -257,7 +270,9 @@ def test_c52_formula_skeleton_promotes_only_c53_implemented_positions():
 
     for name, skeleton in data["focus_formula_skeletons"].items():
         assert skeleton["runtime_formula_ready"] is (
-            name in {"飞鸟", "五风", "太尊", "八风", "三风", "五行", "太乙数"}
+            name in {
+                "天皇", "帝符", "飞鸟", "五风", "太尊", "八风", "三风", "五行", "太乙数"
+            }
         ), name
 
     five = ten_essence_record("五風")
@@ -277,7 +292,7 @@ def test_c52_ten_essence_flying_bird_is_not_j4m_external_observation():
 
 
 def test_c52_rejected_surplus_variants_are_not_applied():
-    for name in ("帝符", "飞鸟", "八风", "五风", "三风"):
+    for name in ("天皇", "帝符", "飞鸟", "八风", "五风", "三风"):
         variant = FOCUS_FORMULA_SKELETONS[name]["surplus_variant"]
         assert variant["apply"] is False
         assert "古" in variant["note"] or "经旨" in variant["note"]
