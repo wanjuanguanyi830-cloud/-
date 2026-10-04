@@ -104,6 +104,13 @@ _TERRAIN_ARMS = {
 _J4M11_ANCHORS = {"太乙所在宫", "大将宫", "主目", "客目", "主人形", "太岁", "太阴", "月建", "主人阵", "客阵", "阵中"}
 _J4M11_PHENOMENA = {"风", "云", "飞鸟", "风云", "风云飞鸟"}
 
+_ZHUKE_START_DEITIES = {
+    "东": "阴德",
+    "南": "和德",
+    "西": "大炅",
+    "北": "大武",
+}
+
 _YUNQI_TABLE = {
     "北": {
         "黑": {"verdict": "大胜", "qi_class": "胜气", "day_stems_good": ["壬", "癸"]},
@@ -471,6 +478,144 @@ def zhuke_xiangguan(host_eye_element, guest_eye_element, *, day_nayin_element=No
         "loser": loser,
         "day_nayin": nayin,
         "policy": "五行相制核心按正文与古例实现；日计纳音的具体附加作用保持 pending。",
+    }
+
+
+def zhuke_fa(context, *, three_doors_ready=None, five_generals_released=None,
+             yin_yang_harmonious=None, direction=None,
+             host_calc=None, guest_calc=None):
+    """J4M-04 推主客。
+
+    将正文拆成四层：
+    1. 陈兵原野 / 安居之势的主客角色；
+    2. 三门、五将、阴阳和不和的行动姿态；
+    3. 东南西北四方始发神；
+    4. 客欲知主、主人欲知客时“视其算”的互查关系。
+
+    “先胜后负”仅作为原文时序断语保存，不擅自解释成某一方最终胜负。
+    """
+    result = _base("J4M-04", "推主客")
+
+    contexts = {
+        "陈兵原野": {"first_mover": "客", "responder": "主"},
+        "field_battle": {"first_mover": "客", "responder": "主"},
+        "安居之势": {"first_mover": "主", "responder": "客"},
+        "settled_context": {"first_mover": "主", "responder": "客"},
+    }
+    if context not in contexts:
+        return {
+            **result,
+            "status": "not_computable",
+            "computable": False,
+            "context": context,
+            "valid_contexts": ["陈兵原野", "安居之势"],
+            "policy": "只接受正文明确的陈兵原野/安居之势；不把其他场景自动映射为主客。",
+        }
+
+    role = contexts[context]
+    role_context = "陈兵原野" if context in {"陈兵原野", "field_battle"} else "安居之势"
+
+    readiness = {
+        "three_doors_ready": three_doors_ready,
+        "five_generals_released": five_generals_released,
+        "yin_yang_harmonious": yin_yang_harmonious,
+    }
+    invalid = [k for k, v in readiness.items() if v is not None and not isinstance(v, bool)]
+    if invalid:
+        return {
+            **result,
+            "status": "not_computable",
+            "computable": False,
+            "context": role_context,
+            "roles": dict(role),
+            **readiness,
+            "invalid_readiness_fields": invalid,
+            "policy": "三门、五将、阴阳和不和必须作为显式布尔事实输入。",
+        }
+
+    all_known = all(isinstance(v, bool) for v in readiness.values())
+    all_favorable = all_known and all(readiness.values())
+    all_unfavorable = all_known and not any(readiness.values())
+
+    blockers = []
+    if three_doors_ready is False:
+        blockers.append("三门不具：不可出兵")
+    if five_generals_released is False:
+        blockers.append("五将不发：不可临战")
+    if yin_yang_harmonious is False:
+        blockers.append("阴阳不和")
+
+    if all_favorable:
+        action_status = "raise_forces_favorable"
+        action_advice = "称兵"
+        source_campaign_verdict = "所向必克"
+        source_temporal_outcome = "先胜后负"
+        source_combination_status = "explicit_favorable_triad"
+    elif all_unfavorable:
+        action_status = "hold_and_defend"
+        action_advice = "不利举兵，宜固守吉"
+        source_campaign_verdict = None
+        source_temporal_outcome = None
+        source_combination_status = "explicit_unfavorable_triad"
+    elif blockers:
+        action_status = "blocked_or_mixed"
+        action_advice = blockers[0] if len(blockers) == 1 else "；".join(blockers)
+        source_campaign_verdict = None
+        source_temporal_outcome = None
+        source_combination_status = "mixed_combination_not_fully_expanded_by_j4m04"
+    elif not all_known:
+        action_status = "not_computable"
+        action_advice = "缺三门、五将或阴阳和不和事实"
+        source_campaign_verdict = None
+        source_temporal_outcome = None
+        source_combination_status = "missing_inputs"
+    else:
+        action_status = "mixed_combination_not_defined"
+        action_advice = "正文只明确三项皆和与三项皆不和；该混合组合不扩写。"
+        source_campaign_verdict = None
+        source_temporal_outcome = None
+        source_combination_status = "mixed_combination_not_fully_expanded_by_j4m04"
+
+    if direction is None:
+        start_deity = None
+        direction_status = "not_requested"
+    elif direction in _ZHUKE_START_DEITIES:
+        start_deity = _ZHUKE_START_DEITIES[direction]
+        direction_status = "ok"
+    else:
+        start_deity = None
+        direction_status = "not_defined_by_source_passage"
+
+    return {
+        **result,
+        "status": "ok" if action_status not in {"not_computable", "mixed_combination_not_defined"} else action_status,
+        "computable": True,
+        "context": role_context,
+        "roles": {
+            "first_mover": role["first_mover"],
+            "responder": role["responder"],
+        },
+        **readiness,
+        "blockers": blockers,
+        "action_status": action_status,
+        "action_advice": action_advice,
+        "source_combination_status": source_combination_status,
+        "source_campaign_verdict": source_campaign_verdict,
+        "source_temporal_outcome": source_temporal_outcome,
+        "winner": None,
+        "temporal_outcome_policy": "保留“先胜后负”原文，不据此指定主/客最终胜负。",
+        "direction": direction,
+        "start_deity": start_deity,
+        "direction_status": direction_status,
+        "start_deity_table": dict(_ZHUKE_START_DEITIES),
+        "origin_return_method": "以始发之神定主客所起归之神；本段未展开进一步推步公式。",
+        "host_calc": host_calc,
+        "guest_calc": guest_calc,
+        "cross_side_calc_reference": {
+            "客欲知主": {"source_text": "视其算所知也", "target_calc": "主算", "value": host_calc},
+            "主人欲知客": {"source_text": "亦视其算所知也", "target_calc": "客算", "value": guest_calc},
+        },
+        "policy": "J4M-04 不覆盖 J4M-03 五行相关胜负，也不覆盖 D8-06 多少胜负；角色、行动、始发神、互视其算分栏。",
     }
 
 
@@ -994,7 +1139,7 @@ def j4m_low_dependency_catalog():
     return {
         "ruleset": J4M_RULESET,
         "source_profile": J4M_SOURCE_PROFILE,
-        "implemented": ["J4M-01", "J4M-02", "J4M-05", "J4M-06", "J4M-07", "J4M-08", "J4M-09", "J4M-10", "J4M-11", "J4M-12"],
-        "partial": ["J4M-03", "J4M-04"],
+        "implemented": ["J4M-01", "J4M-02", "J4M-04", "J4M-05", "J4M-06", "J4M-07", "J4M-08", "J4M-09", "J4M-10", "J4M-11", "J4M-12"],
+        "partial": ["J4M-03"],
         "pending": [],
     }
