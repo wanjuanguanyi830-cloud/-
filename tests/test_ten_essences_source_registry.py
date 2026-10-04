@@ -91,7 +91,7 @@ def test_c52_traditional_aliases_normalize_without_source_loss(source, canonical
     assert canonical_ten_essence_name(source) == canonical
     record = ten_essence_record(source)
     assert record["name"] == canonical
-    expected_ready = canonical in {"飞鸟", "五风", "太尊", "八风", "三风", "五行"}
+    expected_ready = canonical in {"飞鸟", "五风", "太尊", "八风", "三风", "五行", "太乙数"}
     assert record["runtime_formula_ready"] is expected_ready
 
 
@@ -170,8 +170,9 @@ def test_c52_registry_tracks_partial_c53_runtime_without_becoming_formula_layer(
         assert status[name] == "implemented_c53"
     assert all(
         status[name] == "pending_source_formula_audit"
-        for name in ("天皇", "帝符", "天时", "太乙数")
+        for name in ("天皇", "帝符", "天时")
     )
+    assert status["太乙数"] == "implemented_c54"
 
 
 @pytest.mark.parametrize("field", ["帝符", "太尊", "飛鳥", "三風", "五風", "八風"])
@@ -248,7 +249,7 @@ def test_c52_formula_skeleton_promotes_only_c53_implemented_positions():
 
     for name, skeleton in data["focus_formula_skeletons"].items():
         assert skeleton["runtime_formula_ready"] is (
-            name in {"飞鸟", "五风", "太尊", "八风", "三风", "五行"}
+            name in {"飞鸟", "五风", "太尊", "八风", "三风", "五行", "太乙数"}
         ), name
 
     five = ten_essence_record("五風")
@@ -301,3 +302,17 @@ def test_c52_wuxing_runtime_ready_and_tianshi_conflict_stays_pending():
     assert tianshi["route"]["taibai_yang_start"] == "申"
     assert tianshi["route"]["status"] == "source_start_conflict_unresolved"
     assert tianshi["runtime_formula_ready"] is False
+
+
+
+def test_c52_taiyi_number_is_implemented_as_number_not_position():
+    data = ten_essences_registry()
+    assert data["implemented_number_runtimes"] == ["太乙数"]
+    assert data["number_runtime_pending"] == []
+
+    record = ten_essence_record("太乙數")
+    assert record["kind"] == "number"
+    assert record["formula_status"] == "implemented_c54"
+    assert record["runtime_formula_ready"] is True
+    assert record["formula_skeleton"]["runtime_rule_id"] == "C54-TAIYI-NUMBER"
+    assert record["formula_skeleton"]["route"]["range"] == [1, 72]
