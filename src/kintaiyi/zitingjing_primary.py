@@ -95,6 +95,16 @@ def taiyi_nine_stars_primary() -> dict[str, Any]:
             "nine_palaces": True,
             "four_auspicious_five_inauspicious": True,
         },
+        "known_variants": [
+            {
+                "field": "palace_3_tianchong_fortune",
+                "primary_witness": "凶",
+                "collation_witness": "吉",
+                "collation_source": "太白兵备统宗宝鉴卷十·明太乙九星所主术",
+                "collation_url": "https://www.shidianguji.com/zh/book/SDZJ0646/chapter/1kg32qffweib7",
+                "resolution": "preserve_both_no_silent_merge",
+            },
+        ],
         "variant_policy": (
             "本表按当前在线见证记录；其他古本或统宗参校若有异文，"
             "必须另记variant_note/source_variant。"
