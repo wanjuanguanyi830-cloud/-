@@ -59,7 +59,7 @@ def najia_number(token: str) -> int:
     try:
         return NAJIA_NUMBER[token]
     except (KeyError, TypeError):
-        raise ValueError("纳甲干支须为甲乙丙丁戊己庚辛癸或十二支单字") from None
+        raise ValueError("纳甲干支须为甲乙丙丁戊己庚辛壬癸或十二支单字") from None
 
 
 def najia_pair_value(stem: str, branch: str) -> dict[str, Any]:
