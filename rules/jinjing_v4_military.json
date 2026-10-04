@@ -70,24 +70,50 @@
       "domain": "主客五行相关",
       "canonical_summary": "以主客两目所临五行相制并参日计纳音，判主人关客、客关主人及胜负；不得与先后动静之“推主客”合并。",
       "dependencies": [
-        "主目",
-        "客目",
-        "五行",
-        "日计纳音"
+        "日计主目/客目",
+        "主客二目所临十六神",
+        "十六神五行"
       ],
       "target_crosswalk": {
         "layer": null,
         "status": "missing_distinct_layer"
       },
-      "implementation_status": "implemented_partial_source_specific",
-      "runtime": "kintaiyi.jinjing_v4_military.zhuke_xiangguan",
-      "implementation_note": "已实现主客目五行相制核心及两类胜负；多种《金镜》转录均只见“皆用日计纳音以决之”，未见纳音如何接入的展开公式，因此继续显式保留 partial。",
-      "collation_status": "formula_not_expanded_in_checked_jinjing_transcriptions",
+      "implementation_status": "implemented_source_specific",
+      "runtime": [
+        "kintaiyi.jinjing_v4_military.j4m03_eye_element_from_god",
+        "kintaiyi.jinjing_v4_military.zhuke_xiangguan"
+      ],
+      "implementation_note": "《金镜》卷四“皆用日计纳音以决之”经《景祐太乙福应经》“日计二目纳音”与《太乙淘金歌》“以二目纳音决之，取五行生克为用”参校后，按日计主客二目所临十六神的五行相制判关胜负；不再把它解释成独立的当天干支六十甲子纳音。淘金歌同音二阵平、相生和解仅作参校提示，不覆盖《金镜》winner。",
+      "collation_status": "resolved_by_two_eye_nayin_collation",
       "legacy_reference_quarantined": [
-        "旧 wc_n_sj 以日计纳音等于主/客目五行来标“主关/客关”",
+        "旧 wc_n_sj 以独立日干支纳音五行等于主/客目五行来标“主关/客关”",
         "旧 wc_n_sj 引入主将是否与太乙同宫来改写主客胜负",
-        "以上两项均未见卷四本段明文，不能升级为 canonical"
-      ]
+        "现代《太乙数纳音体系（修正版）》的星神双纳音/变五行为独立 modern reconstruction variant",
+        "以上均不得静默回写 J4M-03 canonical"
+      ],
+      "canonical": {
+        "scope": "日计",
+        "host_eye": [
+          "文昌",
+          "下目",
+          "地目（本条配对义）"
+        ],
+        "guest_eye": [
+          "始击",
+          "上目",
+          "天目（本条配对义）"
+        ],
+        "rule": [
+          "客目五行克主目五行 -> 客关得主人 -> 客胜",
+          "主目五行克客目五行 -> 主人关得客 -> 主胜",
+          "无相制 -> 本条不强宣主客胜负"
+        ]
+      },
+      "collation_evidence": {
+        "jingyou_taiyi_fuyingjing": "对应条文作“皆用日计二目纳音以决之”（现存转录有OCR异字）",
+        "taiyi_taojinge": "“二目纳音何以定……以二目纳音决之，取五行生克为用”，并列十六神五行；同音二阵平，相生例作和解",
+        "jinjing_volume2": "上目始击属客，下目文昌属主；解决本条天目/地目配对义"
+      }
     },
     {
       "id": "J4M-04",
