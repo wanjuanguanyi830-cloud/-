@@ -62,8 +62,7 @@ canonical 来源层：
 
 - J4M-01/02：C8-L2 有上游事实容器，公式仍 pending。
 - J4M-04：C8-L3 已覆盖先后/动静角色子层，仍是 partial。
-- J4M-03/05/06/07/08/09/10/11/12：尚无《金镜》卷四 source-specific runtime implementation。
-- 本轮没有修改 `src/kintaiyi/junshi_zhanlue.py` 的计算行为，避免在来源未拆清前引入伪兼容。
+- J4M-06：已实现 `chenbing_xiangbei()`，只接收正文明确的 1/2/4/5/6/9 六类，不自动取任意算数个位。\n- J4M-07：已实现 `zhizhen_suidi()`，固定五阵五行与五类地形映射。\n- J4M-09：已实现 `taiyi_tianwai_dinei()`，只使用《金镜》卷四 8/3/4 与 9/2/7/6 两组；1 宫保持未定义。\n- J4M-03/05/08/10/11/12：尚无《金镜》卷四 source-specific runtime implementation。\n- 本轮仍未修改 `src/kintaiyi/junshi_zhanlue.py` 的综合计算行为，避免把独立来源规则提前并入总胜负。
 
 ## CI
 
