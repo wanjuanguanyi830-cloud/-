@@ -27,6 +27,10 @@ def test_c43_requires_full_enthronement_ganzhi_not_branch_only():
         parse_ganzhi("乙")
     with pytest.raises(ValueError):
         parse_ganzhi("乙天")
+    with pytest.raises(ValueError, match="六十甲子"):
+        parse_ganzhi("甲丑")
+    with pytest.raises(ValueError, match="六十甲子"):
+        parse_ganzhi("乙寅")
 
 
 def test_c43_preserves_source_god_identities_and_direction_structure():
