@@ -86,10 +86,12 @@ def test_c19_catalog_marks_only_three_direct_primary_items_as_implemented():
         "nine_palace_nobles",
     ]
     assert data["locators"]["wenchang_nine_stars"]["status"] == "catalog_attested_primary_text_pending"
-    assert data["locators"]["wenchang_nine_stars"]["catalog_witness"]["evidence"] == "目录列“附太乙文昌九星值宫术”"
-    assert data["locators"]["three_banners"]["status"] == "project_primary_attribution_direct_text_pending"
+    assert "两处现代整理本目录" in data["locators"]["wenchang_nine_stars"]["catalog_witness"]["evidence"]
+    assert data["locators"]["three_banners"]["status"] == "project_primary_attribution_unverified"
+    assert data["locators"]["three_banners"]["catalog_check"]["ziting_mijue_catalog_result"] == "not_found"
     assert data["locators"]["three_banners"]["collation_locator"]["source"] == "太乙统宗宝鉴卷十"
-    assert data["locators"]["nine_palace_nobles"]["status"] == "project_primary_attribution_direct_text_pending"
+    assert data["locators"]["nine_palace_nobles"]["status"] == "project_primary_attribution_unverified"
+    assert data["locators"]["nine_palace_nobles"]["catalog_check"]["ziting_mijue_catalog_result"] == "not_found"
     assert data["locators"]["nine_palace_nobles"]["collation_locator"]["source"] == "太乙统宗宝鉴卷十"
 
 
