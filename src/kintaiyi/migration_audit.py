@@ -16,6 +16,7 @@ from .pan_v2 import validate_pan_v2
 AUDIT_VERSION = "taiyi-c13-legacy-audit-v1"
 
 _REPLACEMENT_ORDER = {
+    "source_variants.volume9.ehui_limit.legacy_replacement": 16,
     "source_variants.wuyun_wuyin.wuyun_liuqi.legacy_replacement": 14,
     "source_variants.wuyun_wuyin.wuyin_number.profiles.tongzong_volume3": 15,
     "cycles.limits.yangjiu": -2,
