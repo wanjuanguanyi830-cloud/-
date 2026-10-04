@@ -2024,12 +2024,65 @@ OCR / 传本异文原样保留，不静默统一。
 
 详细记录见 `sources/c42-dayou-lishu-record.md`。
 
-## 9.36 后续 C43+
+## 9.36 C43 卷九厄会行限严格来源契约（已实施）
+
+新增：
+
+`src/kintaiyi/volume9_ehui.py`
+
+### C43-01 旧实现不得直接迁移
+
+原文要求完整即位年干支、加大义后的太阳/阴主落点、大武/和德界顺逆与神数累计。
+
+旧 `guiyun.ehui_xingxian` 只用年支并做十六位简单步数，因此：
+
+`canonical_equivalent=False`
+
+### C43-02 严格输入
+
+C43 只消费：
+
+- `enthronement_ganzhi`
+- `taiyang_landing`
+- `yinzhu_landing`
+- `direction`
+- `count_evidence`
+
+缺一则 `not_computable`，不猜盘式。
+
+### C43-03 汉高祖例
+
+乙未即位：
+
+- 太阳临申；
+- 阴主临寅；
+- 逆行；
+- 起数1 + 大威2 + 大炅9 + 高丛4 = 16。
+
+第12年太乙格另作 correction evidence，不覆盖基础16年。
+
+### C43-04 v2 / legacy
+
+C30 新增：
+
+`source_variants.volume9`
+
+旧 `厄會行限` replacement：
+
+`source_variants.volume9.ehui_limit.legacy_replacement`
+
+只有完整 C43 结果才清除 migration gap。
+
+完整验证：799 passed / 0 failed。
+
+详细记录见 `sources/c43-volume9-ehui-record.md`。
+
+## 9.37 后续 C44+
 
 下一优先级：
 
-1. 卷九 `厄会行限` 直接来源拆分并结构化；
-2. 卷九 `国政章易` 与 `岁中灾发` 分别建模，禁止合成“卷九综合断”；
+1. 卷九 `国政章易` 直接来源拆分，审计旧 `guozheng_bianyi`；
+2. 卷九 `岁中灾发` 单独建模，禁止和国政章易/厄会行限混并；
 3. 恢复旧 `terminology.json` 后按 C40 对齐研易楼明钞本；
 4. 回读文昌九星附篇正文；
 5. 三旗行宫 / 九宫贵神继续归属核证。
