@@ -3184,15 +3184,129 @@ C60 扩展后的 clean baseline：
 - `tests/test_c60_legacy_formula_quarantine.py`
 - `tests/reports/c60_validation.md`
 
-## 9.54 后续 C61+
+## 9.54 C61 C15 unported catalog 全局一致性清扫（已实施）
+
+C61 不新增 runtime，只清扫 C15 的 67 个 legacy 顶层字段。
+
+当前 layer：
+
+- canonical: 31
+- source_variant: 16
+- derived: 18
+- pending: 2
+
+严格 pending 只剩：
+
+- 推太乙当时法；
+- 文昌九星。
+
+新确认直接来源但尚待拆 runtime 的字段包括：
+
+- 君基；
+- 臣基；
+- 民基；
+- 五福；
+- 五福吉算；
+- 天乙金神；
+- 地乙土神；
+- 直符火神。
+
+巡狩术已在后续 C62 实现。
+
+详细记录：
+
+- `sources/c61-unported-catalog-consistency-record.md`
+- `tests/reports/c61_validation.md`
+
+## 9.55 C62 天子巡狩之期术（已实施）
+
+唯一 runtime：
+
+`src/kintaiyi/imperial_inspection.py`
+
+rule id：
+
+`C62-IMPERIAL-INSPECTION`
+
+### C62-01 巡狩年
+
+来源要求：
+
+`太乙与天目在四维之岁`
+
+所以必须：
+
+- 太乙在乾 / 艮 / 巽 / 坤；
+- 天目也在乾 / 艮 / 巽 / 坤。
+
+两者缺一都不判巡狩年。
+
+### C62-02 出方
+
+按天目四维：
+
+- 乾 / 阴德 → 东方；
+- 艮 / 和德 → 南方；
+- 巽 / 大炅 → 西方；
+- 坤 / 大武 → 北方。
+
+统宗在线 OCR 在巽位神名处见“太昊 / 太靈”等异读；金镜见“大炅”。
+
+C62 固定：
+
+- 巽 → 西方为稳定规则事实；
+- 神名异读只留 witness；
+- 不复制第二套方向公式。
+
+### C62-03 行期月
+
+统宗另见：
+
+`太乙囚挟格对之下，是谓行期之月`
+
+但本条没有给具体月份换算。
+
+因此：
+
+- 囚 / 挟 / 格 / 对必须显式检查；
+- 命中只表示来源条件成立；
+- `month_number=None`
+- `month_number_computation_supported=False`
+
+不得把“满足行月条件”写成“已算出几月”。
+
+### C62-04 旧 flat
+
+C15：
+
+`明天子巡狩之期術`
+
+现 action：
+
+`use_c62_imperial_inspection_runtime`
+
+仍：
+
+`migrate_whole=False`
+
+完整验证：
+
+`1238 passed / 0 failed`
+
+详细记录：
+
+- `sources/c62-imperial-inspection-record.md`
+- `tests/reports/c62_validation.md`
+
+## 9.56 后续 C63+
 
 下一优先级：
 
-1. 对 C15 remaining pending / source_variant 做全局一致性清扫；
-2. 按清扫结果选择下一条有直接来源、可独立实现的规则；
-3. 恢复旧 `terminology.json` 后按 C40 对齐研易楼明钞本；
-4. 回读文昌九星附篇正文；
-5. 三旗行宫 / 九宫贵神继续归属核证。
+1. 卷七天乙金神 / 地乙土神 / 直符火神逐项拆 runtime；
+2. 君基 / 臣基 / 民基 / 五福按卷六/卷七 witness variant 拆层；
+3. 继续核“推太乙当时法”直接来源；
+4. 恢复旧 `terminology.json`；
+5. 回读文昌九星附篇正文及三旗 / 九宫贵神归属。
 
 ## 10. 验收
 
