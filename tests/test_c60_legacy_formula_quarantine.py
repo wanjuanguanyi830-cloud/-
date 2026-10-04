@@ -30,6 +30,13 @@ def test_c60_high_risk_known_wrong_or_nonequivalent_legacy_is_centralized():
         "yunqi._TEN_JING_FN",
         "yunqi.shijing_shu",
         "yunqi._YUNQI_COLOR.white",
+        "yunqi._YUNQI_COLOR",
+        "yunqi._shu_duanyu",
+        "yunqi._JING_HEHUI",
+        "yunqi.shijing_luo",
+        "yunqi.yunqi_hehui",
+        "yunqi.yunqi_zongduan",
+        "yunqi.zonghe",
         "guiyun.yinyang_jiu_e",
         "guiyun.ehui_xingxian",
         "guiyun.guozheng_bianyi",
@@ -65,6 +72,19 @@ def test_c60_every_record_is_explicitly_blocked_from_promotion():
         ("yunqi.shijing_shu", "C54-TAIYI-NUMBER"),
         ("yunqi.shijing_shu", "C59-TAIYI-NUMBER-OMEN"),
         ("yunqi._YUNQI_COLOR.white", "C58-CLOUD-TIMING"),
+        ("yunqi._YUNQI_COLOR", "C58-CLOUD-TIMING"),
+        ("yunqi._YUNQI_COLOR", "C58-WEATHER-OBSERVATION"),
+        ("yunqi._shu_duanyu", "C59-TAIYI-NUMBER-OMEN"),
+        ("yunqi._JING_HEHUI", "C57-TEN-ESSENCE-CLOUD-CONJUNCTION"),
+        ("yunqi.shijing_luo", "C52-TEN-ESSENCES-REGISTRY"),
+        ("yunqi.shijing_luo", "C56-TIANSHI"),
+        ("yunqi.yunqi_hehui", "C57-TEN-ESSENCE-CLOUD-CONJUNCTION"),
+        ("yunqi.yunqi_zongduan", "C57-TEN-ESSENCE-CLOUD-CONJUNCTION"),
+        ("yunqi.yunqi_zongduan", "C58-WEATHER-OBSERVATION"),
+        ("yunqi.yunqi_zongduan", "C59-TAIYI-NUMBER-OMEN"),
+        ("yunqi.zonghe", "C57-TEN-ESSENCE-CLOUD-CONJUNCTION"),
+        ("yunqi.zonghe", "C58-CLOUD-TIMING"),
+        ("yunqi.zonghe", "C59-TAIYI-NUMBER-OMEN"),
         ("guiyun.yinyang_jiu_e", "C46-YJ-9E"),
         ("guiyun.ehui_xingxian", "C43-V9-EHUI"),
         ("guiyun.guozheng_bianyi", "C44-V9-GOV"),
@@ -109,3 +129,8 @@ def test_c60_preserves_specific_known_error_reasons():
     assert "白云7/6" in QUARANTINE["yunqi._YUNQI_COLOR.white"]["reason"]
     assert "申酉" in QUARANTINE["yunqi._YUNQI_COLOR.white"]["reason"]
     assert "C59-TAIYI-NUMBER-OMEN" in QUARANTINE["yunqi.shijing_shu"]["replacement_rule_ids"]
+    assert "数10/5" in QUARANTINE["yunqi._shu_duanyu"]["reason"]
+    assert "黄5" in QUARANTINE["yunqi._YUNQI_COLOR"]["reason"]
+    assert "自动制造" in QUARANTINE["yunqi.yunqi_hehui"]["reason"]
+    assert "一次混合" in QUARANTINE["yunqi.yunqi_zongduan"]["reason"]
+    assert "历史展示包装器" in QUARANTINE["yunqi.zonghe"]["reason"]
