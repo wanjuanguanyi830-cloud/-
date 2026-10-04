@@ -11,6 +11,7 @@ from kintaiyi.jinjing_v4_military import (
     yunqi_dingshengfu,
     zhimen_from_cycle_count,
     zhizhen_suidi,
+    zhuke_fa,
     zhuke_xiangguan,
 )
 
@@ -179,8 +180,8 @@ def test_j4m10_qifu_keeps_each_source_condition_separate():
 
 def test_low_dependency_catalog_is_explicitly_partial():
     catalog = j4m_low_dependency_catalog()
-    assert catalog["implemented"] == ["J4M-01", "J4M-02", "J4M-05", "J4M-06", "J4M-07", "J4M-08", "J4M-09", "J4M-10", "J4M-11", "J4M-12"]
-    assert catalog["partial"] == ["J4M-03", "J4M-04"]
+    assert catalog["implemented"] == ["J4M-01", "J4M-02", "J4M-04", "J4M-05", "J4M-06", "J4M-07", "J4M-08", "J4M-09", "J4M-10", "J4M-11", "J4M-12"]
+    assert catalog["partial"] == ["J4M-03"]
     assert catalog["pending"] == []
 
 
@@ -411,3 +412,68 @@ def test_j4m12_no_cloud_returns_no_war_or_balance_note():
     assert data["computable"] is True
     assert data["verdict"] is None
     assert "无战或复相匀" in data["source_note"]
+
+
+def test_j4m04_host_guest_roles_and_favorable_triad_are_separate():
+    data = zhuke_fa(
+        "陈兵原野",
+        three_doors_ready=True,
+        five_generals_released=True,
+        yin_yang_harmonious=True,
+        direction="东",
+        host_calc=17,
+        guest_calc=13,
+    )
+    assert data["rule_id"] == "J4M-04"
+    assert data["roles"] == {"first_mover": "客", "responder": "主"}
+    assert data["action_status"] == "raise_forces_favorable"
+    assert data["action_advice"] == "称兵"
+    assert data["source_campaign_verdict"] == "所向必克"
+    assert data["source_temporal_outcome"] == "先胜后负"
+    assert data["winner"] is None
+    assert data["start_deity"] == "阴德"
+    assert data["cross_side_calc_reference"]["客欲知主"]["target_calc"] == "主算"
+    assert data["cross_side_calc_reference"]["客欲知主"]["value"] == 17
+    assert data["cross_side_calc_reference"]["主人欲知客"]["target_calc"] == "客算"
+    assert data["cross_side_calc_reference"]["主人欲知客"]["value"] == 13
+
+
+def test_j4m04_settled_context_reverses_roles_and_all_bad_means_hold():
+    data = zhuke_fa(
+        "安居之势",
+        three_doors_ready=False,
+        five_generals_released=False,
+        yin_yang_harmonious=False,
+        direction="北",
+    )
+    assert data["roles"] == {"first_mover": "主", "responder": "客"}
+    assert data["action_status"] == "hold_and_defend"
+    assert data["action_advice"] == "不利举兵，宜固守吉"
+    assert data["source_combination_status"] == "explicit_unfavorable_triad"
+    assert data["start_deity"] == "大武"
+
+
+def test_j4m04_mixed_conditions_are_not_silently_promoted_to_full_source_verdict():
+    data = zhuke_fa(
+        "陈兵原野",
+        three_doors_ready=False,
+        five_generals_released=True,
+        yin_yang_harmonious=True,
+    )
+    assert data["action_status"] == "blocked_or_mixed"
+    assert data["source_combination_status"] == "mixed_combination_not_fully_expanded_by_j4m04"
+    assert data["source_campaign_verdict"] is None
+    assert data["source_temporal_outcome"] is None
+    assert data["winner"] is None
+    assert data["blockers"] == ["三门不具：不可出兵"]
+
+
+def test_j4m04_unknown_context_is_not_inferred():
+    data = zhuke_fa(
+        "城守",
+        three_doors_ready=True,
+        five_generals_released=True,
+        yin_yang_harmonious=True,
+    )
+    assert data["computable"] is False
+    assert data["status"] == "not_computable"
