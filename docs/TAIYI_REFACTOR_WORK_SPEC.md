@@ -2132,15 +2132,94 @@ C30 新增：
 
 详细记录见 `sources/c44-volume9-governance-record.md`。
 
-## 9.38 后续 C45+
+## 9.38 C45 岁中灾发月日之期（已实施）
+
+新增：
+
+`src/kintaiyi/volume9_disaster_timing.py`
+
+### C45-01 两阶段
+
+第一阶段：
+
+`太岁合神加岁支 → 文昌 / 天目所临及冲处 → 灾发月`
+
+第二阶段：
+
+`当月合神加月支 → 文昌 / 天目所临及冲处 → 日层之期`
+
+月层与日层各自保留输入，不用单层结果冒充完整“月日之期”。
+
+### C45-02 文昌 / 天目双目标
+
+原文并举文昌、天目，因此两个阶段都要求两者的显式落点。
+
+缺天目时：
+
+`not_computable`
+
+旧只看单一 skyeyes / 文昌的实现不能清除 migration gap。
+
+### C45-03 四维边界
+
+月份只在落十二支时换算：
+
+- 寅1 … 丑12。
+
+若落艮 / 巽 / 坤 / 乾：
+
+- 保存十六宫 point；
+- 月份不擅自折算；
+- 月层保持不完整。
+
+日层同样先保存 point；只有落十二支时才填 `day_branch`。
+
+固定：
+
+`specific_calendar_day=None`
+
+不得把四维位冒充地支日，也不得伪造具体现代日期。
+
+### C45-04 水旱 / 年度证据
+
+文昌宫阴阳由上游显式提供：
+
+- 阳宫 → 旱；
+- 阴宫 → 水。
+
+禁止旧 `_YANG_GONG` 猜测。
+
+文昌同太乙与格 / 掩 / 迫 / 击 / 挟 / 提只作为“君臣不协、岁不丰稔”证据，不改灾发月候选。
+
+### C45-05 legacy replacement
+
+旧 `歲中災發` 保持 quarantine。
+
+只有：
+
+- month_stage computable；
+- day_stage computable；
+
+同时成立，才生成：
+
+`source_variants.volume9.disaster_timing.legacy_replacement`
+
+当前验证：841 passed / 0 failed。
+
+详细记录：
+
+- `sources/c45-volume9-disaster-timing-record.md`
+- `tests/reports/c45_validation.md`
+
+## 9.39 后续 C46+
 
 下一优先级：
 
-1. 卷九 / 在线卷十 `岁中灾发` 单独建模；
-2. 将“灾发月”与第二阶段“当月再加合神求日支期”分开；
-3. 禁止旧 `suizhong_zaifa` 的阳阴宫猜测直接升格；
-4. 恢复旧 `terminology.json` 后按 C40 对齐研易楼明钞本；
-5. 回读文昌九星附篇正文及三旗 / 九宫贵神归属。
+1. 继续拆卷九 / 在线卷十剩余独立术，不恢复旧 `guiyun` 综合包装；
+2. 恢复旧 `terminology.json` 后按 C40 对齐研易楼明钞本；
+3. 回读文昌九星附篇正文；
+4. 三旗行宫 / 九宫贵神继续归属核证；
+5. 剩余 P2/P3 字段继续按 source unit 迁移。
 
 ## 10. 验收
 
