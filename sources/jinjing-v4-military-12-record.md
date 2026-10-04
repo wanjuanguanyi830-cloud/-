@@ -183,7 +183,28 @@ profile：
 
 该 variant 当前是：
 
-`reference_only_not_canonical`
+`implemented_modern_variant`
+
+runtime：
+
+- `kintaiyi.modern_nayin_variant.modern_star_base_nayin()`
+- `kintaiyi.modern_nayin_variant.modern_day_tone_sequence()`
+- `kintaiyi.modern_nayin_variant.modern_star_transformed_nayin()`
+- `kintaiyi.modern_nayin_variant.compare_modern_nayin_elements()`
+
+实现边界：
+
+- 十二地支到十二律采用古典律历标准映射，作为材料所称“十二地支与十二律配合”的背景依赖；
+- 四维不会自动换算，只有显式 `dimension_mode=branch_proxy` 时才使用材料列出的乾→亥、艮→寅、坤→申、巽→巳；
+- 日干只返回材料明确给出的变音顺序，不自动替作者决定“某星神由该序列取得哪一个变五行”；
+- 本/变纳音比较只返回五行关系，不自动生成吉凶或胜负。
+
+材料中的示例“太乙木→角音→纳壬；落子→壬子→桑柘木”已作为 runtime 单元测试固定。
+
+即使已经可运行，也仍然：
+
+- `canonical=False`
+- `source_class=modern_reconstruction`
 
 不得据此声称《金镜》“日计二目纳音”原义就是现代“双纳音”体系。
 
