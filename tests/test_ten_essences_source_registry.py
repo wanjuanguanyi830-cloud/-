@@ -175,16 +175,24 @@ def test_c52_registry_tracks_partial_c53_runtime_without_becoming_formula_layer(
     assert status["太乙数"] == "implemented_c54"
 
 
-@pytest.mark.parametrize("field", ["帝符", "太尊", "飛鳥", "三風", "五風", "八風"])
-def test_c52_reclassifies_old_pan_fields_as_source_verified_formula_pending(field):
-    item = catalog_unported_field(field)
-    assert item["layer"] == "canonical"
-    assert item["source_scope"] == "tongzong_ten_essences_volume18_20_variant"
-    assert item["action"] == "use_c52_source_registry_formula_pending"
-    assert item["migrate_whole"] is False
-    assert item["source_confidence"] == "high"
-    assert item["target_hint"] == "source_variants.ten_essences"
-    assert "不得进入cycles真源" in item["notes"]
+def test_c52_c53_reclassify_old_pan_fields_by_actual_runtime_status():
+    difu = catalog_unported_field("帝符")
+    assert difu["layer"] == "canonical"
+    assert difu["source_scope"] == "tongzong_ten_essences_volume18_20_variant"
+    assert difu["action"] == "use_c52_source_registry_formula_pending"
+    assert difu["migrate_whole"] is False
+    assert difu["source_confidence"] == "high"
+    assert difu["target_hint"] == "source_variants.ten_essences"
+
+    for field in ("太尊", "飛鳥", "三風", "五風", "八風"):
+        item = catalog_unported_field(field)
+        assert item["layer"] == "canonical"
+        assert item["source_scope"] == "tongzong_ten_essences_volume18_20_variant"
+        assert item["action"] == "use_c53_position_runtime"
+        assert item["migrate_whole"] is False
+        assert item["source_confidence"] == "high"
+        assert item["target_hint"] == "source_variants.ten_essences.positions"
+        assert "旧flat值不直接搬运" in item["notes"]
 
 
 def test_c52_registry_never_introduces_tianyou_taiyi():
