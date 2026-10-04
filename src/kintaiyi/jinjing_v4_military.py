@@ -1,15 +1,29 @@
 """四库本《太乙金镜式经》卷四军事十二法的来源限定实现。
 
-本模块只实现已经能从卷四正文直接结构化、且不需要借用其他卷次公式的规则。
-当前已实现：
-- J4M-03 推主客相关法：按日计二目所临十六神的五行相制判主客；不再把“日计纳音”误读成独立当天干支纳音输入。
-- J4M-05 推出师法。
-- J4M-06 推陈兵向背。
-- J4M-07 推制阵随地法。
-- J4M-09 推太乙在天外地内法。
-- J4M-10 推奇伏法。
+本模块只实现卷四正文及明确古籍参校能够支持的 source-specific 规则，
+不借用《太乙统宗宝鉴》卷五、旧项目卷十五或现代重构近名公式静默补缺。
 
-禁止把《太乙统宗宝鉴》卷五或旧项目卷十五的近名函数静默并入本模块。
+当前状态：J4M-01..J4M-12 全部已有 runtime（12 complete / 0 partial / 0 pending）。
+
+实现入口：
+- J4M-01 推三门具不具：sanmen_jubu / zhimen_from_cycle_count
+- J4M-02 推五将发不发：wujiang_fabu
+- J4M-03 推主客相关法：j4m03_eye_element_from_god / zhuke_xiangguan
+- J4M-04 推主客：zhuke_fa
+- J4M-05 推出师法：chushi_fa
+- J4M-06 推陈兵向背：chenbing_xiangbei
+- J4M-07 推制阵随地法：zhizhen_suidi
+- J4M-08 推随地制变：suidi_zhibian
+- J4M-09 推太乙在天外地内法：taiyi_tianwai_dinei
+- J4M-10 推奇伏法：qifu_fa
+- J4M-11 推太乙风云飞鸟助战法：fengyun_feiniao_zhuzhan
+- J4M-12 推阵有风云气定胜负：yunqi_dingshengfu
+
+重要边界：
+- J4M-03 ≠ J4M-04；
+- J4M-07 ≠ J4M-08；
+- J4M-09 的《金镜》与《统宗》宫组差异必须分 profile；
+- J4M-11/12 必须由外部观测驱动，不得从盘内事实伪造。
 """
 
 J4M_RULESET = "jinjing-siku-v4-military-12"
