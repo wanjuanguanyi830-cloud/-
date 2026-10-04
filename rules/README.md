@@ -4,3 +4,5 @@
 
 - [`jinjing/`](jinjing/)：《太乙金镜式经》来源规则。
 
+
+- [`variants/`](variants/)：现代／重构 profile，与古籍 canonical 物理隔离。
