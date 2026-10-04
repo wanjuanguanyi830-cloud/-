@@ -175,7 +175,7 @@ def volume10_wuyun_profile(
         "year_stem_only_finalizes_taiguo_buji": False,
         "cross_volume_merge": False,
         "policy": (
-            "卷十五运/六气/纪名细表已由C39校勘；"
+            "卷十的五运/六气/纪名细表已由C39校勘；"
             "天会、岁会、逆会、辐辏枚举仍有传本差异，"
             "太乙天符须待九宫天符/三旗等结构化输入后再判，"
             "不得退回旧综合函数或只凭年干判太过不及。"
