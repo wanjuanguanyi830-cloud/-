@@ -14,7 +14,7 @@ from .pan_v2 import build_pan_v2, validate_pan_v2
 CONTRACT_VERSION = "taiyi-c30-pan-v2-contract-v1"
 
 ANALYSIS_KEYS = ("patterns", "eight_divinations", "seven_methods", "military")
-SOURCE_VARIANT_KEYS = ("patterns", "military", "zitingjing", "military_derived", "wuyun_wuyin")
+SOURCE_VARIANT_KEYS = ("patterns", "military", "zitingjing", "military_derived", "wuyun_wuyin", "volume9")
 MODERN_KEYS = ("game_theory",)
 
 LEGACY_FORBIDDEN_KEYS = {
@@ -23,6 +23,7 @@ LEGACY_FORBIDDEN_KEYS = {
     "太乙九星", "文昌九星", "文昌變化", "文昌变化", "始擊變化", "始击变化",
     "三旗行宮", "三旗行宫", "九宮貴神", "九宫贵神",
     "五運六氣", "五运六气", "五音之數", "五音之数",
+    "厄會行限", "厄会行限",
 }
 
 
@@ -69,8 +70,9 @@ def build_source_variants_contract(
     zitingjing: dict[str, Any] | None = None,
     military_derived: dict[str, Any] | None = None,
     wuyun_wuyin: dict[str, Any] | None = None,
+    volume9: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    """构建 v2.source_variants 的固定五槽。
+    """构建 v2.source_variants 的固定六槽。
 
     空槽省略；不同来源槽不自动深合并。
     """
@@ -80,6 +82,7 @@ def build_source_variants_contract(
         "zitingjing": zitingjing,
         "military_derived": military_derived,
         "wuyun_wuyin": wuyun_wuyin,
+        "volume9": volume9,
     }
     out: dict[str, Any] = {}
     for key, value in supplied.items():
@@ -122,6 +125,7 @@ def build_structured_pan_v2(
     zitingjing_variants: dict[str, Any] | None = None,
     military_derived_variants: dict[str, Any] | None = None,
     wuyun_wuyin_variants: dict[str, Any] | None = None,
+    volume9_variants: dict[str, Any] | None = None,
     compat: dict[str, Any] | None = None,
     scenario: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
@@ -139,6 +143,7 @@ def build_structured_pan_v2(
         zitingjing=zitingjing_variants,
         military_derived=military_derived_variants,
         wuyun_wuyin=wuyun_wuyin_variants,
+        volume9=volume9_variants,
     )
     payload = build_pan_v2(
         meta=meta,
