@@ -77,10 +77,12 @@ def test_c41_heavy_hexagram_structure_is_outer_over_inner():
     assert data["outer"]["four_image"] == "老阳"
     assert data["inner_moving_line"]["line"] == 3
     assert data["ce"] == {
-        "inner": 24,
-        "outer": 36,
-        "total": 60,
-        "total_status": "derived_sum_of_inner_outer_trigram_ce",
+        "inner_per_line": 24,
+        "outer_per_line": 36,
+        "inner_trigram": 72,
+        "outer_trigram": 108,
+        "total": 180,
+        "total_status": "directly_confirmed_by_volume9_examples",
     }
 
 
@@ -129,14 +131,16 @@ def test_c41_invalid_trigram_rejected():
         )
 
 
-def test_c41_total_ce_is_marked_as_derived_convenience():
+def test_c41_total_ce_uses_three_lines_per_trigram():
     data = compose_dayou_heavy_hexagram(
-        inner_trigram="艮",
-        outer_trigram="兑",
-        year_in_inner_trigram=24,
+        inner_trigram="乾",
+        outer_trigram="震",
+        year_in_inner_trigram=6,
     )
-    assert data["ce"]["inner"] == 28
-    assert data["ce"]["outer"] == 32
-    assert data["ce"]["total"] == 60
-    assert data["ce"]["total_status"] == "derived_sum_of_inner_outer_trigram_ce"
-    assert "正文未另立“总策”公式" in data["policy"]
+    assert data["ce"]["inner_per_line"] == 36
+    assert data["ce"]["outer_per_line"] == 28
+    assert data["ce"]["inner_trigram"] == 108
+    assert data["ce"]["outer_trigram"] == 84
+    assert data["ce"]["total"] == 192
+    assert data["ce"]["total_status"] == "directly_confirmed_by_volume9_examples"
+    assert "经卦三爻" in data["policy"]
