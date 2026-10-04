@@ -435,6 +435,8 @@ def ten_essences_registry() -> dict[str, Any]:
             "天皇", "帝符", "天时", "太尊", "五行", "八风", "三风"
         ],
         "number_runtime_pending": ["太乙数"],
+        "position_runtime_ready": False,
+        "position_runtime_ready_semantics": "compat_aggregate_all_positions_ready",
         "all_position_runtime_ready": False,
         "cloud_runtime_ready": False,
         "policy": (
