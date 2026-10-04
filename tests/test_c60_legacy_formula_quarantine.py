@@ -29,6 +29,7 @@ def test_c60_high_risk_known_wrong_or_nonequivalent_legacy_is_centralized():
         "config.tian_shi",
         "yunqi._TEN_JING_FN",
         "yunqi.shijing_shu",
+        "yunqi._YUNQI_COLOR.white",
         "guiyun.yinyang_jiu_e",
         "guiyun.ehui_xingxian",
         "guiyun.guozheng_bianyi",
@@ -62,6 +63,8 @@ def test_c60_every_record_is_explicitly_blocked_from_promotion():
         ("config.kingfu", "C55-DIFU"),
         ("config.tian_shi", "C56-TIANSHI"),
         ("yunqi.shijing_shu", "C54-TAIYI-NUMBER"),
+        ("yunqi.shijing_shu", "C59-TAIYI-NUMBER-OMEN"),
+        ("yunqi._YUNQI_COLOR.white", "C58-CLOUD-TIMING"),
         ("guiyun.yinyang_jiu_e", "C46-YJ-9E"),
         ("guiyun.ehui_xingxian", "C43-V9-EHUI"),
         ("guiyun.guozheng_bianyi", "C44-V9-GOV"),
@@ -103,3 +106,6 @@ def test_c60_preserves_specific_known_error_reasons():
     assert "第二段以后" in QUARANTINE["guiyun.yinyang_jiu_e"]["reason"]
     assert "日支" in QUARANTINE["guiyun.yunqi_zhanbo"]["reason"]
     assert "外部" in QUARANTINE["legacy.flybird_wl"]["reason"]
+    assert "白云7/6" in QUARANTINE["yunqi._YUNQI_COLOR.white"]["reason"]
+    assert "申酉" in QUARANTINE["yunqi._YUNQI_COLOR.white"]["reason"]
+    assert "C59-TAIYI-NUMBER-OMEN" in QUARANTINE["yunqi.shijing_shu"]["replacement_rule_ids"]
