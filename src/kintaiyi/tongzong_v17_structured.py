@@ -96,11 +96,11 @@ def report_truth(
                 "resolution": "preserve_both_no_silent_merge",
             })
 
-    if three_doors_ready is False and five_generals_released is False:
+    if three_doors_ready is False or five_generals_released is False:
         if reported_kind in {"凶", "忧"}:
-            negative.append({"condition": "门不具将不发", "effect": "凶事应凶"})
+            negative.append({"condition": "门不具或将不发", "effect": "凶事应凶"})
         elif reported_kind in {"吉", "喜"}:
-            negative.append({"condition": "门不具将不发", "effect": "吉事不吉"})
+            negative.append({"condition": "门不具或将不发", "effect": "吉事不吉"})
 
     if host_clamps_guest:
         if reported_kind in {"吉", "喜"}:
@@ -173,8 +173,10 @@ def capture_fugitive(
         capture.append({"condition": "客挟主人", "effect": "捕得"})
     if skyeyes_realm == "内":
         capture.append({"condition": "天目在内", "effect": "捕得"})
+    if shiji_realm == "内":
+        capture.append({"condition": "下目始击在内", "effect": "捕得"})
     if taiyi_host_same_palace and skyeyes_over_taiyi_host:
-        capture.append({"condition": "太乙与主人同宫且天目临之", "effect": "捕得"})
+        capture.append({"condition": "太乙与主人同宫而天目临之", "effect": "捕得"})
     if host_realm == "外":
         no_capture.append({"condition": "主人在外", "effect": "不得"})
     if both_eyes_outer or (skyeyes_realm == "外" and shiji_realm == "外"):
