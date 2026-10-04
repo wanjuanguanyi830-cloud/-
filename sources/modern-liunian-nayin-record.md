@@ -158,3 +158,40 @@ J4M-03 canonical：
 - 四计均可扩展使用
 
 所以本 profile 不是 J4M-03 variant，也不进入 J4M → C8 adapter。
+
+
+## pan v2 显式挂载
+
+新增：
+
+`src/kintaiyi/variants/profile_bundle.py`
+
+入口：
+
+- `build_modern_liunian_nayin_profile(...)`
+- `build_modern_variant_section(...)`
+
+默认：
+
+`build_modern_variant_section()`
+
+返回空 `profiles`，并固定：
+
+- `auto_enabled=false`
+- `cross_ancient_merge=false`
+
+只有调用方显式传入 `liunian_nayin` 时，才生成：
+
+`modern.profiles.modern_liunian_nayin_2026`
+
+该 bundle 只用于：
+
+`build_pan_v2(modern=...)`
+
+并明确不写入：
+
+- `analysis`
+- `source_variants`
+- 任一古籍 canonical 层
+
+因此现代纳音 profile 可以进入 pan v2 的 `modern` 区段，但不会改变七术、八占、军事、格局等古籍分析结果。
