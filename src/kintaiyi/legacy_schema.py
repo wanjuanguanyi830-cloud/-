@@ -99,8 +99,6 @@ EYE_FIELDS = {
 
 # 旧风险字段 → 新结构必须存在的替代路径。
 QUARANTINE_REPLACEMENTS = {
-    "國政章易": "source_variants.volume9.government_change.legacy_replacement",
-    "国政章易": "source_variants.volume9.government_change.legacy_replacement",
     "厄會行限": "source_variants.volume9.ehui_limit.legacy_replacement",
     "厄会行限": "source_variants.volume9.ehui_limit.legacy_replacement",
     "國政章易": "source_variants.volume9.governance_change.legacy_replacement",
