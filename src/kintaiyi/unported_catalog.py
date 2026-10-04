@@ -267,11 +267,23 @@ for key in ("文昌變化", "始擊變化"):
         ),
     )
 
-for key in ("厄會行限", "國政章易", "歲中災發"):
+CATALOG["厄會行限"] = _entry(
+    "canonical", "tongzong_volume9_direct_strict_contract", "P2",
+    "use_c43_explicit_evidence_contract", migrate_whole=False,
+    source_confidence="high",
+    target_hint="source_variants.volume9.ehui_limit",
+    notes=(
+        "直接条文要求即位年干支、加大义后的太阳/阴主落点、"
+        "大武/和德界顺逆与神数累计。旧guiyun只收年支并做16位步数，"
+        "不能作为canonical等价公式。"
+    ),
+)
+
+for key in ("國政章易", "歲中災發"):
     CATALOG[key] = _entry(
         "canonical", "tongzong_volume9", "P2", "migrate_rule_after_source_record",
-        source_confidence="high", target_hint="analysis.volume9",
-        notes="参考pan注释明确《太乙统宗宝鉴》卷九。",
+        source_confidence="high", target_hint="source_variants.volume9",
+        notes="参考pan注释明确《太乙统宗宝鉴》卷九；须逐术拆分，不并入厄会行限。",
     )
 
 
