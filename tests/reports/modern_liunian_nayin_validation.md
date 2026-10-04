@@ -64,3 +64,21 @@ J4M-03 继续位于：
 ## Legacy boundary
 
 旧 `kentang2017/kintaiyi::wc_n_sj` 继续只在 J4M-03 metadata 中以 quarantined legacy clue 保存，不与现代 profile 合并。
+
+
+## pan v2 bundle isolation
+
+新增测试：
+
+`tests/test_modern_variant_pan_v2_bundle.py`
+
+锁定：
+
+- modern section 默认不自动启用任何 profile；
+- modern Liunian nayin 必须显式传 payload；
+- profile 固定 `canonical=false`；
+- `cross_ancient_merge=false`；
+- 传入 `build_pan_v2(modern=...)` 后只落在 `modern.profiles`；
+- `analysis.patterns/eight_divinations/seven_methods/military` 保持空；
+- `source_variants` 保持不变；
+- 非 dict payload 必须报错，不进行猜测性包装。
