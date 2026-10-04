@@ -55,7 +55,7 @@ TEN_ESSENCES = (
         "name": "天时",
         "small_cycle": 12,
         "kind": "position",
-        "formula_status": "pending_source_formula_audit",
+        "formula_status": "implemented_c56",
     },
     {
         "index": 4,
@@ -152,15 +152,25 @@ FOCUS_FORMULA_SKELETONS = {
         "small_cycle": 12,
         "identity": "鸡星之使",
         "route": {
-            "tongzong_start": "吕申（寅）",
-            "tongzong_mode": "顺行十二辰，阴局取阳局对冲",
-            "taibai_yang_start": "申",
-            "taibai_yin_start": "寅",
-            "status": "source_start_conflict_unresolved",
-            "canonical_selected": None,
+            "tongzong_yang_path": ["寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥", "子", "丑"],
+            "tongzong_yin_path": ["申", "酉", "戌", "亥", "子", "丑", "寅", "卯", "辰", "巳", "午", "未"],
+            "tongzong_mode": "阳吕申（寅）起，顺行十二辰；阴局取阳局对冲后同样顺行",
+            "taibai_detailed_formula": "阳寅阴申起，均顺行十二宫",
+            "taibai_intro_summary_variant": "同页前置总括句另见阳申阴寅",
+            "wujing_main": "命起吕申，顺行十二辰",
+            "wujing_variant_addition": "一见证另补阴起武德（申）",
+            "status": "implemented_c56_primary_with_internal_variant_preserved",
+            "selected_profile": "tongzong_primary_detailed_collation",
         },
-        "runtime_formula_ready": False,
-        "runtime_blocker": "统宗主见证与太白兵备参校的阳局起点相反，未解决前不实现。",
+        "surplus_variant": {
+            "value": 2,
+            "source_status": "explicitly_rejected_by_source",
+            "apply": False,
+            "note": "古经无此，故不敢用。",
+        },
+        "runtime_formula_ready": True,
+        "runtime_rule_id": "C56-TIANSHI",
+        "runtime_profile": "tongzong_ten_essences_tianshi",
     },
     "帝符": {
         "big_cycle": 200,
@@ -460,7 +470,7 @@ TARGET_POLICY = {
     "pan_contract_extended_in_c52": False,
     "legacy_top_level_promoted": False,
     "cycles_root_used": False,
-    "reason": "十精是独立古法系统；位置公式未逐项校验前不进入cycles真源。",
+    "reason": "十精是独立古法系统；位置/数值runtime虽已分批齐备，仍不并入通用cycles root，云气另层。",
 }
 
 
@@ -514,14 +524,14 @@ def ten_essences_registry() -> dict[str, Any]:
         "cloud_omen_boundary": copy.deepcopy(CLOUD_OMEN_BOUNDARY),
         "target_policy": copy.deepcopy(TARGET_POLICY),
         "implemented_position_runtimes": [
-            "飞鸟", "五风", "太尊", "八风", "三风", "五行", "天皇", "帝符"
+            "飞鸟", "五风", "太尊", "八风", "三风", "五行", "天皇", "帝符", "天时"
         ],
-        "pending_position_runtimes": ["天时"],
+        "pending_position_runtimes": [],
         "implemented_number_runtimes": ["太乙数"],
         "number_runtime_pending": [],
-        "position_runtime_ready": False,
+        "position_runtime_ready": True,
         "position_runtime_ready_semantics": "compat_aggregate_all_positions_ready",
-        "all_position_runtime_ready": False,
+        "all_position_runtime_ready": True,
         "cloud_runtime_ready": False,
         "policy": (
             "C52确认名单、次序、小周数，并登记已核的公式骨架与未决点；"
