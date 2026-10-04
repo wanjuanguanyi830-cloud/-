@@ -6,6 +6,7 @@ from kintaiyi.zitingjing_primary import (
     build_c19_verified_primary_results,
     c19_primary_catalog,
     shiji_changes_primary_core,
+    shiji_year_element_collation,
     taiyi_nine_stars_primary,
     wenchang_changes_primary,
 )
@@ -59,7 +60,7 @@ def test_wenchang_primary_relations_are_source_limited():
     assert data["two_eyes_related"]["away_favored_palaces"] == [4, 9, 6, 2]
 
 
-def test_shiji_primary_core_does_not_pretend_detailed_table_is_finished():
+def test_shiji_primary_core_includes_collated_year_element_table():
     data = shiji_changes_primary_core()
     assert data["identity"]["astral_correspondence"] == "荧惑之精"
     assert data["identity"]["element"] == "火"
@@ -70,7 +71,39 @@ def test_shiji_primary_core_does_not_pretend_detailed_table_is_finished():
     assert data["relations"]["covers_wenchang"]["home_favored_palaces"] == [1, 8, 3, 7]
     assert data["relations"]["covers_wenchang"]["away_favored_palaces"] == [4, 9, 2, 6]
     assert data["relations"]["adjacent_to_taiyi"]["pattern"] == "击"
-    assert data["detailed_year_stem_element_table_status"] == "pending_textual_collation"
+    assert data["detailed_year_stem_element_table_status"] == "collated_with_preserved_variants"
+    assert data["year_element_collation"]["normalization_complete"] is True
+
+
+def test_shiji_year_element_collation_has_25_normalized_rows():
+    data = shiji_year_element_collation()
+    assert data["normalized_row_count"] == 25
+    assert data["normalization_complete"] is True
+    for group in ("甲乙", "丙丁", "戊己", "庚辛", "壬癸"):
+        rows = data["stem_groups"][group]["rows"]
+        assert {row["element"] for row in rows} == {"木", "火", "土", "金", "水"}
+
+
+def test_shiji_collation_corrects_only_ocr_labels_with_witness_trail():
+    data = shiji_year_element_collation()
+    corrections = {
+        (item["stem_group"], item["witness_label"], item["normalized_element"])
+        for item in data["ocr_corrections"]
+    }
+    assert ("戊己", "水", "木") in corrections
+    assert ("壬癸", "王", "土") in corrections
+    assert len(data["ocr_corrections"]) == 2
+
+
+def test_shiji_gengxin_earth_summer_variant_is_preserved():
+    data = shiji_year_element_collation()
+    variant = next(
+        item for item in data["textual_variants"]
+        if item["stem_group"] == "庚辛" and item["element"] == "土"
+    )
+    assert variant["variants"]["taiyi_zitingjing_online"] == "夏大旱"
+    assert variant["variants"]["taiyi_mishu_and_tongzong_collation"] == "夏大水"
+    assert variant["resolution"] == "preserve_both_no_silent_merge"
 
 
 def test_c19_catalog_marks_only_three_direct_primary_items_as_implemented():
