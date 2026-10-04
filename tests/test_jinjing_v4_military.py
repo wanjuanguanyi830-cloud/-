@@ -4,9 +4,11 @@ from kintaiyi.jinjing_v4_military import (
     j4m_low_dependency_catalog,
     qifu_fa,
     sanmen_jubu,
+    fengyun_feiniao_zhuzhan,
     suidi_zhibian,
     taiyi_tianwai_dinei,
     wujiang_fabu,
+    yunqi_dingshengfu,
     zhimen_from_cycle_count,
     zhizhen_suidi,
     zhuke_xiangguan,
@@ -177,9 +179,9 @@ def test_j4m10_qifu_keeps_each_source_condition_separate():
 
 def test_low_dependency_catalog_is_explicitly_partial():
     catalog = j4m_low_dependency_catalog()
-    assert catalog["implemented"] == ["J4M-01", "J4M-02", "J4M-05", "J4M-06", "J4M-07", "J4M-08", "J4M-09", "J4M-10"]
+    assert catalog["implemented"] == ["J4M-01", "J4M-02", "J4M-05", "J4M-06", "J4M-07", "J4M-08", "J4M-09", "J4M-10", "J4M-11", "J4M-12"]
     assert catalog["partial"] == ["J4M-03", "J4M-04"]
-    assert catalog["pending"] == ["J4M-11", "J4M-12"]
+    assert catalog["pending"] == []
 
 
 def test_j4m01_direct_gate_cycle_is_240_with_30_per_gate():
@@ -284,3 +286,128 @@ def test_j4m08_training_and_command_warnings_do_not_become_fake_combat_scores():
     assert len(data["warnings"]) == 4
     assert "士卒服习" in data["urgent_requirements"]
     assert data["doctrine_chain"][-1] == "君不择将，以其国与敌"
+
+
+def test_j4m11_requires_external_observation_and_maps_explicit_cases():
+    missing = fengyun_feiniao_zhuzhan([])
+    assert missing["computable"] is False
+    assert missing["status"] == "not_computable"
+
+    data = fengyun_feiniao_zhuzhan([
+        {
+            "phenomenon": "风云飞鸟",
+            "source_anchor": "太乙所在宫",
+            "action": "冲格迫击",
+            "target": "太乙",
+        },
+        {
+            "phenomenon": "飞鸟",
+            "source_anchor": "主目",
+            "action": "去击",
+            "target": "客",
+        },
+        {
+            "phenomenon": "云",
+            "action": "扶",
+            "target": "客阵",
+        },
+    ])
+    assert data["rule_id"] == "J4M-11"
+    assert data["computable"] is True
+    assert data["judgments"][0]["omen"] == "大败之兆"
+    assert data["judgments"][1]["loser"] == "客"
+    assert data["judgments"][2]["winner"] == "客"
+
+
+def test_j4m11_keeps_unstated_noise_outcome_unscored():
+    data = fengyun_feiniao_zhuzhan([
+        {"phenomenon": "飞鸟", "action": "噪阵", "crowd_noisy": True}
+    ])
+    assert data["computable"] is False
+    assert data["status"] == "not_defined_by_source_passage"
+    assert data["judgments"][0]["matched"] is False
+    assert "未单独明示" in data["judgments"][0]["note"]
+
+
+def test_j4m11_handles_flag_break_and_formation_collision():
+    data = fengyun_feiniao_zhuzhan([
+        {
+            "phenomenon": "风云飞鸟",
+            "returning_wind": True,
+            "birds_circling": True,
+            "flag_broken": True,
+        },
+        {
+            "phenomenon": "风云",
+            "action": "冲突",
+            "target": "主人阵",
+        },
+    ])
+    assert data["judgments"][0]["omen"] == "大败之兆"
+    assert data["judgments"][1]["loser"] == "主"
+
+
+def test_j4m12_cloud_color_table_and_day_stem_modifiers():
+    north = yunqi_dingshengfu(
+        formation_direction="北",
+        cloud_color="黑",
+        observed_formation="敌",
+        day_stem="壬",
+    )
+    assert north["rule_id"] == "J4M-12"
+    assert north["base_verdict"] == "大胜"
+    assert north["qi_class"] == "胜气"
+    assert north["day_modifier"] == "弥佳"
+
+    south_bad = yunqi_dingshengfu(
+        formation_direction="南",
+        cloud_color="黑",
+        day_stem="丙",
+    )
+    assert south_bad["base_verdict"] == "大败"
+    assert south_bad["day_modifier"] == "弥恶"
+
+    east_delay = yunqi_dingshengfu(
+        formation_direction="东",
+        cloud_color="赤",
+    )
+    assert east_delay["base_verdict"] == "将迟钝，然不可击"
+
+
+def test_j4m12_unknown_color_is_not_filled_by_five_elements():
+    east_white = yunqi_dingshengfu(
+        formation_direction="东",
+        cloud_color="白",
+    )
+    assert east_white["computable"] is False
+    assert east_white["status"] == "not_defined_by_source_passage"
+    assert "白" not in east_white["defined_colors"]
+
+
+def test_j4m12_morphology_modifies_only_source_explicit_cases():
+    broken_victory = yunqi_dingshengfu(
+        formation_direction="西",
+        cloud_color="白",
+        continuity="断续",
+    )
+    assert broken_victory["base_verdict"] == "大胜"
+    assert broken_victory["effective_verdict"] == "败"
+    assert any("反败" in x for x in broken_victory["morphology_modifiers"])
+
+    weakened_defeat = yunqi_dingshengfu(
+        formation_direction="西",
+        cloud_color="赤",
+        disorder="溃乱",
+        over_general="大将",
+    )
+    assert weakened_defeat["qi_class"] == "败气"
+    assert any("不至全恶" in x for x in weakened_defeat["morphology_modifiers"])
+    assert "原文曰反此" in weakened_defeat["general_modifier"]
+
+
+def test_j4m12_no_cloud_returns_no_war_or_balance_note():
+    data = yunqi_dingshengfu(cloud_present=False)
+    assert data["status"] == "no_cloud"
+    assert data["computable"] is True
+    assert data["verdict"] is None
+    assert "无战或复相匀" in data["source_note"]
