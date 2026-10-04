@@ -99,6 +99,9 @@ EYE_FIELDS = {
 
 # 旧风险字段 → 新结构必须存在的替代路径。
 QUARANTINE_REPLACEMENTS = {
+    "陽九": "cycles.limits.yangjiu",
+    "阳九": "cycles.limits.yangjiu",
+    "百六": "cycles.limits.bailiu",
     "軍事應用": "source_variants.military_derived.tongzong_volume15.payload",
     "军事应用": "source_variants.military_derived.tongzong_volume15.payload",
     "軍事占斷": "source_variants.military_derived.tongzong_volume17.payload",
