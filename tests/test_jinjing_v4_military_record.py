@@ -117,3 +117,27 @@ def test_runtime_status_matches_observation_batch_implementation():
     assert by_id["J4M-12"]["implementation_status"] == "implemented_source_specific"
     assert by_id["J4M-12"]["runtime"].endswith(".yunqi_dingshengfu")
     assert "不以五行常识补表" in by_id["J4M-12"]["implementation_note"]
+
+
+def test_j4m04_is_now_source_complete_but_c8_crosswalk_remains_roles_only():
+    _, rules = _rules()
+    by_id = {item["id"]: item for item in rules}
+    rule = by_id["J4M-04"]
+
+    assert rule["implementation_status"] == "implemented_source_specific"
+    assert rule["runtime"].endswith(".zhuke_fa")
+    assert rule["target_crosswalk"]["layer"] == "C8-L3"
+    assert rule["target_crosswalk"]["status"] == "source_runtime_complete_c8_roles_only"
+    assert "先胜后负" in rule["implementation_note"]
+
+
+def test_j4m03_keeps_legacy_nayin_and_taiyi_general_inference_quarantined():
+    _, rules = _rules()
+    rule = {item["id"]: item for item in rules}["J4M-03"]
+
+    assert rule["implementation_status"] == "implemented_partial_source_specific"
+    assert rule["collation_status"] == "formula_not_expanded_in_checked_jinjing_transcriptions"
+    quarantined = " ".join(rule["legacy_reference_quarantined"])
+    assert "wc_n_sj" in quarantined
+    assert "主将是否与太乙同宫" in quarantined
+    assert "不能升级为 canonical" in quarantined
