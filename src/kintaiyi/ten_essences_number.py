@@ -38,10 +38,13 @@ LEGACY_AUDIT = {
 OMEN_BOUNDARY = {
     "number_only_in_c54": True,
     "weather_omens_applied": False,
-    "deferred_examples": [10, 30, 40, 50],
+    "weather_omen_runtime_rule_id": "C59-TAIYI-NUMBER-OMEN",
+    "direct_weather_special_numbers": [30, 40],
+    "variant_weather_special_numbers": [50],
+    "legacy_noncanonical_special_numbers": [10, 5],
     "policy": (
-        "数得三十/四十/五十等风雨日晕解释属于十精云气/合会断事层，"
-        "不在C54数字函数中自动解释。"
+        "C54只负责1..72数值。30/40与50句读异文由C59解释；"
+        "旧10/5独立天气特例无当前直接条文支持。"
     ),
 }
 
@@ -74,7 +77,7 @@ def taiyi_number(accumulated_count: int) -> dict[str, Any]:
         "omen_boundary": dict(OMEN_BOUNDARY),
         "policy": (
             "C54只求太乙数；360与72边界余0均保留为周期末项。"
-            "不因数值等于10/30/40/50而自动生成天气断语。"
+            "不因数值等于30/40/50而自动生成天气断语；旧10/5独立断语亦不采用。"
         ),
     }
 
