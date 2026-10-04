@@ -139,7 +139,7 @@ def yinyang_nine_calamities(accumulated_year: int) -> dict[str, Any]:
     }
 
 
-def c47_catalog() -> dict[str, Any]:
+def c46_catalog() -> dict[str, Any]:
     timeline = calamity_timeline()
     return {
         "canonical": C46_VERSION,
