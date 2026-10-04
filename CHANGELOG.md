@@ -15,3 +15,14 @@
 ## 2026-10-04：太乙七术＋八占＋公共规则层 v1
 
 新增独立七术、八占、公共规则、五福/大游与旧名兼容入口。项目canonical与异文/短句/古例/推导例分层保存；缺输入或未确认规则明确返回不可计算或待校。完整记录见 `docs/taiyi_v1.md`。已有格局规则及其测试保留。
+
+
+## 2026-10-05 — 现代太乙纳音 profile 独立化
+
+- 将现代《太乙数纳音体系（修正版）》从 J4M-03 命名空间移出。
+- runtime 迁至 `src/kintaiyi/variants/modern_liunian_nayin.py`。
+- machine rules 迁至 `rules/variants/modern_liunian_nayin.json`。
+- profile 固定为 `modern_liunian_nayin_2026`，variant id 固定为 `MODERN-LIUNIAN-NAYIN`。
+- 删除旧 `src/kintaiyi/modern_nayin_variant.py` 与 `rules/j4m03_nayin_variants.json`。
+- J4M-03 只保留古籍 canonical / ancient collation；旧 `wc_n_sj` 继续 quarantined。
+- 新增命名空间防回归测试，禁止旧 import / 旧 JSON 路径恢复。
