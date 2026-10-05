@@ -27,7 +27,9 @@
     "prior_manuscript_scan_workflow": {
       "manuscript": "研易楼藏《太乙紫庭祕訣》明钞本",
       "status": "previously_scanned_during_terminology_work_user_confirmed",
-      "recovered_residue": "terminology/zitingjing-legacy-scan-recovery.json"
+      "local_copy": "E盘仍存，当前执行环境未挂载",
+      "code_residue_boundary": "旧kentang2017/kintaiyi九星代码明确标注《太乙统宗宝鉴》卷六来源，不能作为研易楼本逐字扫描记录。",
+      "recovery_asset": "terminology/zitingjing-legacy-scan-recovery.json"
     }
   },
   "legacy_field_policy": {
@@ -4189,7 +4191,8 @@
         "釋九宮所值九星"
       ],
       "current_rule_ids": [
-        "C124-TONGZONG-TAIYI-NINE-STARS"
+        "C124-TONGZONG-TAIYI-NINE-STARS",
+        "C125-ZITING-TAIYI-NINE-STARS-CYCLE"
       ],
       "current_source_profiles": [
         "tongzong_volume6_taiyi_nine_stars"
@@ -4199,6 +4202,11 @@
           "asset": "terminology/zitingjing-migration-map.json",
           "asset_entry_key": "taiyi_nine_stars",
           "role": "old_local_store_recovery_skeleton"
+        },
+        {
+          "asset": "terminology/zitingjing-legacy-scan-recovery.json",
+          "asset_entry_key": "taiyi_nine_stars",
+          "role": "prior_tongzong_implementation_residue"
         }
       ],
       "legacy_match_status": "migration_asset_available_old_store_fields_missing",
@@ -4305,10 +4313,10 @@
         {
           "asset": "terminology/zitingjing-legacy-scan-recovery.json",
           "asset_entry_key": "wenchang_nine_stars",
-          "role": "prior_manuscript_scan_extraction_recovery"
+          "role": "prior_workflow_code_residue_source_ambiguous_for_ziting"
         }
       ],
-      "legacy_match_status": "legacy_scan_extraction_residue_recovered_original_store_fields_still_missing",
+      "legacy_match_status": "prior_manuscript_scan_confirmed_original_store_fields_missing_code_residue_source_ambiguous",
       "legacy_fields": {
         "old_term_record_id": null,
         "manuscript_form": null,
@@ -4318,7 +4326,7 @@
         "old_notes": null,
         "old_aliases": null
       },
-      "recovered_scan_aliases": [
+      "recovered_prior_workflow_forms": [
         "文曲",
         "玄鳳",
         "明維",
