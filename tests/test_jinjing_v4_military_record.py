@@ -391,3 +391,24 @@ def test_c84_ncl06604_is_verified_as_witness_but_page_collation_stays_pending():
     assert ncl["access_audit"]["canonical_effect"] == "none"
     assert any("逐條頁碼" in x for x in ncl["access_audit"]["not_verified"])
     assert "不分配 J4M 页码" in ncl["locator_policy"]
+
+
+def test_c85_j4m11_j4m12_complete_the_twelve_rule_scan_audit():
+    data, rules = _rules()
+    by_id = {item["id"]: item for item in rules}
+
+    assert data["source"]["full_twelve_scan_audit_version"] == "c85-j4m01-12-scan-boundary-complete-v1"
+    assert all(item.get("scan_rule_audit") for item in rules)
+
+    j11 = by_id["J4M-11"]["scan_rule_audit"]
+    assert j11["cycle"] == "C85"
+    assert j11["status"] == "scan_observation_schema_confirmed_no_event_inference"
+    assert any("不得由盘内字段" in x for x in j11["forbidden_inference"])
+    assert any("众来噪阵" in x for x in j11["forbidden_inference"])
+
+    j12 = by_id["J4M-12"]["scan_rule_audit"]
+    assert j12["cycle"] == "C85"
+    assert j12["status"] == "scan_cloud_table_confirmed_no_symmetry_or_subject_inversion"
+    assert any("西方白云" in x for x in j12["locked_points"])
+    assert any("五行常识" in x for x in j12["forbidden_inference"])
+    assert any("cloud_bearer" in x for x in j12["forbidden_inference"])
