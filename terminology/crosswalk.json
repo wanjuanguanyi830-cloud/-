@@ -12,7 +12,7 @@
   },
   "audit_snapshot": {
     "stable_catalog_count": 12,
-    "entry_count": 97,
+    "entry_count": 98,
     "exact_cross_entry_name_collisions": 0,
     "status": "clean_at_snapshot"
   },
@@ -562,13 +562,15 @@
         ]
       },
       "related_layer": {
-        "external_runtime": "rules/jinjing/eight_door.py",
+        "catalog": "terminology/ritual-timing.json",
+        "key": "year_eight_doors",
+        "rule_id": "C123-YEAR-DUTY-DOOR",
         "semantics": "year-count / 30-year duty-door cycle"
       },
       "relation": "same_door_names_distinct_time_scales",
       "forbidden_merge": [
-        "C119是30时一移门；仓库既有年计八门是30年一门。",
-        "门名相同不表示周期、输入或公式相同。"
+        "C119是30时一移门；C123是30年一门。",
+        "两者门名相同但周期、积数、阴阳遁处理与用途不同；不得互相代替。"
       ]
     },
     {
@@ -600,6 +602,33 @@
       "forbidden_merge": [
         "C121六纪表是直接锚点，不是全年连续位置算法。",
         "王希明对固定日法的批评必须随数据保留；不得用六纪表填平气应早晚差异。"
+      ]
+    },
+    {
+      "id": "CW-C123-OVERLAY",
+      "base": {
+        "catalog": "terminology/ritual-timing.json",
+        "key": "year_eight_doors",
+        "rule_id": "C123-YEAR-DUTY-DOOR"
+      },
+      "sublayers": [
+        {
+          "rule_id": "J1-EIGHT-DOOR-OVERLAY",
+          "role": "固定开门空间叠盘"
+        },
+        {
+          "rule_id": "J1-YEAR-FOUR-EIGHT-DOOR-OVERLAYS",
+          "role": "太乙/主客定计将四类八门叠盘"
+        },
+        {
+          "rule_id": "J1-YEAR-DOOR-MEETING",
+          "role": "主客大将在太乙门盘会开休生的局部关系"
+        }
+      ],
+      "relation": "cycle_vs_spatial_overlay_vs_local_relation",
+      "forbidden_merge": [
+        "年计直门周期不自动等于开门空间叠盘。",
+        "三吉门会合只给局部大利，不覆盖囚迫格对、杜塞、五将发不发。"
       ]
     }
   ]
