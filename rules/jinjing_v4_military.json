@@ -40,7 +40,7 @@
         "canonical_override": false
       }
     ],
-    "scan_locator_version": "c75-j4m-cadal-page-locators-v1"
+    "scan_locator_version": "c79-j4m-cadal-page-locators-v1"
   },
   "separation_policy": [
     "本表只记录四库本《太乙金镜式经》卷四十二法，不自动并入《太乙统宗宝鉴》卷五或旧代码同名函数。",
@@ -383,7 +383,7 @@
       },
       "implementation_status": "implemented_source_specific",
       "runtime": "kintaiyi.jinjing_v4_military.suidi_zhibian",
-      "implementation_note": "实现《金镜》四库扫描本本条实际写出的五类地形与优势兵种/兵器映射，并保留其三不当一、十不当一、百不当一等原文比例文字。C75 直接核 CADAL06056494 p.136，确认旧转录“矛锤”应为“矛鋋”；《汉书》与《福应经》同为“矛鋋”，真正差异在所对兵种/比例、训练比例及《汉书》另有曲道剑楯段。训练、器械、将知兵、君择将只作事实/警告层，不转成现代战力分数。",
+      "implementation_note": "实现《金镜》四库扫描本本条实际写出的五类地形与优势兵种/兵器映射，并保留其三不当一、十不当一、百不当一等原文比例文字。C79 直接核 CADAL06056494 p.136，确认旧转录“矛锤”应为“矛鋋”；《汉书》与《福应经》同为“矛鋋”，真正差异在所对兵种/比例、训练比例及《汉书》另有曲道剑楯段。训练、器械、将知兵、君择将只作事实/警告层，不转成现代战力分数。",
       "collation_status": "jinjing_quote_diverges_from_jingyou_and_hanshu",
       "quotation_collation": {
         "jinjing_siku_volume4": {
@@ -405,7 +405,7 @@
             "将不省兵：五不当一"
           ]
         },
-        "policy": "J4M-08 以 CADAL06056494 四库扫描实际字形为本 profile 真源；C75 已纠正旧电子转录把“矛鋋”误作“矛锤”的错误。《汉书》《福应经》只作异文见证，差异不得静默改写 runtime；如需原典校正版须另立 source_variant。",
+        "policy": "J4M-08 以 CADAL06056494 四库扫描实际字形为本 profile 真源；C79 已纠正旧电子转录把“矛鋋”误作“矛锤”的错误。《汉书》《福应经》只作异文见证，差异不得静默改写 runtime；如需原典校正版须另立 source_variant。",
         "jingyou_fuying_volume4": {
           "status": "ancient_taiyi_parallel_close_to_hanshu_not_canonical_override",
           "examples": [
@@ -430,7 +430,7 @@
         "note": "标题起于p.135；晁错引文跨p.135-p.137。"
       },
       "textual_correction": {
-        "id": "J4M08-C75-01",
+        "id": "J4M08-C79-01",
         "previous_reading": "矛锤",
         "corrected_reading": "矛鋋",
         "evidence": "CADAL06056494 digital scan p.136 direct visual check",
