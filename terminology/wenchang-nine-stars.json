@@ -96,7 +96,8 @@
           "status": "modern_edition_catalog_attested_provenance_unresolved",
           "inference": "可能为现代整理时收入的统宗相关材料，但目前只能作为来源假说，不能写成已证事实。"
         }
-      }
+      },
+      "rule_id": "C70-TONGZONG-WENCHANG-NINE-STARS"
     }
   ]
 }
