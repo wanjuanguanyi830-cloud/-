@@ -126,18 +126,40 @@ def test_c111_ncl_j4m07_body_preserves_terrain_wording_without_overwriting_siku(
     assert "四库canonical" in row["hard_boundary"]
 
 
-def test_c112_ncl_j4m08_opening_is_verified_without_claiming_full_body():
+def test_c112_ncl_j4m08_opening_stage_remains_in_update_history():
     data = _matrix()
     row = {item["rule_id"]: item for item in data["entries"]}["J4M-08"]
 
     assert "C112" in data["updates"]
     assert row["ncl"]["opening_triplet"] == ["士卒服习", "随其地形", "善用兵器"]
-    assert row["ncl"]["opening_text"].startswith("晁错曰：用兵临战合用之急者有三")
-    assert row["ncl"]["later_verified"]["weapon"] == "矛鋋"
-    assert row["ncl"]["later_verified"]["ratio"] == "弓弩三不当一"
-    assert row["ncl"]["verification_scope"] == (
-        "opening_triplet_and_selected_later_reading_direct_visual_verified_not_full_contiguous_body"
-    )
     assert row["ncl"]["visible_continuation"] == "五丈之沟居堑之水山林"
-    assert row["ncl"]["pending"] == ["“五丈之沟居堑之水山林”之后至已核矛鋋段之间的连续逐字转录"]
-    assert "不得把中间未连续核图部分标记为全文已核" in row["hard_boundary"]
+    assert "C115" in data["updates"]
+    assert row["ncl"]["pending"] == []
+
+
+def test_c115_ncl_j4m08_full_body_and_mixed_witness_pattern():
+    data = _matrix()
+    row = {item["rule_id"]: item for item in data["entries"]}["J4M-08"]
+
+    assert data["last_update"] == "C115"
+    assert row["ncl"]["status"] == "full_contiguous_body_direct_visual_verified_C115"
+    assert row["ncl"]["pending"] == []
+
+    rows = row["ncl"]["terrain_weapon_rows"]
+    assert rows[0] == {
+        "terrain": "五丈之沟居堑之水山林积石川泽丘阜草木所临",
+        "favored": "步兵",
+        "ratio": "车骑三不当一",
+    }
+    assert rows[3]["favored"] == "矛鋋"
+    assert rows[3]["ratio"] == "弓弩三不当一"
+    assert row["ncl"]["training"]["ratio"] == "百不当一"
+    assert row["ncl"]["equipment_general"]["ratio"] == "五不当一"
+
+    mixed = data["agreement_patterns"]["NCL06604_J4M08_MIXED_PATTERN"]
+    assert mixed["status"] == "mixed_agreement_pattern_not_stemma"
+    by_feature = {item["feature"]: item for item in mixed["examples"]}
+    assert by_feature["步兵地比例"]["ncl"] == by_feature["步兵地比例"]["siku"]
+    assert by_feature["将不习兵比例"]["ncl"] == by_feature["将不习兵比例"]["jingyou"]
+    assert by_feature["将不习兵比例"]["ncl"] != by_feature["将不习兵比例"]["siku"]
+    assert any("不据局部比例一致" in item for item in mixed["non_claims"])
