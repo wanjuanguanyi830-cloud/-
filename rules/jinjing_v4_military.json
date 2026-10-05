@@ -173,7 +173,46 @@
       "c112-ncl06604-j4m08-opening-v2",
       "c115-ncl06604-j4m08-full-body-v1",
       "c120-ncl06604-j4m09-opening-boundary-v1"
-    ]
+    ],
+    "ncl_collation_completeness_version": "c122-ncl-j4m-completeness-v1",
+    "ncl_collation_summary": {
+      "witness": "NCL-06604",
+      "counts": {
+        "locator_only": 4,
+        "selected_readings": 5,
+        "full_rule": 3,
+        "total": 12
+      },
+      "full_rule_ids": [
+        "J4M-06",
+        "J4M-07",
+        "J4M-08"
+      ],
+      "selected_reading_ids": [
+        "J4M-05",
+        "J4M-09",
+        "J4M-10",
+        "J4M-11",
+        "J4M-12"
+      ],
+      "locator_only_ids": [
+        "J4M-01",
+        "J4M-02",
+        "J4M-03",
+        "J4M-04"
+      ],
+      "next_priority": [
+        "J4M-09",
+        "J4M-10",
+        "J4M-11",
+        "J4M-12",
+        "J4M-01",
+        "J4M-02",
+        "J4M-03",
+        "J4M-04"
+      ],
+      "rationale": "先连续完成当前已推进到p.61-p.64的J4M-09~12，再回补p.55-p.58的J4M-01~04。"
+    }
   },
   "separation_policy": [
     "本表只记录四库本《太乙金镜式经》卷四十二法，不自动并入《太乙统宗宝鉴》卷五或旧代码同名函数。",
@@ -239,6 +278,20 @@
         "canonical_effect": "none",
         "toc_title": "推三门具不具",
         "body_title": "推三门具不具"
+      },
+      "ncl_collation_status": {
+        "cycle": "C122",
+        "status_group": "locator_only",
+        "evidence_level": "page_locator_direct_visual_verified",
+        "verified_points": [
+          "NCL数字页定位p.55-56"
+        ],
+        "remaining": [
+          "正文连续逐字校勘",
+          "与四库正文逐句异文表"
+        ],
+        "source_profile_effect": "none",
+        "policy": "只描述NCL-06604证据完整度；不得以coverage状态改变jinjing_siku_volume4 canonical。"
       }
     },
     {
@@ -296,6 +349,20 @@
         "canonical_effect": "none",
         "toc_title": "推五将发不发",
         "body_title": "推五将发不发"
+      },
+      "ncl_collation_status": {
+        "cycle": "C122",
+        "status_group": "locator_only",
+        "evidence_level": "page_locator_direct_visual_verified",
+        "verified_points": [
+          "NCL数字页定位p.56"
+        ],
+        "remaining": [
+          "正文连续逐字校勘",
+          "与四库正文逐句异文表"
+        ],
+        "source_profile_effect": "none",
+        "policy": "只描述NCL-06604证据完整度；不得以coverage状态改变jinjing_siku_volume4 canonical。"
       }
     },
     {
@@ -415,6 +482,21 @@
         "rule": "项目术语、runtime canonical 输出、对外文档统一采用“太簇”；“太蔟”作为辞书可证的传统异写及古籍来源字形保留，不视为OCR误字。",
         "cycle": "C101",
         "variant_classification": "dictionary_attested_traditional_variant"
+      },
+      "ncl_collation_status": {
+        "cycle": "C122",
+        "status_group": "locator_only",
+        "evidence_level": "page_locator_direct_visual_verified",
+        "verified_points": [
+          "NCL数字页定位p.56-57",
+          "项目canonical已固定太簇"
+        ],
+        "remaining": [
+          "正文连续逐字校勘",
+          "NCL实际写太簇/太蔟的source_form核字（非阻塞）"
+        ],
+        "source_profile_effect": "none",
+        "policy": "只描述NCL-06604证据完整度；不得以coverage状态改变jinjing_siku_volume4 canonical。"
       }
     },
     {
@@ -482,6 +564,20 @@
         "canonical_effect": "none",
         "toc_title": "推主客",
         "body_title": "推主客"
+      },
+      "ncl_collation_status": {
+        "cycle": "C122",
+        "status_group": "locator_only",
+        "evidence_level": "page_locator_direct_visual_verified",
+        "verified_points": [
+          "NCL数字页定位p.57-58"
+        ],
+        "remaining": [
+          "正文连续逐字校勘",
+          "与四库正文逐句异文表"
+        ],
+        "source_profile_effect": "none",
+        "policy": "只描述NCL-06604证据完整度；不得以coverage状态改变jinjing_siku_volume4 canonical。"
       }
     },
     {
@@ -563,6 +659,20 @@
           "relation_to_siku": "substantive_numeric_variant; NCL line proceeds directly from 二十二 to 五将发",
           "canonical_override": false
         }
+      },
+      "ncl_collation_status": {
+        "cycle": "C122",
+        "status_group": "selected_readings",
+        "evidence_level": "numeric_variant_direct_visual_verified",
+        "verified_points": [
+          "明钞本只列12、22",
+          "未见四库32"
+        ],
+        "remaining": [
+          "本条正文连续逐字异文表"
+        ],
+        "source_profile_effect": "none",
+        "policy": "只描述NCL-06604证据完整度；不得以coverage状态改变jinjing_siku_volume4 canonical。"
       }
     },
     {
@@ -796,6 +906,22 @@
           },
           "table_policy": "原写、旁校、规范字段分层保存；不得用四库或《福应经》覆盖明钞本直接影像读法。"
         }
+      },
+      "ncl_collation_status": {
+        "cycle": "C122",
+        "status_group": "full_rule",
+        "evidence_level": "full_table_and_closing_direct_visual_verified",
+        "verified_points": [
+          "1/2/3/4/6/7/8/9完整表",
+          "出军/战利/背地/阵形/旗色",
+          "旁校字形",
+          "收尾句"
+        ],
+        "remaining": [
+          "仅剩总逐字异文整理，不再有规则字段缺口"
+        ],
+        "source_profile_effect": "none",
+        "policy": "只描述NCL-06604证据完整度；不得以coverage状态改变jinjing_siku_volume4 canonical。"
       }
     },
     {
@@ -916,6 +1042,23 @@
           },
           "status": "body_structure_direct_visual_verified_C111"
         }
+      },
+      "ncl_collation_status": {
+        "cycle": "C122",
+        "status_group": "full_rule",
+        "evidence_level": "full_body_structure_direct_visual_verified",
+        "verified_points": [
+          "五阵五行",
+          "主客五行相克",
+          "五类地形",
+          "顺逆吉凶",
+          "收尾观方置变"
+        ],
+        "remaining": [
+          "仅剩总逐字异文整理，不再有核心规则字段缺口"
+        ],
+        "source_profile_effect": "none",
+        "policy": "只描述NCL-06604证据完整度；不得以coverage状态改变jinjing_siku_volume4 canonical。"
       }
     },
     {
@@ -1124,6 +1267,25 @@
             }
           }
         }
+      },
+      "ncl_collation_status": {
+        "cycle": "C122",
+        "status_group": "full_rule",
+        "evidence_level": "full_contiguous_body_direct_visual_verified",
+        "verified_points": [
+          "三急",
+          "五类地形兵种比例",
+          "训练段",
+          "器械/将帅段",
+          "指挥链",
+          "收尾",
+          "J4M-09边界"
+        ],
+        "remaining": [
+          "仅剩与各外部引文见证的逐字校勘表，不再有NCL正文连续性缺口"
+        ],
+        "source_profile_effect": "none",
+        "policy": "只描述NCL-06604证据完整度；不得以coverage状态改变jinjing_siku_volume4 canonical。"
       }
     },
     {
@@ -1259,6 +1421,22 @@
             "relation_to_existing_C86": "C86已直接核得完整宫组[1,8,3,4]与[9,2,7,6]；C120补足页内边界和首句，不改变既有宫组。"
           }
         }
+      },
+      "ncl_collation_status": {
+        "cycle": "C122",
+        "status_group": "selected_readings",
+        "evidence_level": "opening_and_palace_groups_direct_visual_verified",
+        "verified_points": [
+          "首句一八三四宫助主人",
+          "地内[1,8,3,4]",
+          "天外[9,2,7,6]",
+          "J4M-08→09页内边界"
+        ],
+        "remaining": [
+          "首句之后至本条结束的连续逐字校勘"
+        ],
+        "source_profile_effect": "none",
+        "policy": "只描述NCL-06604证据完整度；不得以coverage状态改变jinjing_siku_volume4 canonical。"
       }
     },
     {
@@ -1335,6 +1513,19 @@
           "relation_to_siku": "matches_siku_toc_alias_but_differs_from_siku_body_title_推奇伏法",
           "canonical_override": false
         }
+      },
+      "ncl_collation_status": {
+        "cycle": "C122",
+        "status_group": "selected_readings",
+        "evidence_level": "body_heading_direct_visual_verified",
+        "verified_points": [
+          "正文题推奇兵伏兵法"
+        ],
+        "remaining": [
+          "正文连续逐字校勘"
+        ],
+        "source_profile_effect": "none",
+        "policy": "只描述NCL-06604证据完整度；不得以coverage状态改变jinjing_siku_volume4 canonical。"
       }
     },
     {
@@ -1475,6 +1666,23 @@
             "runtime_policy": "jinjing_siku_volume4 runtime 不改；NCL/Jingyou 只作 manuscript/source variants。"
           }
         }
+      },
+      "ncl_collation_status": {
+        "cycle": "C122",
+        "status_group": "selected_readings",
+        "evidence_level": "heading_and_key_event_readings_direct_visual_verified",
+        "verified_points": [
+          "正文题推太乙风云飞鸟助阵法",
+          "正文起句助战之法",
+          "主人刑/客刑双分支",
+          "若干明确事件断语"
+        ],
+        "remaining": [
+          "未列事件句的连续逐字校勘",
+          "全段标点/句读复核"
+        ],
+        "source_profile_effect": "none",
+        "policy": "只描述NCL-06604证据完整度；不得以coverage状态改变jinjing_siku_volume4 canonical。"
       }
     },
     {
@@ -1567,6 +1775,21 @@
             "status": "direct_visual_manuscript_reading"
           }
         }
+      },
+      "ncl_collation_status": {
+        "cycle": "C122",
+        "status_group": "selected_readings",
+        "evidence_level": "heading_and_key_verdict_direct_visual_verified",
+        "verified_points": [
+          "正文题推对阵有云气定胜负",
+          "西方白云大胜，庚辛日弥佳"
+        ],
+        "remaining": [
+          "全方位云气表连续逐字校勘",
+          "聚散动静及将位段逐字校勘"
+        ],
+        "source_profile_effect": "none",
+        "policy": "只描述NCL-06604证据完整度；不得以coverage状态改变jinjing_siku_volume4 canonical。"
       }
     }
   ]
