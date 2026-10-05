@@ -436,7 +436,7 @@
       },
       {
         "id": "R-WENCHANG-NINE-STARS-TONGZONG",
-        "canonical": "C70只代表《太乙统宗宝鉴》卷六NGJ文昌九星source profile：30年一星、270小周、2700大周，命起一宫文昌顺九宫；另以年干建禄层给当前直事星落宫/分野。不得反填《紫庭秘诀》正文pending，也不推其余八星完整动态分布。",
+        "canonical": "C70为《太乙统宗宝鉴》卷六NGJ文昌九星独立source profile：30年一星、270小周、2700大周，命起一宫文昌顺九宫；另以年干建禄层给当前直事星落宫/分野。研易楼明钞本目录未见该题；现代整理本同名附篇来源未证，不作为紫庭原钞canonical。当前不推其余八星完整动态分布。",
         "rule_id": "C70-TONGZONG-WENCHANG-NINE-STARS",
         "runtime": "kintaiyi.wenchang_nine_stars_tongzong.wenchang_nine_star_tongzong"
       },
