@@ -7,6 +7,7 @@ from kintaiyi.jinjing_v4_military import (
     qifu_fa,
     sanmen_jubu,
     sanmen_jubu_from_positions,
+    sanmen_jubu_from_period_count,
     fengyun_feiniao_zhuzhan,
     suidi_zhibian,
     taiyi_tianwai_dinei,
@@ -306,21 +307,37 @@ def test_j4m01_three_doors_only_claims_source_explicit_cases():
     assert missing["three_doors_ready"] is None
 
 
-def test_j4m01_positions_use_open_door_at_taiyi_overlay():
-    two_not_ready = sanmen_jubu_from_positions(taiyi_palace=1, tianmu="丑")
+def test_j4m01_positions_use_current_direct_gate_overlay():
+    missing = sanmen_jubu_from_positions(taiyi_palace=1, tianmu="丑")
+    assert missing["status"] == "not_computable"
+
+    two_not_ready = sanmen_jubu_from_positions(
+        taiyi_palace=1, tianmu="丑", direct_gate="开"
+    )
     assert two_not_ready["taiyi_gate"] == "开"
     assert two_not_ready["tianmu_gate"] == "生"
     assert two_not_ready["three_doors_ready"] is False
     assert two_not_ready["not_ready_count"] == 2
 
-    three_not_ready = sanmen_jubu_from_positions(taiyi_palace=1, tianmu="子")
-    assert three_not_ready["tianmu_gate"] == "休"
+    three_not_ready = sanmen_jubu_from_positions(
+        taiyi_palace=1, tianmu="卯", direct_gate="休"
+    )
+    assert three_not_ready["taiyi_gate"] == "休"
     assert three_not_ready["three_doors_ready"] is False
     assert three_not_ready["not_ready_count"] == 3
 
-    strict_unknown = sanmen_jubu_from_positions(taiyi_palace=1, tianmu="卯")
-    assert strict_unknown["tianmu_gate"] == "伤"
+    strict_unknown = sanmen_jubu_from_positions(
+        taiyi_palace=1, tianmu="卯", direct_gate="伤"
+    )
+    assert strict_unknown["taiyi_gate"] == "伤"
+    assert strict_unknown["tianmu_gate"] == "死"
     assert strict_unknown["status"] == "not_defined_by_source_passage"
+
+    via_cycle = sanmen_jubu_from_period_count(
+        period_count=91, taiyi_palace=1, tianmu="卯"
+    )
+    assert via_cycle["direct_gate"] == "伤"
+    assert via_cycle["tianmu_gate"] == "死"
 
 
 def test_j4m02_five_generals_keeps_three_blockers_separate_from_doors():
