@@ -47,7 +47,7 @@ def test_number_comparison(home, away, verdict):
     assert data["pattern_corrections"] and not data["corrections_applied"]
 
 
-@pytest.mark.parametrize("palace,n,state,danger", [(3,17,"重阳","厄火"),(7,28,"重阴","厄水")])
+@pytest.mark.parametrize("palace,n,state,danger", [(3,17,"重阳","火厄"),(7,28,"重阴","水厄")])
 def test_yinyang(palace, n, state, danger):
     assert tui_danger(palace,n,n)["events"] == [{"side":side,"state":state,"danger":danger} for side in ("主","客")]
 
@@ -71,8 +71,8 @@ def test_structural_all_does_not_equal_classic_full():
     assert "人" not in sancai(1)["missing"]
 
 
-def test_mixed_gudan_preserves_basic_effects_without_combined_verdict():
+def test_unlisted_mixed_gudan_does_not_invent_combined_effects():
     data = gudan_state(12)
     assert data["state"] is None and data["danger"] is None
-    assert data["basic_effects"] == [{"classification":"孤阳","disadvantaged":"主"},
-                                     {"classification":"单阴","disadvantaged":"客"}]
+    assert data["basic_effects"] == []
+    assert data["pending"] == ["该数不在 canonical 孤单/重阴阳明确数集"]
