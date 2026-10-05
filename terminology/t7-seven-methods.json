@@ -154,11 +154,15 @@
         "away_vassal"
       ],
       "qi_model": "B",
-      "definition": "以当日太乙与四将判将帅乘气；旺相宜部署，休囚死不宜，并把直接相克与待校刑关系分开。",
+      "definition": "以当日太乙与四将判将帅乘气；旺相宜部署，休囚死不宜。敌大将五行克我大将/参将可直接计算；“刑”只接受独立来源校勘后的显式宫位对。",
       "boundary_notes": [
-        "严重刑克证据优先于普通乘气。",
-        "刑关系没有标准表时保持pending。"
-      ]
+        "四库、统宗、金钥匙均见“彼军大将刑克我军大小将之宫”一类句，但本条没有给出可执行将宫刑映射。",
+        "五行克按九宫五行直接计算；显式刑关系同时适用于大将和参将。",
+        "不得把地支三刑、九宫变化神名相刑或其他来源刑表自动投影成本条将宫刑。",
+        "未提供独立校勘的xing_pairs时，刑保持未判，不等于无刑。"
+      ],
+      "collation_status": "three_source_phrase_verified_xing_mapping_unresolved",
+      "collation_record": "sources/t7-06-white-dragon-xing-collation.md"
     },
     {
       "key": "return_army_silent",
