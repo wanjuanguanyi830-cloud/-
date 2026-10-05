@@ -133,3 +133,28 @@
 - 与长积年做360同余交叉验证。
 
 G1～G7 canonical 默认消费卷一长积年。
+
+
+## 六、岁计阴阳profile纠正
+
+《太乙统宗宝鉴》卷一在太乙、文昌、计神三条共同核心中反复说明：
+
+> 岁月日时四计皆同，唯时计夏至后用阴局。
+
+因此source-specific岁计固定使用阳局。
+
+新增正式入口：
+
+- `year_count_from_accumulated_year()`
+- `year_count_from_historical_year()`
+
+两者**不接受dun参数**。
+
+旧 `l0_to_g7_from_historical_year(..., dun=...)` 保留为：
+- 阴阳72局研究；
+- 回归；
+- 旧调用兼容。
+
+它不再标为正式岁计入口。
+
+这避免把“时计夏至后阴局”错误外推到岁计。
