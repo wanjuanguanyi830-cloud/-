@@ -39,7 +39,8 @@
         "九星",
         "分野",
         "当前见证吉凶",
-        "十年一星直符周期"
+        "十年一星直符周期",
+        "九星别名/斗星对应"
       ],
       "variant_policy": "三宫天冲：紫庭当前在线见证为凶，统宗参校见吉；两者并列，不静默统一。",
       "source_specific_profiles": {
@@ -92,6 +93,75 @@
           },
           "full_year_stem_distribution_supported": false,
           "evidence_note": "正文明确九星十年一易；开元十二年积算例按90年循环余31，落天辅第1年。完整十干加宫暂不从OCR残文强推。"
+        }
+      },
+      "primary_name_correspondence": {
+        "天蓬": {
+          "primary_names": [
+            "招摇"
+          ],
+          "witness_variants": [
+            "天枪",
+            "天仓"
+          ]
+        },
+        "天芮": {
+          "primary_names": [
+            "玄戈"
+          ],
+          "witness_variants": []
+        },
+        "天冲": {
+          "primary_names": [
+            "摇光"
+          ],
+          "witness_variants": [
+            "瑶光"
+          ]
+        },
+        "天辅": {
+          "primary_names": [
+            "闿阳"
+          ],
+          "witness_variants": [
+            "闓阳",
+            "开阳",
+            "阖阳"
+          ]
+        },
+        "天禽": {
+          "primary_names": [
+            "衡"
+          ],
+          "witness_variants": [
+            "玉衡"
+          ]
+        },
+        "天心": {
+          "primary_names": [
+            "权"
+          ],
+          "witness_variants": []
+        },
+        "天柱": {
+          "primary_names": [
+            "玑"
+          ],
+          "witness_variants": []
+        },
+        "天任": {
+          "primary_names": [
+            "璇"
+          ],
+          "witness_variants": [
+            "旋"
+          ]
+        },
+        "天英": {
+          "primary_names": [
+            "枢"
+          ],
+          "witness_variants": []
         }
       }
     },
