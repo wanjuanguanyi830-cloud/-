@@ -29,7 +29,7 @@ from kintaiyi import capabilities
 menu = capabilities()
 ```
 
-返回值按 domain 分组，可直接用于构建软件功能菜单。当前包括 modern、seven_methods、eight_divinations、cycles、doors、nine_stars 等。
+返回值按 domain 分组，可直接用于构建软件功能菜单。当前包括 modern、seven_methods、eight_divinations、cycles、doors、nine_stars、spirits 等。
 
 ## 3. 查术语
 
@@ -68,6 +68,8 @@ sancai = calculate_rule("D8-01", 15)
 wufu = calculate_rule("C67-WUFU-TONGZONG", 1)
 taiyi_star = calculate_rule("C124-TONGZONG-TAIYI-NINE-STARS", 1121)
 ziting_cycle = calculate_rule("C125-ZITING-TAIYI-NINE-STARS-CYCLE", 1937281)
+three_banners = calculate_rule("C126-TONGZONG-THREE-BANNERS", 3)
+nine_nobles = calculate_rule("C127-TONGZONG-NINE-PALACE-NOBLES", 9)
 ```
 
 当 exact rule_id 唯一对应某个 source profile，facade 可自动提供该 runtime 所需的 profile key。
@@ -195,3 +197,20 @@ recovery = legacy_recovery_status()
 ```
 
 该接口专门显示旧 `terminology.json`、研易楼明钞本原页和旧字段恢复是否具备条件。它不会从当前 canonical 反推旧 term id、旧定义、旧 notes、manuscript_form 或 source_page。
+
+
+## 15. 三旗 / 九宫贵神来源边界
+
+当前可执行规则已经明确归《太乙统宗宝鉴》卷十：
+
+- `C126-TONGZONG-THREE-BANNERS`
+- `C127-TONGZONG-NINE-PALACE-NOBLES`
+
+它们仍在 `terminology/zitingjing.json` 保留旧术语恢复指针，是为了将来恢复旧 `terminology.json` 与研易楼明钞本字段；这**不表示**它们已经成为紫庭 canonical。
+
+`legacy_recovery_status()` 的每个 priority 项会区分：
+
+- `current_rule_source_gap=true`：当前规则来源本身仍有缺口，例如紫庭文昌九星 primary；
+- `current_rule_source_gap=false`：当前软件规则来源已解决，只剩旧 store / manuscript witness 恢复，例如三旗行宫、九宫贵神。
+
+新软件计算三旗/九宫贵神时应直接使用 C126/C127，不应从旧 flat snapshot 或紫庭恢复状态推公式。
