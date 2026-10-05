@@ -14,7 +14,9 @@
         "holding": "浙江大学图书馆",
         "carrier": "四库全书本《太乙金镜式经》卷一~卷四",
         "pages": 144,
-        "status": "scan_identified_page_locators_pending"
+        "status": "scan_page_locators_verified_for_j4m_01_12",
+        "locator_scope": "Source Library scan sequence p.128-p.143; page numbers are digital scan pages, not original folio numbers",
+        "visual_check_date": "2026-10-05"
       },
       {
         "id": "NCL-06604",
@@ -37,7 +39,8 @@
         "status": "unresolved_edition_or_transcription_numbering_variant",
         "canonical_override": false
       }
-    ]
+    ],
+    "scan_locator_version": "c75-j4m-cadal-page-locators-v1"
   },
   "separation_policy": [
     "本表只记录四库本《太乙金镜式经》卷四十二法，不自动并入《太乙统宗宝鉴》卷五或旧代码同名函数。",
@@ -67,7 +70,17 @@
         "kintaiyi.jinjing_v4_military.sanmen_jubu",
         "kintaiyi.jinjing_v4_military.zhimen_from_cycle_count"
       ],
-      "implementation_note": "实现太乙/天目分临开生二门为两门不具、临休门为三门不具；其余正文未展开组合保持未定义。另实现240一周、30一移的直门轮转与州郡岁计门吉凶。"
+      "implementation_note": "实现太乙/天目分临开生二门为两门不具、临休门为三门不具；其余正文未展开组合保持未定义。另实现240一周、30一移的直门轮转与州郡岁计门吉凶。",
+      "scan_locator": {
+        "witness": "CADAL06056494",
+        "carrier": "四库全书本《太乙金镜式经》卷一~卷四",
+        "digital_scan_pages": [
+          128,
+          129
+        ],
+        "status": "visual_scan_verified",
+        "note": "标题及正文起于p.128；直使例续至p.129。"
+      }
     },
     {
       "id": "J4M-02",
@@ -89,7 +102,17 @@
       },
       "implementation_status": "implemented_source_specific",
       "runtime": "kintaiyi.jinjing_v4_military.wujiang_fabu",
-      "implementation_note": "分栏保存始击掩击、文昌囚迫、主客大小将相关三组阻断条件，并把三门具/不具作为独立上游事实；不解析旧格局字符串。"
+      "implementation_note": "分栏保存始击掩击、文昌囚迫、主客大小将相关三组阻断条件，并把三门具/不具作为独立上游事实；不解析旧格局字符串。",
+      "scan_locator": {
+        "witness": "CADAL06056494",
+        "carrier": "四库全书本《太乙金镜式经》卷一~卷四",
+        "digital_scan_pages": [
+          129,
+          130
+        ],
+        "status": "visual_scan_verified",
+        "note": "标题起于p.129；末句续入p.130后接J4M-03。"
+      }
     },
     {
       "id": "J4M-03",
@@ -143,6 +166,16 @@
         "jingyou_taiyi_fuyingjing": "对应条文作“皆用日计二目纳音以决之”（现存转录有OCR异字）",
         "taiyi_taojinge": "“二目纳音何以定……以二目纳音决之，取五行生克为用”，并列十六神五行；同音二阵平，相生例作和解",
         "jinjing_volume2": "上目始击属客，下目文昌属主；解决本条天目/地目配对义"
+      },
+      "scan_locator": {
+        "witness": "CADAL06056494",
+        "carrier": "四库全书本《太乙金镜式经》卷一~卷四",
+        "digital_scan_pages": [
+          130,
+          131
+        ],
+        "status": "visual_scan_verified",
+        "note": "标题与首例p.130；第二例收于p.131。"
       }
     },
     {
@@ -173,6 +206,16 @@
         "wujing_zongyao_siku_houji_18": "若客主俱得善计，三门具，五将发，阴阳和，利以称兵，所向必克，先起则胜，后起则败",
         "taiyi_mishu": "若主客俱得善计，三门具，五将发，阴阳和，利以称兵，所向必克，先起则胜，后起则败",
         "policy": "仅用古籍同段参校解释《金镜》已有“先胜后负”的句义。其他传本另有“三项皆恶则先起者败、后起者胜”等扩展，不自动回写《金镜》canonical。"
+      },
+      "scan_locator": {
+        "witness": "CADAL06056494",
+        "carrier": "四库全书本《太乙金镜式经》卷一~卷四",
+        "digital_scan_pages": [
+          131,
+          132
+        ],
+        "status": "visual_scan_verified",
+        "note": "标题与主体p.131；互视其算句收于p.132。"
       }
     },
     {
@@ -203,6 +246,15 @@
         "canonical_use": "《福应经》平行条先确认“其门”和“其二”为分立语义，《统宗》再明释“用其二=算得二之数”；J4M-05 仍只采用《金镜》自身明列的12/22/32、三门具、五将发、开休生。",
         "do_not_import": "《统宗》卷五的天子万乘/诸侯千乘兵额、二为大威离宫等扩展说明不自动进入 J4M-05 runtime。",
         "jingyou_fuying_volume4": "“行师必出其门，略地并用其二”，并明列算12/22/32、门具将发，末句直接释“出其门者，开、休、生三吉之门也”。"
+      },
+      "scan_locator": {
+        "witness": "CADAL06056494",
+        "carrier": "四库全书本《太乙金镜式经》卷一~卷四",
+        "digital_scan_pages": [
+          132
+        ],
+        "status": "visual_scan_verified",
+        "note": "标题及完整主体均见p.132。"
       }
     },
     {
@@ -253,6 +305,17 @@
           "structure": "主要给算数->出兵方向，不具《金镜》本条完整的战利方向、背地、阵形、旗色层。",
           "status": "separate_ancient_source_variant"
         }
+      },
+      "scan_locator": {
+        "witness": "CADAL06056494",
+        "carrier": "四库全书本《太乙金镜式经》卷一~卷四",
+        "digital_scan_pages": [
+          132,
+          133,
+          134
+        ],
+        "status": "visual_scan_verified",
+        "note": "标题见p.132；1/2/4/5/6/9表见p.133并收于p.134。"
       }
     },
     {
@@ -288,6 +351,16 @@
           "locator_status": "transcription_variant_pending_scan_check",
           "canonical_override": false
         }
+      },
+      "scan_locator": {
+        "witness": "CADAL06056494",
+        "carrier": "四库全书本《太乙金镜式经》卷一~卷四",
+        "digital_scan_pages": [
+          134,
+          135
+        ],
+        "status": "visual_scan_verified",
+        "note": "标题起于p.134；地形五阵及顺逆句收于p.135。"
       }
     },
     {
@@ -310,14 +383,14 @@
       },
       "implementation_status": "implemented_source_specific",
       "runtime": "kintaiyi.jinjing_v4_military.suidi_zhibian",
-      "implementation_note": "实现《金镜》四库本本条实际写出的五类地形与优势兵种/兵器映射，并保留其三不当一、十不当一、百不当一等原文比例文字；已确认该段“晁错曰”与《汉书·爰盎晁错传》存在多处异文及脱段，不以《汉书》静默校正本 profile。训练、器械、将知兵、君择将只作事实/警告层，不转成现代战力分数。",
+      "implementation_note": "实现《金镜》四库扫描本本条实际写出的五类地形与优势兵种/兵器映射，并保留其三不当一、十不当一、百不当一等原文比例文字。C75 直接核 CADAL06056494 p.136，确认旧转录“矛锤”应为“矛鋋”；《汉书》与《福应经》同为“矛鋋”，真正差异在所对兵种/比例、训练比例及《汉书》另有曲道剑楯段。训练、器械、将知兵、君择将只作事实/警告层，不转成现代战力分数。",
       "collation_status": "jinjing_quote_diverges_from_jingyou_and_hanshu",
       "quotation_collation": {
         "jinjing_siku_volume4": {
           "status": "canonical_for_J4M-08_source_profile",
           "examples": [
             "步兵地：车骑三不当一",
-            "萑苇竹萧等地：矛锤之地，弓弩三不当一",
+            "萑苇竹萧等地：矛鋋之地，弓弩三不当一",
             "士卒不练：百不当一",
             "将不习兵：十不当一"
           ]
@@ -332,7 +405,7 @@
             "将不省兵：五不当一"
           ]
         },
-        "policy": "J4M-08 以《金镜》四库本实际引文为本 profile 真源；《汉书》只证明引文存在明显异文/传抄差异，不得静默改写 runtime。若将来建立“晁错原典校正版”，须另立 source_variant。",
+        "policy": "J4M-08 以 CADAL06056494 四库扫描实际字形为本 profile 真源；C75 已纠正旧电子转录把“矛鋋”误作“矛锤”的错误。《汉书》《福应经》只作异文见证，差异不得静默改写 runtime；如需原典校正版须另立 source_variant。",
         "jingyou_fuying_volume4": {
           "status": "ancient_taiyi_parallel_close_to_hanshu_not_canonical_override",
           "examples": [
@@ -344,6 +417,25 @@
           ],
           "note": "与《汉书》体系明显更接近，进一步证明《金镜》四库本文字属于独立传本状态；仍不静默改写 J4M-08。"
         }
+      },
+      "scan_locator": {
+        "witness": "CADAL06056494",
+        "carrier": "四库全书本《太乙金镜式经》卷一~卷四",
+        "digital_scan_pages": [
+          135,
+          136,
+          137
+        ],
+        "status": "visual_scan_verified",
+        "note": "标题起于p.135；晁错引文跨p.135-p.137。"
+      },
+      "textual_correction": {
+        "id": "J4M08-C75-01",
+        "previous_reading": "矛锤",
+        "corrected_reading": "矛鋋",
+        "evidence": "CADAL06056494 digital scan p.136 direct visual check",
+        "status": "corrected_scan_verified",
+        "effect": "runtime兵种名与source_ratio_text须由矛锤改为矛鋋；不改变《金镜》本句弓弩三不当一。"
       }
     },
     {
@@ -412,7 +504,17 @@
       },
       "implementation_status": "implemented_source_specific",
       "runtime": "kintaiyi.jinjing_v4_military.taiyi_tianwai_dinei",
-      "implementation_note": "仅实现金镜卷四profile；《福应经》与《统宗》均把1宫列入地内助主，但《金镜》四库本卷四正文只写8/3/4，因此1宫继续作为独立 source variant，不反填 canonical。"
+      "implementation_note": "仅实现金镜卷四profile；《福应经》与《统宗》均把1宫列入地内助主，但《金镜》四库本卷四正文只写8/3/4，因此1宫继续作为独立 source variant，不反填 canonical。",
+      "scan_locator": {
+        "witness": "CADAL06056494",
+        "carrier": "四库全书本《太乙金镜式经》卷一~卷四",
+        "digital_scan_pages": [
+          137,
+          138
+        ],
+        "status": "visual_scan_verified",
+        "note": "标题及宫组起于p.137；门具将发决胜句收于p.138。"
+      }
     },
     {
       "id": "J4M-10",
@@ -441,6 +543,16 @@
         "jinjing_siku_volume4": "古者伏兵必败大煞之地，望敌鼓噪而发。",
         "jingyou_fuying_volume4": "古云：奇兵必从大杀之地，其地居高，去敌三五里，则鼓噪而发伏也。天目所临之下，即大杀也。",
         "policy": "“败/从”“伏兵/奇兵”存在实质异文。J4M-10 只执行两本共同且明确的事实：天目所临之下为大煞/大杀定位、奇兵约三成、11/21/31伏藏、掩迫时发、贼急伏要害；不把《金镜》“败”单字解释成额外动作或胜负。《福应经》“居高、去敌三五里”只作 variant，不静默并入。"
+      },
+      "scan_locator": {
+        "witness": "CADAL06056494",
+        "carrier": "四库全书本《太乙金镜式经》卷一~卷四",
+        "digital_scan_pages": [
+          138,
+          139
+        ],
+        "status": "visual_scan_verified",
+        "note": "标题及奇兵比例p.138；伏兵12/22/32、伏藏11/21/31等收于p.139。"
       }
     },
     {
@@ -488,6 +600,16 @@
         "no_synonym_expansion": "动作词只接受《金镜》正文明确写法；“迫击大将宫”不得自动把“冲击大将宫”等近义输入视为同一条。",
         "noise_event": "单独“众来噪阵”仍只记观测，不生成独立胜负；《金镜》本句没有清楚给出其单独结果。",
         "jingyou_conflict": "《福应经》对大将宫及主人刑/客刑有更展开且部分不同断语，只作独立 JF4M variant，不回写 J4M。"
+      },
+      "scan_locator": {
+        "witness": "CADAL06056494",
+        "carrier": "四库全书本《太乙金镜式经》卷一~卷四",
+        "digital_scan_pages": [
+          139,
+          140
+        ],
+        "status": "visual_scan_verified",
+        "note": "标题起于p.139；助战各观测断语续至p.140，J4M-12标题位于p.140左端后序位置。"
       }
     },
     {
@@ -518,6 +640,18 @@
         "west_white": "四库正文仅“有白云气在敌阵上，庚辛日弥佳”，基础胜负未明；禁止补“大胜”。",
         "north_red": "四库正文明确“红云气在敌阵上，客胜”；subject=客，不得改写成云气所在的我/敌阵。",
         "unknown_colors": "正文未列颜色保持未定义。"
+      },
+      "scan_locator": {
+        "witness": "CADAL06056494",
+        "carrier": "四库全书本《太乙金镜式经》卷一~卷四",
+        "digital_scan_pages": [
+          140,
+          141,
+          142,
+          143
+        ],
+        "status": "visual_scan_verified",
+        "note": "标题见p.140末部；实质云气方色表及聚散/将位规则见p.141-p.143。"
       }
     }
   ]
