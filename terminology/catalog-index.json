@@ -176,9 +176,9 @@
       "catalog_id": "taiyi-jingyou-fuying-v4-military-terminology-v1",
       "scope": "source_sensitive_jingyou_fuying_volume4_military",
       "contains": [
-        "JF4M-01..11 福应经卷四军事source-specific rules，全部有独立runtime",
-        "与J4M逐条parallel crosswalk，禁止runtime替代",
-        "JF4M-02/07/10仍保留疑字或扫描待核项"
+        "JF4M-01..11 福应经卷四军事，全部source-specific runtime",
+        "JF4M-02/07/10保留文本pending边界",
+        "与J4M逐条parallel crosswalk，禁止runtime替代"
       ]
     },
     {
