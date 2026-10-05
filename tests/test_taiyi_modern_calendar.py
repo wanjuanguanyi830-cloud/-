@@ -161,3 +161,16 @@ def test_production_context_includes_resolved_day_count():
     assert data["day_count"]["result"]["count_type"] == "日计"
     assert data["day_count"]["result"]["dun"] == "阳"
     assert data["day_count"]["day_boundary_local"] == "00:00:00"
+
+
+
+def test_production_context_includes_resolved_time_count():
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+
+    data = production_calendar_context(
+        datetime(2026, 3, 24, 12, tzinfo=ZoneInfo("Asia/Shanghai"))
+    )
+    assert data["time_count"]["result"]["count_type"] == "时计"
+    assert data["time_count"]["entry_count"] == data["time_count"]["duty_time_real"]
+    assert data["time_count"]["direct_door"] is not None
