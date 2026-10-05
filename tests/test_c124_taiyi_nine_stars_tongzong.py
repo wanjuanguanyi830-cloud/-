@@ -88,8 +88,11 @@ def test_c124_is_registered_below_ziting_static_primary_without_merge():
 
 def test_c124_rules_registry_and_nine_star_crosswalk_are_wired():
     rules = _load(RULES)
-    by_id = {r["rule_id"]: r for r in rules["categories"]["public_rules"]}
-    assert by_id[RULE_ID]["runtime"] == (
+    rule = next(
+        r for r in rules["categories"]["public_rules"]
+        if r.get("rule_id") == RULE_ID
+    )
+    assert rule["runtime"] == (
         "kintaiyi.taiyi_nine_stars_tongzong.taiyi_nine_stars_tongzong"
     )
 
