@@ -246,7 +246,9 @@
           6
         ],
         "excluded_palace": 5,
-        "direction": "forward"
+        "direction": "forward",
+        "start_palace": 7,
+        "path_scope": "jinjing_and_tongzong"
       },
       "source_profiles": {
         "jinjing": {
@@ -262,10 +264,15 @@
           "epoch": "上元甲子",
           "surplus": 34,
           "outer_cycle": 2880
-        }
-      },
-      "source_variants": {
+        },
         "taojin": {
+          "rule_id": "C107-DAYOU-TAOJIN",
+          "source_profile": "taojin_dayou_position",
+          "epoch": "唐高宗永徽五年甲寅",
+          "surplus": 0,
+          "outer_cycle": 288,
+          "small_cycle": 288,
+          "years_per_palace": 36,
           "path": [
             7,
             6,
@@ -276,12 +283,19 @@
             9,
             8
           ],
-          "epoch_status": "pending"
+          "direction": "reverse",
+          "historical_check": {
+            "accumulated_count": 553,
+            "palace": 8,
+            "year_in_palace": 13
+          }
         }
       },
       "boundary_notes": [
-        "旧jinjing_tongzong把金镜行宫与统宗+34混合，现只保留兼容隔离。",
-        "大游重卦/策数/动爻属于C41等独立层，不回写位置周期。"
+        "金镜/统宗共享顺行7→8→9→1→2→3→4→6；淘金歌为独立逆行7→6→4→3→2→1→9→8。",
+        "淘金歌直接以唐高宗永徽五年甲寅为七宫第1年，不换算成金镜元法或统宗宫盈差。",
+        "淘金歌553年古例复算为八宫第13年；后出《古今图书集成》明确抄出完整逆序。",
+        "旧jinjing_tongzong混合profile继续隔离；大游重卦/策数/动爻属于C41等独立层，不回写位置周期。"
       ]
     },
     {
