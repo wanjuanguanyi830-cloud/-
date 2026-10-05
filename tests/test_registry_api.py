@@ -138,7 +138,7 @@ def test_all_tongzong_military_source_rules_resolve_through_public_rule_api():
         *(f"V17-{n:02d}" for n in range(1, 12)),
     ]
     for rule_id in source_rule_ids:
-        candidates = __import__("kintaiyi.api", fromlist=["rule_runtime_candidates"]).rule_runtime_candidates(rule_id)
+        candidates = rule_runtime_candidates(rule_id)
         assert len(candidates) == 1
         assert callable(resolve_runtime(candidates[0]["runtime"]))
 
