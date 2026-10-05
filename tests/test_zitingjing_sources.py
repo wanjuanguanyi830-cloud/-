@@ -25,8 +25,12 @@ def test_six_legacy_source_slots_record_current_evidence_role():
         "three_banners",
         "nine_palace_nobles",
     }
-    for meta in RULES.values():
-        assert meta["primary_source"] == "zitingjing"
+    for key, meta in RULES.items():
+        if key == "wenchang_nine_stars":
+            assert meta["primary_source"] is None
+            assert meta["source_role"] == "legacy_recovery_pointer"
+        else:
+            assert meta["primary_source"] == "zitingjing"
 
     assert RULES["taiyi_nine_stars"]["primary_evidence_level"] == "direct_text_verified"
     assert RULES["wenchang_changes"]["primary_evidence_level"] == "direct_text_verified"
@@ -51,7 +55,15 @@ def test_volume6_items_keep_source_boundaries_without_silent_merge():
             key,
             collation_results={"tongzong_volume6": {"legacy": "参校"}},
         )
-        assert data["primary_source"] == "zitingjing"
+        if key == "wenchang_nine_stars":
+            assert data["primary_source"] is None
+            assert data["primary_source_title"] is None
+            assert data["source_role"] == "legacy_recovery_pointer"
+            assert data["known_source_profile"] == (
+                "tongzong_volume6_ngj_wenchang_nine_stars"
+            )
+        else:
+            assert data["primary_source"] == "zitingjing"
         assert data["primary_ready"] is False
         assert data["canonical_selected"] is None
         assert data["status"] == status
@@ -109,7 +121,13 @@ def test_batch_source_variants_keep_primary_pending_by_default():
     data = build_zitingjing_source_variants()
     assert set(data) == {"zitingjing"}
     rules = data["zitingjing"]["rules"]
-    assert all(item["primary_source"] == "zitingjing" for item in rules.values())
+    assert rules["wenchang_nine_stars"]["primary_source"] is None
+    assert rules["wenchang_nine_stars"]["source_role"] == "legacy_recovery_pointer"
+    assert all(
+        item["primary_source"] == "zitingjing"
+        for key, item in rules.items()
+        if key != "wenchang_nine_stars"
+    )
     assert all(item["primary_ready"] is False for item in rules.values())
     assert all(item["canonical_selected"] is None for item in rules.values())
 
