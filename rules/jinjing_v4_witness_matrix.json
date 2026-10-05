@@ -1,0 +1,394 @@
+{
+  "schema_version": "1.0",
+  "audit_id": "C108-JINJING-V4-WITNESS-MATRIX",
+  "date": "2026-10-05",
+  "scope": "太乙金镜式经卷四军事十二法",
+  "canonical_profile": "jinjing_siku_volume4",
+  "witnesses": {
+    "siku": {
+      "id": "CADAL06056494",
+      "role": "canonical_profile_scan_witness",
+      "pages": "128-143"
+    },
+    "ncl": {
+      "id": "NCL-06604",
+      "role": "independent_ming_manuscript_witness",
+      "pages": "55-64",
+      "canonical_override": false
+    },
+    "jingyou": {
+      "id": "jingyou_fuying_volume4",
+      "role": "independent_ancient_parallel_source",
+      "canonical_override": false
+    }
+  },
+  "policy": [
+    "canonical始终以jinjing_siku_volume4为准，除非另建source profile。",
+    "NCL与景祐可证明古代异文存在，但不得静默补四库缺项。",
+    "差异按heading/numeric/table/palace/event/verdict/glyph分类，不把所有差异都降格为alias。",
+    "未直接图像核实的NCL细项保持pending，不从四库或景祐复制。"
+  ],
+  "entries": [
+    {
+      "rule_id": "J4M-01",
+      "siku": "正文推三门具不具；C83只锁显式两类不具情形。",
+      "ncl": {
+        "locator": [
+          55,
+          56
+        ],
+        "status": "locator_verified_no_substantive_variant_recorded"
+      },
+      "jingyou": {
+        "parallel_rule": "JF4M-01",
+        "status": "parallel_source"
+      },
+      "difference_class": []
+    },
+    {
+      "rule_id": "J4M-02",
+      "siku": "推五将发不发；三门与五将阻碍层分开。",
+      "ncl": {
+        "locator": [
+          56
+        ],
+        "status": "locator_verified_no_substantive_variant_recorded"
+      },
+      "jingyou": {
+        "parallel_rule": "JF4M-02",
+        "status": "parallel_source"
+      },
+      "difference_class": []
+    },
+    {
+      "rule_id": "J4M-03",
+      "siku": "四库首例见太蔟；项目规范词统一太簇。",
+      "ncl": {
+        "locator": [
+          56,
+          57
+        ],
+        "status": "locator_verified_source_glyph_detail_nonblocking"
+      },
+      "jingyou": {
+        "parallel_rule": "JF4M-03",
+        "notable": "日计二目纳音"
+      },
+      "difference_class": [
+        "glyph",
+        "explanatory_wording"
+      ]
+    },
+    {
+      "rule_id": "J4M-04",
+      "siku": "正文推主客；先起胜只在三门具、五将发、阴阳和三项全利时落实。",
+      "ncl": {
+        "locator": [
+          57,
+          58
+        ],
+        "status": "locator_verified_no_substantive_variant_recorded"
+      },
+      "jingyou": {
+        "parallel_rule": "JF4M-04",
+        "status": "parallel_source"
+      },
+      "difference_class": []
+    },
+    {
+      "rule_id": "J4M-05",
+      "siku": {
+        "explicit_calculation_values": [
+          12,
+          22,
+          32
+        ]
+      },
+      "ncl": {
+        "locator": [
+          58
+        ],
+        "explicit_calculation_values": [
+          12,
+          22
+        ],
+        "omitted_vs_siku": [
+          32
+        ],
+        "status": "direct_visual_verified"
+      },
+      "jingyou": {
+        "parallel_rule": "JF4M-05"
+      },
+      "difference_class": [
+        "numeric"
+      ]
+    },
+    {
+      "rule_id": "J4M-06",
+      "siku": {
+        "values": [
+          1,
+          2,
+          4,
+          5,
+          6,
+          9
+        ],
+        "structure": "出军/战利/背地/阵形/旗色完整层"
+      },
+      "ncl": {
+        "locator": [
+          59,
+          60
+        ],
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9
+        ],
+        "directions": {
+          "1": "西北",
+          "2": "正南",
+          "3": "东北",
+          "4": "正东",
+          "6": "正西",
+          "7": "西南",
+          "8": "正北",
+          "9": "东南"
+        },
+        "pending": [
+          "战利方向逐项",
+          "背地逐项",
+          "阵形逐项",
+          "旗色逐项"
+        ],
+        "status": "number_direction_skeleton_direct_visual_verified_details_pending"
+      },
+      "jingyou": {
+        "parallel_rule": "JF4M-06",
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9
+        ],
+        "directions": {
+          "1": "西北",
+          "2": "正南",
+          "3": "东北",
+          "4": "正东",
+          "6": "正西",
+          "7": "西南",
+          "8": "正北",
+          "9": "东南"
+        },
+        "structure": "主要为算数到出兵方向"
+      },
+      "difference_class": [
+        "numeric",
+        "table_structure"
+      ],
+      "hard_boundary": "三见证不得互补缺数；NCL未核细项不得从其他见证复制。"
+    },
+    {
+      "rule_id": "J4M-07",
+      "siku": {
+        "body_title": "推制阵随地法"
+      },
+      "ncl": {
+        "locator": [
+          60
+        ],
+        "body_title": "推制阵随地法",
+        "status": "agrees_with_siku_body"
+      },
+      "jingyou": {
+        "parallel_rule": "JF4M-07",
+        "source_title": "释置阵随地第五十"
+      },
+      "difference_class": [
+        "heading",
+        "terrain_wording"
+      ]
+    },
+    {
+      "rule_id": "J4M-08",
+      "siku": {
+        "body_title": "推随地制变",
+        "weapon": "矛鋋",
+        "ratio": "弓弩三不当一"
+      },
+      "ncl": {
+        "locator": [
+          60,
+          61
+        ],
+        "body_title": "推随地制变",
+        "weapon": "矛鋋",
+        "ratio": "弓弩三不当一",
+        "status": "direct_visual_verified"
+      },
+      "jingyou": {
+        "parallel_rule": "JF4M-08"
+      },
+      "difference_class": [
+        "quotation_variant_across_external_sources"
+      ]
+    },
+    {
+      "rule_id": "J4M-09",
+      "siku": {
+        "inner": [
+          8,
+          3,
+          4
+        ],
+        "outer": [
+          9,
+          2,
+          7,
+          6
+        ]
+      },
+      "ncl": {
+        "locator": [
+          61,
+          62
+        ],
+        "inner": [
+          1,
+          8,
+          3,
+          4
+        ],
+        "outer": [
+          9,
+          2,
+          7,
+          6
+        ],
+        "status": "direct_visual_verified"
+      },
+      "jingyou": {
+        "parallel_rule": "JF4M-09",
+        "inner": [
+          1,
+          8,
+          3,
+          4
+        ],
+        "outer": [
+          9,
+          2,
+          7,
+          6
+        ]
+      },
+      "difference_class": [
+        "palace_group"
+      ],
+      "hard_boundary": "NCL/景祐的1宫不得补入四库canonical。"
+    },
+    {
+      "rule_id": "J4M-10",
+      "siku": {
+        "body_title": "推奇伏法",
+        "toc_title": "推奇兵伏兵法"
+      },
+      "ncl": {
+        "locator": [
+          62
+        ],
+        "body_title": "推奇兵伏兵法",
+        "status": "direct_visual_verified"
+      },
+      "jingyou": {
+        "parallel_rule": "JF4M-11",
+        "source_title": "释奇伏第五十四"
+      },
+      "difference_class": [
+        "heading",
+        "order"
+      ]
+    },
+    {
+      "rule_id": "J4M-11",
+      "siku": {
+        "body_title": "推太乙风云飞鸟助战法",
+        "notable": "主人形上来客败"
+      },
+      "ncl": {
+        "locator": [
+          62,
+          63
+        ],
+        "body_title": "推太乙风云飞鸟助阵法",
+        "opening_phrase": "经曰助战之法",
+        "notable": [
+          "主人刑上来主人败",
+          "客刑上来客败"
+        ],
+        "status": "direct_visual_verified"
+      },
+      "jingyou": {
+        "parallel_rule": "JF4M-10",
+        "notable": [
+          "主人刑上来主人败",
+          "客刑上来客败"
+        ]
+      },
+      "difference_class": [
+        "heading",
+        "event_verdict"
+      ],
+      "hard_boundary": "NCL/景祐双分支不得回写四库当前事件读法。"
+    },
+    {
+      "rule_id": "J4M-12",
+      "siku": {
+        "body_title": "推阵有风云气定胜负",
+        "west_white": {
+          "base_verdict": null,
+          "day_stems_good": [
+            "庚",
+            "辛"
+          ]
+        }
+      },
+      "ncl": {
+        "locator": [
+          63,
+          64
+        ],
+        "body_title": "推对阵有云气定胜负",
+        "west_white": {
+          "base_verdict": "大胜",
+          "day_stems_good": [
+            "庚",
+            "辛"
+          ]
+        },
+        "status": "direct_visual_verified"
+      },
+      "jingyou": {
+        "parallel_rule": null,
+        "status": "no_current_JF4M_parallel_rule"
+      },
+      "difference_class": [
+        "heading",
+        "verdict"
+      ],
+      "hard_boundary": "NCL明写大胜证明传本文字存在，但不得以此补四库base_verdict。"
+    }
+  ]
+}
