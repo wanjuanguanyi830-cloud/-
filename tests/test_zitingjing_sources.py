@@ -31,7 +31,7 @@ def test_six_p1_rules_keep_project_primary_target_but_record_evidence_level():
     assert RULES["taiyi_nine_stars"]["primary_evidence_level"] == "direct_text_verified"
     assert RULES["wenchang_changes"]["primary_evidence_level"] == "direct_text_verified"
     assert RULES["shiji_changes"]["primary_evidence_level"] == "direct_text_verified"
-    assert RULES["wenchang_nine_stars"]["primary_evidence_level"] == "legacy_scan_extraction_recovered_page_pending"
+    assert RULES["wenchang_nine_stars"]["primary_evidence_level"] == "prior_scan_confirmed_page_record_pending"
     assert RULES["three_banners"]["primary_evidence_level"] == "project_attribution_unverified"
     assert RULES["nine_palace_nobles"]["primary_evidence_level"] == "project_attribution_unverified"
 
@@ -39,7 +39,7 @@ def test_six_p1_rules_keep_project_primary_target_but_record_evidence_level():
 def test_volume6_items_keep_tongzong_as_collation_only():
     expected_status = {
         "taiyi_nine_stars": "primary_pending",
-        "wenchang_nine_stars": "primary_legacy_scan_recovered_page_pending",
+        "wenchang_nine_stars": "primary_prior_scan_confirmed_page_record_pending",
         "wenchang_changes": "primary_pending",
         "shiji_changes": "primary_pending",
     }
