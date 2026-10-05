@@ -153,7 +153,7 @@ POSITION_BOUNDARY = {
     "three_bases_position_runtime": "C66",
     "counterpart_position_runtimes": {
         "四神": "separate_existing_or_future_position_source",
-        "大游": "C38/C41 source layers; relation layer does not invoke them",
+        "大游": "C107 position layer; C41 is separate hexagram layer; relation layer invokes neither",
         "小游": "C103 position layer; C47 is separate hexagram layer; relation layer invokes neither",
     },
     "auto_position_lookup_used": False,
