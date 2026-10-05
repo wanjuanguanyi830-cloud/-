@@ -173,13 +173,15 @@ for key in (
 ):
     CATALOG[key] = _entry(
         "canonical", "tongzong_volume6_7_witness_variant_direct", "P1",
-        "use_c66_c74_three_bases_layers", migrate_whole=False,
+        "use_c66_c74_c90_three_bases_layers", migrate_whole=False,
         source_confidence="high", target_hint="source_variants.tongzong_state_cycles.three_bases",
         notes=(
             "C66 已按直接正文建立三基位置：共加邦盈差250；君基3600/360、30年一邦午起，"
             "臣基360/36、3年一邦午起，民基360/12、1年一邦戌起。"
             "C74 已实现君基/臣基/民基/五福四者之间6个显式同宫pair；"
-            "卷六/卷七仅作见证编次variant，不复制算法，且禁止由C66位置自动制造同宫。"
+            "C90 已实现三基与天乙/地乙/直符9个显式同宫pair，其中君基三条保留治理条件双支。"
+            "卷六/卷七仅作见证编次variant；仍禁止由C66/C64位置自动制造同宫。"
+            "三基与四神/大游/小游关系继续独立待迁。"
         ),
     )
 
