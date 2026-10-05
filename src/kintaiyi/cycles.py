@@ -62,20 +62,20 @@ TM_PROFILES = {
         "offset": 214,
         "core_cycle": 18,
         "outer_cycle": 180,
-        "source": "C104 tongzong source profile",
+        "source": "C106 tongzong source profile",
         "status": "delegated_canonical_source_profile",
         "canonical_equivalent": True,
-        "replacement": "C104-DAYOU-TIANMU-TONGZONG",
+        "replacement": "C106-DAYOU-TIANMU-TONGZONG",
     },
     "jinjing": {
         "offset": 0,
         "core_cycle": 18,
         "yuan": 72,
         "outer_cycle": 72,
-        "source": "C104 jinjing source profile",
+        "source": "C106 jinjing source profile",
         "status": "delegated_canonical_source_profile",
         "canonical_equivalent": True,
-        "replacement": "C104-DAYOU-TIANMU-JINJING",
+        "replacement": "C106-DAYOU-TIANMU-JINJING",
     },
 }
 
@@ -209,7 +209,7 @@ def bigyo(accumulated_year, *, profile="jinjing_tongzong", epoch_offset=None):
 
 
 def bigyo_tianmu(accumulated_year, *, profile="tongzong", epoch_offset=None):
-    """C104 adapter：旧0基输入 -> C104 1基 source-specific runtime。
+    """C106 adapter：旧0基输入 -> C106 1基 source-specific runtime。
 
     省略 epoch_offset，或显式给出该来源本身的 offset 时，委托 C104。
     只有非来源自定义 offset 才保留 legacy compatibility 试算。
@@ -260,7 +260,7 @@ def bigyo_tianmu(accumulated_year, *, profile="tongzong", epoch_offset=None):
         "promotion_allowed": False,
         "quarantined": False,
         "reason": (
-            "调用方显式offset与C104该来源参数不同；"
+            "调用方显式offset与C106该来源参数不同；"
             "仅作旧接口兼容试算，不覆盖source-specific runtime。"
         ),
     }
