@@ -7,7 +7,7 @@
 
 实现入口：
 - J4M-01 推三门具不具：sanmen_jubu / zhimen_from_cycle_count
-- J4M-02 推五将发不发：wujiang_fabu
+- J4M-02 推五将发不发：wujiang_fabu\n- CORE-WUJIANG-READY 跨层有效五将状态：effective_five_generals_readiness
 - J4M-03 推主客相关法：j4m03_eye_element_from_god / zhuke_xiangguan
 - J4M-04 推主客：zhuke_fa
 - J4M-05 推出师法：chushi_fa
@@ -341,16 +341,23 @@ def wujiang_fabu(*, shiji_yanji=None, wenchang_qiupo=None,
             "policy": "掩击、囚迫、大小将相关必须是显式布尔事实；不解析旧字符串格局。",
         }
 
+    known_blockers = []
+    if shiji_yanji is True:
+        known_blockers.append("始击有掩击")
+    if wenchang_qiupo is True:
+        known_blockers.append("文昌有囚迫")
+    if major_minor_generals_related is True:
+        known_blockers.append("主客大小将有相关")
+
     all_known = all(isinstance(v, bool) for v in facts.values())
-    if all_known:
+    if known_blockers:
+        # 任一原典阻断已经成立时即可判“五将不发”，
+        # 不要求其余阻断事实也先补齐。
+        blockers = known_blockers
+        five_generals_released = False
+    elif all_known:
         blockers = []
-        if shiji_yanji:
-            blockers.append("始击有掩击")
-        if wenchang_qiupo:
-            blockers.append("文昌有囚迫")
-        if major_minor_generals_related:
-            blockers.append("主客大小将有相关")
-        five_generals_released = not blockers
+        five_generals_released = True
     else:
         blockers = None
         five_generals_released = None
@@ -364,8 +371,8 @@ def wujiang_fabu(*, shiji_yanji=None, wenchang_qiupo=None,
 
     return {
         **result,
-        "status": "ok" if all_known else "not_computable",
-        "computable": all_known,
+        "status": "ok" if five_generals_released is not None else "not_computable",
+        "computable": five_generals_released is not None,
         **facts,
         "blockers": blockers,
         "five_generals_released": five_generals_released,
@@ -379,6 +386,64 @@ def wujiang_fabu(*, shiji_yanji=None, wenchang_qiupo=None,
             "三门具": "五将自然相会（保存为原文说明，不覆盖三组阻断事实）",
         },
         "policy": "五将条件与三门条件分栏；不照搬旧 fivegenerals() 的字符串/中五混合判断。",
+    }
+
+
+
+def effective_five_generals_readiness(*, source_five_generals_released=None,
+                                      calc_blocked=None):
+    """CORE-WUJIANG-READY 跨层有效五将状态。
+
+    这是整合层，不是《金镜》J4M-02 原文的第四条件。
+
+    - source_five_generals_released：J4M-02 的 source-specific 判定；
+    - calc_blocked：上游算数层判定的杜塞事实（如 5/15/25/35）。
+
+    项目统一口径：杜塞取“五将不发”。
+    """
+    values = {
+        "source_five_generals_released": source_five_generals_released,
+        "calc_blocked": calc_blocked,
+    }
+    for name, value in values.items():
+        if value is not None and not isinstance(value, bool):
+            return {
+                "ruleset": "taiyi-integration-v1",
+                "source_profile": "cross_source_integration",
+                "rule_id": "CORE-WUJIANG-READY",
+                "name": "有效五将发不发",
+                "status": "not_computable",
+                "computable": False,
+                **values,
+                "effective_five_generals_released": None,
+                "reason": f"{name} 必须是布尔值或 None",
+                "policy": "杜塞属于上游整合事实，不回写为 J4M-02 原文条件。",
+            }
+
+    if calc_blocked is True:
+        effective = False
+        reason = "杜塞，取五将不发"
+    elif source_five_generals_released is False:
+        effective = False
+        reason = "J4M-02 原典阻断，五将不发"
+    elif calc_blocked is False and source_five_generals_released is True:
+        effective = True
+        reason = "无杜塞且 J4M-02 判五将发"
+    else:
+        effective = None
+        reason = "缺杜塞或 J4M-02 上游事实"
+
+    return {
+        "ruleset": "taiyi-integration-v1",
+        "source_profile": "cross_source_integration",
+        "rule_id": "CORE-WUJIANG-READY",
+        "name": "有效五将发不发",
+        "status": "ok" if effective is not None else "not_computable",
+        "computable": effective is not None,
+        **values,
+        "effective_five_generals_released": effective,
+        "reason": reason,
+        "policy": "杜塞取五将不发；但杜塞不伪装成《金镜》J4M-02 原文第四条件。",
     }
 
 
