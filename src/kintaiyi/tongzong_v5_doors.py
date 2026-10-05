@@ -4,7 +4,7 @@
 四库《太乙金镜式经》卷四 J4M-01 的严格 source-specific runtime。
 """
 
-from __future__ import annotations
+from __future__ import annotations\n\nfrom .jinjing_eight_door_overlay import taiyi_eight_door_context
 
 TZ5_THREE_DOORS_PROFILE = "tongzong_volume5_three_doors"
 _EIGHT_GATES = ("开", "休", "生", "伤", "杜", "景", "死", "惊")
@@ -85,4 +85,27 @@ def sanmen_jubu_tongzong(*, taiyi_gate=None, tianmu_gate=None):
         "not_ready_count": not_ready_count,
         "source_case": source_case,
         "policy": "只实现卷五正文明确组合；不回填《金镜》J4M-01严格profile。",
+    }
+
+
+
+def sanmen_jubu_tongzong_from_positions(*, taiyi_palace, tianmu, direct_gate):
+    """以当期直使门加太乙形成动态八门，再按《统宗》卷五判门具。"""
+    context = taiyi_eight_door_context(
+        taiyi_palace, tianmu=tianmu, anchor_door=direct_gate
+    )
+    result = sanmen_jubu_tongzong(
+        taiyi_gate=context["taiyi_gate"],
+        tianmu_gate=context["tianmu_gate"],
+    )
+    return {
+        **result,
+        "input_mode": "positions",
+        "direct_gate": direct_gate,
+        "taiyi_palace": taiyi_palace,
+        "tianmu": tianmu,
+        "tianmu_palace": context["tianmu_palace"],
+        "eight_door_overlay": context["palace_to_door"],
+        "overlay_rule_id": context["rule_id"],
+        "integration_note": "直使门加太乙的空间盘负责门位；门具正面结论采用《统宗》卷五profile。",
     }
