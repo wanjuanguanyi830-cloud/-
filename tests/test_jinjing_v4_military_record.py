@@ -171,10 +171,11 @@ def test_j4m_source_records_scan_witnesses_and_body_order_priority():
     witnesses = {item["id"]: item for item in data["source"]["scan_witnesses"]}
     assert witnesses["CADAL06056494"]["status"] == "scan_page_locators_verified_for_j4m_01_12"
     assert witnesses["NCL-06604"]["status"] == (
-        "independent_manuscript_witness_metadata_verified_page_locators_pending"
+        "volume4_scan_range_and_j4m_page_locators_verified_readings_in_progress"
     )
     assert "National Central Library" in witnesses["NCL-06604"]["metadata_verified"]
-    assert "不分配 J4M 页码" in witnesses["NCL-06604"]["locator_policy"]
+    assert "C86" in witnesses["NCL-06604"]["locator_policy"]
+    assert "不覆盖 jinjing_siku_volume4 canonical" in witnesses["NCL-06604"]["locator_policy"]
 
     order = data["source"]["order_collation"]
     assert "风云飞鸟助战法" in order["siku_toc"]
@@ -378,19 +379,30 @@ def test_c83_j4m01_to_j4m04_scan_audit_and_taicu_alias_boundaries():
     assert any("混合条件不扩写" in x for x in j4["forbidden_inference"])
 
 
-def test_c84_ncl06604_is_verified_as_witness_but_page_collation_stays_pending():
+def test_c84_access_boundary_is_preserved_but_c86_supersedes_page_pending():
     data, _ = _rules()
     witnesses = {item["id"]: item for item in data["source"]["scan_witnesses"]}
     ncl = witnesses["NCL-06604"]
 
     assert data["source"]["witness_audit_version"] == "c84-ncl06604-access-boundary-v1"
-    assert ncl["status"] == "independent_manuscript_witness_metadata_verified_page_locators_pending"
-    assert ncl["evidence_level"] == "bibliographic_and_whole_scan_identity_verified_not_page_collated"
+    assert data["source"]["ncl_volume4_collation_version"] == (
+        "c86-ncl06604-v4-j4m-locators-v1"
+    )
+    assert ncl["status"] == (
+        "volume4_scan_range_and_j4m_page_locators_verified_readings_in_progress"
+    )
+    assert ncl["evidence_level"] == (
+        "page_collated_for_volume4_j4m_locators_with_selected_readings"
+    )
     assert ncl["public_scan"]["pages"] == 124
     assert ncl["public_scan"]["edition"] == "明鈔本"
     assert ncl["access_audit"]["canonical_effect"] == "none"
-    assert any("逐條頁碼" in x for x in ncl["access_audit"]["not_verified"])
-    assert "不分配 J4M 页码" in ncl["locator_policy"]
+    assert ncl["access_audit"]["status"] == (
+        "superseded_for_volume4_page_access_by_C86"
+    )
+    assert "C86" in ncl["access_audit"]["superseded_note"]
+    assert "页级 locator 已由 C86 直接图像核验" in ncl["locator_policy"]
+    assert "不覆盖 jinjing_siku_volume4 canonical" in ncl["locator_policy"]
 
 
 def test_c85_j4m11_j4m12_complete_the_twelve_rule_scan_audit():
