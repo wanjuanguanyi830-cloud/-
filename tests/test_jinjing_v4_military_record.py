@@ -162,3 +162,27 @@ def test_all_twelve_rules_are_complete_and_have_runtime_entries():
             assert all(path.startswith("kintaiyi.jinjing_v4_military.") for path in runtime)
         else:
             assert runtime.startswith("kintaiyi.jinjing_v4_military.")
+
+
+def test_j4m_source_records_scan_witnesses_and_body_order_priority():
+    data, rules = _rules()
+    witnesses = {item["id"]: item for item in data["source"]["scan_witnesses"]}
+    assert witnesses["CADAL06056494"]["status"] == "scan_identified_page_locators_pending"
+    assert witnesses["NCL-06604"]["status"] == "independent_manuscript_witness_scan_identified"
+
+    order = data["source"]["order_collation"]
+    assert "风云飞鸟助战法" in order["siku_toc"]
+    assert "先“推奇伏法”" in order["siku_body"]
+    assert "J4M-10=推奇伏法" in order["canonical_policy"]
+
+    variants = data["source"]["volume_numbering_variants"]
+    assert any(item["label"] == "卷三" and item["canonical_override"] is False for item in variants)
+
+
+def test_j4m08_chao_cuo_quote_variant_is_quarantined_not_silently_emended():
+    _, rules = _rules()
+    rule = {item["id"]: item for item in rules}["J4M-08"]
+    assert rule["collation_status"] == "jinjing_chao_cuo_quote_diverges_from_hanshu"
+    assert "车骑三不当一" in rule["quotation_collation"]["jinjing_siku_volume4"]["examples"]
+    assert "车骑二不当一" in rule["quotation_collation"]["hanshu_yuanang_chaocuo_zhuan"]["examples"]
+    assert "不得静默改写 runtime" in rule["quotation_collation"]["policy"]
