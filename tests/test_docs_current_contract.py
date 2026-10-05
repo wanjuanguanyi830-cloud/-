@@ -20,7 +20,7 @@ def test_wuyin_documentation_no_longer_calls_zheng_bi_pending():
     assert "1/3/5/7/9为正音" in text
     assert "2/4/6/8/10为比音" in text
     assert "正音/比音未确认" not in text
-    assert "五音正比音" not in text.split("仍待校", 1)[-1]
+    assert "孤单异性/尾数5综合断语、五音正比音" not in text
 
 
 def test_gudan_documentation_forbids_unlisted_decomposition():
