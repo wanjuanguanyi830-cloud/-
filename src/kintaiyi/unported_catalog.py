@@ -195,11 +195,12 @@ CATALOG["明五福太乙所主術"] = _entry(
 
 CATALOG["明五福吉算所主術"] = _entry(
     "canonical", "tongzong_volume6_7_witness_variant_direct", "P1",
-    "source_verified_split_runtime_next", migrate_whole=False,
+    "use_c68_wufu_auspicious_number_runtime", migrate_whole=False,
     source_confidence="high", target_hint="source_variants.tongzong_state_cycles.wufu.auspicious_numbers",
     notes=(
-        "C61 已核五福吉算直接正文。其225年/45年宫段与受益对象数列必须独立于C67位置profile；"
-        "数列OCR/句读需逐项锁定后再实现。"
+        "C68 已以统宗NGJ/CADAL直接见证互校1..45宫法余数十组：君王、公侯、后妃、太子、民、"
+        "师帅、上将军、中将军、下将军、士卒。C68只接显式1..45余数，不从积年自动调用C67，"
+        "也不把后期250年一周异文写入统宗225年主见证。"
     ),
 )
 
