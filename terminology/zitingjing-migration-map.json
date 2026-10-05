@@ -4,7 +4,7 @@
   "manuscript_source_id": "shanghai_yanyilou_ming_copy",
   "manuscript_title": "太乙紫庭祕訣",
   "prior_local_terminology_status": "preliminary_completed_locally",
-  "current_repository_status": "prior_manuscript_scan_confirmed_original_store_and_pages_not_reattached",
+  "current_repository_status": "manuscript_scan_reattached_toc_inspected_original_terminology_store_not_recovered",
   "policy": [
     "本文件是旧本地术语库的迁移骨架，不是重建后的完整terminology.json。",
     "不得把外部参校异文直接当成研易楼明钞本文字。",
@@ -50,14 +50,13 @@
         "附太乙文昌九星值宫术",
         "附太乙文昌九星值宮術"
       ],
-      "terminology_status": "prior_manuscript_scan_confirmed_original_store_fields_pending",
-      "current_rule_status": "catalog_attested_primary_text_pending",
+      "terminology_status": "historical_migration_key_only_stable_term_moved_to_wenchang_catalog",
+      "current_rule_status": "tongzong_c70_source_resolved_yanyilou_toc_not_attested",
       "rule_key": "wenchang_nine_stars",
-      "runtime": null,
+      "runtime": "kintaiyi.wenchang_nine_stars_tongzong.wenchang_nine_star_tongzong",
       "source_refs": [
-        "c20-zitingjing-pending-locators-record",
-        "c20-wenchang-nine-stars-collation-record",
-        "c34-wenchang-nine-stars-collation-record"
+        "sources/c70-wenchang-nine-stars-source-separation-record.md",
+        "C70-TONGZONG-WENCHANG-NINE-STARS"
       ],
       "manuscript_form": null,
       "source_page": null,
@@ -88,7 +87,7 @@
           "維明"
         ]
       ],
-      "variant_policy": "这些只用于旧术语库命中与异文对照；研易楼本实际字形未回填前不选canonical。",
+      "variant_policy": "本键仅用于旧terminology.json命中。研易楼明钞目录未见文昌九星题名；稳定术语已移至terminology/wenchang-nine-stars.json。现代整理附篇来源未证。",
       "legacy_scan_recovery_asset": "terminology/zitingjing-legacy-scan-recovery.json",
       "legacy_recovered_forms": [
         "文曲",
@@ -101,7 +100,7 @@
         "玄冥",
         "雄明"
       ],
-      "legacy_recovery_note": "用户确认研易楼明钞本此前已扫描；但旧config.py九星段明确标注来源为《太乙统宗宝鉴》卷六，因此这些恢复词形只作prior workflow code residue，不视为研易楼本逐字manuscript_form。"
+      "legacy_recovery_note": "用户已重新提供研易楼明钞本并核验目录；旧config.py九星段明确标注《太乙统宗宝鉴》卷六，因此旧词形仍只作prior workflow code residue。旧terminology.json真实字段尚未恢复。"
     },
     {
       "key": "wenchang_changes",
