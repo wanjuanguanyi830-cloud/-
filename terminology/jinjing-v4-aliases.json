@@ -1,5 +1,5 @@
 {
-  "version": "jinjing-v4-terminology-aliases-v2",
+  "version": "jinjing-v4-terminology-aliases-v3",
   "source_profile": "jinjing_siku_volume4",
   "policy": "原文字形与项目规范词形分栏保存；别名只做同一术语归一，不据字形差异创造新规则。",
   "aliases": [
@@ -15,8 +15,17 @@
         "context": "推主客相关法首例"
       },
       "element": "金",
-      "status": "historical_source_form_alias",
-      "runtime_behavior": "接受source_form输入并保留原始字形；canonical_form固定输出太簇；五行判定不变。"
+      "status": "dictionary_attested_traditional_variant",
+      "runtime_behavior": "接受太蔟输入并保留原始字形；canonical_form固定输出太簇；五行判定不变。",
+      "variant_relation": "太蔟、太簇为同一律名的传统异写",
+      "dictionary_evidence": {
+        "source": "汉语大词典/聚典数据开放平台",
+        "entry": "太蔟",
+        "reading": "tài cù",
+        "statement": "亦作太簇",
+        "url": "https://app.hanyudacidian.cn/",
+        "provided_by_user": "2026-10-05"
+      }
     }
   ],
   "non_alias_warnings": [
@@ -31,7 +40,8 @@
         "太簇",
         "太蔟"
       ],
-      "policy": "术语主名、runtime canonical 输出与对外文档统一采用太簇；太蔟只保存为来源字形。"
+      "variant_classification": "dictionary_attested_traditional_variant",
+      "policy": "术语主名、runtime canonical 输出与对外文档统一采用太簇；太蔟是辞书可证的传统异写与古籍来源字形，不视为OCR误字。"
     }
   }
 }
