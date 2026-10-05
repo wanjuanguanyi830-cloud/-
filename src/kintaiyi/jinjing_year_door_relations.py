@@ -18,6 +18,7 @@ from typing import Any
 
 from .jinjing_eight_door_overlay import door_overlay, open_door_overlay
 from .jinjing_year_eight_doors import year_duty_door
+from .taiyi_generals import host_guest_generals
 
 SOURCE_PROFILE = "jinjing_volume1_li_chunfeng_year_door_meeting"
 RULE_ID = "J1-YEAR-DOOR-MEETING"
@@ -167,5 +168,33 @@ def year_door_meeting_wang_ximing(
         "policy": (
             "这是平行古注补足的王希明空间profile；"
             "李淳风旧法J1-YEAR-DOOR-MEETING仍固定开门加太乙，二者并存。"
+        ),
+    }
+
+
+
+def year_door_meeting_from_calcs(
+    *,
+    taiyi_palace: int,
+    host_calc: int,
+    guest_calc: int,
+) -> dict[str, Any]:
+    """主客算 -> G7大小将 -> 李淳风太乙三吉门会合。"""
+    generals = host_guest_generals(host_calc, guest_calc)
+    meeting = year_door_meeting(
+        taiyi_palace=taiyi_palace,
+        host_big_palace=generals["host"]["big_general_palace"],
+        guest_big_palace=generals["guest"]["big_general_palace"],
+    )
+    return {
+        "rule_id": "CORE-G7-J1-YEAR-DOOR-MEETING",
+        "source_profile": "cross_layer_g7_to_jinjing_year_doors",
+        "generals": generals,
+        "meeting": meeting,
+        "host_blocked": generals["host"]["blocked"],
+        "guest_blocked": generals["guest"]["blocked"],
+        "policy": (
+            "杜塞方的meeting保持not_computable；"
+            "不得把nominal_center=5当成正常五宫去查太乙八门。"
         ),
     }
