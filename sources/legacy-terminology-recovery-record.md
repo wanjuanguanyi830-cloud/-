@@ -74,20 +74,16 @@ NCL 的 8 个旧对账项现均可指向 stable terminology：
 
 用户已确认：研易楼藏《太乙紫庭祕訣》明钞本此前在整理术语库阶段已经扫描，且本地 E 盘仍保存原文件。因此“未取得扫描资源”的旧表述废止。
 
-当前执行环境仍未重新挂载 E 盘原扫描，也未恢复旧 `terminology.json` 原始字节，但已从旧 `kentang2017/kintaiyi` 派生实现残留恢复文昌九星旧整理成果：
+当前执行环境仍未重新挂载 E 盘原扫描，也未恢复旧 `terminology.json` 原始字节。需要严格区分两条证据链：
 
-- 文曲
-- 玄鳳
-- 明維
-- 昭搖
-- 立華
-- 華明
-- 玄武
-- 玄冥
-- 雄明
+1. **明钞本扫描事实**：用户确认此前已扫描；这一事实成立，但当前还没有重新取得当时的页码、逐字抄录、old term id 与 notes。
+2. **旧代码残留**：`kentang2017/kintaiyi/src/kintaiyi/config.py` 仍保存九星旧实现，但其第1020–1024行明确写明来源为《太乙统宗宝鉴》卷六。因此其中“文曲、玄鳳、明維、昭搖、立華、華明、玄武、玄冥、雄明”等词形只能视为 prior workflow code residue，**不能直接认定为研易楼明钞本逐字扫描结果**。
 
-恢复资产：`terminology/zitingjing-legacy-scan-recovery.json`。
+恢复资产：`terminology/zitingjing-legacy-scan-recovery.json`。该资产同时记录“明钞本此前已扫描”与“旧统宗九星实现残留”，并明确禁止把两者混成同一来源。
 
-这组记录现在定义为 **legacy scan extraction witness**：证明此前扫描/术语整理确有产物，但在原扫描页重新挂载前，不等同于逐字 manuscript transcription，也不直接升级《紫庭》文昌九星 canonical runtime。
+当前处理原则：
 
-它与当前 C70《统宗》NGJ 见证并列保存。尤其“文曲/文昌、昭搖/阴德、立華/招摇、雄明/维明”及旧年干落宫表的差异不得静默归一。
+- 研易楼本 `manuscript_form/source_page/old_term_record_id/old_notes` 继续保持待原件恢复；
+- 旧代码词形与 C70《统宗》NGJ 见证的差异继续并列；
+- 文曲/文昌、昭搖/阴德、立華/招摇、雄明/维明及旧年干落宫表不得静默归一；
+- 只有 E 盘原扫描或旧 `terminology.json` 重新挂载后，才能判断这些旧词形是否也见于研易楼本。
