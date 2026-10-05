@@ -11,10 +11,10 @@ def test_readiness_pipeline_tongzong_positive_chain_reaches_deployment():
         wenchang_qiupo=False,
         major_minor_generals_related=False,
         exit_gate="开",
-        three_doors_profile="tongzong_v5",
+        three_doors_profile="tongzong_v2",
     )
     assert data["stages"]["three_doors"]["duty"]["direct_gate"] == "伤"
-    assert data["stages"]["three_doors"]["result"]["tianmu_gate"] == "死"
+    assert data["stages"]["three_doors"]["result"]["subject_gates"]["天目"] == "伤"
     assert data["three_doors_ready"] is True
     assert data["source_five_generals_released"] is True
     assert data["effective_five_generals_released"] is True
@@ -31,7 +31,7 @@ def test_readiness_pipeline_source_blocker_stops_deployment():
         wenchang_qiupo=None,
         major_minor_generals_related=None,
         exit_gate="开",
-        three_doors_profile="tongzong_v5",
+        three_doors_profile="tongzong_v2",
     )
     assert data["source_five_generals_released"] is False
     assert data["effective_five_generals_released"] is False
@@ -48,7 +48,7 @@ def test_readiness_pipeline_blocked_calc_forces_five_generals_not_released():
         wenchang_qiupo=False,
         major_minor_generals_related=False,
         exit_gate="开",
-        three_doors_profile="tongzong_v5",
+        three_doors_profile="tongzong_v2",
     )
     assert data["calc_blocked"] is True
     assert data["source_five_generals_released"] is True
