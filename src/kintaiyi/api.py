@@ -8,6 +8,7 @@ calculation to the existing source-specific runtimes.
 from __future__ import annotations
 
 import importlib
+import inspect
 import json
 from importlib import resources
 from typing import Any, Callable
@@ -99,6 +100,19 @@ def search_terms(text: str) -> dict[str, Any]:
     return {"query": text, "count": len(matches), "matches": matches}
 
 
+def _contains_rule_id(node: Any, rule_id: str) -> bool:
+    if isinstance(node, dict):
+        if node.get("rule_id") == rule_id:
+            return True
+        ids = node.get("rule_ids", [])
+        if isinstance(ids, list) and rule_id in [x for x in ids if isinstance(x, str)]:
+            return True
+        return any(_contains_rule_id(value, rule_id) for value in node.values())
+    if isinstance(node, list):
+        return any(_contains_rule_id(value, rule_id) for value in node)
+    return False
+
+
 def get_rule(rule_id: str) -> dict[str, Any]:
     if not isinstance(rule_id, str) or not rule_id:
         raise ValueError("rule_id must be a non-empty string")
@@ -106,15 +120,115 @@ def get_rule(rule_id: str) -> dict[str, Any]:
     matches: list[dict[str, Any]] = []
     for category_name, records in data.get("categories", {}).items():
         for record in records:
-            ids: set[str] = set()
-            if isinstance(record.get("id"), str):
-                ids.add(record["id"])
-            if isinstance(record.get("rule_id"), str):
-                ids.add(record["rule_id"])
-            ids.update(x for x in record.get("rule_ids", []) if isinstance(x, str))
-            if rule_id in ids:
+            if record.get("id") == rule_id or _contains_rule_id(record, rule_id):
                 matches.append({"category": category_name, "record": record})
     return {"rule_id": rule_id, "count": len(matches), "matches": matches}
+
+
+def _collect_runtime_candidates(
+    node: Any,
+    rule_id: str,
+    *,
+    origin: str,
+    path: str = "$",
+    key_hint: str | None = None,
+) -> list[dict[str, Any]]:
+    candidates: list[dict[str, Any]] = []
+    if isinstance(node, dict):
+        runtime = node.get("runtime")
+        if node.get("rule_id") == rule_id and isinstance(runtime, str):
+            candidate: dict[str, Any] = {
+                "runtime": runtime,
+                "origin": origin,
+                "path": path,
+            }
+            if isinstance(node.get("source_profile"), str):
+                candidate["source_profile"] = node["source_profile"]
+                if key_hint:
+                    candidate["profile_key"] = key_hint
+            candidates.append(candidate)
+        for key, value in node.items():
+            candidates.extend(
+                _collect_runtime_candidates(
+                    value,
+                    rule_id,
+                    origin=origin,
+                    path=f"{path}.{key}",
+                    key_hint=key,
+                )
+            )
+    elif isinstance(node, list):
+        for index, value in enumerate(node):
+            candidates.extend(
+                _collect_runtime_candidates(
+                    value,
+                    rule_id,
+                    origin=origin,
+                    path=f"{path}[{index}]",
+                    key_hint=None,
+                )
+            )
+    return candidates
+
+
+def rule_runtime_candidates(rule_id: str) -> list[dict[str, Any]]:
+    """Discover exact runtime pointers owned by rules/ or terminology/."""
+    if not isinstance(rule_id, str) or not rule_id:
+        raise ValueError("rule_id must be a non-empty string")
+
+    found = _collect_runtime_candidates(
+        _load_json("rules", "taiyi_v1.json"),
+        rule_id,
+        origin="rules/taiyi_v1.json",
+    )
+    for meta in list_catalogs():
+        filename = _catalog_filename(meta["path"])
+        found.extend(
+            _collect_runtime_candidates(
+                _load_json("terminology", filename),
+                rule_id,
+                origin=meta["path"],
+            )
+        )
+
+    grouped: dict[str, dict[str, Any]] = {}
+    for item in found:
+        runtime = item["runtime"]
+        bucket = grouped.setdefault(
+            runtime,
+            {"runtime": runtime, "origins": [], "profile_keys": [], "source_profiles": []},
+        )
+        bucket["origins"].append({"origin": item["origin"], "path": item["path"]})
+        if item.get("profile_key") and item["profile_key"] not in bucket["profile_keys"]:
+            bucket["profile_keys"].append(item["profile_key"])
+        if item.get("source_profile") and item["source_profile"] not in bucket["source_profiles"]:
+            bucket["source_profiles"].append(item["source_profile"])
+    return list(grouped.values())
+
+
+def calculate_rule(rule_id: str, *args: Any, **kwargs: Any) -> Any:
+    """Calculate by canonical rule_id when it resolves to one runtime.
+
+    Source-specific functions keep their explicit source boundary. If the
+    callable requires source_profile and the registry exposes one unique profile
+    key for the requested rule_id, the facade supplies that key.
+    """
+    candidates = rule_runtime_candidates(rule_id)
+    if not candidates:
+        raise KeyError(f"no runtime registered for rule_id: {rule_id}")
+    if len(candidates) != 1:
+        refs = ", ".join(item["runtime"] for item in candidates)
+        raise RuntimeError(f"ambiguous runtimes for {rule_id}: {refs}")
+
+    candidate = candidates[0]
+    runtime = resolve_runtime(candidate["runtime"])
+    if "source_profile" not in kwargs:
+        signature = inspect.signature(runtime)
+        if "source_profile" in signature.parameters:
+            profile_keys = candidate.get("profile_keys") or []
+            if len(profile_keys) == 1:
+                kwargs["source_profile"] = profile_keys[0]
+    return runtime(*args, **kwargs)
 
 
 def list_operations() -> list[dict[str, Any]]:
