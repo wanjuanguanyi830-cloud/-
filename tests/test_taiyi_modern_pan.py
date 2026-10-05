@@ -142,3 +142,28 @@ def test_modern_pan_v2_exposes_boundary_registry():
     assert registry["lunar_year"]["canonical_for_taiyi_year"] is False
     assert registry["jieqi_ganzhi_year"]["canonical_for_taiyi_year"] is False
     assert registry["spring_equinox"]["canonical_for_taiyi_year"] is False
+
+
+
+def test_modern_pan_v2_daxue_month_does_not_advance_taiyi_year():
+    from kintaiyi.taiyi_modern_solar_month import jie_instant_utc
+    from kintaiyi.taiyi_modern_calendar import winter_solstice_utc
+
+    daxue = jie_instant_utc(2026, "大雪")
+    winter = winter_solstice_utc(2026)
+    probe = daxue + (winter - daxue) / 2
+
+    pan = build_modern_pan_v2(probe, count_type="月计")
+    assert pan["calendar"]["solar_month"]["month_build_branch"] == "子"
+    assert pan["calendar"]["selected_count"]["month_formula_year"] == 2027
+    assert pan["calendar"]["taiyi_year"] == 2026
+
+
+def test_modern_pan_v2_winter_solstice_advances_taiyi_year_without_new_month():
+    from kintaiyi.taiyi_modern_calendar import winter_solstice_utc
+
+    winter = winter_solstice_utc(2026)
+    pan = build_modern_pan_v2(winter, count_type="月计")
+    assert pan["calendar"]["solar_month"]["month_build_branch"] == "子"
+    assert pan["calendar"]["selected_count"]["month_formula_year"] == 2027
+    assert pan["calendar"]["taiyi_year"] == 2027
