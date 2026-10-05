@@ -3580,15 +3580,156 @@ C15：
 - `sources/c69-jinjing-current-time-core-record.md`
 - `tests/reports/c69_validation.md`
 
-## 9.63 后续 C70+
+## 9.63 C70 《统宗》卷六文昌九星 source-specific runtime（已实施）
+
+唯一 runtime：
+
+`src/kintaiyi/wenchang_nine_stars_tongzong.py`
+
+rule id：
+
+`C70-TONGZONG-WENCHANG-NINE-STARS`
+
+### C70-01 来源分层
+
+C70 只选择《太乙统宗宝鉴》卷六 NGJ 见证。
+
+该见证内部一致：
+
+- 每星30年；
+- 大周2700；
+- 小周270；
+- 宫率30；
+- 命起一宫文昌，顺行九宫。
+
+其他来源不合并：
+
+- 统宗 CADAL：同一见证前文10年、算法30年，内部冲突；
+- 《三才世纬》：外部参校；
+- 《太乙紫庭秘诀》“附太乙文昌九星值宫术”：目录已证、正文未取得。
+
+因此：
+
+- C70 是统宗 source-specific runtime；
+- 紫庭 `primary_result=None`；
+- 跨来源 `canonical_selected=None`。
+
+### C70-02 NGJ 九星与分野
+
+九星读法：
+
+1. 文昌
+2. 玄凤
+3. 明维
+4. 阴德
+5. 招摇
+6. 华明
+7. 玄武
+8. 玄冥
+9. 维明
+
+年干落宫 / 分野直接表包括：
+
+- 甲 → 艮 / 青州；
+- 乙 → 震 / 徐州；
+- 丁 → 离 / 荆州；
+- 壬 → 乾 / 冀州；
+- 其余依正文表保存。
+
+“直事星周期”与“年干所临宫 / 分野”分层处理。
+
+### C70-03 旧实现 quarantine
+
+旧 `config.wenchang_nine_stars` 已进入 C60。
+
+已确认：
+
+- 星名混入文曲 / 昭摇 / 立华等异读；
+- 丁误写巽9；
+- 壬误写中5；
+- 旧分布循环计算 `gong` 但未使用，不能证明动态分布；
+- 没保存10/30与紫庭正文 pending 的来源边界。
+
+固定：
+
+- `canonical_equivalent=False`
+- replacement → C70。
+
+C70 本身也不反推完整九星动态分布：
+
+- `full_dynamic_distribution=None`
+
+### C70-04 C15 strict pending 清零
+
+C15 67字段当前：
+
+- canonical: 32
+- source_variant: 17
+- derived: 18
+- pending: 0
+
+`文昌九星` 现归 source_variant：
+
+`use_c70_tongzong_profile_keep_zitingjing_primary_pending`
+
+这里的 `pending=0` 只表示 C15 来源治理分类闭合，不表示：
+
+- 紫庭附篇正文已取得；
+- 五福吉算已完成；
+- C69完整日度加时排式已完成。
+
+已确认整库基线：
+
+`1365 passed / 0 failed`
+
+详细记录：
+
+- `sources/c70-wenchang-nine-stars-tongzong-record.md`
+- `tests/reports/c70_validation.md`
+- `sources/c34-wenchang-nine-stars-collation-record.md`
+
+## 9.64 C71 J4M-04 先后胜负古籍参校 / 编号纠偏（已实施）
+
+J4M-04 原《金镜》“先胜后负”经：
+
+- 《武经总要》；
+- 《太乙秘书》；
+
+同段参校，明确解释为：
+
+`先起者胜，后起者负`
+
+只在：
+
+- 三门具；
+- 五将发；
+- 阴阳和；
+
+三项均有利时落实 winner。
+
+因此：
+
+- 陈兵原野：客先起 → 客胜；
+- 安居之势：主先起 → 主胜。
+
+三项皆不利时，《金镜》只写不利举兵、宜固守吉；他书“先起者败、后起者胜”的额外扩展不自动写回《金镜》。
+
+该复核记录最初并行误用了 C65 编号；C65 已是卷七三神同宫层，故文档已统一迁名为 C71，不改 J4M runtime id。
+
+记录：
+
+- `sources/c71-j4m04-first-mover-collation-record.md`
+- `changelog/2026-10-05-c71-j4m04-first-mover-collation.md`
+
+## 9.65 后续 C72+
 
 下一优先级：
 
-1. 追索 `文昌九星` 直接正文 / 附篇原文，目标是消除 C15 最后一个严格 pending；
-2. C68 五福吉算等待可核影印页或干净独立见证，不以规律推表；
-3. 三基 / 五福同宫断语继续按显式关系层拆分；
-4. 恢复旧 `terminology.json`；
-5. 补 C69 “日度加时位”的上游依赖，但不得用现代近似代替古法。
+1. 继续寻找 C68 五福吉算的干净独立见证 / 可核页图，逐数核定后再实现；
+2. 三基 / 五福同宫断语按显式关系层继续拆，不由位置自动制造；
+3. 恢复旧 `terminology.json` 并按 C40 对齐紫庭明钞本；
+4. 补 C69 “日度加时位”的古法上游依赖；
+5. 紫庭文昌九星附篇正文继续追索，但不得用 C70 反填 primary。
 
 ## 10. 验收
 
