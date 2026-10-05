@@ -662,7 +662,7 @@ JF4M-01..11 当前全部标记为 `source_record_only`：保留来源术名、�
 - 卷十七：V17-01..11，共11条军事占断 source rules；
 - V17-D1：跨卷孤虚对照 derived helper，不是卷十七 canonical source rule。
 
-C23–C28 当前已经实现 **20 条 source-specific runtime**：卷十五 V15-02..06、V15-09、V15-10、V15-12、V15-13，以及卷十七 V17-01..11。卷十五仍只有 V15-01、V15-07、V15-08、V15-11、V15-14 保持 `source_rule_catalog_only`。另有 V17-D1 由 C32 实现为**跨卷 derived helper runtime**，它不是卷十七 canonical source rule。`reference_function` 只记录旧综合层函数名，**不等于独立 runtime 已实现**。
+当前 **25 条 canonical military source rules 已全部有 source-specific runtime**：卷十五 V15-01..14 与卷十七 V17-01..11。V15-01、07、08、11、14 使用 `tongzong_v15_remaining.py` 的来源限定实现，专门删除旧 reference code 中的局例升格、跨层补断和无观测默认断语。另有 V17-D1 由 C32 实现为**跨卷 derived helper runtime**，它不是卷十七 canonical source rule。`reference_function` 只保留历史接口线索，不再代表实现状态。
 
 跨层边界：V15-01 奇兵伏兵 ≠ J4M-10 奇伏；V15-04 陈兵出乡 ≠ J4M-06 陈兵向背；V15-07 随地制变不得吞并 J4M-07/08；V15-14 综合军势不得覆盖 J4M-11/12 外部观测；V17-02 敌国动静也不是 C8-L3 主客动静。
 
