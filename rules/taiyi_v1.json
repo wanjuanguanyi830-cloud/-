@@ -377,6 +377,35 @@
         "canonical": "C70只代表《太乙统宗宝鉴》卷六NGJ文昌九星source profile：30年一星、270小周、2700大周，命起一宫文昌顺九宫；另以年干建禄层给当前直事星落宫/分野。不得反填《紫庭秘诀》正文pending，也不推其余八星完整动态分布。",
         "rule_id": "C70-TONGZONG-WENCHANG-NINE-STARS",
         "runtime": "kintaiyi.wenchang_nine_stars_tongzong.wenchang_nine_star_tongzong"
+      },
+      {
+        "id": "R-TEN-ESSENCES",
+        "canonical": "十精按C52-C59分层：C52只登记十精名单/小周；C53飞鸟五风太尊八风三风五行位置；C54纯1..72太乙数；C55天皇/帝符十六神重留；C56天时十二辰；C57显式合会云气；C58真实云色/天气观察；C59显式太乙数天气/合会断语。位置须显式阴阳遁；合会关系和天气观察不得从位置自动制造。",
+        "rule_ids": [
+          "C52-TEN-ESSENCES-REGISTRY",
+          "C53-FLYBIRD",
+          "C53-FIVEWIND",
+          "C53-TAIZUN",
+          "C53-EIGHTWIND",
+          "C53-THREEWIND",
+          "C53-WUXING",
+          "C54-TAIYI-NUMBER",
+          "C55-TIANHUANG",
+          "C55-DIFU",
+          "C56-TIANSHI",
+          "C57-TEN-ESSENCE-CLOUD-CONJUNCTION",
+          "C58-CLOUD-TIMING",
+          "C58-WEATHER-OBSERVATION",
+          "C59-TAIYI-NUMBER-OMEN"
+        ],
+        "source_profile": "tongzong_ten_essences_layered",
+        "catalog": "terminology/ten-essences.json",
+        "forbidden_merges": [
+          "十精飞鸟不得替代J4M-11外部飞鸟观测",
+          "C54太乙数不附天气断语",
+          "C57/C59不从位置自动制造合冲",
+          "C58只解释真实观察或显式证据"
+        ]
       }
     ]
   },
