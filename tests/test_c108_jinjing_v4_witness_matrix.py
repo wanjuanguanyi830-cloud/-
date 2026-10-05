@@ -138,5 +138,6 @@ def test_c112_ncl_j4m08_opening_is_verified_without_claiming_full_body():
     assert row["ncl"]["verification_scope"] == (
         "opening_triplet_and_selected_later_reading_direct_visual_verified_not_full_contiguous_body"
     )
-    assert row["ncl"]["pending"] == ["五丈之沟以下至已核矛鋋段之间的连续逐字转录"]
+    assert row["ncl"]["visible_continuation"] == "五丈之沟居堑之水山林"
+    assert row["ncl"]["pending"] == ["“五丈之沟居堑之水山林”之后至已核矛鋋段之间的连续逐字转录"]
     assert "不得把中间未连续核图部分标记为全文已核" in row["hard_boundary"]
