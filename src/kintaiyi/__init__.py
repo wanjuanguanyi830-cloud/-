@@ -25,6 +25,8 @@ PUBLIC_API_ENTRYPOINTS = {
     "search_terms": "kintaiyi.api.search_terms",
     "get_rule": "kintaiyi.api.get_rule",
     "calculate": "kintaiyi.api.calculate",
+    "calculate_rule": "kintaiyi.api.calculate_rule",
+    "rule_runtime_candidates": "kintaiyi.api.rule_runtime_candidates",
     "calendar_context": "kintaiyi.api.calendar_context",
     "build_pan": "kintaiyi.api.build_pan",
     "explain_result": "kintaiyi.api.explain_result",
@@ -33,6 +35,7 @@ PUBLIC_API_ENTRYPOINTS = {
 from .api import (
     build_pan,
     calculate,
+    calculate_rule,
     calendar_context,
     explain_result,
     get_rule,
@@ -40,6 +43,7 @@ from .api import (
     list_catalogs,
     list_operations,
     registry_snapshot,
+    rule_runtime_candidates,
     search_terms,
 )
 
@@ -58,6 +62,8 @@ __all__ = [
     "search_terms",
     "get_rule",
     "calculate",
+    "calculate_rule",
+    "rule_runtime_candidates",
     "calendar_context",
     "build_pan",
     "explain_result",
