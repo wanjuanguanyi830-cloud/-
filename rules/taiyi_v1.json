@@ -265,6 +265,53 @@
         "runtime": "kintaiyi.wuyun_wuyin_sources.volume3_wuyin_from_calc",
         "d8_crosswalk": "D8-03",
         "d8_08_used": false
+      },
+      {
+        "id": "R-DAYOU-HEX",
+        "canonical": "C41卷九太游内外重卦只消费显式内卦、外卦与入内卦年数。四象36/24/28/32为单爻策数；经卦策数=单爻策数×3；重卦总策=内外经卦策数之和。内卦36年、6年一爻；外卦动爻当前直接条文未证。C41不选择+34/+36610/+50等epoch variant，不调用C38。",
+        "rule_id": "C41-DY-HEX",
+        "runtime": "kintaiyi.dayou_hexagram.compose_dayou_heavy_hexagram"
+      },
+      {
+        "id": "R-DAYOU-LISHU",
+        "canonical": "C42卷九历数长短/安居之代依C41重卦总策与纳甲干支数。初四单加本爻；二五须六爻全量后倍加；三六不加。策数除减后的base remainder因算例冲突必须显式输入；不得自动套普通取余。基础长短：一二四五长、三六短。",
+        "rule_ids": [
+          "C42-DY-LISHU",
+          "C42-DY-ANJU"
+        ],
+        "runtime": "kintaiyi.dayou_lishu"
+      },
+      {
+        "id": "R-EHUI-LIMIT",
+        "canonical": "C43厄会行限要求完整即位年六十甲子、太阳/阴主落点、大武/和德顺逆与原文神数累计。旧只用年支并按十六点简单步数的公式非canonical。基础行限与太乙格、阳九百六、旺相休囚等修正证据并列，不互相覆盖。",
+        "rule_id": "C43-V9-EHUI",
+        "source_profile": "tongzong_volume9_ehui_limit",
+        "runtime": "kintaiyi.volume9_ehui.ehui_limit_from_evidence"
+      },
+      {
+        "id": "R-GOVERNANCE-CHANGE",
+        "canonical": "C44国政革易/法令变更要求创立年完整干支、六神显式落点、算长短与和不和、格局证据。算长且和只稳定判远，算短不和只稳定判近；90/180与9/18/28保留见证候选，不选单一年数。在线卷十/项目旧卷九并列为witness volume variant。",
+        "rule_id": "C44-V9-GOV",
+        "source_profile": "tongzong_volume9_governance_change",
+        "runtime": "kintaiyi.volume9_governance.governance_change_from_evidence"
+      },
+      {
+        "id": "R-DISASTER-TIMING",
+        "canonical": "C45岁中灾发必须分月、日两阶段，并同时检查文昌与天目。只消费上游‘合神加支’后的显式落点，不自行用十六位offset代替原盘式。四维落点无直接月份换算时保持not_computable；日层只保存十六点/地支候选，不伪造现代具体日期。",
+        "rule_ids": [
+          "C45-V9-MONTH",
+          "C45-V9-DAY",
+          "C45-V9-DISASTER"
+        ],
+        "source_profile": "tongzong_volume9_disaster_timing",
+        "runtime": "kintaiyi.volume9_disaster_timing"
+      },
+      {
+        "id": "R-NINE-CALAMITIES",
+        "canonical": "C46阴阳九厄九段长度106/374/480/720/720/600/600/480/480须累计成4560时间轴；灾年9/9/9/7/7/5/5/3/3合57。五阳主旱、四阴主水；余0视为第4560年。第四段702/720、阴阳字与末段3/5年冲突保留witness并按平行见证+篇内算术正规化。",
+        "rule_id": "C46-YJ-9E",
+        "source_profile": "tongzong_yinyang_nine_calamities",
+        "runtime": "kintaiyi.yinyang_nine_calamities.yinyang_nine_calamities"
       }
     ]
   },
