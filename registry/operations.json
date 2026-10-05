@@ -291,5 +291,6 @@
       "status": "stable",
       "source_profile": "zitingjing_primary"
     }
-  ]
+  ],
+  "api_version": "1.0"
 }
