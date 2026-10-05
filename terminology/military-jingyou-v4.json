@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "catalog_id": "taiyi-jingyou-fuying-v4-military-terminology-v1",
   "scope": "source_record_jingyou_fuying_volume4_military",
-  "status": "repository_source_record_terminology_catalog",
+  "status": "repository_source_specific_terminology_catalog",
   "legacy_terminology_json_migrated": false,
   "shared_catalogs": [
     "terminology/military-p0.json",
@@ -17,10 +17,24 @@
     "scan_locator_status": "pending"
   },
   "implementation_policy": {
-    "source_record_only": true,
+    "source_record_only": false,
     "cross_source_merge": false,
     "runtime_substitution_allowed": false,
-    "policy": "JF4M-01..11均只作来源规则记录；没有独立runtime时不得调用J4M平行函数作为替代。"
+    "implemented_rule_ids": [
+      "JF4M-01",
+      "JF4M-02",
+      "JF4M-03",
+      "JF4M-04",
+      "JF4M-05",
+      "JF4M-06",
+      "JF4M-07",
+      "JF4M-08",
+      "JF4M-09",
+      "JF4M-10",
+      "JF4M-11"
+    ],
+    "runtime_catalog": "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog",
+    "policy": "JF4M-01..11均有《福应经》独立source-specific runtime；不得调用J4M平行函数替代，疑字/未锁定句保持pending。"
   },
   "parallel_order_note": {
     "j4m_has_12_rules": true,
@@ -47,8 +61,8 @@
       "domain": "三门",
       "canonical_summary": "开休生为三门；太乙、天目在开生二门下为二门不具，在休门下为三门不具。直使门三十为一易、二百四十为一周，起开次休顺行。",
       "parallel_jinjing_rule": "J4M-01",
-      "implementation_status": "source_record_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jingyou_fuying_v4_military.three_doors",
       "textual_uncertainty": [],
       "notable_readings": [
         "凡甲子自甲子至甲午，或甲午至甲子，即换直使",
@@ -57,10 +71,11 @@
       "canonical_data": null,
       "divergence_from_jinjing": null,
       "boundary_notes": [
-        "本条只记录《景祐太乙福应经》卷四自身source rule；当前没有独立runtime。",
-        "不得调用平行《金镜》runtime冒充本条实现。",
+        "本条由《景祐太乙福应经》卷四独立runtime实现。",
+        "不得调用平行《金镜》runtime冒充本条，也不得跨来源自动补缺。",
         "与J4M-01只做crosswalk，不自动合并。"
-      ]
+      ],
+      "runtime_catalog": "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog"
     },
     {
       "key": "jingyou_jf4m_02",
@@ -75,8 +90,8 @@
       "domain": "五将",
       "canonical_summary": "始击无掩击、文昌无囚迫、大小将不相开（电子转录字样）则将发；三门具则五将自然相会。三门不具不可出兵，五将不发不可强战。",
       "parallel_jinjing_rule": "J4M-02",
-      "implementation_status": "source_record_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jingyou_fuying_v4_military.five_generals",
       "textual_uncertainty": [
         "“大小将不相开”疑与《金镜》“主客大小将无相关”对应，待扫描核字"
       ],
@@ -84,10 +99,12 @@
       "canonical_data": null,
       "divergence_from_jinjing": null,
       "boundary_notes": [
-        "本条只记录《景祐太乙福应经》卷四自身source rule；当前没有独立runtime。",
-        "不得调用平行《金镜》runtime冒充本条实现。",
-        "与J4M-02只做crosswalk，不自动合并。"
-      ]
+        "本条由《景祐太乙福应经》卷四独立runtime实现。",
+        "不得调用平行《金镜》runtime冒充本条，也不得跨来源自动补缺。",
+        "与J4M-02只做crosswalk，不自动合并。",
+        "电子转录疑字/未锁定细节继续保留pending，不因runtime实现而消失。"
+      ],
+      "runtime_catalog": "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog"
     },
     {
       "key": "jingyou_jf4m_03",
@@ -102,17 +119,18 @@
       "domain": "主客五行相关",
       "canonical_summary": "客关得主则客胜，主人关得客则主胜；用日计二目纳音，以二目所临神五行相制决之。",
       "parallel_jinjing_rule": "J4M-03",
-      "implementation_status": "source_record_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jingyou_fuying_v4_military.host_guest_relation",
       "textual_uncertainty": [],
       "notable_readings": [],
       "canonical_data": null,
       "divergence_from_jinjing": null,
       "boundary_notes": [
-        "本条只记录《景祐太乙福应经》卷四自身source rule；当前没有独立runtime。",
-        "不得调用平行《金镜》runtime冒充本条实现。",
+        "本条由《景祐太乙福应经》卷四独立runtime实现。",
+        "不得调用平行《金镜》runtime冒充本条，也不得跨来源自动补缺。",
         "与J4M-03只做crosswalk，不自动合并。"
-      ]
+      ],
+      "runtime_catalog": "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog"
     },
     {
       "key": "jingyou_jf4m_04",
@@ -127,8 +145,8 @@
       "domain": "主客先后动静",
       "canonical_summary": "陈兵原野先起为客、后动为主；安居之势先举为主、后应为客。三门具、五将发、阴阳和时先起者胜、后起者负；不利三项时宜固守。",
       "parallel_jinjing_rule": "J4M-04",
-      "implementation_status": "source_record_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jingyou_fuying_v4_military.host_guest_action",
       "textual_uncertainty": [],
       "notable_readings": [
         "欲知主人视主目所算；欲知客视客目所算"
@@ -136,10 +154,11 @@
       "canonical_data": null,
       "divergence_from_jinjing": null,
       "boundary_notes": [
-        "本条只记录《景祐太乙福应经》卷四自身source rule；当前没有独立runtime。",
-        "不得调用平行《金镜》runtime冒充本条实现。",
+        "本条由《景祐太乙福应经》卷四独立runtime实现。",
+        "不得调用平行《金镜》runtime冒充本条，也不得跨来源自动补缺。",
         "与J4M-04只做crosswalk，不自动合并。"
-      ]
+      ],
+      "runtime_catalog": "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog"
     },
     {
       "key": "jingyou_jf4m_05",
@@ -154,17 +173,18 @@
       "domain": "出师略地",
       "canonical_summary": "行师出其门、略地用其二；算12/22/32且门具将发可行兵，出其门明确为开休生三吉门。",
       "parallel_jinjing_rule": "J4M-05",
-      "implementation_status": "source_record_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jingyou_fuying_v4_military.dispatch_troops",
       "textual_uncertainty": [],
       "notable_readings": [],
       "canonical_data": null,
       "divergence_from_jinjing": null,
       "boundary_notes": [
-        "本条只记录《景祐太乙福应经》卷四自身source rule；当前没有独立runtime。",
-        "不得调用平行《金镜》runtime冒充本条实现。",
+        "本条由《景祐太乙福应经》卷四独立runtime实现。",
+        "不得调用平行《金镜》runtime冒充本条，也不得跨来源自动补缺。",
         "与J4M-05只做crosswalk，不自动合并。"
-      ]
+      ],
+      "runtime_catalog": "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog"
     },
     {
       "key": "jingyou_jf4m_06",
@@ -179,8 +199,8 @@
       "domain": "陈兵向背",
       "canonical_summary": "按算数定出兵方向：1西北、2正南、3东北、4正东、6正西、7西南、8正北、9东南。",
       "parallel_jinjing_rule": "J4M-06",
-      "implementation_status": "source_record_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jingyou_fuying_v4_military.deploy_direction",
       "textual_uncertainty": [],
       "notable_readings": [],
       "canonical_data": {
@@ -197,10 +217,11 @@
       },
       "divergence_from_jinjing": "本表有3/7/8而无5，且主要是出向表；不得与《金镜》1/2/4/5/6/9阵旗表互补。",
       "boundary_notes": [
-        "本条只记录《景祐太乙福应经》卷四自身source rule；当前没有独立runtime。",
-        "不得调用平行《金镜》runtime冒充本条实现。",
+        "本条由《景祐太乙福应经》卷四独立runtime实现。",
+        "不得调用平行《金镜》runtime冒充本条，也不得跨来源自动补缺。",
         "与J4M-06只做crosswalk，不自动合并。"
-      ]
+      ],
+      "runtime_catalog": "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog"
     },
     {
       "key": "jingyou_jf4m_07",
@@ -215,8 +236,8 @@
       "domain": "地形制阵",
       "canonical_summary": "水曲、火锐、木直、金方、土圆；主客置阵后以五行相制取胜负，再依地形选阵。",
       "parallel_jinjing_rule": "J4M-07",
-      "implementation_status": "source_record_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jingyou_fuying_v4_military.formation_by_terrain",
       "textual_uncertainty": [
         "电子转录“地形跨斜”",
         "电子转录“地形高而不平”均待扫描核字"
@@ -225,10 +246,12 @@
       "canonical_data": null,
       "divergence_from_jinjing": null,
       "boundary_notes": [
-        "本条只记录《景祐太乙福应经》卷四自身source rule；当前没有独立runtime。",
-        "不得调用平行《金镜》runtime冒充本条实现。",
-        "与J4M-07只做crosswalk，不自动合并。"
-      ]
+        "本条由《景祐太乙福应经》卷四独立runtime实现。",
+        "不得调用平行《金镜》runtime冒充本条，也不得跨来源自动补缺。",
+        "与J4M-07只做crosswalk，不自动合并。",
+        "电子转录疑字/未锁定细节继续保留pending，不因runtime实现而消失。"
+      ],
+      "runtime_catalog": "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog"
     },
     {
       "key": "jingyou_jf4m_08",
@@ -243,17 +266,18 @@
       "domain": "临敌随形制变",
       "canonical_summary": "地形、卒习服、器用为急；步兵地车骑二不当一，萑苇竹萧为矛鋋类地、长戟二不当一，另有曲道剑楯地；不习服百不当十，将不省兵五不当一。",
       "parallel_jinjing_rule": "J4M-08",
-      "implementation_status": "source_record_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jingyou_fuying_v4_military.adapt_to_terrain",
       "textual_uncertainty": [],
       "notable_readings": [],
       "canonical_data": null,
       "divergence_from_jinjing": null,
       "boundary_notes": [
-        "本条只记录《景祐太乙福应经》卷四自身source rule；当前没有独立runtime。",
-        "不得调用平行《金镜》runtime冒充本条实现。",
+        "本条由《景祐太乙福应经》卷四独立runtime实现。",
+        "不得调用平行《金镜》runtime冒充本条，也不得跨来源自动补缺。",
         "与J4M-08只做crosswalk，不自动合并。"
-      ]
+      ],
+      "runtime_catalog": "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog"
     },
     {
       "key": "jingyou_jf4m_09",
@@ -268,8 +292,8 @@
       "domain": "太乙助主客",
       "canonical_summary": "1/8/3/4为地内助主，9/2/7/6为天外助客；仍须门具将发方决胜。",
       "parallel_jinjing_rule": "J4M-09",
-      "implementation_status": "source_record_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jingyou_fuying_v4_military.taiyi_outer_inner",
       "textual_uncertainty": [],
       "notable_readings": [],
       "canonical_data": {
@@ -288,10 +312,11 @@
       },
       "divergence_from_jinjing": null,
       "boundary_notes": [
-        "本条只记录《景祐太乙福应经》卷四自身source rule；当前没有独立runtime。",
-        "不得调用平行《金镜》runtime冒充本条实现。",
+        "本条由《景祐太乙福应经》卷四独立runtime实现。",
+        "不得调用平行《金镜》runtime冒充本条，也不得跨来源自动补缺。",
         "与J4M-09只做crosswalk，不自动合并。"
-      ]
+      ],
+      "runtime_catalog": "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog"
     },
     {
       "key": "jingyou_jf4m_10",
@@ -306,8 +331,8 @@
       "domain": "风云飞鸟助战",
       "canonical_summary": "风云飞鸟冲格迫击、由主人刑/客刑、主客目、太岁太阴月建等来势及翼阵、冲阵分别定主客败胜。",
       "parallel_jinjing_rule": "J4M-11",
-      "implementation_status": "source_record_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jingyou_fuying_v4_military.weather_bird_support",
       "textual_uncertainty": [],
       "notable_readings": [
         "迫击客大将宫客败；迫击主将宫主败",
@@ -318,10 +343,11 @@
       "canonical_data": null,
       "divergence_from_jinjing": null,
       "boundary_notes": [
-        "本条只记录《景祐太乙福应经》卷四自身source rule；当前没有独立runtime。",
-        "不得调用平行《金镜》runtime冒充本条实现。",
+        "本条由《景祐太乙福应经》卷四独立runtime实现。",
+        "不得调用平行《金镜》runtime冒充本条，也不得跨来源自动补缺。",
         "与J4M-11只做crosswalk，不自动合并。"
-      ]
+      ],
+      "runtime_catalog": "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog"
     },
     {
       "key": "jingyou_jf4m_11",
@@ -336,17 +362,18 @@
       "domain": "奇兵伏兵",
       "canonical_summary": "奇兵以三成为法；奇兵必从大杀之地，大杀为天目所临之下；转录另记其地居高、去敌三五里；11/21/31伏藏，掩迫时发，贼近伏要害。",
       "parallel_jinjing_rule": "J4M-10",
-      "implementation_status": "source_record_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jingyou_fuying_v4_military.odd_ambush",
       "textual_uncertainty": [],
       "notable_readings": [],
       "canonical_data": null,
       "divergence_from_jinjing": "《金镜》作“伏兵必败大煞之地”，本条作“奇兵必从大杀之地”；不得互改。",
       "boundary_notes": [
-        "本条只记录《景祐太乙福应经》卷四自身source rule；当前没有独立runtime。",
-        "不得调用平行《金镜》runtime冒充本条实现。",
+        "本条由《景祐太乙福应经》卷四独立runtime实现。",
+        "不得调用平行《金镜》runtime冒充本条，也不得跨来源自动补缺。",
         "与J4M-10只做crosswalk，不自动合并。"
-      ]
+      ],
+      "runtime_catalog": "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog"
     }
   ]
 }
