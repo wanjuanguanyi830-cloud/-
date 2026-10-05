@@ -390,19 +390,32 @@
         "三旗行宫",
         "三旗行宮"
       ],
-      "term_type": "primary_attribution_unverified_term",
-      "primary_evidence_level": "project_attribution_unverified",
+      "term_type": "legacy_cross_source_recovery_pointer",
+      "primary_evidence_level": "ziting_not_attested_cross_source_only",
       "primary_result_allowed": false,
       "runtime": null,
-      "ziting_catalog_status": "同名题目未见",
+      "ziting_catalog_status": "同名题目未见；现行直接公式归《太乙统宗宝鉴》卷十",
       "collation_sources": [
         "tongzong_volume10"
       ],
-      "collation_section": "明太乙与三旗行宫会合术",
+      "collation_section": "明太乙三旗行宫会合术",
       "canonical_selected": null,
       "boundary_notes": [
-        "统宗卷十有直接文本，但不能据此反标为紫庭来源。"
-      ]
+        "当前可直接核验的三旗行宫公式明确属于《太乙统宗宝鉴》卷十，现行canonical不再等待紫庭归属。",
+        "本条保留在zitingjing catalog仅为旧terminology.json/研易楼明钞恢复指针，不代表紫庭已见同术。",
+        "若E盘明钞原页以后证实存在同名/相关术，必须新增独立ziting witness/profile，不得覆盖C126统宗runtime。"
+      ],
+      "known_executable_source_profile": "tongzong_volume10_three_banners",
+      "source_specific_profiles": {
+        "tongzong_volume10": {
+          "rule_id": "C126-TONGZONG-THREE-BANNERS",
+          "source_profile": "tongzong_volume10_three_banners",
+          "runtime": "kintaiyi.tongzong_volume10_spirits.three_banners",
+          "source_section": "明太乙三旗行宫会合术",
+          "status": "direct_source_specific_runtime",
+          "source_record": "sources/c126-c127-tongzong-volume10-spirits-record.md"
+        }
+      }
     },
     {
       "key": "nine_palace_nobles",
@@ -413,19 +426,32 @@
         "九宫贵神术",
         "九宮貴神術"
       ],
-      "term_type": "primary_attribution_unverified_term",
-      "primary_evidence_level": "project_attribution_unverified",
+      "term_type": "legacy_cross_source_recovery_pointer",
+      "primary_evidence_level": "ziting_not_attested_cross_source_only",
       "primary_result_allowed": false,
       "runtime": null,
-      "ziting_catalog_status": "同名题目未见",
+      "ziting_catalog_status": "同名题目未见；现行直接公式归《太乙统宗宝鉴》卷十",
       "collation_sources": [
         "tongzong_volume10"
       ],
       "collation_section": "明太乙九宫贵神术",
       "canonical_selected": null,
       "boundary_notes": [
-        "统宗卷十直接文本与更早九宫贵神背景都不能替代紫庭归属证明。"
-      ]
+        "当前可直接核验的九宫贵神公式明确属于《太乙统宗宝鉴》卷十，现行canonical不再等待紫庭归属。",
+        "本条保留在zitingjing catalog仅为旧terminology.json/研易楼明钞恢复指针，不代表紫庭已见同术。",
+        "若E盘明钞原页以后证实存在同名/相关术，必须新增独立ziting witness/profile，不得覆盖C127统宗runtime。"
+      ],
+      "known_executable_source_profile": "tongzong_volume10_nine_palace_nobles",
+      "source_specific_profiles": {
+        "tongzong_volume10": {
+          "rule_id": "C127-TONGZONG-NINE-PALACE-NOBLES",
+          "source_profile": "tongzong_volume10_nine_palace_nobles",
+          "runtime": "kintaiyi.tongzong_volume10_spirits.nine_palace_nobles",
+          "source_section": "明太乙九宫贵神术",
+          "status": "direct_source_specific_runtime",
+          "source_record": "sources/c126-c127-tongzong-volume10-spirits-record.md"
+        }
+      }
     }
   ]
 }
