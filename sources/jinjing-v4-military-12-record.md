@@ -518,3 +518,28 @@ J4M-03 仍保留 source-specific alias metadata，用于记录四库 p.130 的�
 - 规则、五行与 winner 均不改变。
 
 详见：sources/c104-j4m03-global-alias-sync-record.md。
+
+
+## C108：四库 / NCL / 《景祐太乙福应经》三见证矩阵（2026-10-05）
+
+新增机器可读对勘表：
+
+`rules/jinjing_v4_witness_matrix.json`
+
+它把卷四十二法的三条主要证据链放在同一结构中：
+
+- 四库 CADAL06056494：jinjing_siku_volume4 canonical；
+- NCL-06604 明钞本：independent manuscript witness；
+- 《景祐太乙福应经》卷四：independent ancient parallel source。
+
+矩阵特别锁定：
+
+- J4M-05：四库 12/22/32，NCL 12/22；
+- J4M-06：四库 1/2/4/5/6/9，NCL 与《福应经》为 1/2/3/4/6/7/8/9；
+- J4M-09：四库地内 8/3/4，NCL 与《福应经》为 1/8/3/4；
+- J4M-11：四库“主人形→客败”与 NCL/《福应经》“主人刑→主人败、客刑→客败”分开；
+- J4M-12：四库西方白云基础胜负未明，NCL 明写“大胜”。
+
+J4M-06 的 NCL 战利方向、背地、阵形、旗色仍明确标为 pending。即使 NCL 数值/出军方向与《福应经》一致，也禁止复制后者细项。
+
+详细见：sources/c108-jinjing-v4-witness-matrix-record.md。
