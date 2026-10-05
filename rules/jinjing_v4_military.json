@@ -95,10 +95,12 @@
             "J4M-06明钞本算表为1/2/3/4/6/7/8/9，无5；方向骨架与福应经同构"
           ],
           "still_pending": [
-            "J4M-03例文太蔟/太簇的明钞本字形需更高倍率确认",
             "除已列关键点外的全段逐字异文表"
           ],
-          "canonical_effect": "none"
+          "canonical_effect": "none",
+          "nonblocking_source_glyph_checks": [
+            "J4M-03明钞本实际写太蔟或太簇可继续核字，但不影响项目canonical=太簇"
+          ]
         },
         "volume4_heading_collation": {
           "toc_page": 55,
@@ -152,7 +154,8 @@
     "scan_locator_version": "c79-j4m-cadal-page-locators-v1",
     "witness_audit_version": "c84-ncl06604-access-boundary-v1",
     "full_twelve_scan_audit_version": "c85-j4m01-12-scan-boundary-complete-v1",
-    "ncl_volume4_collation_version": "c88-ncl06604-j4m06-direction-table-v1"
+    "ncl_volume4_collation_version": "c88-ncl06604-j4m06-direction-table-v1",
+    "terminology_policy_version": "c99-taicu-canonical-v1"
   },
   "separation_policy": [
     "本表只记录四库本《太乙金镜式经》卷四十二法，不自动并入《太乙统宗宝鉴》卷五或旧代码同名函数。",
@@ -358,9 +361,9 @@
       "terminology_aliases": {
         "太蔟": {
           "canonical": "太簇",
-          "status": "source_glyph_alias",
+          "status": "historical_source_form_alias",
           "evidence": "四库卷四J4M-03首例写太蔟；runtime规范词形沿用太簇",
-          "behavior": "输入接受太蔟，原输入保留，另输出canonical=太簇；五行仍为金。"
+          "behavior": "输入可接受太蔟并保留原始source form，但canonical始终输出太簇；五行仍为金。"
         }
       },
       "ncl_scan_locator": {
@@ -374,6 +377,16 @@
         "canonical_effect": "none",
         "toc_title": "推主客相关",
         "body_title": "推主客相关法"
+      },
+      "terminology_policy": {
+        "canonical_form": "太簇",
+        "status": "project_canonical_fixed",
+        "source_forms": [
+          "太簇",
+          "太蔟"
+        ],
+        "rule": "项目术语、runtime canonical 输出、对外文档统一采用“太簇”；“太蔟”只保留为来源字形/异文见证，不作为待决规范词形。",
+        "cycle": "C99"
       }
     },
     {
