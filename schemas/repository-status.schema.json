@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/taiyi/repository-status.schema.json",
+  "title": "Taiyi live repository status",
+  "type": "object",
+  "required": [
+    "public_api_version",
+    "stable_catalog_count",
+    "stable_term_entry_count",
+    "operation_count",
+    "operation_domains",
+    "legacy_terminology_json_migrated",
+    "crosswalk_audit",
+    "policy"
+  ],
+  "properties": {
+    "public_api_version": {"type": "string"},
+    "stable_catalog_count": {"type": "integer", "minimum": 0},
+    "stable_term_entry_count": {"type": "integer", "minimum": 0},
+    "operation_count": {"type": "integer", "minimum": 0},
+    "operation_domains": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "legacy_terminology_json_migrated": {"type": "boolean"},
+    "crosswalk_audit": {"type": ["object", "null"]},
+    "policy": {"type": "string"}
+  },
+  "additionalProperties": true
+}
