@@ -60,18 +60,16 @@
       {
         "id": "T7-06",
         "name": "白龙得云",
-        "canonical": "B模型旺相有气宜出军下营屯军，休囚死无气不宜；敌大将五行克我大将/参将可直接计算；“刑”只接受独立校勘后显式提供的宫位对，严重刑克优先。",
-        "pending": [
-          "本条三源均只见“彼军大将刑克我军大小将之宫”，未见可执行将宫刑映射；不得套用通用地支三刑或其他九宫相刑表。"
-        ],
-        "collation_status": "three_source_phrase_verified_xing_mapping_unresolved",
+        "canonical": "大神所临之宫用于将帅乘气；旺相有气宜出军下营屯军，休囚死无气不宜。敌大将九宫五行克我方大将/参将九宫五行时为严重条件、出战必死并优先于乘气。三源虽见“刑克”措辞，但未见独立将宫刑表；四库平行小将句简作“克小将亦然”，故canonical不另造刑算子。",
+        "collation_status": "three_source_phrase_verified_control_only_canonical_no_independent_xing_operator",
         "collation_sources": [
           "四库本《太乙金镜式经》卷六",
           "《太乙统宗宝鉴》卷十二",
           "《太乙金钥匙》"
         ],
-        "collation_note": "三源都证明刑与克为严重条件，但本条没有定义如何从两个九宫自动推出刑；克按五行计算，刑只接显式已校关系。",
-        "source_record": "sources/t7-06-white-dragon-xing-collation.md"
+        "collation_note": "四库大将句“刑克”与紧接“小将”句仅“克”形成内部平行；统宗、金钥匙亦无独立将宫刑表。xing_pairs只保留为非canonical外部兼容扩展。",
+        "source_record": "sources/t7-06-white-dragon-xing-collation.md",
+        "compatibility_extension": "xing_pairs显式输入只返回external_xing_events，不改变canonical severe/verdict。"
       },
       {
         "id": "T7-07",
@@ -830,7 +828,6 @@
   ],
   "pending": [
     "T7-02狮子反掷：普通落支候选破年仍缺第二古籍实例，当前不外推唯一应期。",
-    "T7-06白龙得云：三源已确认“刑克”句，但本条未见可执行将宫刑映射；五行克可算，刑只接受独立校勘后的显式宫位对。",
     "旧本地terminology.json真实schema与原文件尚未重新挂载；旧term id、旧定义、旧notes等不得从当前catalog反推。",
     "研易楼藏《太乙紫庭祕訣》明钞本已重新提供并核验目录，未见文昌九星题名；C70《太乙统宗宝鉴》卷六NGJ已解决现行文昌九星规则来源。剩余仅现代整理本“附太乙文昌九星值宮術”的编辑来源未证，不阻塞算法。"
   ]
