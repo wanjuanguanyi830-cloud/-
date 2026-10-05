@@ -34,7 +34,7 @@
 
 “三曰善用兵器”后，页图继续露出：
 
-**五丈之沟……**
+**五丈之沟居堑之水山林**
 
 但该页图在此处被裁切，不能仅凭这张图完成“五丈之沟”以下连续段落的逐字转录。
 
@@ -57,7 +57,7 @@ rules/jinjing_v4_military.json：
 - J4M-08 manuscript_readings.NCL-06604.opening_direct_visual
 - source_attribution = 晁错
 - three_urgencies = [士卒服习, 随其地形, 善用兵器]
-- continuation_visible_only = 五丈之沟……
+- continuation_visible_only = 五丈之沟居堑之水山林
 - scope_policy 明确“不据本图声明已核后续全文”
 - source.ncl_volume4_collation_version = c112-ncl06604-j4m08-opening-v1
 
@@ -79,3 +79,14 @@ NCL J4M-08 当前已经有：
 三类直接页图证据。
 
 但仍不宣称整条 J4M-08 连续正文已经逐字核完。
+
+
+## C112 v2 用户校读补充
+
+用户进一步确认该页在“三曰善用兵器”之后可连续读到：
+
+**五丈之沟居堑之水山林**
+
+因此 C112 的直接可见范围由“仅五丈之沟起句”向后延长至上述完整字串。
+
+仍不补其后的文字；pending 从“该字串之后”继续。
