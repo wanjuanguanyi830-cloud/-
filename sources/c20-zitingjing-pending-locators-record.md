@@ -126,3 +126,43 @@ C20 继续处理：
 - 一个统宗电子见证自身同时出现“十年一宫”与“宫率三十、小周270、大周2700”。
 
 所以这些材料只进入 collation，不改变 `catalog_attested_primary_text_pending`，也不生成 canonical 推步。
+
+
+## 2026-10-05 公开网络恢复复核
+
+本轮进一步检查公开可访问渠道，结论是：
+
+1. 书格资源帖现可直接访问，明确记录：
+   - 《太乙紫庭祕訣》研易樓藏明鈔本；
+   - 181 单页灰度；
+   - 328M；
+   - 帖内列有多个外部转存入口。
+2. 两处现代出版目录均明确列出：
+   - `附太乙文昌九星值宮術`
+3. 公开全文/片段检索仍未取得：
+   - 研易楼明钞本该附篇直接影印页；
+   - 可逐字校读的该附篇正文；
+   - 可安全回填的 manuscript page number。
+4. 搜索到的可读“文昌九星”正文主要仍属于《太乙统宗宝鉴》卷六或其平行整理，不能回填研易楼本。
+
+因此本轮只把恢复状态从“资源线索待确认”推进到：
+
+`public_share_and_appendix_catalog_confirmed_direct_page_still_missing`
+
+以下字段继续保持未恢复：
+
+- `manuscript_form`
+- `source_page`
+- 紫庭 primary runtime
+
+访问边界：
+
+- 只使用公开可访问页面；
+- 不绕过付费、网盘或登录限制；
+- 不以现代出版目录、统宗正文或 OCR 猜测代替明钞逐字证据。
+
+公开线索：
+
+- 书格：<https://www.shuge.org/meet/topic/96517/>
+- 星易图书：<https://www.xinyi.hk/goods-7102.html>
+- 進源書局：<https://www.chinyuan.com.tw/all_book/more?id=7195>
