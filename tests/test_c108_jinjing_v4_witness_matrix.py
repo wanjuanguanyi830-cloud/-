@@ -169,7 +169,7 @@ def test_c120_j4m09_boundary_is_verified_without_recomputing_c86_palace_groups()
     data = _matrix()
     row = {item["rule_id"]: item for item in data["entries"]}["J4M-09"]
 
-    assert data["last_update"] == "C120"
+    assert "C120" in data["updates"]
     assert "C120" in data["updates"]
     assert row["ncl"]["previous_rule_closing"] == "此之要也"
     assert row["ncl"]["body_title"] == "推太乙在天外地内法"
@@ -179,3 +179,27 @@ def test_c120_j4m09_boundary_is_verified_without_recomputing_c86_palace_groups()
     assert row["ncl"]["inner"] == [1, 8, 3, 4]
     assert row["ncl"]["outer"] == [9, 2, 7, 6]
     assert "不以NCL的1宫补四库canonical" in row["hard_boundary"]
+
+
+def test_c123_ncl_coverage_summary_is_complete_and_noncanonical():
+    data = _matrix()
+    summary = data["ncl_coverage_summary"]
+
+    assert data["last_update"] == "C123"
+    assert "C123" in data["updates"]
+    assert summary["counts"] == {
+        "locator_only": 4,
+        "selected_readings": 5,
+        "full_rule": 3,
+        "total": 12,
+    }
+    assert summary["full_rule_ids"] == ["J4M-06", "J4M-07", "J4M-08"]
+    assert summary["selected_reading_ids"] == ["J4M-05", "J4M-09", "J4M-10", "J4M-11", "J4M-12"]
+    assert summary["locator_only_ids"] == ["J4M-01", "J4M-02", "J4M-03", "J4M-04"]
+    assert "不改变任何canonical或runtime" in summary["policy"]
+
+    rows = {item["rule_id"]: item for item in data["entries"]}
+    assert rows["J4M-01"]["ncl"]["coverage"]["status_group"] == "locator_only"
+    assert rows["J4M-06"]["ncl"]["coverage"]["status_group"] == "full_rule"
+    assert rows["J4M-08"]["ncl"]["coverage"]["evidence_level"] == "full_contiguous_body_direct_visual_verified"
+    assert rows["J4M-10"]["ncl"]["coverage"]["status_group"] == "selected_readings"
