@@ -686,32 +686,50 @@ def zhuke_fa(context, *, three_doors_ready=None, five_generals_released=None,
         action_status = "raise_forces_favorable"
         action_advice = "称兵"
         source_campaign_verdict = "所向必克"
-        source_temporal_outcome = "先胜后负"
+        source_temporal_outcome = "先起者胜，后起者负"
         source_combination_status = "explicit_favorable_triad"
+        winner = role["first_mover"]
+        loser = role["responder"]
+        winner_basis = (
+            "《金镜》本句“先胜后负”经《武经总要》与《太乙秘书》"
+            "同段“先起则胜，后起则败”参校，按本场景先起/后应角色落实。"
+        )
     elif all_unfavorable:
         action_status = "hold_and_defend"
         action_advice = "不利举兵，宜固守吉"
         source_campaign_verdict = None
         source_temporal_outcome = None
         source_combination_status = "explicit_unfavorable_triad"
+        winner = None
+        loser = None
+        winner_basis = None
     elif blockers:
         action_status = "blocked_or_mixed"
         action_advice = blockers[0] if len(blockers) == 1 else "；".join(blockers)
         source_campaign_verdict = None
         source_temporal_outcome = None
         source_combination_status = "mixed_combination_not_fully_expanded_by_j4m04"
+        winner = None
+        loser = None
+        winner_basis = None
     elif not all_known:
         action_status = "not_computable"
         action_advice = "缺三门、五将或阴阳和不和事实"
         source_campaign_verdict = None
         source_temporal_outcome = None
         source_combination_status = "missing_inputs"
+        winner = None
+        loser = None
+        winner_basis = None
     else:
         action_status = "mixed_combination_not_defined"
         action_advice = "正文只明确三项皆和与三项皆不和；该混合组合不扩写。"
         source_campaign_verdict = None
         source_temporal_outcome = None
         source_combination_status = "mixed_combination_not_fully_expanded_by_j4m04"
+        winner = None
+        loser = None
+        winner_basis = None
 
     if direction is None:
         start_deity = None
@@ -742,8 +760,14 @@ def zhuke_fa(context, *, three_doors_ready=None, five_generals_released=None,
         "source_combination_status": source_combination_status,
         "source_campaign_verdict": source_campaign_verdict,
         "source_temporal_outcome": source_temporal_outcome,
-        "winner": None,
-        "temporal_outcome_policy": "保留“先胜后负”原文，不据此指定主/客最终胜负。",
+        "winner": winner,
+        "loser": loser,
+        "winner_basis": winner_basis,
+        "temporal_outcome_policy": (
+            "“先胜后负”已由《武经总要》《太乙秘书》同段明确句读为"
+            "“先起则胜，后起则败”；只在三门具、五将发、阴阳和的明确有利三项时落实胜负。"
+            "《金镜》不利三项只明言不利举兵、宜固守，其他传本的“先起者败后起者胜”不自动回写。"
+        ),
         "direction": direction,
         "start_deity": start_deity,
         "direction_status": direction_status,
