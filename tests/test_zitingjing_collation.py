@@ -80,3 +80,22 @@ def test_sancai_shiwei_is_not_a_generic_ziting_collation_source():
         assert "未知参校来源" in str(exc)
     else:
         raise AssertionError("expected ValueError")
+
+
+def test_c70_tongzong_runtime_does_not_promote_zitingjing_primary():
+    data = wenchang_nine_stars_collation_witnesses()
+    assert data["primary_result"] is None
+    assert data["canonical_selected"] is None
+    assert data["source_specific_runtimes"] == [
+        {
+            "source_id": "tongzong_volume6_ngj",
+            "rule_id": "C70-TONGZONG-WENCHANG-NINE-STARS",
+            "cross_source_canonical": False,
+        }
+    ]
+    ngj = next(
+        item for item in data["witnesses"]
+        if item["source_id"] == "tongzong_volume6_ngj"
+    )
+    assert ngj["source_specific_runtime"]["available"] is True
+    assert ngj["source_specific_runtime"]["zitingjing_primary_result"] is False
