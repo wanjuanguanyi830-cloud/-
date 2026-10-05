@@ -22,7 +22,7 @@ def test_catalog_index_stable_catalogs_resolve_and_match_ids():
         ids.append(item["catalog_id"])
 
     assert len(ids) == len(set(ids))
-    assert len(ids) == 6
+    assert len(ids) == 7
 
 
 def test_catalog_index_separates_stable_migration_and_supporting_assets():
@@ -60,4 +60,5 @@ def test_stable_catalogs_cover_current_core_workstreams():
         "terminology/patterns.json",
         "terminology/military-p0.json",
         "terminology/cycles.json",
+        "terminology/zitingjing.json",
     }
