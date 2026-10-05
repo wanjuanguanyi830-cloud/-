@@ -88,3 +88,26 @@
 `accumulated_month -> 月计阳局 -> G2..G7`
 
 所以月计现在不再要求调用方手工提供古法积月常数。
+
+
+## 字段命名防混淆
+
+为了避免把月计12月块误认成太乙岁：
+
+- `month_formula_year`：只服务积月公式；
+- `cycle_historical_year`：兼容旧字段，语义同上；
+- `taiyi_year`：只能来自真实冬至岁界，不由月计模块生成。
+
+因此在公历Y年“大雪后、冬至前”允许同时出现：
+
+- 月建 = 子；
+- `month_formula_year = Y+1`；
+- `taiyi_year = Y`。
+
+到冬至精确瞬间：
+
+- 月建仍为子；
+- `month_formula_year`不变；
+- `taiyi_year`才切换为`Y+1`。
+
+这不是冲突，而是“月界”和“岁界”本来就是两个独立边界。
