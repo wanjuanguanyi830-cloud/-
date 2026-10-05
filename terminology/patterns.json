@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0",
+  "catalog_id": "taiyi-pattern-terminology-v1",
+  "scope": "source_sensitive_patterns",
+  "status": "repository_source_profile_terminology_catalog",
+  "legacy_terminology_json_migrated": false,
+  "shared_catalog": "terminology/common-core.json",
+  "source_profiles": {
+    "jinjing_geju": {
+      "ruleset_id": "jinjing",
+      "ruleset_version": "jinjing-geju-1.0.0",
+      "runtime": "rules.jinjing.geju.analyze_geju",
+      "primary_source": "《太乙金镜式经》",
+      "primary_volumes": [3, 4],
+      "scope_note": "主体格局来自卷三；值事门相关执提/提格引用卷四。",
+      "canonical_scope": "within_jinjing_geju_only"
+    },
+    "tongzong_volume4": {
+      "primary_source": "《太乙统宗宝鉴》卷四",
+      "runtime": null,
+      "status": "parallel_source_profile_container",
+      "canonical_scope": "not_selected"
+    }
+  },
+  "cross_source_policy": {
+    "canonical_selected": null,
+    "cross_source_merge": false,
+    "legacy_flat_auto_promoted": false,
+    "policy": "金镜与统宗格局并列保存；不得拼成“最佳版本”，不得用旧flat释格局反推source profile。"
+  },
+  "entries": [
+    {
+      "key": "patterns",
+      "preferred_term": "格局",
+      "aliases": ["格局", "释格局", "釋格局"],
+      "term_type": "source_sensitive_method_group",
+      "source_profiles": ["jinjing_geju", "tongzong_volume4"],
+      "definition": "太乙、二目、四将及值事门等相对位置形成的结构化关系集合；不同古籍profile不得静默合并。"
+    },
+    {
+      "key": "yan",
+      "preferred_term": "掩",
+      "aliases": ["掩"],
+      "term_type": "jinjing_pattern",
+      "source_profile": "jinjing_geju",
+      "source_volume": 3,
+      "definition": "始击精确落太乙正宫。"
+    },
+    {
+      "key": "ji",
+      "preferred_term": "击",
+      "aliases": ["击", "擊"],
+      "term_type": "jinjing_pattern",
+      "source_profile": "jinjing_geju",
+      "source_volume": 3,
+      "definition": "始击在太乙前/后一辰或前/后一宫。"
+    },
+    {
+      "key": "po",
+      "preferred_term": "迫",
+      "aliases": ["迫"],
+      "term_type": "jinjing_pattern",
+      "source_profile": "jinjing_geju",
+      "source_volume": 3,
+      "definition": "文昌或主客四将在太乙前/后一辰或前/后一宫；始击及定目不参与此迫规则。"
+    },
+    {
+      "key": "qiu",
+      "preferred_term": "囚",
+      "aliases": ["囚"],
+      "term_type": "jinjing_pattern",
+      "source_profile": "jinjing_geju",
+      "source_volume": 3,
+      "definition": "文昌精确同太乙正宫，或主客四将与太乙同宫。"
+    },
+    {
+      "key": "guan",
+      "preferred_term": "关",
+      "aliases": ["关", "關"],
+      "term_type": "jinjing_pattern",
+      "source_profile": "jinjing_geju",
+      "source_volume": 3,
+      "definition": "主客四将彼此同宫。",
+      "boundary_notes": ["不把二目与单将同宫泛化成关。"]
+    },
+    {
+      "key": "ge",
+      "preferred_term": "格",
+      "aliases": ["格"],
+      "term_type": "jinjing_pattern",
+      "source_profile": "jinjing_geju",
+      "source_volume": 3,
+      "definition": "始击、客大将或客参将在太乙对宫。"
+    },
+    {
+      "key": "dui",
+      "preferred_term": "对",
+      "aliases": ["对", "對"],
+      "term_type": "jinjing_pattern",
+      "source_profile": "jinjing_geju",
+      "source_volume": 3,
+      "definition": "文昌在太乙对宫。"
+    },
+    {
+      "key": "tixie",
+      "preferred_term": "提挟",
+      "aliases": ["提挟", "提挾"],
+      "term_type": "jinjing_pattern",
+      "source_profile": "jinjing_geju",
+      "source_volume": 3,
+      "definition": "太乙与四将中的夹持点，在八宫环上夹住太乙、四将或位于正宫的文昌/始击。",
+      "boundary_notes": ["位于间神的二目不作普通提挟目标。"]
+    },
+    {
+      "key": "xiebi",
+      "preferred_term": "挟闭",
+      "aliases": ["挟闭", "挾閉"],
+      "term_type": "jinjing_pattern",
+      "source_profile": "jinjing_geju",
+      "source_volume": 3,
+      "definition": "文昌与始击均在间神，并由太乙与主客将的十六辰位置形成对二目的夹持。",
+      "boundary_notes": ["挟闭单独输出，不并入普通提挟。"]
+    },
+    {
+      "key": "sigu_gu",
+      "preferred_term": "四郭固",
+      "aliases": ["四郭固"],
+      "term_type": "jinjing_pattern",
+      "source_profile": "jinjing_geju",
+      "source_volume": 3,
+      "definition": "由文昌囚太乙及大小将关系，或客目临太乙位置及客将关系组成的复合格局。"
+    },
+    {
+      "key": "sigu_du",
+      "preferred_term": "四郭杜",
+      "aliases": ["四郭杜"],
+      "source_variants": ["四郭社"],
+      "term_type": "jinjing_pattern",
+      "source_profile": "jinjing_geju",
+      "source_volume": 3,
+      "definition": "客参与文昌并、主大与客大并，并兼掩/迫/关/格/提挟等条件组成的复合格局。",
+      "boundary_notes": ["机器主字段固定“四郭杜”；“四郭社”只保留为异文，不得成为主输出字段。"]
+    },
+    {
+      "key": "zhiti",
+      "preferred_term": "执提",
+      "aliases": ["执提", "執提"],
+      "term_type": "jinjing_pattern",
+      "source_profile": "jinjing_geju",
+      "source_volume": 4,
+      "definition": "值事门为开门或生门，且与太乙同宫。"
+    },
+    {
+      "key": "tige",
+      "preferred_term": "提格",
+      "aliases": ["提格"],
+      "term_type": "jinjing_pattern",
+      "source_profile": "jinjing_geju",
+      "source_volume": 4,
+      "definition": "值事门为开门或生门，且在太乙对宫。"
+    }
+  ]
+}
