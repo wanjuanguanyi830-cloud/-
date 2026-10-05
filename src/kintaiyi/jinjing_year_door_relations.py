@@ -16,7 +16,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from .jinjing_eight_door_overlay import open_door_overlay
+from .jinjing_eight_door_overlay import door_overlay, open_door_overlay\nfrom .jinjing_year_eight_doors import year_duty_door
 
 SOURCE_PROFILE = "jinjing_volume1_li_chunfeng_year_door_meeting"
 RULE_ID = "J1-YEAR-DOOR-MEETING"
@@ -106,5 +106,65 @@ def year_door_meeting(
         "policy": (
             "本条只给门关系的局部大利/不大利；即使落开休生，"
             "若另有囚迫格对、杜塞、五将不发等，仍由对应规则覆盖最终军事判断。"
+        ),
+    }
+
+
+
+def year_door_meeting_wang_ximing(
+    *,
+    accumulated_year: int,
+    taiyi_palace: int,
+    host_big_palace: int | None,
+    guest_big_palace: int | None,
+) -> dict[str, Any]:
+    """王希明岁计直使门空间 profile（平行古注补足）。
+
+    《金镜》卷一直接给出240/30直使周期；《太乙淘金歌》又保存
+    “常以直使加太乙”“直使又加主将宫”的操作说明。
+    因此这里以当年直使门加太乙，仍按同一方向判断主/客大将
+    是否落太乙动态盘的开、休、生三吉门。
+
+    source_status 固定为 parallel_reconstruction，避免冒充《金镜》逐字公式。
+    """
+    duty = year_duty_door(accumulated_year)
+    anchor_door = duty["duty_door"]
+
+    taiyi = _palace(taiyi_palace, field="taiyi_palace")
+    host = _palace(host_big_palace, field="host_big_palace")
+    guest = _palace(guest_big_palace, field="guest_big_palace")
+    overlay = door_overlay(taiyi, anchor_door)
+
+    host_result = _side_result(
+        side="主",
+        general_palace=host,
+        palace_to_door=overlay["palace_to_door"],
+    )
+    guest_result = _side_result(
+        side="客",
+        general_palace=guest,
+        palace_to_door=overlay["palace_to_door"],
+    )
+
+    return {
+        "source_profile": "jinjing_volume1_wang_ximing_year_direct_door_meeting_parallel",
+        "source_status": "parallel_reconstruction",
+        "rule_id": "J1-YEAR-DOOR-MEETING-WANG",
+        "source_scope": "金镜卷一岁计直使 + 太乙淘金歌平行空间释法",
+        "accumulated_year": accumulated_year,
+        "duty_door": anchor_door,
+        "duty": duty,
+        "taiyi_palace": taiyi,
+        "taiyi_overlay": overlay["palace_to_door"],
+        "three_good_doors": ["开", "休", "生"],
+        "host": host_result,
+        "guest": guest_result,
+        "interpretation": (
+            "直使门加太乙形成动态太乙门盘；主/客大将落该盘开休生之一，"
+            "则在本条门关系上为大利。"
+        ),
+        "policy": (
+            "这是平行古注补足的王希明空间profile；"
+            "李淳风旧法J1-YEAR-DOOR-MEETING仍固定开门加太乙，二者并存。"
         ),
     }
