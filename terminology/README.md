@@ -255,3 +255,35 @@
 机器主字段固定“**四郭杜**”；“四郭社”只作来源异文，不建立第二个 canonical 格局词条。
 
 该目录继续复用 `terminology/common-core.json` 的九宫与十六辰坐标，不在格局目录另抄一套坐标表。
+
+
+## 军事 P0 source-profile 术语目录
+
+已建立：
+
+`terminology/military-p0.json`
+
+覆盖三项高风险近名术：
+
+- 三门 / 推三门具不具；
+- 五将 / 推五将发不发；
+- 主客相关法。
+
+来源并列：
+
+- 四库《太乙金镜式经》卷四：J4M-01/02/03；
+- 《景祐太乙福应经》卷四：JF4M-01/02/03；
+- 《太乙统宗宝鉴》卷五：并列 source profile；
+- C8：只记录组合/归一化角色，不是古籍公式来源。
+
+固定：
+
+- `canonical_selected=null`；
+- `cross_source_merge=false`；
+- `c8_formula_equivalent=false`。
+
+特别边界：
+
+- C8-L2 可以消费三门/五将上游事实，但不能冒充 J4M/JF4M 公式；
+- C8-L3 主客动静与 J4M-03 主客相关法不是同一术，禁止互相替代；
+- `CORE-WUJIANG-READY`“有效五将发不发”是项目跨层整合规则，杜塞取五将不发，但不能回写成《金镜》J4M-02 原文条件。
