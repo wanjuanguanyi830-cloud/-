@@ -86,3 +86,6 @@ def test_nine_star_crosswalk_forbids_taiyi_wenchang_merge():
     assert bridge["relation"] == "shared_nine_star_label_distinct_systems_and_source_boundaries"
     assert any("不得因都称九星而合表" in x for x in bridge["forbidden_merge"])
     assert any("不得升级为紫庭canonical" in x for x in bridge["forbidden_merge"])
+    wenchang = next(m for m in bridge["members"] if m["key"] == "wenchang_nine_stars")
+    assert wenchang["legacy_scan_witness"]["status"] == "prior_scan_extraction_recovered_direct_page_pending"
+    assert wenchang["legacy_scan_witness"]["forms"][0] == "文曲"
