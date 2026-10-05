@@ -46,6 +46,19 @@ def registry_snapshot() -> dict[str, Any]:
     return _load_json("registry", "catalog.json")
 
 
+def registry_versions() -> dict[str, str]:
+    """Return version identifiers that software can use for compatibility checks."""
+    catalog = registry_snapshot()
+    operations = _load_json("registry", "operations.json")
+    return {
+        "public_api_version": catalog["public_api"]["version"],
+        "registry_schema_version": catalog["schema_version"],
+        "operations_schema_version": operations["schema_version"],
+        "operations_api_version": operations["api_version"],
+        "operations_registry_id": operations["registry_id"],
+    }
+
+
 def list_catalogs() -> list[dict[str, Any]]:
     index = _load_json("terminology", "catalog-index.json")
     return list(index["stable_catalogs"])
@@ -270,8 +283,10 @@ def capabilities() -> dict[str, Any]:
             "status": item.get("status"),
             "source_profile_required": bool(item.get("source_profile_required", False)),
         })
+    operation_registry = _load_json("registry", "operations.json")
     return {
-        "registry_id": _load_json("registry", "operations.json")["registry_id"],
+        "registry_id": operation_registry["registry_id"],
+        "api_version": operation_registry["api_version"],
         "operation_count": len(operations),
         "domains": domains,
     }
