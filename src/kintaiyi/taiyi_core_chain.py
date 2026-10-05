@@ -27,6 +27,7 @@ from .taiyi_wenchang import wenchang_from_ju
 from .taiyi_position import taiyi_from_ju
 from .taiyi_taisui import year_entry_from_accumulated_year
 from .taiyi_epoch import epoch_context
+from .taiyi_four_counts import four_count_core_from_entry_count
 
 
 CORE_CHAIN_ID = "CORE-G4-G7-CHAIN"
@@ -188,7 +189,11 @@ def g1_to_g7_from_accumulated_year(
     accumulated_year: int,
     dun: str,
 ) -> dict[str, Any]:
-    """积年直接进入G1→G7完整核心链。"""
+    """低层阴阳局研究入口：积年 -> G1→G7。
+
+    source-specific岁计不应由调用方任选dun；
+    正式岁计请使用 year_count_from_accumulated_year()。
+    """
     g1 = year_entry_from_accumulated_year(accumulated_year)
     core = g2_to_g7_from_ju(
         ju=g1["local_ju"],
@@ -209,8 +214,9 @@ def g1_to_g7_from_accumulated_year(
             **core["stages"],
         },
         "policy": (
-            "正式岁计核心入口从积年求太岁与本元局号；"
-            "G2/G3消费local_ju，G4消费taisui_branch，后续只消费上游结果。"
+            "这是显式阴阳局的低层/回归入口；"
+            "G2/G3消费local_ju，G4消费taisui_branch。"
+            "正式岁计按《统宗》卷一固定阳局，应调用year_count_from_accumulated_year。"
         ),
     }
 
@@ -221,10 +227,11 @@ def l0_to_g7_from_historical_year(
     historical_year: int,
     dun: str,
 ) -> dict[str, Any]:
-    """历史年份 -> L0历元 -> G1→G7完整岁计核心链。
+    """低层历史年+显式阴阳局研究入口。
 
-    注意：historical_year只是已经解析好的岁计年份编号。
-    本函数不判断某个具体公历日期是否已跨传统岁界。
+    保留用于阴/阳72局回归与兼容；source-specific岁计请使用
+    year_count_from_historical_year()，其固定阳局。
+    historical_year仍只是已经解析好的岁计年份编号。
     """
     l0 = epoch_context(historical_year)
     accumulated_year = l0["long_epoch"]["accumulated_year"]
@@ -249,7 +256,68 @@ def l0_to_g7_from_historical_year(
             **core["stages"],
         },
         "policy": (
-            "正式G1-G7消费卷一长积年；卷三五子元短积年仅并列保存并做mod360校验。"
-            "日期到岁界的历法转换属于更上游日历层。"
+            "低层显式阴阳局研究入口；卷三五子元短积年只并列做mod360校验。"
+            "source-specific岁计固定阳局，使用year_count_from_historical_year。"
+        ),
+    }
+
+
+
+def year_count_from_accumulated_year(*, accumulated_year: int) -> dict[str, Any]:
+    """source-specific岁计：积年 -> G1 + 四计阳局G2..G7。
+
+    《统宗》卷一“四计皆同，唯时夏至后用阴局”，
+    因此岁计不接受dun参数，固定阳局。
+    """
+    g1 = year_entry_from_accumulated_year(accumulated_year)
+    core = four_count_core_from_entry_count(
+        g1["local_ju"],
+        count_type="岁计",
+    )
+    return {
+        **core,
+        "rule_id": "CORE-YEAR-COUNT-G1-G7",
+        "accumulated_year": accumulated_year,
+        "taisui_ganzhi": g1["taisui_ganzhi"],
+        "taisui_branch": g1["taisui_branch"],
+        "five_yuan": g1["five_yuan"],
+        "five_yuan_index_1based": g1["five_yuan_index_1based"],
+        "local_ju": g1["local_ju"],
+        "stages": {
+            "g1": g1,
+            **core["stages"],
+        },
+        "policy": (
+            "岁计固定阳局；夏至后切阴只属于时计。"
+            "本入口故意不提供dun参数。"
+        ),
+    }
+
+
+def year_count_from_historical_year(*, historical_year: int) -> dict[str, Any]:
+    """历史岁计年份 -> L0 -> source-specific岁计G1..G7。"""
+    l0 = epoch_context(historical_year)
+    accumulated_year = l0["long_epoch"]["accumulated_year"]
+    core = year_count_from_accumulated_year(
+        accumulated_year=accumulated_year,
+    )
+    return {
+        **core,
+        "rule_id": "CORE-L0-YEAR-COUNT-G7",
+        "historical_year": historical_year,
+        "five_zi_short_accumulated_year": (
+            l0["five_zi_short_epoch"]["five_zi_accumulated_year"]
+        ),
+        "six_ji_three_yuan": l0["six_ji_three_yuan"],
+        "five_zi_from_long": l0["five_zi_from_long"],
+        "five_zi_from_short": l0["five_zi_from_short"],
+        "epoch_equivalent_mod_360": l0["equivalent_mod_360"],
+        "stages": {
+            "l0": l0,
+            **core["stages"],
+        },
+        "policy": (
+            "这是正式岁计入口：卷一长积年 + 阳局四计核心。"
+            "具体公历日期归属哪个历史岁计年份仍属于更上游岁界历法层。"
         ),
     }
