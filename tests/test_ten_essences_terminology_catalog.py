@@ -70,7 +70,7 @@ def test_c54_number_is_numeric_layer_without_weather_omens():
     result = taiyi_number(72)
     assert result["rule_id"] == "C54-TAIYI-NUMBER"
     assert result["taiyi_number"] == 72
-    assert result["weather_omens_applied"] is False
+    assert result["cloud_omen_applied"] is False
 
 
 def test_c55_and_c56_runtime_ids_match_catalog():
