@@ -54,7 +54,9 @@ def test_c123_is_explicitly_not_the_c119_time_door_formula():
     assert catalog["years_per_door"] == 30
     assert catalog["inner_cycle"] == 240
     assert catalog["legacy_boundary"]["correct_source_scope"] == "金镜卷一推八门占岁计法"
-    assert catalog["overlay_boundary"]["position_overlay_implemented"] is False
+    assert catalog["overlay_boundary"]["position_overlay_implemented"] is True
+    assert catalog["overlay_boundary"]["overlay_runtime"].endswith("jinjing_year_open_door_contexts")
+    assert catalog["overlay_boundary"]["meeting_runtime"].endswith("year_door_meeting")
 
 
 def test_c123_rejects_zero_as_canonical_accumulated_year():
