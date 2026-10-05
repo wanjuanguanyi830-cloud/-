@@ -4,7 +4,7 @@
   "status": "blocked_missing_original_store_with_reversible_mapping",
   "generated_from": {
     "catalog_index": "terminology/catalog-index.json",
-    "stable_catalog_count": 15,
+    "stable_catalog_count": 16,
     "stable_entry_count": 148,
     "migration_assets": [
       "terminology/zitingjing-migration-map.json",
@@ -4302,16 +4302,15 @@
     },
     {
       "stable_ref": {
-        "catalog": "terminology/zitingjing.json",
+        "catalog": "terminology/wenchang-nine-stars.json",
         "key": "wenchang_nine_stars"
       },
       "preferred_term": "文昌九星",
       "aliases": [
         "文昌九星",
+        "文昌九宫",
         "文昌九星值宫术",
-        "文昌九星值宮術",
-        "附太乙文昌九星值宫术",
-        "附太乙文昌九星值宮術"
+        "文昌九星值宮術"
       ],
       "current_rule_ids": [
         "C70-TONGZONG-WENCHANG-NINE-STARS"
@@ -4331,7 +4330,7 @@
           "role": "prior_workflow_code_residue_source_ambiguous_for_ziting"
         }
       ],
-      "legacy_match_status": "prior_manuscript_scan_confirmed_original_store_fields_missing_code_residue_source_ambiguous",
+      "legacy_match_status": "stable_source_resolved_old_store_fields_missing_modern_appendix_provenance_unresolved",
       "legacy_fields": {
         "old_term_record_id": null,
         "manuscript_form": null,
@@ -4351,7 +4350,8 @@
         "玄武",
         "玄冥",
         "雄明"
-      ]
+      ],
+      "recovery_note": "现行规则来源已由C70统宗卷六解决；旧store恢复只用于历史term id/notes/旧录入身份。研易楼明钞本目录未见该题。"
     }
   ],
   "migration_only_candidates": [],
