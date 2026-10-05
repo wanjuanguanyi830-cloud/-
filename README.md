@@ -91,3 +91,26 @@ python tests/test_skyeyes_summary_audit.py
 
 第二条命令重新生成 `tests/reports/skyeyes_summary_audit.md`。差异分类允许旧表摘要与新规则不完全一致；每局结果和差异原因均保留。
 
+
+
+## 软件开发分层与稳定 API
+
+仓库现按“术语 / 规则 / 运行 / 来源 / 总注册表”分层，详细说明见 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)。
+
+新增：
+
+- [registry/](registry/)：软件总注册表，只保存跨层指针，不复制规则正文；
+- [schemas/](schemas/)：registry / operation / result 数据契约；
+- `kintaiyi.api`：推荐给新软件使用的稳定 facade。
+
+示例：
+
+```python
+from kintaiyi.api import calculate, get_rule, get_term
+
+term = get_term("三才")
+rule = get_rule("D8-01")
+result = calculate("eight.sancai", 15)
+```
+
+现有 `src/kintaiyi/*` 和根目录 `config.py` 保持兼容；本次整理采用 additive migration，不进行破坏性大搬迁。
