@@ -1,5 +1,6 @@
 from kintaiyi.jinjing_v4_military import (
     chenbing_xiangbei,
+    effective_five_generals_readiness,
     chushi_fa,
     j4m03_eye_element_from_god,
     j4m_low_dependency_catalog,
@@ -339,6 +340,39 @@ def test_j4m02_five_generals_keeps_three_blockers_separate_from_doors():
     incomplete = wujiang_fabu(shiji_yanji=False)
     assert incomplete["computable"] is False
     assert incomplete["five_generals_released"] is None
+
+
+def test_j4m02_known_blocker_short_circuits_unknown_facts():
+    blocked = wujiang_fabu(
+        shiji_yanji=True,
+        wenchang_qiupo=None,
+        major_minor_generals_related=None,
+    )
+    assert blocked["computable"] is True
+    assert blocked["five_generals_released"] is False
+    assert blocked["blockers"] == ["始击有掩击"]
+
+
+def test_effective_five_generals_treats_calc_blockage_as_not_released():
+    blocked = effective_five_generals_readiness(
+        source_five_generals_released=None,
+        calc_blocked=True,
+    )
+    assert blocked["computable"] is True
+    assert blocked["effective_five_generals_released"] is False
+    assert blocked["reason"] == "杜塞，取五将不发"
+
+    ready = effective_five_generals_readiness(
+        source_five_generals_released=True,
+        calc_blocked=False,
+    )
+    assert ready["effective_five_generals_released"] is True
+
+    source_blocked = effective_five_generals_readiness(
+        source_five_generals_released=False,
+        calc_blocked=False,
+    )
+    assert source_blocked["effective_five_generals_released"] is False
 
 
 def test_j4m08_terrain_arm_mapping_preserves_source_ratio_text():
