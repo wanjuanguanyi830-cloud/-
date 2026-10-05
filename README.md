@@ -30,6 +30,48 @@
 
 七术、八占与五福/大游采用 `taiyi-t7-d8-v1` 已确认项目规范；四库为底本，《统宗》《景祐》《金钥匙》等补证和异文保留。各模块的来源边界独立；格局规则的来源限定保持原有定义。安装 `python -m pip install -e .` 后可直接导入 `kintaiyi` 与根目录旧名接口 `config`。
 
+## Modern production 日历入口
+
+当前 production canonical 已采用现代天文 / 现代历法事实层：
+
+- `astronomy-engine`：真实两分两至、十二节交节时刻；
+- `lunar_python`：现代中国农历、干支与历史历法重建辅助。
+
+太乙岁唯一换年边界：
+
+> **真实天文冬至交节瞬间。**
+
+公历 `Y` 年冬至瞬间起进入太乙 `Y+1` 岁。元旦、春节、立春、春分均不改变太乙岁。
+
+现代四计统一入口：
+
+- `kintaiyi.taiyi_modern_calendar.production_calendar_context(moment)`
+- `kintaiyi.taiyi_modern_pan.build_modern_pan_v2(moment, count_type=...)`
+
+`count_type` 必须显式选择：
+
+- 岁计；
+- 月计；
+- 日计；
+- 时计。
+
+现代 pan v2 会同时保存：
+
+- `calendar.taiyi_year`：只由冬至换年决定；
+- 农历年：只作并列事实；
+- 立春干支年：只作并列事实；
+- 月计太阳月：由十二节交节决定；
+- 日计：Asia/Shanghai 00:00 民用日；
+- 时计：冬/夏至半岁相对积时。
+
+`pan_adapter.py` 只负责旧 flat snapshot 迁移，是 legacy compatibility，不是 modern production 日期计算入口。
+
+安装项目时会自动安装 production 依赖：
+
+```powershell
+python -m pip install -e .
+```
+
 ## 参考与鸣谢
 
 本项目在规则整理、接口核对、历史实现比对与测试设计过程中，参考了开源项目 [kentang2017/kintaiyi](https://github.com/kentang2017/kintaiyi)。
