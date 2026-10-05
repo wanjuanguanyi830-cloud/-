@@ -198,3 +198,16 @@ def test_ziting_cycle_evidence_keeps_full_stem_distribution_closed():
     }
     assert evidence["boundary"]["direct_star_cycle_supported"] is True
     assert evidence["boundary"]["full_year_stem_distribution_supported"] is False
+
+
+def test_ziting_primary_name_correspondence_preserves_witness_variants():
+    data = taiyi_nine_stars_primary()
+    names = data["name_correspondence"]
+
+    assert names["天蓬"]["primary_names"] == ["招摇"]
+    assert set(names["天蓬"]["witness_variants"]) == {"天枪", "天仓"}
+    assert names["天冲"]["primary_names"] == ["摇光"]
+    assert "瑶光" in names["天冲"]["witness_variants"]
+    assert names["天辅"]["primary_names"] == ["闿阳"]
+    assert {"闓阳", "开阳", "阖阳"} <= set(names["天辅"]["witness_variants"])
+    assert names["天英"]["primary_names"] == ["枢"]
