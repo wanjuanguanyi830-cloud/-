@@ -187,3 +187,30 @@ C98 仍然有效的隔离只剩：
 - `config.bigyo_default`
 
 因为大游太乙行宫本身仍把金镜宫序与统宗 +34 混为一个旧 profile，尚未完成 source-specific 重接。
+
+
+## 9. C107 大游行宫重接后的状态
+
+C107 已完成“大游太乙所在宫”的 source-specific 重接：
+
+- 金镜：4320 / 288 / 36，起七宫；
+- 统宗校勘执行：+34 / 2880 / 288 / 36，起七宫；
+- 两者均顺行八宫、不入中五。
+
+因此 C98 的大游 mixed-profile 隔离现在已有明确 replacement：
+
+- `C107-DAYOU-JINJING`
+- `C107-DAYOU-TONGZONG`
+
+旧：
+
+`bigyo(profile="jinjing_tongzong")`
+
+仍 quarantine，因为它把不同来源压成单一 profile。
+
+但旧 API 已新增显式：
+
+- `bigyo(profile="jinjing")` → C107 金镜；
+- `bigyo(profile="tongzong")` → C107 统宗。
+
+所以 C98 现在的作用是**隔离旧默认混源入口**，不再表示“大游位置 source runtime 尚缺失”。
