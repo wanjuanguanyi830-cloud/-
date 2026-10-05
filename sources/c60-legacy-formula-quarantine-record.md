@@ -331,3 +331,29 @@ C106 直接来源复核后确认：
 - `config.bigyo_default`
 
 因为“大游太乙所在宫”仍是金镜/统宗混合 profile，尚未完成来源分层。
+
+
+## C107 大游 mixed-profile 隔离已有替代层
+
+C107 建立后，C60 中：
+
+- `kintaiyi.cycles.bigyo.jinjing_tongzong`
+- `config.bigyo_default`
+
+继续保留 quarantine，但 replacement 已不再是 pending。
+
+明确 replacement：
+
+- `C107-DAYOU-JINJING`
+- `C107-DAYOU-TONGZONG`
+
+原因不是“大游公式未知”，而是旧默认 API 把两个来源混成一个 profile。
+
+显式 legacy adapter：
+
+- `bigyo(profile="jinjing")`
+- `bigyo(profile="tongzong")`
+
+已可委托 C107。
+
+只有无 profile 的旧默认 mixed path 继续阻止 promotion。
