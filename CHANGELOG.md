@@ -159,7 +159,7 @@
 - `kintaiyi.api` 新增稳定查询/调用面：`get_term`、`search_terms`、`get_rule`、`calculate`、`calculate_rule`、`describe_rule`、`capabilities`、`repository_status` 等。
 - `calculate_rule(rule_id, ...)` 可从 rules/terminology exact runtime 指针解析算法；唯一 source profile 可自动选择 profile key；source-record-only 项保持不可执行。
 - 七术7项、八占8项，以及五福/大小游、阳九百六、岁计/时计八门、太乙九星 C124/C125、文昌九星 C70 等已登记 public operation alias。
-- 《统宗》卷十五 V15-01..14 与卷十七 V17-01..11 均可按 source rule id 调用；景祐 JF4M-01..11 仍保持 source-record-only。
+- 《统宗》卷十五 V15-01..14 与卷十七 V17-01..11 均可按 source rule id 调用；景祐 JF4M-01..11 也已具独立 source-specific runtime。
 - 修正三才杜塞边界：5/15/25/35 classic 标签只为“杜塞”；结构层仍分别记录5仅地、15/25/35仅天+地。
 - 清理 rules registry 中五福/大游旧混合 profile，恢复金镜/统宗 source profile 明确隔离。
 - public API 固定为 `1.0`；新增 registry/operation/result/capabilities/repository-status schemas 和软件接入文档 `docs/SOFTWARE_API.md`。
@@ -171,8 +171,8 @@
 - JF4M-01..11 从仅有 source records 推进为《景祐太乙福应经》卷四自身的 source-specific runtime，11/11 均可按 rule_id 解析。
 - JF4M 与《太乙金镜式经》J4M 继续保持平行 crosswalk，不允许调用 J4M runtime 替代景祐规则。
 - JF4M-10 对应 J4M-11 风云飞鸟；JF4M-11 对应 J4M-10 奇伏；J4M-12 没有直接 JF4M 对应项。
-- JF4M-02“大小将不相开”、JF4M-07完整地形字表、JF4M-10部分观测句仍保留文本/扫描 pending；runtime 可用不等于来源文字已经完全无疑点。
-- catalog-index 与 crosswalk audit 已同步：景祐军事 runtime coverage 固定为 11/11，并单列 02/07/10 pending。
+- JF4M-07地形与JF4M-10风云飞鸟当前转录层已收口；当前仅JF4M-02“大小将不相开”的技术义仍待扫描/异本核定。
+- catalog-index 与 crosswalk audit 已同步：景祐军事 runtime coverage 固定为 11/11，当前仅单列 JF4M-02 文本 pending。
 
 ## 2026-10-05 — 旧术语库恢复状态分层
 
@@ -181,3 +181,12 @@
 - 用户已确认研易楼藏《太乙紫庭祕訣》明钞本及相关旧资料在本地 E 盘仍存，但当前运行环境未挂载。
 - 未取得原件前，old_term_record_id、旧定义、旧 notes、manuscript_form、source_page 等字段继续保持 null；外部参校来源不得代填研易楼明钞本逐字字段。
 - 新增 `schemas/legacy-recovery-status.schema.json` 与公开 API 回归测试。
+
+
+## 2026-10-05 — T7-02 狮子反掷三源复核
+
+- 复核四库本《太乙金镜式经》卷六、《太乙统宗宝鉴》卷十一与《太乙金钥匙》。
+- 三源现见完整算例仍只有甲戌起兵、大神临丑/艮四维、十八年候破、辛卯应破一例。
+- 未发现第二条大神落普通支且明确给出唯一完整破年干支的独立古例，因此普通落支仍只返回候选破年支，不伪造年干。
+- 《太乙金钥匙》另见“起兵年太乙杜塞则当年破”，仅作为来源补充条件保存，不覆盖四库 canonical 普通落支应期算法。
+- 新增 `sources/t7-02-lion-collation.md` 与 terminology/runtime 校勘状态。
