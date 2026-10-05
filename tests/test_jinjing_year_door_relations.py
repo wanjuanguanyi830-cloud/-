@@ -1,4 +1,7 @@
-from kintaiyi.jinjing_year_door_relations import (\n    year_door_meeting,\n    year_door_meeting_wang_ximing,\n)
+from kintaiyi.jinjing_year_door_relations import (
+    year_door_meeting,
+    year_door_meeting_wang_ximing,
+)
 
 
 def test_host_general_under_taiyi_three_good_doors_is_favorable():
@@ -23,7 +26,8 @@ def test_same_palace_is_only_locally_open_door_favorable_not_global_override():
     )
     assert data["host"]["gate_under_taiyi_overlay"] == "开"
     assert data["host"]["meets_three_good_doors"] is True
-    assert "囚迫格对" in data["policy"]\n    assert "最终军事判断" in data["policy"]
+    assert "囚迫格对" in data["policy"]
+    assert "最终军事判断" in data["policy"]
 
 
 def test_blocked_center_general_stays_unknown_in_door_meeting():
