@@ -169,9 +169,10 @@ def build_zitingjing_p1_sources(
         "rules": rules,
         "cross_source_merge": False,
         "policy": (
-            "太乙九星、文昌九星、文昌变化、始击变化继续按紫庭证据等级管理；"
+            "太乙九星、文昌变化、始击变化按紫庭直接证据管理；"
+            "文昌九星仅保留历史恢复slot，primary_source为空，现行稳定规则归《太乙统宗宝鉴》卷六C70。"
             "三旗行宫与九宫贵神仅作为旧术语恢复指针，现行可执行canonical归《太乙统宗宝鉴》卷十。"
-            "未来若恢复明钞同术，只新增独立紫庭witness/profile。"
+            "未来若发现明钞/异本同术，只新增独立ziting witness/profile。"
         ),
     }
 
