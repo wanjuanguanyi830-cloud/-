@@ -178,6 +178,58 @@ def modern_year_count(moment: datetime) -> dict[str, Any]:
     }
 
 
+
+
+def production_boundary_registry() -> dict[str, Any]:
+    """把所有容易混淆的现代production边界并列声明。"""
+    return {
+        "rule_id": "MODERN-TAIYI-BOUNDARY-REGISTRY",
+        "taiyi_year": {
+            "boundary": "真实天文冬至交节瞬间",
+            "effect": "公历Y年冬至瞬间起进入太乙Y+1岁",
+            "canonical": True,
+        },
+        "lunar_year": {
+            "boundary": "现代中国农历春节",
+            "effect": "只改变农历年事实，不改变太乙岁",
+            "canonical_for_taiyi_year": False,
+        },
+        "jieqi_ganzhi_year": {
+            "boundary": "立春",
+            "effect": "只改变节气干支年事实，不改变太乙岁",
+            "canonical_for_taiyi_year": False,
+        },
+        "spring_equinox": {
+            "boundary": "春分",
+            "effect": "天文节气事实，不改变太乙岁",
+            "canonical_for_taiyi_year": False,
+        },
+        "gregorian_year": {
+            "boundary": "元旦00:00",
+            "effect": "只改变公历年，不改变太乙岁",
+            "canonical_for_taiyi_year": False,
+        },
+        "taiyi_solar_month": {
+            "boundary": "十二节精确交节瞬间",
+            "effect": "改变月计太阳月/月建；闰月和朔日不额外切月",
+        },
+        "taiyi_day": {
+            "boundary": "Asia/Shanghai民用日00:00",
+            "effect": "改变production日计连续积日",
+        },
+        "taiyi_time_half": {
+            "boundary": "真实天文冬至/夏至交节瞬间",
+            "effect": "冬至起阳局，夏至起阴局",
+        },
+        "taiyi_time_unit": {
+            "boundary": "子正/夜半起，每2小时一算",
+            "effect": "00:00–01:59为第1时，依次至第12时",
+        },
+        "policy": (
+            "这些边界用途不同；只有taiyi_year.boundary有权改变太乙岁标签。"
+        ),
+    }
+
 def production_calendar_context(moment: datetime) -> dict[str, Any]:
     """一次返回现代production四计所需的统一日历事实与计数结果。"""
     # lazy import 避免 taiyi_modern_time_count -> taiyi_modern_calendar 的循环导入
@@ -186,6 +238,7 @@ def production_calendar_context(moment: datetime) -> dict[str, Any]:
     return {
         "rule_id": RULE_ID,
         "source_profile": "production_modern_calendar",
+        "boundary_registry": production_boundary_registry(),
         "year_boundary": resolve_taiyi_year(moment),
         "year_count": modern_year_count(moment),
         "time_half": resolve_time_solstice_half(moment),
