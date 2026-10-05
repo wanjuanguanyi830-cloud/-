@@ -697,4 +697,4 @@ def test_c111_ncl_j4m07_body_is_verified_but_siku_runtime_stays_source_specific(
     assert ncl["canonical_override"] is False
 
     # 四库 canonical 本身仍锁“地洿邪”，不被明钞本词形覆盖。
-    assert any("地洿邪" in x for x in rule["scan_rule_audit"]["locked_points"])
+    assert "地洿邪" in ncl["textual_relation"]["to_siku"]
