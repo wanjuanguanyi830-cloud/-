@@ -173,3 +173,25 @@ describe_rule("JF4M-04")
 - 用旧项目兼容公式覆盖已校来源 profile。
 
 内部目录未来可以继续整理，而上层软件只要 API v1 契约不变，就无需同步重构。
+
+
+## 13. 仓库/数据状态页
+
+应用如果需要显示“当前数据整理到什么程度”，不要把数量写死在前端。使用：
+
+```python
+from kintaiyi import repository_status
+
+status = repository_status()
+```
+
+该结果实时由已打包索引计算，包含：
+
+- stable catalog 数量；
+- stable terminology entry 数量；
+- public operation 数量和 domain；
+- crosswalk audit snapshot；
+- 旧 `terminology.json` 是否完成迁移；
+- public API 版本。
+
+因此后续继续增加术法或术语时，软件状态页可以自动更新。
