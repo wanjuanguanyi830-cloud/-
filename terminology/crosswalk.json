@@ -832,42 +832,25 @@
           }
         },
         {
-          "catalog": "terminology/zitingjing.json",
+          "catalog": "terminology/wenchang-nine-stars.json",
           "key": "wenchang_nine_stars",
           "term": "文昌九星",
-          "primary_status": "catalog_attested_text_pending",
-          "source_specific_rule_id": "C70-TONGZONG-WENCHANG-NINE-STARS",
-          "source_specific_profile": "tongzong_volume6_ngj_wenchang_nine_stars",
-          "legacy_scan_witness": {
-            "asset": "terminology/zitingjing-legacy-scan-recovery.json",
-            "manuscript_scan_status": "previously_scanned_user_confirmed_original_page_record_not_reattached",
-            "code_residue_status": "source_ambiguous_for_ziting_old_config_explicitly_labels_tongzong_volume6",
-            "forms": [
-              "文曲",
-              "玄鳳",
-              "明維",
-              "昭搖",
-              "立華",
-              "華明",
-              "玄武",
-              "玄冥",
-              "雄明"
-            ]
-          }
+          "source": "太乙统宗宝鉴卷六·明文昌九宫所主分野术",
+          "rule_id": "C70-TONGZONG-WENCHANG-NINE-STARS",
+          "source_profile": "tongzong_volume6_ngj_wenchang_nine_stars",
+          "runtime": "kintaiyi.wenchang_nine_stars_tongzong.wenchang_nine_star_tongzong",
+          "ziting_boundary": "研易楼明钞本目录未见该题；现代整理本同名附篇来源未证"
         }
       ],
-      "relation": "shared_nine_star_label_distinct_systems_and_source_boundaries",
+      "relation": "distinct_nine_star_systems_with_explicit_source_separation",
       "forbidden_merge": [
-        "太乙九星是天蓬、天芮、天冲、天辅、天禽、天心、天柱、天任、天英；文昌九星是文昌、玄凤、明维、阴德、招摇、华明、玄武、玄冥、维明，不得因都称九星而合表。",
-        "《紫庭经》太乙九星静态九宫primary与C124《统宗》太乙九星900/90/10动态profile分层；可互校星名/底表，但不得静默移植周期。",
-        "C124太乙九星与C70文昌九星是两套不同动态法：前者900/90/10并可按年干布全九星，后者2700/270/30且当前只支持直事星落宫/分野。",
-        "《紫庭秘诀》文昌九星附篇正文未取得前，C70不得升级为紫庭canonical。",
-        "C70不得借C124太乙九星的全动态排布反推文昌九星其余八星。",
-        "旧扫描派生实现中的年干落宫表不得覆盖C70-NGJ直接见证；冲突字段保持并列待原页复核。",
-        "研易楼明钞本此前确实扫描过，但旧config.py九星段明确标注为《太乙统宗宝鉴》卷六；故代码残留词形不能直接升级为紫庭逐字canonical。",
-        "旧代码残留中的年干落宫表不得覆盖C70-NGJ直接见证；冲突字段保持并列，待E盘原扫描或旧terminology.json逐页复核。",
-        "C125《紫庭》与C124《统宗》都含十年一星，但C125当前只证明90年直符循环；C124另有900年大周和完整年干布星，不能因局部一致而合并source profile。",
-        "C125开元十二年1937281→余31→天辅第1年是紫庭主来源自身例证，不需要借C124成立。"
+        "太乙九星与文昌九星是两套不同九星体系，不得因都称九星而合表。",
+        "C125《紫庭》太乙九星只直接支持90/10直符周期；C124《统宗》太乙九星另有900/90/10与完整年干布星。",
+        "C70文昌九星独立归《太乙统宗宝鉴》卷六NGJ profile：2700/270/30，当前只支持直事星及年干落宫/分野。",
+        "研易楼明钞本目录未见“文昌九星值宫术”；现代整理本同名附篇不能反推原钞归属。",
+        "现代整理附篇可能收入统宗相关材料只是来源假说，未取得编辑说明/直接证据前不得写成已证事实。",
+        "旧config.py中的文曲/昭搖/立華等词形属于统宗标注下的旧代码残留，不得升级为研易楼本canonical。",
+        "C70不得借C124太乙九星的全动态排布反推文昌九星其余八星。"
       ]
     },
     {
