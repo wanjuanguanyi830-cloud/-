@@ -120,3 +120,17 @@ def test_production_context_chinese_new_year_changes_lunar_year_not_taiyi_year()
     assert new_year["year_boundary"]["taiyi_historical_year"] == 2027
     assert before["lunisolar"]["lunar"]["year"] == 2026
     assert new_year["lunisolar"]["lunar"]["year"] == 2027
+
+
+
+def test_production_context_includes_jie_based_solar_month():
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+
+    data = production_calendar_context(
+        datetime(2025, 7, 25, 12, tzinfo=ZoneInfo("Asia/Shanghai"))
+    )
+    assert data["lunisolar"]["lunar"]["is_leap_month"] is True
+    assert data["solar_month"]["start_term"] == "小暑"
+    assert data["solar_month"]["month_build_branch"] == "未"
+    assert data["solar_month"]["leap_month_effect"] == "none"
