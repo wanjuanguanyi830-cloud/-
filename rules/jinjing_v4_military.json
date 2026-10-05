@@ -157,7 +157,16 @@
     "witness_audit_version": "c84-ncl06604-access-boundary-v1",
     "full_twelve_scan_audit_version": "c85-j4m01-12-scan-boundary-complete-v1",
     "ncl_volume4_collation_version": "c111-ncl06604-j4m07-body-v1",
-    "terminology_policy_version": "c101-taicu-traditional-variant-v1"
+    "terminology_policy_version": "c101-taicu-traditional-variant-v1",
+    "ncl_volume4_collation_history": [
+      "c86-ncl06604-v4-j4m-locators-v1",
+      "c86-ncl06604-v4-j4m-locators-and-key-readings-v2",
+      "c86-ncl06604-v4-j4m-key-readings-v3",
+      "c87-ncl06604-j4m11-event-readings-v1",
+      "c88-ncl06604-j4m06-direction-table-v1",
+      "c110-ncl06604-j4m06-full-table-v1",
+      "c111-ncl06604-j4m07-body-v1"
+    ]
   },
   "separation_policy": [
     "本表只记录四库本《太乙金镜式经》卷四十二法，不自动并入《太乙统宗宝鉴》卷五或旧代码同名函数。",
