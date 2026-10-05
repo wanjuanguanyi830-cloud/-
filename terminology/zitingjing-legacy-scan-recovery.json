@@ -1,16 +1,21 @@
 {
   "schema_version": "1.0",
   "asset_id": "zitingjing-prior-workflow-recovery-v2",
-  "status": "prior_manuscript_scan_confirmed_code_residue_source_ambiguous",
+  "status": "manuscript_reattached_toc_inspected_code_residue_separated",
   "canonical_catalog": false,
   "manuscript_source_id": "shanghai_yanyilou_ming_copy",
   "manuscript_title": "太乙紫庭祕訣",
   "provenance": {
     "manuscript_scan_user_confirmation": {
       "manuscript": "研易楼藏《太乙紫庭祕訣》明钞本",
-      "status": "previously_scanned_during_terminology_workflow",
-      "local_copy": "E盘仍存",
-      "current_runtime_access": "not_mounted"
+      "status": "reattached_in_current_conversation_and_toc_inspected",
+      "pdf_pages": 150,
+      "toc_pages": [
+        5,
+        6
+      ],
+      "wenchang_nine_stars_title_attested": false,
+      "note": "当前上传扫描的目录列卷一至卷十二及后附项目，未见“文昌九星值宫术”题名。目录未见题名不外推为全文绝对不存在。"
     },
     "recovered_code_residue": {
       "repository": "kentang2017/kintaiyi",
@@ -23,10 +28,10 @@
     "original_terminology_store": "not_recovered"
   },
   "policy": [
-    "用户确认研易楼明钞本此前确实在术语库整理阶段扫描过；这一事实单独保存。",
-    "旧config.py明确标注九星段来源为《太乙统宗宝鉴》卷六，因此其中词形/表格只能作为prior workflow code residue，不能直接认定为研易楼本逐字扫描结果。",
-    "派生代码与当前直接古籍校勘冲突时并列保存，不覆盖source-specific canonical。",
-    "在E盘原扫描或旧terminology.json重新挂载前，old_term_record_id、source_page、逐字manuscript_form不得猜填。"
+    "研易楼明钞本已在当前会话重新提供并直接核验目录；文昌九星题名未见于目录。",
+    "旧config.py明确标注九星段来源为《太乙统宗宝鉴》卷六，因此其中词形/表格只作prior workflow code residue，不认作研易楼本逐字原文。",
+    "文昌九星稳定术语与可执行规则现归 terminology/wenchang-nine-stars.json / C70；现代整理本同名附篇来源未证。",
+    "旧terminology.json未恢复前，old_term_record_id、old_definition、old_notes、old_aliases等历史store字段仍不得猜填。"
   ],
   "entries": [
     {
@@ -130,7 +135,7 @@
     {
       "key": "wenchang_nine_stars",
       "preferred_term": "文昌九星",
-      "legacy_scan_extraction_status": "prior_workflow_code_residue_recovered_source_ambiguous",
+      "legacy_scan_extraction_status": "prior_workflow_code_residue_tongzong_labeled",
       "recovered_star_sequence": [
         "文曲",
         "玄鳳",
@@ -217,8 +222,9 @@
           "旧年干落宫丁→9、壬→5，与C70-NGJ直接表丁→2、壬→1冲突。",
           "旧完整分布实现未形成可靠动态排布证据，不能据此升级紫庭canonical。"
         ],
-        "preservation_rule": "作为此前九星整理的code residue保留；不得归入研易楼本逐字witness。待E盘原扫描或旧terminology.json恢复后，再判断哪些词形真正来自明钞本。",
-        "provenance_correction": "旧config.py第1020-1024行明确标注来源为《太乙统宗宝鉴》卷六，故此前将该残留直接称为研易楼明钞本legacy witness属于过度归因，现已纠正。"
+        "preservation_rule": "保留为历史代码审计；稳定术语归独立文昌九星目录。现代整理附篇来源另行追证。",
+        "provenance_correction": "旧config.py明确标注来源《太乙统宗宝鉴》卷六；研易楼原钞目录又未见文昌九星题名，因此旧代码词形不得继续作为紫庭witness。",
+        "current_replacement": "C70-TONGZONG-WENCHANG-NINE-STARS"
       }
     }
   ],
