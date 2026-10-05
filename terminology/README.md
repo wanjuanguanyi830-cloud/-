@@ -339,3 +339,23 @@
 - supporting assets：金镜来源字形 aliases、五福五域坐标等。
 
 该索引**不是**旧本地 `terminology.json` 的替代主库。旧库重新取得后，按总索引中的 preferred term / aliases / rule_id / source profile 对账，再恢复旧 term id、原字形、页码和 notes；未知旧词条保持 unmapped，不猜归属。
+
+
+## 紫庭 source-sensitive 正式术语目录
+
+已建立：
+
+`terminology/zitingjing.json`
+
+六项固定分级：
+
+- 太乙九星：`direct_text_verified`；
+- 文昌九星：`catalog_attested_text_pending`；
+- 文昌变化：`direct_text_verified`；
+- 始击变化：`direct_text_verified`；
+- 三旗行宫：`project_attribution_unverified`；
+- 九宫贵神：`project_attribution_unverified`。
+
+只有前三个 `direct_text_verified` 项中的太乙九星、文昌变化、始击变化允许注入 `primary_result`；文昌九星虽有《太乙紫庭秘诀》目录证据，但直接正文未取得；三旗行宫与九宫贵神目前只有统宗卷十直接文本，不能反标为紫庭 canonical。
+
+`terminology/zitingjing-migration-map.json` 继续作为旧本地术语库恢复资产，负责未来回填 old term id / manuscript form / source page 等；它不再承担当前稳定术语消费入口。
