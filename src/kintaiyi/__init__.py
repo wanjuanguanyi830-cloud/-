@@ -18,3 +18,47 @@ PUBLIC_MODERN_ENTRYPOINTS = {
     "calendar_context": "kintaiyi.taiyi_modern_calendar.production_calendar_context",
     "pan_v2": "kintaiyi.taiyi_modern_pan.build_modern_pan_v2",
 }
+
+PUBLIC_API_ENTRYPOINTS = {
+    "registry": "kintaiyi.api.registry_snapshot",
+    "get_term": "kintaiyi.api.get_term",
+    "search_terms": "kintaiyi.api.search_terms",
+    "get_rule": "kintaiyi.api.get_rule",
+    "calculate": "kintaiyi.api.calculate",
+    "calendar_context": "kintaiyi.api.calendar_context",
+    "build_pan": "kintaiyi.api.build_pan",
+    "explain_result": "kintaiyi.api.explain_result",
+}
+
+from .api import (
+    build_pan,
+    calculate,
+    calendar_context,
+    explain_result,
+    get_rule,
+    get_term,
+    list_catalogs,
+    list_operations,
+    registry_snapshot,
+    search_terms,
+)
+
+__all__ = [
+    "RULESET_VERSION",
+    "PRODUCTION_CALENDAR_MODE",
+    "TAIYI_YEAR_BOUNDARY",
+    "TAIYI_YEAR_LABEL_RULE",
+    "NON_TAIYI_YEAR_BOUNDARIES",
+    "PUBLIC_MODERN_ENTRYPOINTS",
+    "PUBLIC_API_ENTRYPOINTS",
+    "registry_snapshot",
+    "list_catalogs",
+    "list_operations",
+    "get_term",
+    "search_terms",
+    "get_rule",
+    "calculate",
+    "calendar_context",
+    "build_pan",
+    "explain_result",
+]
