@@ -14,8 +14,8 @@ def test_top_level_pending_contains_only_current_unresolved_work():
     pending = _load(RULES)["pending"]
     joined = "\n".join(pending)
 
-    assert len(pending) == 3
-    assert "T7-02" in joined
+    assert len(pending) == 2
+    assert "T7-02" not in joined
     assert "T7-06" not in joined
     assert "淘金歌大游" not in joined
     assert "terminology.json" in joined
