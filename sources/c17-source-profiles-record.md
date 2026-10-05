@@ -125,3 +125,25 @@ C17 source-profile 架构不依赖某条 J4M 当前是 implemented/partial/pendi
 - 不跨来源补字段；
 - C8 不成为古籍公式替代；
 - JF4M 当前是 source_record_only，不能借 J4M runtime 伪装成已实现。
+
+
+## 8. 格局术语目录接线
+
+现已新增：
+
+`terminology/patterns.json`
+
+它只做 source-profile 术语登记，不改变 C17 的来源隔离原则。
+
+已固定：
+
+- `jinjing_geju` 的 13 个格局术语与 `rules/jinjing/geju/ruleset.json` 对齐；
+- 主体卷三：掩、击、迫、囚、关、格、对、提挟、挟闭、四郭固、四郭杜；
+- 卷四值事门：执提、提格；
+- `四郭社` 仅为 `四郭杜` 的来源异文；
+- `tongzong_volume4` 继续只作为并列 profile；
+- `canonical_selected=None`；
+- `cross_source_merge=False`；
+- 格局坐标继续引用 `terminology/common-core.json`，不复制第二套九宫/十六辰定义。
+
+因此“术语统一”只统一名称、字段和来源归属，不等于合并金镜与统宗的格局判断。
