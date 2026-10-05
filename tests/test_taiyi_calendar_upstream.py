@@ -82,4 +82,5 @@ def test_calendar_automation_status_keeps_datetime_boundary_pending():
     assert status["automatic_gregorian_resolution"] is False
     assert not any("岁计历史年边界" in item for item in status["pending"])
     assert not any("冬至/夏至气应时刻" in item for item in status["pending"])
-    assert any("月计" in item for item in status["pending"])
+    assert not any("月计" in item for item in status["pending"])
+    assert any("日计" in item for item in status["pending"])
