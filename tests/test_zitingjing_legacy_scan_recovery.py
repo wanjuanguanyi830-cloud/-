@@ -81,4 +81,5 @@ def test_legacy_manifest_records_local_copy_without_faking_old_ids_or_pages():
     )
     assert entry["legacy_fields"]["old_term_record_id"] is None
     assert entry["legacy_fields"]["source_page"] is None
-    assert "文曲" in entry["legacy_fields"]["old_aliases"]
+    assert entry["legacy_fields"]["old_aliases"] is None
+    assert "文曲" in entry["recovered_scan_aliases"]
