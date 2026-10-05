@@ -66,12 +66,12 @@ def test_wenchang_nine_stars_recovers_legacy_scan_but_still_blocks_primary():
     data = _load(CATALOG)
     entry = next(e for e in data["entries"] if e["key"] == "wenchang_nine_stars")
 
-    assert entry["primary_evidence_level"] == "legacy_scan_extraction_recovered_page_pending"
+    assert entry["primary_evidence_level"] == "prior_scan_confirmed_page_record_pending"
     assert entry["primary_result_allowed"] is False
     assert entry["runtime"] is None
     assert entry["canonical_selected"] is None
     assert entry["cycle_status"] == "cross_source_unresolved"
-    assert entry["legacy_scan_recovery"]["status"] == "prior_scan_extraction_recovered_direct_page_pending"
+    assert entry["legacy_scan_recovery"]["status"] == "manuscript_previously_scanned_original_page_record_not_reattached"
     assert entry["legacy_scan_recovery"]["recovered_forms"][0] == "文曲"
 
 
