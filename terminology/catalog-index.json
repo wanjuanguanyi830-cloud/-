@@ -155,6 +155,11 @@
       "path": "terminology/wufu_domains.json",
       "asset_id": "recovered-wufu-five-domains",
       "purpose": "保存五福五域坐标恢复数据，供显式关系层引用；不自动制造同域断语"
+    },
+    {
+      "path": "terminology/crosswalk.json",
+      "asset_id": "taiyi-terminology-crosswalk-v1",
+      "purpose": "跨10个stable catalog登记shared core、近名边界、禁止合并关系，并保存精确词形冲突审计快照"
     }
   ],
   "next_merge_rule": {
