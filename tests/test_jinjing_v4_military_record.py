@@ -386,7 +386,7 @@ def test_c84_access_boundary_is_preserved_but_c86_supersedes_page_pending():
 
     assert data["source"]["witness_audit_version"] == "c84-ncl06604-access-boundary-v1"
     assert data["source"]["ncl_volume4_collation_version"] == (
-        "c86-ncl06604-v4-j4m-locators-and-key-readings-v2"
+        "c86-ncl06604-v4-j4m-key-readings-v3"
     )
     assert ncl["status"] == (
         "volume4_scan_range_and_j4m_page_locators_verified_readings_in_progress"
@@ -514,7 +514,9 @@ def test_c86_ncl_toc_and_body_order_difference_is_preserved():
     assert "正文" in headings["order_difference"]
 
     by_id = {item["id"]: item for item in rules}
-    assert by_id["J4M-10"]["ncl_scan_locator"]["toc_title"] == "推奇兵伏兵法"
+    # NCL目录第10/11项与正文第10/11项顺序互换；locator按J4M正文序号
+    # 同时保存“同序号目录题”和“实际正文题”，不得把目录顺序强贴到正文。
+    assert by_id["J4M-10"]["ncl_scan_locator"]["toc_title"] == "推风云飞鸟助战法"
     assert by_id["J4M-10"]["ncl_scan_locator"]["body_title"] == "推奇兵伏兵法"
-    assert by_id["J4M-11"]["ncl_scan_locator"]["toc_title"] == "推风云飞鸟助战法"
+    assert by_id["J4M-11"]["ncl_scan_locator"]["toc_title"] == "推奇兵伏兵法"
     assert by_id["J4M-11"]["ncl_scan_locator"]["body_title"] == "推太乙风云飞鸟助阵法"
