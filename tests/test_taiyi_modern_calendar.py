@@ -174,3 +174,29 @@ def test_production_context_includes_resolved_time_count():
     assert data["time_count"]["result"]["count_type"] == "时计"
     assert data["time_count"]["entry_count"] == data["time_count"]["duty_time_real"]
     assert data["time_count"]["direct_door"] is not None
+
+
+
+def test_production_context_includes_resolved_year_count():
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+
+    data = production_calendar_context(
+        datetime(2027, 1, 1, 12, tzinfo=ZoneInfo("Asia/Shanghai"))
+    )
+    assert data["year_count"]["taiyi_historical_year"] == 2027
+    assert data["year_count"]["result"]["count_type"] == "岁计"
+    assert data["year_count"]["result"]["dun"] == "阳"
+
+
+def test_production_context_contains_all_four_count_results():
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+
+    data = production_calendar_context(
+        datetime(2026, 3, 24, 12, tzinfo=ZoneInfo("Asia/Shanghai"))
+    )
+    assert data["year_count"]["result"]["count_type"] == "岁计"
+    assert data["month_count"]["result"]["count_type"] == "月计"
+    assert data["day_count"]["result"]["count_type"] == "日计"
+    assert data["time_count"]["result"]["count_type"] == "时计"
