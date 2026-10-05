@@ -22,6 +22,12 @@
     "tongzong_military_source_runtime_coverage": "25/25",
     "tongzong_military_derived_runtime": [
       "V17-D1"
+    ],
+    "jingyou_military_source_runtime_coverage": "11/11",
+    "jingyou_military_text_pending": [
+      "JF4M-02",
+      "JF4M-07",
+      "JF4M-10"
     ]
   },
   "bridges": [
