@@ -20,6 +20,7 @@ PATTERN_PROFILE_KEYS = (
 MILITARY_PROFILE_KEYS = (
     "tongzong_volume5",
     "jinjing_siku_volume4",
+    "jingyou_fuying_volume4",
     "c8_upstream",
 )
 
@@ -116,8 +117,8 @@ def build_military_p0_source_variants(
         ),
         "cross_source_merge": False,
         "policy": (
-            "J4M、统宗与C8并列；C8只可登记其真实角色，"
-            "不得作为尚未实现的J4M-01/02/03公式替身。"
+            "J4M、《福应经》JF4M、统宗与C8并列；不同古籍profile不互补。"
+            "C8只可登记其真实角色，不得作为古籍公式替身。"
         ),
     }
 
