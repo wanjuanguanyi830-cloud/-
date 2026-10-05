@@ -43,8 +43,20 @@ TERRAIN_ARMS = [
     {"terrain": "山林沟壑茂林积石", "advantage": "步兵", "comparison": "车骑二不当一"},
     {"terrain": "土山平原四向广野", "advantage": "车骑", "comparison": "步兵十不当一"},
     {"terrain": "山谷幽涧仰高临下", "advantage": "弓弩", "comparison": "短兵百不当一"},
-    {"terrain": "两阵相近平地浅草", "advantage": "长兵", "comparison": "剑盾三不当一"},
-    {"terrain": "芦苇竹篠草木蒙茸", "advantage": "矛鋋", "comparison": "弓矢三不当一"},
+    {
+        "terrain": "两阵相近平地浅草",
+        "advantage": "长戟类",
+        "comparison": "剑盾三不当一",
+        "textual_variants": ["长战", "长戎", "长戟"],
+        "normalization_note": "电子转录异形并存；按平行古文/兵书见证归为长戟类，不回写单一原字。",
+    },
+    {
+        "terrain": "芦苇竹篠草木蒙茸",
+        "advantage": "矛鋋类",
+        "comparison": "弓弩三不当一",
+        "textual_variants": ["矛旋", "矛鋋", "矛铤"],
+        "normalization_note": "电子转录与平行见证字形不同；保留异文并只归一器类。",
+    },
 ]
 
 CONTROLS = {"木": "土", "土": "水", "水": "火", "火": "金", "金": "木"}
