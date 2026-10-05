@@ -4316,18 +4316,19 @@
         "source_section": null,
         "old_definition": null,
         "old_notes": null,
-        "old_aliases": [
-          "文曲",
-          "玄鳳",
-          "明維",
-          "昭搖",
-          "立華",
-          "華明",
-          "玄武",
-          "玄冥",
-          "雄明"
-        ]
-      }
+        "old_aliases": null
+      },
+      "recovered_scan_aliases": [
+        "文曲",
+        "玄鳳",
+        "明維",
+        "昭搖",
+        "立華",
+        "華明",
+        "玄武",
+        "玄冥",
+        "雄明"
+      ]
     }
   ],
   "migration_only_candidates": [],
