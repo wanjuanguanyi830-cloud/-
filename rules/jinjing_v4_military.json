@@ -91,7 +91,8 @@
             "J4M-12西方白云条明写大胜，庚辛日弥佳",
             "NCL卷四目录同样先列风云飞鸟、后列奇兵伏兵，而正文先奇兵伏兵、后风云飞鸟",
             "J4M-05明钞本只列算十二、二十二，随后即五将发；未见四库本三十二",
-            "J4M-11明钞本p.63作主人刑上来主人败、客刑上来客败，与福应经同构而与四库主人形上来客败冲突"
+            "J4M-11明钞本p.63作主人刑上来主人败、客刑上来客败，与福应经同构而与四库主人形上来客败冲突",
+            "J4M-06明钞本算表为1/2/3/4/6/7/8/9，无5；方向骨架与福应经同构"
           ],
           "still_pending": [
             "J4M-03例文太蔟/太簇的明钞本字形需更高倍率确认",
@@ -151,7 +152,7 @@
     "scan_locator_version": "c79-j4m-cadal-page-locators-v1",
     "witness_audit_version": "c84-ncl06604-access-boundary-v1",
     "full_twelve_scan_audit_version": "c85-j4m01-12-scan-boundary-complete-v1",
-    "ncl_volume4_collation_version": "c87-ncl06604-j4m11-event-readings-v1"
+    "ncl_volume4_collation_version": "c88-ncl06604-j4m06-direction-table-v1"
   },
   "separation_policy": [
     "本表只记录四库本《太乙金镜式经》卷四十二法，不自动并入《太乙统宗宝鉴》卷五或旧代码同名函数。",
@@ -545,7 +546,8 @@
         "jinjing_siku_volume4": "本条是“陈兵向背”：明确列1/2/4/5/6/9，并同时给出出军方向、战利方向、背地、阵形、旗色。",
         "tongzong_later_military_rule": "《统宗》另有“陈兵必出其乡”，按算方列1/2/3/4/6/7/8/9等出向，结构与本条不同。",
         "policy": "两条只可交叉比较，不得互补缺数。尤其不得拿《统宗》3/7/8补《金镜》，也不得拿《金镜》5及阵旗信息反写《统宗》陈兵出乡。",
-        "jingyou_fuying_volume4": "《福应经》“释陈兵向背”列1/2/3/4/6/7/8/9而无5，证明差异并非仅《统宗》后世扩写；仍不得互补《金镜》数表。"
+        "jingyou_fuying_volume4": "《福应经》“释陈兵向背”列1/2/3/4/6/7/8/9而无5，证明差异并非仅《统宗》后世扩写；仍不得互补《金镜》数表。",
+        "ncl_06604_ming_manuscript": "明钞本 p.59-p.60 直接见1/2/3/4/6/7/8/9出军方向表，无5；数值与方向骨架同《福应经》，但仍作为独立 manuscript reading，不补四库本。"
       },
       "source_variants": {
         "jingyou_fuying_volume4": {
@@ -614,8 +616,38 @@
             59,
             60
           ],
-          "relation_to_siku": "agrees_with_siku_body_title_not_siku_toc_alias",
-          "canonical_override": false
+          "relation_to_siku": "substantive_table_variant; Siku body has 1/2/4/5/6/9, NCL has 1/2/3/4/6/7/8/9",
+          "canonical_override": false,
+          "explicit_calculation_values": [
+            1,
+            2,
+            3,
+            4,
+            6,
+            7,
+            8,
+            9
+          ],
+          "direction_table": {
+            "1": "西北",
+            "2": "正南",
+            "3": "东北",
+            "4": "正东",
+            "6": "正西",
+            "7": "西南",
+            "8": "正北",
+            "9": "东南"
+          },
+          "omitted_vs_siku": [
+            5
+          ],
+          "extra_vs_siku": [
+            3,
+            7,
+            8
+          ],
+          "relation_to_jingyou": "number-and-direction skeleton agrees with 景祐太乙福应经释陈兵向背",
+          "detail_transcription_status": "number_direction_skeleton_direct_visual_verified; terrain_formation_flag_full_line_collation_pending"
         }
       }
     },
