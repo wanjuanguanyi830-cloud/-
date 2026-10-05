@@ -292,9 +292,9 @@ def test_j4m11_record_requires_explicit_observation_type_and_exact_action_wordin
     assert "JF4M" in constraints["jingyou_conflict"]
 
 
-def test_c75_cadal_scan_page_locators_cover_all_twelve_rules():
+def test_c79_cadal_scan_page_locators_cover_all_twelve_rules():
     data, rules = _rules()
-    assert data["source"]["scan_locator_version"] == "c75-j4m-cadal-page-locators-v1"
+    assert data["source"]["scan_locator_version"] == "c79-j4m-cadal-page-locators-v1"
     expected = {
         "J4M-01": [128, 129],
         "J4M-02": [129, 130],
@@ -316,7 +316,7 @@ def test_c75_cadal_scan_page_locators_cover_all_twelve_rules():
         assert locator["digital_scan_pages"] == expected[item["id"]]
 
 
-def test_c75_j4m08_scan_corrects_maochui_to_maochan():
+def test_c79_j4m08_scan_corrects_maochui_to_maochan():
     _, rules = _rules()
     rule = {item["id"]: item for item in rules}["J4M-08"]
     correction = rule["textual_correction"]
