@@ -4,11 +4,14 @@ from importlib import resources
 from kintaiyi.api import (
     calculate,
     calculate_rule,
+    capabilities,
+    describe_rule,
     explain_result,
     get_rule,
     get_term,
     list_catalogs,
     list_operations,
+    operations_for_rule,
     registry_snapshot,
     resolve_runtime,
     rule_runtime_candidates,
@@ -163,3 +166,26 @@ def test_source_record_only_jingyou_rule_is_not_promoted_to_calculation_runtime(
 
     with pytest.raises(KeyError):
         calculate_rule("JF4M-04")
+
+
+def test_rule_discovery_connects_grouped_rules_to_public_operations():
+    time_ops = operations_for_rule("C119-WINTER-TIME-DUTY-DOOR")
+    assert [item["name"] for item in time_ops] == ["doors.time"]
+
+    descriptor = describe_rule("C67-WUFU-TONGZONG")
+    assert descriptor["rule"]["count"] >= 1
+    assert len(descriptor["runtime_candidates"]) == 1
+    assert descriptor["operations"][0]["name"] == "cycles.wufu.position"
+
+
+def test_capabilities_groups_operations_for_frontend_discovery():
+    data = capabilities()
+    assert data["operation_count"] == len(list_operations())
+    assert {"modern", "seven_methods", "eight_divinations", "cycles", "doors", "nine_stars"} <= set(data["domains"])
+    assert any(item["name"] == "eight.sancai" for item in data["domains"]["eight_divinations"])
+    assert any(item["name"] == "stars.taiyi.ziting_cycle" for item in data["domains"]["nine_stars"])
+
+
+def test_calculate_rule_reaches_source_specific_military_runtime_without_curated_alias():
+    result = calculate_rule("V15-05")
+    assert result["source_rule_id"] == "V15-05"
