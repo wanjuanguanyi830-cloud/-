@@ -1,5 +1,6 @@
 from kintaiyi.tongzong_v2_doors import (
     dingji_duty_door_context,
+    door_readiness_from_calcs,
     guest_door_readiness,
     host_door_readiness,
     taiyi_door_readiness,
@@ -80,3 +81,36 @@ def test_tz2_bundle_keeps_three_door_readinesses_separate():
     assert data["host"]["door_ready"] is True
     assert data["guest"]["door_ready"] is True
     assert data["all_three_ready"] is True
+
+
+
+def test_tz2_door_readiness_can_consume_g7_calcs_directly():
+    data = door_readiness_from_calcs(
+        host_calc=30,
+        guest_calc=24,
+        taiyi_palace=1,
+        tianmu="卯",
+        wenchang="午",
+        shiji="酉",
+    )
+    assert data["generals"]["host"]["big_general_palace"] == 3
+    assert data["generals"]["host"]["assistant_general_palace"] == 9
+    assert data["generals"]["guest"]["big_general_palace"] == 4
+    assert data["generals"]["guest"]["assistant_general_palace"] == 2
+    assert data["doors"]["host"]["anchor_palace"] == 3
+    assert data["doors"]["guest"]["anchor_palace"] == 4
+
+
+def test_tz2_door_readiness_stops_blocked_side_before_fake_center_overlay():
+    data = door_readiness_from_calcs(
+        host_calc=25,
+        guest_calc=30,
+        taiyi_palace=1,
+        tianmu="卯",
+        wenchang="午",
+        shiji="酉",
+    )
+    assert data["host_blocked"] is True
+    assert data["doors"]["host"]["computable"] is False
+    assert data["doors"]["host"]["door_ready"] is None
+    assert data["doors"]["guest"]["computable"] is True
