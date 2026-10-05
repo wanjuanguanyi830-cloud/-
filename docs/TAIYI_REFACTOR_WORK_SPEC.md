@@ -4257,17 +4257,97 @@ C95 验证基线：
 - 依赖旧周期的 TaiyiCanonicalMixin；
 - 旧 project_legacy_pan 覆盖路径。
 
-## 9.85 后续
+## 9.85 C96 10月4日 taiyi_common.py 纯坐标 helper 回收（已实施）
 
-继续时仍只采用 2026-10-04 / 2026-10-05 已做工作。
+回收来源：
 
-优先顺序：
+`codex/c1-c7-canonical/src/kintaiyi/taiyi_common.py`
 
-1. 检查 10月4日 `taiyi_common.py` 还有哪些纯坐标 / 纯五行 helper 尚未被现行 `taiyi_rules.py` 覆盖；
-2. 检查 10月4日 `kintaiyi.py` facade 是否还有不依赖旧公式的接口片段可安全回收；
-3. 检查 10月4日 base-motion / warfare 历史 fixture，只有仍符合当前 source profile 的才迁测试；
+相关修改均为 2026-10-04。
+
+不新建第二个 common 真源，而是直接并入：
+
+`src/kintaiyi/taiyi_rules.py`
+
+已恢复：
+
+- 十六辰 / 四维 → 九宫有损投影；
+- `SECTOR_GODS` 反向神名索引；
+- 九宫卦名；
+- 九宫代表点；
+- 十六环通用正负步旋转；
+- 十六环对冲；
+- 九宫对冲；
+- 中五对冲继续 pending；
+- `sector_detail`；
+- `qi_relation` 关系名称包装；
+- `general_palace_qi` 显式宫五行 vs 落点五行解释。
+
+底层五态仍调用现行：
+
+`qi_state()`
+
+没有复制第二套生克公式。
+
+C96 已确认基线：
+
+`1547 passed / 0 failed`
+
+详细记录：
+
+- `sources/c96-coordinate-helper-recovery-record.md`
+- `tests/test_c96_coordinate_helpers.py`
+
+## 9.86 最近两天旧工作回收审计结论
+
+2026-10-04 / 2026-10-05 的旧工作目前已经分成三类。
+
+### 已恢复
+
+- 十二运行宫 terminology；
+- 十六神 terminology；
+- 五福五域 terminology；
+- C92 四神直接位置 / 克贼战克；
+- C93 直符二三四宫火气状态；
+- C94 五福 × 四太乙的10月4日元素同域解释；
+- C95 raw snapshot collector；
+- C96 公共坐标 / 生克关系 helper。
+
+### 已由现行 main 覆盖，不重复复制
+
+- 10月4日 `seven_methods_classics.json`：当前主线仍在使用；
+- 10月4日 `historical_cases.json`：当前主线仍在使用；
+- 10月4日 D8 structural fixture：现行参数化 D8 tests 已逐项覆盖；
+- pan v2 根结构 / JSON-safe / center-five：C11/C30；
+- legacy flat quarantine：C12/C60；
+- 年积年 / 日太乙显式采集：C95。
+
+### 已淘汰，不恢复成 canonical
+
+- 旧五福 `project_canonical=+250`；
+- 旧四太乙 `yuan` 默认旋转表；
+- 依赖上述旧周期的 `TaiyiCanonicalMixin`；
+- 旧 `Taiyi(snapshot).pan()` 聚合路径；
+- 旧 `project_legacy_pan()` 覆盖式兼容逻辑。
+
+完整清单：
+
+`sources/prior-branch-recovery-inventory.md`
+
+## 9.87 后续
+
+继续恢复旧工作时仍只采用：
+
+- 2026-10-04；
+- 2026-10-05。
+
+下一优先级：
+
+1. 等 C86 NCL 卷四页级校勘并行线稳定后，统一最新 witness 测试与工作规范；
+2. 检查 10月4日旧 facade 是否还有**不依赖旧公式**的接口片段可复用；若没有则停止 facade 回收；
+3. 检查 10月4日 base-motion / warfare fixture，只有当前 main 未覆盖且仍符合现行 source profile 的才迁；
 4. 完整 `terminology.json` 继续由 C81 阻塞，不猜 schema；
-5. 不因为“旧代码存在”就把已经被后续来源校勘否定的公式恢复回来。
+5. 不因旧代码存在而恢复任何已被后续来源校勘否定的公式。
 
 ## 10. 验收
 
