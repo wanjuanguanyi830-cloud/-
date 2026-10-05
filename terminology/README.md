@@ -324,7 +324,7 @@
 
 `terminology/catalog-index.json`
 
-当前 stable catalogs 共十一组：
+当前 stable catalogs 共十二组：
 
 1. `common-core.json`：公共坐标/神名/五态；
 2. `t7-seven-methods.json`：七术；
@@ -336,7 +336,8 @@
 8. `wuyun-wuyin.json`：五运六气 / 五音之数；
 9. `volume9-10.json`：C41–C46 卷九/卷十严格来源规则；
 10. `relations.json`：显式同宫/同域关系层；
-11. `ritual-timing.json`：天子巡狩与推太乙当时法。
+11. `ritual-timing.json`：天子巡狩与推太乙当时法；
+12. `ten-essences.json`：十精 C52–C59 分层体系。
 
 另外单列：
 
@@ -442,8 +443,8 @@ C74 的五福初交、C90/C91 的条件治理分支、C94 的 interpretation pro
 
 当前快照：
 
-- stable catalogs：11；
-- 正式 entries：76；
+- stable catalogs：12；
+- 正式 entries：90；
 - 不同 entry 之间的精确 preferred/alias 重名：0。
 
 crosswalk 专门锁定“近名但不能合并”的高风险关系，例如：
@@ -485,3 +486,44 @@ crosswalk 专门锁定“近名但不能合并”的高风险关系，例如：
 挂在 `zitingjing.json` 的 `wenchang_nine_stars` 条目下作为独立 source profile。
 
 它可按统宗卷六 NGJ 运行 30年一星 / 270小周 / 2700大周，并给直事星与年干落宫/分野；但紫庭附篇正文仍未取得，所以 C70 **不能**反填紫庭 primary。
+
+
+## 十精 C52–C59 术语目录
+
+已建立：
+
+`terminology/ten-essences.json`
+
+十精 canonical 次序：
+
+1. 天皇
+2. 帝符
+3. 天时
+4. 太尊
+5. 飞鸟
+6. 五行
+7. 八风
+8. 五风
+9. 三风
+10. 太乙数
+
+分层固定：
+
+- C52：只登记十精名单、次序、小周数与来源边界；
+- C53：飞鸟、五风、太尊、八风、三风、五行位置；
+- C54：纯 1..72 太乙数；
+- C55：天皇 / 帝符十六神重留位置；
+- C56：天时十二辰位置；
+- C57：显式合会云气；
+- C58：太乙初移宫云色时变与真实天气形态观察；
+- C59：显式太乙数天气 / 合会断语。
+
+关键边界：
+
+- `地符` 只作 `帝符` 的 legacy noncanonical alias；
+- `太岁/太歲` 不是十精第十项，第十项固定为 `太乙数`；
+- 十精飞鸟是推步神位，不能替代 J4M-11 军事外部飞鸟观测；
+- C54 不自动附 30/40/50 天气断语；
+- C57/C59 不从位置自动制造合冲；
+- C58 只消费真实观察或显式上游证据；
+- 数50句读异文继续 unresolved；旧数10/5独立天气断语不采用。
