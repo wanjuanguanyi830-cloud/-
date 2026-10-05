@@ -89,12 +89,16 @@ def test_c61_c66_c74_c90_c91_three_bases_use_position_and_relation_layers():
         assert "禁止由位置runtime自动制造同宫" in item["notes"]
 
     wufu = catalog_unported_field("明五福太乙所主術")
-    assert wufu["action"] == "use_c67_c74_wufu_layers"
+    assert wufu["action"] == "use_c67_c74_c94_wufu_layers"
     assert wufu["migrate_whole"] is False
     assert "宫盈差115" in wufu["notes"]
     assert "金镜" in wufu["notes"]
     assert "C74" in wufu["notes"]
     assert "初交之始" in wufu["notes"]
+    assert "C94" in wufu["notes"]
+    assert "2026-10-04" in wufu["notes"]
+    assert "interpretation_profile" in wufu["notes"]
+    assert "大游/小游仍单独待迁" in wufu["notes"]
 
     wufu_numbers = catalog_unported_field("明五福吉算所主術")
     assert wufu_numbers["action"] == "use_c68_wufu_auspicious_number_runtime"
