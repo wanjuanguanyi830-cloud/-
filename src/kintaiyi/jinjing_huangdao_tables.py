@@ -244,17 +244,11 @@ def term_day_position(term: str, day_number: int) -> dict[str, Any]:
             steps = Fraction(0, 1)
             break
 
-        # 从本宿当前度推进到下一宿一度需 room + 1 日。
-        jump = room + 1
-        if steps < jump:
-            # 只可能在半度边界附近出现；保留连续度值，不擅自取整。
-            degree += steps
-            steps = Fraction(0, 1)
-            break
-
-        steps -= jump
+        # 先走到本宿末界，再进入下一宿；进入新宿时从0度连续推进。
+        # 例如立冬房一为第1日，第5日在房五，第6日进入心一。
+        steps -= room
         mansion = MANSION_ORDER[(MANSION_ORDER.index(mansion) + 1) % len(MANSION_ORDER)]
-        degree = Fraction(1, 1)
+        degree = Fraction(0, 1)
 
     division = mansion_division(mansion)
     return {
