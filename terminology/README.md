@@ -316,3 +316,26 @@
 - 大游太乙、大游天目、阳九百六太游行限、重卦策数等属于不同术层，不得因为名称相近而合并。
 
 早期 `rules/taiyi_v1.json` 中的五福 `project +250` 与大游 `jinjing_tongzong` 混源摘要已改为兼容隔离说明，正式真源改指 C67/C103/C106/C107 等 source-specific runtime。
+
+
+## 仓库术语总索引
+
+已建立：
+
+`terminology/catalog-index.json`
+
+当前 stable catalogs 共六组：
+
+1. `common-core.json`：公共坐标/神名/五态；
+2. `t7-seven-methods.json`：七术；
+3. `d8-eight-divinations.json`：八占；
+4. `patterns.json`：格局 source profiles；
+5. `military-p0.json`：三门/五将/主客相关；
+6. `cycles.json`：三基、五福、大小游、四太乙、阳九百六等周期。
+
+另外单列：
+
+- migration assets：紫庭旧术语恢复、NCL-06604旧记录对账；
+- supporting assets：金镜来源字形 aliases、五福五域坐标等。
+
+该索引**不是**旧本地 `terminology.json` 的替代主库。旧库重新取得后，按总索引中的 preferred term / aliases / rule_id / source profile 对账，再恢复旧 term id、原字形、页码和 notes；未知旧词条保持 unmapped，不猜归属。
