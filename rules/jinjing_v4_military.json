@@ -220,7 +220,30 @@
       },
       "implementation_status": "implemented_source_specific",
       "runtime": "kintaiyi.jinjing_v4_military.suidi_zhibian",
-      "implementation_note": "实现五类地形与优势兵种/兵器映射，并保留三不当一、十不当一、百不当一原文比例文字；训练、器械、将知兵、君择将只作事实/警告层，不转成现代战力分数。"
+      "implementation_note": "实现《金镜》四库本本条实际写出的五类地形与优势兵种/兵器映射，并保留其三不当一、十不当一、百不当一等原文比例文字；已确认该段“晁错曰”与《汉书·爰盎晁错传》存在多处异文及脱段，不以《汉书》静默校正本 profile。训练、器械、将知兵、君择将只作事实/警告层，不转成现代战力分数。",
+      "collation_status": "jinjing_chao_cuo_quote_diverges_from_hanshu",
+      "quotation_collation": {
+        "jinjing_siku_volume4": {
+          "status": "canonical_for_J4M-08_source_profile",
+          "examples": [
+            "步兵地：车骑三不当一",
+            "萑苇竹萧等地：矛锤之地，弓弩三不当一",
+            "士卒不练：百不当一",
+            "将不习兵：十不当一"
+          ]
+        },
+        "hanshu_yuanang_chaocuo_zhuan": {
+          "status": "external_quotation_witness_not_silent_correction",
+          "examples": [
+            "步兵地：车骑二不当一",
+            "萑苇竹萧等地：矛鋋之地，长戟二不当一",
+            "另有曲道相伏、险厄相薄：剑楯之地，弓弩三不当一",
+            "不习勒卒：百不当十",
+            "将不省兵：五不当一"
+          ]
+        },
+        "policy": "J4M-08 以《金镜》四库本实际引文为本 profile 真源；《汉书》只证明引文存在明显异文/传抄差异，不得静默改写 runtime。若将来建立“晁错原典校正版”，须另立 source_variant。"
+      }
     },
     {
       "id": "J4M-09",
