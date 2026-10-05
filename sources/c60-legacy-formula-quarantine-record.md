@@ -302,3 +302,32 @@ replacement 暂不指向猜测的新 runtime，等待 source-specific 行宫层�
 因此默认旧 +214 wrapper 不能继续充当 canonical。
 
 C98 保留兼容数值，但统一撤销 canonical 身份。
+
+
+## C106 撤销大游天目错误隔离
+
+C98 时曾把：
+
+- `kintaiyi.cycles.bigyo_tianmu.tongzong`
+- `config.bigyo_tianmu_default`
+
+加入 C60。
+
+C106 直接来源复核后确认：
+
+- 统宗 +214 / 180 / 18 有直接来源；
+- 金镜 72 / 18 有直接来源；
+- 两者共享18步路径但参数必须分 profile。
+
+因此上述两项已从 C60 registry 删除。
+
+这是 C60 的重要治理原则：
+
+> quarantine 不是永久黑名单；若后续直接来源证明旧数值核心有可靠出处，应撤销“错误公式”标签，改由 source-specific runtime 接管。
+
+当前仍保留的 C98 隔离：
+
+- `kintaiyi.cycles.bigyo.jinjing_tongzong`
+- `config.bigyo_default`
+
+因为“大游太乙所在宫”仍是金镜/统宗混合 profile，尚未完成来源分层。
