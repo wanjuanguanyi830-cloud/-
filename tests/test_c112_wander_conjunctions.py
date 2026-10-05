@@ -66,7 +66,7 @@ def test_four_spirit_xiaoyou_direct_omen():
     assert data["status"] == "explicit_same_palace_direct_omen"
 
 
-def test_dayou_xiaoyou_uses_collated_xiongb暴_reading():
+def test_dayou_xiaoyou_uses_collated_xiongbao_reading():
     data = wander_conjunction_relation("太游", "小游", same_palace=True)
     assert data["pair"] == ["大游", "小游"]
     assert data["selected_effects"] == ["兵丧", "水旱", "凶暴大作"]
