@@ -4,7 +4,9 @@
 四库《太乙金镜式经》卷四 J4M-01 的严格 source-specific runtime。
 """
 
-from __future__ import annotations\n\nfrom .jinjing_eight_door_overlay import taiyi_eight_door_context
+from __future__ import annotations
+
+from .jinjing_eight_door_overlay import taiyi_eight_door_context
 
 TZ5_THREE_DOORS_PROFILE = "tongzong_volume5_three_doors"
 _EIGHT_GATES = ("开", "休", "生", "伤", "杜", "景", "死", "惊")
