@@ -93,3 +93,44 @@ Astronomy Engine 官方说明：
 - 古法回归与比较。
 
 不得再让古历常数成为现代production日期换算的隐藏依赖。
+
+
+## production边界注册表
+
+为了避免“太乙岁、农历年、立春干支年、公历年、月建”再次混淆，
+`production_calendar_context()` 现在统一输出 `boundary_registry`：
+
+| 字段 | 边界 | 是否改变太乙岁 |
+|---|---|---|
+| taiyi_year | 真实天文冬至瞬间 | **是，唯一** |
+| gregorian_year | 元旦00:00 | 否 |
+| lunar_year | 春节 | 否 |
+| jieqi_ganzhi_year | 立春 | 否 |
+| spring_equinox | 春分 | 否 |
+| taiyi_solar_month | 十二节精确交节 | 只改月计月建 |
+| taiyi_day | Asia/Shanghai 00:00 | 只改production日计 |
+| taiyi_time_half | 冬至/夏至瞬间 | 只切时计阴阳局 |
+| taiyi_time_unit | 子正/夜半起每2小时 | 只改时计时序 |
+
+核心不变量：
+
+> 只有 `boundary_registry.taiyi_year` 有权改变 `taiyi_year`。
+
+### 月计公式年的命名
+
+月计从大雪起进入子月，因此用于“(积年-1)×12+月序”的公式年，
+可能在太乙冬至换岁之前就指向下一月计循环年。
+
+该字段现在显式另名：
+
+`month_formula_year`
+
+它只服务积月公式，**绝不是太乙岁标签**。
+
+太乙岁始终只读：
+
+`year_boundary.taiyi_historical_year`
+
+以及pan v2：
+
+`calendar.taiyi_year`。
