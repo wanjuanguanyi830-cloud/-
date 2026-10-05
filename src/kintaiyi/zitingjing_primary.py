@@ -489,7 +489,7 @@ def shiji_year_element_collation() -> dict[str, Any]:
 
 
 def c19_primary_catalog() -> dict[str, Any]:
-    """六项P1的主来源定位与当前结构化状态。"""
+    """紫庭主来源定位与当前结构化状态。"""
     implemented = {
         "taiyi_nine_stars": "verified_primary_table",
         "wenchang_changes": "verified_primary_rules",
@@ -502,12 +502,17 @@ def c19_primary_catalog() -> dict[str, Any]:
         "online_witness": copy.deepcopy(SHIDIAN_BOOK_WITNESS),
         "locators": copy.deepcopy(PRIMARY_LOCATORS),
         "implemented": implemented,
-        "pending": [
-            key for key in PRIMARY_LOCATORS if key not in implemented
-        ],
+        "pending": ["three_banners", "nine_palace_nobles"],
+        "excluded_from_primary": {
+            "wenchang_nine_stars": (
+                "研易楼明钞本目录未见该题；现代整理本同名附篇来源未证，"
+                "现行可执行规则归《太乙统宗宝鉴》卷六C70。"
+            ),
+        },
         "policy": (
-            "能直接定位《太乙紫庭经》文本的先结构化；未定位者保持pending，"
-            "不得用统宗参校结果反填primary_result。"
+            "能直接定位《太乙紫庭经》文本的先结构化；归属未证者保持pending。"
+            "研易楼明钞目录未见的文昌九星移出primary目标，不再等待紫庭正文；"
+            "现代整理附篇只作编辑层证据。"
         ),
     }
 
