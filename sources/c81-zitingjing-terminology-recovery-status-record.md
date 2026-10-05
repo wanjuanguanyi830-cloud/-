@@ -146,3 +146,55 @@ C40 的恢复顺序保持不变：
 ## Legacy scan residue 边界
 
 文昌九星旧扫描残留现在属于 `legacy scan extraction residue`。它可以证明此前扫描/术语整理确有产物，并提供候选词形用于未来对账；但在 E 盘原扫描页重新挂载前，不得把这些词形写入 `manuscript_form` 或 `source_page`，更不能据此猜旧 `old_term_record_id`。
+
+
+## 2026-10-05 全分支与公开网络补充审计
+
+### Git 分支
+
+已递归检查当前仓库全部 5 条可见分支：
+
+- `main`
+- `codex/c1-c7-canonical`
+- `codex/taiyi-base-motion-2026-10-04`
+- `codex/taiyi-rules-v2-20261005`
+- `integrate-taiyi-war-v1-20261004`
+
+均未发现历史 `terminology.json`。
+
+因此旧主库恢复已明确不是“漏合并某个 Git 分支”，只能等待：
+
+- 用户本地 E 盘原文件；
+- 或其他精确旧 store 快照。
+
+### 研易楼明钞公开恢复
+
+公开网络现可确认：
+
+- 书格存在研易楼藏明钞本资源帖；
+- 帖内标注 181 单页灰度、328M；
+- 现代出版目录明确列 `附太乙文昌九星值宮術`。
+
+但当前公开检索仍未恢复该附篇的直接明钞影印页或逐字正文。
+
+所以：
+
+- `manuscript_form` 继续 null；
+- `source_page` 继续 null；
+- parser 继续禁止；
+- 紫庭文昌九星 primary 继续 blocked；
+- 《统宗》C70 只能参校，不能反填。
+
+### 三旗 / 九宫贵神状态变化
+
+这两项现行软件规则来源已经由直接卷十校勘解决：
+
+- `C126-TONGZONG-THREE-BANNERS`
+- `C127-TONGZONG-NINE-PALACE-NOBLES`
+
+因此旧 store 恢复这两项的目的只剩：
+
+- 找回旧 term id / definition / notes / aliases；
+- 判断研易楼明钞是否另有独立同名/相关 witness。
+
+它们已不再是当前规则来源缺口。
