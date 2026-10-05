@@ -214,3 +214,29 @@ def test_c35_legacy_weather_bird_flat_value_never_auto_promotes():
         "source_variants.military.weather_bird_support.profiles.jinjing_siku_volume4"
     ]
     assert snapshot["v2"]["analysis"]["military"] == {}
+
+
+def test_jingyou_p0_profiles_are_allowed_but_never_merged_with_jinjing():
+    data = build_military_p0_source_variants(
+        three_doors_profiles={
+            "jinjing_siku_volume4": {"rule_id": "J4M-01"},
+            "jingyou_fuying_volume4": {"rule_id": "JF4M-01"},
+        },
+        five_generals_profiles={
+            "jinjing_siku_volume4": {"rule_id": "J4M-02"},
+            "jingyou_fuying_volume4": {"rule_id": "JF4M-02"},
+        },
+        host_guest_relation_profiles={
+            "jinjing_siku_volume4": {"rule_id": "J4M-03"},
+            "jingyou_fuying_volume4": {"rule_id": "JF4M-03"},
+        },
+    )
+    assert data["cross_source_merge"] is False
+    assert data["three_doors"]["canonical_selected"] is None
+    assert set(data["three_doors"]["profiles"]) == {
+        "jinjing_siku_volume4", "jingyou_fuying_volume4"
+    }
+    assert data["three_doors"]["crosswalk"]["jinjing_rule_id"] == "J4M-01"
+    assert data["three_doors"]["crosswalk"]["jingyou_rule_id"] == "JF4M-01"
+    assert data["five_generals"]["crosswalk"]["jingyou_rule_id"] == "JF4M-02"
+    assert data["host_guest_relation"]["crosswalk"]["jingyou_rule_id"] == "JF4M-03"
