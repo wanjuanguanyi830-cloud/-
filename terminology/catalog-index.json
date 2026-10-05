@@ -154,6 +154,22 @@
         "C58外部云气观察",
         "C59太乙数天气"
       ]
+    },
+    {
+      "path": "terminology/military-jinjing-v4.json",
+      "catalog_id": "taiyi-jinjing-v4-military-terminology-v1",
+      "scope": "source_sensitive_jinjing_volume4_military_extended",
+      "contains": [
+        "J4M-04主客先后动静",
+        "J4M-05出师",
+        "J4M-06陈兵向背",
+        "J4M-07制阵随地",
+        "J4M-08随地制变",
+        "J4M-09天外地内",
+        "J4M-10奇伏",
+        "J4M-11风云飞鸟助战",
+        "J4M-12阵有风云气定胜负"
+      ]
     }
   ],
   "migration_assets": [
@@ -167,6 +183,12 @@
       "path": "terminology/ncl06604-legacy-reconciliation-map.json",
       "asset_id": "ncl06604-legacy-reconciliation-map",
       "purpose": "旧NCL-06604术语记录与当前页级影像复核结果去重/对账",
+      "canonical_catalog": false
+    },
+    {
+      "path": "terminology/legacy-recovery-manifest.json",
+      "asset_id": "taiyi-legacy-terminology-recovery-manifest-v1",
+      "purpose": "对全部stable terminology建立可逆旧terminology.json恢复映射；旧ID/定义/notes/页码未知时保持null",
       "canonical_catalog": false
     }
   ],
