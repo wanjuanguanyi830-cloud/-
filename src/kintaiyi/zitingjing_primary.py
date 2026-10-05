@@ -9,7 +9,10 @@ from __future__ import annotations
 import copy
 from typing import Any
 
+from .taiyi_rules import integer
+
 C19_VERSION = "taiyi-c19-zitingjing-primary-v1"
+C125_VERSION = "taiyi-c125-ziting-taiyi-nine-stars-cycle-v1"
 PRIMARY_SOURCE_TITLE = "太乙紫庭经"
 PRIMARY_SOURCE_ID = "zitingjing"
 
@@ -127,6 +130,73 @@ TAIYI_NINE_STARS_PRIMARY = (
 )
 
 
+TAIYI_NINE_STARS_PRIMARY_CYCLE_EVIDENCE = {
+    "rule_id": "C125-ZITING-TAIYI-NINE-STARS-CYCLE",
+    "section": "释九宫所值九星",
+    "url": "https://www.shidianguji.com/zh/book/SDZJ0646/chapter/1kg32q85u4tgl",
+    "direct_text_facts": [
+        "天九星之名，因为值符，以配九宫，十年一易。",
+        "开元十二年甲子岁积一百九十三万七千二百八十一算，周外存三十一算。",
+        "三十年后余一算，即天辅为值符。",
+        "甲子年加六甲，乙丑年加六乙。",
+    ],
+    "derived_cycle": {
+        "years_per_star": 10,
+        "star_count": 9,
+        "cycle_years": 90,
+        "derivation": "九星×每星十年；且1937281 mod 90 = 31，与原例天辅直符第1年吻合。",
+    },
+    "example": {
+        "accumulated_count": 1937281,
+        "cycle_remainder": 31,
+        "direct_star": "天辅",
+        "year_in_star": 1,
+    },
+    "boundary": {
+        "direct_star_cycle_supported": True,
+        "full_year_stem_distribution_supported": False,
+        "reason": "主来源目前足以固定十年一星与直符循环；六甲/六乙加宫句存在，但未在本层从OCR残文强推完整十干九星动态排布。",
+    },
+}
+
+
+def taiyi_nine_stars_primary_cycle(accumulated_count: int) -> dict[str, Any]:
+    """按《紫庭经》〈释九宫所值九星〉直接正文计算太乙九星直符周期。
+
+    当前只实现直接文本足以支持的 90 年循环 / 10 年一星。
+    年干加宫仅保留为文本证据，不在本函数强推完整九星动态分布。
+    """
+    count = integer(accumulated_count, 1)
+    remainder = count % 90
+    cycle_count = remainder or 90
+    zero_index = cycle_count - 1
+    star_index = zero_index // 10
+    year_in_star = zero_index % 10 + 1
+    star = TAIYI_NINE_STARS_PRIMARY[star_index]
+    return {
+        "schema_version": "1.0",
+        "canonical": C125_VERSION,
+        "rule_id": "C125-ZITING-TAIYI-NINE-STARS-CYCLE",
+        "primary_source": PRIMARY_SOURCE_ID,
+        "primary_source_title": PRIMARY_SOURCE_TITLE,
+        "source_locator": copy.deepcopy(PRIMARY_LOCATORS["taiyi_nine_stars"]),
+        "accumulated_count": count,
+        "cycle_years": 90,
+        "cycle_remainder": remainder,
+        "cycle_count": cycle_count,
+        "years_per_star": 10,
+        "direct_star_number": star_index + 1,
+        "direct_star": star["star"],
+        "year_in_star": year_in_star,
+        "full_dynamic_distribution": None,
+        "source_evidence": copy.deepcopy(TAIYI_NINE_STARS_PRIMARY_CYCLE_EVIDENCE),
+        "policy": (
+            "只使用《紫庭经》直接正文足以固定的十年一星循环；"
+            "不借C124《统宗》十干加宫表补成本来源完整动态排布。"
+        ),
+    }
+
+
 def taiyi_nine_stars_primary() -> dict[str, Any]:
     """返回《太乙紫庭经》〈释九宫所值九星〉的第一层静态表。
 
@@ -145,6 +215,10 @@ def taiyi_nine_stars_primary() -> dict[str, Any]:
             "two_hidden_seven_visible": True,
             "nine_palaces": True,
             "four_auspicious_five_inauspicious": True,
+            "direct_cycle_supported": True,
+            "direct_cycle_runtime": "kintaiyi.zitingjing_primary.taiyi_nine_stars_primary_cycle",
+            "years_per_star": 10,
+            "cycle_years": 90,
         },
         "known_variants": [
             {
