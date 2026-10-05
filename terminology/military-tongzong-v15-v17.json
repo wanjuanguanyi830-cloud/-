@@ -14,17 +14,17 @@
           "V15-03",
           "V15-04",
           "V15-05",
-          "V15-06"
+          "V15-06",
+          "V15-09",
+          "V15-10",
+          "V15-12",
+          "V15-13"
         ],
         "source_rule_only": [
           "V15-01",
           "V15-07",
           "V15-08",
-          "V15-09",
-          "V15-10",
           "V15-11",
-          "V15-12",
-          "V15-13",
           "V15-14"
         ]
       },
@@ -33,7 +33,22 @@
     "tongzong_volume17": {
       "source": "太乙统宗宝鉴军事占断篇",
       "rule_count": 11,
-      "implementation_status": "source_rule_catalog_only"
+      "implementation_status": {
+        "implemented": [
+          "V17-01",
+          "V17-02",
+          "V17-03",
+          "V17-04",
+          "V17-05",
+          "V17-06",
+          "V17-07",
+          "V17-08",
+          "V17-09",
+          "V17-10",
+          "V17-11"
+        ],
+        "source_rule_only": []
+      }
     },
     "cross_volume_helper": {
       "rule_ids": [
@@ -46,9 +61,9 @@
   },
   "global_policy": [
     "卷十五、卷十七与J4M/C8只做crosswalk，不自动等价或覆盖。",
-    "reference_function只记录旧综合层函数名，不等于当前独立runtime。",
-    "只有C23明确实现的V15-02..06登记runtime。",
-    "V17-D1为跨卷helper，不计入卷十七canonical source rule数。"
+    "reference_function只记录旧综合层函数名；implementation_status/runtime才表示当前独立实现状态。",
+    "C23-C28分别实现卷十五/卷十七不同依赖层；未实现的卷十五5条继续source_rule_catalog_only。",
+    "V17-D1为C32已实现跨卷helper，不计入卷十七canonical source rule数。"
   ],
   "entries": [
     {
@@ -111,7 +126,8 @@
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前有独立source-specific runtime；仍不得与J4M/C8近名层合并。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v15_low_dependency.c23_catalog"
     },
     {
       "key": "v15_03",
@@ -139,7 +155,8 @@
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前有独立source-specific runtime；仍不得与J4M/C8近名层合并。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v15_low_dependency.c23_catalog"
     },
     {
       "key": "v15_04",
@@ -169,7 +186,8 @@
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前有独立source-specific runtime；仍不得与J4M/C8近名层合并。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v15_low_dependency.c23_catalog"
     },
     {
       "key": "v15_05",
@@ -194,7 +212,8 @@
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前有独立source-specific runtime；仍不得与J4M/C8近名层合并。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v15_low_dependency.c23_catalog"
     },
     {
       "key": "v15_06",
@@ -219,7 +238,8 @@
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前有独立source-specific runtime；仍不得与J4M/C8近名层合并。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v15_low_dependency.c23_catalog"
     },
     {
       "key": "v15_07",
@@ -313,14 +333,15 @@
       ],
       "overlaps": [],
       "reference_function": "wuyin_feng",
-      "implementation_status": "source_rule_catalog_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v15_observations.five_tone_wind",
       "canonical_source_rule": true,
       "notes": null,
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v15_observations.c24_catalog"
     },
     {
       "key": "v15_10",
@@ -342,14 +363,15 @@
       ],
       "overlaps": [],
       "reference_function": "guanfeng_chajiang",
-      "implementation_status": "source_rule_catalog_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v15_wind_sound.observe_general_from_wind_sound",
       "canonical_source_rule": true,
       "notes": "原文按风声形态辨五音察将；不得以V15-09风向五音替代实际风声。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v15_wind_sound.c25_catalog"
     },
     {
       "key": "v15_11",
@@ -403,14 +425,15 @@
       ],
       "overlaps": [],
       "reference_function": "feng_bagua_zhuke",
-      "implementation_status": "source_rule_catalog_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v15_observations.wind_from_bagua",
       "canonical_source_rule": true,
       "notes": null,
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v15_observations.c24_catalog"
     },
     {
       "key": "v15_13",
@@ -434,14 +457,15 @@
       ],
       "overlaps": [],
       "reference_function": "yunqi_nishun",
-      "implementation_status": "source_rule_catalog_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v15_observations.cloud_qi_direction",
       "canonical_source_rule": true,
       "notes": null,
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v15_observations.c24_catalog"
     },
     {
       "key": "v15_14",
@@ -509,14 +533,15 @@
         "J4M-05"
       ],
       "reference_function": "chubing_yongshi",
-      "implementation_status": "source_rule_catalog_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v17_high_dependency.military_action_timing",
       "canonical_source_rule": true,
       "notes": null,
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v17_high_dependency.c28_catalog"
     },
     {
       "key": "v17_02",
@@ -549,14 +574,15 @@
         "C8-L3"
       ],
       "reference_function": "diguo_dongjing",
-      "implementation_status": "source_rule_catalog_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v17_high_dependency.enemy_state",
       "canonical_source_rule": true,
       "notes": "敌情占断应用，不是C8主客动静。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v17_high_dependency.c28_catalog"
     },
     {
       "key": "v17_03",
@@ -580,14 +606,15 @@
       "external_inputs": [],
       "overlaps": [],
       "reference_function": "jianmie_xushi",
-      "implementation_status": "source_rule_catalog_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v17_low_dependency.enemy_spy_state",
       "canonical_source_rule": true,
       "notes": "内外深浅由上游结构化；本条不复刻旧_realm_of_gong近似。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v17_low_dependency.c26_catalog"
     },
     {
       "key": "v17_04",
@@ -609,14 +636,15 @@
       "external_inputs": [],
       "overlaps": [],
       "reference_function": "dishi_xushi",
-      "implementation_status": "source_rule_catalog_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v17_low_dependency.enemy_envoy_truth",
       "canonical_source_rule": true,
       "notes": "直接比较五行制化证据；不在本条猜十六神/九宫五行。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v17_low_dependency.c26_catalog"
     },
     {
       "key": "v17_05",
@@ -639,14 +667,15 @@
       "external_inputs": [],
       "overlaps": [],
       "reference_function": "dibing_laifang",
-      "implementation_status": "source_rule_catalog_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v17_low_dependency.enemy_arrival_scale",
       "canonical_source_rule": true,
       "notes": "来方按客目左/右/前/后；兵众须满足16以上且阴阳和。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v17_low_dependency.c26_catalog"
     },
     {
       "key": "v17_06",
@@ -671,14 +700,15 @@
       "external_inputs": [],
       "overlaps": [],
       "reference_function": "jianwen_xushi",
-      "implementation_status": "source_rule_catalog_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v17_structured.report_truth",
       "canonical_source_rule": true,
       "notes": "只消费明确条件；不扫描旧格局字符串或中文断语。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v17_structured.c27_catalog"
     },
     {
       "key": "v17_07",
@@ -707,14 +737,15 @@
       "external_inputs": [],
       "overlaps": [],
       "reference_function": "taobu_panwang",
-      "implementation_status": "source_rule_catalog_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v17_structured.capture_fugitive",
       "canonical_source_rule": true,
       "notes": "所捕地旺相须作用于hideout_qi_state，不得拿主将旺相代替。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v17_structured.c27_catalog"
     },
     {
       "key": "v17_08",
@@ -739,14 +770,15 @@
       "external_inputs": [],
       "overlaps": [],
       "reference_function": "zhiqu_duili",
-      "implementation_status": "source_rule_catalog_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v17_structured.prisoner_official",
       "canonical_source_rule": true,
       "notes": "不同见证对掩击/主人在外/旺神条件有相反断法，必须source_variant。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v17_structured.c27_catalog"
     },
     {
       "key": "v17_09",
@@ -775,14 +807,15 @@
         "volume5_inner_outer_attack"
       ],
       "reference_function": "qiusuo_suode",
-      "implementation_status": "source_rule_catalog_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v17_structured.request_outcome",
       "canonical_source_rule": true,
       "notes": "求索本条独立判据，不调用V17-D1跨卷孤虚对照。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v17_structured.c27_catalog"
     },
     {
       "key": "v17_d1",
@@ -850,14 +883,15 @@
       "external_inputs": [],
       "overlaps": [],
       "reference_function": "shiji_zhanshi",
-      "implementation_status": "source_rule_catalog_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v17_high_dependency.hourly_general_affairs",
       "canonical_source_rule": true,
       "notes": null,
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v17_high_dependency.c28_catalog"
     },
     {
       "key": "v17_11",
@@ -880,14 +914,15 @@
       "external_inputs": [],
       "overlaps": [],
       "reference_function": "zhanwang_xingren",
-      "implementation_status": "source_rule_catalog_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v17_low_dependency.traveler_arrival",
       "canonical_source_rule": true,
       "notes": "四方来否按原文数对；南方来数存在版本异文，必须保留。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v17_low_dependency.c26_catalog"
     }
   ]
 }
