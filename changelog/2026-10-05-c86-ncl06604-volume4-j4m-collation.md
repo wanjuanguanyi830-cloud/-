@@ -16,7 +16,9 @@
 - J4M-08 正文：推随地制变；并再次确认“矛鋋 / 弓弩三不当一”
 - J4M-09：明钞本地内组为 [1,8,3,4]，只作 manuscript variant，不覆盖四库 [8,3,4]
 - J4M-10 正文：推奇兵伏兵法
+- J4M-11 正文标题：推太乙风云飞鸟助阵法；正文起句仍作“经曰助战之法”
 - J4M-12 正文：推对阵有云气定胜负
+- J4M-12 西方白云条明确保留“大胜，庚辛日弥佳”；只作 NCL manuscript reading，不回填四库 profile
 
 新增：
 - sources/c86-ncl06604-volume4-j4m-collation-record.md
