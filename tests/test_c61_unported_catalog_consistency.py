@@ -68,7 +68,7 @@ def test_c61_c62_imperial巡狩_is_direct_volume5_and_runtime_implemented():
     assert "不自行造月" in item["notes"]
 
 
-def test_c61_c66_c74_c90_three_bases_use_position_and_relation_layers():
+def test_c61_c66_c74_c90_c91_three_bases_use_position_and_relation_layers():
     for key in (
         "明君基太乙所主術",
         "明臣基太乙所主術",
@@ -78,14 +78,15 @@ def test_c61_c66_c74_c90_three_bases_use_position_and_relation_layers():
         assert item["layer"] == "canonical"
         assert item["source_scope"] == "tongzong_volume6_7_witness_variant_direct"
         assert item["source_confidence"] == "high"
-        assert item["action"] == "use_c66_c74_c90_three_bases_layers"
+        assert item["action"] == "use_c66_c74_c90_c91_three_bases_layers"
         assert item["migrate_whole"] is False
         assert "邦盈差250" in item["notes"]
         assert "C74 已实现" in item["notes"]
         assert "C90 已实现" in item["notes"]
         assert "治理条件双支" in item["notes"]
-        assert "禁止由C66/C64位置自动制造同宫" in item["notes"]
-        assert "四神/大游/小游" in item["notes"]
+        assert "C91 已实现" in item["notes"]
+        assert "修政/应对结构" in item["notes"]
+        assert "禁止由位置runtime自动制造同宫" in item["notes"]
 
     wufu = catalog_unported_field("明五福太乙所主術")
     assert wufu["action"] == "use_c67_c74_wufu_layers"
