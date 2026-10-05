@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.2",
+  "schema_version": "1.3",
   "audit_id": "C109-JINJING-V4-WITNESS-AGREEMENT-PATTERNS",
   "date": "2026-10-05",
   "scope": "太乙金镜式经卷四军事十二法",
@@ -275,7 +275,24 @@
           60
         ],
         "body_title": "推制阵随地法",
-        "status": "agrees_with_siku_body"
+        "formation_elements": {
+          "曲阵": "水",
+          "锐阵": "火",
+          "直阵": "木",
+          "方阵": "金",
+          "圆阵": "土"
+        },
+        "host_guest_rule": "皆取主客置阵，次以五行相克而取胜负",
+        "terrain_table": {
+          "后高前下": "锐阵",
+          "前高后下": "直阵",
+          "地跨邪": "圆阵",
+          "地高而平": "方阵",
+          "左右势高": "曲阵"
+        },
+        "direction_rule": "地顺其向则吉；地反其向则凶",
+        "closing_text": "太乙兵起於鄉，陣隨其地，觀方置變，皆算掩神，此用兵之法也。",
+        "status": "body_structure_direct_visual_verified_C111"
       },
       "jingyou": {
         "parallel_rule": "JF4M-07",
@@ -283,8 +300,10 @@
       },
       "difference_class": [
         "heading",
-        "terrain_wording"
-      ]
+        "terrain_wording",
+        "closing_wording"
+      ],
+      "hard_boundary": "NCL“地跨邪/观方置变”只作明钞本文字；四库canonical仍按“地洿邪”等四库正文运行。"
     },
     {
       "rule_id": "J4M-08",
@@ -512,13 +531,19 @@
       ]
     }
   },
-  "last_update": "C110",
+  "last_update": "C111",
   "updates": {
     "C110": {
       "witness": "NCL-06604",
       "rule_id": "J4M-06",
       "evidence": "user-supplied p.59-p.60 page images directly visually checked",
       "effect": "resolved C108 pending fields for battle direction, terrain, formation and flag"
+    },
+    "C111": {
+      "witness": "NCL-06604",
+      "rule_id": "J4M-07",
+      "evidence": "user-supplied page image directly visually checked",
+      "effect": "verified full formation/terrain/direction structure and NCL wording 地跨邪/观方置变"
     }
   }
 }
