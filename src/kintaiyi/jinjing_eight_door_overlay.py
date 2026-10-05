@@ -17,7 +17,7 @@ from typing import Any
 from .taiyi_rules import GOD_ALIASES, GOD_POSITION, SIXTEEN, sector_to_nine_palace
 
 SOURCE_PROFILE = "jinjing_volume1_2_eight_door_overlay"
-RULE_ID = "J1-EIGHT-DOOR-OVERLAY"
+RULE_ID = "J1-EIGHT-DOOR-OVERLAY"\nDUTY_RULE_ID = "J1-EIGHT-DOOR-DUTY-OVERLAY"
 
 DOOR_ORDER = ("开", "休", "生", "伤", "杜", "景", "死", "惊")
 
@@ -46,29 +46,53 @@ def _subject_palace(subject: Any) -> int:
     return sector_to_nine_palace(sector)
 
 
-def open_door_overlay(anchor_palace: int) -> dict[str, Any]:
-    """把开门加在指定外八宫，依八方次序顺布八门。"""
+def door_overlay(anchor_palace: int, anchor_door: str) -> dict[str, Any]:
+    """把指定门加在锚点宫，依同一八门次序顺布。
+
+    anchor_door="开" 对应卷一古法“开门加太乙”；
+    anchor_door 为当期直使门时，对应卷一“直门加太乙”的动态盘。
+    """
     anchor = _palace(anchor_palace)
-    start = PALACE_RING.index(anchor)
-    rotated_palaces = PALACE_RING[start:] + PALACE_RING[:start]
-    palace_to_door = dict(zip(rotated_palaces, DOOR_ORDER))
+    if anchor_door not in DOOR_ORDER:
+        raise ValueError("anchor_door须为开休生伤杜景死惊之一")
+
+    palace_start = PALACE_RING.index(anchor)
+    rotated_palaces = PALACE_RING[palace_start:] + PALACE_RING[:palace_start]
+    door_start = DOOR_ORDER.index(anchor_door)
+    rotated_doors = DOOR_ORDER[door_start:] + DOOR_ORDER[:door_start]
+    palace_to_door = dict(zip(rotated_palaces, rotated_doors))
     door_to_palace = {door: palace for palace, door in palace_to_door.items()}
     return {
         "source_profile": SOURCE_PROFILE,
-        "rule_id": RULE_ID,
+        "rule_id": RULE_ID if anchor_door == "开" else DUTY_RULE_ID,
         "anchor_palace": anchor,
-        "anchor_door": "开",
+        "anchor_door": anchor_door,
         "palace_ring": list(PALACE_RING),
         "door_order": list(DOOR_ORDER),
         "palace_to_door": palace_to_door,
         "door_to_palace": door_to_palace,
-        "policy": "只实现开门加锚点的空间八门；值事门周期另由岁计/时计规则负责。",
+        "policy": (
+            "空间叠加与值事门周期分层；本函数只消费已知anchor_door，"
+            "不自行计算岁计或时计直使。"
+        ),
     }
 
 
-def taiyi_eight_door_context(taiyi_palace: int, *, tianmu=None) -> dict[str, Any]:
-    """以开门加太乙宫；可同时求天目在该太乙八门中的所临门。"""
-    overlay = open_door_overlay(taiyi_palace)
+def open_door_overlay(anchor_palace: int) -> dict[str, Any]:
+    """古法固定“开门加锚点”空间盘。"""
+    return door_overlay(anchor_palace, "开")
+
+
+def duty_door_overlay(anchor_palace: int, direct_gate: str) -> dict[str, Any]:
+    """把已求出的当期直使门加在锚点宫。"""
+    return door_overlay(anchor_palace, direct_gate)
+
+
+def taiyi_eight_door_context(
+    taiyi_palace: int, *, tianmu=None, anchor_door: str = "开"
+) -> dict[str, Any]:
+    """以指定门加太乙宫；可同时求天目在该八门盘中的所临门。"""
+    overlay = door_overlay(taiyi_palace, anchor_door)
     if tianmu is None:
         tianmu_palace = None
         tianmu_door = None
@@ -79,14 +103,14 @@ def taiyi_eight_door_context(taiyi_palace: int, *, tianmu=None) -> dict[str, Any
     return {
         **overlay,
         "context": "太乙之八门",
-        "taiyi_gate": "开",
+        "taiyi_gate": anchor_door,
         "tianmu": tianmu,
         "tianmu_palace": tianmu_palace,
         "tianmu_gate": tianmu_door,
     }
 
 
-def general_eight_door_context(anchor_palace: int, *, eye=None, side: str) -> dict[str, Any]:
+def general_eight_door_context(anchor_palace: int, *, eye=None, side: str, anchor_door: str = "开") -> dict[str, Any]:
     """主/客大将八门通用辅助。
 
     主大将盘观察太乙、文昌；客大将盘观察太乙、始击。
