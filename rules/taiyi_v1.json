@@ -240,6 +240,31 @@
           "kintaiyi.limit_cycles.yangjiu_bailiu_limits",
           "kintaiyi.taiyou_limit_tracks.taiyou_limit_tracks"
         ]
+      },
+      {
+        "id": "R-WUYUN-LIUQI",
+        "canonical": "五运六气按来源分profile：卷三“明太乙统行五运六气术”保存统行框架、五运与文昌主气/始击客气；卷十“明太乙岁会五运六气术”保存岁会框架、年干五运、年支六气及C39校勘细表。卷十天会/岁会/逆会/辐辏枚举仍有传本异文，太乙天符需九宫天符/三旗等结构化输入，不得仅凭年干判最终太过不及。",
+        "source_profiles": {
+          "tongzong_volume3": {
+            "rule_id": "C37-V3-WYUN",
+            "runtime": "kintaiyi.wuyun_wuyin_sources.volume3_wuyun_profile"
+          },
+          "tongzong_volume10": {
+            "rule_id": "C37-V10-WYUN",
+            "runtime": "kintaiyi.wuyun_wuyin_sources.volume10_wuyun_profile",
+            "collation_rule": "C39"
+          }
+        },
+        "cross_source_merge": false
+      },
+      {
+        "id": "R-WUYIN-NUMBER",
+        "canonical": "五音之数只属《太乙统宗宝鉴》卷三。算数尾数到宫徵羽商角的映射复用D8-03已校共同核心，但来源身份为C37-V3-WYIN；不得把D8-08数有所主（将军/吏士/兵卒）接成五音，也不得因卷十五运配五音而把本术误标为卷十。",
+        "source_profile": "tongzong_volume3_wuyin",
+        "rule_id": "C37-V3-WYIN",
+        "runtime": "kintaiyi.wuyun_wuyin_sources.volume3_wuyin_from_calc",
+        "d8_crosswalk": "D8-03",
+        "d8_08_used": false
       }
     ]
   },
