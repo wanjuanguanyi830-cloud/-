@@ -722,7 +722,7 @@ def test_c112_ncl_j4m08_opening_stage_is_preserved_in_history():
 
 def test_c115_ncl_j4m08_full_body_is_contiguous_and_source_specific():
     data, rules = _rules()
-    assert data["source"]["ncl_volume4_collation_version"] == "c115-ncl06604-j4m08-full-body-v1"
+    assert "c115-ncl06604-j4m08-full-body-v1" in data["source"]["ncl_volume4_collation_history"]
     assert "c115-ncl06604-j4m08-full-body-v1" in data["source"]["ncl_volume4_collation_history"]
 
     rule = {item["id"]: item for item in rules}["J4M-08"]
@@ -751,3 +751,25 @@ def test_c115_ncl_j4m08_full_body_is_contiguous_and_source_specific():
     siku_examples = rule["quotation_collation"]["jinjing_siku_volume4"]["examples"]
     assert "将不习兵：十不当一" in siku_examples
     assert ncl["canonical_override"] is False
+
+
+def test_c119_ncl_j4m09_opening_boundary_is_direct_visual_and_does_not_rederive_palaces():
+    data, rules = _rules()
+    assert data["source"]["ncl_volume4_collation_version"] == "c119-ncl06604-j4m09-opening-boundary-v1"
+    assert "c119-ncl06604-j4m09-opening-boundary-v1" in data["source"]["ncl_volume4_collation_history"]
+
+    rule = {item["id"]: item for item in rules}["J4M-09"]
+    ncl = rule["manuscript_readings"]["NCL-06604"]
+    opening = ncl["opening_direct_visual"]
+
+    assert opening["previous_rule_closing"] == "此之要也"
+    assert opening["body_title"] == "推太乙在天外地内法"
+    assert opening["opening_text"] == "古法曰太乙在一八三四宫者为地内宫助主人"
+    assert "C86已直接核得完整宫组" in opening["relation_to_existing_C86"]
+
+    assert ncl["inner_palaces_help_host"] == [1, 8, 3, 4]
+    assert ncl["outer_palaces_help_guest"] == [9, 2, 7, 6]
+    assert ncl["canonical_override"] is False
+
+    # 四库 profile 仍不含1宫。
+    assert rule["scan_rule_audit"]["status"] == "scan_groups_confirmed_no_palace1_completion"
