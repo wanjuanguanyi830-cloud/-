@@ -296,3 +296,18 @@ def test_public_rule_api_computes_jf4m02_from_general_palaces():
     assert result["five_generals_released"] is True
     assert result["general_relation_pairs"] == []
     assert result["normalized_semantics"] == "四将无同宫之关"
+
+
+def test_public_rule_api_auto_selects_taojin_dayou_profile():
+    result = calculate_rule("C107-DAYOU-TAOJIN", 553)
+
+    assert result["rule_id"] == "C107-DAYOU-TAOJIN"
+    assert result["profile_key"] == "taojin"
+    assert result["source_profile"] == "taojin_dayou_position"
+    assert result["epoch"] == "唐高宗永徽五年甲寅"
+    assert result["path"] == [7, 6, 4, 3, 2, 1, 9, 8]
+    assert result["direction"] == "reverse"
+    assert (result["palace"], result["year_in_palace"]) == (8, 13)
+
+    ops = operations_for_rule("C107-DAYOU-TAOJIN")
+    assert [item["name"] for item in ops] == ["cycles.dayou.position"]
