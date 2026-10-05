@@ -68,7 +68,7 @@ def test_c61_c62_imperial巡狩_is_direct_volume5_and_runtime_implemented():
     assert "不自行造月" in item["notes"]
 
 
-def test_c61_c66_three_bases_use_runtime_and_preserve_volume_variant():
+def test_c61_c66_c74_three_bases_use_position_and_relation_layers():
     for key in (
         "明君基太乙所主術",
         "明臣基太乙所主術",
@@ -78,15 +78,19 @@ def test_c61_c66_three_bases_use_runtime_and_preserve_volume_variant():
         assert item["layer"] == "canonical"
         assert item["source_scope"] == "tongzong_volume6_7_witness_variant_direct"
         assert item["source_confidence"] == "high"
-        assert item["action"] == "use_c66_three_bases_cycle_runtime"
+        assert item["action"] == "use_c66_c74_three_bases_layers"
         assert item["migrate_whole"] is False
         assert "邦盈差250" in item["notes"]
+        assert "C74 已实现" in item["notes"]
+        assert "禁止由C66位置自动制造同宫" in item["notes"]
 
     wufu = catalog_unported_field("明五福太乙所主術")
-    assert wufu["action"] == "use_c67_wufu_tongzong_profile"
+    assert wufu["action"] == "use_c67_c74_wufu_layers"
     assert wufu["migrate_whole"] is False
     assert "宫盈差115" in wufu["notes"]
     assert "金镜" in wufu["notes"]
+    assert "C74" in wufu["notes"]
+    assert "初交之始" in wufu["notes"]
 
     wufu_numbers = catalog_unported_field("明五福吉算所主術")
     assert wufu_numbers["action"] == "use_c68_wufu_auspicious_number_runtime"
