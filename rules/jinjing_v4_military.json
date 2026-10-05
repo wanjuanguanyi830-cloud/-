@@ -257,6 +257,19 @@
         ],
         "status": "visual_scan_verified",
         "note": "标题及完整主体均见p.132。"
+      },
+      "scan_rule_audit": {
+        "cycle": "C80",
+        "status": "scan_structure_confirmed_no_expansion",
+        "locked_points": [
+          "算值只列12/22/32",
+          "五将发与三门具是独立前提",
+          "出军门只取开/休/生"
+        ],
+        "forbidden_inference": [
+          "不得扩成所有尾数2",
+          "不得导入《统宗》兵额表"
+        ]
       }
     },
     {
@@ -318,6 +331,18 @@
         ],
         "status": "visual_scan_verified",
         "note": "标题见p.132；1/2/4/5/6/9表见p.133并收于p.134。"
+      },
+      "scan_rule_audit": {
+        "cycle": "C80",
+        "status": "scan_table_confirmed_no_completion",
+        "locked_points": [
+          "只列1/2/4/5/6/9",
+          "每项同时含出军/战利/背地/阵/旗"
+        ],
+        "forbidden_inference": [
+          "不得对任意算数取个位",
+          "不得用《福应经》或《统宗》3/7/8补表"
+        ]
       }
     },
     {
@@ -363,6 +388,19 @@
         ],
         "status": "visual_scan_verified",
         "note": "标题起于p.134；地形五阵及顺逆句收于p.135。"
+      },
+      "scan_rule_audit": {
+        "cycle": "C80",
+        "status": "scan_structure_confirmed",
+        "locked_points": [
+          "曲水/锐火/直木/方金/圆土",
+          "地形决定宜阵",
+          "主客置阵后仅以明确五行相克判胜负"
+        ],
+        "forbidden_inference": [
+          "同类或相生不补胜负",
+          "不得并入J4M-08兵种器械层"
+        ]
       }
     },
     {
@@ -438,6 +476,19 @@
         "evidence": "CADAL06056494 digital scan p.136 direct visual check",
         "status": "corrected_scan_verified",
         "effect": "runtime兵种名与source_ratio_text须由矛锤改为矛鋋；不改变《金镜》本句弓弩三不当一。"
+      },
+      "scan_rule_audit": {
+        "cycle": "C80",
+        "status": "scan_text_confirmed_after_C79_correction",
+        "locked_points": [
+          "p.136矛鋋",
+          "《金镜》本句弓弩三不当一",
+          "各比例保留为原文文字"
+        ],
+        "forbidden_inference": [
+          "比例不转现代战力分数",
+          "不得以《汉书》/《福应经》静默改写本profile"
+        ]
       }
     },
     {
@@ -516,6 +567,18 @@
         ],
         "status": "visual_scan_verified",
         "note": "标题及宫组起于p.137；门具将发决胜句收于p.138。"
+      },
+      "scan_rule_audit": {
+        "cycle": "C80",
+        "status": "scan_groups_confirmed_no_palace1_completion",
+        "locked_points": [
+          "8/3/4地内助主",
+          "9/2/7/6天外助客",
+          "门具将发后才进入决胜条件"
+        ],
+        "forbidden_inference": [
+          "四库本本条未列1宫，不从其他古本补入canonical"
+        ]
       }
     },
     {
@@ -555,6 +618,22 @@
         ],
         "status": "visual_scan_verified",
         "note": "标题及奇兵比例p.138；伏兵12/22/32、伏藏11/21/31等收于p.139。"
+      },
+      "scan_rule_audit": {
+        "cycle": "C80",
+        "status": "scan_nodes_confirmed_textual_uncertainty_preserved",
+        "locked_points": [
+          "奇兵约三成",
+          "12/22/32为伏兵节点",
+          "11/21/31为伏藏节点",
+          "天目所临之下为大煞定位",
+          "掩迫与贼急要害分栏"
+        ],
+        "forbidden_inference": [
+          "不解释《金镜》‘败’字为额外动作/胜负",
+          "军数非整十时不自定取整法",
+          "不导入《福应经》居高/三五里variant"
+        ]
       }
     },
     {
