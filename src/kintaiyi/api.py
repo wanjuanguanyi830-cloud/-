@@ -249,6 +249,44 @@ def _operation(name: str) -> dict[str, Any]:
     raise KeyError(f"unknown public operation: {name}")
 
 
+def operations_for_rule(rule_id: str) -> list[dict[str, Any]]:
+    """Return curated public-operation aliases that include a rule_id."""
+    if not isinstance(rule_id, str) or not rule_id:
+        raise ValueError("rule_id must be a non-empty string")
+    return [
+        item for item in list_operations()
+        if rule_id in item.get("rule_ids", [])
+    ]
+
+
+def capabilities() -> dict[str, Any]:
+    """Return frontend-friendly operation groups without duplicating algorithms."""
+    operations = list_operations()
+    domains: dict[str, list[dict[str, Any]]] = {}
+    for item in operations:
+        domains.setdefault(item["domain"], []).append({
+            "name": item["name"],
+            "rule_ids": list(item.get("rule_ids", [])),
+            "status": item.get("status"),
+            "source_profile_required": bool(item.get("source_profile_required", False)),
+        })
+    return {
+        "registry_id": _load_json("registry", "operations.json")["registry_id"],
+        "operation_count": len(operations),
+        "domains": domains,
+    }
+
+
+def describe_rule(rule_id: str) -> dict[str, Any]:
+    """Combine rule metadata, exact runtime candidates and public aliases."""
+    return {
+        "rule_id": rule_id,
+        "rule": get_rule(rule_id),
+        "runtime_candidates": rule_runtime_candidates(rule_id),
+        "operations": operations_for_rule(rule_id),
+    }
+
+
 def calculate(operation: str, *args: Any, **kwargs: Any) -> Any:
     spec = _operation(operation)
     if spec.get("status") != "stable":
