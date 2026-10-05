@@ -89,9 +89,10 @@ def test_c61_c66_three_bases_use_runtime_and_preserve_volume_variant():
     assert "金镜" in wufu["notes"]
 
     wufu_numbers = catalog_unported_field("明五福吉算所主術")
-    assert wufu_numbers["action"] == "source_verified_split_runtime_next"
+    assert wufu_numbers["action"] == "use_c68_wufu_auspicious_number_runtime"
     assert wufu_numbers["migrate_whole"] is False
-    assert "独立于C67" in wufu_numbers["notes"]
+    assert "1..45" in wufu_numbers["notes"]
+    assert "不从积年自动调用C67" in wufu_numbers["notes"]
 
 
 def test_c61_c64_tianyi_diyi_zhifu_are_direct_volume7_with_position_runtime():
@@ -108,14 +109,6 @@ def test_c61_c64_tianyi_diyi_zhifu_are_direct_volume7_with_position_runtime():
         assert item["migrate_whole"] is False
         assert "C65 已实现" in item["notes"]
         assert "same_palace显式输入" in item["notes"]
-
-
-def test_c61_remaining_source_verified_fields_are_not_yet_runtime_implemented():
-    fields = ("明五福吉算所主術",)
-    for key in fields:
-        item = catalog_unported_field(key)
-        assert item["action"] == "source_verified_split_runtime_next"
-        assert item["migrate_whole"] is False
 
 
 def test_c61_ten_essence_notes_no_longer_call_cloud_layer_unimplemented():
