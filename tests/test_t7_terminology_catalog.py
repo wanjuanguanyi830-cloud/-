@@ -59,19 +59,22 @@ def test_return_army_keeps_legacy_alias_without_input_substitution():
     assert any("不得代替" in note for note in entry["boundary_notes"])
 
 
-def test_lion_collation_records_three_source_pass_without_inventing_ordinary_year():
+def test_lion_collation_resolves_direct_break_year_and_corner_18_year():
     data = _load()
     entry = next(e for e in data["entries"] if e.get("rule_id") == "T7-02")
 
     assert entry["collation_status"] == (
-        "three_source_pass_complete_no_second_ordinary_branch_example"
+        "three_source_rule_resolved_direct_break_year_vs_corner_18_year"
     )
+    assert entry["algorithm_pending"] is False
     assert entry["collation_record"] == "sources/t7-02-lion-collation.md"
+    assert "offset +3" in entry["timing_note"]
+    assert "offset +17" in entry["timing_note"]
     joined = " ".join(entry["boundary_notes"])
-    assert "未发现第二个普通落支完整应年例" in joined
+    assert "大神所临为破年" in joined
+    assert "四维之方另取十八年" in joined
+    assert "输入精度限制" in joined
     assert "太乙杜塞则当年破" in joined
-    assert "不伪造唯一年干" in joined
-
 
 def test_white_dragon_collation_closes_algorithm_pending_without_foreign_xing_table():
     data = _load()
