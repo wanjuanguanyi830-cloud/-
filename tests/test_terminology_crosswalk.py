@@ -108,3 +108,15 @@ def test_crosswalk_is_supporting_asset_not_master_store():
     assert crosswalk["status"] == "supporting_crosswalk_not_master_store"
     assert crosswalk["legacy_terminology_json_migrated"] is False
     assert "不替代" in crosswalk["audit_policy"]["master_store_policy"]
+
+
+def test_crosswalk_snapshot_tracks_military_runtime_coverage():
+    snapshot = _load(CROSSWALK)["audit_snapshot"]
+
+    assert snapshot["tongzong_military_source_runtime_coverage"] == "25/25"
+    assert snapshot["jingyou_military_source_runtime_coverage"] == "11/11"
+    assert snapshot["jingyou_military_text_pending"] == [
+        "JF4M-02",
+        "JF4M-07",
+        "JF4M-10",
+    ]
