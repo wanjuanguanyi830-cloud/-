@@ -107,7 +107,7 @@ def test_c92_rejects_bad_inputs():
         four_spirit_position(True)
     with pytest.raises(ValueError, match="十二地支"):
         four_spirit_conflict_classification(year_branch="艮", palace=5)
-    with pytest.raises(ValueError, match="十二运行宫"):
+    with pytest.raises(ValueError, match="1..9或绛宫/明堂/玉堂"):
         four_spirit_conflict_classification(year_branch="辰", palace=10)
     with pytest.raises(TypeError, match="十二运行宫"):
         four_spirit_conflict_classification(year_branch="辰", palace=True)
