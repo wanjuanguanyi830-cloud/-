@@ -348,6 +348,35 @@
         "canonical": "C113恢复五福×大游、五福×小游、四神×小游、大游×小游四组同宫关系并重核统宗卷七。same_palace必须显式；五福×小游另须virtue选择有德/失德；五福×大游保留五福条/大游条双层，不自动求对冲分野。",
         "rule_id": "C113-RECOVERED-WANDER-CONJUNCTIONS",
         "runtime": "kintaiyi.wander_conjunctions.wander_conjunction_relation"
+      },
+      {
+        "id": "R-IMPERIAL-INSPECTION",
+        "canonical": "C62天子巡狩：太乙与天目都显式落乾艮巽坤四维才成立巡狩年；出方按天目四维映射。囚/挟/格/对只作为显式行月条件；原文未给月份数值换算，不自行输出具体月份。",
+        "rule_id": "C62-IMPERIAL-INSPECTION",
+        "runtime": "kintaiyi.imperial_inspection.imperial_inspection"
+      },
+      {
+        "id": "R-WUFU-AUSPICIOUS",
+        "canonical": "C68五福吉算只解释显式宫法所余1..45，按正文十组映射君王、公侯、后妃、太子、民、师帅、上中下将军、士卒。不从积年自动调用C67，也不把C67的统宗/金镜盈差选择带入本术。",
+        "rule_id": "C68-WUFU-AUSPICIOUS-NUMBER",
+        "runtime": "kintaiyi.wufu_auspicious_numbers.wufu_auspicious_beneficiary"
+      },
+      {
+        "id": "R-CURRENT-TIME",
+        "canonical": "C69/C69B《金镜》卷一推太乙当时法分层：C69保存日干朝暮天乙治神、魁罡禁居、十二天将主事；C69B接C118日宿/分野上游，以时加位、求贵人落地并排十二天将。朝/暮须显式；九宫到六壬支为有损adapter，中五不可投影。",
+        "rule_ids": [
+          "C69-TIANYI-PERIOD-RULER",
+          "C69-TWELVE-GENERAL-OMEN",
+          "C69-CURRENT-TIME-CORE",
+          "C69B-CURRENT-TIME-LIUREN"
+        ],
+        "runtime": "kintaiyi.jinjing_current_time_liuren.current_time_liuren_overlay"
+      },
+      {
+        "id": "R-WENCHANG-NINE-STARS-TONGZONG",
+        "canonical": "C70只代表《太乙统宗宝鉴》卷六NGJ文昌九星source profile：30年一星、270小周、2700大周，命起一宫文昌顺九宫；另以年干建禄层给当前直事星落宫/分野。不得反填《紫庭秘诀》正文pending，也不推其余八星完整动态分布。",
+        "rule_id": "C70-TONGZONG-WENCHANG-NINE-STARS",
+        "runtime": "kintaiyi.wenchang_nine_stars_tongzong.wenchang_nine_star_tongzong"
       }
     ]
   },
