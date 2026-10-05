@@ -44,6 +44,7 @@ def test_c60_high_risk_known_wrong_or_nonequivalent_legacy_is_centralized():
         "guiyun.yunqi_zhanbo",
         "guiyun.outer_hexagram_offset_50",
         "legacy.flybird_wl",
+        "config.wenchang_nine_stars",
     }
     assert required <= set(QUARANTINE)
 
@@ -91,6 +92,7 @@ def test_c60_every_record_is_explicitly_blocked_from_promotion():
         ("guiyun.suizhong_zaifa", "C45-V9-DISASTER"),
         ("guiyun.yunqi_zhanbo", "C51-CLOUD-OMEN"),
         ("legacy.flybird_wl", "J4M-11"),
+        ("config.wenchang_nine_stars", "C70-TONGZONG-WENCHANG-NINE-STARS"),
     ],
 )
 def test_c60_replacements_are_explicit(identifier, replacement):
@@ -134,3 +136,6 @@ def test_c60_preserves_specific_known_error_reasons():
     assert "自动制造" in QUARANTINE["yunqi.yunqi_hehui"]["reason"]
     assert "一次混合" in QUARANTINE["yunqi.yunqi_zongduan"]["reason"]
     assert "历史展示包装器" in QUARANTINE["yunqi.zonghe"]["reason"]
+    assert "丁误落巽9" in QUARANTINE["config.wenchang_nine_stars"]["reason"]
+    assert "壬误落中5" in QUARANTINE["config.wenchang_nine_stars"]["reason"]
+    assert "gong" in QUARANTINE["config.wenchang_nine_stars"]["reason"]
