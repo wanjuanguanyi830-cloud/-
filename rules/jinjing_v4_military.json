@@ -94,7 +94,8 @@
             "J4M-11明钞本p.63作主人刑上来主人败、客刑上来客败，与福应经同构而与四库主人形上来客败冲突",
             "J4M-06明钞本算表为1/2/3/4/6/7/8/9，无5；方向骨架与福应经同构",
             "J4M-06明钞本全表已由用户提供p.59-p.60页图直接核完；1/2/3/4/6/7/8/9的战利、背地、阵形、旗色不再pending",
-            "J4M-07明钞本正文已由用户提供页图直接核：五阵五行、地形表、顺逆吉凶及收尾“观方置变”；地形异文作“地跨邪”"
+            "J4M-07明钞本正文已由用户提供页图直接核：五阵五行、地形表、顺逆吉凶及收尾“观方置变”；地形异文作“地跨邪”",
+            "J4M-08明钞本开头“三急”已由用户提供页图直接核：士卒服习、随其地形、善用兵器；五丈之沟以下本图不作全文核定"
           ],
           "still_pending": [
             "除已列关键点外的全段逐字异文表"
@@ -156,7 +157,7 @@
     "scan_locator_version": "c79-j4m-cadal-page-locators-v1",
     "witness_audit_version": "c84-ncl06604-access-boundary-v1",
     "full_twelve_scan_audit_version": "c85-j4m01-12-scan-boundary-complete-v1",
-    "ncl_volume4_collation_version": "c111-ncl06604-j4m07-body-v1",
+    "ncl_volume4_collation_version": "c112-ncl06604-j4m08-opening-v1",
     "terminology_policy_version": "c101-taicu-traditional-variant-v1",
     "ncl_volume4_collation_history": [
       "c86-ncl06604-v4-j4m-locators-v1",
@@ -165,7 +166,8 @@
       "c87-ncl06604-j4m11-event-readings-v1",
       "c88-ncl06604-j4m06-direction-table-v1",
       "c110-ncl06604-j4m06-full-table-v1",
-      "c111-ncl06604-j4m07-body-v1"
+      "c111-ncl06604-j4m07-body-v1",
+      "c112-ncl06604-j4m08-opening-v1"
     ]
   },
   "separation_policy": [
@@ -1020,7 +1022,21 @@
           "weapon_reading": "矛鋋",
           "ratio_reading": "弓弩三不当一",
           "relation_to_siku": "supports_C79_scan_correction_and_siku_body_title",
-          "canonical_override": false
+          "canonical_override": false,
+          "opening_direct_visual": {
+            "cycle": "C112",
+            "digital_scan_page": 60,
+            "status": "opening_triplet_direct_visual_verified",
+            "source_attribution": "晁错",
+            "opening_text": "晁错曰：用兵临战合用之急者有三：一曰士卒服习，二曰随其地形，三曰善用兵器。",
+            "three_urgencies": [
+              "士卒服习",
+              "随其地形",
+              "善用兵器"
+            ],
+            "continuation_visible_only": "五丈之沟……",
+            "scope_policy": "本页只足以完整确认三急总纲；“五丈之沟”以下被裁切部分不据本图声明已核。"
+          }
         }
       }
     },
