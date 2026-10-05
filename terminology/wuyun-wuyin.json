@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0",
+  "catalog_id": "taiyi-wuyun-wuyin-terminology-v1",
+  "scope": "source_sensitive_wuyun_wuyin",
+  "status": "repository_source_profile_terminology_catalog",
+  "legacy_terminology_json_migrated": false,
+  "shared_catalogs": [
+    "terminology/common-core.json",
+    "terminology/d8-eight-divinations.json"
+  ],
+  "production_calendar_boundary": {
+    "calendar_source_of_truth": "modern_astronomy_lunisolar",
+    "taiyi_year_boundary": "真实天文冬至交节瞬间",
+    "policy": "五运六气/五音古法只消费年干支、算数或上游盘面事实，不改变production太乙换年边界。"
+  },
+  "cross_source_policy": {
+    "cross_volume_merge": false,
+    "canonical_selected": null,
+    "policy": "卷三统行五运六气、卷十岁会五运六气、卷三五音之数分别登记；共享表只作crosswalk，不把卷次公式拼成一套。"
+  },
+  "entries": [
+    {
+      "key": "wuyun_liuqi",
+      "preferred_term": "五运六气",
+      "aliases": ["五运六气", "五運六氣"],
+      "term_type": "source_profile_method_group",
+      "source_profiles": {
+        "tongzong_volume3": {
+          "rule_id": "C37-V3-WYUN",
+          "source_profile": "tongzong_volume3_wuyun",
+          "source_section": "明太乙统行五运六气术",
+          "runtime": "kintaiyi.wuyun_wuyin_sources.volume3_wuyun_profile",
+          "scope": "统行框架、五运、文昌主气、始击客气",
+          "suihui_computed": false,
+          "tianfu_computed": false
+        },
+        "tongzong_volume10": {
+          "rule_id": "C37-V10-WYUN",
+          "source_profile": "tongzong_volume10_wuyun",
+          "source_section": "明太乙岁会五运六气术",
+          "runtime": "kintaiyi.wuyun_wuyin_sources.volume10_wuyun_profile",
+          "collation_rule": "C39",
+          "collation_runtime": "kintaiyi.wuyun_volume10_collation.volume10_wuyun_collation",
+          "scope": "岁会框架、年干五运、年支六气、主客气、C39细表"
+        }
+      },
+      "shared_five_movement_by_stem": {
+        "甲": "土", "己": "土",
+        "乙": "金", "庚": "金",
+        "丙": "水", "辛": "水",
+        "丁": "木", "壬": "木",
+        "戊": "火", "癸": "火"
+      },
+      "boundary_notes": [
+        "卷三不偷带卷十岁会/天符算法。",
+        "卷十C39基础细表已校，但合会枚举仍有source variant。",
+        "不得只凭年干阴阳直接给最终太过/不及结论。",
+        "太乙天符必须等待九宫天符、三旗等结构化输入。"
+      ]
+    },
+    {
+      "key": "volume10_wuyun_collation",
+      "preferred_term": "卷十五运六气细表",
+      "aliases": ["五运配五音", "六气配五行", "运气太过", "运气不及", "运行平气", "太乙天符合会"],
+      "term_type": "source_collation_layer",
+      "rule_id": "C39",
+      "source_profile": "tongzong_volume10_wuyun_collation",
+      "runtime": "kintaiyi.wuyun_volume10_collation.volume10_wuyun_collation",
+      "movement_tones": {
+        "土": {"tone": "宫", "heaven_qi": "黄天"},
+        "金": {"tone": "商", "heaven_qi": "素天"},
+        "水": {"tone": "羽", "heaven_qi": "玄天"},
+        "木": {"tone": "角", "heaven_qi": "苍天"},
+        "火": {"tone": "徵", "heaven_qi": "丹天"}
+      },
+      "six_qi_elements": {
+        "厥阴": {"element": "木", "qi": "风"},
+        "少阴": {"element": "火", "qi": "君火"},
+        "太阴": {"element": "土", "qi": "湿"},
+        "少阳": {"element": "火", "qi": "相火"},
+        "阳明": {"element": "金", "qi": "燥"},
+        "太阳": {"element": "水", "qi": "寒"}
+      },
+      "meeting_enum_status": "source_variant_unresolved",
+      "meeting_enum_witnesses": {
+        "tongzong": ["天会", "岁会", "逆会"],
+        "taibai_bingbei": ["天会", "岁会", "逆会", "辐辏"]
+      },
+      "taiyi_tianfu_formula_status": "requires_structured_nine_palace_and_meeting_inputs"
+    },
+    {
+      "key": "wuyin_number",
+      "preferred_term": "五音之数",
+      "aliases": ["五音之数", "五音之數", "明五音之数以推休咎术", "明五音之數以推休咎術", "明太乙五音之元术", "明太乙五音之元術"],
+      "term_type": "source_specific_method",
+      "rule_id": "C37-V3-WYIN",
+      "source_profile": "tongzong_volume3_wuyin",
+      "source_section": "明五音之数以推休咎术／明太乙五音之元术",
+      "runtime": "kintaiyi.wuyun_wuyin_sources.volume3_wuyin_from_calc",
+      "origin_table_runtime": "kintaiyi.wuyun_wuyin_sources.wuyin_origin_table",
+      "pairs": {
+        "1/2": {"tone": "宫", "element": "土", "subject": "人君"},
+        "3/4": {"tone": "徵", "element": "火", "subject": "宗庙"},
+        "5/6": {"tone": "羽", "element": "水", "subject": "后妃"},
+        "7/8": {"tone": "商", "element": "金", "subject": "子孙"},
+        "9/10": {"tone": "角", "element": "木", "subject": "疾病"}
+      },
+      "d8_crosswalk": {
+        "rule_id": "D8-03",
+        "formula_reused": true,
+        "reason": "算数到五音的共同核心已在D8-03校稳"
+      },
+      "boundary_notes": [
+        "本术只属卷三，不因卷十五运配五音而改标为卷十。",
+        "D8-08数有所主不参与本术。",
+        "五音之数与卷十五运配五音是相邻概念，不是同一输入层。"
+      ]
+    }
+  ]
+}
