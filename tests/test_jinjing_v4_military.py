@@ -347,8 +347,8 @@ def test_j4m08_terrain_arm_mapping_preserves_source_ratio_text():
     assert missile["source_ratio_text"] == "短兵百不当一弓弩"
 
     reeds = suidi_zhibian("萑苇竹萧蒙笼草木")
-    assert reeds["favored"] == "矛锤"
-    assert reeds["source_ratio_text"] == "弓弩三不当一矛锤"
+    assert reeds["favored"] == "矛鋋"
+    assert reeds["source_ratio_text"] == "弓弩三不当一矛鋋"
     assert reeds["quotation_collation"]["do_not_silent_emend"] is True
     assert "汉书" in reeds["quotation_collation"]["external_witness"]
 
