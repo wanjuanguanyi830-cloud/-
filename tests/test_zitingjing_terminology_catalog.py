@@ -62,15 +62,17 @@ def test_zitingjing_stable_catalog_preserves_migration_aliases():
         assert old[key] <= stable[key]
 
 
-def test_wenchang_nine_stars_remains_primary_text_pending():
+def test_wenchang_nine_stars_recovers_legacy_scan_but_still_blocks_primary():
     data = _load(CATALOG)
     entry = next(e for e in data["entries"] if e["key"] == "wenchang_nine_stars")
 
-    assert entry["primary_evidence_level"] == "catalog_attested_text_pending"
+    assert entry["primary_evidence_level"] == "legacy_scan_extraction_recovered_page_pending"
     assert entry["primary_result_allowed"] is False
     assert entry["runtime"] is None
     assert entry["canonical_selected"] is None
     assert entry["cycle_status"] == "cross_source_unresolved"
+    assert entry["legacy_scan_recovery"]["status"] == "prior_scan_extraction_recovered_direct_page_pending"
+    assert entry["legacy_scan_recovery"]["recovered_forms"][0] == "文曲"
 
 
 def test_three_banners_and_nine_palace_nobles_remain_unverified_attribution():
