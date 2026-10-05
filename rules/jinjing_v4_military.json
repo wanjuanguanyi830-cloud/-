@@ -93,7 +93,8 @@
             "J4M-05明钞本只列算十二、二十二，随后即五将发；未见四库本三十二",
             "J4M-11明钞本p.63作主人刑上来主人败、客刑上来客败，与福应经同构而与四库主人形上来客败冲突",
             "J4M-06明钞本算表为1/2/3/4/6/7/8/9，无5；方向骨架与福应经同构",
-            "J4M-06明钞本全表已由用户提供p.59-p.60页图直接核完；1/2/3/4/6/7/8/9的战利、背地、阵形、旗色不再pending"
+            "J4M-06明钞本全表已由用户提供p.59-p.60页图直接核完；1/2/3/4/6/7/8/9的战利、背地、阵形、旗色不再pending",
+            "J4M-07明钞本正文已由用户提供页图直接核：五阵五行、地形表、顺逆吉凶及收尾“观方置变”；地形异文作“地跨邪”"
           ],
           "still_pending": [
             "除已列关键点外的全段逐字异文表"
@@ -155,7 +156,7 @@
     "scan_locator_version": "c79-j4m-cadal-page-locators-v1",
     "witness_audit_version": "c84-ncl06604-access-boundary-v1",
     "full_twelve_scan_audit_version": "c85-j4m01-12-scan-boundary-complete-v1",
-    "ncl_volume4_collation_version": "c110-ncl06604-j4m06-full-table-v1",
+    "ncl_volume4_collation_version": "c111-ncl06604-j4m07-body-v1",
     "terminology_policy_version": "c101-taicu-traditional-variant-v1"
   },
   "separation_policy": [
@@ -856,7 +857,48 @@
             60
           ],
           "relation_to_siku": "agrees_with_siku_body_title_not_siku_toc_alias",
-          "canonical_override": false
+          "canonical_override": false,
+          "formation_elements": {
+            "曲阵": "水",
+            "锐阵": "火",
+            "直阵": "木",
+            "方阵": "金",
+            "圆阵": "土"
+          },
+          "host_guest_rule": "皆取主客置阵，次以五行相克而取胜负",
+          "terrain_table": {
+            "后高前下": {
+              "宜阵": "锐阵",
+              "所利": "利以进战，以溃其敌"
+            },
+            "前高后下": {
+              "宜阵": "直阵",
+              "所利": "不便进退，利以近斗；宜以守之，以疲敌力"
+            },
+            "地跨邪": {
+              "宜阵": "圆阵",
+              "所利": "不便於战者，宜为圆阵，利以坚守"
+            },
+            "地高而平": {
+              "宜阵": "方阵",
+              "所利": "利以四向，以通敌"
+            },
+            "左右势高": {
+              "宜阵": "曲阵",
+              "所利": "以吞敌"
+            }
+          },
+          "direction_rule": {
+            "顺": "地顺其向则吉",
+            "反": "地反其向则凶"
+          },
+          "closing_text": "太乙兵起於鄉，陣隨其地，觀方置變，皆算掩神，此用兵之法也。",
+          "textual_relation": {
+            "to_siku": "五阵五行、地形对应与顺逆吉凶结构相同；NCL 地形词作“地跨邪”，四库作“地洿邪”；NCL 收尾作“观方置变”。",
+            "to_jingyou": "《景祐太乙福应经》现存转录有“地形跨斜”，与NCL“地跨邪”存在近似传本文字，但尚不据此合并。",
+            "canonical_policy": "只作NCL manuscript reading，不覆盖 jinjing_siku_volume4。"
+          },
+          "status": "body_structure_direct_visual_verified_C111"
         }
       }
     },
