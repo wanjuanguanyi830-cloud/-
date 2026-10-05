@@ -52,6 +52,20 @@ C8-L2 只“消费上游事实并归一化”，不是 J4M-01/02 的公式实现
 
 允许把 C8 结果登记为 `c8_upstream` profile，只用于说明它的真实角色，不能冒充金镜公式。
 
+C68 后新增独立古籍 profile：
+
+- `jingyou_fuying_volume4`
+- 规则集：`jingyou-fuying-v4-military-11`
+- 编号：`JF4M-01..JF4M-11`
+
+P0 三项现在可并列保存：
+
+- 三门：J4M-01 / JF4M-01 / 统宗 / C8 upstream
+- 五将：J4M-02 / JF4M-02 / 统宗 / C8 upstream
+- 主客相关：J4M-03 / JF4M-03 / 统宗
+
+但 `canonical_selected=None`、`cross_source_merge=False` 仍不变。
+
 ## 3. 主客相关法
 
 对应 J4M-03。
@@ -90,4 +104,24 @@ C17 source-profile 架构不依赖某条 J4M 当前是 implemented/partial/pendi
 - 不把不同来源事件去重后当成一个结果；
 - 不从旧 prose 断语构造 profile；
 - 不把 C8 组合层冒充金镜原法；
-- 不把统宗卷四格局覆盖金镜格局。
+- 不把统宗卷四格局覆盖金镜格局；
+- 不把《景祐太乙福应经》JF4M 的古本异文自动补入 J4M；
+- 不因两个古籍 profile 主题同名就把字段拼成“最佳版本”。
+
+
+## 7. C68 后的《福应经》独立 profile
+
+《景祐太乙福应经》卷四现已从 J4M 内嵌异文提升为独立规则集：
+
+- `rules/jingyou_fuying_v4_military.json`
+- source profile：`jingyou_fuying_volume4`
+- rule ids：`JF4M-01..JF4M-11`
+
+`src/kintaiyi/source_profiles.py` 的 `MILITARY_PROFILE_KEYS` 已允许该 profile。
+
+重要：允许“并列保存”不等于允许“合并计算”。C17 的原始设计原则继续有效：
+
+- 不自动选 canonical；
+- 不跨来源补字段；
+- C8 不成为古籍公式替代；
+- JF4M 当前是 source_record_only，不能借 J4M runtime 伪装成已实现。
