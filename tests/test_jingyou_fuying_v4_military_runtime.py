@@ -1,0 +1,172 @@
+from kintaiyi.jingyou_fuying_v4_military import (
+    adapt_to_terrain,
+    deploy_direction,
+    direct_gate_from_period_count,
+    dispatch_troops,
+    five_generals,
+    formation_by_terrain,
+    host_guest_action,
+    host_guest_relation,
+    odd_ambush,
+    taiyi_outer_inner,
+    three_doors,
+    weather_bird_support,
+)
+
+
+def test_jf4m01_direct_gate_and_three_doors_are_fuying_specific():
+    direct = direct_gate_from_period_count(31)
+    assert direct["source_rule_id"] == "JF4M-01"
+    assert direct["direct_gate"] == "休"
+    assert direct["block_of_30"] == 2
+
+    blocked = three_doors(taiyi_gate="休", tianmu_gate="开", period_count=31)
+    assert blocked["three_doors_ready"] is False
+    assert blocked["not_ready_count"] == 3
+    assert blocked["direct_gate_result"]["direct_gate"] == "休"
+
+
+def test_jf4m02_keeps_uncertain_third_condition_uninterpreted():
+    pending = five_generals(
+        shiji_yanji=False,
+        wenchang_qiupo=False,
+        third_condition_clear=None,
+        three_doors_ready=True,
+    )
+    assert pending["five_generals_released"] is None
+    assert pending["status"] == "not_computable"
+    assert "待扫描核字" in pending["textual_uncertainty"]
+
+    ready = five_generals(
+        shiji_yanji=False,
+        wenchang_qiupo=False,
+        third_condition_clear=True,
+        three_doors_ready=True,
+    )
+    assert ready["five_generals_released"] is True
+    assert ready["combined_ready"] is True
+
+
+def test_jf4m03_examples_follow_fuying_eye_element_control():
+    guest = host_guest_relation(host_eye_god="高丛", guest_eye_god="太簇")
+    assert guest["host_eye_element"] == "木"
+    assert guest["guest_eye_element"] == "金"
+    assert guest["winner"] == "客"
+
+    host = host_guest_relation(host_eye_god="阴主", guest_eye_god="地主")
+    assert host["host_eye_element"] == "土"
+    assert host["guest_eye_element"] == "水"
+    assert host["winner"] == "主"
+
+
+def test_jf4m04_roles_and_favorable_triad_are_independent_of_j4m_runtime():
+    field = host_guest_action(
+        "陈兵原野",
+        three_doors_ready=True,
+        five_generals_released=True,
+        yin_yang_harmonious=True,
+    )
+    assert field["roles"] == {"first_mover": "客", "responder": "主"}
+    assert field["winner"] == "客"
+
+    settled = host_guest_action(
+        "安居之势",
+        three_doors_ready=False,
+        five_generals_released=False,
+        yin_yang_harmonious=False,
+    )
+    assert settled["roles"] == {"first_mover": "主", "responder": "客"}
+    assert settled["winner"] is None
+    assert settled["status"] == "hold_and_defend"
+
+
+def test_jf4m05_and_06_preserve_fuying_calcs_and_direction_table():
+    ready = dispatch_troops(
+        32,
+        three_doors_ready=True,
+        five_generals_released=True,
+        exit_gate="生",
+    )
+    assert ready["deployment_ready"] is True
+    assert ready["eligible_calcs"] == [12, 22, 32]
+
+    assert deploy_direction(3)["direction"] == "东北"
+    assert deploy_direction(8)["direction"] == "正北"
+    assert deploy_direction(5)["computable"] is False
+
+
+def test_jf4m07_formation_control_works_without_borrowing_jinjing_terrain_table():
+    result = formation_by_terrain(
+        host_formation="锐阵",
+        guest_formation="方阵",
+        terrain_shape="电子转录待核地形",
+        terrain_recommended_formation="锐阵",
+    )
+    assert result["formation_contest"]["winner"] == "主"
+    assert result["formation_contest"]["relation"] == "火制金"
+    assert result["terrain_status"] == "explicit_collation_input"
+    assert result["textual_uncertainty"]
+
+
+def test_jf4m08_preserves_fuying_specific_ratios():
+    result = adapt_to_terrain(
+        "步兵地",
+        soldiers_trained=False,
+        equipment_serviceable=True,
+        general_inspects_troops=False,
+    )
+    assert result["terrain_rule"]["source_ratio_text"] == "车骑二不当一"
+    assert any("百不当十" in warning for warning in result["warnings"])
+    assert any("五不当一" in warning for warning in result["warnings"])
+
+
+def test_jf4m09_one_palace_is_explicitly_inner_and_helps_host():
+    result = taiyi_outer_inner(
+        1,
+        three_doors_ready=True,
+        five_generals_released=True,
+    )
+    assert result["realm"] == "地内"
+    assert result["assists"] == "主"
+    assert result["decisive_ready"] is True
+    assert 1 in result["canonical_groups"]["地内助主"]
+
+
+def test_jf4m10_keeps_fuying_punishment_reading_and_wing_outcomes():
+    result = weather_bird_support([
+        {
+            "phenomenon": "飞鸟",
+            "source_anchor": "主人刑",
+            "action": "上来",
+        },
+        {
+            "phenomenon": "云",
+            "wing_target": "主人阵前",
+        },
+        {
+            "phenomenon": "众鸟",
+            "action": "冲阵",
+            "crowd_noisy": True,
+        },
+    ])
+    assert result["computable"] is True
+    assert result["judgments"][0]["loser"] == "主"
+    assert result["judgments"][1]["winner"] == "主"
+    assert result["judgments"][2]["omen"] == "凶"
+
+
+def test_jf4m11_odd_ambush_keeps_fuying_great_kill_reading():
+    result = odd_ambush(
+        army_size=100,
+        tianmu_location="巽",
+        calc_value=21,
+        yanpo=True,
+        enemy_near=True,
+    )
+    assert result["odd_force_count"] == 30
+    assert result["great_kill_location"] == "巽"
+    assert result["concealment_time"] is True
+    assert "掩迫时发" in result["recommendations"]
+    assert "伏于要害" in result["recommendations"]
+    assert "奇兵必从大杀之地" in result["divergence_from_jinjing"]
+    assert "12" not in str(result["concealment_calcs"])
