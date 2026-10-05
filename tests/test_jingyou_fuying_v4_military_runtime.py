@@ -26,25 +26,64 @@ def test_jf4m01_direct_gate_and_three_doors_are_fuying_specific():
     assert blocked["direct_gate_result"]["direct_gate"] == "休"
 
 
-def test_jf4m02_keeps_uncertain_third_condition_uninterpreted():
-    pending = five_generals(
-        shiji_yanji=False,
-        wenchang_qiupo=False,
-        third_condition_clear=None,
-        three_doors_ready=True,
-    )
-    assert pending["five_generals_released"] is None
-    assert pending["status"] == "not_computable"
-    assert "待扫描核字" in pending["textual_uncertainty"]
-
+def test_jf4m02_resolves_general_relation_from_four_general_palaces():
     ready = five_generals(
         shiji_yanji=False,
         wenchang_qiupo=False,
-        third_condition_clear=True,
+        home_big=1,
+        home_vassal=3,
+        away_big=4,
+        away_vassal=6,
         three_doors_ready=True,
     )
     assert ready["five_generals_released"] is True
     assert ready["combined_ready"] is True
+    assert ready["general_relation_pairs"] == []
+    assert ready["normalized_reading"] == "主客大小将无相关"
+    assert ready["normalized_semantics"] == "四将无同宫之关"
+
+    blocked = five_generals(
+        shiji_yanji=False,
+        wenchang_qiupo=False,
+        home_big=1,
+        home_vassal=3,
+        away_big=1,
+        away_vassal=6,
+        three_doors_ready=True,
+    )
+    assert blocked["five_generals_released"] is False
+    assert ("主大", "客大") in blocked["general_relation_pairs"]
+    assert "主客大小将有同宫之关" in blocked["blockers"]
+
+
+def test_jf4m02_center_five_does_not_create_eight_palace_guan():
+    result = five_generals(
+        shiji_yanji=False,
+        wenchang_qiupo=False,
+        home_big=5,
+        home_vassal=5,
+        away_big=4,
+        away_vassal=6,
+    )
+    assert result["general_relation_pairs"] == []
+    assert result["third_condition_clear"] is True
+    assert result["five_generals_released"] is True
+
+
+def test_jf4m02_explicit_legacy_condition_must_not_conflict_with_structural_relation():
+    conflict = five_generals(
+        shiji_yanji=False,
+        wenchang_qiupo=False,
+        home_big=1,
+        home_vassal=3,
+        away_big=1,
+        away_vassal=6,
+        third_condition_clear=True,
+    )
+    assert conflict["computable"] is False
+    assert conflict["status"] == "not_computable"
+    assert conflict["third_condition_clear"] is True
+    assert conflict["structural_third_condition_clear"] is False
 
 
 def test_jf4m03_examples_follow_fuying_eye_element_control():
