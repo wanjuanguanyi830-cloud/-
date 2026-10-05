@@ -773,3 +773,32 @@ def test_c120_ncl_j4m09_opening_boundary_is_direct_visual_and_does_not_rederive_
 
     # 四库 profile 仍不含1宫。
     assert rule["scan_rule_audit"]["status"] == "scan_groups_confirmed_no_palace1_completion"
+
+
+def test_c123_ncl_collation_completeness_covers_all_twelve_rules():
+    data, rules = _rules()
+    assert data["source"]["ncl_collation_completeness_version"] == "c123-ncl-j4m-completeness-v1"
+
+    summary = data["source"]["ncl_collation_summary"]
+    assert summary["counts"] == {
+        "locator_only": 4,
+        "selected_readings": 5,
+        "full_rule": 3,
+        "total": 12,
+    }
+    assert summary["full_rule_ids"] == ["J4M-06", "J4M-07", "J4M-08"]
+    assert summary["locator_only_ids"] == ["J4M-01", "J4M-02", "J4M-03", "J4M-04"]
+
+    by_id = {item["id"]: item for item in rules}
+    assert by_id["J4M-01"]["ncl_collation_status"]["status_group"] == "locator_only"
+    assert by_id["J4M-05"]["ncl_collation_status"]["status_group"] == "selected_readings"
+    assert by_id["J4M-06"]["ncl_collation_status"]["status_group"] == "full_rule"
+    assert by_id["J4M-08"]["ncl_collation_status"]["evidence_level"] == "full_contiguous_body_direct_visual_verified"
+    assert by_id["J4M-09"]["ncl_collation_status"]["status_group"] == "selected_readings"
+    assert by_id["J4M-12"]["ncl_collation_status"]["status_group"] == "selected_readings"
+
+    assert all(
+        item["ncl_collation_status"]["cycle"] == "C123"
+        and item["ncl_collation_status"]["source_profile_effect"] == "none"
+        for item in rules
+    )
