@@ -96,7 +96,8 @@
             "J4M-06明钞本全表已由用户提供p.59-p.60页图直接核完；1/2/3/4/6/7/8/9的战利、背地、阵形、旗色不再pending",
             "J4M-07明钞本正文已由用户提供页图直接核：五阵五行、地形表、顺逆吉凶及收尾“观方置变”；地形异文作“地跨邪”",
             "J4M-08明钞本开头“三急”已由用户提供页图直接核：士卒服习、随其地形、善用兵器；五丈之沟以下本图不作全文核定",
-            "J4M-08明钞本正文已由用户连续页图核到收尾：五类地形兵种、训练/器械/将帅段及“临敌随形制变，此之要也”均直接确认"
+            "J4M-08明钞本正文已由用户连续页图核到收尾：五类地形兵种、训练/器械/将帅段及“临敌随形制变，此之要也”均直接确认",
+            "J4M-08→J4M-09页内边界已由用户提供页图直接核：前条“此之要也”后紧接“推太乙在天外地内法”，首句“古法曰太乙在一八三四宫者为地内宫助主人”"
           ],
           "still_pending": [
             "除已列关键点外的全段逐字异文表"
@@ -158,7 +159,7 @@
     "scan_locator_version": "c79-j4m-cadal-page-locators-v1",
     "witness_audit_version": "c84-ncl06604-access-boundary-v1",
     "full_twelve_scan_audit_version": "c85-j4m01-12-scan-boundary-complete-v1",
-    "ncl_volume4_collation_version": "c115-ncl06604-j4m08-full-body-v1",
+    "ncl_volume4_collation_version": "c119-ncl06604-j4m09-opening-boundary-v1",
     "terminology_policy_version": "c101-taicu-traditional-variant-v1",
     "ncl_volume4_collation_history": [
       "c86-ncl06604-v4-j4m-locators-v1",
@@ -170,7 +171,8 @@
       "c111-ncl06604-j4m07-body-v1",
       "c112-ncl06604-j4m08-opening-v1",
       "c112-ncl06604-j4m08-opening-v2",
-      "c115-ncl06604-j4m08-full-body-v1"
+      "c115-ncl06604-j4m08-full-body-v1",
+      "c119-ncl06604-j4m09-opening-boundary-v1"
     ]
   },
   "separation_policy": [
@@ -1245,7 +1247,17 @@
             6
           ],
           "relation_to_siku": "substantive_variant_palace_1_present; agrees_with_jingyou_and_tongzong_on_inner_group",
-          "canonical_override": false
+          "canonical_override": false,
+          "opening_direct_visual": {
+            "cycle": "C119",
+            "status": "opening_and_previous_rule_boundary_direct_visual_verified",
+            "digital_scan_page": 61,
+            "previous_rule_closing": "此之要也",
+            "body_title": "推太乙在天外地内法",
+            "opening_text": "古法曰太乙在一八三四宫者为地内宫助主人",
+            "evidence_note": "用户提供页图直接见J4M-08收尾、J4M-09标题及首句连续相接。",
+            "relation_to_existing_C86": "C86已直接核得完整宫组[1,8,3,4]与[9,2,7,6]；C119补足页内边界和首句，不改变既有宫组。"
+          }
         }
       }
     },
