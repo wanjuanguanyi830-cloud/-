@@ -100,6 +100,10 @@ def test_c60_every_record_is_explicitly_blocked_from_promotion():
         ("kintaiyi.cycles.wufu.project", "C67-WUFU-TONGZONG"),
         ("kintaiyi.cycles.wufu.project", "C67-WUFU-JINJING"),
         ("config.wufu_default", "C67-WUFU-TONGZONG"),
+        ("kintaiyi.cycles.bigyo.jinjing_tongzong", "C107-DAYOU-JINJING"),
+        ("kintaiyi.cycles.bigyo.jinjing_tongzong", "C107-DAYOU-TONGZONG"),
+        ("config.bigyo_default", "C107-DAYOU-JINJING"),
+        ("config.bigyo_default", "C107-DAYOU-TONGZONG"),
     ],
 )
 def test_c60_replacements_are_explicit(identifier, replacement):
@@ -152,4 +156,6 @@ def test_c60_preserves_specific_known_error_reasons():
     assert "quarantined" in QUARANTINE["config.wufu_default"]["reason"]
     assert "金镜" in QUARANTINE["kintaiyi.cycles.bigyo.jinjing_tongzong"]["reason"]
     assert "+34" in QUARANTINE["kintaiyi.cycles.bigyo.jinjing_tongzong"]["reason"]
-    assert "混合" in QUARANTINE["config.bigyo_default"]["reason"]
+    assert "C107" in QUARANTINE["kintaiyi.cycles.bigyo.jinjing_tongzong"]["reason"]
+    assert "混合" in QUARANTINE["config.bigyo_default"]["category"]
+    assert "C107" in QUARANTINE["config.bigyo_default"]["reason"]
