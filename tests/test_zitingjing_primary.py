@@ -3,11 +3,13 @@ from kintaiyi.pan_adapter import attach_v2_to_snapshot
 from kintaiyi.zitingjing_primary import (
     PRIMARY_SOURCE_TITLE,
     TAIYI_NINE_STARS_PRIMARY,
+    TAIYI_NINE_STARS_PRIMARY_CYCLE_EVIDENCE,
     build_c19_verified_primary_results,
     c19_primary_catalog,
     shiji_changes_primary_core,
     shiji_year_element_collation,
     taiyi_nine_stars_primary,
+    taiyi_nine_stars_primary_cycle,
     wenchang_changes_primary,
 )
 from kintaiyi.zitingjing_sources import build_zitingjing_source_variants
@@ -118,7 +120,7 @@ def test_c19_catalog_marks_only_three_direct_primary_items_as_implemented():
         "three_banners",
         "nine_palace_nobles",
     ]
-    assert data["locators"]["wenchang_nine_stars"]["status"] == "catalog_attested_primary_text_pending"
+    assert data["locators"]["wenchang_nine_stars"]["status"] == "prior_scan_confirmed_page_record_pending"
     assert "两处现代整理本目录" in data["locators"]["wenchang_nine_stars"]["catalog_witness"]["evidence"]
     assert data["locators"]["three_banners"]["status"] == "project_primary_attribution_unverified"
     assert data["locators"]["three_banners"]["catalog_check"]["ziting_mijue_catalog_result"] == "not_found"
@@ -163,3 +165,36 @@ def test_c19_primary_results_do_not_fill_pending_rules_with_collation_guesses():
     assert "wenchang_nine_stars" not in results
     assert "three_banners" not in results
     assert "nine_palace_nobles" not in results
+
+
+def test_ziting_primary_cycle_matches_kaiyuan_example():
+    result = taiyi_nine_stars_primary_cycle(1937281)
+
+    assert result["rule_id"] == "C125-ZITING-TAIYI-NINE-STARS-CYCLE"
+    assert result["cycle_years"] == 90
+    assert result["cycle_remainder"] == 31
+    assert result["years_per_star"] == 10
+    assert result["direct_star"] == "天辅"
+    assert result["direct_star_number"] == 4
+    assert result["year_in_star"] == 1
+    assert result["full_dynamic_distribution"] is None
+
+
+def test_ziting_primary_cycle_boundaries_are_inclusive():
+    last = taiyi_nine_stars_primary_cycle(90)
+    reset = taiyi_nine_stars_primary_cycle(91)
+
+    assert (last["direct_star"], last["year_in_star"]) == ("天英", 10)
+    assert (reset["direct_star"], reset["year_in_star"]) == ("天蓬", 1)
+
+
+def test_ziting_cycle_evidence_keeps_full_stem_distribution_closed():
+    evidence = TAIYI_NINE_STARS_PRIMARY_CYCLE_EVIDENCE
+    assert evidence["derived_cycle"] == {
+        "years_per_star": 10,
+        "star_count": 9,
+        "cycle_years": 90,
+        "derivation": "九星×每星十年；且1937281 mod 90 = 31，与原例天辅直符第1年吻合。",
+    }
+    assert evidence["boundary"]["direct_star_cycle_supported"] is True
+    assert evidence["boundary"]["full_year_stem_distribution_supported"] is False
