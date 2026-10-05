@@ -167,7 +167,7 @@ def test_all_twelve_rules_are_complete_and_have_runtime_entries():
 def test_j4m_source_records_scan_witnesses_and_body_order_priority():
     data, rules = _rules()
     witnesses = {item["id"]: item for item in data["source"]["scan_witnesses"]}
-    assert witnesses["CADAL06056494"]["status"] == "scan_identified_page_locators_pending"
+    assert witnesses["CADAL06056494"]["status"] == "scan_page_locators_verified_for_j4m_01_12"
     assert witnesses["NCL-06604"]["status"] == "independent_manuscript_witness_scan_identified"
 
     order = data["source"]["order_collation"]
@@ -288,3 +288,40 @@ def test_j4m11_record_requires_explicit_observation_type_and_exact_action_wordin
     assert "冲击大将宫" in constraints["no_synonym_expansion"]
     assert "不生成独立胜负" in constraints["noise_event"]
     assert "JF4M" in constraints["jingyou_conflict"]
+
+
+def test_c75_cadal_scan_page_locators_cover_all_twelve_rules():
+    data, rules = _rules()
+    assert data["source"]["scan_locator_version"] == "c75-j4m-cadal-page-locators-v1"
+    expected = {
+        "J4M-01": [128, 129],
+        "J4M-02": [129, 130],
+        "J4M-03": [130, 131],
+        "J4M-04": [131, 132],
+        "J4M-05": [132],
+        "J4M-06": [132, 133, 134],
+        "J4M-07": [134, 135],
+        "J4M-08": [135, 136, 137],
+        "J4M-09": [137, 138],
+        "J4M-10": [138, 139],
+        "J4M-11": [139, 140],
+        "J4M-12": [140, 141, 142, 143],
+    }
+    for item in rules:
+        locator = item["scan_locator"]
+        assert locator["witness"] == "CADAL06056494"
+        assert locator["status"] == "visual_scan_verified"
+        assert locator["digital_scan_pages"] == expected[item["id"]]
+
+
+def test_c75_j4m08_scan_corrects_maochui_to_maochan():
+    _, rules = _rules()
+    rule = {item["id"]: item for item in rules}["J4M-08"]
+    correction = rule["textual_correction"]
+    assert correction["previous_reading"] == "矛锤"
+    assert correction["corrected_reading"] == "矛鋋"
+    assert correction["status"] == "corrected_scan_verified"
+    assert "p.136" in correction["evidence"]
+    joined = " ".join(rule["quotation_collation"]["jinjing_siku_volume4"]["examples"])
+    assert "矛鋋之地，弓弩三不当一" in joined
+    assert "矛锤" not in joined
