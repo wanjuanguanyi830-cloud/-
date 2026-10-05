@@ -80,7 +80,7 @@
         "附太乙文昌九星值宮術"
       ],
       "term_type": "primary_text_pending_term",
-      "primary_evidence_level": "catalog_attested_text_pending",
+      "primary_evidence_level": "legacy_scan_extraction_recovered_page_pending",
       "primary_result_allowed": false,
       "runtime": null,
       "source_section": "附太乙文昌九星值宫术",
@@ -92,33 +92,58 @@
       "canonical_selected": null,
       "known_variant_groups": [
         [
-          "明雄",
-          "明维",
-          "明維"
+          "文昌",
+          "文曲"
         ],
         [
-          "阴玄",
-          "陰玄",
+          "玄凤",
+          "玄鳳"
+        ],
+        [
+          "明维",
+          "明維",
+          "明雄"
+        ],
+        [
           "阴德",
-          "陰德"
+          "陰德",
+          "阴玄",
+          "陰玄"
         ],
         [
           "招摇",
           "招搖",
-          "招煥"
+          "招煥",
+          "昭摇",
+          "昭搖"
         ],
         [
-          "雄明",
+          "立华",
+          "立華"
+        ],
+        [
+          "华明",
+          "華明"
+        ],
+        [
+          "玄武"
+        ],
+        [
+          "玄冥"
+        ],
+        [
           "维明",
-          "維明"
+          "維明",
+          "雄明"
         ]
       ],
       "cycle_status": "cross_source_unresolved",
       "boundary_notes": [
-        "紫庭附篇直接正文未取得前，不生成紫庭值宫runtime。",
-        "已定位书格研易楼明钞本181页扫描分享页，但正文页尚未取得；此线索不改变catalog_attested_text_pending。",
+        "研易楼藏《太乙紫庭祕訣》此前整理术语库时已经扫描；当前已从旧派生实现恢复一组legacy词形与表格残留，不再记为“资料未取得”。",
+        "但E盘原扫描与旧terminology.json本体当前未重新挂载，故尚不能把legacy派生词形直接认定为逐字manuscript_form，也不生成紫庭值宫runtime。",
         "C70统宗卷六NGJ可独立运行，但只属于统宗source profile；不得反填紫庭primary。",
         "NGJ直接正文支持30年一星、270小周、2700大周、起一宫文昌顺九宫，并以年干建禄宫安当前直事星。",
+        "旧扫描整理残留显示文曲、玄鳳、明維、昭搖、立華、華明、玄武、玄冥、雄明；这些与C70-NGJ存在明显词形/星名差异，必须作为legacy witness并列，不能静默统一。",
         "另有CADAL见证出现每星十年等异读/内部冲突，作为独立witness保存，不覆盖NGJ profile。",
         "C70只稳定计算直事星、入本星年数与年干落宫/分野；其余八星完整动态重排仍不支持。"
       ],
@@ -178,7 +203,24 @@
           "status": "share_page_located_scan_not_inspected",
           "note": "分享帖列出夸克/阿里/百度等转存；当前未取得扫描正文页，不能升级primary evidence。"
         }
-      ]
+      ],
+      "legacy_scan_recovery": {
+        "status": "prior_scan_extraction_recovered_direct_page_pending",
+        "asset": "terminology/zitingjing-legacy-scan-recovery.json",
+        "recovered_forms": [
+          "文曲",
+          "玄鳳",
+          "明維",
+          "昭搖",
+          "立華",
+          "華明",
+          "玄武",
+          "玄冥",
+          "雄明"
+        ],
+        "provenance_note": "用户确认研易楼明钞本此前整理术语库时已扫描；当前从旧派生实现恢复词形与表格残留，待E盘原扫描/旧terminology.json重新挂载后逐页对照。",
+        "canonical_effect": "none_until_direct_page_or_original_terminology_record_is_reattached"
+      }
     },
     {
       "key": "wenchang_changes",
