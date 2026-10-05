@@ -775,9 +775,9 @@ def test_c120_ncl_j4m09_opening_boundary_is_direct_visual_and_does_not_rederive_
     assert rule["scan_rule_audit"]["status"] == "scan_groups_confirmed_no_palace1_completion"
 
 
-def test_c123_ncl_collation_completeness_covers_all_twelve_rules():
+def test_c124_ncl_collation_completeness_covers_all_twelve_rules():
     data, rules = _rules()
-    assert data["source"]["ncl_collation_completeness_version"] == "c123-ncl-j4m-completeness-v1"
+    assert data["source"]["ncl_collation_completeness_version"] == "c124-ncl-j4m-completeness-v1"
 
     summary = data["source"]["ncl_collation_summary"]
     assert summary["counts"] == {
@@ -798,7 +798,7 @@ def test_c123_ncl_collation_completeness_covers_all_twelve_rules():
     assert by_id["J4M-12"]["ncl_collation_status"]["status_group"] == "selected_readings"
 
     assert all(
-        item["ncl_collation_status"]["cycle"] == "C123"
+        item["ncl_collation_status"]["cycle"] == "C124"
         and item["ncl_collation_status"]["source_profile_effect"] == "none"
         for item in rules
     )
