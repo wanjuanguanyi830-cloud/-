@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/taiyi/capabilities.schema.json",
+  "title": "Taiyi public capability discovery",
+  "type": "object",
+  "required": ["registry_id", "operation_count", "domains"],
+  "properties": {
+    "registry_id": {"type": "string"},
+    "operation_count": {"type": "integer", "minimum": 0},
+    "domains": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["name", "rule_ids", "status", "source_profile_required"],
+          "properties": {
+            "name": {"type": "string"},
+            "rule_ids": {"type": "array", "items": {"type": "string"}},
+            "status": {"type": ["string", "null"]},
+            "source_profile_required": {"type": "boolean"}
+          },
+          "additionalProperties": true
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}
