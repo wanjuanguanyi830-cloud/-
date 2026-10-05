@@ -753,10 +753,10 @@ def test_c115_ncl_j4m08_full_body_is_contiguous_and_source_specific():
     assert ncl["canonical_override"] is False
 
 
-def test_c119_ncl_j4m09_opening_boundary_is_direct_visual_and_does_not_rederive_palaces():
+def test_c120_ncl_j4m09_opening_boundary_is_direct_visual_and_does_not_rederive_palaces():
     data, rules = _rules()
-    assert data["source"]["ncl_volume4_collation_version"] == "c119-ncl06604-j4m09-opening-boundary-v1"
-    assert "c119-ncl06604-j4m09-opening-boundary-v1" in data["source"]["ncl_volume4_collation_history"]
+    assert data["source"]["ncl_volume4_collation_version"] == "c120-ncl06604-j4m09-opening-boundary-v1"
+    assert "c120-ncl06604-j4m09-opening-boundary-v1" in data["source"]["ncl_volume4_collation_history"]
 
     rule = {item["id"]: item for item in rules}["J4M-09"]
     ncl = rule["manuscript_readings"]["NCL-06604"]
