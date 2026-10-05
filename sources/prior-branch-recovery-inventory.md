@@ -405,3 +405,51 @@
 - 旧 `docs/pan_v2_schema.md` 中已经被后续 C30/C67/C68 等改写的周期说明。
 
 这些内容保留在 2026-10-04 分支历史中作为过程证据，不重新写入现行 canonical。
+
+
+## 8. C96 / C97 后续回收治理
+
+### C96
+
+从 2026-10-04 `taiyi_common.py` 仅回收当前仍缺失的纯 helper，并直接并入唯一公共真源：
+
+`src/kintaiyi/taiyi_rules.py`
+
+包括：
+
+- 十六辰→九宫；
+- 十六环通用旋转 / 对冲；
+- 九宫代表点 / 对冲；
+- sector detail；
+- qi_relation 包装；
+- general_palace_qi。
+
+旧 `GENERAL_ELEMENTS / ROLE_ELEMENTS` 未恢复：
+
+- 当前没有独立来源层复核；
+- 不是本轮必须的纯坐标事实；
+- 不因旧代码存在就自动升格。
+
+### C97
+
+通过对 2026-10-04 `taiyi_cycles.py` 与当前 main 比较，发现当前主线 `cycles.py` 仍保留旧五福：
+
+`project +250`
+
+且旧返回曾标为 canonical。
+
+C97 处理：
+
+- 旧 project +250 数值兼容仍保留；
+- `canonical=None`
+- `quarantined=True`
+- `promotion_allowed=False`
+- 正确来源改由 C67 显式 profile；
+- 吉算改委托 C68。
+
+C60 新增隔离：
+
+- `kintaiyi.cycles.wufu.project`
+- `config.wufu_default`
+
+因此“最近两天旧工作回收”不仅是找回遗漏，也用于发现当前 main 仍残留的阶段性旧公式并阻止回流。
