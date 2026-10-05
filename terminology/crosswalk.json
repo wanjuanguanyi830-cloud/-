@@ -15,10 +15,14 @@
     "entry_count": 148,
     "exact_cross_entry_name_collisions": 0,
     "status": "clean_at_snapshot",
-    "rules_json_rule_id_count": 122,
-    "terminology_rule_id_count": 158,
+    "rules_json_rule_id_count": 127,
+    "terminology_rule_id_count": 159,
     "rules_missing_from_terminology": 0,
-    "rules_coverage_status": "complete_at_snapshot"
+    "rules_coverage_status": "complete_at_snapshot",
+    "tongzong_military_source_runtime_coverage": "25/25",
+    "tongzong_military_derived_runtime": [
+      "V17-D1"
+    ]
   },
   "bridges": [
     {
