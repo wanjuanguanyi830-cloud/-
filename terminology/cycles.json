@@ -1,0 +1,228 @@
+{
+  "schema_version": "1.0",
+  "catalog_id": "taiyi-cycle-terminology-v1",
+  "scope": "canonical_and_source_specific_cycles",
+  "status": "repository_cycle_terminology_catalog",
+  "legacy_terminology_json_migrated": false,
+  "shared_catalog": "terminology/common-core.json",
+  "production_calendar_boundary": {
+    "calendar_source_of_truth": "modern_astronomy_lunisolar",
+    "taiyi_year_boundary": "真实天文冬至交节瞬间",
+    "policy": "本目录的古法周期只消费调用方提供的积年/积数，不得反向改写production历法边界；元旦、春节、立春、春分均不因周期算法成为太乙换年点。"
+  },
+  "pan_v2_targets": {
+    "three_bases": "cycles.three_bases",
+    "five_blessings": "cycles.five_blessings",
+    "big_wander": "cycles.big_wander",
+    "small_wander": "cycles.small_wander",
+    "four_taiyi": "cycles.four_taiyi",
+    "limits": "cycles.limits"
+  },
+  "global_policy": [
+    "位置周期与同宫/灾应关系分层；位置函数不得自动制造同宫断语。",
+    "金镜/统宗同名周期必须显式source profile；不得把不同盈差、外周、历元静默拼成统一公式。",
+    "余数0表示周期末项，不表示虚构的第0年/第0宫。",
+    "中五是否参与由各术自身来源决定：五福含中，大小游八宫路径不入中五。",
+    "大游太乙、大游天目、太游阳九百六行限是不同术层。"
+  ],
+  "entries": [
+    {
+      "key": "three_bases",
+      "preferred_term": "三基",
+      "aliases": ["三基", "君基臣基民基"],
+      "term_type": "source_cycle_group",
+      "source_profile": "tongzong_three_bases_cycles",
+      "runtime": "kintaiyi.three_bases_cycles.three_base_position",
+      "v2_target": "cycles.three_bases",
+      "common_surplus": {"name": "邦盈差", "value": 250},
+      "direction": "顺行十二辰",
+      "members": {
+        "君基": {"rule_id": "C66-JUNJI", "identity": "人君之象", "big_cycle": 3600, "small_cycle": 360, "years_per_state": 30, "start_branch": "午"},
+        "臣基": {"rule_id": "C66-CHENJI", "identity": "辅相之象", "big_cycle": 360, "small_cycle": 36, "years_per_state": 3, "start_branch": "午"},
+        "民基": {"rule_id": "C66-MINJI", "identity": "庶民之象", "big_cycle": 360, "small_cycle": 12, "years_per_state": 1, "start_branch": "戌"}
+      },
+      "boundary_notes": [
+        "民基来源常见“戍邦”字形，位置按地支戌正规化并保留来源字形。",
+        "三基与五福/四神/大小游同宫关系另层处理，不由C66自动判断。"
+      ]
+    },
+    {
+      "key": "five_blessings",
+      "preferred_term": "五福太乙",
+      "aliases": ["五福", "五福太乙"],
+      "term_type": "source_profile_cycle",
+      "runtime": "kintaiyi.wufu_source_profiles.wufu_position",
+      "v2_target": "cycles.five_blessings",
+      "stable_core": {
+        "effective_cycle": 225,
+        "years_per_palace": 45,
+        "route": [
+          {"position": "乾", "palace_name": "黄秘"},
+          {"position": "艮", "palace_name": "黄始"},
+          {"position": "巽", "palace_name": "黄室"},
+          {"position": "坤", "palace_name": "黄廷"},
+          {"position": "中", "palace_name": "玄室"}
+        ]
+      },
+      "source_profiles": {
+        "tongzong": {"rule_id": "C67-WUFU-TONGZONG", "source_profile": "tongzong_volume6_7_wufu", "surplus": 115, "big_cycle": 2250, "small_cycle": 225},
+        "jinjing": {"rule_id": "C67-WUFU-JINJING", "source_profile": "jinjing_volume5_wufu", "surplus": 0, "big_cycle": 225, "small_cycle": null}
+      },
+      "legacy_quarantine": {
+        "project_plus_250": "旧0基兼容数值，不属于C67已校source profile",
+        "taibai_bingbei_later_plus_250": "公式/周数字仍待独立校勘"
+      },
+      "boundary_notes": ["五福位置与吉算受益对象、同宫灾应分层。"]
+    },
+    {
+      "key": "big_wander_position",
+      "preferred_term": "大游太乙所在",
+      "aliases": ["大游", "大游太乙", "太游太乙", "大遊太乙"],
+      "term_type": "source_profile_cycle",
+      "runtime": "kintaiyi.dayou_position_source_profiles.dayou_position",
+      "v2_target": "cycles.big_wander.position",
+      "stable_core": {
+        "small_cycle": 288,
+        "years_per_palace": 36,
+        "path": [7, 8, 9, 1, 2, 3, 4, 6],
+        "excluded_palace": 5,
+        "direction": "forward"
+      },
+      "source_profiles": {
+        "jinjing": {"rule_id": "C107-DAYOU-JINJING", "source_profile": "jinjing_volume5_dayou_position", "epoch": "上元甲寅", "surplus": 0, "outer_cycle": 4320},
+        "tongzong": {"rule_id": "C107-DAYOU-TONGZONG", "source_profile": "tongzong_volume7_dayou_position", "epoch": "上元甲子", "surplus": 34, "outer_cycle": 2880}
+      },
+      "source_variants": {
+        "taojin": {"path": [7, 6, 4, 3, 2, 1, 9, 8], "epoch_status": "pending"}
+      },
+      "boundary_notes": [
+        "旧jinjing_tongzong把金镜行宫与统宗+34混合，现只保留兼容隔离。",
+        "大游重卦/策数/动爻属于C41等独立层，不回写位置周期。"
+      ]
+    },
+    {
+      "key": "big_wander_skyeye",
+      "preferred_term": "大游天目",
+      "aliases": ["大游天目", "太游天目", "大遊天目"],
+      "term_type": "source_profile_cycle",
+      "runtime": "kintaiyi.dayou_tianmu_source_profiles.dayou_tianmu_position",
+      "v2_target": "cycles.big_wander.skyeye",
+      "stable_core": {
+        "path_length": 18,
+        "path": ["天道", "大武", "大武", "武德", "太簇", "阴主", "阴德", "阴德", "大义", "地主", "阳德", "和德", "吕申", "高丛", "太阳", "大炅", "大神", "大威"]
+      },
+      "source_profiles": {
+        "jinjing": {"rule_id": "C106-DAYOU-TIANMU-JINJING", "source_profile": "jinjing_volume5_dayou_tianmu", "surplus": 0, "outer_cycle": 72, "small_cycle": 18},
+        "tongzong": {"rule_id": "C106-DAYOU-TIANMU-TONGZONG", "source_profile": "tongzong_volume7_dayou_tianmu", "surplus": 214, "outer_cycle": 180, "small_cycle": 18}
+      },
+      "boundary_notes": ["只求天目18步位置，不自动读取大游太乙所在宫，也不自动应用同宫所主。"]
+    },
+    {
+      "key": "small_wander_position",
+      "preferred_term": "小游太乙所在",
+      "aliases": ["小游", "小游太乙", "小遊太乙"],
+      "term_type": "source_profile_cycle",
+      "runtime": "kintaiyi.xiaoyou_position.xiaoyou_position",
+      "v2_target": "cycles.small_wander",
+      "stable_core": {
+        "small_cycle": 24,
+        "years_per_palace": 3,
+        "path": [1, 2, 3, 4, 6, 7, 8, 9],
+        "excluded_palace": 5,
+        "direction": "forward"
+      },
+      "source_profiles": {
+        "jinjing": {"rule_id": "C103-XIAOYOU-JINJING", "source_profile": "jinjing_volume5_xiaoyou_position", "outer_cycle": 240},
+        "tongzong": {"rule_id": "C103-XIAOYOU-TONGZONG", "source_profile": "tongzong_volume7_xiaoyou_position", "outer_cycle": 360}
+      },
+      "boundary_notes": ["小游轨运内外卦/重卦属于另一层；共享24/3节律不代表公式等同。"]
+    },
+    {
+      "key": "four_taiyi",
+      "preferred_term": "四太乙",
+      "aliases": ["四太乙", "四神天乙地乙直符"],
+      "term_type": "source_cycle_group",
+      "v2_target": "cycles.four_taiyi",
+      "canonical_names": ["天乙", "地乙", "直符", "四神"],
+      "common_position_core": {
+        "big_cycle": 360,
+        "small_cycle": 36,
+        "years_per_palace": 3,
+        "palace_order": [1, 2, 3, 4, 5, 6, 7, 8, 9, "绛宫", "明堂", "玉堂"]
+      },
+      "members": {
+        "天乙": {"element": "金", "rule_id": "C64-TIANYI", "start_palace": 6, "runtime": "kintaiyi.state_spirit_cycles.tianyi_position"},
+        "地乙": {"element": "土", "rule_id": "C64-DIYI", "start_palace": 9, "runtime": "kintaiyi.state_spirit_cycles.diyi_position"},
+        "直符": {"element": "火", "rule_id": "C64-ZHIFU", "start_palace": 5, "runtime": "kintaiyi.state_spirit_cycles.zhifu_position"},
+        "四神": {"element": "水", "rule_id": "C92-FOUR-SPIRIT-POSITION", "start_palace": 1, "runtime": "kintaiyi.four_spirit_tongzong.four_spirit_position"}
+      },
+      "name_policy": {
+        "直符": "canonical",
+        "值符": "legacy_or_title_variant_not_enabled_by_default"
+      },
+      "boundary_notes": [
+        "四神位置使用C92独立来源层；不能因为周期骨架相同就塞回C64三神表。",
+        "直符火气状态C93与位置C64分层；未知宫位不按十二长生自动补齐。",
+        "四太乙与五福同域灾应C94要求显式same_wufu_domain，不由位置自动判断。"
+      ]
+    },
+    {
+      "key": "yangjiu",
+      "preferred_term": "阳九",
+      "aliases": ["阳九", "陽九"],
+      "term_type": "limit_cycle",
+      "rule_id": "C36-YJ",
+      "runtime": "kintaiyi.limit_cycles.yangjiu_limit",
+      "v2_target": "cycles.limits.yangjiu",
+      "source_profile": "tongzong_yangjiu_bailiu",
+      "big_limit": 4560,
+      "small_limit": 456,
+      "small_limit_count": 10,
+      "surplus_offset": 130,
+      "boundary_notes": ["旧pan阳九地支值不是本大小限结果。"]
+    },
+    {
+      "key": "bailiu",
+      "preferred_term": "百六",
+      "aliases": ["百六"],
+      "term_type": "limit_cycle",
+      "rule_id": "C36-BL",
+      "runtime": "kintaiyi.limit_cycles.bailiu_limit",
+      "v2_target": "cycles.limits.bailiu",
+      "source_profile": "tongzong_yangjiu_bailiu",
+      "big_limit": 4320,
+      "small_limit": 288,
+      "small_limit_count": 15,
+      "surplus_offset": 2050,
+      "boundary_notes": ["旧pan百六地支值不是本大小限结果。"]
+    },
+    {
+      "key": "taiyou_limit_tracks",
+      "preferred_term": "太游阳九百六行限",
+      "aliases": ["太游行限", "太游阳九百六行限", "太遊行限"],
+      "term_type": "limit_track_group",
+      "runtime": "kintaiyi.taiyou_limit_tracks.taiyou_limit_tracks",
+      "v2_target": "cycles.limits.taiyou_tracks",
+      "source_profile": "tongzong_taiyou_limit_tracks",
+      "path": [
+        {"palace": 7, "trigram": "坤"},
+        {"palace": 8, "trigram": "坎"},
+        {"palace": 9, "trigram": "巽"},
+        {"palace": 1, "trigram": "乾"},
+        {"palace": 2, "trigram": "离"},
+        {"palace": 3, "trigram": "艮"},
+        {"palace": 4, "trigram": "震"},
+        {"palace": 6, "trigram": "兑"}
+      ],
+      "tracks": {
+        "阳九外卦": {"rule_id": "C38-YJ-OUTER", "limit_rule_id": "C36-YJ", "years_per_palace": 10, "years_per_round": 80, "rounds_per_big_limit": 57},
+        "百六内卦": {"rule_id": "C38-BL-INNER", "limit_rule_id": "C36-BL", "years_per_palace": 36, "years_per_round": 288, "rounds_per_big_limit": 15}
+      },
+      "boundary_notes": [
+        "外卦专属阳九，内卦专属百六；共享八宫序但不共享周期。",
+        "不采用旧guiyun.py额外+34/+50偏移。",
+        "本层与C107大游太乙位置、C41大游重卦均分开。"
+      ]
+    }
+  ]
+}
