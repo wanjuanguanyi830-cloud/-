@@ -10,8 +10,9 @@
 - 宫率30；
 - 命起一宫文昌，顺行九宫。
 
-它与 CADAL 见证“前文10年、算法30年”的内部冲突，以及《紫庭秘诀》
-附篇正文未取得的问题，均保持分层，不据此宣布跨来源统一 canonical。
+它与 CADAL 见证“前文10年、算法30年”的内部冲突保持分层。
+研易楼藏《太乙紫庭祕訣》明钞本目录已直接核验未见“文昌九星值宫术”题名；
+现代整理本虽列同名附篇，但其来源归属未证，不能反推原钞。
 
 本模块只计算：
 1. 当前直事文昌星；
@@ -46,8 +47,8 @@ DIRECT_TEXT_EVIDENCE = {
         "example": "甲辰年玄凤直事，十一年在青州；乙巳在徐",
     },
     "boundary": (
-        "本证据只固定NGJ卷六profile；另有CADAL见证作每星十年并与算法口径冲突，"
-        "保持独立异文；《紫庭秘诀》附篇正文未取得前不得反填。"
+        "本证据固定NGJ卷六profile；另有CADAL见证作每星十年并与算法口径冲突，"
+        "保持独立异文。研易楼明钞目录未见文昌九星题名；现代整理附篇来源未证。"
     ),
 }
 
@@ -116,10 +117,12 @@ SOURCE_WITNESS = {
             "small_cycle_reading": 270,
             "status": "external_collation_with_cycle_number_variant",
         },
-        "zitingjing_appendix": {
+        "modern_edition_appendix": {
             "section": "附太乙文昌九星值宫术",
-            "status": "catalog_attested_primary_text_pending",
-            "direct_text_available": False,
+            "status": "modern_edition_catalog_attested_provenance_unresolved",
+            "yanyilou_manuscript_toc_attested": False,
+            "direct_manuscript_text_available": False,
+            "note": "研易楼原钞目录未见该题；现代整理本是否由《统宗》增补目前只作来源假说。",
         },
     },
 }
@@ -141,7 +144,7 @@ LEGACY_AUDIT = {
         "旧年干落宫表丁→巽9，直接表应丁→离2",
         "旧年干落宫表壬→中5，直接表应壬→乾1",
         "旧完整分布循环计算了gong变量却未使用，实际仍输出固定星宫表",
-        "旧实现未保存统宗见证内部10/30年冲突与紫庭附篇正文pending边界",
+        "旧实现未保存统宗见证内部10/30年冲突，也未区分研易楼原钞与现代整理附篇",
     ],
     "replacement": "C70-TONGZONG-WENCHANG-NINE-STARS",
 }
@@ -217,10 +220,11 @@ def wenchang_nine_star_tongzong(
         "source_witness": copy.deepcopy(SOURCE_WITNESS),
         "legacy_audit": copy.deepcopy(LEGACY_AUDIT),
         "direct_text_evidence": copy.deepcopy(DIRECT_TEXT_EVIDENCE),
-        "cross_source_canonical_selected": None,
+        "cross_source_canonical_selected": "tongzong_volume6_ngj_wenchang_nine_stars",
         "policy": (
-            "C70是统宗NGJ source-specific runtime，不等于紫庭附篇canonical。"
-            "30年周期只对本见证成立；其他见证10/30及大周异读继续并列。"
+            "C70是当前文昌九星可直接核验并执行的《太乙统宗宝鉴》卷六NGJ source profile。"
+            "研易楼明钞目录未见该题；现代整理附篇来源未证。30年周期只对本见证成立，"
+            "其他见证10/30及大周异读继续并列。"
         ),
     }
 
@@ -238,5 +242,5 @@ def c70_catalog() -> dict[str, Any]:
         "legacy_audit": copy.deepcopy(LEGACY_AUDIT),
         "direct_text_evidence": copy.deepcopy(DIRECT_TEXT_EVIDENCE),
         "dynamic_distribution_boundary": copy.deepcopy(DYNAMIC_DISTRIBUTION_BOUNDARY),
-        "cross_source_canonical_selected": None,
+        "cross_source_canonical_selected": "tongzong_volume6_ngj_wenchang_nine_stars",
     }
