@@ -305,6 +305,18 @@ QUARANTINE: dict[str, dict[str, Any]] = {
         replacement_layer="jinjing.volume4.military_observation",
         source_module="jinjing_v4_military",
     ),
+    "config.wenchang_nine_stars": _q(
+        "config.wenchang_nine_stars",
+        category="mixed_witness_names_and_wrong_landing_map",
+        reason=(
+            "旧实现虽按2700/270/30计算统宗直事周期，但星名表混入文曲/昭摇/立华等异读，"
+            "丁误落巽9、壬误落中5；且所谓九星分布循环计算gong后未使用，实际仍返回固定表。"
+            "不得作为统宗NGJ或紫庭附篇canonical。"
+        ),
+        replacement_rule_ids=("C70-TONGZONG-WENCHANG-NINE-STARS",),
+        replacement_layer="source_variants.tongzong_volume6.wenchang_nine_stars",
+        source_module="wenchang_nine_stars_tongzong",
+    ),
 }
 
 
