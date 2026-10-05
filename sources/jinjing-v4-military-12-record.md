@@ -337,3 +337,43 @@ J4M-12 的标题位于 p.140 左端后序位置，其正文云气方色表从 p.
 这也改变了与《汉书》的异文描述：二者兵器名此处同为“矛鋋”，差异在《金镜》“弓弩三不当一”与《汉书》“长戟二不当一”，以及其他比例、段落差异。
 
 页码为数字扫描序号，不冒充原书叶码。
+
+
+## C84～C85：第二见证证据边界与十二法 scan audit 完整化（2026-10-05）
+
+### C84：NCL-06604 明钞本
+
+已确认国家图书馆书目与 Wikimedia Commons 整卷扫描身份：
+
+- 明钞本；
+- 十卷、四册；
+- 书号 06604；
+- Commons 文件 `NCL-06604 太乙金鏡式經.pdf`，124 个数字扫描页。
+
+但“整卷身份可核”不等于“十二推法页级校勘已完成”。当前环境对 NCL 任意目标页的直接跳转/页级检索不稳定，因此：
+
+- 不给 NCL 猜 J4M-01..12 页码；
+- 不声称“障/陈、置/制、置变/制变、奇伏/奇兵伏兵、太蔟/太簇”等已由明钞本逐字确认；
+- NCL witness 继续为 `bibliographic_and_whole_scan_identity_verified_not_page_collated`；
+- 只有直接看到目标页图像后才建立 manuscript_reading / source_variant。
+
+详见 `sources/c84-ncl06604-witness-access-audit-record.md`。
+
+### C85：J4M-11 / J4M-12 scan_rule_audit
+
+补齐最后两条机器边界：
+
+- J4M-11：显式外部风云飞鸟观测、正文动作词严格匹配、众来噪阵不补独立胜负、《福应经》冲突断语不回写；
+- J4M-12：方位×颜色逐项保存、西方白云不按对称性补“大胜”、cloud_bearer 与 verdict_subject 分栏、无云气不强判胜负。
+
+至此十二法均已有 `scan_rule_audit`：
+
+- J4M-01..04：C83
+- J4M-05..10：C80
+- J4M-11..12：C85
+
+规则表标记：
+
+`source.full_twelve_scan_audit_version = c85-j4m01-12-scan-boundary-complete-v1`
+
+这意味着十二法目前已达到“影印定位 + 规则核心 + 禁止推补边界”统一机器化记录状态。
