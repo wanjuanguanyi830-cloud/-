@@ -6,3 +6,5 @@
 
 
 - [`variants/`](variants/)：现代／重构 profile，与古籍 canonical 物理隔离。
+
+- [`jingyou_fuying_v4_military.json`](jingyou_fuying_v4_military.json)：《景祐太乙福应经》卷四独立 JF4M 古籍 profile；仅作 source record，不自动继承 J4M runtime。
