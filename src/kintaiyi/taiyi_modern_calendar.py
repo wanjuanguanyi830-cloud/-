@@ -187,6 +187,7 @@ def production_calendar_context(moment: datetime) -> dict[str, Any]:
         "rule_id": RULE_ID,
         "source_profile": "production_modern_calendar",
         "year_boundary": resolve_taiyi_year(moment),
+        "year_count": modern_year_count(moment),
         "time_half": resolve_time_solstice_half(moment),
         "lunisolar": chinese_lunisolar_facts(moment),
         "solar_month": resolve_solar_month(moment),
