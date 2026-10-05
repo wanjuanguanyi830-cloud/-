@@ -187,13 +187,15 @@ for key in (
 
 CATALOG["明五福太乙所主術"] = _entry(
     "canonical", "tongzong_volume6_7_witness_variant_direct", "P1",
-    "use_c67_c74_wufu_layers", migrate_whole=False,
+    "use_c67_c74_c94_wufu_layers", migrate_whole=False,
     source_confidence="high", target_hint="source_variants.tongzong_state_cycles.wufu.position",
     notes=(
         "C67 已将五福位置按来源profile分开：统宗为宫盈差115、大周2250、小周225、"
         "45年一宫；金镜为无该盈差、225一周。C15本字段来自统宗，必须显式选tongzong profile。"
         "C74 另实现五福与君基/臣基/民基的显式同宫关系，并将“初交之始”作为独立条件；"
-        "五福吉算仍由C68独立处理，旧flat不得整体搬运。"
+        "C94 回收2026-10-04工作中五福与天乙/地乙/直符/四神的金土火水四类灾应解释，"
+        "但要求显式same_wufu_domain与interpretation_profile，不自动从坐标触发。"
+        "五福吉算由C68独立处理；五福与大游/小游仍单独待迁，旧flat不得整体搬运。"
     ),
 )
 
