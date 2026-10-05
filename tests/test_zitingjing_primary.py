@@ -116,12 +116,15 @@ def test_c19_catalog_marks_only_three_direct_primary_items_as_implemented():
         "shiji_changes",
     }
     assert data["pending"] == [
-        "wenchang_nine_stars",
         "three_banners",
         "nine_palace_nobles",
     ]
-    assert data["locators"]["wenchang_nine_stars"]["status"] == "prior_scan_confirmed_page_record_pending"
-    assert "两处现代整理本目录" in data["locators"]["wenchang_nine_stars"]["catalog_witness"]["evidence"]
+    assert "wenchang_nine_stars" in data["excluded_from_primary"]
+    assert data["locators"]["wenchang_nine_stars"]["status"] == "manuscript_toc_not_attested"
+    assert data["locators"]["wenchang_nine_stars"]["manuscript_toc_evidence"]["scan_pages"] == [5, 6]
+    assert data["locators"]["wenchang_nine_stars"]["modern_edition_appendix"]["status"] == (
+        "modern_edition_catalog_attested_provenance_unresolved"
+    )
     assert data["locators"]["three_banners"]["status"] == "project_primary_attribution_unverified"
     assert data["locators"]["three_banners"]["catalog_check"]["ziting_mijue_catalog_result"] == "not_found"
     assert data["locators"]["three_banners"]["collation_locator"]["source"] == "太乙统宗宝鉴卷十"
