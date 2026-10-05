@@ -25,7 +25,32 @@
         "pages": 124,
         "status": "independent_manuscript_witness_metadata_verified_page_locators_pending",
         "metadata_verified": "National Central Library record + Wikimedia Commons 124-page scan",
-        "locator_policy": "逐页图像未核到前，不分配 J4M 页码、不覆盖 jinjing_siku_volume4 canonical。"
+        "locator_policy": "逐页图像未核到前，不分配 J4M 页码、不声称标题/关键字已由明钞本证实、不覆盖 jinjing_siku_volume4 canonical。",
+        "evidence_level": "bibliographic_and_whole_scan_identity_verified_not_page_collated",
+        "public_scan": {
+          "commons_file": "NCL-06604 太乙金鏡式經.pdf",
+          "pages": 124,
+          "dimensions": "2350×1700",
+          "file_size_mb": 22.57,
+          "source": "National Central Library",
+          "edition": "明鈔本"
+        },
+        "access_audit": {
+          "cycle": "C84",
+          "date": "2026-10-05",
+          "verified": [
+            "國家圖書館書目記錄：明鈔本、十卷、四冊、書號06604",
+            "Wikimedia Commons：同名124頁公開掃描，來源標為National Central Library",
+            "公開第三方影印入口（国学汉籍）書目字段與NCL記錄一致"
+          ],
+          "not_verified": [
+            "J4M-01..12在NCL掃描中的逐條頁碼",
+            "陳/障、制/置、置變/制變、奇伏/奇兵伏兵等逐字異文",
+            "太蔟/太簇及J4M-11/12關鍵句的明鈔本字形"
+          ],
+          "reason": "当前可稳定访问书目与整卷扫描身份，但任意页直达/逐页检索在当前环境不稳定；未直接看见目标页图像前不得登记页级异文。",
+          "canonical_effect": "none"
+        }
       }
     ],
     "order_collation": {
@@ -42,7 +67,8 @@
         "canonical_override": false
       }
     ],
-    "scan_locator_version": "c79-j4m-cadal-page-locators-v1"
+    "scan_locator_version": "c79-j4m-cadal-page-locators-v1",
+    "witness_audit_version": "c84-ncl06604-access-boundary-v1"
   },
   "separation_policy": [
     "本表只记录四库本《太乙金镜式经》卷四十二法，不自动并入《太乙统宗宝鉴》卷五或旧代码同名函数。",
