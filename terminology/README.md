@@ -568,3 +568,16 @@ crosswalk 专门锁定“近名但不能合并”的高风险关系，例如：
 已补入 `terminology/volume9-10.json`。C50 对应卷十“明太乙历数之期术”，其职责是并列收集即位年、太阳/阴主厄会、太乙入运气卦象、太游/小游轨运及囚迫击格掩挟等证据。
 
 它不是 C42 历数长短的别名，也不是 C43 厄会的替代算法；即使证据齐全，来源仍未给出可无损压缩成单一终年/寿数的公式，因此 `final_lifespan_formula` 固定为空，runtime 只返回证据束完成度和缺口。
+
+
+## 规则总表覆盖验收
+
+已新增 `tests/test_terminology_rules_coverage.py`，递归比较 `rules/taiyi_v1.json` 与所有 stable catalogs 的 `rule_id` / `rule_ids`。
+
+当前快照：
+
+- rules 总表 rule_id：75；
+- stable terminology rule_id：108；
+- rules 总表中未被术语库覆盖：0。
+
+术语层数量更大是预期行为，因为它比规则总表保留更细的 D8/T7 子规则、C69B 六壬叠盘子步骤、source-profile-specific 周期规则及八门叠盘关系层。
