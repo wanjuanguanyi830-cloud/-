@@ -69,7 +69,7 @@ def calendar_upstream_requirements(count_type: str) -> dict[str, Any]:
         "forbidden_guess": spec["forbidden_guess"],
         "source_boundary": {
             "岁计": "production统一以真实天文冬至瞬间换年；现代datetime可由modern_calendar解析",
-            "月计": "需先按选定《金镜》或《统宗》历法profile求积月",
+            "月计": "production已由现代十二节月界 + 连续12月积月适配器自动生成；resolved接口仍允许底层显式积数",
             "日计": "需先求气朔/经朔/定朔相关积日",
             "时计": "需先由实际冬夏至气应判半岁并求时计积数",
         }[kind],
@@ -170,13 +170,12 @@ def calendar_automation_status() -> dict[str, Any]:
             "C119冬夏二至时计八门直使",
         ],
         "pending": [
-            "《金镜》月计积月算法影印级常数/版本校勘与《统宗》profile分离",
             "现代日期 -> 气朔/经朔/定朔 -> 日计积日",
             "时计entry_count与C119 duty_time_real各自完整历法生成链",
         ],
         "policy": (
             "岁计换年与时计冬/夏至半岁已由现代天文层自动化；"
-            "月计/日计积数与时计entry_count、duty_time_real未解决前，"
+            "日计积数与时计entry_count、duty_time_real未解决前，"
             "不声称四计datetime全自动完成。"
         ),
     }
