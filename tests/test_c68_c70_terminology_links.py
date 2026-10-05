@@ -33,7 +33,7 @@ def test_c70_tongzong_profile_is_nested_below_ziting_primary_boundary():
     profile = entry["source_specific_profiles"]["tongzong_volume6_ngj"]
     runtime = c70_catalog()
 
-    assert entry["primary_evidence_level"] == "catalog_attested_text_pending"
+    assert entry["primary_evidence_level"] == "legacy_scan_extraction_recovered_page_pending"
     assert entry["primary_result_allowed"] is False
     assert profile["rule_id"] == "C70-TONGZONG-WENCHANG-NINE-STARS"
     assert profile["source_profile"] == runtime["source_profile"]
