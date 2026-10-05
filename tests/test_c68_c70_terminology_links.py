@@ -7,6 +7,7 @@ from kintaiyi.wufu_auspicious_numbers import NUMBER_GROUPS
 
 CYCLES = Path("terminology/cycles.json")
 ZITING = Path("terminology/zitingjing.json")
+MIGRATION = Path("terminology/zitingjing-migration-map.json")
 WENCHANG = Path("terminology/wenchang-nine-stars.json")
 RULES = Path("rules/taiyi_v1.json")
 CROSSWALK = Path("terminology/crosswalk.json")
@@ -46,12 +47,16 @@ def test_c70_is_independent_stable_catalog_and_ziting_keeps_only_pointer():
     assert entry["ziting_manuscript_boundary"]["status"] == "not_attested_in_manuscript_toc"
 
     ziting = _load(ZITING)
-    pointer = next(e for e in ziting["entries"] if e["key"] == "wenchang_nine_stars")
-    assert pointer["term_type"] == "modern_edition_cross_source_recovery_pointer"
-    assert pointer["primary_evidence_level"] == "ziting_manuscript_not_attested_modern_appendix_only"
-    assert pointer["primary_result_allowed"] is False
-    assert pointer["canonical_catalog"] == "terminology/wenchang-nine-stars.json"
-    assert pointer["manuscript_toc_evidence"]["status"] == "title_not_attested"
+    assert not any(e["key"] == "wenchang_nine_stars" for e in ziting["entries"])
+
+    migration = _load(MIGRATION)
+    pointer = next(e for e in migration["entries"] if e["key"] == "wenchang_nine_stars")
+    assert pointer["terminology_status"] == (
+        "historical_migration_key_only_stable_term_moved_to_wenchang_catalog"
+    )
+    assert pointer["current_rule_status"] == (
+        "tongzong_c70_source_resolved_yanyilou_toc_not_attested"
+    )
 
 
 def test_rules_json_registers_c68_and_c70_without_source_merge():
