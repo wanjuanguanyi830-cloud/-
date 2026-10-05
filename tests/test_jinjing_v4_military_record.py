@@ -700,9 +700,8 @@ def test_c111_ncl_j4m07_body_is_verified_but_siku_runtime_stays_source_specific(
     assert "地洿邪" in ncl["textual_relation"]["to_siku"]
 
 
-def test_c112_ncl_j4m08_opening_triplet_is_direct_visual_but_not_full_body():
+def test_c112_ncl_j4m08_opening_stage_is_preserved_in_history():
     data, rules = _rules()
-    assert data["source"]["ncl_volume4_collation_version"] == "c112-ncl06604-j4m08-opening-v2"
     assert "c112-ncl06604-j4m08-opening-v1" in data["source"]["ncl_volume4_collation_history"]
     assert "c112-ncl06604-j4m08-opening-v2" in data["source"]["ncl_volume4_collation_history"]
 
@@ -712,9 +711,43 @@ def test_c112_ncl_j4m08_opening_triplet_is_direct_visual_but_not_full_body():
 
     assert opening["source_attribution"] == "晁错"
     assert opening["three_urgencies"] == ["士卒服习", "随其地形", "善用兵器"]
-    assert opening["status"] == "opening_triplet_direct_visual_verified"
+    assert opening["status"] == "superseded_by_C115_full_contiguous_body"
+    assert opening["superseded_by"] == "C115"
     assert opening["continuation_visible_only"] == "五丈之沟居堑之水山林"
     assert "五丈之沟居堑之水山林" in opening["scope_policy"]
     assert ncl["weapon_reading"] == "矛鋋"
     assert ncl["ratio_reading"] == "弓弩三不当一"
+    assert ncl["canonical_override"] is False
+
+
+def test_c115_ncl_j4m08_full_body_is_contiguous_and_source_specific():
+    data, rules = _rules()
+    assert data["source"]["ncl_volume4_collation_version"] == "c115-ncl06604-j4m08-full-body-v1"
+    assert "c115-ncl06604-j4m08-full-body-v1" in data["source"]["ncl_volume4_collation_history"]
+
+    rule = {item["id"]: item for item in rules}["J4M-08"]
+    ncl = rule["manuscript_readings"]["NCL-06604"]
+    full = ncl["full_body_transcription"]
+
+    assert full["status"] == "full_contiguous_body_direct_visual_verified"
+    rows = full["terrain_weapon_rows"]
+    assert rows[0]["ratio_text"] == "车骑三不当一"
+    assert rows[1]["ratio_text"] == "步卒十不当一"
+    assert rows[2]["favored"] == "长戟"
+    assert rows[2]["ratio_text"] == "剑楯三不当一"
+    assert rows[3]["favored"] == "矛鋋"
+    assert rows[3]["ratio_text"] == "弓弩三不当一"
+    assert rows[4]["favored"] == "弓弩"
+    assert rows[4]["ratio_text"] == "短兵百不当一"
+
+    assert full["training_block"]["ratio_text"] == "百不当一"
+    assert "避难不反" in full["training_block"]["notable_readings"]
+    assert full["equipment_and_general_block"]["ratio_text"] == "五不当一"
+    assert "此将不习兵之过也" in full["equipment_and_general_block"]["raw"]
+    assert "临敌随形制变，此之要也" in full["closing_block"]["raw"]
+    assert full["closing_block"]["next_rule_boundary"].endswith("进入J4M-09。")
+
+    # 明钞本“将不习兵五不当一”不得覆盖四库 profile 的十不当一。
+    siku_examples = rule["quotation_collation"]["jinjing_siku_volume4"]["examples"]
+    assert "将不习兵：十不当一" in siku_examples
     assert ncl["canonical_override"] is False
