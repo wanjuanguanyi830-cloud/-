@@ -3,6 +3,7 @@ from importlib import resources
 
 from kintaiyi.api import (
     calculate,
+    calculate_rule,
     explain_result,
     get_rule,
     get_term,
@@ -10,6 +11,7 @@ from kintaiyi.api import (
     list_operations,
     registry_snapshot,
     resolve_runtime,
+    rule_runtime_candidates,
 )
 
 
@@ -78,3 +80,50 @@ def test_packaged_registry_and_schemas_are_json_resources():
     json.loads(resources.files("schemas").joinpath("registry.schema.json").read_text(encoding="utf-8"))
     json.loads(resources.files("schemas").joinpath("operation.schema.json").read_text(encoding="utf-8"))
     json.loads(resources.files("schemas").joinpath("result.schema.json").read_text(encoding="utf-8"))
+
+
+def test_calculate_rule_resolves_d8_by_rule_id():
+    result = calculate_rule("D8-01", 15)
+    assert result["rule_id"] == "D8-01"
+    assert result["components"] == {"ten": True, "five": True, "one": False}
+    assert result["classic_tags"] == ["杜塞"]
+
+
+def test_calculate_rule_auto_selects_unique_source_profile_key():
+    result = calculate_rule("C67-WUFU-TONGZONG", 1)
+    assert result["rule_id"] == "C67-WUFU-TONGZONG"
+    assert result["profile_key"] == "tongzong"
+    assert result["source_profile"] == "tongzong_volume6_7_wufu"
+
+
+def test_calculate_rule_resolves_tongzong_and_ziting_nine_star_cycles_separately():
+    tongzong = calculate_rule("C124-TONGZONG-TAIYI-NINE-STARS", 1121)
+    ziting = calculate_rule("C125-ZITING-TAIYI-NINE-STARS-CYCLE", 1937281)
+
+    assert tongzong["direct_star"] == "天禽"
+    assert tongzong["source_profile"] == "tongzong_volume6_taiyi_nine_stars"
+    assert ziting["direct_star"] == "天辅"
+    assert ziting["rule_id"] == "C125-ZITING-TAIYI-NINE-STARS-CYCLE"
+
+
+def test_rule_runtime_candidates_deduplicate_same_runtime_across_layers():
+    candidates = rule_runtime_candidates("C124-TONGZONG-TAIYI-NINE-STARS")
+    assert len(candidates) == 1
+    assert candidates[0]["runtime"] == (
+        "kintaiyi.taiyi_nine_stars_tongzong.taiyi_nine_stars_tongzong"
+    )
+    assert len(candidates[0]["origins"]) >= 2
+
+
+def test_operation_registry_now_covers_all_seven_and_eight_method_aliases():
+    operations = {item["name"]: item for item in list_operations()}
+    expected = {
+        *(f"seven.{name}" for name in (
+            "lijin", "lion", "cloud", "tiger", "leigong", "dragon", "return_army"
+        )),
+        *(f"eight.{name}" for name in (
+            "sancai", "length", "wuyin", "gudan", "inner_outer",
+            "quantity", "yinyang_ehui", "preparedness"
+        )),
+    }
+    assert expected <= set(operations)
