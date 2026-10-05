@@ -40,7 +40,34 @@
         "分野",
         "当前见证吉凶"
       ],
-      "variant_policy": "三宫天冲：紫庭当前在线见证为凶，统宗参校见吉；两者并列，不静默统一。"
+      "variant_policy": "三宫天冲：紫庭当前在线见证为凶，统宗参校见吉；两者并列，不静默统一。",
+      "source_specific_profiles": {
+        "tongzong_volume6_dynamic": {
+          "rule_id": "C124-TONGZONG-TAIYI-NINE-STARS",
+          "source_profile": "tongzong_volume6_taiyi_nine_stars",
+          "runtime": "kintaiyi.taiyi_nine_stars_tongzong.taiyi_nine_stars_tongzong",
+          "source_sections": [
+            "明太乙九星所值吉凶术",
+            "明九星行支干造化所主术"
+          ],
+          "cycle": {
+            "big_cycle": 900,
+            "small_cycle": 90,
+            "years_per_star": 10,
+            "start_star": "天蓬",
+            "direction": "顺行九星"
+          },
+          "dynamic_distribution_supported": true,
+          "status": "direct_source_specific_runtime",
+          "evidence_note": "CADAL直接见证“星率十”，且1121积年原例按900/90/10恰得天禽直符、初入一年；个别OCR作“星率九”不覆盖内证。"
+        }
+      },
+      "boundary_notes": [
+        "《紫庭经》〈释九宫所值九星〉仍是本条primary：保存九宫、九星、分野与当前见证吉凶。",
+        "C124《统宗》卷六另建动态profile：900大周、90小周、10年一星，天蓬起顺九星；不得把该周期反填《紫庭》primary。",
+        "C124给年干时可按六干星宫锚点布全九星；这是统宗动态层，不改写紫庭静态九宫表。",
+        "三宫天冲吉凶异文继续并列，不因C124加入而静默统一。"
+      ]
     },
     {
       "key": "wenchang_nine_stars",
