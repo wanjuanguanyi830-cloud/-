@@ -3,6 +3,8 @@ from pathlib import Path
 
 from kintaiyi.taiyi_core_chain import (
     l0_to_g7_from_historical_year,
+    year_count_from_accumulated_year,
+    year_count_from_historical_year,
     g1_to_g7_from_accumulated_year,
     g2_to_g7_from_ju,
     g3_to_g7_from_ju,
@@ -241,3 +243,45 @@ def test_l0_to_g7_long_short_epochs_land_same_five_zi_ju():
             == data["five_zi_from_short"]["local_ju"]
             == data["local_ju"]
         )
+
+
+
+def test_source_specific_year_count_is_fixed_yang():
+    data = year_count_from_accumulated_year(
+        accumulated_year=1_937_281,
+    )
+    assert data["count_type"] == "岁计"
+    assert data["dun"] == "阳"
+    assert data["taisui_ganzhi"] == "甲子"
+    assert data["local_ju"] == 49
+
+
+def test_source_specific_historical_year_matches_low_level_yang_entry():
+    strict = year_count_from_historical_year(historical_year=724)
+    low = l0_to_g7_from_historical_year(
+        historical_year=724,
+        dun="阳",
+    )
+    for key in (
+        "taiyi_palace",
+        "wenchang_sector",
+        "shiji_sector",
+        "host_calc",
+        "guest_calc",
+        "host_big_general_palace",
+        "guest_big_general_palace",
+    ):
+        assert strict[key] == low[key]
+    assert strict["dun"] == "阳"
+
+
+def test_low_level_historical_year_yin_remains_research_compatibility_only():
+    low = l0_to_g7_from_historical_year(
+        historical_year=724,
+        dun="阴",
+    )
+    strict = year_count_from_historical_year(historical_year=724)
+    assert low["dun"] == "阴"
+    assert strict["dun"] == "阳"
+    assert "低层" in low["policy"]
+    assert "正式岁计" in strict["policy"]
