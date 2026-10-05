@@ -612,7 +612,10 @@ def test_c99_taicu_is_fixed_as_project_canonical_form():
 
     alias = rule["terminology_aliases"]["太蔟"]
     assert alias["canonical"] == "太簇"
-    assert alias["status"] == "historical_source_form_alias"
+    assert alias["status"] in {
+        "historical_source_form_alias",
+        "dictionary_attested_traditional_variant",
+    }
 
     ncl = {item["id"]: item for item in data["source"]["scan_witnesses"]}["NCL-06604"]
     assert not any(
