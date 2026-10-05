@@ -128,7 +128,7 @@ pan = build_pan(moment, count_type="岁计")
 
 只有 source record、来源归属待证、正文待取得的规则不得因为进入总库就变成算法。
 
-《景祐太乙福应经》JF4M-01..11 当前已全部有独立 runtime，可按 rule_id 调用；但 JF4M-02/07/10 仍保留疑字或扫描待核字段，因此“可执行”不等于“来源文本已完全无 pending”。
+《景祐太乙福应经》JF4M-01..11 当前已全部有独立 runtime，可按 rule_id 调用；当前仅 JF4M-02“大小将不相开”的技术义仍待扫描/异本核定。JF4M-07/10 的当前转录层已收口。
 
 对于仍无 exact runtime 的 source-record-only / attribution-pending 条目，`describe_rule()` 仍可用于显示规则和来源说明，而 `calculate_rule()` 会拒绝执行。
 
