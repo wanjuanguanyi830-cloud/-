@@ -34,8 +34,8 @@ def test_c50_partial_bundle_preserves_missing_evidence_instead_of_inventing_fina
     assert result["rule_id"] == "C50-LISHU-EVIDENCE"
     assert result["source_profile"] == "tongzong_volume10_lishu_evidence"
     assert result["enthronement_ganzhi_numbers"]["used_as_final_lifespan_formula"] is False
-    assert result["final_lifespan"] is None
-    assert result["status"] == "partial"
+    assert result["final_lifespan_years"] is None
+    assert result["status"] == "evidence_bundle_partial"
     assert any("厄会" in item for item in result["pending"])
     assert any("太游" in item for item in result["pending"])
     assert any("小游" in item for item in result["pending"])
