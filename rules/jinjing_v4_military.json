@@ -7,7 +7,37 @@
     "volume": 4,
     "profile": "jinjing_siku_volume4",
     "canonical_order": "正文小标题顺序",
-    "note": "目录标题与正文小标题存在若干异文；本规则表以正文小标题为 canonical，目录写法保存在 toc_aliases。"
+    "note": "目录标题与正文小标题存在若干异文；本规则表以正文小标题为 canonical，目录写法保存在 toc_aliases。",
+    "scan_witnesses": [
+      {
+        "id": "CADAL06056494",
+        "holding": "浙江大学图书馆",
+        "carrier": "四库全书本《太乙金镜式经》卷一~卷四",
+        "pages": 144,
+        "status": "scan_identified_page_locators_pending"
+      },
+      {
+        "id": "NCL-06604",
+        "holding": "国立中央图书馆/国家图书馆（台湾）",
+        "carrier": "明钞本《太乙金镜式经》十卷四册",
+        "pages": 124,
+        "status": "independent_manuscript_witness_scan_identified"
+      }
+    ],
+    "order_collation": {
+      "siku_toc": "目录列“推太乙风云飞鸟助战法”在“推奇兵伏兵法”之前。",
+      "siku_body": "正文实际先“推奇伏法”，后“推太乙风云飞鸟助战法”。",
+      "canonical_policy": "J4M 编号继续按正文小标题出现顺序，故 J4M-10=推奇伏法，J4M-11=推太乙风云飞鸟助战法。"
+    },
+    "volume_numbering_variants": [
+      {
+        "witness": "中国哲学书电子化计划另一《太乙金镜式经》转录（chapter 791210）",
+        "label": "卷三",
+        "content_relation": "含掩迫关格等格局后接三门、五将及本组军事推法",
+        "status": "unresolved_edition_or_transcription_numbering_variant",
+        "canonical_override": false
+      }
+    ]
   },
   "separation_policy": [
     "本表只记录四库本《太乙金镜式经》卷四十二法，不自动并入《太乙统宗宝鉴》卷五或旧代码同名函数。",
