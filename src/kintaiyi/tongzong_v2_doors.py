@@ -15,6 +15,7 @@ from typing import Any
 
 from .jinjing_eight_door_overlay import duty_door_overlay, open_door_overlay
 from .taiyi_rules import position, sector_to_nine_palace
+from .taiyi_generals import host_guest_generals
 
 SOURCE_PROFILE = "tongzong_volume2_eight_door_readiness"
 SOURCE_SCOPE = "太乙统宗宝鉴_卷二_明太乙八门通变术"
@@ -211,4 +212,40 @@ def three_readiness_bundle(
             else None
         ),
         "policy": "太乙门具、主门具、客门具是三张不同锚点门盘；all_three_ready仅为整合字段。",
+    }
+
+
+
+def door_readiness_from_calcs(
+    *,
+    host_calc: int,
+    guest_calc: int,
+    taiyi_palace: int,
+    tianmu: Any,
+    wenchang: Any,
+    shiji: Any,
+) -> dict[str, Any]:
+    """G7算数直接接入《统宗》卷二太乙/主/客三套门具。"""
+    generals = host_guest_generals(host_calc, guest_calc)
+    bundle = three_readiness_bundle(
+        taiyi_palace=taiyi_palace,
+        tianmu=tianmu,
+        host_big_palace=generals["host"]["big_general_palace"],
+        wenchang=wenchang,
+        guest_big_palace=generals["guest"]["big_general_palace"],
+        shiji=shiji,
+    )
+    return {
+        "rule_id": "CORE-G7-TZ2-DOOR-READINESS",
+        "source_profile": "cross_layer_g7_to_tongzong_v2_doors",
+        "host_calc": host_calc,
+        "guest_calc": guest_calc,
+        "generals": generals,
+        "doors": bundle,
+        "host_blocked": generals["host"]["blocked"],
+        "guest_blocked": generals["guest"]["blocked"],
+        "policy": (
+            "先由G7算数定主客大小将；杜塞方不生成大将门盘。"
+            "太乙门具仍可独立计算，主/客门具分别依各自大将宫。"
+        ),
     }
