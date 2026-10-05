@@ -82,9 +82,17 @@ def leigong(taiyi, home_general=None, home_vassal=None, away_general=None, away_
 
 
 def general_conflict(home_general, away_general, home_vassal=None, *, xing_pairs=None):
-    """已确认克关系直接算；刑只接受独立校勘后显式提供的宫位对。"""
+    """T7-06 canonical only executes the source-supported five-element 克 relation.
+
+    xing_pairs is retained as an explicit compatibility extension. The three
+    checked witnesses do not supply an independent general-palace 刑 mapping, and
+    the Siku parallel clause abbreviates the small-general case to 克. Therefore
+    caller-supplied 刑 pairs are reported separately and never alter the canonical
+    severe/verdict fields.
+    """
     enemy_wx = palace_element(away_general)
     events = []
+    external_xing_events = []
     targets = (("home_general", home_general), ("home_vassal", home_vassal))
     for target, palace in targets:
         if palace is not None and CONTROLS[enemy_wx] == palace_element(palace):
@@ -94,27 +102,30 @@ def general_conflict(home_general, away_general, home_vassal=None, *, xing_pairs
             and xing_pairs is not None
             and (away_general, palace) in xing_pairs
         ):
-            events.append({"relation": "刑", "target": target})
+            external_xing_events.append({
+                "relation": "刑",
+                "target": target,
+                "source_role": "explicit_external_extension",
+            })
     return {
         "severe": bool(events),
         "events": events,
         "verdict": "出战必死" if events else None,
+        "canonical_relation": "五行克",
         "xing_evidence_status": (
-            "explicit_collated_pairs"
+            "explicit_external_extension_not_canonical"
             if xing_pairs is not None
-            else "source_mapping_unresolved"
+            else "no_independent_xing_operator_from_source"
         ),
-        "pending": (
-            [
-                "白龙得云本条未见可执行将宫刑映射；"
-                "不得套用通用地支三刑或其他九宫相刑表"
-            ]
-            if xing_pairs is None
-            else []
+        "external_xing_events": external_xing_events,
+        "external_extension_severe": bool(external_xing_events),
+        "pending": [],
+        "source_interpretation": (
+            "三源均无独立将宫刑表；四库本大将句用‘刑克’，"
+            "平行小将句简作‘克小将亦然’，故canonical仅执行九宫五行克。"
         ),
         "collation_record": "sources/t7-06-white-dragon-xing-collation.md",
     }
-
 
 def dragon(taiyi, home_general=None, home_vassal=None, away_general=None, away_vassal=None, *, xing_pairs=None):
     data = _generals(taiyi, home_general, home_vassal, away_general, away_vassal)
@@ -129,7 +140,7 @@ def dragon(taiyi, home_general=None, home_vassal=None, away_general=None, away_v
         for side, conflict in conflicts.items():
             if conflict["severe"]:
                 data["generals"][side + "_general"]["verdict"] = conflict["verdict"]
-    return result("T7-06", **data, conflicts=conflicts, priority="严重刑克优先于乘气")
+    return result("T7-06", **data, conflicts=conflicts, priority="五行克严重条件优先于乘气；外部刑扩展不改写canonical判定")
 
 
 def returnarmy(ag_num=None, *, enemy_arrival_taiyi=None, home_general=None, away_general=None):
