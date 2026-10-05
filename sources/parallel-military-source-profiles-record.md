@@ -48,37 +48,29 @@
 
 - V17-D1
 
-当前 source-specific runtime 共20条：
+当前 canonical source rules 已全部实现：
 
 卷十五：
-- V15-02 五阵置旗
-- V15-03 出兵称神
-- V15-04 陈兵出乡
-- V15-05 选将
-- V15-06 教兵
-- V15-09 五音考风
-- V15-10 五音观风察将
-- V15-12 风从八卦
-- V15-13 云气逆顺
+- V15-01..14 全部 source-specific runtime
 
 卷十七：
-- V17-01..11 全部已有 C26/C27/C28 source-specific runtime
+- V17-01..11 全部 source-specific runtime
 
-仍为 source_rule_catalog_only：
-- V15-01 奇兵伏兵
-- V15-07 随地制变
-- V15-08 分合用兵
-- V15-11 安营置阵
-- V15-14 军势胜负
+其中 V15-01 / 07 / 08 / 11 / 14 由 `src/kintaiyi/tongzong_v15_remaining.py` 以 source-limited 方式补齐。
+
+这五条的纠偏重点：
+- V15-01 不把示例局中的具体伏兵时支提升为普遍规则；
+- V15-07 地形宜阵与主客五行相制分栏；
+- V15-08 删除旧 reference code 中来源未载的三门五将、将宫同宫条件；
+- V15-11 不用宫号大小推二目左右，改为显式结构条件；
+- V15-14 只消费真实军势/风云观察，不用主客算长短，也不在无观测时补“必胜”。
 
 另有 derived runtime：
 - V17-D1：C32 `cross_volume_helpers.build_guxu_cross_volume_helper`
 
 V17-D1 不是卷十七 canonical source rule。
 
-注意：
-
-reference_function 仅记录旧综合层函数名；是否现行独立 runtime 以 terminology 中的 implementation_status/runtime 与 C23-C28 catalog 为准。
+reference_function 仅记录旧综合层函数名，不再作为实现状态判据。
 
 ## 三、与《金镜》/C8 的边界
 
