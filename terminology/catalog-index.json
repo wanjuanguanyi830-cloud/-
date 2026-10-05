@@ -176,9 +176,10 @@
       "catalog_id": "taiyi-jingyou-fuying-v4-military-terminology-v1",
       "scope": "source_sensitive_jingyou_fuying_volume4_military",
       "contains": [
-        "JF4M-01..11 福应经卷四军事source-specific rules，全部有独立runtime",
-        "与J4M逐条parallel crosswalk，禁止runtime替代",
-        "JF4M-02“大小将不相开”技术义仍待扫描/异本核定；JF4M-07/10当前转录层已收口"
+        "JF4M-01..11 福应经卷四军事，全部source-specific runtime",
+        "JF4M-07地形表与JF4M-10风云飞鸟观测句已按当前卷四转录结构化",
+        "JF4M-02‘大小将不相开’技术义仍保留pending",
+        "与J4M逐条parallel crosswalk，禁止runtime替代"
       ]
     },
     {
