@@ -1,4 +1,4 @@
-"""C101 小游太乙所在：金镜 / 统宗 source-specific profiles。
+"""C103 小游太乙所在：金镜 / 统宗 source-specific profiles。
 
 共同稳定核心：
 - 小周24；
@@ -22,13 +22,13 @@ from typing import Any
 
 from .taiyi_rules import integer
 
-C101_VERSION = "taiyi-c101-xiaoyou-position-source-profiles-v1"
+C103_VERSION = "taiyi-c103-xiaoyou-position-source-profiles-v1"
 
 PALACE_PATH = (1, 2, 3, 4, 6, 7, 8, 9)
 
 PROFILES = {
     "jinjing": {
-        "rule_id": "C101-XIAOYOU-JINJING",
+        "rule_id": "C103-XIAOYOU-JINJING",
         "source_profile": "jinjing_volume5_xiaoyou_position",
         "work": "太乙金镜式经",
         "section": "推小游太乙积年法",
@@ -39,7 +39,7 @@ PROFILES = {
         "status": "primary_direct",
     },
     "tongzong": {
-        "rule_id": "C101-XIAOYOU-TONGZONG",
+        "rule_id": "C103-XIAOYOU-TONGZONG",
         "source_profile": "tongzong_volume7_xiaoyou_position",
         "work": "太乙统宗宝鉴",
         "section": "明小游太乙所在术",
@@ -86,12 +86,12 @@ RECENT_WORK_RECOVERY = {
 
 BOUNDARY = {
     "c47_relation": (
-        "C47是小游轨运内外卦/重卦；C101是小游太乙所在宫。"
+        "C47是小游轨运内外卦/重卦；C103是小游太乙所在宫。"
         "二者共享部分24/3节律不等于同一术层。"
     ),
     "auto_conjunction_omens": False,
     "auto_three_bases_relations": False,
-    "policy": "C101只求位置；C91等关系层仍须显式same_palace证据。",
+    "policy": "C103只求位置；C91等关系层仍须显式same_palace证据。",
 }
 
 
@@ -127,7 +127,7 @@ def xiaoyou_position(
 
     return {
         "schema_version": "1.0",
-        "canonical": C101_VERSION,
+        "canonical": C103_VERSION,
         "rule_id": spec["rule_id"],
         "source_profile": spec["source_profile"],
         "profile_key": source_profile,
@@ -156,9 +156,9 @@ def xiaoyou_position(
     }
 
 
-def c101_catalog() -> dict[str, Any]:
+def c103_catalog() -> dict[str, Any]:
     return {
-        "canonical": C101_VERSION,
+        "canonical": C103_VERSION,
         "profiles": copy.deepcopy(PROFILES),
         "path": list(PALACE_PATH),
         "excluded_palace": 5,
