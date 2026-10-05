@@ -276,3 +276,15 @@ def test_j4m12_record_forbids_symmetry_completion_and_separates_subject():
     assert "禁止补“大胜”" in constraints["west_white"]
     assert "subject=客" in constraints["north_red"]
     assert "云气所在阵与断语主体必须分栏" in constraints["cloud_bearer_vs_verdict_subject"]
+
+
+def test_j4m11_record_requires_explicit_observation_type_and_exact_action_wording():
+    _, rules = _rules()
+    rule = {item["id"]: item for item in rules}["J4M-11"]
+    assert rule["collation_status"] == "source_event_schema_audited_strict_wording"
+    constraints = rule["canonical_constraints"]
+    assert "必须显式" in constraints["explicit_phenomenon_required"]
+    assert "迫击大将宫" in constraints["no_synonym_expansion"]
+    assert "冲击大将宫" in constraints["no_synonym_expansion"]
+    assert "不生成独立胜负" in constraints["noise_event"]
+    assert "JF4M" in constraints["jingyou_conflict"]
