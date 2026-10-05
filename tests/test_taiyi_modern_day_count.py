@@ -62,3 +62,15 @@ def test_day_count_enters_day_profile_fixed_yang():
     )
     assert data["result"]["count_type"] == "日计"
     assert data["result"]["dun"] == "阳"
+
+
+
+def test_day_anchor_distinguishes_primary_number_from_calendar_reconstruction():
+    data = modern_day_count(
+        datetime(2026, 3, 24, 12, tzinfo=TZ)
+    )
+    arithmetic = data["arithmetic"]
+    assert arithmetic["anchor_numeric_source_status"] == "primary_source_direct"
+    recon = arithmetic["anchor_calendar_reconstruction"]
+    assert recon["status"] == "modern_historical_calendar_reconstruction"
+    assert recon["not_primary_source_fact"] is True
