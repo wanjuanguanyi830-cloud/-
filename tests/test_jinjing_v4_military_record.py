@@ -170,7 +170,11 @@ def test_j4m_source_records_scan_witnesses_and_body_order_priority():
     data, rules = _rules()
     witnesses = {item["id"]: item for item in data["source"]["scan_witnesses"]}
     assert witnesses["CADAL06056494"]["status"] == "scan_page_locators_verified_for_j4m_01_12"
-    assert witnesses["NCL-06604"]["status"] == "independent_manuscript_witness_scan_identified"
+    assert witnesses["NCL-06604"]["status"] == (
+        "independent_manuscript_witness_metadata_verified_page_locators_pending"
+    )
+    assert "National Central Library" in witnesses["NCL-06604"]["metadata_verified"]
+    assert "不分配 J4M 页码" in witnesses["NCL-06604"]["locator_policy"]
 
     order = data["source"]["order_collation"]
     assert "风云飞鸟助战法" in order["siku_toc"]
