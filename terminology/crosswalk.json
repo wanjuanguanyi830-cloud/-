@@ -796,7 +796,13 @@
           "key": "taiyi_nine_stars",
           "term": "太乙九星",
           "source": "太乙紫庭经·释九宫所值九星",
-          "runtime": "kintaiyi.zitingjing_primary.taiyi_nine_stars_primary"
+          "runtime": "kintaiyi.zitingjing_primary.taiyi_nine_stars_primary",
+          "source_specific_profile": {
+            "rule_id": "C124-TONGZONG-TAIYI-NINE-STARS",
+            "profile": "tongzong_volume6_taiyi_nine_stars",
+            "runtime": "kintaiyi.taiyi_nine_stars_tongzong.taiyi_nine_stars_tongzong",
+            "cycle": "900/90/10"
+          }
         },
         {
           "catalog": "terminology/zitingjing.json",
@@ -810,9 +816,10 @@
       "relation": "shared_nine_star_label_distinct_systems_and_source_boundaries",
       "forbidden_merge": [
         "太乙九星是天蓬、天芮、天冲、天辅、天禽、天心、天柱、天任、天英；文昌九星是文昌、玄凤、明维、阴德、招摇、华明、玄武、玄冥、维明，不得因都称九星而合表。",
-        "太乙九星《紫庭经》静态九宫表与C70《统宗》文昌九星30年直事周期属于不同规则层，不共享周期公式。",
+        "《紫庭经》太乙九星静态九宫primary与C124《统宗》太乙九星900/90/10动态profile分层；可互校星名/底表，但不得静默移植周期。",
+        "C124太乙九星与C70文昌九星是两套不同动态法：前者900/90/10并可按年干布全九星，后者2700/270/30且当前只支持直事星落宫/分野。",
         "《紫庭秘诀》文昌九星附篇正文未取得前，C70不得升级为紫庭canonical。",
-        "C70当前只支持直事星及其年干建禄落宫/分野，不得借太乙九星完整动态排布反推文昌九星其余八星。"
+        "C70不得借C124太乙九星的全动态排布反推文昌九星其余八星。"
       ]
     }
   ]
