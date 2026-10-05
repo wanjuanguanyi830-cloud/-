@@ -14,37 +14,85 @@
       "path": "terminology/common-core.json",
       "catalog_id": "taiyi-common-core-terminology-v1",
       "scope": "canonical_common_core",
-      "contains": ["太乙九宫", "十六辰", "十六神", "吕申加位", "大神", "五态", "十二长生", "固有五行/所在宫五行"]
+      "contains": [
+        "太乙九宫",
+        "十六辰",
+        "十六神",
+        "吕申加位",
+        "大神",
+        "五态",
+        "十二长生",
+        "固有五行/所在宫五行"
+      ]
     },
     {
       "path": "terminology/t7-seven-methods.json",
       "catalog_id": "t7-seven-methods-terminology-v1",
       "scope": "canonical_seven_methods",
-      "contains": ["T7-01..07 七术"]
+      "contains": [
+        "T7-01..07 七术"
+      ]
     },
     {
       "path": "terminology/d8-eight-divinations.json",
       "catalog_id": "d8-eight-divinations-terminology-v1",
       "scope": "canonical_eight_divinations",
-      "contains": ["D8-01..08 八占", "三才", "五音", "孤单", "阴阳厄会"]
+      "contains": [
+        "D8-01..08 八占",
+        "三才",
+        "五音",
+        "孤单",
+        "阴阳厄会"
+      ]
     },
     {
       "path": "terminology/patterns.json",
       "catalog_id": "taiyi-pattern-terminology-v1",
       "scope": "source_sensitive_patterns",
-      "contains": ["金镜格局术语", "统宗卷四并列profile"]
+      "contains": [
+        "金镜格局术语",
+        "统宗卷四并列profile"
+      ]
     },
     {
       "path": "terminology/military-p0.json",
       "catalog_id": "taiyi-military-p0-terminology-v1",
       "scope": "source_sensitive_military_p0",
-      "contains": ["三门", "五将", "主客相关法", "CORE-WUJIANG-READY边界"]
+      "contains": [
+        "三门",
+        "五将",
+        "主客相关法",
+        "CORE-WUJIANG-READY边界"
+      ]
     },
     {
       "path": "terminology/cycles.json",
       "catalog_id": "taiyi-cycle-terminology-v1",
       "scope": "canonical_and_source_specific_cycles",
-      "contains": ["三基", "五福", "大游", "大游天目", "小游", "四太乙", "阳九", "百六", "太游行限"]
+      "contains": [
+        "三基",
+        "五福",
+        "大游",
+        "大游天目",
+        "小游",
+        "四太乙",
+        "阳九",
+        "百六",
+        "太游行限"
+      ]
+    },
+    {
+      "path": "terminology/zitingjing.json",
+      "catalog_id": "taiyi-zitingjing-terminology-v1",
+      "scope": "source_sensitive_zitingjing",
+      "contains": [
+        "太乙九星",
+        "文昌九星",
+        "文昌变化",
+        "始击变化",
+        "三旗行宫",
+        "九宫贵神"
+      ]
     }
   ],
   "migration_assets": [
