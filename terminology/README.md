@@ -662,6 +662,6 @@ JF4M-01..11 当前全部标记为 `source_record_only`：保留来源术名、�
 - 卷十七：V17-01..11，共11条军事占断 source rules；
 - V17-D1：跨卷孤虚对照 derived helper，不是卷十七 canonical source rule。
 
-当前只有 C23 已明确实现的 V15-02..06 登记独立 runtime：五阵置旗、出兵称神、陈兵出乡、选将、教兵。其余条目仅登记 source rule 与 `reference_function`，**reference function 名不等于独立 runtime 已实现**。
+当前 source-specific runtime 只有 C23 明确实现的 V15-02..06：五阵置旗、出兵称神、陈兵出乡、选将、教兵。另有 V17-D1 由 C32 实现为**跨卷 derived helper runtime**，它不是卷十七 canonical source rule。其余条目仅登记 source rule 与 `reference_function`，**reference function 名不等于独立 runtime 已实现**。
 
 跨层边界：V15-01 奇兵伏兵 ≠ J4M-10 奇伏；V15-04 陈兵出乡 ≠ J4M-06 陈兵向背；V15-07 随地制变不得吞并 J4M-07/08；V15-14 综合军势不得覆盖 J4M-11/12 外部观测；V17-02 敌国动静也不是 C8-L3 主客动静。
