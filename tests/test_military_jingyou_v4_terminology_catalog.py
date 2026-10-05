@@ -74,7 +74,8 @@ def test_jf4m_high_risk_source_differences_remain_explicit():
     assert by_id["JF4M-09"]["canonical_data"]["inner_palaces_help_host"] == [1, 8, 3, 4]
     assert any("主人败" in text for text in by_id["JF4M-10"]["notable_readings"])
     assert "奇兵必从大杀之地" in by_id["JF4M-11"]["canonical_summary"]
-    assert by_id["JF4M-02"]["textual_uncertainty"]
+    assert by_id["JF4M-02"]["textual_uncertainty"] == []
+    assert by_id["JF4M-02"]["canonical_data"]["normalized_semantics"] == "四将无同宫之关"
 
 
 def test_rules_json_registers_jf4m_runtime_coverage():
