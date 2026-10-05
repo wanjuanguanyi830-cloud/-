@@ -174,6 +174,36 @@ def validate_pan_v2(payload: dict[str, Any]) -> dict[str, Any]:
             if key not in analysis:
                 errors.append(f"缺analysis.{key}")
 
+    meta = payload.get("meta")
+    compat = payload.get("compat")
+    calendar = payload.get("calendar")
+    is_modern_production = (
+        isinstance(meta, dict)
+        and meta.get("calendar_mode") == "production_modern"
+    ) or (
+        isinstance(compat, dict)
+        and compat.get("modern_production") is True
+    )
+    if is_modern_production:
+        if not isinstance(calendar, dict):
+            errors.append("modern production缺calendar")
+        else:
+            if "taiyi_year" not in calendar:
+                errors.append("modern production缺calendar.taiyi_year")
+            policy = calendar.get("year_boundary_policy")
+            if not isinstance(policy, dict):
+                errors.append("modern production缺calendar.year_boundary_policy")
+            else:
+                if policy.get("unique_boundary") != "真实天文冬至交节瞬间":
+                    errors.append("modern production太乙岁界必须为真实天文冬至交节瞬间")
+                ignored = policy.get("ignored_boundaries")
+                if ignored != ["元旦", "春节", "立春", "春分"]:
+                    errors.append("modern production须明确排除元旦/春节/立春/春分换年")
+                if "taiyi_year_start_utc" not in policy:
+                    errors.append("modern production缺当前太乙岁冬至起点")
+                if "next_taiyi_year_start_utc" not in policy:
+                    errors.append("modern production缺下一太乙岁冬至起点")
+
     try:
         json.dumps(_json_safe(payload), ensure_ascii=False)
     except (TypeError, ValueError) as exc:
