@@ -22,7 +22,7 @@ def test_catalog_index_stable_catalogs_resolve_and_match_ids():
         ids.append(item["catalog_id"])
 
     assert len(ids) == len(set(ids))
-    assert len(ids) == 14
+    assert len(ids) == 15
 
 
 def test_catalog_index_separates_stable_migration_and_supporting_assets():
@@ -68,4 +68,5 @@ def test_stable_catalogs_cover_current_core_workstreams():
         "terminology/ten-essences.json",
         "terminology/military-jinjing-v4.json",
         "terminology/military-jingyou-v4.json",
+        "terminology/military-tongzong-v15-v17.json",
     }
