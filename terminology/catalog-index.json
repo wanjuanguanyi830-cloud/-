@@ -180,6 +180,17 @@
         "与J4M逐条parallel crosswalk",
         "无独立runtime"
       ]
+    },
+    {
+      "path": "terminology/military-tongzong-v15-v17.json",
+      "catalog_id": "taiyi-tongzong-v15-v17-military-terminology-v1",
+      "scope": "source_sensitive_tongzong_volume15_volume17_military",
+      "contains": [
+        "V15-01..14 卷十五军事应用",
+        "V17-01..11 卷十七军事占断",
+        "V17-D1 跨卷derived helper",
+        "V15-02..06独立runtime"
+      ]
     }
   ],
   "migration_assets": [
