@@ -88,6 +88,13 @@ TONGZONG_NGJ_WITNESS = {
         "large_cycle_years": 2700,
         "internal_conflict": False,
     },
+    "source_specific_runtime": {
+        "rule_id": "C70-TONGZONG-WENCHANG-NINE-STARS",
+        "module": "wenchang_nine_stars_tongzong",
+        "available": True,
+        "cross_source_canonical": False,
+        "zitingjing_primary_result": False,
+    },
 }
 
 
@@ -106,6 +113,13 @@ def wenchang_nine_stars_collation_witnesses() -> dict[str, Any]:
         "primary_evidence_level": "catalog_attested_text_pending",
         "primary_result": None,
         "canonical_selected": None,
+        "source_specific_runtimes": [
+            {
+                "source_id": "tongzong_volume6_ngj",
+                "rule_id": "C70-TONGZONG-WENCHANG-NINE-STARS",
+                "cross_source_canonical": False,
+            }
+        ],
         "witnesses": witnesses,
         "variant_conflicts": {
             "star_names": {
