@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.0",
+  "catalog_id": "taiyi-relations-terminology-v1",
+  "scope": "explicit_relation_layers",
+  "status": "repository_relation_terminology_catalog",
+  "legacy_terminology_json_migrated": false,
+  "shared_catalogs": [
+    "terminology/cycles.json",
+    "terminology/common-core.json"
+  ],
+  "global_policy": [
+    "关系层不自动读取位置层制造同宫/同域；关系证据必须显式输入。",
+    "同一对象在不同来源章节的断语可分层保存，不揉成单一伪原文。",
+    "未在直接来源列出的pair不按对称、类推或五行常识补造。",
+    "位置、关系、灾应三层分离；位置相同不等于自动应用古籍断语。"
+  ],
+  "entries": [
+    {
+      "key": "three_spirit_same_palace",
+      "preferred_term": "三神同宫关系",
+      "aliases": ["天乙地乙直符同宫", "三神同宫"],
+      "term_type": "explicit_same_palace_relation",
+      "rule_id": "C65-THREE-SPIRIT-SAME-PALACE",
+      "source_profile": "tongzong_volume7_three_spirit_conjunctions",
+      "runtime": "kintaiyi.state_spirit_conjunctions.same_palace_omen",
+      "position_dependency": "C64",
+      "auto_position_lookup_used": false,
+      "pairs": [
+        ["天乙", "地乙"], ["天乙", "直符"], ["天乙", "四神"], ["天乙", "大游"], ["天乙", "小游"],
+        ["地乙", "直符"], ["地乙", "四神"], ["地乙", "大游"], ["地乙", "小游"],
+        ["直符", "四神"], ["直符", "大游"], ["直符", "小游"]
+      ],
+      "name_policy": {"直符": "canonical", "值符": "explicit_legacy_alias_only"},
+      "boundary_notes": ["未列pair不类推。", "same_palace必须显式给出。"]
+    },
+    {
+      "key": "three_bases_wufu_same_palace",
+      "preferred_term": "三基五福同宫关系",
+      "aliases": ["三基五福同宫", "君臣民基五福同宫"],
+      "term_type": "explicit_same_palace_relation",
+      "rule_id": "C74-THREE-BASES-WUFU-SAME-PALACE",
+      "source_profile": "tongzong_three_bases_wufu_relations",
+      "runtime": "kintaiyi.three_bases_wufu_conjunctions.same_palace_relation",
+      "position_dependencies": ["C66", "C67"],
+      "auto_position_lookup_used": false,
+      "pairs": [
+        ["君基", "臣基"], ["君基", "民基"], ["臣基", "民基"],
+        ["君基", "五福"], ["臣基", "五福"], ["民基", "五福"]
+      ],
+      "extra_input": {
+        "initial_conjunction": "只用于含五福pair；同宫初交附加断语必须显式确认"
+      },
+      "boundary_notes": ["五福与君基相冲不是同宫关系，不在C74自动应用。"]
+    },
+    {
+      "key": "three_bases_three_spirits",
+      "preferred_term": "三基三神同宫关系",
+      "aliases": ["三基与天乙地乙直符", "三基三神关系"],
+      "term_type": "explicit_same_palace_relation",
+      "rule_id": "C90-THREE-BASES-THREE-SPIRITS",
+      "source_profile": "tongzong_three_bases_three_spirits_relations",
+      "runtime": "kintaiyi.three_bases_three_spirits_relations.three_base_spirit_relation",
+      "position_dependencies": ["C66", "C64"],
+      "auto_position_lookup_used": false,
+      "bases": ["君基", "臣基", "民基"],
+      "spirits": ["天乙", "地乙", "直符"],
+      "pair_count": 9,
+      "structure_policy": {
+        "君基": "保留原文行为条件分支，未选conduct branch时不压成单一吉凶",
+        "臣基": "直接灾应",
+        "民基": "直接灾应"
+      },
+      "name_policy": {"直符": "canonical", "值符": "explicit_legacy_alias_only"}
+    },
+    {
+      "key": "three_bases_other_spirits",
+      "preferred_term": "三基四神大小游同宫关系",
+      "aliases": ["三基与四神大游小游", "三基其他神同宫关系"],
+      "term_type": "explicit_same_palace_relation",
+      "rule_id": "C91-THREE-BASES-OTHER-SPIRITS",
+      "source_profile": "tongzong_three_bases_other_relations",
+      "runtime": "kintaiyi.three_bases_other_spirits_relations.three_base_other_relation",
+      "position_dependencies": ["C66", "C92", "C103", "C107"],
+      "auto_position_lookup_used": false,
+      "bases": ["君基", "臣基", "民基"],
+      "counterparts": ["四神", "大游", "小游"],
+      "pair_count": 9,
+      "structure_policy": {
+        "君基×四神": "条件治理",
+        "君基×大游": "条件应对",
+        "君基×小游": "争象与规定应对",
+        "臣基/民基": "直接灾应"
+      }
+    },
+    {
+      "key": "wufu_four_taiyi_domain",
+      "preferred_term": "五福四太乙同域关系",
+      "aliases": ["五福与四太乙", "五福四太乙同宫", "五福四太乙同域"],
+      "term_type": "explicit_same_domain_interpretation",
+      "rule_id": "C94-WUFU-FOUR-TAIYI-DOMAIN-RELATION",
+      "source_profile": "tongzong_wufu_four_taiyi_element_sequence",
+      "runtime": "kintaiyi.wufu_four_taiyi_relations.wufu_four_taiyi_relation",
+      "interpretation_profile_required": "oct4_recovered_four_taiyi_elemental",
+      "coordinate_reference": "terminology/wufu_domains.json",
+      "auto_coordinate_lookup_used": false,
+      "counterparts": {
+        "天乙": {"element": "金", "effects": ["兵盗"]},
+        "地乙": {"element": "土", "effects": ["疫疠", "民灾"]},
+        "直符": {"element": "火", "effects": ["旱蝗"]},
+        "四神": {"element": "水", "effects": ["淋雨", "川溃"]}
+      },
+      "boundary_notes": [
+        "same_wufu_domain必须显式输入。",
+        "金土火水到四太乙的映射是最近工作解释并有来源序列支持，不冒充原文无歧义坐标公式。"
+      ]
+    },
+    {
+      "key": "wander_conjunctions",
+      "preferred_term": "五福四神大小游同宫关系",
+      "aliases": ["五福大游", "五福小游", "四神小游", "大游小游", "大小游同宫"],
+      "term_type": "recovered_explicit_same_palace_relations",
+      "rule_id": "C113-RECOVERED-WANDER-CONJUNCTIONS",
+      "source_profile": "tongzong_volume7_wander_conjunctions",
+      "runtime": "kintaiyi.wander_conjunctions.wander_conjunction_relation",
+      "auto_position_lookup_used": false,
+      "pairs": [
+        ["五福", "大游"],
+        ["五福", "小游"],
+        ["四神", "小游"],
+        ["大游", "小游"]
+      ],
+      "pair_structures": {
+        "五福×大游": "五福条与大游条分层保存",
+        "五福×小游": "必须显式virtue=True/False选择有德/失德",
+        "四神×小游": "直接灾应",
+        "大游×小游": "直接灾应"
+      },
+      "boundary_notes": ["不自动求具体对冲分野。", "已由C65/C90/C91/C94覆盖的pair不在C113重复实现。"]
+    }
+  ]
+}
