@@ -134,11 +134,11 @@ TAIYI_NINE_STARS_PRIMARY_CYCLE_EVIDENCE = {
     "rule_id": "C125-ZITING-TAIYI-NINE-STARS-CYCLE",
     "section": "释九宫所值九星",
     "url": "https://www.shidianguji.com/zh/book/SDZJ0646/chapter/1kg32q85u4tgl",
-    "direct_text_facts": [
-        "天九星之名，因为值符，以配九宫，十年一易。",
-        "开元十二年甲子岁积一百九十三万七千二百八十一算，周外存三十一算。",
-        "三十年后余一算，即天辅为值符。",
-        "甲子年加六甲，乙丑年加六乙。",
+    "normalized_facts": [
+        "九星按十年一换直符。",
+        "开元十二年原例积算为1937281，九星循环余31。",
+        "余31按天蓬、天芮、天冲各十年后，天辅为直符且入星第1年。",
+        "正文另记甲年、乙年分别加六甲、六乙；完整十干动态布星暂不由OCR残文外推。",
     ],
     "derived_cycle": {
         "years_per_star": 10,
@@ -198,9 +198,10 @@ def taiyi_nine_stars_primary_cycle(accumulated_count: int) -> dict[str, Any]:
 
 
 def taiyi_nine_stars_primary() -> dict[str, Any]:
-    """返回《太乙紫庭经》〈释九宫所值九星〉的第一层静态表。
+    """返回《太乙紫庭经》〈释九宫所值九星〉的静态九宫表。
 
-    不在这里实现后世卷次中的九十/三百六十年推步算法。
+    本篇另有十年一星的直符周期，已由 taiyi_nine_stars_primary_cycle 独立实现；
+    十干完整动态布星仍不从参校本反填。
     """
     return {
         "canonical": C19_VERSION,
