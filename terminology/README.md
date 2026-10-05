@@ -359,13 +359,13 @@
 六项固定分级：
 
 - 太乙九星：`direct_text_verified`；
-- 文昌九星：`catalog_attested_text_pending`；
+- 文昌九星：`prior_scan_confirmed_page_record_pending`；
 - 文昌变化：`direct_text_verified`；
 - 始击变化：`direct_text_verified`；
 - 三旗行宫：`project_attribution_unverified`；
 - 九宫贵神：`project_attribution_unverified`。
 
-只有前三个 `direct_text_verified` 项中的太乙九星、文昌变化、始击变化允许注入 `primary_result`；文昌九星虽有《太乙紫庭秘诀》目录证据，但直接正文未取得；三旗行宫与九宫贵神目前只有统宗卷十直接文本，不能反标为紫庭 canonical。
+只有 `direct_text_verified` 的太乙九星、文昌变化、始击变化允许注入 `primary_result`。文昌九星的研易楼明钞本此前已扫描且E盘仍存，但当前执行环境未重新挂载原扫描页/旧 `terminology.json`，所以仍禁止生成紫庭 primary runtime；旧 `kentang2017/kintaiyi` 九星代码又明确标注为《太乙统宗宝鉴》卷六来源，不能拿代码残留冒充研易楼本逐字见证。三旗行宫与九宫贵神目前只有统宗卷十直接文本，不能反标为紫庭 canonical。
 
 `terminology/zitingjing-migration-map.json` 继续作为旧本地术语库恢复资产，负责未来回填 old term id / manuscript form / source page 等；它不再承担当前稳定术语消费入口。
 
@@ -456,7 +456,8 @@ crosswalk 专门锁定“近名但不能合并”的高风险关系，例如：
 - D8-02 长短 ↔ C42 历数长短：名称相近，公式完全不同；
 - C36 阳九/百六 ↔ C38 太游行限 ↔ C43 厄会行限 ↔ C46 阴阳九厄：相关但不能互代；
 - C67 五福位置 ↔ C68 五福吉算：位置周期与1..45余数解释分层；
-- 紫庭文昌九星 primary pending ↔ C70 统宗卷六 runtime：同题异来源，不得反填；
+- 紫庭文昌九星原页待重新挂载 ↔ C70 统宗卷六 runtime：同题异来源，不得反填；
+- C125 紫庭太乙九星 90/10 直符周期 ↔ C124 统宗太乙九星 900/90/10 动态布星：局部周期一致但来源层和支持范围不同，不得合并；
 - C64/C66/C67/C92/C103/C107 位置层 ↔ C65/C74/C90/C91/C94/C113 关系层：位置相同不自动触发断语。
 
 另外新增 runtime reference 回归，逐条解析 stable catalog 中的 Python runtime/module/constant 引用，防止以后文件重命名后术语目录静默失效。
@@ -488,7 +489,14 @@ crosswalk 专门锁定“近名但不能合并”的高风险关系，例如：
 
 挂在 `zitingjing.json` 的 `wenchang_nine_stars` 条目下作为独立 source profile。
 
-它可按统宗卷六 NGJ 运行 30年一星 / 270小周 / 2700大周，并给直事星与年干落宫/分野；但紫庭附篇正文仍未取得，所以 C70 **不能**反填紫庭 primary。
+它可按统宗卷六 NGJ 运行 30年一星 / 270小周 / 2700大周，并给直事星与年干落宫/分野；研易楼本附篇此前虽已扫描，但当前原页/旧术语记录未重新挂载，所以 C70 **不能**反填紫庭 primary。
+
+
+### C124 / C125 太乙九星双来源层
+
+- **C125《紫庭经》主来源**：〈释九宫所值九星〉直接支持九星每星十年、九星合90年直符循环；开元十二年积1937281余31，得天辅直符第1年。当前只实现直符星与入星年数，不从OCR残文强推完整十干动态布星。
+- **C124《统宗》卷六 source profile**：900年大周、90年小周、10年一星，并有六甲伏宫、六乙九宫、六丙八宫等完整年干布星层。
+- 两层可互校“十年一星”和星序，但 C124 的900大周/完整十干布星不得静默移植进 C125；C125 的主来源身份也不得反向覆盖 C124 的统宗 profile。
 
 
 ## 十精 C52–C59 术语目录
