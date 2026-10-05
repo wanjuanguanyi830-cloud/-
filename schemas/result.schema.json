@@ -1,14 +1,30 @@
 {
-  "$schema":"https://json-schema.org/draft/2020-12/schema",
-  "$id":"https://example.invalid/taiyi/result.schema.json",
-  "title":"Taiyi structured calculation result",
-  "type":"object",
-  "properties":{
-    "schema_version":{"type":"string"},
-    "rule_id":{"type":"string"},
-    "source_profile":{"type":"string"},
-    "canonical":{"type":"string"},
-    "policy":{"type":"string"}
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/taiyi/result.schema.json",
+  "title": "Taiyi structured calculation result",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "rule_id": {
+      "type": "string"
+    },
+    "source_profile": {
+      "type": "string"
+    },
+    "canonical": {
+      "type": "string"
+    },
+    "policy": {
+      "type": "string"
+    },
+    "source_rule_id": {
+      "type": "string"
+    },
+    "registry_normalized_rule_id": {
+      "type": "boolean"
+    }
   },
-  "additionalProperties":true
+  "additionalProperties": true
 }
