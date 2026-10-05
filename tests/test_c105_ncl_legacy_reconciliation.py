@@ -35,3 +35,16 @@ def test_c105_reconciliation_keys_cover_reverified_ncl_terms():
     assert "推奇兵伏兵法" in by_key["j4m10_qibing_fubing_title"]["current_verified_evidence"]
     assert "主人刑/客刑" in by_key["j4m11_fengyun_feiniao"]["current_verified_evidence"]
     assert "大胜" in by_key["j4m12_yunqi"]["current_verified_evidence"]
+
+
+def test_c115_reconciliation_map_uses_full_j4m08_scan_evidence():
+    data = json.loads(MAP.read_text(encoding="utf-8"))
+    by_key = {item["key"]: item for item in data["entries"]}
+    j8 = by_key["j4m08_maoshan"]
+
+    assert data["schema_version"] == "1.1"
+    assert data["last_update"] == "C115"
+    assert j8["current_verification_cycle"] == "C115"
+    assert "连续核完 NCL J4M-08 正文" in j8["current_verified_evidence"]
+    assert "将不习兵五不当一" in j8["current_verified_evidence"]
+    assert j8["merge_key"] == ["witness_id", "rule_id", "concept=随地制变/矛鋋"]
