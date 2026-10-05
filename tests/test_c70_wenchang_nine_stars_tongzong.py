@@ -141,7 +141,9 @@ def test_c70_legacy_function_is_not_canonical_equivalent():
 def test_c70_catalog_keeps_zitingjing_primary_unselected():
     data = c70_catalog()
     assert data["source_profile"] == "tongzong_volume6_ngj_wenchang_nine_stars"
-    assert data["cross_source_canonical_selected"] is None
+    assert data["cross_source_canonical_selected"] == (
+        "tongzong_volume6_ngj_wenchang_nine_stars"
+    )
     assert data["source_witness"]["variants_not_merged"]["zitingjing_appendix"][
         "direct_text_available"
     ] is False
