@@ -16,22 +16,53 @@ def lijin(enemy_start_year):
 
 
 def lion(enemy_start_year):
+    """T7-02 狮子反掷。
+
+    《统宗》与《金钥匙》明言大神所临为破年；若落四维之方，则改用
+    第十八年。十六环顺四格使普通情形只落子卯午酉四正，对应起兵年
+    后第三年（含起年为第4年）；四维情形按古例取 +17。
+    """
     cycle_index, branch = sexagenary_year(enemy_start_year)
     qi = dashen_qi(branch)
-    sector = next((s for s, points in CORNER_SECTORS.items() if qi["position"] in points), None)
-    offset = 17 if sector else None
-    year = None if cycle_index is None or offset is None else STEMS[(cycle_index + offset) % 10] + BRANCHES[(cycle_index + offset) % 12]
-    return result("T7-02", dashen=qi, verdict="不破" if qi["state"] in ("旺", "相") else "合破",
-                  timing={"sector": sector, "year_number": 18 if sector else None,
-                          "offset": offset, "year": year,
-                          "candidate_branch": qi["position"] if sector is None else None},
-                  pending=[] if sector else ["普通落支唯一应期缺第二独立古籍实例"],
-                  source_variants=[
-                      "相关版本墓为易破",
-                      "《太乙金钥匙》补充：起兵年太乙杜塞则当年破；未并入四库canonical普通落支应期算法",
-                  ],
-                  collation_record="sources/t7-02-lion-collation.md")
-
+    sector = next(
+        (s for s, points in CORNER_SECTORS.items() if qi["position"] in points),
+        None,
+    )
+    offset = 17 if sector else 3
+    year_number = offset + 1
+    break_year_branch = BRANCHES[(BRANCHES.index(branch) + offset) % 12]
+    year = (
+        None
+        if cycle_index is None
+        else STEMS[(cycle_index + offset) % 10] + break_year_branch
+    )
+    return result(
+        "T7-02",
+        dashen=qi,
+        verdict="不破" if qi["state"] in ("旺", "相") else "合破",
+        timing={
+            "mode": "corner_18_year" if sector else "direct_break_year",
+            "source_marker": qi["position"],
+            "sector": sector,
+            "year_number": year_number,
+            "offset": offset,
+            "year": year,
+            "break_year_branch": break_year_branch,
+            # compatibility alias kept for older callers that consumed branch only
+            "candidate_branch": break_year_branch if sector is None else None,
+            "year_resolution": (
+                "full_ganzhi"
+                if cycle_index is not None
+                else "branch_only_input_no_stem"
+            ),
+        },
+        pending=[],
+        source_variants=[
+            "相关版本墓为易破",
+            "《太乙金钥匙》补充：起兵年太乙杜塞则当年破；未并入四库canonical普通应期算法",
+        ],
+        collation_record="sources/t7-02-lion-collation.md",
+    )
 
 def _cloud_general(palace):
     qi = dashen_qi(palace)
