@@ -3,6 +3,7 @@ import pytest
 from kintaiyi.legacy_schema import classify_legacy_field
 from kintaiyi.migration_audit import audit_legacy_snapshot
 from kintaiyi.jinjing_v4_military import fengyun_feiniao_zhuzhan
+from kintaiyi.jingyou_fuying_v4_military import weather_bird_support
 from kintaiyi.pan_adapter import attach_v2_to_snapshot
 from kintaiyi.source_profiles import (
     MILITARY_P0_CROSSWALK,
@@ -240,3 +241,44 @@ def test_jingyou_p0_profiles_are_allowed_but_never_merged_with_jinjing():
     assert data["three_doors"]["crosswalk"]["jingyou_rule_id"] == "JF4M-01"
     assert data["five_generals"]["crosswalk"]["jingyou_rule_id"] == "JF4M-02"
     assert data["host_guest_relation"]["crosswalk"]["jingyou_rule_id"] == "JF4M-03"
+
+
+def test_weather_bird_profiles_can_hold_jinjing_and_jingyou_without_merge():
+    jinjing = fengyun_feiniao_zhuzhan([
+        {
+            "phenomenon": "飞鸟",
+            "action": "扶",
+            "target": "主人阵",
+        }
+    ])
+    jingyou = weather_bird_support([
+        {
+            "phenomenon": "飞鸟",
+            "source_anchor": "主人刑",
+            "action": "上来",
+        }
+    ])
+
+    wrapped = build_weather_bird_source_variant(
+        jinjing_result=jinjing,
+        jingyou_result=jingyou,
+    )
+
+    assert wrapped["cross_source_merge"] is False
+    assert wrapped["canonical_selected"] is None
+    assert set(wrapped["profiles"]) == {
+        "jinjing_siku_volume4",
+        "jingyou_fuying_volume4",
+    }
+    assert wrapped["profiles"]["jinjing_siku_volume4"]["rule_id"] == "J4M-11"
+    assert wrapped["profiles"]["jingyou_fuying_volume4"]["source_rule_id"] == "JF4M-10"
+    assert wrapped["profiles"]["jinjing_siku_volume4"] != wrapped["profiles"]["jingyou_fuying_volume4"]
+
+
+def test_weather_bird_profile_rejects_wrong_jingyou_rule():
+    with pytest.raises(ValueError, match="JF4M-10"):
+        build_weather_bird_source_variant(jingyou_result={
+            "source_profile": "jingyou_fuying_volume4",
+            "ruleset": "jingyou-fuying-v4-military-11",
+            "source_rule_id": "JF4M-11",
+        })
