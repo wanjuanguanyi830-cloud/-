@@ -73,18 +73,22 @@ def test_lion_collation_records_three_source_pass_without_inventing_ordinary_yea
     assert "不伪造唯一年干" in joined
 
 
-def test_white_dragon_xing_collation_forbids_foreign_tables():
+def test_white_dragon_collation_closes_algorithm_pending_without_foreign_xing_table():
     data = _load()
     entry = next(e for e in data["entries"] if e.get("rule_id") == "T7-06")
 
     assert entry["collation_status"] == (
-        "three_source_phrase_verified_xing_mapping_unresolved"
+        "three_source_phrase_verified_control_only_canonical_no_independent_xing_operator"
     )
+    assert entry["algorithm_pending"] is False
     assert entry["collation_record"] == (
         "sources/t7-06-white-dragon-xing-collation.md"
     )
     joined = " ".join(entry["boundary_notes"])
-    assert "没有给出可执行将宫刑映射" in joined
-    assert "同时适用于大将和参将" in joined
+    assert "平行小将句简作“克小将亦然”" in joined
     assert "不得把地支三刑" in joined
-    assert "刑保持未判，不等于无刑" in joined
+    assert "不改变canonical severe/verdict" in joined
+    assert entry["compatibility_extension"]["status"] == (
+        "explicit_external_extension_not_canonical"
+    )
+    assert entry["compatibility_extension"]["affects_canonical_verdict"] is False
