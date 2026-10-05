@@ -1,0 +1,889 @@
+{
+  "schema_version": "1.0",
+  "catalog_id": "taiyi-tongzong-v15-v17-military-terminology-v1",
+  "scope": "source_sensitive_tongzong_volume15_volume17_military",
+  "status": "repository_source_rule_terminology_catalog",
+  "legacy_terminology_json_migrated": false,
+  "source_profiles": {
+    "tongzong_volume15": {
+      "source": "太乙统宗宝鉴军事应用篇",
+      "rule_count": 14,
+      "implementation_status": {
+        "implemented": [
+          "V15-02",
+          "V15-03",
+          "V15-04",
+          "V15-05",
+          "V15-06"
+        ],
+        "source_rule_only": [
+          "V15-01",
+          "V15-07",
+          "V15-08",
+          "V15-09",
+          "V15-10",
+          "V15-11",
+          "V15-12",
+          "V15-13",
+          "V15-14"
+        ]
+      },
+      "volume_note": "不同电子本卷次编排有差异；项目沿用volume15 profile并以术目标题共同认源。"
+    },
+    "tongzong_volume17": {
+      "source": "太乙统宗宝鉴军事占断篇",
+      "rule_count": 11,
+      "implementation_status": "source_rule_catalog_only"
+    },
+    "cross_volume_helper": {
+      "rule_ids": [
+        "V17-D1"
+      ],
+      "canonical_source_rule": false
+    }
+  },
+  "global_policy": [
+    "卷十五、卷十七与J4M/C8只做crosswalk，不自动等价或覆盖。",
+    "reference_function只记录旧综合层函数名，不等于当前独立runtime。",
+    "只有C23明确实现的V15-02..06登记runtime。",
+    "V17-D1为跨卷helper，不计入卷十七canonical source rule数。"
+  ],
+  "entries": [
+    {
+      "key": "v15_01",
+      "preferred_term": "统宗卷十五·奇兵伏兵",
+      "aliases": [
+        "明奇兵伏兵之术／明出兵战阵所利术"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V15-01",
+      "source_profile": "tongzong_volume15",
+      "source_title": "明奇兵伏兵之术／明出兵战阵所利术",
+      "payload_key": "奇兵伏兵",
+      "dependency_class": "high",
+      "inputs": [
+        "taiyi",
+        "skyeyes",
+        "shiji",
+        "home_cal",
+        "away_cal",
+        "patterns"
+      ],
+      "external_inputs": [],
+      "overlaps": [
+        "J4M-10"
+      ],
+      "reference_function": "qibing_fubing",
+      "implementation_status": "source_rule_catalog_only",
+      "runtime": null,
+      "canonical_source_rule": true,
+      "notes": "与金镜卷四推奇伏法近名，必须保持独立source profile。",
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+      ]
+    },
+    {
+      "key": "v15_02",
+      "preferred_term": "统宗卷十五·五陣置旗",
+      "aliases": [
+        "明太乙置阵齐旗术／三五八阵之原"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V15-02",
+      "source_profile": "tongzong_volume15",
+      "source_title": "明太乙置阵齐旗术／三五八阵之原",
+      "payload_key": "五陣置旗",
+      "dependency_class": "low",
+      "inputs": [
+        "home_cal",
+        "away_cal"
+      ],
+      "external_inputs": [],
+      "overlaps": [],
+      "reference_function": "wuzhen_bazhen",
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v15_low_dependency.five_formations_and_flags",
+      "canonical_source_rule": true,
+      "notes": null,
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前有独立source-specific runtime；仍不得与J4M/C8近名层合并。"
+      ]
+    },
+    {
+      "key": "v15_03",
+      "preferred_term": "统宗卷十五·出兵稱神",
+      "aliases": [
+        "明太乙出兵称神术"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V15-03",
+      "source_profile": "tongzong_volume15",
+      "source_title": "明太乙出兵称神术",
+      "payload_key": "出兵稱神",
+      "dependency_class": "low",
+      "inputs": [
+        "home_cal",
+        "away_cal"
+      ],
+      "external_inputs": [],
+      "overlaps": [],
+      "reference_function": "chubing_chengshen",
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v15_low_dependency.deity_march",
+      "canonical_source_rule": true,
+      "notes": null,
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前有独立source-specific runtime；仍不得与J4M/C8近名层合并。"
+      ]
+    },
+    {
+      "key": "v15_04",
+      "preferred_term": "统宗卷十五·陳兵出鄉",
+      "aliases": [
+        "明陈兵出乡术"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V15-04",
+      "source_profile": "tongzong_volume15",
+      "source_title": "明陈兵出乡术",
+      "payload_key": "陳兵出鄉",
+      "dependency_class": "low",
+      "inputs": [
+        "home_cal",
+        "away_cal"
+      ],
+      "external_inputs": [],
+      "overlaps": [
+        "J4M-06"
+      ],
+      "reference_function": "chenbing_chuxiang",
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v15_low_dependency.march_directions",
+      "canonical_source_rule": true,
+      "notes": "不得用本条替代《金镜》卷四推陈兵向背。",
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前有独立source-specific runtime；仍不得与J4M/C8近名层合并。"
+      ]
+    },
+    {
+      "key": "v15_05",
+      "preferred_term": "统宗卷十五·選將之術",
+      "aliases": [
+        "明选将之术"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V15-05",
+      "source_profile": "tongzong_volume15",
+      "source_title": "明选将之术",
+      "payload_key": "選將之術",
+      "dependency_class": "static_text",
+      "inputs": [],
+      "external_inputs": [],
+      "overlaps": [],
+      "reference_function": "xuanjiang_zhi",
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v15_low_dependency.general_selection_principles",
+      "canonical_source_rule": true,
+      "notes": null,
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前有独立source-specific runtime；仍不得与J4M/C8近名层合并。"
+      ]
+    },
+    {
+      "key": "v15_06",
+      "preferred_term": "统宗卷十五·教兵之術",
+      "aliases": [
+        "明教兵之术"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V15-06",
+      "source_profile": "tongzong_volume15",
+      "source_title": "明教兵之术",
+      "payload_key": "教兵之術",
+      "dependency_class": "static_text",
+      "inputs": [],
+      "external_inputs": [],
+      "overlaps": [],
+      "reference_function": "jiaobing_shu",
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v15_low_dependency.troop_training_principles",
+      "canonical_source_rule": true,
+      "notes": null,
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前有独立source-specific runtime；仍不得与J4M/C8近名层合并。"
+      ]
+    },
+    {
+      "key": "v15_07",
+      "preferred_term": "统宗卷十五·隨地制變",
+      "aliases": [
+        "随地制变／置阵随地"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V15-07",
+      "source_profile": "tongzong_volume15",
+      "source_title": "随地制变／置阵随地",
+      "payload_key": "隨地制變",
+      "dependency_class": "medium",
+      "inputs": [
+        "terrain_shape",
+        "home_cal",
+        "away_cal"
+      ],
+      "external_inputs": [
+        "terrain_shape"
+      ],
+      "overlaps": [
+        "J4M-07",
+        "J4M-08"
+      ],
+      "reference_function": "suidi_zhibian",
+      "implementation_status": "source_rule_catalog_only",
+      "runtime": null,
+      "canonical_source_rule": true,
+      "notes": "与金镜制阵随地/随地制变分层，不自动合并。",
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+      ]
+    },
+    {
+      "key": "v15_08",
+      "preferred_term": "统宗卷十五·分合用兵",
+      "aliases": [
+        "明分合用兵之术"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V15-08",
+      "source_profile": "tongzong_volume15",
+      "source_title": "明分合用兵之术",
+      "payload_key": "分合用兵",
+      "dependency_class": "high",
+      "inputs": [
+        "home_general",
+        "away_general",
+        "home_vassal",
+        "away_vassal",
+        "patterns",
+        "three_doors",
+        "five_generals"
+      ],
+      "external_inputs": [],
+      "overlaps": [
+        "C8-L2",
+        "C8-L3"
+      ],
+      "reference_function": "fenhe_yongbing",
+      "implementation_status": "source_rule_catalog_only",
+      "runtime": null,
+      "canonical_source_rule": true,
+      "notes": null,
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+      ]
+    },
+    {
+      "key": "v15_09",
+      "preferred_term": "统宗卷十五·五音風",
+      "aliases": [
+        "明五音考风以知盛衰之术"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V15-09",
+      "source_profile": "tongzong_volume15",
+      "source_title": "明五音考风以知盛衰之术",
+      "payload_key": "五音風",
+      "dependency_class": "external_observation",
+      "inputs": [
+        "day_branch",
+        "hour_branch",
+        "wind_direction_branch"
+      ],
+      "external_inputs": [
+        "wind_direction_branch"
+      ],
+      "overlaps": [],
+      "reference_function": "wuyin_feng",
+      "implementation_status": "source_rule_catalog_only",
+      "runtime": null,
+      "canonical_source_rule": true,
+      "notes": null,
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+      ]
+    },
+    {
+      "key": "v15_10",
+      "preferred_term": "统宗卷十五·五音觀風察將",
+      "aliases": [
+        "明五音观风察将术"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V15-10",
+      "source_profile": "tongzong_volume15",
+      "source_title": "明五音观风察将术",
+      "payload_key": "五音觀風察將",
+      "dependency_class": "external_observation",
+      "inputs": [
+        "wind_sound_class"
+      ],
+      "external_inputs": [
+        "wind_sound_class"
+      ],
+      "overlaps": [],
+      "reference_function": "guanfeng_chajiang",
+      "implementation_status": "source_rule_catalog_only",
+      "runtime": null,
+      "canonical_source_rule": true,
+      "notes": "原文按风声形态辨五音察将；不得以V15-09风向五音替代实际风声。",
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+      ]
+    },
+    {
+      "key": "v15_11",
+      "preferred_term": "统宗卷十五·安營置陣",
+      "aliases": [
+        "安营置阵取用日时"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V15-11",
+      "source_profile": "tongzong_volume15",
+      "source_title": "安营置阵取用日时",
+      "payload_key": "安營置陣",
+      "dependency_class": "high",
+      "inputs": [
+        "taiyi",
+        "skyeyes",
+        "shiji",
+        "patterns",
+        "three_doors",
+        "five_generals"
+      ],
+      "external_inputs": [],
+      "overlaps": [],
+      "reference_function": "anying_rishi",
+      "implementation_status": "source_rule_catalog_only",
+      "runtime": null,
+      "canonical_source_rule": true,
+      "notes": null,
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+      ]
+    },
+    {
+      "key": "v15_12",
+      "preferred_term": "统宗卷十五·風從八卦",
+      "aliases": [
+        "明风从八卦而分主客术"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V15-12",
+      "source_profile": "tongzong_volume15",
+      "source_title": "明风从八卦而分主客术",
+      "payload_key": "風從八卦",
+      "dependency_class": "external_observation",
+      "inputs": [
+        "wind_palace"
+      ],
+      "external_inputs": [
+        "wind_palace"
+      ],
+      "overlaps": [],
+      "reference_function": "feng_bagua_zhuke",
+      "implementation_status": "source_rule_catalog_only",
+      "runtime": null,
+      "canonical_source_rule": true,
+      "notes": null,
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+      ]
+    },
+    {
+      "key": "v15_13",
+      "preferred_term": "统宗卷十五·雲氣逆順",
+      "aliases": [
+        "云气所起逆顺"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V15-13",
+      "source_profile": "tongzong_volume15",
+      "source_title": "云气所起逆顺",
+      "payload_key": "雲氣逆順",
+      "dependency_class": "external_observation",
+      "inputs": [
+        "home_cal",
+        "away_cal",
+        "cloud_from_direction"
+      ],
+      "external_inputs": [
+        "cloud_from_direction"
+      ],
+      "overlaps": [],
+      "reference_function": "yunqi_nishun",
+      "implementation_status": "source_rule_catalog_only",
+      "runtime": null,
+      "canonical_source_rule": true,
+      "notes": null,
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+      ]
+    },
+    {
+      "key": "v15_14",
+      "preferred_term": "统宗卷十五·軍勢勝負",
+      "aliases": [
+        "明出兵军势胜负术＋风云飞鸟"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V15-14",
+      "source_profile": "tongzong_volume15",
+      "source_title": "明出兵军势胜负术＋风云飞鸟",
+      "payload_key": "軍勢勝負",
+      "dependency_class": "high_composite",
+      "inputs": [
+        "taiyi",
+        "home_cal",
+        "away_cal",
+        "wuyin_wind",
+        "cloud_qi",
+        "flybird_palace",
+        "skyeyes",
+        "shiji",
+        "home_general",
+        "away_general",
+        "patterns"
+      ],
+      "external_inputs": [],
+      "overlaps": [
+        "J4M-11",
+        "J4M-12"
+      ],
+      "reference_function": "jungshi_shengfu_pan",
+      "implementation_status": "source_rule_catalog_only",
+      "runtime": null,
+      "canonical_source_rule": true,
+      "notes": "卷十五综合军势不得覆盖J4M外部风云飞鸟观测层。",
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+      ]
+    },
+    {
+      "key": "v17_01",
+      "preferred_term": "统宗卷十七·出兵用時",
+      "aliases": [
+        "明太乙出兵举事用日之术／用时之术"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V17-01",
+      "source_profile": "tongzong_volume17",
+      "source_title": "明太乙出兵举事用日之术／用时之术",
+      "payload_key": "出兵用時",
+      "dependency_class": "high",
+      "inputs": [
+        "home_cal",
+        "away_cal",
+        "skyeyes_state",
+        "shiji_mask",
+        "three_doors",
+        "five_generals",
+        "taiyi_door"
+      ],
+      "external_inputs": [],
+      "overlaps": [
+        "J4M-05"
+      ],
+      "reference_function": "chubing_yongshi",
+      "implementation_status": "source_rule_catalog_only",
+      "runtime": null,
+      "canonical_source_rule": true,
+      "notes": null,
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+      ]
+    },
+    {
+      "key": "v17_02",
+      "preferred_term": "统宗卷十七·敵國動靜",
+      "aliases": [
+        "明敌国动静"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V17-02",
+      "source_profile": "tongzong_volume17",
+      "source_title": "明敌国动静",
+      "payload_key": "敵國動靜",
+      "dependency_class": "high",
+      "inputs": [
+        "away_cal",
+        "three_doors",
+        "five_generals",
+        "taiyi",
+        "skyeyes",
+        "shiji",
+        "home_general",
+        "home_vassal",
+        "away_general",
+        "away_vassal",
+        "skyeyes_state",
+        "patterns"
+      ],
+      "external_inputs": [],
+      "overlaps": [
+        "C8-L3"
+      ],
+      "reference_function": "diguo_dongjing",
+      "implementation_status": "source_rule_catalog_only",
+      "runtime": null,
+      "canonical_source_rule": true,
+      "notes": "敌情占断应用，不是C8主客动静。",
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+      ]
+    },
+    {
+      "key": "v17_03",
+      "preferred_term": "统宗卷十七·間諜虛實",
+      "aliases": [
+        "明敌国有无间谍窥探术"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V17-03",
+      "source_profile": "tongzong_volume17",
+      "source_title": "明敌国有无间谍窥探术",
+      "payload_key": "間諜虛實",
+      "dependency_class": "medium",
+      "inputs": [
+        "shiji_realm",
+        "away_general_realm",
+        "away_vassal_realm",
+        "skyeyes_realm",
+        "away_general_at_skyeyes"
+      ],
+      "external_inputs": [],
+      "overlaps": [],
+      "reference_function": "jianmie_xushi",
+      "implementation_status": "source_rule_catalog_only",
+      "runtime": null,
+      "canonical_source_rule": true,
+      "notes": "内外深浅由上游结构化；本条不复刻旧_realm_of_gong近似。",
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+      ]
+    },
+    {
+      "key": "v17_04",
+      "preferred_term": "统宗卷十七·敵使虛實",
+      "aliases": [
+        "明敌使虚实之术"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V17-04",
+      "source_profile": "tongzong_volume17",
+      "source_title": "明敌使虚实之术",
+      "payload_key": "敵使虛實",
+      "dependency_class": "medium",
+      "inputs": [
+        "taiyi_element",
+        "shiji_element",
+        "away_general_element"
+      ],
+      "external_inputs": [],
+      "overlaps": [],
+      "reference_function": "dishi_xushi",
+      "implementation_status": "source_rule_catalog_only",
+      "runtime": null,
+      "canonical_source_rule": true,
+      "notes": "直接比较五行制化证据；不在本条猜十六神/九宫五行。",
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+      ]
+    },
+    {
+      "key": "v17_05",
+      "preferred_term": "统宗卷十七·敵兵來方",
+      "aliases": [
+        "明敌人来方将卒多寡"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V17-05",
+      "source_profile": "tongzong_volume17",
+      "source_title": "明敌人来方将卒多寡",
+      "payload_key": "敵兵來方",
+      "dependency_class": "medium",
+      "inputs": [
+        "away_cal",
+        "time_yinyang",
+        "calc_harmony",
+        "shiji_relative_position"
+      ],
+      "external_inputs": [],
+      "overlaps": [],
+      "reference_function": "dibing_laifang",
+      "implementation_status": "source_rule_catalog_only",
+      "runtime": null,
+      "canonical_source_rule": true,
+      "notes": "来方按客目左/右/前/后；兵众须满足16以上且阴阳和。",
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+      ]
+    },
+    {
+      "key": "v17_06",
+      "preferred_term": "统宗卷十七·見聞虛實",
+      "aliases": [
+        "见闻占虚实"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V17-06",
+      "source_profile": "tongzong_volume17",
+      "source_title": "见闻占虚实",
+      "payload_key": "見聞虛實",
+      "dependency_class": "structured_conditions",
+      "inputs": [
+        "reported_kind",
+        "skyeyes_yanji_taiyi",
+        "three_doors_ready",
+        "five_generals_released",
+        "host_clamps_guest",
+        "skyeyes_realm"
+      ],
+      "external_inputs": [],
+      "overlaps": [],
+      "reference_function": "jianwen_xushi",
+      "implementation_status": "source_rule_catalog_only",
+      "runtime": null,
+      "canonical_source_rule": true,
+      "notes": "只消费明确条件；不扫描旧格局字符串或中文断语。",
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+      ]
+    },
+    {
+      "key": "v17_07",
+      "preferred_term": "统宗卷十七·討捕叛亡",
+      "aliases": [
+        "讨捕叛亡"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V17-07",
+      "source_profile": "tongzong_volume17",
+      "source_title": "讨捕叛亡",
+      "payload_key": "討捕叛亡",
+      "dependency_class": "structured_conditions",
+      "inputs": [
+        "guest_clamps_host",
+        "skyeyes_realm",
+        "shiji_realm",
+        "host_realm",
+        "taiyi_host_same_palace",
+        "skyeyes_over_taiyi_host",
+        "skyeyes_masks_taiyi",
+        "both_eyes_outer",
+        "hideout_pattern",
+        "hideout_qi_state"
+      ],
+      "external_inputs": [],
+      "overlaps": [],
+      "reference_function": "taobu_panwang",
+      "implementation_status": "source_rule_catalog_only",
+      "runtime": null,
+      "canonical_source_rule": true,
+      "notes": "所捕地旺相须作用于hideout_qi_state，不得拿主将旺相代替。",
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+      ]
+    },
+    {
+      "key": "v17_08",
+      "preferred_term": "统宗卷十七·執囚對吏",
+      "aliases": [
+        "执囚对吏"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V17-08",
+      "source_profile": "tongzong_volume17",
+      "source_title": "执囚对吏",
+      "payload_key": "執囚對吏",
+      "dependency_class": "structured_conditions",
+      "inputs": [
+        "skyeyes_yanji_taiyi",
+        "host_realm",
+        "host_qi_state",
+        "taiyi_just_entered_palace",
+        "taiyi_host_same_palace",
+        "skyeyes_over_taiyi_host"
+      ],
+      "external_inputs": [],
+      "overlaps": [],
+      "reference_function": "zhiqu_duili",
+      "implementation_status": "source_rule_catalog_only",
+      "runtime": null,
+      "canonical_source_rule": true,
+      "notes": "不同见证对掩击/主人在外/旺神条件有相反断法，必须source_variant。",
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+      ]
+    },
+    {
+      "key": "v17_09",
+      "preferred_term": "统宗卷十七·求索所得",
+      "aliases": [
+        "明求索有无所得术"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V17-09",
+      "source_profile": "tongzong_volume17",
+      "source_title": "明求索有无所得术",
+      "payload_key": "求索所得",
+      "dependency_class": "structured_conditions",
+      "inputs": [
+        "skyeyes_realm",
+        "host_clamps_guest",
+        "guest_clamps_host",
+        "host_realm",
+        "skyeyes_ge_taiyi",
+        "host_qi_state",
+        "season",
+        "skyeyes_calc_digit"
+      ],
+      "external_inputs": [],
+      "overlaps": [
+        "volume5_inner_outer_attack"
+      ],
+      "reference_function": "qiusuo_suode",
+      "implementation_status": "source_rule_catalog_only",
+      "runtime": null,
+      "canonical_source_rule": true,
+      "notes": "求索本条独立判据，不调用V17-D1跨卷孤虚对照。",
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+      ]
+    },
+    {
+      "key": "v17_d1",
+      "preferred_term": "跨卷·孤虛對照",
+      "aliases": [
+        "卷五内外占攻击 × 卷十七求索所得 对照"
+      ],
+      "term_type": "derived_cross_volume_helper",
+      "rule_id": "V17-D1",
+      "source_profile": "cross_volume_helper",
+      "source_title": "卷五内外占攻击 × 卷十七求索所得 对照",
+      "payload_key": "孤虛對照",
+      "dependency_class": "derived_cross_volume",
+      "inputs": [
+        "taiyi",
+        "skyeyes",
+        "home_general",
+        "patterns",
+        "skyeyes_state",
+        "shiji_ge",
+        "wax_wane"
+      ],
+      "external_inputs": [],
+      "overlaps": [
+        "volume5_inner_outer_attack",
+        "V17-09"
+      ],
+      "reference_function": "guxu_duizhao",
+      "implementation_status": "source_rule_catalog_only",
+      "runtime": null,
+      "canonical_source_rule": false,
+      "notes": "不是独立卷十七原法；不得分配V17 canonical source rule号。",
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "这是跨卷derived helper，不是卷十七canonical source rule。"
+      ]
+    },
+    {
+      "key": "v17_10",
+      "preferred_term": "统宗卷十七·時計諸事",
+      "aliases": [
+        "时计占诸事"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V17-10",
+      "source_profile": "tongzong_volume17",
+      "source_title": "时计占诸事",
+      "payload_key": "時計諸事",
+      "dependency_class": "high",
+      "inputs": [
+        "taiyi",
+        "skyeyes",
+        "skyeyes_state",
+        "three_doors",
+        "five_generals",
+        "home_cal",
+        "away_cal",
+        "patterns",
+        "shiji_mask",
+        "shiji_hit",
+        "wax_wane"
+      ],
+      "external_inputs": [],
+      "overlaps": [],
+      "reference_function": "shiji_zhanshi",
+      "implementation_status": "source_rule_catalog_only",
+      "runtime": null,
+      "canonical_source_rule": true,
+      "notes": null,
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+      ]
+    },
+    {
+      "key": "v17_11",
+      "preferred_term": "统宗卷十七·占望行人",
+      "aliases": [
+        "占望行人及贼来与不来"
+      ],
+      "term_type": "tongzong_military_source_rule",
+      "rule_id": "V17-11",
+      "source_profile": "tongzong_volume17",
+      "source_title": "占望行人及贼来与不来",
+      "payload_key": "占望行人",
+      "dependency_class": "medium",
+      "inputs": [
+        "travel_direction",
+        "guest_calc",
+        "has_yanji",
+        "has_guange"
+      ],
+      "external_inputs": [],
+      "overlaps": [],
+      "reference_function": "zhanwang_xingren",
+      "implementation_status": "source_rule_catalog_only",
+      "runtime": null,
+      "canonical_source_rule": true,
+      "notes": "四方来否按原文数对；南方来数存在版本异文，必须保留。",
+      "boundary_notes": [
+        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
+        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+      ]
+    }
+  ]
+}
