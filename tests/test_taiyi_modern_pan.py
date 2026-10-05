@@ -131,3 +131,14 @@ def test_pan_v2_validator_rejects_non_winter_solstice_modern_year_boundary():
     validation = validate_pan_v2(broken)
     assert validation["valid"] is False
     assert "modern production太乙岁界必须为真实天文冬至交节瞬间" in validation["errors"]
+
+
+
+def test_modern_pan_v2_exposes_boundary_registry():
+    pan = build_modern_pan_v2(MOMENT, count_type="岁计")
+    registry = pan["calendar"]["boundary_registry"]
+    assert registry["taiyi_year"]["boundary"] == "真实天文冬至交节瞬间"
+    assert registry["gregorian_year"]["canonical_for_taiyi_year"] is False
+    assert registry["lunar_year"]["canonical_for_taiyi_year"] is False
+    assert registry["jieqi_ganzhi_year"]["canonical_for_taiyi_year"] is False
+    assert registry["spring_equinox"]["canonical_for_taiyi_year"] is False
