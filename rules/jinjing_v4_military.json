@@ -159,7 +159,7 @@
     "scan_locator_version": "c79-j4m-cadal-page-locators-v1",
     "witness_audit_version": "c84-ncl06604-access-boundary-v1",
     "full_twelve_scan_audit_version": "c85-j4m01-12-scan-boundary-complete-v1",
-    "ncl_volume4_collation_version": "c119-ncl06604-j4m09-opening-boundary-v1",
+    "ncl_volume4_collation_version": "c120-ncl06604-j4m09-opening-boundary-v1",
     "terminology_policy_version": "c101-taicu-traditional-variant-v1",
     "ncl_volume4_collation_history": [
       "c86-ncl06604-v4-j4m-locators-v1",
@@ -172,7 +172,7 @@
       "c112-ncl06604-j4m08-opening-v1",
       "c112-ncl06604-j4m08-opening-v2",
       "c115-ncl06604-j4m08-full-body-v1",
-      "c119-ncl06604-j4m09-opening-boundary-v1"
+      "c120-ncl06604-j4m09-opening-boundary-v1"
     ]
   },
   "separation_policy": [
@@ -1249,14 +1249,14 @@
           "relation_to_siku": "substantive_variant_palace_1_present; agrees_with_jingyou_and_tongzong_on_inner_group",
           "canonical_override": false,
           "opening_direct_visual": {
-            "cycle": "C119",
+            "cycle": "C120",
             "status": "opening_and_previous_rule_boundary_direct_visual_verified",
             "digital_scan_page": 61,
             "previous_rule_closing": "此之要也",
             "body_title": "推太乙在天外地内法",
             "opening_text": "古法曰太乙在一八三四宫者为地内宫助主人",
             "evidence_note": "用户提供页图直接见J4M-08收尾、J4M-09标题及首句连续相接。",
-            "relation_to_existing_C86": "C86已直接核得完整宫组[1,8,3,4]与[9,2,7,6]；C119补足页内边界和首句，不改变既有宫组。"
+            "relation_to_existing_C86": "C86已直接核得完整宫组[1,8,3,4]与[9,2,7,6]；C120补足页内边界和首句，不改变既有宫组。"
           }
         }
       }
