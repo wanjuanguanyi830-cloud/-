@@ -254,3 +254,11 @@ def test_winter_solstice_advances_taiyi_year_inside_same_zi_month():
     assert data["solar_month"]["month_build_branch"] == "子"
     assert data["month_count"]["month_formula_year"] == 2027
     assert data["year_boundary"]["taiyi_historical_year"] == 2027
+
+
+
+def test_boundary_registry_distinguishes_winter_year_change_from_summer_time_reset():
+    registry = production_boundary_registry()
+    assert registry["taiyi_time_half"]["changes_taiyi_year"] == "冬至时是；夏至时否"
+    assert "重启冬至半岁时计" in registry["taiyi_time_half"]["effect"]
+    assert "重启夏至半岁时计" in registry["taiyi_time_half"]["effect"]
