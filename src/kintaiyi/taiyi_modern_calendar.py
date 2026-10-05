@@ -17,6 +17,7 @@ from typing import Any
 import astronomy
 
 from .taiyi_core_chain import year_count_from_historical_year
+from .taiyi_modern_lunisolar import chinese_lunisolar_facts
 
 RULE_ID = "MODERN-TAIYI-ASTRONOMICAL-CALENDAR"
 YEAR_BOUNDARY_RULE_ID = "MODERN-TAIYI-YEAR-WINTER-SOLSTICE"
@@ -178,11 +179,14 @@ def production_calendar_context(moment: datetime) -> dict[str, Any]:
     """一次返回岁计换年与时计二至半岁的现代天文事实。"""
     return {
         "rule_id": RULE_ID,
-        "source_profile": "production_modern_astronomy",
+        "source_profile": "production_modern_calendar",
         "year_boundary": resolve_taiyi_year(moment),
         "time_half": resolve_time_solstice_half(moment),
+        "lunisolar": chinese_lunisolar_facts(moment),
         "astronomy_provider": "astronomy-engine",
+        "lunisolar_provider": "lunar_python",
         "policy": (
-            "天文引擎只提供季节瞬间；太乙冬至换年与二至阴阳规则由项目定义。"
+            "天文引擎只提供季节瞬间；现代农历库只提供农历/干支事实。"
+            "太乙岁始终由冬至边界单独决定，春节立春等不得覆盖。"
         ),
     }
