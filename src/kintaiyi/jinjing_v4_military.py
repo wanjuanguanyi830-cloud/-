@@ -438,7 +438,22 @@ def suidi_zhibian(terrain_class, *, soldiers_trained=None,
             "将不知兵，以其主与敌",
             "君不择将，以其国与敌",
         ],
-        "policy": "J4M-08 是地形—兵种/兵器—训练器械层；不得并入 J4M-07 阵形五行。",
+        "quotation_collation": {
+            "status": "jinjing_chao_cuo_quote_diverges_from_hanshu",
+            "canonical_for_this_profile": "太乙金镜式经_四库本_卷四实际引文",
+            "external_witness": "汉书_爰盎晁错传",
+            "notable_differences": [
+                "金镜步兵地作车骑三不当一；汉书作车骑二不当一",
+                "金镜萑苇竹萧地作矛锤、弓弩三不当一；汉书作矛鋋、长戟二不当一",
+                "汉书另有曲道相伏、险厄相薄之剑楯地；金镜本段未录",
+                "金镜士卒不练作百不当一、将不习兵作十不当一；汉书分别作百不当十、五不当一",
+            ],
+            "do_not_silent_emend": True,
+        },
+        "policy": (
+            "J4M-08 是地形—兵种/兵器—训练器械层；不得并入 J4M-07 阵形五行。"
+            "《汉书》只作引文校勘见证，不静默改写《金镜》source profile。"
+        ),
     }
 
 
