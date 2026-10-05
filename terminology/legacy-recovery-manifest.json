@@ -14,7 +14,7 @@
   },
   "original_store_availability": {
     "expected_name": "terminology.json",
-    "github_history_search": "not_found_as_recoverable_original",
+    "github_history_search": "not_found_in_current_tree_or_any_visible_branch_tree",
     "chatgpt_library_search": "no_visible_match_at_audit_time",
     "chatgpt_library_listing": "no_visible_files_returned_at_audit_time",
     "schema_recovered": false,
@@ -30,7 +30,14 @@
       "local_copy": "E盘仍存，当前执行环境未挂载",
       "code_residue_boundary": "旧kentang2017/kintaiyi九星代码明确标注《太乙统宗宝鉴》卷六来源，不能作为研易楼本逐字扫描记录。",
       "recovery_asset": "terminology/zitingjing-legacy-scan-recovery.json"
-    }
+    },
+    "github_visible_branches_checked": [
+      "main",
+      "codex/c1-c7-canonical",
+      "codex/taiyi-base-motion-2026-10-04",
+      "codex/taiyi-rules-v2-20261005",
+      "integrate-taiyi-war-v1-20261004"
+    ]
   },
   "legacy_field_policy": {
     "fields": [
@@ -4127,8 +4134,12 @@
         "九宫贵神术",
         "九宮貴神術"
       ],
-      "current_rule_ids": [],
-      "current_source_profiles": [],
+      "current_rule_ids": [
+        "C127-TONGZONG-NINE-PALACE-NOBLES"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume10_nine_palace_nobles"
+      ],
       "migration_links": [
         {
           "asset": "terminology/zitingjing-migration-map.json",
@@ -4136,7 +4147,7 @@
           "role": "old_local_store_recovery_skeleton"
         }
       ],
-      "legacy_match_status": "migration_asset_available_old_store_fields_missing",
+      "legacy_match_status": "migration_asset_available_old_store_fields_missing_current_rule_source_resolved_tongzong",
       "legacy_fields": {
         "old_term_record_id": null,
         "manuscript_form": null,
@@ -4231,8 +4242,12 @@
         "三旗行宫",
         "三旗行宮"
       ],
-      "current_rule_ids": [],
-      "current_source_profiles": [],
+      "current_rule_ids": [
+        "C126-TONGZONG-THREE-BANNERS"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume10_three_banners"
+      ],
       "migration_links": [
         {
           "asset": "terminology/zitingjing-migration-map.json",
@@ -4240,7 +4255,7 @@
           "role": "old_local_store_recovery_skeleton"
         }
       ],
-      "legacy_match_status": "migration_asset_available_old_store_fields_missing",
+      "legacy_match_status": "migration_asset_available_old_store_fields_missing_current_rule_source_resolved_tongzong",
       "legacy_fields": {
         "old_term_record_id": null,
         "manuscript_form": null,
