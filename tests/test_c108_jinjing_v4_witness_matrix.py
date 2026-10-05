@@ -141,7 +141,7 @@ def test_c115_ncl_j4m08_full_body_and_mixed_witness_pattern():
     data = _matrix()
     row = {item["rule_id"]: item for item in data["entries"]}["J4M-08"]
 
-    assert data["last_update"] == "C115"
+    assert "C115" in data["updates"]
     assert row["ncl"]["status"] == "full_contiguous_body_direct_visual_verified_C115"
     assert row["ncl"]["pending"] == []
 
@@ -163,3 +163,19 @@ def test_c115_ncl_j4m08_full_body_and_mixed_witness_pattern():
     assert by_feature["将不习兵比例"]["ncl"] == by_feature["将不习兵比例"]["jingyou"]
     assert by_feature["将不习兵比例"]["ncl"] != by_feature["将不习兵比例"]["siku"]
     assert any("不据局部比例一致" in item for item in mixed["non_claims"])
+
+
+def test_c119_j4m09_boundary_is_verified_without_recomputing_c86_palace_groups():
+    data = _matrix()
+    row = {item["rule_id"]: item for item in data["entries"]}["J4M-09"]
+
+    assert data["last_update"] == "C119"
+    assert "C119" in data["updates"]
+    assert row["ncl"]["previous_rule_closing"] == "此之要也"
+    assert row["ncl"]["body_title"] == "推太乙在天外地内法"
+    assert row["ncl"]["opening_text"] == "古法曰太乙在一八三四宫者为地内宫助主人"
+    assert row["ncl"]["boundary_status"] == "J4M-08_to_J4M-09_direct_visual_verified_C119"
+    assert row["ncl"]["palace_group_status"] == "direct_visual_verified_C86"
+    assert row["ncl"]["inner"] == [1, 8, 3, 4]
+    assert row["ncl"]["outer"] == [9, 2, 7, 6]
+    assert "不以NCL的1宫补四库canonical" in row["hard_boundary"]
