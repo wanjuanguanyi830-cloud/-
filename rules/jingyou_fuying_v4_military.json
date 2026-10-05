@@ -1,0 +1,156 @@
+{
+  "ruleset_id": "jingyou-fuying-v4-military-11",
+  "source": {
+    "work": "景祐太乙福應經",
+    "volume": 4,
+    "profile": "jingyou_fuying_volume4",
+    "online_transcription": "識典古籍 CADAL02094381 卷四",
+    "source_status": "ancient_parallel_text_transcription_scan_locator_pending",
+    "canonical_policy": "本 ruleset 只记录《景祐太乙福应经》卷四自身文字；不以《金镜》《统宗》《汉书》补缺。"
+  },
+  "cross_source_merge": false,
+  "canonical_selected": null,
+  "rules": [
+    {
+      "id": "JF4M-01",
+      "source_title": "释三门具不具第四十四",
+      "parallel_jinjing_rule": "J4M-01",
+      "domain": "三门",
+      "canonical_summary": "开休生为三门；太乙、天目在开生二门下为二门不具，在休门下为三门不具。直使门三十为一易、二百四十为一周，起开次休顺行。",
+      "notable_readings": [
+        "凡甲子自甲子至甲午，或甲午至甲子，即换直使",
+        "岁/月/日/时各以三十对应单位换直使"
+      ],
+      "implementation_status": "source_record_only"
+    },
+    {
+      "id": "JF4M-02",
+      "source_title": "释五将发不发第四十五",
+      "parallel_jinjing_rule": "J4M-02",
+      "domain": "五将",
+      "canonical_summary": "始击无掩击、文昌无囚迫、大小将不相开（电子转录字样）则将发；三门具则五将自然相会。三门不具不可出兵，五将不发不可强战。",
+      "textual_uncertainty": [
+        "“大小将不相开”疑与《金镜》“主客大小将无相关”对应，待扫描核字"
+      ],
+      "implementation_status": "source_record_only"
+    },
+    {
+      "id": "JF4M-03",
+      "source_title": "释主客相关第四十六",
+      "parallel_jinjing_rule": "J4M-03",
+      "domain": "主客五行相关",
+      "canonical_summary": "客关得主则客胜，主人关得客则主胜；用日计二目纳音，以二目所临神五行相制决之。",
+      "examples": [
+        "高丛木为地目、太簇金为天目：金制木，客胜",
+        "阴主土为地目、地主水为天目：土制水，主胜"
+      ],
+      "implementation_status": "source_record_only"
+    },
+    {
+      "id": "JF4M-04",
+      "source_title": "释主客第四十七",
+      "parallel_jinjing_rule": "J4M-04",
+      "domain": "主客先后动静",
+      "canonical_summary": "陈兵原野先起为客、后动为主；安居之势先举为主、后应为客。三门具、五将发、阴阳和时先起者胜、后起者负；不利三项时宜固守。",
+      "notable_readings": [
+        "欲知主人视主目所算；欲知客视客目所算"
+      ],
+      "implementation_status": "source_record_only"
+    },
+    {
+      "id": "JF4M-05",
+      "source_title": "释出师略地第四十八",
+      "parallel_jinjing_rule": "J4M-05",
+      "domain": "出师略地",
+      "canonical_summary": "行师出其门、略地用其二；算12/22/32且门具将发可行兵，出其门明确为开休生三吉门。",
+      "implementation_status": "source_record_only"
+    },
+    {
+      "id": "JF4M-06",
+      "source_title": "释陈兵向背第四十九",
+      "parallel_jinjing_rule": "J4M-06",
+      "domain": "陈兵向背",
+      "canonical_summary": "按算数定出兵方向：1西北、2正南、3东北、4正东、6正西、7西南、8正北、9东南。",
+      "canonical": {
+        "direction_table": {
+          "1": "西北",
+          "2": "正南",
+          "3": "东北",
+          "4": "正东",
+          "6": "正西",
+          "7": "西南",
+          "8": "正北",
+          "9": "东南"
+        }
+      },
+      "divergence_from_jinjing": "本表有3/7/8而无5，且主要是出向表；不得与《金镜》1/2/4/5/6/9阵旗表互补。",
+      "implementation_status": "source_record_only"
+    },
+    {
+      "id": "JF4M-07",
+      "source_title": "释置阵随地第五十",
+      "parallel_jinjing_rule": "J4M-07",
+      "domain": "地形制阵",
+      "canonical_summary": "水曲、火锐、木直、金方、土圆；主客置阵后以五行相制取胜负，再依地形选阵。",
+      "textual_uncertainty": [
+        "电子转录“地形跨斜”",
+        "电子转录“地形高而不平”均待扫描核字"
+      ],
+      "implementation_status": "source_record_only"
+    },
+    {
+      "id": "JF4M-08",
+      "source_title": "释随地形制变第五十一",
+      "parallel_jinjing_rule": "J4M-08",
+      "domain": "临敌随形制变",
+      "canonical_summary": "地形、卒习服、器用为急；步兵地车骑二不当一，萑苇竹萧为矛鋋类地、长戟二不当一，另有曲道剑楯地；不习服百不当十，将不省兵五不当一。",
+      "relation_to_hanshu": "整体更接近《汉书·爰盎晁错传》，但本 profile 只记录《福应经》自身转录。",
+      "implementation_status": "source_record_only"
+    },
+    {
+      "id": "JF4M-09",
+      "source_title": "释太乙在天外地内宫第五十二",
+      "parallel_jinjing_rule": "J4M-09",
+      "domain": "太乙助主客",
+      "canonical_summary": "1/8/3/4为地内助主，9/2/7/6为天外助客；仍须门具将发方决胜。",
+      "canonical": {
+        "inner_palaces_help_host": [
+          1,
+          8,
+          3,
+          4
+        ],
+        "outer_palaces_help_guest": [
+          9,
+          2,
+          7,
+          6
+        ]
+      },
+      "implementation_status": "source_record_only"
+    },
+    {
+      "id": "JF4M-10",
+      "source_title": "释太乙风云飞鸟置战第五十三",
+      "parallel_jinjing_rule": "J4M-11",
+      "domain": "风云飞鸟助战",
+      "canonical_summary": "风云飞鸟冲格迫击、由主人刑/客刑、主客目、太岁太阴月建等来势及翼阵、冲阵分别定主客败胜。",
+      "notable_readings": [
+        "迫击客大将宫客败；迫击主将宫主败",
+        "从主人刑上来主人败；从客刑上来客败",
+        "来翼主人阵前主人胜；来翼客阵前客胜",
+        "众鸟翼噪并风云冲阵而来为凶"
+      ],
+      "implementation_status": "source_record_only"
+    },
+    {
+      "id": "JF4M-11",
+      "source_title": "释奇伏第五十四",
+      "parallel_jinjing_rule": "J4M-10",
+      "domain": "奇兵伏兵",
+      "canonical_summary": "奇兵以三成为法；奇兵必从大杀之地，大杀为天目所临之下；转录另记其地居高、去敌三五里；11/21/31伏藏，掩迫时发，贼近伏要害。",
+      "divergence_from_jinjing": "《金镜》作“伏兵必败大煞之地”，本条作“奇兵必从大杀之地”；不得互改。",
+      "implementation_status": "source_record_only"
+    }
+  ]
+}
