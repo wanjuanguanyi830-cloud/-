@@ -173,23 +173,25 @@ for key in (
 ):
     CATALOG[key] = _entry(
         "canonical", "tongzong_volume6_7_witness_variant_direct", "P1",
-        "use_c66_three_bases_cycle_runtime", migrate_whole=False,
+        "use_c66_c74_three_bases_layers", migrate_whole=False,
         source_confidence="high", target_hint="source_variants.tongzong_state_cycles.three_bases",
         notes=(
             "C66 已按直接正文建立三基位置：共加邦盈差250；君基3600/360、30年一邦午起，"
             "臣基360/36、3年一邦午起，民基360/12、1年一邦戌起。"
-            "卷六/卷七仅作见证编次variant，不复制算法；同宫断语仍须显式关系层。"
+            "C74 已实现君基/臣基/民基/五福四者之间6个显式同宫pair；"
+            "卷六/卷七仅作见证编次variant，不复制算法，且禁止由C66位置自动制造同宫。"
         ),
     )
 
 CATALOG["明五福太乙所主術"] = _entry(
     "canonical", "tongzong_volume6_7_witness_variant_direct", "P1",
-    "use_c67_wufu_tongzong_profile", migrate_whole=False,
+    "use_c67_c74_wufu_layers", migrate_whole=False,
     source_confidence="high", target_hint="source_variants.tongzong_state_cycles.wufu.position",
     notes=(
         "C67 已将五福位置按来源profile分开：统宗为宫盈差115、大周2250、小周225、"
         "45年一宫；金镜为无该盈差、225一周。C15本字段来自统宗，必须显式选tongzong profile。"
-        "五福吉算另层，旧flat仍不得整体搬运。"
+        "C74 另实现五福与君基/臣基/民基的显式同宫关系，并将“初交之始”作为独立条件；"
+        "五福吉算仍由C68独立处理，旧flat不得整体搬运。"
     ),
 )
 
