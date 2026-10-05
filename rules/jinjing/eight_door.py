@@ -4,7 +4,7 @@ canonical 数值实现已迁至：
     kintaiyi.jinjing_year_eight_doors.year_duty_door
 
 本文件保留旧 `eight_door(accumulated_year) -> str` API。
-旧API允许0，并把0按240年周期末处理；新 canonical C122 要求1-based积年 >=1。
+旧API允许0，并把0按240年周期末处理；新 canonical C123 要求1-based积年 >=1。
 """
 
 from __future__ import annotations
