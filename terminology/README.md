@@ -445,7 +445,7 @@ C74 的五福初交、C90/C91 的条件治理分支、C94 的 interpretation pro
 当前快照：
 
 - stable catalogs：13；
-- 正式 entries：97；
+- 正式 entries：111；
 - 不同 entry 之间的精确 preferred/alias 重名：0。
 
 crosswalk 专门锁定“近名但不能合并”的高风险关系，例如：
