@@ -11,6 +11,7 @@ from kintaiyi.api import (
     get_term,
     list_catalogs,
     list_operations,
+    legacy_recovery_status,
     operations_for_rule,
     registry_snapshot,
     registry_versions,
@@ -87,6 +88,7 @@ def test_packaged_registry_and_schemas_are_json_resources():
     json.loads(resources.files("schemas").joinpath("result.schema.json").read_text(encoding="utf-8"))
     json.loads(resources.files("schemas").joinpath("capabilities.schema.json").read_text(encoding="utf-8"))
     json.loads(resources.files("schemas").joinpath("repository-status.schema.json").read_text(encoding="utf-8"))
+    json.loads(resources.files("schemas").joinpath("legacy-recovery-status.schema.json").read_text(encoding="utf-8"))
 
 
 def test_calculate_rule_resolves_d8_by_rule_id():
@@ -246,3 +248,24 @@ def test_repository_status_is_derived_from_live_indexes():
     assert set(status["operation_domains"]) == {
         item["domain"] for item in list_operations()
     }
+
+
+def test_legacy_recovery_status_keeps_missing_store_blocked():
+    status = legacy_recovery_status()
+    assert status["ziting_recovery_status"] == "blocked_missing_original_store"
+    assert status["original_schema_available"] is False
+    assert status["original_file_available"] is False
+    assert status["parser_allowed"] is False
+    assert status["synthetic_reconstruction_allowed"] is False
+    assert status["user_reported_local_copy"]["status"] == (
+        "exists_user_confirmed_not_mounted_in_current_runtime"
+    )
+    assert [item["key"] for item in status["priorities"][:3]] == [
+        "wenchang_nine_stars",
+        "three_banners",
+        "nine_palace_nobles",
+    ]
+    assert all(
+        item["recovered_from_original_store"] is False
+        for item in status["priorities"]
+    )
