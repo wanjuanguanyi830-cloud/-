@@ -3,6 +3,7 @@ from pathlib import Path
 
 from kintaiyi.dayou_position_source_profiles import (
     PALACE_PATH as DAYOU_PATH,
+    TAOJIN_PATH,
     PROFILES as DAYOU_PROFILES,
 )
 from kintaiyi.dayou_tianmu_source_profiles import (
@@ -84,7 +85,9 @@ def test_dayou_position_catalog_matches_c107_profiles():
     assert entry["stable_core"]["small_cycle"] == 288
     assert entry["stable_core"]["years_per_palace"] == 36
 
-    for profile in ("jinjing", "tongzong"):
+    assert entry["stable_core"]["path_scope"] == "jinjing_and_tongzong"
+
+    for profile in ("jinjing", "tongzong", "taojin"):
         catalog_profile = entry["source_profiles"][profile]
         runtime_profile = DAYOU_PROFILES[profile]
         assert catalog_profile["rule_id"] == runtime_profile["rule_id"]
@@ -92,6 +95,9 @@ def test_dayou_position_catalog_matches_c107_profiles():
         assert catalog_profile["epoch"] == runtime_profile["epoch"]
         assert catalog_profile["surplus"] == runtime_profile["surplus"]
         assert catalog_profile["outer_cycle"] == runtime_profile["outer_cycle"]
+
+    assert entry["source_profiles"]["taojin"]["path"] == list(TAOJIN_PATH)
+    assert entry["source_profiles"]["taojin"]["direction"] == "reverse"
 
 
 def test_dayou_tianmu_catalog_matches_c106_profiles():
@@ -205,6 +211,7 @@ def test_rules_json_no_longer_promotes_legacy_mixed_cycle_profiles():
     assert by_id["R-WF"]["source_profiles"]["jinjing"]["rule_id"] == "C67-WUFU-JINJING"
     assert by_id["R-DY"]["source_profiles"]["jinjing"]["rule_id"] == "C107-DAYOU-JINJING"
     assert by_id["R-DY"]["source_profiles"]["tongzong"]["rule_id"] == "C107-DAYOU-TONGZONG"
+    assert by_id["R-DY"]["source_profiles"]["taojin"]["rule_id"] == "C107-DAYOU-TAOJIN"
     assert by_id["R-XIAOYOU"]["source_profiles"]["jinjing"]["rule_id"] == "C103-XIAOYOU-JINJING"
     assert by_id["R-THREE-BASES"]["rule_ids"] == ["C66-JUNJI", "C66-CHENJI", "C66-MINJI"]
     assert by_id["R-LIMITS"]["rule_ids"] == [
