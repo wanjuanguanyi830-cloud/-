@@ -21,10 +21,12 @@ RULES = {
     },
     "wenchang_nine_stars": {
         "legacy_name": "文昌九星",
-        "primary_source": PRIMARY_SOURCE_ID,
+        "primary_source": None,
+        "source_role": "legacy_recovery_pointer",
         "primary_evidence_level": "ziting_manuscript_not_attested_modern_appendix_only",
         "collation_sources": ["tongzong_volume6", "sancai_shiwei_volume81"],
         "known_source_rule_id": "C70-TONGZONG-WENCHANG-NINE-STARS",
+        "known_source_profile": "tongzong_volume6_ngj_wenchang_nine_stars",
     },
     "wenchang_changes": {
         "legacy_name": "文昌变化",
@@ -108,7 +110,10 @@ def build_zitingjing_rule_sources(
         "rule_key": rule_key,
         "legacy_name": meta["legacy_name"],
         "primary_source": meta["primary_source"],
-        "primary_source_title": PRIMARY_SOURCE_TITLE,
+        "primary_source_title": (
+            PRIMARY_SOURCE_TITLE if meta["primary_source"] == PRIMARY_SOURCE_ID else None
+        ),
+        "source_role": meta.get("source_role", "primary_candidate"),
         "primary_evidence_level": evidence_level,
         "primary_result_allowed": primary_result_allowed,
         "primary_result": primary,
@@ -116,6 +121,7 @@ def build_zitingjing_rule_sources(
         "collation_sources": list(meta["collation_sources"]),
         "collation_results": collations,
         "known_source_rule_id": meta.get("known_source_rule_id"),
+        "known_source_profile": meta.get("known_source_profile"),
         "canonical_selected": "zitingjing" if primary_ready else None,
         "cross_source_merge": False,
         "status": status,
