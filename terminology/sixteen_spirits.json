@@ -1,32 +1,166 @@
 {
-  "schema_version": "1.1.0",
+  "schema_version": "1.2.0",
   "catalog_id": "recovered-sixteen-spirits",
   "canonical_name": "十六神规范名与九宫关系",
   "coordinate_space": "sixteen_spirit_to_nine_palace",
   "spirits": [
-    {"marker": "子·地主", "branch": "子", "spirit": "地主", "nine_palace": 8},
-    {"marker": "丑·阳德", "branch": "丑", "spirit": "阳德", "nine_palace": 3},
-    {"marker": "艮·和德", "branch": "艮", "spirit": "和德", "nine_palace": 3},
-    {"marker": "寅·吕申", "branch": "寅", "spirit": "吕申", "nine_palace": 4},
-    {"marker": "卯·高丛", "branch": "卯", "spirit": "高丛", "nine_palace": 4},
-    {"marker": "辰·太阳", "branch": "辰", "spirit": "太阳", "nine_palace": 9},
-    {"marker": "巽·大炅", "branch": "巽", "spirit": "大炅", "nine_palace": 9},
-    {"marker": "巳·大神", "branch": "巳", "spirit": "大神", "nine_palace": 2},
-    {"marker": "午·大威", "branch": "午", "spirit": "大威", "nine_palace": 2},
-    {"marker": "未·天道", "branch": "未", "spirit": "天道", "nine_palace": 7},
-    {"marker": "坤·大武", "branch": "坤", "spirit": "大武", "nine_palace": 7},
-    {"marker": "申·武德", "branch": "申", "spirit": "武德", "nine_palace": 6},
-    {"marker": "酉·太簇", "branch": "酉", "spirit": "太簇", "nine_palace": 6},
-    {"marker": "戌·阴主", "branch": "戌", "spirit": "阴主", "nine_palace": 1},
-    {"marker": "乾·阴德", "branch": "乾", "spirit": "阴德", "nine_palace": 1},
-    {"marker": "亥·大义", "branch": "亥", "spirit": "大义", "nine_palace": 8}
+    {
+      "marker": "子·地主",
+      "branch": "子",
+      "spirit": "地主",
+      "nine_palace": 8
+    },
+    {
+      "marker": "丑·阳德",
+      "branch": "丑",
+      "spirit": "阳德",
+      "nine_palace": 3
+    },
+    {
+      "marker": "艮·和德",
+      "branch": "艮",
+      "spirit": "和德",
+      "nine_palace": 3
+    },
+    {
+      "marker": "寅·吕申",
+      "branch": "寅",
+      "spirit": "吕申",
+      "nine_palace": 4
+    },
+    {
+      "marker": "卯·高丛",
+      "branch": "卯",
+      "spirit": "高丛",
+      "nine_palace": 4
+    },
+    {
+      "marker": "辰·太阳",
+      "branch": "辰",
+      "spirit": "太阳",
+      "nine_palace": 9
+    },
+    {
+      "marker": "巽·大炅",
+      "branch": "巽",
+      "spirit": "大炅",
+      "nine_palace": 9
+    },
+    {
+      "marker": "巳·大神",
+      "branch": "巳",
+      "spirit": "大神",
+      "nine_palace": 2
+    },
+    {
+      "marker": "午·大威",
+      "branch": "午",
+      "spirit": "大威",
+      "nine_palace": 2
+    },
+    {
+      "marker": "未·天道",
+      "branch": "未",
+      "spirit": "天道",
+      "nine_palace": 7
+    },
+    {
+      "marker": "坤·大武",
+      "branch": "坤",
+      "spirit": "大武",
+      "nine_palace": 7
+    },
+    {
+      "marker": "申·武德",
+      "branch": "申",
+      "spirit": "武德",
+      "nine_palace": 6
+    },
+    {
+      "marker": "酉·太簇",
+      "branch": "酉",
+      "spirit": "太簇",
+      "nine_palace": 6
+    },
+    {
+      "marker": "戌·阴主",
+      "branch": "戌",
+      "spirit": "阴主",
+      "nine_palace": 1
+    },
+    {
+      "marker": "乾·阴德",
+      "branch": "乾",
+      "spirit": "阴德",
+      "nine_palace": 1
+    },
+    {
+      "marker": "亥·大义",
+      "branch": "亥",
+      "spirit": "大义",
+      "nine_palace": 8
+    }
   ],
   "aliases": [
     {
       "alias": "大旲",
       "canonical_name": "大炅",
       "status": "recovered_textual_or_ocr_variant",
-      "note": "只作旧工作成果中的命中别名；规范输出仍使用大炅。"
+      "note": "旧术语资产已保存；规范输出仍使用大炅。"
+    },
+    {
+      "alias": "太炅",
+      "canonical_name": "大炅",
+      "status": "existing_runtime_alias",
+      "note": "2026-10-04 warfare 公共层亦接受太炅；规范输出使用大炅。"
+    },
+    {
+      "alias": "太神",
+      "canonical_name": "大神",
+      "status": "existing_runtime_alias",
+      "note": "现行 runtime 已接受太神；规范输出使用大神。"
+    },
+    {
+      "alias": "陽德",
+      "canonical_name": "阳德",
+      "status": "recovered_traditional_glyph_alias",
+      "note": "2026-10-04 warfare 公共层明确接受繁体字形。"
+    },
+    {
+      "alias": "呂申",
+      "canonical_name": "吕申",
+      "status": "recovered_traditional_glyph_alias",
+      "note": "2026-10-04 warfare 公共层明确接受繁体字形。"
+    },
+    {
+      "alias": "高叢",
+      "canonical_name": "高丛",
+      "status": "recovered_traditional_glyph_alias",
+      "note": "2026-10-04 warfare 公共层明确接受繁体字形。"
+    },
+    {
+      "alias": "太陽",
+      "canonical_name": "太阳",
+      "status": "recovered_traditional_glyph_alias",
+      "note": "2026-10-04 warfare 公共层明确接受繁体字形。"
+    },
+    {
+      "alias": "陰主",
+      "canonical_name": "阴主",
+      "status": "recovered_traditional_glyph_alias",
+      "note": "2026-10-04 warfare 公共层明确接受繁体字形。"
+    },
+    {
+      "alias": "陰德",
+      "canonical_name": "阴德",
+      "status": "recovered_traditional_glyph_alias",
+      "note": "2026-10-04 warfare 公共层明确接受繁体字形。"
+    },
+    {
+      "alias": "大義",
+      "canonical_name": "大义",
+      "status": "recovered_traditional_glyph_alias",
+      "note": "2026-10-04 warfare 公共层明确接受繁体字形。"
     }
   ],
   "recovery": {
@@ -36,7 +170,13 @@
     "status": "recovered_prior_work_crosschecked",
     "crosschecked_against": [
       "src/kintaiyi/taiyi_rules.py"
-    ]
+    ],
+    "additional_oct4_source": {
+      "branch": "integrate-taiyi-war-v1-20261004",
+      "path": "rules/common/taiyi_space.py",
+      "status": "recovered_glyph_aliases_only",
+      "policy": "只恢复明确字形别名；不回写旧 warfare 五行/宫位模型。"
+    }
   },
   "status": "terminology_reference_not_formula_source"
 }
