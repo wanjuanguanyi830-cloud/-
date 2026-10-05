@@ -356,7 +356,7 @@ def test_c80_j4m05_to_j4m10_scan_audit_locks_no_inference_boundaries():
     assert any("不解释《金镜》‘败’字" in x for x in by_id["J4M-10"]["scan_rule_audit"]["forbidden_inference"])
 
 
-def test_c82_j4m01_to_j4m04_scan_audit_and_taicu_alias_boundaries():
+def test_c83_j4m01_to_j4m04_scan_audit_and_taicu_alias_boundaries():
     _, rules = _rules()
     by_id = {item["id"]: item for item in rules}
 
