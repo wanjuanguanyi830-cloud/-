@@ -62,10 +62,23 @@ def test_derived_dragon_severe_control_overrides_good_qi():
     assert data["generals"]["home_general"]["verdict"] == "出战必死"
 
 
-def test_derived_explicit_xing_table_and_vassal_control():
-    assert t7.general_conflict(3, 6, xing_pairs={(6, 3)})["severe"]
-    assert t7.general_conflict(3, 6)["pending"]
-    assert t7.general_conflict(3, 6, 9)["events"] == [{"relation": "克", "target": "home_vassal"}]
+def test_derived_explicit_xing_pairs_apply_to_general_and_vassal():
+    general = t7.general_conflict(3, 6, 9, xing_pairs={(6, 3)})
+    assert {"relation": "刑", "target": "home_general"} in general["events"]
+
+    vassal = t7.general_conflict(3, 6, 9, xing_pairs={(6, 9)})
+    assert {"relation": "刑", "target": "home_vassal"} in vassal["events"]
+    assert {"relation": "克", "target": "home_vassal"} in vassal["events"]
+    assert vassal["xing_evidence_status"] == "explicit_collated_pairs"
+    assert vassal["pending"] == []
+
+
+def test_derived_missing_xing_mapping_stays_unknown_not_false():
+    data = t7.general_conflict(3, 6)
+    assert data["xing_evidence_status"] == "source_mapping_unresolved"
+    assert data["pending"]
+    assert "不得套用" in data["pending"][0]
+    assert data["collation_record"] == "sources/t7-06-white-dragon-xing-collation.md"
 
 
 def test_derived_fire_stage_priority_cloud_and_tiger():
