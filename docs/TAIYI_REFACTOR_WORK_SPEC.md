@@ -4384,7 +4384,63 @@ C60 新增：
 
 - `sources/c97-wufu-legacy-compat-quarantine-record.md`
 
-## 9.88 后续
+## 9.88 C98 大游 / 大游天目旧 compatibility 隔离（已实施）
+
+当前 `src/kintaiyi/cycles.py` 的旧大游接口继续保留数值兼容，但撤销 canonical 身份。
+
+### bigyo
+
+旧默认：
+
+`profile="jinjing_tongzong"`
+
+本身混合：
+
+- 金镜宫序；
+- 统宗 +34 宫盈差。
+
+固定：
+
+- `canonical=None`
+- `canonical_equivalent=False`
+- `promotion_allowed=False`
+- 默认 mixed profile `quarantined=True`
+
+淘金歌 profile 若显式给 epoch_offset，只作兼容试算，不升格。
+
+### bigyo_tianmu
+
+2026-10-04 记录已把旧：
+
+- `%180`
+- `+214`
+
+列为 `deprecated_reference`。
+
+所以默认 tongzong wrapper：
+
+- `canonical=None`
+- `quarantined=True`
+
+金镜 profile：
+
+- 保留已恢复的18步兼容路径；
+- 无显式 epoch_offset 不计算；
+- 即使显式给 offset，也不冒充完整 source-specific runtime。
+
+C60 新增四项：
+
+- `kintaiyi.cycles.bigyo.jinjing_tongzong`
+- `config.bigyo_default`
+- `kintaiyi.cycles.bigyo_tianmu.tongzong`
+- `config.bigyo_tianmu_default`
+
+详细记录：
+
+- `sources/c98-dayou-legacy-compat-quarantine-record.md`
+- `tests/test_c98_dayou_legacy_quarantine.py`
+
+## 9.89 后续
 
 继续时仍严格限定旧工作恢复窗口：
 
@@ -4393,10 +4449,10 @@ C60 新增：
 
 下一优先级：
 
-1. 对当前 `cycles.py` 中大游 / 大游天目做独立来源审计，不能因为与旧10月4日代码相同就默认 canonical；
-2. 检查旧 facade 剩余接口是否还有不依赖旧公式的可恢复部分；
+1. 检查旧 facade 剩余接口是否还有不依赖旧公式的可恢复部分；若无则正式核销；
+2. 检查 10月4日 warfare/common 是否还有未被 C96/T7/D8 吸收的纯 helper；
 3. 完整 `terminology.json` 继续由 C81 阻塞；
-4. 等并行 NCL C86/C87 校勘线稳定后统一最终 CI；
+4. 等并行 NCL 校勘线稳定后统一最终 CI；
 5. 所有旧 compatibility 必须明确 canonical / quarantine 身份，禁止“能运行=真源”。
 
 ## 10. 验收
