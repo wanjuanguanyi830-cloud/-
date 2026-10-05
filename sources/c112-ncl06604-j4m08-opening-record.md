@@ -90,3 +90,15 @@ NCL J4M-08 当前已经有：
 因此 C112 的直接可见范围由“仅五丈之沟起句”向后延长至上述完整字串。
 
 仍不补其后的文字；pending 从“该字串之后”继续。
+
+
+## C115 后续升级
+
+C112 的“开头已核、中段连续正文 pending”状态已被 C115 supersede。
+
+用户后续补充的连续页图已经从“**五丈之沟居堑之水山林**”一直核到 J4M-08 收尾，并直接见下一标题“推太乙在天外地内法”。
+
+因此：
+- C112 继续保留为历史阶段；
+- 当前 J4M-08 NCL 状态为 full_contiguous_body_direct_visual_verified；
+- 当前详情以 sources/c115-ncl06604-j4m08-full-body-record.md 为准。
