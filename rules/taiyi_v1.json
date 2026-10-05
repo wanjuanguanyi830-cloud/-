@@ -689,6 +689,22 @@
         "canonical": "C125只代表《太乙紫庭经》〈释九宫所值九星〉主来源直符周期：九星每星十年，合90年循环，天蓬起顺九星；开元十二年积1937281余31，得天辅直符第1年。当前不从OCR残文强推完整十干加宫，不借C124统宗动态表反填。",
         "rule_id": "C125-ZITING-TAIYI-NINE-STARS-CYCLE",
         "runtime": "kintaiyi.zitingjing_primary.taiyi_nine_stars_primary_cycle"
+      },
+      {
+        "id": "R-TONGZONG-V10-THREE-BANNERS",
+        "canonical": "C126《太乙统宗宝鉴》卷十三旗行宫：太岁青龙旗按60/12、余1子顺十二辰；太阴黑旗积年+25，360/36，亥起逆十二辰、三年一移；害气赤旗积年+1，40/4，亥起逆四孟、每年一移。二旗同支记二神会合，三旗同支记三神会合；不自动制造与太乙的会合。",
+        "rule_id": "C126-TONGZONG-THREE-BANNERS",
+        "source_profile": "tongzong_volume10_three_banners",
+        "runtime": "kintaiyi.tongzong_volume10_spirits.three_banners",
+        "source_record": "sources/c126-c127-tongzong-volume10-spirits-record.md"
+      },
+      {
+        "id": "R-TONGZONG-V10-NINE-PALACE-NOBLES",
+        "canonical": "C127《太乙统宗宝鉴》卷十九宫贵神：积年取360周纪余，加宫盈差3，以9为小周；起一宫逆行九神得直事。直事神钧入中宫，相次神自乾起，顺河图九宫飞行。原书余3=太阴例为硬回归。",
+        "rule_id": "C127-TONGZONG-NINE-PALACE-NOBLES",
+        "source_profile": "tongzong_volume10_nine_palace_nobles",
+        "runtime": "kintaiyi.tongzong_volume10_spirits.nine_palace_nobles",
+        "source_record": "sources/c126-c127-tongzong-volume10-spirits-record.md"
       }
     ]
   },
@@ -807,6 +823,6 @@
     "T7-02狮子反掷：普通落支候选破年仍缺第二古籍实例，当前不外推唯一应期。",
     "T7-06白龙得云：三源已确认“刑克”句，但本条未见可执行将宫刑映射；五行克可算，刑只接受独立校勘后的显式宫位对。",
     "旧本地terminology.json真实schema与原文件尚未重新挂载；旧term id、旧定义、旧notes等不得从当前catalog反推。",
-    "研易楼藏《太乙紫庭祕訣》明钞本原扫描页尚未重新挂载；文昌九星逐字manuscript_form/source_page、三旗行宫与九宫贵神的紫庭归属仍待原页证据。"
+    "研易楼藏《太乙紫庭祕訣》明钞本原扫描页尚未重新挂载；文昌九星逐字manuscript_form/source_page仍待原页恢复；旧术语库中的三旗行宫/九宫贵神记录若存在，只用于核对其是否另有紫庭witness，现行可执行canonical已明确归《太乙统宗宝鉴》卷十。"
   ]
 }
