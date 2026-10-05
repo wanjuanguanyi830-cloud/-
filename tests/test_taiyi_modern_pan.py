@@ -107,3 +107,27 @@ def test_modern_pan_v2_new_year_day_does_not_change_taiyi_year_again():
     )
     assert dec31["calendar"]["taiyi_year"] == 2027
     assert jan1["calendar"]["taiyi_year"] == 2027
+
+
+
+def test_pan_v2_validator_rejects_modern_payload_without_winter_solstice_policy():
+    pan = build_modern_pan_v2(MOMENT, count_type="岁计")
+    broken = dict(pan)
+    broken["calendar"] = dict(pan["calendar"])
+    broken["calendar"].pop("year_boundary_policy")
+    validation = validate_pan_v2(broken)
+    assert validation["valid"] is False
+    assert "modern production缺calendar.year_boundary_policy" in validation["errors"]
+
+
+def test_pan_v2_validator_rejects_non_winter_solstice_modern_year_boundary():
+    pan = build_modern_pan_v2(MOMENT, count_type="岁计")
+    broken = dict(pan)
+    broken["calendar"] = dict(pan["calendar"])
+    broken["calendar"]["year_boundary_policy"] = dict(
+        pan["calendar"]["year_boundary_policy"]
+    )
+    broken["calendar"]["year_boundary_policy"]["unique_boundary"] = "立春"
+    validation = validate_pan_v2(broken)
+    assert validation["valid"] is False
+    assert "modern production太乙岁界必须为真实天文冬至交节瞬间" in validation["errors"]
