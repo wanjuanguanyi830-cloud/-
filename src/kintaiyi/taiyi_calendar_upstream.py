@@ -65,13 +65,13 @@ def calendar_upstream_requirements(count_type: str) -> dict[str, Any]:
         "count_type": kind,
         "required_facts": list(spec["required"]),
         "optional_facts": list(spec["optional"]),
-        "automatic_gregorian_resolution": kind == "岁计",
+        "automatic_gregorian_resolution": True,
         "forbidden_guess": spec["forbidden_guess"],
         "source_boundary": {
             "岁计": "production统一以真实天文冬至瞬间换年；现代datetime可由modern_calendar解析",
             "月计": "production已由现代十二节月界 + 连续12月积月适配器自动生成；resolved接口仍允许底层显式积数",
             "日计": "production已由《金镜》天监三年六月八日积日锚点 + 现代连续民用日自动生成；resolved接口仍允许底层显式积数",
-            "时计": "需先由实际冬夏至气应判半岁并求时计积数",
+            "时计": "production已由现代积日×12+午夜起12时序自动生成entry_count与C119 duty_time_real；resolved接口仍保留显式输入",
         }[kind],
     }
 
@@ -161,20 +161,21 @@ def calendar_automation_status() -> dict[str, Any]:
     """列出从现代datetime完全自动化仍缺的source-specific部件。"""
     return {
         "rule_id": "CORE-CALENDAR-AUTOMATION-STATUS",
-        "automatic_gregorian_resolution": False,
+        "automatic_gregorian_resolution": True,
         "resolved": [
             "卷一长积年与卷三五子元历元",
             "岁计source-specific固定阳局",
             "四计G2-G7共同核心",
             "时计冬至后阳/夏至后阴profile",
             "C119冬夏二至时计八门直使",
+            "现代datetime -> 岁计冬至换年 -> G1..G7",
+            "现代datetime -> 十二节月界/积月 -> 月计G2..G7",
+            "现代datetime -> 中国标准民用日/积日 -> 日计G2..G7",
+            "现代datetime -> 连续12时积时 + 二至阴阳 -> 时计G2..G7 + C119直门",
         ],
-        "pending": [
-            "时计entry_count与C119 duty_time_real各自完整历法生成链",
-        ],
+        "pending": [],
         "policy": (
-            "岁计换年与时计冬/夏至半岁已由现代天文层自动化；"
-            "时计entry_count、duty_time_real未解决前，"
-            "不声称四计datetime全自动完成。"
+            "production岁/月/日/时四计均已可由timezone-aware datetime自动进入核心；"
+            "古历profile仍仅用于source reconstruction，resolved接口用于底层校验。"
         ),
     }
