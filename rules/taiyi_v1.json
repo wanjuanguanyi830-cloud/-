@@ -488,6 +488,12 @@
         "canonical": "C49只比较太游C41与小游C47当前内卦职责：太游36年一内卦取乾天之策，小游24年一内卦取坤地之策。当前同卦/异卦是结构事实，来源未据此单独赋吉凶；两周期不得合并，也不接C38行限。",
         "rule_id": "C49-DY-XY-DIFF",
         "runtime": "kintaiyi.dayou_xiaoyou_difference.dayou_xiaoyou_difference"
+      },
+      {
+        "id": "R-TAIYI-LISHU-EVIDENCE",
+        "canonical": "C50《统宗》卷十明太乙历数之期术是帝王始终之期的证据束总纲：即位年、太阳/阴主厄会、太乙入运气卦象、太游/小游轨运、囚迫击格掩挟等并列参详。C50不等于C42历数长短或C43厄会单法；即使证据齐全也不得伪造来源未给出的唯一终年/寿数公式。",
+        "rule_id": "C50-LISHU-EVIDENCE",
+        "runtime": "kintaiyi.taiyi_lishu_evidence.taiyi_lishu_evidence_bundle"
       }
     ]
   },
