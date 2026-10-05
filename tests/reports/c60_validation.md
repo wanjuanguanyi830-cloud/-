@@ -36,3 +36,17 @@ C60 不提供新太乙算法，只登记已经有来源审计依据、不得重�
 ```
 1197 passed in 1.47s
 ```
+
+
+## C70 后续验证
+
+19. `config.wenchang_nine_stars` 已加入 C60 quarantine。
+20. 旧30年周期核心不等于整体公式等价；星名、丁/壬落宫与旧分布实现均有已确认问题。
+21. replacement 固定为 `C70-TONGZONG-WENCHANG-NINE-STARS`。
+22. C70 只替代统宗 NGJ source profile，不替代紫庭附篇 primary。
+
+C70/C71 编号治理后的已确认整库基线：
+
+```
+1365 passed in 2.41s
+```
