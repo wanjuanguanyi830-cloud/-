@@ -1,24 +1,37 @@
 {
-  "version": "jinjing-v4-terminology-aliases-v1",
+  "version": "jinjing-v4-terminology-aliases-v2",
   "source_profile": "jinjing_siku_volume4",
   "policy": "原文字形与项目规范词形分栏保存；别名只做同一术语归一，不据字形差异创造新规则。",
   "aliases": [
     {
       "source_form": "太蔟",
       "canonical_form": "太簇",
-      "rule_ids": ["J4M-03"],
+      "rule_ids": [
+        "J4M-03"
+      ],
       "source_locator": {
         "witness": "CADAL06056494",
         "digital_scan_page": 130,
         "context": "推主客相关法首例"
       },
       "element": "金",
-      "status": "scan_source_glyph_alias",
-      "runtime_behavior": "接受source_form输入；保留原输入，同时输出canonical_form；五行判定不变。"
+      "status": "historical_source_form_alias",
+      "runtime_behavior": "接受source_form输入并保留原始字形；canonical_form固定输出太簇；五行判定不变。"
     }
   ],
   "non_alias_warnings": [
     "不得把不同古籍的规则差异仅因术名近似而登记为术语别名。",
     "目录题与正文题使用 rules/jinjing_v4_military.json 的 toc_aliases，不在本表改写 rule_id。"
-  ]
+  ],
+  "canonical_policy": {
+    "太簇": {
+      "status": "project_canonical_fixed",
+      "canonical_form": "太簇",
+      "accepted_source_forms": [
+        "太簇",
+        "太蔟"
+      ],
+      "policy": "术语主名、runtime canonical 输出与对外文档统一采用太簇；太蔟只保存为来源字形。"
+    }
+  }
 }
