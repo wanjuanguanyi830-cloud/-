@@ -7,6 +7,7 @@ from kintaiyi.wufu_auspicious_numbers import NUMBER_GROUPS
 
 CYCLES = Path("terminology/cycles.json")
 ZITING = Path("terminology/zitingjing.json")
+WENCHANG = Path("terminology/wenchang-nine-stars.json")
 RULES = Path("rules/taiyi_v1.json")
 CROSSWALK = Path("terminology/crosswalk.json")
 
@@ -27,24 +28,30 @@ def test_c68_wufu_number_groups_match_runtime():
     assert "不从积年自动调用C67" in entry["input_contract"]
 
 
-def test_c70_tongzong_profile_is_nested_below_ziting_primary_boundary():
-    data = _load(ZITING)
+def test_c70_is_independent_stable_catalog_and_ziting_keeps_only_pointer():
+    data = _load(WENCHANG)
     entry = next(e for e in data["entries"] if e["key"] == "wenchang_nine_stars")
-    profile = entry["source_specific_profiles"]["tongzong_volume6_ngj"]
     runtime = c70_catalog()
 
-    assert entry["primary_evidence_level"] == "prior_scan_confirmed_page_record_pending"
-    assert entry["primary_result_allowed"] is False
-    assert profile["rule_id"] == "C70-TONGZONG-WENCHANG-NINE-STARS"
-    assert profile["source_profile"] == runtime["source_profile"]
-    assert profile["cycle"] == {
-        "big_cycle": 2700,
+    assert entry["canonical_rule_id"] == "C70-TONGZONG-WENCHANG-NINE-STARS"
+    assert entry["canonical_source_profile"] == runtime["source_profile"]
+    assert entry["runtime"] == "kintaiyi.wenchang_nine_stars_tongzong.wenchang_nine_star_tongzong"
+    assert entry["cycle"] == {
+        "large_cycle": 2700,
         "small_cycle": 270,
         "years_per_star": 30,
-        "start_palace": 1,
-        "direction": "forward",
+        "start": "一宫文昌",
+        "direction": "顺行九宫",
     }
-    assert profile["full_dynamic_distribution_supported"] is False
+    assert entry["ziting_manuscript_boundary"]["status"] == "not_attested_in_manuscript_toc"
+
+    ziting = _load(ZITING)
+    pointer = next(e for e in ziting["entries"] if e["key"] == "wenchang_nine_stars")
+    assert pointer["term_type"] == "modern_edition_cross_source_recovery_pointer"
+    assert pointer["primary_evidence_level"] == "ziting_manuscript_not_attested_modern_appendix_only"
+    assert pointer["primary_result_allowed"] is False
+    assert pointer["canonical_catalog"] == "terminology/wenchang-nine-stars.json"
+    assert pointer["manuscript_toc_evidence"]["status"] == "title_not_attested"
 
 
 def test_rules_json_registers_c68_and_c70_without_source_merge():
@@ -55,7 +62,7 @@ def test_rules_json_registers_c68_and_c70_without_source_merge():
     assert by_id["R-WENCHANG-NINE-STARS-TONGZONG"]["rule_id"] == (
         "C70-TONGZONG-WENCHANG-NINE-STARS"
     )
-    assert "不得反填" in by_id["R-WENCHANG-NINE-STARS-TONGZONG"]["canonical"]
+    assert "研易楼明钞本目录未见该题" in by_id["R-WENCHANG-NINE-STARS-TONGZONG"]["canonical"]
 
 
 def test_c70_direct_evidence_matches_runtime_table_and_keeps_dynamic_boundary_closed():
@@ -71,7 +78,9 @@ def test_c70_direct_evidence_matches_runtime_table_and_keeps_dynamic_boundary_cl
     assert evidence["facts"]["start"] == "一宫文昌"
     assert evidence["facts"]["direction"] == "顺行九宫"
     assert runtime["dynamic_distribution_boundary"]["supported"] is False
-    assert runtime["cross_source_canonical_selected"] is None
+    assert runtime["cross_source_canonical_selected"] == (
+        "tongzong_volume6_ngj_wenchang_nine_stars"
+    )
 
 
 def test_nine_star_crosswalk_forbids_taiyi_wenchang_merge():
@@ -81,11 +90,8 @@ def test_nine_star_crosswalk_forbids_taiyi_wenchang_merge():
     keys = {(m["catalog"], m["key"]) for m in bridge["members"]}
     assert keys == {
         ("terminology/zitingjing.json", "taiyi_nine_stars"),
-        ("terminology/zitingjing.json", "wenchang_nine_stars"),
+        ("terminology/wenchang-nine-stars.json", "wenchang_nine_stars"),
     }
-    assert bridge["relation"] == "shared_nine_star_label_distinct_systems_and_source_boundaries"
-    assert any("不得因都称九星而合表" in x for x in bridge["forbidden_merge"])
-    assert any("不得升级为紫庭canonical" in x for x in bridge["forbidden_merge"])
-    wenchang = next(m for m in bridge["members"] if m["key"] == "wenchang_nine_stars")
-    assert wenchang["legacy_scan_witness"]["manuscript_scan_status"] == "previously_scanned_user_confirmed_original_page_record_not_reattached"
-    assert wenchang["legacy_scan_witness"]["forms"][0] == "文曲"
+    assert bridge["relation"] == "distinct_nine_star_systems_with_explicit_source_separation"
+    assert any("研易楼明钞本目录未见" in x for x in bridge["forbidden_merge"])
+    assert any("来源假说" in x for x in bridge["forbidden_merge"])
