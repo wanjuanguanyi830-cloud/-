@@ -65,6 +65,32 @@ def jishen_from_taisui(taisui_branch: str, *, dun: str) -> dict[str, Any]:
     }
 
 
+def jishen_from_entry_count(entry_count: int, *, dun: str) -> dict[str, Any]:
+    """四计通用：由入局积数按12周法求计神。"""
+    if isinstance(entry_count, bool) or not isinstance(entry_count, int):
+        raise TypeError("entry_count须为整数")
+    if entry_count < 1:
+        raise ValueError("entry_count须>=1")
+
+    dun_norm = _normalize_dun(dun)
+    remainder_12 = entry_count % 12 or 12
+    start = "寅" if dun_norm == "阳" else "申"
+    start_index = BRANCHES.index(start)
+    jishen = BRANCHES[(start_index - (remainder_12 - 1)) % 12]
+
+    return {
+        "rule_id": G4_RULE_ID,
+        "source_profile": SOURCE_PROFILE,
+        "dun": dun_norm,
+        "entry_count": entry_count,
+        "remainder_12": remainder_12,
+        "start_sector": start,
+        "direction": "逆行十二辰",
+        "jishen_sector": jishen,
+        "policy": "四计通用12周法；整除12按第12算处理。",
+    }
+
+
 def shiji_from_jishen_wenchang(*, jishen: Any, wenchang: Any) -> dict[str, Any]:
     """计神加和德宫，旋转文昌，求始击。"""
     jishen_sector = position(jishen)
