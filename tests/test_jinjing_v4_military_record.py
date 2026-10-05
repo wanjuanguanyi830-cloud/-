@@ -431,7 +431,7 @@ def test_c86_ncl06604_volume4_page_range_and_j4m_locators_are_verified():
     witnesses = {item["id"]: item for item in data["source"]["scan_witnesses"]}
     ncl = witnesses["NCL-06604"]
 
-    assert data["source"]["ncl_volume4_collation_version"] == "c86-ncl06604-v4-j4m-locators-v1"
+    assert data["source"]["ncl_volume4_collation_version"] == "c86-ncl06604-v4-j4m-locators-and-key-readings-v2"
     assert ncl["status"] == "volume4_scan_range_and_j4m_page_locators_verified_readings_in_progress"
     assert ncl["volume_boundaries"]["volume3_end"]["digital_scan_page"] == 54
     assert ncl["volume_boundaries"]["volume4_start"]["digital_scan_page"] == 55
@@ -481,6 +481,14 @@ def test_c86_ncl06604_selected_manuscript_readings_stay_noncanonical():
     assert j10["body_title"] == "推奇兵伏兵法"
     assert j10["canonical_override"] is False
 
+    j11 = by_id["J4M-11"]["manuscript_readings"]["NCL-06604"]
+    assert j11["body_title"] == "推太乙风云飞鸟助阵法"
+    assert j11["opening_phrase"] == "经曰助战之法"
+    assert j11["canonical_override"] is False
+
     j12 = by_id["J4M-12"]["manuscript_readings"]["NCL-06604"]
     assert j12["body_title"] == "推对阵有云气定胜负"
+    assert j12["west_white"]["base_verdict"] == "大胜"
+    assert j12["west_white"]["day_stems_good"] == ["庚", "辛"]
     assert j12["canonical_override"] is False
+    assert "基础胜负未明" in by_id["J4M-12"]["canonical_constraints"]["west_white"]
