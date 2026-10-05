@@ -25,6 +25,7 @@ from .taiyi_generals import host_guest_generals
 from .taiyi_jishen_shiji import shiji_from_taisui_wenchang
 from .taiyi_wenchang import wenchang_from_ju
 from .taiyi_position import taiyi_from_ju
+from .taiyi_taisui import year_entry_from_accumulated_year
 
 
 CORE_CHAIN_ID = "CORE-G4-G7-CHAIN"
@@ -176,5 +177,38 @@ def g2_to_g7_from_ju(
         "policy": (
             "局号只负责G2/G3入局积数；G4仍显式消费太岁支。"
             "这样避免把局号与太岁支的12支关系偷偷混成同一层。"
+        ),
+    }
+
+
+
+def g1_to_g7_from_accumulated_year(
+    *,
+    accumulated_year: int,
+    dun: str,
+) -> dict[str, Any]:
+    """积年直接进入G1→G7完整核心链。"""
+    g1 = year_entry_from_accumulated_year(accumulated_year)
+    core = g2_to_g7_from_ju(
+        ju=g1["local_ju"],
+        dun=dun,
+        taisui_branch=g1["taisui_branch"],
+    )
+    return {
+        **core,
+        "rule_id": "CORE-G1-G7-CHAIN",
+        "accumulated_year": accumulated_year,
+        "taisui_ganzhi": g1["taisui_ganzhi"],
+        "taisui_branch": g1["taisui_branch"],
+        "five_yuan": g1["five_yuan"],
+        "five_yuan_index_1based": g1["five_yuan_index_1based"],
+        "local_ju": g1["local_ju"],
+        "stages": {
+            "g1": g1,
+            **core["stages"],
+        },
+        "policy": (
+            "正式岁计核心入口从积年求太岁与本元局号；"
+            "G2/G3消费local_ju，G4消费taisui_branch，后续只消费上游结果。"
         ),
     }
