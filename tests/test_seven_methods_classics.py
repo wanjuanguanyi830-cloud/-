@@ -122,11 +122,53 @@ def test_derived_fire_stage_priority_cloud_and_tiger():
     assert t7.tiger("辰")["verdict"] == "敌营不久破/可攻"
 
 
-def test_derived_lion_ordinary_branch_remains_candidate():
+def test_derived_lion_ordinary_full_year_is_resolved():
     data = t7.lion("甲子")
+    assert data["timing"]["mode"] == "direct_break_year"
+    assert data["timing"]["source_marker"] == "卯"
+    assert data["timing"]["break_year_branch"] == "卯"
     assert data["timing"]["candidate_branch"] == "卯"
+    assert data["timing"]["offset"] == 3
+    assert data["timing"]["year_number"] == 4
+    assert data["timing"]["year"] == "丁卯"
+    assert data["timing"]["year_resolution"] == "full_ganzhi"
+    assert data["pending"] == []
+
+
+def test_derived_lion_branch_only_input_keeps_stem_unknown_without_research_pending():
+    data = t7.lion("子")
+    assert data["timing"]["mode"] == "direct_break_year"
+    assert data["timing"]["break_year_branch"] == "卯"
     assert data["timing"]["year"] is None
-    assert data["pending"]
+    assert data["timing"]["year_resolution"] == "branch_only_input_no_stem"
+    assert data["pending"] == []
+
+
+def test_lion_all_sexagenary_years_follow_plus3_or_plus17_source_split():
+    cycle = [
+        t7.STEMS[i % 10] + t7.BRANCHES[i % 12]
+        for i in range(60)
+    ]
+    cardinal = {"子", "卯", "午", "酉"}
+
+    for index, start in enumerate(cycle):
+        data = t7.lion(start)
+        branch = start[1]
+        expected_offset = 3 if branch in cardinal else 17
+        expected_year = cycle[(index + expected_offset) % 60]
+
+        assert data["timing"]["offset"] == expected_offset
+        assert data["timing"]["year_number"] == expected_offset + 1
+        assert data["timing"]["year"] == expected_year
+        assert data["timing"]["break_year_branch"] == expected_year[1]
+        assert data["pending"] == []
+
+        if branch in cardinal:
+            assert data["timing"]["mode"] == "direct_break_year"
+            assert data["timing"]["sector"] is None
+        else:
+            assert data["timing"]["mode"] == "corner_18_year"
+            assert data["timing"]["sector"] in {"艮", "巽", "坤", "乾"}
 
 
 def test_derived_missing_second_cloud_general_is_structured():
