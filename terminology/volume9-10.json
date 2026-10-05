@@ -1,0 +1,206 @@
+{
+  "schema_version": "1.0",
+  "catalog_id": "taiyi-volume9-10-source-rules-terminology-v1",
+  "scope": "source_sensitive_volume9_10_rules",
+  "status": "repository_source_profile_terminology_catalog",
+  "legacy_terminology_json_migrated": false,
+  "shared_catalogs": [
+    "terminology/common-core.json",
+    "terminology/cycles.json"
+  ],
+  "volume_policy": {
+    "volume9_direct_rules": ["C41", "C42"],
+    "witness_volume_variant_rules": ["C43", "C44", "C45", "C46"],
+    "policy": "C41/C42按卷九直接术文登记；C43-C46保留在线卷十与项目旧卷九标注并存，不复制两套算法，也不静默改写历史卷次。"
+  },
+  "entries": [
+    {
+      "key": "dayou_heavy_hexagram",
+      "preferred_term": "太游内外重卦",
+      "aliases": ["太游内外重卦", "太遊內外重卦", "明太游内外重卦之策术", "明太遊內外重卦之策術"],
+      "term_type": "direct_volume9_rule",
+      "rule_id": "C41-DY-HEX",
+      "source_profile": "tongzong_volume9_dayou_hexagram",
+      "runtime": "kintaiyi.dayou_hexagram.compose_dayou_heavy_hexagram",
+      "source_volume": 9,
+      "four_image_ce_per_line": {
+        "乾": {"four_image": "老阳", "ce": 36},
+        "坤": {"four_image": "老阴", "ce": 24},
+        "震": {"four_image": "少阳", "ce": 28},
+        "坎": {"four_image": "少阳", "ce": 28},
+        "艮": {"four_image": "少阳", "ce": 28},
+        "巽": {"four_image": "少阴", "ce": 32},
+        "离": {"four_image": "少阴", "ce": 32},
+        "兑": {"four_image": "少阴", "ce": 32}
+      },
+      "inner_moving_line": {
+        "years_in_inner_trigram": 36,
+        "years_per_line": 6,
+        "lines": ["初爻", "二爻", "三爻", "四爻", "五爻", "上爻"]
+      },
+      "epoch_variants": {
+        "tongzong_offset34": {"value": 34, "selected": false},
+        "taibai_bingbei_epoch_correction": {"value": 36610, "selected": false},
+        "legacy_outer_offset50": {"value": 50, "status": "unsupported_legacy_offset", "selected": false}
+      },
+      "boundary_notes": [
+        "36/24/28/32是单爻策数，不是三爻经卦总策。",
+        "经卦策数=单爻策数×3；重卦总策=内外经卦策数之和。",
+        "外卦动爻当前直接C41条文未证。",
+        "C41不调用C38，也不选择任一epoch variant。"
+      ]
+    },
+    {
+      "key": "dayou_lishu",
+      "preferred_term": "历数长短",
+      "aliases": ["历数长短", "歷數長短", "明历数长短以观远近之期术", "明歷數長短以觀遠近之期術", "安居之代历数", "安居之代歷數"],
+      "term_type": "direct_volume9_rule_group",
+      "rule_ids": ["C42-DY-LISHU", "C42-DY-ANJU"],
+      "source_profile": "tongzong_volume9_dayou_lishu",
+      "runtime": "kintaiyi.dayou_lishu",
+      "source_volume": 9,
+      "najia_number": {
+        "甲": 9, "己": 9, "子": 9, "午": 9,
+        "乙": 8, "庚": 8, "丑": 8, "未": 8,
+        "丙": 7, "辛": 7, "寅": 7, "申": 7,
+        "丁": 6, "壬": 6, "卯": 6, "酉": 6,
+        "戊": 5, "癸": 5, "辰": 5, "戌": 5,
+        "巳": 4, "亥": 4
+      },
+      "line_addition": {
+        "1": "本爻单加",
+        "2": "六爻全量求和后倍加",
+        "3": "不倍不加",
+        "4": "本爻单加",
+        "5": "六爻全量求和后倍加",
+        "6": "不倍不加"
+      },
+      "base_length": {
+        "long_lines": [1, 2, 4, 5],
+        "short_lines": [3, 6],
+        "line2_phase": "正旺",
+        "line5_phase": "时已过",
+        "line3_extreme": "内极",
+        "line6_extreme": "外极"
+      },
+      "boundary_notes": [
+        "在线OCR末组“己亥四”按参校正规化为“巳亥四”，保留OCR witness。",
+        "base_remainder_after_ce存在历史算例冲突，必须显式输入，不自动套普通取余。",
+        "安居附加政治证据不能覆盖一二四五长、三六短基础分类。"
+      ]
+    },
+    {
+      "key": "ehui_limit",
+      "preferred_term": "厄会行限",
+      "aliases": ["厄会行限", "厄會行限", "阳九百六太游行限观历", "陽九百六太遊行限觀歷"],
+      "term_type": "strict_source_contract",
+      "rule_id": "C43-V9-EHUI",
+      "source_profile": "tongzong_volume9_ehui_limit",
+      "runtime": "kintaiyi.volume9_ehui.ehui_limit_from_evidence",
+      "source_witness": {
+        "online_volume": 10,
+        "project_legacy_volume": 9,
+        "volume_status": "witness_volume_variant"
+      },
+      "required_inputs": [
+        "enthronement_ganzhi",
+        "taiyang_landing",
+        "yinzhu_landing",
+        "direction",
+        "count_evidence"
+      ],
+      "boundary_notes": [
+        "即位年必须为合法六十甲子完整干支，只给地支不够。",
+        "年限用原文神数累计，不用十六宫简单步数代替。",
+        "基础行限与太乙格、阳九百六、旺相休囚等修正证据并列，不反写。"
+      ]
+    },
+    {
+      "key": "governance_change",
+      "preferred_term": "国政革易法令变更",
+      "aliases": ["国政革易", "國政革易", "法令变更", "法令變更", "明国政革易法令变更术", "明國政革易法令變更術"],
+      "term_type": "strict_source_contract",
+      "rule_id": "C44-V9-GOV",
+      "source_profile": "tongzong_volume9_governance_change",
+      "runtime": "kintaiyi.volume9_governance.governance_change_from_evidence",
+      "source_witness": {
+        "online_volume": 10,
+        "project_legacy_volume": 9,
+        "volume_status": "witness_volume_variant"
+      },
+      "required_gods": ["太簇", "太阳", "阴主", "地主", "武德", "大义"],
+      "timing_core": {
+        "long_and_harmonious": "远",
+        "short_and_disharmonious": "近",
+        "canonical_year_selected": null
+      },
+      "year_witness_variants": {
+        "far": [90, 180],
+        "near_tongzong": [9, 28],
+        "near_taibai_bingbei": [9, 18]
+      },
+      "boundary_notes": [
+        "六神落点必须由上游原式显式给出，本层不自己做吕申加年旋转。",
+        "大神只在太白兵备参校见证额外出现，不写回统宗六神核心。",
+        "具体远近年数保留候选，不选单一年数。"
+      ]
+    },
+    {
+      "key": "disaster_timing",
+      "preferred_term": "岁中灾发月日之期",
+      "aliases": ["岁中灾发", "歲中災發", "岁中灾发月日之期", "歲中災發月日之期", "明岁中灾发月日之期术", "明歲中災發月日之期術"],
+      "term_type": "strict_two_stage_source_contract",
+      "rule_ids": ["C45-V9-MONTH", "C45-V9-DAY", "C45-V9-DISASTER"],
+      "source_profile": "tongzong_volume9_disaster_timing",
+      "runtime": "kintaiyi.volume9_disaster_timing",
+      "source_witness": {
+        "online_volume": 10,
+        "project_legacy_volume": 9,
+        "volume_status": "witness_volume_variant"
+      },
+      "stages": {
+        "month": "太岁合神加岁支后分别检查文昌与天目落点及冲处",
+        "day": "当月合神加月支后再次分别检查文昌与天目落点及冲处"
+      },
+      "branch_month": {
+        "寅": 1, "卯": 2, "辰": 3, "巳": 4, "午": 5, "未": 6,
+        "申": 7, "酉": 8, "戌": 9, "亥": 10, "子": 11, "丑": 12
+      },
+      "boundary_notes": [
+        "文昌与天目两目标必须同时检查。",
+        "艮巽坤乾四维没有直接月份换算时保持not_computable。",
+        "日层保存十六点/支候选，不伪造现代具体月日。",
+        "月、日两阶段都computable才算完整replacement。"
+      ]
+    },
+    {
+      "key": "yinyang_nine_calamities",
+      "preferred_term": "阴阳九厄水旱灾期",
+      "aliases": ["阴阳九厄", "陰陽九厄", "阴阳九厄水旱灾期", "陰陽九厄水旱災期", "明阴阳九厄水厄旱灾期术", "明陰陽九厄水厄旱災期術"],
+      "term_type": "source_cycle_rule",
+      "rule_id": "C46-YJ-9E",
+      "source_profile": "tongzong_yinyang_nine_calamities",
+      "runtime": "kintaiyi.yinyang_nine_calamities.yinyang_nine_calamities",
+      "source_witness": {
+        "online_volume": 10,
+        "project_legacy_volume": 9,
+        "volume_status": "witness_volume_variant"
+      },
+      "surplus_offset": 130,
+      "cycle_length": 4560,
+      "segment_lengths": [106, 374, 480, 720, 720, 600, 600, 480, 480],
+      "disaster_years": [9, 9, 9, 7, 7, 5, 5, 3, 3],
+      "polarity_disaster": {"阳": "旱", "阴": "水"},
+      "textual_normalizations": {
+        "fourth_duration": {"witnesses": [702, 720], "runtime": 720},
+        "fourth_polarity": {"ocr": "四阳七灾水七年", "runtime": "四阴七灾水七年"},
+        "ninth_disaster_years": {"ocr": 5, "runtime": 3}
+      },
+      "boundary_notes": [
+        "九个数是各段长度，不是直接累计阈值。",
+        "余0视为本元第4560年。",
+        "九段总长4560、总灾年57；正规化必须保留原witness。"
+      ]
+    }
+  ]
+}
