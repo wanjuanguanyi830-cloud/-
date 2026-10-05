@@ -65,8 +65,22 @@ MANSION_SPANS: dict[str, dict[str, Any]] = {
     "虚": {
         "raw": "〈二十五分半四分度之一〉",
         "numeric_span": None,
-        "status": "transcription_ambiguous",
-        "note": "四库公开转录此处缺整数主体/分数标点不清；不据总周天反推。",
+        "status": "transcription_ambiguous_confirmed_by_manuscript",
+        "note": (
+            "四库公开转录缺整数主体；NCL-06604明钞本PDF第21页直接影像"
+            "同样只见虚宿旁小字“二十五分半 / 四分度之一”类分数说明，"
+            "未见可安全补作整数主体的正文数字。不得据周天总和或后世宿度表反推。"
+        ),
+        "manuscript_witness": {
+            "id": "NCL-06604",
+            "edition": "明钞本",
+            "pdf_page": 21,
+            "section": "推黄道数立成",
+            "evidence_level": "direct_visual_verified",
+            "reading": "虚旁小字见二十五分半、四分度之一；整数主体未见",
+            "relation_to_siku": "confirms_missing_integer_ambiguity",
+            "canonical_effect": "none",
+        },
     },
     "危": {"raw": "十八", "numeric_span": Fraction(18, 1), "status": "direct"},
     "室": {"raw": "十七", "numeric_span": Fraction(17, 1), "status": "direct"},
@@ -177,6 +191,7 @@ def mansion_span(mansion: str) -> dict[str, Any]:
         "numeric_span": _fraction_payload(numeric) if numeric is not None else None,
         "status": data["status"],
         "note": data.get("note"),
+        "manuscript_witness": copy.deepcopy(data.get("manuscript_witness")),
         "source_witness": copy.deepcopy(SOURCE_WITNESS),
     }
 
@@ -295,6 +310,8 @@ def c118_catalog() -> dict[str, Any]:
                     if value["numeric_span"] is not None else None
                 ),
                 "status": value["status"],
+                "note": value.get("note"),
+                "manuscript_witness": copy.deepcopy(value.get("manuscript_witness")),
             }
             for mansion, value in MANSION_SPANS.items()
         },
