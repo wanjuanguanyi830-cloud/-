@@ -36,13 +36,25 @@
     {
       "key": "three_doors",
       "preferred_term": "三门",
-      "aliases": ["三门", "三門", "三门具不具", "三門具不具", "推三门具不具", "推三門具不具"],
+      "aliases": [
+        "三门",
+        "三門",
+        "三门具不具",
+        "三門具不具",
+        "推三门具不具",
+        "推三門具不具"
+      ],
       "term_type": "source_sensitive_method",
       "source_rule_refs": {
         "jinjing_siku_volume4": "J4M-01",
         "jingyou_fuying_volume4": "JF4M-01"
       },
-      "source_profiles": ["jinjing_siku_volume4", "jingyou_fuying_volume4", "tongzong_volume5", "c8_upstream"],
+      "source_profiles": [
+        "jinjing_siku_volume4",
+        "jingyou_fuying_volume4",
+        "tongzong_volume5",
+        "c8_upstream"
+      ],
       "c8_relation": "C8-L2只消费/归一化three_doors事实",
       "c8_equivalent_formula": false,
       "definition": "开、休、生三门的具不具判断；不同来源的门具公式与补文必须分profile保存。",
@@ -54,13 +66,25 @@
     {
       "key": "five_generals",
       "preferred_term": "五将",
-      "aliases": ["五将", "五將", "五将发不发", "五將發不發", "推五将发不发", "推五將發不發"],
+      "aliases": [
+        "五将",
+        "五將",
+        "五将发不发",
+        "五將發不發",
+        "推五将发不发",
+        "推五將發不發"
+      ],
       "term_type": "source_sensitive_method",
       "source_rule_refs": {
         "jinjing_siku_volume4": "J4M-02",
         "jingyou_fuying_volume4": "JF4M-02"
       },
-      "source_profiles": ["jinjing_siku_volume4", "jingyou_fuying_volume4", "tongzong_volume5", "c8_upstream"],
+      "source_profiles": [
+        "jinjing_siku_volume4",
+        "jingyou_fuying_volume4",
+        "tongzong_volume5",
+        "c8_upstream"
+      ],
       "c8_relation": "C8-L2只消费/归一化five_generals事实",
       "c8_equivalent_formula": false,
       "definition": "以始击掩击、文昌囚迫、主客大小将相关等来源条件判断五将发不发；三门事实与五将本体条件分栏。",
@@ -72,13 +96,24 @@
     {
       "key": "host_guest_relation",
       "preferred_term": "主客相关法",
-      "aliases": ["主客相关", "主客相闗", "主客相关法", "主客相闗法", "推主客相关", "推主客相关法"],
+      "aliases": [
+        "主客相关",
+        "主客相闗",
+        "主客相关法",
+        "主客相闗法",
+        "推主客相关",
+        "推主客相关法"
+      ],
       "term_type": "source_sensitive_method",
       "source_rule_refs": {
         "jinjing_siku_volume4": "J4M-03",
         "jingyou_fuying_volume4": "JF4M-03"
       },
-      "source_profiles": ["jinjing_siku_volume4", "jingyou_fuying_volume4", "tongzong_volume5"],
+      "source_profiles": [
+        "jinjing_siku_volume4",
+        "jingyou_fuying_volume4",
+        "tongzong_volume5"
+      ],
       "c8_relation": "C8-L3是主客动静/先后层，只是邻近主题，不是本法替代",
       "c8_equivalent_formula": false,
       "definition": "日计主客二目所临神五行相制之关法；客目克主目则客关得主人，主目克客目则主人关得客。",
@@ -91,13 +126,62 @@
     {
       "key": "effective_five_generals_readiness",
       "preferred_term": "有效五将发不发",
-      "aliases": ["有效五将", "有效五將", "有效五将发不发"],
+      "aliases": [
+        "有效五将",
+        "有效五將",
+        "有效五将发不发"
+      ],
       "term_type": "cross_layer_integration",
       "rule_id": "CORE-WUJIANG-READY",
       "runtime": "kintaiyi.jinjing_v4_military.effective_five_generals_readiness",
       "canonical_source_rule": false,
       "definition": "项目整合层把source-specific五将结果与上游杜塞事实合成有效状态；杜塞时取五将不发。",
-      "boundary_notes": ["该整合规则不是《金镜》J4M-02原文组成部分，不得回写source profile。"]
+      "boundary_notes": [
+        "该整合规则不是《金镜》J4M-02原文组成部分，不得回写source profile。"
+      ]
+    },
+    {
+      "key": "taigong_timing",
+      "preferred_term": "太公考时法",
+      "aliases": [
+        "推太公考时法",
+        "太公考时",
+        "太公考時"
+      ],
+      "term_type": "explicit_military_timing_evidence_chain",
+      "rule_id": "C117-TAIGONG-TIMING",
+      "source_profile": "jinjing_volume1_taigong_timing",
+      "runtime": "kintaiyi.jinjing_taigong_timing.evaluate_taigong_timing",
+      "readiness_integration_runtime": "kintaiyi.jinjing_taigong_timing.evaluate_taigong_with_rule_readiness",
+      "xuanming_dependency": "C116-XUANMING-ROLE",
+      "auspicious_doors": [
+        "开",
+        "休",
+        "生"
+      ],
+      "explicit_conditions": [
+        "右太乙左天目",
+        "阴阳和顺",
+        "无掩击迫囚关格对/四郭固杜/提挟",
+        "太乙不在阳绝",
+        "神将独立",
+        "吉道清虚",
+        "三门具",
+        "五将发",
+        "玄命条件",
+        "直使句条件"
+      ],
+      "cross_source_readiness": {
+        "three_doors": "太乙统宗宝鉴卷二门具profile",
+        "five_generals": "太乙金镜式经卷四J4M-02",
+        "calc_blocked": "CORE-WUJIANG-READY项目整合层",
+        "source_text_rewritten": false
+      },
+      "boundary_notes": [
+        "C117核心只解释调用方显式条件，不自动调用格局/八门/旺衰/六壬模块补事实。",
+        "三门/五将ready整合可调用现行source profiles，但必须标为cross-source integration，不能回填成《金镜》卷一逐字公式。",
+        "“直使前三五、后二四”结构尚未完全解析；只允许显式direct_envoy_clause_matched，不自行拆成数位算法。"
+      ]
     }
   ]
 }
