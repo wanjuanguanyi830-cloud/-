@@ -181,12 +181,12 @@ def test_c120_j4m09_boundary_is_verified_without_recomputing_c86_palace_groups()
     assert "不以NCL的1宫补四库canonical" in row["hard_boundary"]
 
 
-def test_c123_ncl_coverage_summary_is_complete_and_noncanonical():
+def test_c124_ncl_coverage_summary_is_complete_and_noncanonical():
     data = _matrix()
     summary = data["ncl_coverage_summary"]
 
-    assert data["last_update"] == "C123"
-    assert "C123" in data["updates"]
+    assert data["last_update"] == "C124"
+    assert "C124" in data["updates"]
     assert summary["counts"] == {
         "locator_only": 4,
         "selected_readings": 5,
