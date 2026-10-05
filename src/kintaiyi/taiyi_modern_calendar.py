@@ -219,7 +219,8 @@ def production_boundary_registry() -> dict[str, Any]:
         },
         "taiyi_time_half": {
             "boundary": "真实天文冬至/夏至交节瞬间",
-            "effect": "冬至起阳局，夏至起阴局",
+            "effect": "冬至起阳局并重启冬至半岁时计；夏至起阴局并重启夏至半岁时计",
+            "changes_taiyi_year": "冬至时是；夏至时否",
         },
         "taiyi_time_unit": {
             "boundary": "子正/夜半起，每2小时一算",
