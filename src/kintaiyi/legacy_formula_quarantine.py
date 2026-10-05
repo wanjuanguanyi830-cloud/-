@@ -247,6 +247,30 @@ QUARANTINE: dict[str, dict[str, Any]] = {
         source_module="ten_essences_source_registry",
     ),
 
+    "kintaiyi.cycles.wufu.project": _q(
+        "kintaiyi.cycles.wufu.project",
+        category="obsolete_project_profile",
+        reason=(
+            "旧0基compat profile固定+250并曾标作project canonical；"
+            "C67已把五福位置拆为统宗+115/2250→225与金镜无该盈差/225两个显式来源profile。"
+            "旧+250只能保留数值兼容，不得提升。"
+        ),
+        replacement_rule_ids=("C67-WUFU-TONGZONG", "C67-WUFU-JINJING"),
+        replacement_layer="wufu.position.source_profiles",
+        source_module="wufu_source_profiles",
+    ),
+    "config.wufu_default": _q(
+        "config.wufu_default",
+        category="legacy_api_defaults_to_quarantined_profile",
+        reason=(
+            "config.wufu直接暴露kintaiyi.cycles.wufu；无profile调用仍进入旧project+250兼容路径。"
+            "返回值现已显式quarantined，canonical调用必须改用C67并选择来源。"
+        ),
+        replacement_rule_ids=("C67-WUFU-TONGZONG", "C67-WUFU-JINJING"),
+        replacement_layer="wufu.position.source_profiles",
+        source_module="wufu_source_profiles",
+    ),
+
     # 卷九/十等已明确不等价的旧实现。
     "guiyun.yinyang_jiu_e": _q(
         "guiyun.yinyang_jiu_e",
