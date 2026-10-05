@@ -45,8 +45,15 @@ def test_mansion_spans_preserve_fractional_and_ambiguous_entries():
 
     xu = mansion_span("虚")
     assert xu["numeric_span"] is None
-    assert xu["status"] == "transcription_ambiguous"
-    assert "不据总周天反推" in xu["note"]
+    assert xu["status"] == "transcription_ambiguous_confirmed_by_manuscript"
+    assert "不得据周天总和" in xu["note"]
+    witness = xu["manuscript_witness"]
+    assert witness["id"] == "NCL-06604"
+    assert witness["edition"] == "明钞本"
+    assert witness["pdf_page"] == 21
+    assert witness["evidence_level"] == "direct_visual_verified"
+    assert witness["relation_to_siku"] == "confirms_missing_integer_ambiguity"
+    assert witness["canonical_effect"] == "none"
 
 
 def test_twelve_divisions_cover_all_twenty_eight_mansions_once():
@@ -116,3 +123,21 @@ def test_invalid_inputs_are_rejected():
         term_day_position("立冬", 0)
     with pytest.raises(TypeError):
         term_day_position("立冬", True)
+
+
+def test_catalog_preserves_ncl_xu_witness_without_unlocking_numeric_span():
+    catalog = c118_catalog()
+    xu = catalog["mansion_spans"]["虚"]
+
+    assert xu["numeric_span"] is None
+    assert xu["status"] == "transcription_ambiguous_confirmed_by_manuscript"
+    assert xu["manuscript_witness"]["pdf_page"] == 21
+    assert "整数主体未见" in xu["manuscript_witness"]["reading"]
+
+
+def test_ncl_witness_does_not_unlock_cross_xu_progression():
+    data = term_day_position("大寒", 20)
+
+    assert data["computable"] is False
+    assert data["blocked_by"] == "虚"
+    assert "影印" in data["pending"][0] or "虚宿" in data["pending"][0]
