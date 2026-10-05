@@ -1,7 +1,12 @@
 import json
 from pathlib import Path
 
-from kintaiyi.taiyi_core_chain import (\n    g1_to_g7_from_accumulated_year,\n    g2_to_g7_from_ju,\n    g3_to_g7_from_ju,\n    g4_to_g7_from_ju,\n)
+from kintaiyi.taiyi_core_chain import (
+    g1_to_g7_from_accumulated_year,
+    g2_to_g7_from_ju,
+    g3_to_g7_from_ju,
+    g4_to_g7_from_ju,
+)
 
 
 FIXTURE = Path(__file__).parent / "fixtures" / "g6_72ju_paths.json"
