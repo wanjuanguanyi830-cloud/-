@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0",
+  "catalog_id": "t7-seven-methods-terminology-v1",
+  "scope": "canonical_seven_methods",
+  "status": "repository_canonical_terminology_catalog",
+  "legacy_terminology_json_migrated": false,
+  "policy": [
+    "本文件登记当前仓库七术术名、输入边界与rule_id，不冒充尚未恢复的旧本地terminology.json。",
+    "七术Mode A与Mode B必须分层；五态与十二长生不得混成一个状态。",
+    "需要敌方事件时刻/日期的术，缺事件输入必须not_computable，不得拿当前盘字段代替。",
+    "来源异文保留为variant，不静默覆盖canonical。"
+  ],
+  "entries": [
+    {
+      "key": "seven_methods",
+      "preferred_term": "七术",
+      "aliases": ["七术", "太乙七术"],
+      "term_type": "method_group",
+      "rule_ids": ["T7-01", "T7-02", "T7-03", "T7-04", "T7-05", "T7-06", "T7-07"],
+      "definition": "七个独立军事判断法；各术保留自身事件输入、气势模型与来源边界。"
+    },
+    {
+      "key": "lijin_wendao",
+      "preferred_term": "临津问道",
+      "aliases": ["临津问道", "臨津問道"],
+      "term_type": "canonical_method",
+      "rule_id": "T7-01",
+      "runtime": "kintaiyi.seven_methods.lijin",
+      "required_inputs": ["enemy_start_year_branch"],
+      "definition": "以敌起兵年支为起点，连续四次按吕申加位顺行四格，依次取破年、月、日、时之支。",
+      "boundary_notes": ["古例中的具体年干与月份数字不外推成通用公式。"]
+    },
+    {
+      "key": "lion_reverse_throw",
+      "preferred_term": "狮子反掷",
+      "aliases": ["狮子反掷", "獅子反擲"],
+      "term_type": "canonical_method",
+      "rule_id": "T7-02",
+      "runtime": "kintaiyi.seven_methods.lion",
+      "required_inputs": ["enemy_start_year_branch"],
+      "qi_model": "A",
+      "definition": "敌起兵年支经大神落辰后，以大神火与落辰五行判五态；旺相不破，休囚死合破。",
+      "timing_note": "若落四维，取第18年（offset +17）为破应。",
+      "source_variant_note": "墓为易破等说法只作来源异文。"
+    },
+    {
+      "key": "cloud_rolls_empty",
+      "preferred_term": "白云卷空",
+      "aliases": ["白云卷空", "白雲卷空"],
+      "term_type": "canonical_method",
+      "rule_id": "T7-03",
+      "runtime": "kintaiyi.seven_methods.cloud",
+      "required_inputs": ["home_general", "away_general"],
+      "qi_model": "A",
+      "definition": "主客大将九宫分别转入大神落辰，以大神自身气势及十二长生分层判断强弱。",
+      "boundary_notes": ["大将居中五时该边不可算。", "五态与临官/冠带/帝旺/墓须分字段保存。"]
+    },
+    {
+      "key": "tiger_resists",
+      "preferred_term": "猛虎相拒",
+      "aliases": ["猛虎相拒"],
+      "term_type": "canonical_method",
+      "rule_id": "T7-04",
+      "runtime": "kintaiyi.seven_methods.tiger",
+      "required_inputs": ["enemy_camp_day_taiyi_palace"],
+      "qi_model": "A",
+      "definition": "以敌下营之日太乙为输入，转大神后判断敌营可攻与否；旺相不可攻，死或长生衰/墓可攻。",
+      "boundary_notes": ["不能用当前泛太乙替代敌下营日太乙。", "囚可攻只作来源异文。"]
+    },
+    {
+      "key": "thunder_enters_water",
+      "preferred_term": "雷公入水",
+      "aliases": ["雷公入水"],
+      "term_type": "canonical_method",
+      "rule_id": "T7-05",
+      "runtime": "kintaiyi.seven_methods.leigong",
+      "required_inputs": ["day_taiyi_palace", "home_general", "home_vassal", "away_general", "away_vassal"],
+      "qi_model": "B",
+      "definition": "以当日太乙转大神落辰作为环境，以四将所在九宫五行为主体判五态；环境克将时该将为死厄。",
+      "boundary_notes": ["将帅用所在九宫五行，不用固有五行。", "电子本太乙6→乾等只保留variant，不覆盖canonical。"]
+    },
+    {
+      "key": "white_dragon_gets_cloud",
+      "preferred_term": "白龙得云",
+      "aliases": ["白龙得云", "白龍得雲"],
+      "term_type": "canonical_method",
+      "rule_id": "T7-06",
+      "runtime": "kintaiyi.seven_methods.dragon",
+      "required_inputs": ["day_taiyi_palace", "home_general", "home_vassal", "away_general", "away_vassal"],
+      "qi_model": "B",
+      "definition": "以当日太乙与四将判将帅乘气；旺相宜部署，休囚死不宜，并把直接相克与待校刑关系分开。",
+      "boundary_notes": ["严重刑克证据优先于普通乘气。", "刑关系没有标准表时保持pending。"]
+    },
+    {
+      "key": "return_army_silent",
+      "preferred_term": "回军无言",
+      "aliases": ["回军无言", "回軍無言", "回车无言", "回車無言"],
+      "term_type": "canonical_method",
+      "rule_id": "T7-07",
+      "runtime": "kintaiyi.seven_methods.returnarmy",
+      "required_inputs": ["enemy_first_arrival_taiyi_palace", "home_general", "away_general"],
+      "qi_model": "B",
+      "definition": "必须以敌军初来时日太乙为环境，比较敌我大将乘气；敌旺相则有伏，敌休囚死则无伏、自破、可攻。",
+      "boundary_notes": ["旧单参数away_general只保兼容，不得代替enemy_first_arrival_taiyi_palace。", "缺敌初来太乙必须not_computable。"]
+    }
+  ]
+}
