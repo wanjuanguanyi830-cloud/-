@@ -82,17 +82,38 @@ def leigong(taiyi, home_general=None, home_vassal=None, away_general=None, away_
 
 
 def general_conflict(home_general, away_general, home_vassal=None, *, xing_pairs=None):
-    """已确认克关系直接算；刑表须由经校勘的调用层显式提供。"""
+    """已确认克关系直接算；刑只接受独立校勘后显式提供的宫位对。"""
     enemy_wx = palace_element(away_general)
     events = []
-    for target, palace in (("home_general", home_general), ("home_vassal", home_vassal)):
+    targets = (("home_general", home_general), ("home_vassal", home_vassal))
+    for target, palace in targets:
         if palace is not None and CONTROLS[enemy_wx] == palace_element(palace):
             events.append({"relation": "克", "target": target})
-    if xing_pairs is not None and (away_general, home_general) in xing_pairs:
-        events.append({"relation": "刑", "target": "home_general"})
-    return {"severe": bool(events), "events": events,
-            "verdict": "出战必死" if events else None,
-            "pending": ["将宫刑关系表待校，未提供时仅计算克"] if xing_pairs is None else []}
+        if (
+            palace is not None
+            and xing_pairs is not None
+            and (away_general, palace) in xing_pairs
+        ):
+            events.append({"relation": "刑", "target": target})
+    return {
+        "severe": bool(events),
+        "events": events,
+        "verdict": "出战必死" if events else None,
+        "xing_evidence_status": (
+            "explicit_collated_pairs"
+            if xing_pairs is not None
+            else "source_mapping_unresolved"
+        ),
+        "pending": (
+            [
+                "白龙得云本条未见可执行将宫刑映射；"
+                "不得套用通用地支三刑或其他九宫相刑表"
+            ]
+            if xing_pairs is None
+            else []
+        ),
+        "collation_record": "sources/t7-06-white-dragon-xing-collation.md",
+    }
 
 
 def dragon(taiyi, home_general=None, home_vassal=None, away_general=None, away_vassal=None, *, xing_pairs=None):
