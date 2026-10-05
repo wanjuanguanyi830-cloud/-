@@ -311,3 +311,41 @@ def test_public_rule_api_auto_selects_taojin_dayou_profile():
 
     ops = operations_for_rule("C107-DAYOU-TAOJIN")
     assert [item["name"] for item in ops] == ["cycles.dayou.position"]
+
+
+def test_public_rule_api_resolves_tongzong_volume10_spirits():
+    banners = calculate_rule("C126-TONGZONG-THREE-BANNERS", 3)
+    nobles = calculate_rule("C127-TONGZONG-NINE-PALACE-NOBLES", 9)
+
+    assert banners["rule_id"] == "C126-TONGZONG-THREE-BANNERS"
+    assert banners["source_profile"] == "tongzong_volume10_three_banners"
+    assert banners["meeting"] == "三神会合"
+    assert set(banners["flags"].values()) == {"寅"}
+
+    assert nobles["rule_id"] == "C127-TONGZONG-NINE-PALACE-NOBLES"
+    assert nobles["source_profile"] == "tongzong_volume10_nine_palace_nobles"
+    assert nobles["direct_god"] == "太阴"
+    assert nobles["distribution"]["乾"] == "天乙"
+    assert nobles["distribution"]["兑"] == "太乙"
+
+    assert [item["name"] for item in operations_for_rule(
+        "C126-TONGZONG-THREE-BANNERS"
+    )] == ["spirits.three_banners.tongzong"]
+    assert [item["name"] for item in operations_for_rule(
+        "C127-TONGZONG-NINE-PALACE-NOBLES"
+    )] == ["spirits.nine_palace_nobles.tongzong"]
+
+
+def test_recovery_status_distinguishes_rule_source_gaps_from_legacy_witness_gaps():
+    status = legacy_recovery_status()
+    by_key = {item["key"]: item for item in status["priorities"]}
+
+    assert by_key["wenchang_nine_stars"]["current_rule_source_gap"] is True
+    assert by_key["three_banners"]["current_rule_source_gap"] is False
+    assert by_key["nine_palace_nobles"]["current_rule_source_gap"] is False
+    assert by_key["three_banners"]["known_executable_rule_id"] == (
+        "C126-TONGZONG-THREE-BANNERS"
+    )
+    assert by_key["nine_palace_nobles"]["known_executable_rule_id"] == (
+        "C127-TONGZONG-NINE-PALACE-NOBLES"
+    )
