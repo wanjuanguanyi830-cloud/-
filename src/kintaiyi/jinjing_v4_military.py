@@ -522,6 +522,8 @@ def zhuke_xiangguan(host_eye_element=None, guest_eye_element=None, *,
             "policy": "《金镜》本条明言用日计二目纳音；其他计层不得自动套用本 canonical。",
         }
 
+    host_eye_god_canonical = _J4M03_GOD_ALIASES.get(host_eye_god, host_eye_god)
+    guest_eye_god_canonical = _J4M03_GOD_ALIASES.get(guest_eye_god, guest_eye_god)
     host_from_god = j4m03_eye_element_from_god(host_eye_god)
     guest_from_god = j4m03_eye_element_from_god(guest_eye_god)
 
@@ -618,6 +620,8 @@ def zhuke_xiangguan(host_eye_element=None, guest_eye_element=None, *,
         "guest_eye_element": guest_eye_element,
         "host_eye_god": host_eye_god,
         "guest_eye_god": guest_eye_god,
+        "host_eye_god_canonical": host_eye_god_canonical,
+        "guest_eye_god_canonical": guest_eye_god_canonical,
         "relation": relation,
         "winner": winner,
         "loser": loser,
