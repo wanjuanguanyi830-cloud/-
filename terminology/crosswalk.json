@@ -11,12 +11,12 @@
     "master_store_policy": "本文件只做跨目录对账，不替代缺失的旧terminology.json。"
   },
   "audit_snapshot": {
-    "stable_catalog_count": 12,
-    "entry_count": 102,
+    "stable_catalog_count": 13,
+    "entry_count": 111,
     "exact_cross_entry_name_collisions": 0,
     "status": "clean_at_snapshot",
-    "rules_json_rule_id_count": 75,
-    "terminology_rule_id_count": 108,
+    "rules_json_rule_id_count": 84,
+    "terminology_rule_id_count": 123,
     "rules_missing_from_terminology": 0,
     "rules_coverage_status": "complete_at_snapshot"
   },
@@ -367,8 +367,10 @@
         "rule_id": "C53-FLYBIRD"
       },
       "right": {
+        "catalog": "terminology/military-jinjing-v4.json",
+        "key": "wind_cloud_bird_support",
         "rule_id": "J4M-11",
-        "term": "军事外部飞鸟观测"
+        "term": "太乙风云飞鸟助战"
       },
       "relation": "same_name_family_forbidden_merge",
       "forbidden_merge": [
@@ -734,6 +736,56 @@
         "C50并列参详C41/C43/C47及其他显式证据，但不把它们静默压成唯一寿数公式。",
         "C42历数长短和C43厄会各自保留独立source rule，不因被C50消费而改写。",
         "C51登位云气是C50末段观察解释层，不反向成为C50唯一结论。"
+      ]
+    },
+    {
+      "id": "CW-J4M-V4-SPLIT",
+      "p0": {
+        "catalog": "terminology/military-p0.json",
+        "rule_ids": [
+          "J4M-01",
+          "J4M-02",
+          "J4M-03"
+        ],
+        "scope": "三门/五将/主客相关"
+      },
+      "extended": {
+        "catalog": "terminology/military-jinjing-v4.json",
+        "rule_ids": [
+          "J4M-04",
+          "J4M-05",
+          "J4M-06",
+          "J4M-07",
+          "J4M-08",
+          "J4M-09",
+          "J4M-10",
+          "J4M-11",
+          "J4M-12"
+        ],
+        "scope": "主客先后动静至阵有风云气定胜负"
+      },
+      "relation": "same_ruleset_split_by_repository_catalog_scope",
+      "forbidden_merge": [
+        "J4M-03主客相关五行相制与J4M-04主客先后动静是相邻但不同术。",
+        "military-p0只承担01..03及跨层readiness；04..12由扩展目录管理。",
+        "目录拆分不改变《金镜》卷四正文顺序，也不允许跨条自动补条件。"
+      ]
+    },
+    {
+      "id": "CW-J4M-NCL-WITNESS",
+      "canonical_catalog": "terminology/military-jinjing-v4.json",
+      "witness_asset": "terminology/ncl06604-legacy-reconciliation-map.json",
+      "relation": "canonical_siku_vs_manuscript_witness",
+      "high_risk_variants": [
+        "J4M-05 四库12/22/32 vs NCL只见12/22",
+        "J4M-06 四库1/2/4/5/6/9 vs NCL 1/2/3/4/6/7/8/9",
+        "J4M-09 四库1宫未列 vs NCL 1宫地内助主",
+        "J4M-11 主人刑/客刑败方读法冲突",
+        "J4M-12 西方白云基础胜负读法冲突"
+      ],
+      "forbidden_merge": [
+        "NCL页级见证不得覆盖jinjing_siku_volume4 canonical。",
+        "旧terminology.json恢复时必须把manuscript_form/source_page挂在witness侧，不改写stable preferred term/rule semantics。"
       ]
     }
   ]
