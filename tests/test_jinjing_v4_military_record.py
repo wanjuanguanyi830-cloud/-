@@ -547,7 +547,7 @@ def test_c87_ncl_j4m11_xing_readings_stay_separate_from_siku_canonical():
 
 def test_c88_ncl_j4m06_direction_table_is_separate_from_siku():
     data, rules = _rules()
-    assert data["source"]["ncl_volume4_collation_version"] == "c88-ncl06604-j4m06-direction-table-v1"
+    assert "c88-ncl06604-j4m06-direction-table-v1" in data["source"]["ncl_volume4_collation_history"]
 
     rule = {item["id"]: item for item in rules}["J4M-06"]
     ncl = rule["manuscript_readings"]["NCL-06604"]
@@ -649,7 +649,7 @@ def test_c101_taicu_variant_is_dictionary_attested_but_canonical_stays_taicu():
 
 def test_c110_ncl_j4m06_full_table_resolves_detail_pending_without_overwriting_siku():
     data, rules = _rules()
-    assert data["source"]["ncl_volume4_collation_version"] == "c110-ncl06604-j4m06-full-table-v1"
+    assert "c110-ncl06604-j4m06-full-table-v1" in data["source"]["ncl_volume4_collation_history"]
 
     rule = {item["id"]: item for item in rules}["J4M-06"]
     ncl = rule["manuscript_readings"]["NCL-06604"]
