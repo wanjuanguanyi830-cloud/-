@@ -16,7 +16,16 @@
       "terminology/terminology.json",
       "data/terminology.json"
     ],
-    "git_history_matches": 0
+    "git_history_matches": 0,
+    "visible_branches_checked": [
+      "main",
+      "codex/c1-c7-canonical",
+      "codex/taiyi-base-motion-2026-10-04",
+      "codex/taiyi-rules-v2-20261005",
+      "integrate-taiyi-war-v1-20261004"
+    ],
+    "all_visible_branch_trees_checked": true,
+    "legacy_store_found_in_visible_git": false
   },
   "external_recovery_checks": {
     "chatgpt_library_title_or_content_match": false,
@@ -50,7 +59,9 @@
       "recovered_from_original_store": false,
       "manuscript_form_recoverable_now": false,
       "source_page_recoverable_now": false,
-      "legacy_scan_extraction_residue_available": true
+      "legacy_scan_extraction_residue_available": true,
+      "current_rule_source_gap": true,
+      "recovery_purpose": "ziting_primary_manuscript_form_page_and_text_recovery"
     },
     {
       "key": "three_banners",
@@ -58,7 +69,11 @@
       "recovered_from_original_store": false,
       "manuscript_form_recoverable_now": false,
       "source_page_recoverable_now": false,
-      "legacy_scan_extraction_residue_available": false
+      "legacy_scan_extraction_residue_available": false,
+      "current_rule_source_gap": false,
+      "known_executable_rule_id": "C126-TONGZONG-THREE-BANNERS",
+      "known_executable_source_profile": "tongzong_volume10_three_banners",
+      "recovery_purpose": "old_store_identity_and_optional_ziting_witness_only"
     },
     {
       "key": "nine_palace_nobles",
@@ -66,7 +81,11 @@
       "recovered_from_original_store": false,
       "manuscript_form_recoverable_now": false,
       "source_page_recoverable_now": false,
-      "legacy_scan_extraction_residue_available": false
+      "legacy_scan_extraction_residue_available": false,
+      "current_rule_source_gap": false,
+      "known_executable_rule_id": "C127-TONGZONG-NINE-PALACE-NOBLES",
+      "known_executable_source_profile": "tongzong_volume10_nine_palace_nobles",
+      "recovery_purpose": "old_store_identity_and_optional_ziting_witness_only"
     },
     {
       "key": "taiyi_nine_stars",
@@ -110,6 +129,8 @@
     "Do not use external collation witnesses to fill Yanyilou manuscript_form or source_page.",
     "C70 may inform source comparison but may not backfill Zitingjing primary terminology fields.",
     "When the original store becomes available, write a one-time adapter against the observed schema.",
-    "A user-confirmed local copy or recovered derived scan residue does not make the old terminology.json schema available; parser_allowed remains false until the exact store is mounted."
+    "A user-confirmed local copy or recovered derived scan residue does not make the old terminology.json schema available; parser_allowed remains false until the exact store is mounted.",
+    "All five visible Git branches were recursively checked on 2026-10-05; no historical terminology.json was present. This narrows recovery to the exact local/previously uploaded store rather than an unmerged Git branch.",
+    "Three banners and nine-palace noble gods now have direct Tongzong volume10 runtimes; their legacy recovery entries remain only to recover old-store identity or prove an additional Ziting manuscript witness."
   ]
 }
