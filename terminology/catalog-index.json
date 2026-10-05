@@ -93,6 +93,16 @@
         "三旗行宫",
         "九宫贵神"
       ]
+    },
+    {
+      "path": "terminology/wuyun-wuyin.json",
+      "catalog_id": "taiyi-wuyun-wuyin-terminology-v1",
+      "scope": "source_sensitive_wuyun_wuyin",
+      "contains": [
+        "五运六气卷三/卷十source profiles",
+        "卷十五运六气C39校勘",
+        "五音之数C37-V3-WYIN"
+      ]
     }
   ],
   "migration_assets": [
