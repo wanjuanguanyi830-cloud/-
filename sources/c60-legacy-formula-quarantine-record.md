@@ -243,3 +243,62 @@ C60 扩展后的全量 CI：
 - replacement → `C70-TONGZONG-WENCHANG-NINE-STARS`
 
 C70 只替代统宗 NGJ source profile，不替代紫庭 primary。
+
+
+## C97 / C98 周期兼容层补充隔离
+
+### 五福 C97
+
+新增：
+
+- `kintaiyi.cycles.wufu.project`
+- `config.wufu_default`
+
+原因：
+
+旧 `project +250` 曾被阶段性实现标作 canonical，但 C67 已按来源拆为：
+
+- 统宗 +115；
+- 金镜无该盈差。
+
+旧 +250 只能保留数值兼容，不能升格。
+
+### 大游 C98
+
+新增：
+
+- `kintaiyi.cycles.bigyo.jinjing_tongzong`
+- `config.bigyo_default`
+
+原因：
+
+旧默认 profile 名本身即：
+
+`jinjing_tongzong`
+
+把金镜宫序与统宗 +34 盈差合并成一个实现层。2026-10-04 恢复记录已经明确旧 `config.bigyo()` 只作实现参照，不作为规则真源。
+
+因此：
+
+- 数值兼容保留；
+- `canonical=None`
+- `canonical_equivalent=False`
+- `promotion_allowed=False`
+
+replacement 暂不指向猜测的新 runtime，等待 source-specific 行宫层独立重接。
+
+### 大游天目 C98
+
+新增：
+
+- `kintaiyi.cycles.bigyo_tianmu.tongzong`
+- `config.bigyo_tianmu_default`
+
+2026-10-04 `rules/dayou/tianmu.json` 已明确：
+
+- 金镜恢复工作采用 72→18 与18步路径；
+- 旧 `%180 / +214` 实现只作 `deprecated_reference`。
+
+因此默认旧 +214 wrapper 不能继续充当 canonical。
+
+C98 保留兼容数值，但统一撤销 canonical 身份。
