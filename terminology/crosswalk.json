@@ -25,9 +25,7 @@
     ],
     "jingyou_military_source_runtime_coverage": "11/11",
     "jingyou_military_text_pending": [
-      "JF4M-02",
-      "JF4M-07",
-      "JF4M-10"
+      "JF4M-02"
     ]
   },
   "bridges": [
@@ -886,7 +884,7 @@
       ],
       "forbidden_merge": [
         "JF4M-01..11已有《福应经》独立runtime；仍不得调用J4M平行runtime作为替代或补缺。",
-        "JF4M-02‘大小将不相开’、JF4M-07地形字表、JF4M-10部分观测句的文本pending必须保留。",
+        "JF4M-02‘大小将不相开’技术义仍待核定；字面存在不等于可自动解释为J4M‘无相关’。",
         "JF4M-10/11与J4M-11/10尾部次序不同，不能按编号机械对齐。",
         "福应经与金镜的方向表、1宫地内、主人刑/客刑败方、奇兵大杀句等差异继续分source profile。"
       ],
