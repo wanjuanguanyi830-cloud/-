@@ -10,7 +10,7 @@
 
 ## 调用
 
-安装本项目或将仓库根目录及 `src` 加入 Python 搜索路径。项目没有外部运行依赖。
+安装本项目或将仓库根目录及 `src` 加入 Python 搜索路径。传统规则核心仍保持纯Python结构；现代production日期入口依赖 `astronomy-engine` 与 `lunar_python`，安装项目时由 `pyproject.toml` 自动安装。
 
 ```python
 from kintaiyi.seven_methods import lijin, cloud, leigong, dragon, returnarmy
@@ -59,3 +59,52 @@ attack_realm("吕申")               # 固定内，内虚宜攻外
 从仓库根目录执行 `python -m pytest -q`。新增测试包括全部七术古例、八占指定组、完整十二支/九宫加位映射、四将五态、刑克优先、回军缺输入、五福/大游各周期与段界、天目全部18步、兼容入口和数据分层。
 
 仍待校：原典页码影印、狮子普通落支第二实例、将宫刑表、孤单异性/尾数5综合断语、五音正比音、未提供的正式俱备标签、淘金歌宫法及金镜天目的历元盈差、外部参考项目真实旧签名。均明确存储，不作为已确认算法。
+
+
+## Modern production 与太乙岁界
+
+现代日期排盘的 production canonical 已从古历复原层分离。
+
+### 太乙岁
+
+唯一换年点：
+
+`真实天文冬至交节瞬间`
+
+规则：
+
+`moment < winter_solstice(Y) -> Taiyi year Y`
+
+`moment >= winter_solstice(Y) -> Taiyi year Y+1`
+
+明确不采用：
+
+- 元旦；
+- 春节；
+- 立春；
+- 春分。
+
+### 四计现代边界
+
+- 岁计：冬至瞬间换太乙岁；
+- 月计：十二节精确交节切太阳月；
+- 日计：Asia/Shanghai 民用日00:00；
+- 时计：冬至/夏至瞬间切半岁，并从该半岁重新起算时计积数。
+
+月计中的 `month_formula_year` 只用于积月公式，不能替代 `taiyi_year`。
+
+农历年和立春干支年都只作并列日历事实。
+
+### Modern pan v2
+
+`build_modern_pan_v2(moment, count_type=...)`
+
+是现代日期到结构化盘面的正式adapter。
+
+pan v2 对 `production_modern` payload 强制验证：
+
+- 必须存在 `calendar.taiyi_year`；
+- 必须声明“真实天文冬至交节瞬间”为唯一太乙岁界；
+- 必须明确排除元旦/春节/立春/春分换年。
+
+旧 `pan_adapter.py` 只迁移legacy snapshot，不参与现代日期计算。
