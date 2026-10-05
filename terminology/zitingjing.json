@@ -80,7 +80,7 @@
         "附太乙文昌九星值宮術"
       ],
       "term_type": "primary_text_pending_term",
-      "primary_evidence_level": "legacy_scan_extraction_recovered_page_pending",
+      "primary_evidence_level": "prior_scan_confirmed_page_record_pending",
       "primary_result_allowed": false,
       "runtime": null,
       "source_section": "附太乙文昌九星值宫术",
@@ -139,11 +139,12 @@
       ],
       "cycle_status": "cross_source_unresolved",
       "boundary_notes": [
-        "研易楼藏《太乙紫庭祕訣》此前整理术语库时已经扫描；当前已从旧派生实现恢复一组legacy词形与表格残留，不再记为“资料未取得”。",
-        "但E盘原扫描与旧terminology.json本体当前未重新挂载，故尚不能把legacy派生词形直接认定为逐字manuscript_form，也不生成紫庭值宫runtime。",
+        "研易楼藏《太乙紫庭祕訣》此前整理术语库时已经扫描，用户确认本地E盘仍有原件；因此不再记为“资料未取得”。",
+        "当前执行环境未重新挂载E盘原扫描，也未恢复旧terminology.json原始记录，所以紫庭文昌九星仍不能生成primary runtime。",
+        "旧kentang2017/kintaiyi的九星代码确实保留文曲、玄鳳、明維、昭搖、立華、華明、玄武、玄冥、雄明等词形，但该代码第1020-1024行明确标注来源为《太乙统宗宝鉴》卷六，不能直接反认成研易楼本逐字扫描结果。",
         "C70统宗卷六NGJ可独立运行，但只属于统宗source profile；不得反填紫庭primary。",
         "NGJ直接正文支持30年一星、270小周、2700大周、起一宫文昌顺九宫，并以年干建禄宫安当前直事星。",
-        "旧扫描整理残留显示文曲、玄鳳、明維、昭搖、立華、華明、玄武、玄冥、雄明；这些与C70-NGJ存在明显词形/星名差异，必须作为legacy witness并列，不能静默统一。",
+        "旧代码残留与C70-NGJ的文曲/文昌、昭搖/阴德、立華/招摇、雄明/维明及年干落宫差异继续并列，来源未定前不得静默统一。",
         "另有CADAL见证出现每星十年等异读/内部冲突，作为独立witness保存，不覆盖NGJ profile。",
         "C70只稳定计算直事星、入本星年数与年干落宫/分野；其余八星完整动态重排仍不支持。"
       ],
@@ -205,9 +206,12 @@
         }
       ],
       "legacy_scan_recovery": {
-        "status": "prior_scan_extraction_recovered_direct_page_pending",
+        "status": "manuscript_previously_scanned_original_page_record_not_reattached",
         "asset": "terminology/zitingjing-legacy-scan-recovery.json",
-        "recovered_forms": [
+        "user_confirmed_manuscript": "研易楼藏《太乙紫庭祕訣》明钞本",
+        "local_copy_status": "E盘仍存，当前执行环境未挂载",
+        "code_residue_status": "source_ambiguous_for_ziting; old config explicitly labels Tongzong volume 6",
+        "recovered_code_forms": [
           "文曲",
           "玄鳳",
           "明維",
@@ -218,7 +222,6 @@
           "玄冥",
           "雄明"
         ],
-        "provenance_note": "用户确认研易楼明钞本此前整理术语库时已扫描；当前从旧派生实现恢复词形与表格残留，待E盘原扫描/旧terminology.json重新挂载后逐页对照。",
         "canonical_effect": "none_until_direct_page_or_original_terminology_record_is_reattached"
       }
     },
