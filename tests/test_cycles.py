@@ -2,6 +2,7 @@ import pytest
 from kintaiyi.cycles import (wufu,wufu_gb,bigyo,bigyo_tianmu,dayou_xiong,
                              WUFU_PATH,DAYOU_PATH,DAYOU_TAOJIN_PATH,DAYOU_TM_PATH)
 from kintaiyi.wufu_source_profiles import wufu_position
+from kintaiyi.dayou_position_source_profiles import dayou_position
 
 
 def test_wufu_legacy_project_250_is_quarantined_not_canonical():
@@ -110,3 +111,36 @@ def test_profile_metadata_and_pending_epoch():
     assert jinjing["canonical_equivalent"] is True
     assert jinjing["profile_metadata"]["yuan"] == 72
     assert bigyo_tianmu(0,profile="jinjing",epoch_offset=0)["profile_metadata"]["yuan"] == 72
+
+
+
+@pytest.mark.parametrize("profile", ["jinjing", "tongzong"])
+@pytest.mark.parametrize("year", [0, 1, 35, 36, 287, 288, 13330])
+def test_dayou_explicit_source_profiles_delegate_to_c107(profile, year):
+    legacy = bigyo(year, profile=profile)
+    direct = dayou_position(year + 1, source_profile=profile)
+    assert legacy["rule_id"] == direct["rule_id"]
+    assert legacy["canonical"] == direct["canonical"]
+    assert legacy["canonical_equivalent"] is True
+    assert legacy["promotion_allowed"] is True
+    assert legacy["quarantined"] is False
+    assert legacy["palace"] == direct["palace"]
+    assert legacy["year_in_palace"] == direct["year_in_palace"]
+
+
+def test_dayou_mixed_default_stays_quarantined_after_c107():
+    data = bigyo(0)
+    assert data["profile"] == "jinjing_tongzong"
+    assert data["canonical"] is None
+    assert data["canonical_equivalent"] is False
+    assert data["promotion_allowed"] is False
+    assert data["quarantined"] is True
+
+
+def test_dayou_non_source_custom_offset_does_not_override_c107():
+    data = bigyo(0, profile="jinjing", epoch_offset=1)
+    assert data["rule_id"] == "LEGACY-DAYOU-CUSTOM-OFFSET"
+    assert data["canonical"] is None
+    assert data["canonical_equivalent"] is False
+    assert data["promotion_allowed"] is False
+    assert "不覆盖source-specific runtime" in data["reason"]
