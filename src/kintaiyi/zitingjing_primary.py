@@ -130,6 +130,19 @@ TAIYI_NINE_STARS_PRIMARY = (
 )
 
 
+TAIYI_NINE_STARS_PRIMARY_NAME_CORRESPONDENCE = {
+    "天蓬": {"primary_names": ["招摇"], "witness_variants": ["天枪", "天仓"]},
+    "天芮": {"primary_names": ["玄戈"], "witness_variants": []},
+    "天冲": {"primary_names": ["摇光"], "witness_variants": ["瑶光"]},
+    "天辅": {"primary_names": ["闿阳"], "witness_variants": ["闓阳", "开阳", "阖阳"]},
+    "天禽": {"primary_names": ["衡"], "witness_variants": ["玉衡"]},
+    "天心": {"primary_names": ["权"], "witness_variants": []},
+    "天柱": {"primary_names": ["玑"], "witness_variants": []},
+    "天任": {"primary_names": ["璇"], "witness_variants": ["旋"]},
+    "天英": {"primary_names": ["枢"], "witness_variants": []},
+}
+
+
 TAIYI_NINE_STARS_PRIMARY_CYCLE_EVIDENCE = {
     "rule_id": "C125-ZITING-TAIYI-NINE-STARS-CYCLE",
     "section": "释九宫所值九星",
@@ -212,6 +225,7 @@ def taiyi_nine_stars_primary() -> dict[str, Any]:
         "source_status": "verified_direct",
         "computable": True,
         "table": copy.deepcopy(list(TAIYI_NINE_STARS_PRIMARY)),
+        "name_correspondence": copy.deepcopy(TAIYI_NINE_STARS_PRIMARY_NAME_CORRESPONDENCE),
         "source_summary": {
             "two_hidden_seven_visible": True,
             "nine_palaces": True,
