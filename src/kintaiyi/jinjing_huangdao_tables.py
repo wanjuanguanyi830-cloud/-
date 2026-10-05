@@ -135,9 +135,47 @@ SOURCE_WITNESS = {
         "https://zh.wikisource.org/zh-hans/太乙金鏡式經_(四庫全書本)/卷01",
         "https://www.shidianguji.com/book/SK1615/chapter/1l9lir71oidda",
     ],
+    "additional_facsimile_locators": [
+        {
+            "id": "CADAL06056494",
+            "title": "太乙金鏡式經·卷一~卷四",
+            "format": "djvu",
+            "pages": 144,
+            "holding_or_source": "浙江大学图书馆 / CADAL",
+            "status": "located_not_target_page_visually_verified",
+            "canonical_effect": "none",
+        },
+        {
+            "id": "SSID-12326977",
+            "title": "太乙金鏡式經 1",
+            "format": "pdf",
+            "pages": 144,
+            "status": "located_not_target_page_visually_verified",
+            "canonical_effect": "none",
+        },
+        {
+            "id": "SSID-13003380",
+            "title": "太乙金鏡式經 欽定四庫全書",
+            "format": "pdf",
+            "pages": 121,
+            "status": "located_not_target_page_visually_verified",
+            "canonical_effect": "none",
+        },
+        {
+            "id": "wenyuange-siku-0810",
+            "title": "文淵閣四庫全書 0810冊",
+            "format": "djvu",
+            "pages": 1031,
+            "taiyi_page_range": [855, 920],
+            "holding_or_source": "臺灣商務印書館影印文淵閣四庫全書",
+            "status": "book_range_located_target_page_not_visually_verified",
+            "canonical_effect": "none",
+        },
+    ],
     "policy": (
         "卷一表格作为历史算法输入；不以现代天文学或后世宿度表改写。"
-        "公开转录对虚宿度数存在缺字/分数歧义，保持 unresolved。"
+        "公开转录与NCL-06604明钞均未提供可安全读取的虚宿整数主体，保持 unresolved。"
+        "新定位CADAL/SSID/文渊阁影印只作locator；未逐页视觉核验前不得提升为数值见证。"
     ),
 }
 
