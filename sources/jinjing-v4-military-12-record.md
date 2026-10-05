@@ -239,3 +239,55 @@ J4M-03 虽已 canonical complete，但 C8 当前没有独立“关法” layer�
 另有一份 CText 转录把同组内容编作“卷三”，在底本未确认前只登记为卷次 variant，不覆盖四库卷四 canonical。
 
 J4M-08 的“晁错曰”已与《汉书·爰盎晁错传》对勘，确认存在实质异文：车骑三/二不当一、矛锤/矛鋋、弓弩三不当一/长戟二不当一，以及《汉书》另有曲道剑楯段；训练与将领失误的比例亦不同。故《汉书》只作外部引文 witness，不静默校正《金镜》runtime。详细记录见 sources/c64-jinjing-v4-witness-collation-record.md。
+
+
+## C65～C69 后续复核汇总（2026-10-05）
+
+### C65：J4M-04 先后胜负
+
+《金镜》“先胜后负”经《武经总要》《太乙秘书》同段“先起则胜，后起则败”参校，现只在三门具、五将发、阴阳和三项全具时落实：
+
+- 陈兵原野：客先起 -> 客胜；
+- 安居之势：主先起 -> 主胜。
+
+其他古本“三项皆恶则先起败、后起胜”的扩展不回写《金镜》。
+
+### C66：J4M-05～07
+
+- J4M-05：确认“出其门”与“用其二”为分立条件；12/22/32 与开休生不混为一条。
+- J4M-06：《福应经》古本已有 1/2/3/4/6/7/8/9 的异表，证明不能拿近名规则补《金镜》1/2/4/5/6/9。
+- J4M-07：补齐此前遗漏的“主客置阵，次以五行相克而取胜负” runtime 层。
+
+### C67/C68：《景祐太乙福应经》独立 profile
+
+《福应经》卷四的差异已经足以构成独立古籍规则系，现另建：
+
+- rules/jingyou_fuying_v4_military.json
+- ruleset = jingyou-fuying-v4-military-11
+- source profile = jingyou_fuying_volume4
+- rule ids = JF4M-01..JF4M-11
+
+JF4M 只作 source_record_only，不继承 J4M runtime；两书只能通过 parallel_jinjing_rule 对照，不互补字段。
+
+### C69：J4M-12 云气表去推补
+
+重新逐项对四库正文后发现旧 runtime 曾把“西方白云气在敌阵上，庚辛日弥佳”按四方对称性补成“大胜”，现已删除：
+
+- 西方白云 base_verdict = null；
+- 庚辛仍保留“弥佳”；
+- 不以五行或表格对称性补基础胜负。
+
+同时把：
+
+- cloud_bearer（云气在我/敌阵）
+- verdict_subject（断语主体）
+
+拆开。北方红云原文明“客胜”，无论云在我阵还是敌阵，主体仍保留“客”，不机械改写为我/敌。
+
+详细见：
+
+- sources/c65-j4m04-first-mover-collation-record.md
+- sources/c66-j4m05-07-collation-record.md
+- sources/c67-jingyou-v4-j4m-collation-record.md
+- sources/c68-jingyou-v4-independent-profile-record.md
+- sources/c69-j4m12-cloud-table-audit-record.md
