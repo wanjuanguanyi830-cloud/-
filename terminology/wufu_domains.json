@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "catalog_id": "recovered-wufu-five-domains",
+  "canonical_name": "五福五域坐标",
+  "domains": [
+    {
+      "domain": "乾",
+      "sectors": ["戌", "乾", "亥"],
+      "wufu_palace": 1,
+      "wufu_name": "黄秘"
+    },
+    {
+      "domain": "艮",
+      "sectors": ["丑", "艮", "寅"],
+      "wufu_palace": 3,
+      "wufu_name": "黄始"
+    },
+    {
+      "domain": "巽",
+      "sectors": ["辰", "巽", "巳"],
+      "wufu_palace": 9,
+      "wufu_name": "黄室"
+    },
+    {
+      "domain": "坤",
+      "sectors": ["未", "坤", "申"],
+      "wufu_palace": 7,
+      "wufu_name": "黄廷"
+    },
+    {
+      "domain": "中",
+      "sectors": ["子", "午", "卯", "酉"],
+      "wufu_palace": 5,
+      "wufu_name": "玄室"
+    }
+  ],
+  "nine_palace_to_domain": {
+    "1": "乾",
+    "3": "艮",
+    "9": "巽",
+    "7": "坤",
+    "5": "中",
+    "2": "中",
+    "4": "中",
+    "6": "中",
+    "8": "中"
+  },
+  "recovery": {
+    "from_branch": "codex/c1-c7-canonical",
+    "original_file": "src/kintaiyi/taiyi_cycles.py",
+    "original_file_commit": "fadab7ee3fa8",
+    "original_file_commit_date": "2026-10-04T19:52:22Z",
+    "original_symbols": ["FIVE_DOMAINS", "PALACE_DOMAINS", "sector_to_five_domain", "nine_palace_to_five_domain"],
+    "time_window_policy": "only_2026-10-04_and_2026-10-05_prior_work",
+    "status": "recovered_prior_work_coordinate_reference"
+  },
+  "boundary": {
+    "status": "coordinate_reference_not_relation_formula",
+    "note": "本文件只定义五福五域坐标；是否同宫/同域以及由此产生何种断语必须由独立来源关系层判断。"
+  }
+}
