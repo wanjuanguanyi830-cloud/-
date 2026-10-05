@@ -688,3 +688,15 @@ def test_j4m04_unfavorable_triad_does_not_import_other_books_reverse_winner():
     assert data["winner"] is None
     assert data["loser"] is None
     assert "不自动回写" in data["temporal_outcome_policy"]
+
+
+def test_c115_ncl_five_to_one_does_not_override_siku_runtime_ten_to_one():
+    data = suidi_zhibian("萑苇竹萧蒙笼草木")
+    diffs = data["quotation_collation"]["notable_differences"]
+
+    assert any(
+        "金镜士卒不练作百不当一、将不习兵作十不当一" in item
+        for item in diffs
+    )
+    assert data["quotation_collation"]["canonical_for_this_profile"] == "太乙金镜式经_四库本_卷四实际引文"
+    assert data["quotation_collation"]["do_not_silent_emend"] is True
