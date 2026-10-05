@@ -452,6 +452,32 @@
       ]
     },
     {
+      "key": "zhifu_fire_states",
+      "preferred_term": "直符火气状态",
+      "aliases": [
+        "直符火气",
+        "直符火气状态",
+        "直符太乙火神旺衰"
+      ],
+      "term_type": "source_limited_state_interpretation",
+      "rule_id": "C93-ZHIFU-KNOWN-FIRE-STATE",
+      "source_profile": "taiyi_mishu_zhifu_fire_examples",
+      "runtime": "kintaiyi.zhifu_fire_states.zhifu_known_fire_state",
+      "position_dependency": "C64-ZHIFU",
+      "auto_position_lookup_used": false,
+      "known_states": {
+        "2": "旺",
+        "3": "长生",
+        "4": "败"
+      },
+      "full_twelve_palace_state_table_ready": false,
+      "boundary_notes": [
+        "当前直接见证只锁定二宫旺、三宫长生、四宫败。",
+        "其他1..12宫保持source_pending，不按十二长生或五行常识补齐。",
+        "C93只解释显式宫位，不从积年自动调用C64直符位置。"
+      ]
+    },
+    {
       "key": "yangjiu",
       "preferred_term": "阳九",
       "aliases": [
