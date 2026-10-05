@@ -1,0 +1,3051 @@
+{
+  "schema_version": "1.0",
+  "manifest_id": "taiyi-legacy-terminology-recovery-manifest-v1",
+  "status": "blocked_missing_original_store_with_reversible_mapping",
+  "generated_from": {
+    "catalog_index": "terminology/catalog-index.json",
+    "stable_catalog_count": 12,
+    "stable_entry_count": 102,
+    "migration_assets": [
+      "terminology/zitingjing-migration-map.json",
+      "terminology/ncl06604-legacy-reconciliation-map.json"
+    ]
+  },
+  "original_store_availability": {
+    "expected_name": "terminology.json",
+    "github_history_search": "not_found_as_recoverable_original",
+    "chatgpt_library_search": "no_visible_match_at_audit_time",
+    "chatgpt_library_listing": "no_visible_files_returned_at_audit_time",
+    "schema_recovered": false,
+    "original_bytes_recovered": false,
+    "policy": "零结果不证明文件绝对不存在；在取得原件或真实schema前，不生成合成old_term_record_id，不把stable catalog反写成旧库。"
+  },
+  "legacy_field_policy": {
+    "fields": [
+      "old_term_record_id",
+      "manuscript_form",
+      "source_page",
+      "source_section",
+      "old_definition",
+      "old_notes",
+      "old_aliases"
+    ],
+    "synthetic_ids_allowed": false,
+    "infer_old_definition_from_current_definition": false,
+    "infer_source_page_from_current_rule_source": false,
+    "overwrite_current_rule_or_source_profile_from_legacy": false
+  },
+  "stable_entries": [
+    {
+      "stable_ref": {
+        "catalog": "terminology/common-core.json",
+        "key": "dashen"
+      },
+      "preferred_term": "大神",
+      "aliases": [
+        "大神",
+        "太神"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/common-core.json",
+        "key": "fire_twelve_stages"
+      },
+      "preferred_term": "大神火十二长生",
+      "aliases": [
+        "十二长生",
+        "大神十二长生",
+        "大神火十二长生"
+      ],
+      "current_rule_ids": [
+        "R-QI-FIRE"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/common-core.json",
+        "key": "five_element_qi"
+      },
+      "preferred_term": "五态",
+      "aliases": [
+        "五态",
+        "旺相休囚死",
+        "旺相囚死休"
+      ],
+      "current_rule_ids": [
+        "R-QI"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/common-core.json",
+        "key": "intrinsic_vs_palace_element"
+      },
+      "preferred_term": "固有五行与所在宫五行",
+      "aliases": [
+        "固有五行",
+        "所在宫五行",
+        "将宫五行"
+      ],
+      "current_rule_ids": [
+        "R-INTRINSIC-WX"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/common-core.json",
+        "key": "lushen_shift"
+      },
+      "preferred_term": "吕申加位",
+      "aliases": [
+        "吕申加位",
+        "呂申加位"
+      ],
+      "current_rule_ids": [
+        "R-LS-01"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/common-core.json",
+        "key": "sixteen_gods"
+      },
+      "preferred_term": "十六神",
+      "aliases": [
+        "十六神"
+      ],
+      "current_rule_ids": [
+        "R-16"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/common-core.json",
+        "key": "sixteen_sectors"
+      },
+      "preferred_term": "十六辰",
+      "aliases": [
+        "十六辰",
+        "十六宫",
+        "十六位"
+      ],
+      "current_rule_ids": [
+        "R-16"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/common-core.json",
+        "key": "taiyi_nine_palaces"
+      },
+      "preferred_term": "太乙九宫",
+      "aliases": [
+        "九宫",
+        "太乙九宫"
+      ],
+      "current_rule_ids": [
+        "R-9"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/cycles.json",
+        "key": "bailiu"
+      },
+      "preferred_term": "百六",
+      "aliases": [
+        "百六"
+      ],
+      "current_rule_ids": [
+        "C36-BL"
+      ],
+      "current_source_profiles": [
+        "tongzong_yangjiu_bailiu"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/cycles.json",
+        "key": "big_wander_position"
+      },
+      "preferred_term": "大游太乙所在",
+      "aliases": [
+        "大游",
+        "大游太乙",
+        "太游太乙",
+        "大遊太乙"
+      ],
+      "current_rule_ids": [
+        "C107-DAYOU-JINJING",
+        "C107-DAYOU-TONGZONG"
+      ],
+      "current_source_profiles": [
+        "jinjing_volume5_dayou_position",
+        "tongzong_volume7_dayou_position"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/cycles.json",
+        "key": "big_wander_skyeye"
+      },
+      "preferred_term": "大游天目",
+      "aliases": [
+        "大游天目",
+        "太游天目",
+        "大遊天目"
+      ],
+      "current_rule_ids": [
+        "C106-DAYOU-TIANMU-JINJING",
+        "C106-DAYOU-TIANMU-TONGZONG"
+      ],
+      "current_source_profiles": [
+        "jinjing_volume5_dayou_tianmu",
+        "tongzong_volume7_dayou_tianmu"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/cycles.json",
+        "key": "five_blessings"
+      },
+      "preferred_term": "五福太乙",
+      "aliases": [
+        "五福",
+        "五福太乙"
+      ],
+      "current_rule_ids": [
+        "C67-WUFU-JINJING",
+        "C67-WUFU-TONGZONG"
+      ],
+      "current_source_profiles": [
+        "jinjing_volume5_wufu",
+        "tongzong_volume6_7_wufu"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/cycles.json",
+        "key": "five_blessings_auspicious_number"
+      },
+      "preferred_term": "五福吉算",
+      "aliases": [
+        "五福吉算",
+        "明五福吉算所主术",
+        "明五福吉算所主術"
+      ],
+      "current_rule_ids": [
+        "C68-WUFU-AUSPICIOUS-NUMBER"
+      ],
+      "current_source_profiles": [
+        "tongzong_wufu_auspicious_number"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/cycles.json",
+        "key": "four_taiyi"
+      },
+      "preferred_term": "四太乙",
+      "aliases": [
+        "四太乙",
+        "四神天乙地乙直符"
+      ],
+      "current_rule_ids": [
+        "C64-DIYI",
+        "C64-TIANYI",
+        "C64-ZHIFU",
+        "C92-FOUR-SPIRIT-POSITION"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/cycles.json",
+        "key": "small_wander_position"
+      },
+      "preferred_term": "小游太乙所在",
+      "aliases": [
+        "小游",
+        "小游太乙",
+        "小遊太乙"
+      ],
+      "current_rule_ids": [
+        "C103-XIAOYOU-JINJING",
+        "C103-XIAOYOU-TONGZONG"
+      ],
+      "current_source_profiles": [
+        "jinjing_volume5_xiaoyou_position",
+        "tongzong_volume7_xiaoyou_position"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/cycles.json",
+        "key": "taiyou_limit_tracks"
+      },
+      "preferred_term": "太游阳九百六行限",
+      "aliases": [
+        "太游行限",
+        "太游阳九百六行限",
+        "太遊行限"
+      ],
+      "current_rule_ids": [
+        "C38-BL-INNER",
+        "C38-YJ-OUTER"
+      ],
+      "current_source_profiles": [
+        "tongzong_taiyou_limit_tracks"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/cycles.json",
+        "key": "three_bases"
+      },
+      "preferred_term": "三基",
+      "aliases": [
+        "三基",
+        "君基臣基民基"
+      ],
+      "current_rule_ids": [
+        "C66-CHENJI",
+        "C66-JUNJI",
+        "C66-MINJI"
+      ],
+      "current_source_profiles": [
+        "tongzong_three_bases_cycles"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/cycles.json",
+        "key": "yangjiu"
+      },
+      "preferred_term": "阳九",
+      "aliases": [
+        "阳九",
+        "陽九"
+      ],
+      "current_rule_ids": [
+        "C36-YJ"
+      ],
+      "current_source_profiles": [
+        "tongzong_yangjiu_bailiu"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/cycles.json",
+        "key": "zhifu_fire_states"
+      },
+      "preferred_term": "直符火气状态",
+      "aliases": [
+        "直符火气",
+        "直符火气状态",
+        "直符太乙火神旺衰"
+      ],
+      "current_rule_ids": [
+        "C93-ZHIFU-KNOWN-FIRE-STATE"
+      ],
+      "current_source_profiles": [
+        "taiyi_mishu_zhifu_fire_examples"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/d8-eight-divinations.json",
+        "key": "calc_length"
+      },
+      "preferred_term": "长短",
+      "aliases": [
+        "长短",
+        "算长短",
+        "长短缓急"
+      ],
+      "current_rule_ids": [
+        "D8-02"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/d8-eight-divinations.json",
+        "key": "eight_divinations"
+      },
+      "preferred_term": "八占",
+      "aliases": [
+        "八占"
+      ],
+      "current_rule_ids": [
+        "D8-01",
+        "D8-02",
+        "D8-03",
+        "D8-04",
+        "D8-05",
+        "D8-06",
+        "D8-07",
+        "D8-08"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/d8-eight-divinations.json",
+        "key": "gudan"
+      },
+      "preferred_term": "孤单",
+      "aliases": [
+        "孤单",
+        "孤單",
+        "数孤单成败",
+        "數孤單成敗"
+      ],
+      "current_rule_ids": [
+        "D8-04"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/d8-eight-divinations.json",
+        "key": "inner_outer"
+      },
+      "preferred_term": "内外",
+      "aliases": [
+        "内外",
+        "内外占",
+        "内外占攻击"
+      ],
+      "current_rule_ids": [
+        "D8-05"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/d8-eight-divinations.json",
+        "key": "number_subject"
+      },
+      "preferred_term": "数有所主",
+      "aliases": [
+        "数有所主",
+        "數有所主",
+        "算数有所主"
+      ],
+      "current_rule_ids": [
+        "D8-08"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/d8-eight-divinations.json",
+        "key": "quantity_comparison"
+      },
+      "preferred_term": "多少",
+      "aliases": [
+        "多少",
+        "多少占胜负"
+      ],
+      "current_rule_ids": [
+        "D8-06"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/d8-eight-divinations.json",
+        "key": "sancai"
+      },
+      "preferred_term": "三才",
+      "aliases": [
+        "三才",
+        "三才占"
+      ],
+      "current_rule_ids": [
+        "D8-01"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/d8-eight-divinations.json",
+        "key": "wuyin"
+      },
+      "preferred_term": "五音",
+      "aliases": [
+        "五音",
+        "算数五音"
+      ],
+      "current_rule_ids": [
+        "D8-03"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/d8-eight-divinations.json",
+        "key": "yinyang_danger"
+      },
+      "preferred_term": "阴阳厄会",
+      "aliases": [
+        "阴阳厄会",
+        "陰陽厄會",
+        "阴阳厄",
+        "重阴重阳厄会"
+      ],
+      "current_rule_ids": [
+        "D8-07"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-p0.json",
+        "key": "effective_five_generals_readiness"
+      },
+      "preferred_term": "有效五将发不发",
+      "aliases": [
+        "有效五将",
+        "有效五將",
+        "有效五将发不发"
+      ],
+      "current_rule_ids": [
+        "CORE-WUJIANG-READY"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-p0.json",
+        "key": "five_generals"
+      },
+      "preferred_term": "五将",
+      "aliases": [
+        "五将",
+        "五將",
+        "五将发不发",
+        "五將發不發",
+        "推五将发不发",
+        "推五將發不發"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-p0.json",
+        "key": "host_guest_relation"
+      },
+      "preferred_term": "主客相关法",
+      "aliases": [
+        "主客相关",
+        "主客相闗",
+        "主客相关法",
+        "主客相闗法",
+        "推主客相关",
+        "推主客相关法"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-p0.json",
+        "key": "taigong_timing"
+      },
+      "preferred_term": "太公考时法",
+      "aliases": [
+        "推太公考时法",
+        "太公考时",
+        "太公考時"
+      ],
+      "current_rule_ids": [
+        "C117-TAIGONG-TIMING"
+      ],
+      "current_source_profiles": [
+        "jinjing_volume1_taigong_timing"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-p0.json",
+        "key": "three_doors"
+      },
+      "preferred_term": "三门",
+      "aliases": [
+        "三门",
+        "三門",
+        "三门具不具",
+        "三門具不具",
+        "推三门具不具",
+        "推三門具不具"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/patterns.json",
+        "key": "dui"
+      },
+      "preferred_term": "对",
+      "aliases": [
+        "对",
+        "對"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [
+        "jinjing_geju"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/patterns.json",
+        "key": "ge"
+      },
+      "preferred_term": "格",
+      "aliases": [
+        "格"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [
+        "jinjing_geju"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/patterns.json",
+        "key": "guan"
+      },
+      "preferred_term": "关",
+      "aliases": [
+        "关",
+        "關"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [
+        "jinjing_geju"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/patterns.json",
+        "key": "ji"
+      },
+      "preferred_term": "击",
+      "aliases": [
+        "击",
+        "擊"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [
+        "jinjing_geju"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/patterns.json",
+        "key": "patterns"
+      },
+      "preferred_term": "格局",
+      "aliases": [
+        "格局",
+        "释格局",
+        "釋格局"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/patterns.json",
+        "key": "po"
+      },
+      "preferred_term": "迫",
+      "aliases": [
+        "迫"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [
+        "jinjing_geju"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/patterns.json",
+        "key": "qiu"
+      },
+      "preferred_term": "囚",
+      "aliases": [
+        "囚"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [
+        "jinjing_geju"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/patterns.json",
+        "key": "sigu_du"
+      },
+      "preferred_term": "四郭杜",
+      "aliases": [
+        "四郭杜"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [
+        "jinjing_geju"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/patterns.json",
+        "key": "sigu_gu"
+      },
+      "preferred_term": "四郭固",
+      "aliases": [
+        "四郭固"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [
+        "jinjing_geju"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/patterns.json",
+        "key": "tige"
+      },
+      "preferred_term": "提格",
+      "aliases": [
+        "提格"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [
+        "jinjing_geju"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/patterns.json",
+        "key": "tixie"
+      },
+      "preferred_term": "提挟",
+      "aliases": [
+        "提挟",
+        "提挾"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [
+        "jinjing_geju"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/patterns.json",
+        "key": "xiebi"
+      },
+      "preferred_term": "挟闭",
+      "aliases": [
+        "挟闭",
+        "挾閉"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [
+        "jinjing_geju"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/patterns.json",
+        "key": "yan"
+      },
+      "preferred_term": "掩",
+      "aliases": [
+        "掩"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [
+        "jinjing_geju"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/patterns.json",
+        "key": "zhiti"
+      },
+      "preferred_term": "执提",
+      "aliases": [
+        "执提",
+        "執提"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [
+        "jinjing_geju"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/relations.json",
+        "key": "three_bases_other_spirits"
+      },
+      "preferred_term": "三基四神大小游同宫关系",
+      "aliases": [
+        "三基与四神大游小游",
+        "三基其他神同宫关系"
+      ],
+      "current_rule_ids": [
+        "C91-THREE-BASES-OTHER-SPIRITS"
+      ],
+      "current_source_profiles": [
+        "tongzong_three_bases_other_relations"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/relations.json",
+        "key": "three_bases_three_spirits"
+      },
+      "preferred_term": "三基三神同宫关系",
+      "aliases": [
+        "三基与天乙地乙直符",
+        "三基三神关系"
+      ],
+      "current_rule_ids": [
+        "C90-THREE-BASES-THREE-SPIRITS"
+      ],
+      "current_source_profiles": [
+        "tongzong_three_bases_three_spirits_relations"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/relations.json",
+        "key": "three_bases_wufu_same_palace"
+      },
+      "preferred_term": "三基五福同宫关系",
+      "aliases": [
+        "三基五福同宫",
+        "君臣民基五福同宫"
+      ],
+      "current_rule_ids": [
+        "C74-THREE-BASES-WUFU-SAME-PALACE"
+      ],
+      "current_source_profiles": [
+        "tongzong_three_bases_wufu_relations"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/relations.json",
+        "key": "three_spirit_same_palace"
+      },
+      "preferred_term": "三神同宫关系",
+      "aliases": [
+        "天乙地乙直符同宫",
+        "三神同宫"
+      ],
+      "current_rule_ids": [
+        "C65-THREE-SPIRIT-SAME-PALACE"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume7_three_spirit_conjunctions"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/relations.json",
+        "key": "wander_conjunctions"
+      },
+      "preferred_term": "五福四神大小游同宫关系",
+      "aliases": [
+        "五福大游",
+        "五福小游",
+        "四神小游",
+        "大游小游",
+        "大小游同宫"
+      ],
+      "current_rule_ids": [
+        "C113-RECOVERED-WANDER-CONJUNCTIONS"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume7_wander_conjunctions"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/relations.json",
+        "key": "wufu_four_taiyi_domain"
+      },
+      "preferred_term": "五福四太乙同域关系",
+      "aliases": [
+        "五福与四太乙",
+        "五福四太乙同宫",
+        "五福四太乙同域"
+      ],
+      "current_rule_ids": [
+        "C94-WUFU-FOUR-TAIYI-DOMAIN-RELATION"
+      ],
+      "current_source_profiles": [
+        "tongzong_wufu_four_taiyi_element_sequence"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/ritual-timing.json",
+        "key": "coronation_cloud_omens"
+      },
+      "preferred_term": "天子初登位日月旁云气",
+      "aliases": [
+        "天子初登位云气",
+        "登位旁云气",
+        "日月旁云气生克"
+      ],
+      "current_rule_ids": [
+        "C51-CLOUD-OMEN"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume10_coronation_cloud"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/ritual-timing.json",
+        "key": "current_time_method"
+      },
+      "preferred_term": "推太乙当时法",
+      "aliases": [
+        "推太乙当时法",
+        "推太乙當時法",
+        "太乙当时法",
+        "太乙當時法"
+      ],
+      "current_rule_ids": [
+        "C69-CURRENT-TIME-CORE",
+        "C69-TIANYI-PERIOD-RULER",
+        "C69-TWELVE-GENERAL-OMEN",
+        "C69B-CURRENT-TIME-LIUREN",
+        "C69B-NOBLE-GROUND",
+        "C69B-PALACE-BRANCH-PROJECTION",
+        "C69B-TWELVE-GENERAL-PLATE"
+      ],
+      "current_source_profiles": [
+        "jinjing_volume1_current_time"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/ritual-timing.json",
+        "key": "direct_envoy_anchors"
+      },
+      "preferred_term": "太乙直使六纪锚点",
+      "aliases": [
+        "太乙直使",
+        "推求阳遁太乙直使法",
+        "求阴遁太乙直使之法"
+      ],
+      "current_rule_ids": [
+        "C121-DIRECT-ENVOY-ANCHOR",
+        "C121-DIRECT-ENVOY-MOVEMENT"
+      ],
+      "current_source_profiles": [
+        "jinjing_volume1_direct_envoy"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/ritual-timing.json",
+        "key": "imperial_inspection"
+      },
+      "preferred_term": "天子巡狩之期",
+      "aliases": [
+        "天子巡狩",
+        "天子巡狩之期",
+        "明天子巡狩之期术",
+        "明天子巡狩之期術"
+      ],
+      "current_rule_ids": [
+        "C62-IMPERIAL-INSPECTION"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume5_imperial_inspection"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/ritual-timing.json",
+        "key": "jinjing_huangdao_tables"
+      },
+      "preferred_term": "黄道日度宿度十二分野",
+      "aliases": [
+        "二十四气黄道日度所在立成",
+        "黄道宿度数立成",
+        "列宿十二分野立成"
+      ],
+      "current_rule_ids": [
+        "C118-MANSION-DIVISION",
+        "C118-MANSION-SPAN",
+        "C118-SOLAR-TERM-ANCHOR",
+        "C118-TERM-DAY-POSITION"
+      ],
+      "current_source_profiles": [
+        "jinjing_volume1_huangdao_upstream"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/ritual-timing.json",
+        "key": "time_eight_doors"
+      },
+      "preferred_term": "时计八门直门",
+      "aliases": [
+        "推八门用法",
+        "推冬至加时所直门法",
+        "推夏至加时所直门法",
+        "加时直门"
+      ],
+      "current_rule_ids": [
+        "C119-EIGHT-DOOR-MOVEMENT-RATES",
+        "C119-SUMMER-TIME-DUTY-DOOR",
+        "C119-WINTER-TIME-DUTY-DOOR"
+      ],
+      "current_source_profiles": [
+        "jinjing_volume1_time_eight_doors"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/ritual-timing.json",
+        "key": "xuanming_role"
+      },
+      "preferred_term": "太乙玄命法",
+      "aliases": [
+        "玄命",
+        "太乙玄命",
+        "推太乙玄命法"
+      ],
+      "current_rule_ids": [
+        "C116-XUANMING-ROLE"
+      ],
+      "current_source_profiles": [
+        "jinjing_volume1_xuanming"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/ritual-timing.json",
+        "key": "year_eight_doors"
+      },
+      "preferred_term": "年计八门直门",
+      "aliases": [
+        "岁计八门",
+        "歲計八門",
+        "推八门占岁计法",
+        "推八門占歲計法"
+      ],
+      "current_rule_ids": [
+        "C123-YEAR-DUTY-DOOR",
+        "J1-EIGHT-DOOR-OVERLAY",
+        "J1-YEAR-DOOR-MEETING",
+        "J1-YEAR-FOUR-EIGHT-DOOR-OVERLAYS"
+      ],
+      "current_source_profiles": [
+        "jinjing_volume1_year_eight_doors"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/t7-seven-methods.json",
+        "key": "cloud_rolls_empty"
+      },
+      "preferred_term": "白云卷空",
+      "aliases": [
+        "白云卷空",
+        "白雲卷空"
+      ],
+      "current_rule_ids": [
+        "T7-03"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/t7-seven-methods.json",
+        "key": "lijin_wendao"
+      },
+      "preferred_term": "临津问道",
+      "aliases": [
+        "临津问道",
+        "臨津問道"
+      ],
+      "current_rule_ids": [
+        "T7-01"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/t7-seven-methods.json",
+        "key": "lion_reverse_throw"
+      },
+      "preferred_term": "狮子反掷",
+      "aliases": [
+        "狮子反掷",
+        "獅子反擲"
+      ],
+      "current_rule_ids": [
+        "T7-02"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/t7-seven-methods.json",
+        "key": "return_army_silent"
+      },
+      "preferred_term": "回军无言",
+      "aliases": [
+        "回军无言",
+        "回軍無言",
+        "回车无言",
+        "回車無言"
+      ],
+      "current_rule_ids": [
+        "T7-07"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/t7-seven-methods.json",
+        "key": "seven_methods"
+      },
+      "preferred_term": "七术",
+      "aliases": [
+        "七术",
+        "太乙七术"
+      ],
+      "current_rule_ids": [
+        "T7-01",
+        "T7-02",
+        "T7-03",
+        "T7-04",
+        "T7-05",
+        "T7-06",
+        "T7-07"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/t7-seven-methods.json",
+        "key": "thunder_enters_water"
+      },
+      "preferred_term": "雷公入水",
+      "aliases": [
+        "雷公入水"
+      ],
+      "current_rule_ids": [
+        "T7-05"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/t7-seven-methods.json",
+        "key": "tiger_resists"
+      },
+      "preferred_term": "猛虎相拒",
+      "aliases": [
+        "猛虎相拒"
+      ],
+      "current_rule_ids": [
+        "T7-04"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/t7-seven-methods.json",
+        "key": "white_dragon_gets_cloud"
+      },
+      "preferred_term": "白龙得云",
+      "aliases": [
+        "白龙得云",
+        "白龍得雲"
+      ],
+      "current_rule_ids": [
+        "T7-06"
+      ],
+      "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/ten-essences.json",
+        "key": "cloud_conjunctions"
+      },
+      "preferred_term": "十精云气合会",
+      "aliases": [
+        "十精合会",
+        "十精云气合会",
+        "十精太乙云气合会"
+      ],
+      "current_rule_ids": [
+        "C57-TEN-ESSENCE-CLOUD-CONJUNCTION"
+      ],
+      "current_source_profiles": [
+        "tongzong_ten_essences_cloud_conjunctions"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/ten-essences.json",
+        "key": "cloud_observations"
+      },
+      "preferred_term": "十精云气观察",
+      "aliases": [
+        "十精云气观察",
+        "十精太乙云气所主"
+      ],
+      "current_rule_ids": [
+        "C58-CLOUD-TIMING",
+        "C58-WEATHER-OBSERVATION"
+      ],
+      "current_source_profiles": [
+        "tongzong_ten_essences_cloud_observation"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/ten-essences.json",
+        "key": "difu"
+      },
+      "preferred_term": "帝符",
+      "aliases": [
+        "帝符"
+      ],
+      "current_rule_ids": [
+        "C55-DIFU"
+      ],
+      "current_source_profiles": [
+        "tongzong_ten_essences_sixteen_god_routes"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/ten-essences.json",
+        "key": "eightwind"
+      },
+      "preferred_term": "八风",
+      "aliases": [
+        "八风",
+        "八風"
+      ],
+      "current_rule_ids": [
+        "C53-EIGHTWIND"
+      ],
+      "current_source_profiles": [
+        "tongzong_ten_essences_positions"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/ten-essences.json",
+        "key": "fivewind"
+      },
+      "preferred_term": "五风",
+      "aliases": [
+        "五风",
+        "五風"
+      ],
+      "current_rule_ids": [
+        "C53-FIVEWIND"
+      ],
+      "current_source_profiles": [
+        "tongzong_ten_essences_positions"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/ten-essences.json",
+        "key": "flybird"
+      },
+      "preferred_term": "飞鸟",
+      "aliases": [
+        "飞鸟",
+        "飛鳥"
+      ],
+      "current_rule_ids": [
+        "C53-FLYBIRD"
+      ],
+      "current_source_profiles": [
+        "tongzong_ten_essences_positions"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/ten-essences.json",
+        "key": "number_weather_omens"
+      },
+      "preferred_term": "太乙数天气断语",
+      "aliases": [
+        "太乙数天气",
+        "太乙數天氣",
+        "十精太乙数天气"
+      ],
+      "current_rule_ids": [
+        "C59-TAIYI-NUMBER-OMEN"
+      ],
+      "current_source_profiles": [
+        "tongzong_ten_essences_number_omens"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/ten-essences.json",
+        "key": "taiyi_number"
+      },
+      "preferred_term": "太乙数",
+      "aliases": [
+        "太乙数",
+        "太乙數"
+      ],
+      "current_rule_ids": [
+        "C54-TAIYI-NUMBER"
+      ],
+      "current_source_profiles": [
+        "tongzong_ten_essences_number"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/ten-essences.json",
+        "key": "taizun"
+      },
+      "preferred_term": "太尊",
+      "aliases": [
+        "太尊"
+      ],
+      "current_rule_ids": [
+        "C53-TAIZUN"
+      ],
+      "current_source_profiles": [
+        "tongzong_ten_essences_positions"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/ten-essences.json",
+        "key": "ten_essences"
+      },
+      "preferred_term": "十精太乙",
+      "aliases": [
+        "十精",
+        "十精太乙"
+      ],
+      "current_rule_ids": [
+        "C52-TEN-ESSENCES-REGISTRY"
+      ],
+      "current_source_profiles": [
+        "tongzong_ten_essences_registry"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/ten-essences.json",
+        "key": "threewind"
+      },
+      "preferred_term": "三风",
+      "aliases": [
+        "三风",
+        "三風"
+      ],
+      "current_rule_ids": [
+        "C53-THREEWIND"
+      ],
+      "current_source_profiles": [
+        "tongzong_ten_essences_positions"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/ten-essences.json",
+        "key": "tianhuang"
+      },
+      "preferred_term": "天皇",
+      "aliases": [
+        "天皇"
+      ],
+      "current_rule_ids": [
+        "C55-TIANHUANG"
+      ],
+      "current_source_profiles": [
+        "tongzong_ten_essences_sixteen_god_routes"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/ten-essences.json",
+        "key": "tianshi"
+      },
+      "preferred_term": "天时",
+      "aliases": [
+        "天时",
+        "天時"
+      ],
+      "current_rule_ids": [
+        "C56-TIANSHI"
+      ],
+      "current_source_profiles": [
+        "tongzong_ten_essences_tianshi"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/ten-essences.json",
+        "key": "wuxing_essence"
+      },
+      "preferred_term": "五行",
+      "aliases": [
+        "五行"
+      ],
+      "current_rule_ids": [
+        "C53-WUXING"
+      ],
+      "current_source_profiles": [
+        "tongzong_ten_essences_positions"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/volume9-10.json",
+        "key": "dayou_heavy_hexagram"
+      },
+      "preferred_term": "太游内外重卦",
+      "aliases": [
+        "太游内外重卦",
+        "太遊內外重卦",
+        "明太游内外重卦之策术",
+        "明太遊內外重卦之策術"
+      ],
+      "current_rule_ids": [
+        "C41-DY-HEX"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume9_dayou_hexagram"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/volume9-10.json",
+        "key": "dayou_lishu"
+      },
+      "preferred_term": "历数长短",
+      "aliases": [
+        "历数长短",
+        "歷數長短",
+        "明历数长短以观远近之期术",
+        "明歷數長短以觀遠近之期術",
+        "安居之代历数",
+        "安居之代歷數"
+      ],
+      "current_rule_ids": [
+        "C42-DY-ANJU",
+        "C42-DY-LISHU"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume9_dayou_lishu"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/volume9-10.json",
+        "key": "dayou_xiaoyou_difference"
+      },
+      "preferred_term": "太小游行宫卦不同术",
+      "aliases": [
+        "太游小游行宫卦不同术",
+        "太、小游行宫卦不同术",
+        "太游小游区别"
+      ],
+      "current_rule_ids": [
+        "C49-DY-XY-DIFF"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume10_dayou_xiaoyou_difference"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/volume9-10.json",
+        "key": "disaster_timing"
+      },
+      "preferred_term": "岁中灾发月日之期",
+      "aliases": [
+        "岁中灾发",
+        "歲中災發",
+        "岁中灾发月日之期",
+        "歲中災發月日之期",
+        "明岁中灾发月日之期术",
+        "明歲中災發月日之期術"
+      ],
+      "current_rule_ids": [
+        "C45-V9-DAY",
+        "C45-V9-DISASTER",
+        "C45-V9-MONTH"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume9_disaster_timing"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/volume9-10.json",
+        "key": "ehui_limit"
+      },
+      "preferred_term": "厄会行限",
+      "aliases": [
+        "厄会行限",
+        "厄會行限",
+        "阳九百六太游行限观历",
+        "陽九百六太遊行限觀歷"
+      ],
+      "current_rule_ids": [
+        "C43-V9-EHUI"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume9_ehui_limit"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/volume9-10.json",
+        "key": "governance_change"
+      },
+      "preferred_term": "国政革易法令变更",
+      "aliases": [
+        "国政革易",
+        "國政革易",
+        "法令变更",
+        "法令變更",
+        "明国政革易法令变更术",
+        "明國政革易法令變更術"
+      ],
+      "current_rule_ids": [
+        "C44-V9-GOV"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume9_governance_change"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/volume9-10.json",
+        "key": "taiyi_lishu_evidence"
+      },
+      "preferred_term": "太乙历数之期证据总纲",
+      "aliases": [
+        "明太乙历数之期术",
+        "太乙历数之期",
+        "帝王始终之期"
+      ],
+      "current_rule_ids": [
+        "C50-LISHU-EVIDENCE"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume10_lishu_evidence"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/volume9-10.json",
+        "key": "xiaoyou_hexagram"
+      },
+      "preferred_term": "小游轨运内外重卦",
+      "aliases": [
+        "小游轨运内卦所在术",
+        "小游轨运外卦所在术",
+        "小游内外相重之策术",
+        "小游重卦"
+      ],
+      "current_rule_ids": [
+        "C47-XY-HEX",
+        "C47-XY-INNER",
+        "C47-XY-OUTER"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume9_xiaoyou"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/volume9-10.json",
+        "key": "xiaoyou_line_omens"
+      },
+      "preferred_term": "小游统卦行爻所主灾祥",
+      "aliases": [
+        "小游行爻灾祥",
+        "明小游统卦行爻所主灾祥术",
+        "小游爻辞灾祥"
+      ],
+      "current_rule_ids": [
+        "C48-XY-OMEN"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume10_xiaoyou_line_omens"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/volume9-10.json",
+        "key": "yinyang_nine_calamities"
+      },
+      "preferred_term": "阴阳九厄水旱灾期",
+      "aliases": [
+        "阴阳九厄",
+        "陰陽九厄",
+        "阴阳九厄水旱灾期",
+        "陰陽九厄水旱災期",
+        "明阴阳九厄水厄旱灾期术",
+        "明陰陽九厄水厄旱災期術"
+      ],
+      "current_rule_ids": [
+        "C46-YJ-9E"
+      ],
+      "current_source_profiles": [
+        "tongzong_yinyang_nine_calamities"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/wuyun-wuyin.json",
+        "key": "volume10_wuyun_collation"
+      },
+      "preferred_term": "卷十五运六气细表",
+      "aliases": [
+        "五运配五音",
+        "六气配五行",
+        "运气太过",
+        "运气不及",
+        "运行平气",
+        "太乙天符合会"
+      ],
+      "current_rule_ids": [
+        "C39"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume10_wuyun_collation"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/wuyun-wuyin.json",
+        "key": "wuyin_number"
+      },
+      "preferred_term": "五音之数",
+      "aliases": [
+        "五音之数",
+        "五音之數",
+        "明五音之数以推休咎术",
+        "明五音之數以推休咎術",
+        "明太乙五音之元术",
+        "明太乙五音之元術"
+      ],
+      "current_rule_ids": [
+        "C37-V3-WYIN",
+        "D8-03"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume3_wuyin"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/wuyun-wuyin.json",
+        "key": "wuyun_liuqi"
+      },
+      "preferred_term": "五运六气",
+      "aliases": [
+        "五运六气",
+        "五運六氣"
+      ],
+      "current_rule_ids": [
+        "C37-V10-WYUN",
+        "C37-V3-WYUN"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume10_wuyun",
+        "tongzong_volume3_wuyun"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/zitingjing.json",
+        "key": "nine_palace_nobles"
+      },
+      "preferred_term": "九宫贵神",
+      "aliases": [
+        "九宫贵神",
+        "九宮貴神",
+        "九宫贵神术",
+        "九宮貴神術"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [],
+      "migration_links": [
+        {
+          "asset": "terminology/zitingjing-migration-map.json",
+          "asset_entry_key": "nine_palace_nobles",
+          "role": "old_local_store_recovery_skeleton"
+        }
+      ],
+      "legacy_match_status": "migration_asset_available_old_store_fields_missing",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/zitingjing.json",
+        "key": "shiji_changes"
+      },
+      "preferred_term": "始击变化",
+      "aliases": [
+        "始击变化",
+        "始擊變化"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [],
+      "migration_links": [
+        {
+          "asset": "terminology/zitingjing-migration-map.json",
+          "asset_entry_key": "shiji_changes",
+          "role": "old_local_store_recovery_skeleton"
+        }
+      ],
+      "legacy_match_status": "migration_asset_available_old_store_fields_missing",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/zitingjing.json",
+        "key": "taiyi_nine_stars"
+      },
+      "preferred_term": "太乙九星",
+      "aliases": [
+        "太乙九星",
+        "太乙九星术",
+        "太乙九星術",
+        "释九宫所值九星",
+        "釋九宮所值九星"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [],
+      "migration_links": [
+        {
+          "asset": "terminology/zitingjing-migration-map.json",
+          "asset_entry_key": "taiyi_nine_stars",
+          "role": "old_local_store_recovery_skeleton"
+        }
+      ],
+      "legacy_match_status": "migration_asset_available_old_store_fields_missing",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/zitingjing.json",
+        "key": "three_banners"
+      },
+      "preferred_term": "三旗行宫",
+      "aliases": [
+        "三旗",
+        "三旗行宫",
+        "三旗行宮"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [],
+      "migration_links": [
+        {
+          "asset": "terminology/zitingjing-migration-map.json",
+          "asset_entry_key": "three_banners",
+          "role": "old_local_store_recovery_skeleton"
+        }
+      ],
+      "legacy_match_status": "migration_asset_available_old_store_fields_missing",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/zitingjing.json",
+        "key": "wenchang_changes"
+      },
+      "preferred_term": "文昌变化",
+      "aliases": [
+        "文昌变化",
+        "文昌變化",
+        "天目变化",
+        "天目變化",
+        "释天目变化",
+        "釋天目變化"
+      ],
+      "current_rule_ids": [],
+      "current_source_profiles": [],
+      "migration_links": [
+        {
+          "asset": "terminology/zitingjing-migration-map.json",
+          "asset_entry_key": "wenchang_changes",
+          "role": "old_local_store_recovery_skeleton"
+        }
+      ],
+      "legacy_match_status": "migration_asset_available_old_store_fields_missing",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/zitingjing.json",
+        "key": "wenchang_nine_stars"
+      },
+      "preferred_term": "文昌九星",
+      "aliases": [
+        "文昌九星",
+        "文昌九星值宫术",
+        "文昌九星值宮術",
+        "附太乙文昌九星值宫术",
+        "附太乙文昌九星值宮術"
+      ],
+      "current_rule_ids": [
+        "C70-TONGZONG-WENCHANG-NINE-STARS"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume6_ngj_wenchang_nine_stars"
+      ],
+      "migration_links": [
+        {
+          "asset": "terminology/zitingjing-migration-map.json",
+          "asset_entry_key": "wenchang_nine_stars",
+          "role": "old_local_store_recovery_skeleton"
+        }
+      ],
+      "legacy_match_status": "migration_asset_available_old_store_fields_missing",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    }
+  ],
+  "migration_only_candidates": [
+    {
+      "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
+      "asset_entry_key": "j4m03_taicu",
+      "rule_id": "J4M-03",
+      "canonical_term": "太簇",
+      "ncl_pages": [
+        56,
+        57
+      ],
+      "status": "migration_candidate_without_stable_entry",
+      "policy": "保留页级current_verified_evidence；旧record id/定义/notes仍等待原store，不据此自动创建stable term。"
+    },
+    {
+      "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
+      "asset_entry_key": "j4m05_chushi_values",
+      "rule_id": "J4M-05",
+      "canonical_term": "出师",
+      "ncl_pages": [
+        58
+      ],
+      "status": "migration_candidate_without_stable_entry",
+      "policy": "保留页级current_verified_evidence；旧record id/定义/notes仍等待原store，不据此自动创建stable term。"
+    },
+    {
+      "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
+      "asset_entry_key": "j4m06_chenbing_xiangbei",
+      "rule_id": "J4M-06",
+      "canonical_term": "陈兵向背",
+      "ncl_pages": [
+        59,
+        60
+      ],
+      "status": "migration_candidate_without_stable_entry",
+      "policy": "保留页级current_verified_evidence；旧record id/定义/notes仍等待原store，不据此自动创建stable term。"
+    },
+    {
+      "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
+      "asset_entry_key": "j4m08_maoshan",
+      "rule_id": "J4M-08",
+      "canonical_term": "矛鋋",
+      "ncl_pages": [
+        60,
+        61
+      ],
+      "status": "migration_candidate_without_stable_entry",
+      "policy": "保留页级current_verified_evidence；旧record id/定义/notes仍等待原store，不据此自动创建stable term。"
+    },
+    {
+      "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
+      "asset_entry_key": "j4m09_inner_palaces",
+      "rule_id": "J4M-09",
+      "canonical_term": "太乙在天外地内",
+      "ncl_pages": [
+        61,
+        62
+      ],
+      "status": "migration_candidate_without_stable_entry",
+      "policy": "保留页级current_verified_evidence；旧record id/定义/notes仍等待原store，不据此自动创建stable term。"
+    },
+    {
+      "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
+      "asset_entry_key": "j4m10_qibing_fubing_title",
+      "rule_id": "J4M-10",
+      "canonical_term": "奇伏",
+      "ncl_pages": [
+        62
+      ],
+      "status": "migration_candidate_without_stable_entry",
+      "policy": "保留页级current_verified_evidence；旧record id/定义/notes仍等待原store，不据此自动创建stable term。"
+    },
+    {
+      "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
+      "asset_entry_key": "j4m11_fengyun_feiniao",
+      "rule_id": "J4M-11",
+      "canonical_term": "风云飞鸟助战",
+      "ncl_pages": [
+        62,
+        63
+      ],
+      "status": "migration_candidate_without_stable_entry",
+      "policy": "保留页级current_verified_evidence；旧record id/定义/notes仍等待原store，不据此自动创建stable term。"
+    },
+    {
+      "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
+      "asset_entry_key": "j4m12_yunqi",
+      "rule_id": "J4M-12",
+      "canonical_term": "阵有风云气定胜负",
+      "ncl_pages": [
+        63,
+        64
+      ],
+      "status": "migration_candidate_without_stable_entry",
+      "policy": "保留页级current_verified_evidence；旧record id/定义/notes仍等待原store，不据此自动创建stable term。"
+    }
+  ],
+  "merge_algorithm": [
+    "取得旧store后先按old_term_record_id保留原记录身份，不重新编号。",
+    "再用preferred_term/aliases做候选命中，不以近名自动合并。",
+    "再用manuscript_form/source_page/source_section/rule id/source profile核对来源身份。",
+    "一致则挂到stable_ref；冲突则保留legacy/current并列witness，不静默覆盖。",
+    "无法唯一命中的旧词条保持unmapped；不得为了达到100%而猜归属。"
+  ]
+}
