@@ -4,8 +4,8 @@
   "status": "blocked_missing_original_store_with_reversible_mapping",
   "generated_from": {
     "catalog_index": "terminology/catalog-index.json",
-    "stable_catalog_count": 13,
-    "stable_entry_count": 111,
+    "stable_catalog_count": 15,
+    "stable_entry_count": 148,
     "migration_assets": [
       "terminology/zitingjing-migration-map.json",
       "terminology/ncl06604-legacy-reconciliation-map.json"
@@ -820,6 +820,303 @@
     },
     {
       "stable_ref": {
+        "catalog": "terminology/military-jingyou-v4.json",
+        "key": "jingyou_jf4m_01"
+      },
+      "preferred_term": "福应经·三门",
+      "aliases": [
+        "释三门具不具第四十四"
+      ],
+      "current_rule_ids": [
+        "JF4M-01"
+      ],
+      "current_source_profiles": [
+        "jingyou_fuying_volume4"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-jingyou-v4.json",
+        "key": "jingyou_jf4m_02"
+      },
+      "preferred_term": "福应经·五将",
+      "aliases": [
+        "释五将发不发第四十五"
+      ],
+      "current_rule_ids": [
+        "JF4M-02"
+      ],
+      "current_source_profiles": [
+        "jingyou_fuying_volume4"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-jingyou-v4.json",
+        "key": "jingyou_jf4m_03"
+      },
+      "preferred_term": "福应经·主客五行相关",
+      "aliases": [
+        "释主客相关第四十六"
+      ],
+      "current_rule_ids": [
+        "JF4M-03"
+      ],
+      "current_source_profiles": [
+        "jingyou_fuying_volume4"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-jingyou-v4.json",
+        "key": "jingyou_jf4m_04"
+      },
+      "preferred_term": "福应经·主客先后动静",
+      "aliases": [
+        "释主客第四十七"
+      ],
+      "current_rule_ids": [
+        "JF4M-04"
+      ],
+      "current_source_profiles": [
+        "jingyou_fuying_volume4"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-jingyou-v4.json",
+        "key": "jingyou_jf4m_05"
+      },
+      "preferred_term": "福应经·出师略地",
+      "aliases": [
+        "释出师略地第四十八"
+      ],
+      "current_rule_ids": [
+        "JF4M-05"
+      ],
+      "current_source_profiles": [
+        "jingyou_fuying_volume4"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-jingyou-v4.json",
+        "key": "jingyou_jf4m_06"
+      },
+      "preferred_term": "福应经·陈兵向背",
+      "aliases": [
+        "释陈兵向背第四十九"
+      ],
+      "current_rule_ids": [
+        "JF4M-06"
+      ],
+      "current_source_profiles": [
+        "jingyou_fuying_volume4"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-jingyou-v4.json",
+        "key": "jingyou_jf4m_07"
+      },
+      "preferred_term": "福应经·地形制阵",
+      "aliases": [
+        "释置阵随地第五十"
+      ],
+      "current_rule_ids": [
+        "JF4M-07"
+      ],
+      "current_source_profiles": [
+        "jingyou_fuying_volume4"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-jingyou-v4.json",
+        "key": "jingyou_jf4m_08"
+      },
+      "preferred_term": "福应经·临敌随形制变",
+      "aliases": [
+        "释随地形制变第五十一"
+      ],
+      "current_rule_ids": [
+        "JF4M-08"
+      ],
+      "current_source_profiles": [
+        "jingyou_fuying_volume4"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-jingyou-v4.json",
+        "key": "jingyou_jf4m_09"
+      },
+      "preferred_term": "福应经·太乙助主客",
+      "aliases": [
+        "释太乙在天外地内宫第五十二"
+      ],
+      "current_rule_ids": [
+        "JF4M-09"
+      ],
+      "current_source_profiles": [
+        "jingyou_fuying_volume4"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-jingyou-v4.json",
+        "key": "jingyou_jf4m_10"
+      },
+      "preferred_term": "福应经·风云飞鸟助战",
+      "aliases": [
+        "释太乙风云飞鸟置战第五十三"
+      ],
+      "current_rule_ids": [
+        "JF4M-10"
+      ],
+      "current_source_profiles": [
+        "jingyou_fuying_volume4"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-jingyou-v4.json",
+        "key": "jingyou_jf4m_11"
+      },
+      "preferred_term": "福应经·奇兵伏兵",
+      "aliases": [
+        "释奇伏第五十四"
+      ],
+      "current_rule_ids": [
+        "JF4M-11"
+      ],
+      "current_source_profiles": [
+        "jingyou_fuying_volume4"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
         "catalog": "terminology/military-jinjing-v4.json",
         "key": "adapt_to_terrain"
       },
@@ -1303,6 +1600,708 @@
         "JF4M-01"
       ],
       "current_source_profiles": [],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v15_01"
+      },
+      "preferred_term": "统宗卷十五·奇兵伏兵",
+      "aliases": [
+        "明奇兵伏兵之术／明出兵战阵所利术"
+      ],
+      "current_rule_ids": [
+        "V15-01"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume15"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v15_02"
+      },
+      "preferred_term": "统宗卷十五·五陣置旗",
+      "aliases": [
+        "明太乙置阵齐旗术／三五八阵之原"
+      ],
+      "current_rule_ids": [
+        "V15-02"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume15"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v15_03"
+      },
+      "preferred_term": "统宗卷十五·出兵稱神",
+      "aliases": [
+        "明太乙出兵称神术"
+      ],
+      "current_rule_ids": [
+        "V15-03"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume15"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v15_04"
+      },
+      "preferred_term": "统宗卷十五·陳兵出鄉",
+      "aliases": [
+        "明陈兵出乡术"
+      ],
+      "current_rule_ids": [
+        "V15-04"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume15"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v15_05"
+      },
+      "preferred_term": "统宗卷十五·選將之術",
+      "aliases": [
+        "明选将之术"
+      ],
+      "current_rule_ids": [
+        "V15-05"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume15"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v15_06"
+      },
+      "preferred_term": "统宗卷十五·教兵之術",
+      "aliases": [
+        "明教兵之术"
+      ],
+      "current_rule_ids": [
+        "V15-06"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume15"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v15_07"
+      },
+      "preferred_term": "统宗卷十五·隨地制變",
+      "aliases": [
+        "随地制变／置阵随地"
+      ],
+      "current_rule_ids": [
+        "V15-07"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume15"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v15_08"
+      },
+      "preferred_term": "统宗卷十五·分合用兵",
+      "aliases": [
+        "明分合用兵之术"
+      ],
+      "current_rule_ids": [
+        "V15-08"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume15"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v15_09"
+      },
+      "preferred_term": "统宗卷十五·五音風",
+      "aliases": [
+        "明五音考风以知盛衰之术"
+      ],
+      "current_rule_ids": [
+        "V15-09"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume15"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v15_10"
+      },
+      "preferred_term": "统宗卷十五·五音觀風察將",
+      "aliases": [
+        "明五音观风察将术"
+      ],
+      "current_rule_ids": [
+        "V15-10"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume15"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v15_11"
+      },
+      "preferred_term": "统宗卷十五·安營置陣",
+      "aliases": [
+        "安营置阵取用日时"
+      ],
+      "current_rule_ids": [
+        "V15-11"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume15"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v15_12"
+      },
+      "preferred_term": "统宗卷十五·風從八卦",
+      "aliases": [
+        "明风从八卦而分主客术"
+      ],
+      "current_rule_ids": [
+        "V15-12"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume15"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v15_13"
+      },
+      "preferred_term": "统宗卷十五·雲氣逆順",
+      "aliases": [
+        "云气所起逆顺"
+      ],
+      "current_rule_ids": [
+        "V15-13"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume15"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v15_14"
+      },
+      "preferred_term": "统宗卷十五·軍勢勝負",
+      "aliases": [
+        "明出兵军势胜负术＋风云飞鸟"
+      ],
+      "current_rule_ids": [
+        "V15-14"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume15"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v17_01"
+      },
+      "preferred_term": "统宗卷十七·出兵用時",
+      "aliases": [
+        "明太乙出兵举事用日之术／用时之术"
+      ],
+      "current_rule_ids": [
+        "V17-01"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume17"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v17_02"
+      },
+      "preferred_term": "统宗卷十七·敵國動靜",
+      "aliases": [
+        "明敌国动静"
+      ],
+      "current_rule_ids": [
+        "V17-02"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume17"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v17_03"
+      },
+      "preferred_term": "统宗卷十七·間諜虛實",
+      "aliases": [
+        "明敌国有无间谍窥探术"
+      ],
+      "current_rule_ids": [
+        "V17-03"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume17"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v17_04"
+      },
+      "preferred_term": "统宗卷十七·敵使虛實",
+      "aliases": [
+        "明敌使虚实之术"
+      ],
+      "current_rule_ids": [
+        "V17-04"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume17"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v17_05"
+      },
+      "preferred_term": "统宗卷十七·敵兵來方",
+      "aliases": [
+        "明敌人来方将卒多寡"
+      ],
+      "current_rule_ids": [
+        "V17-05"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume17"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v17_06"
+      },
+      "preferred_term": "统宗卷十七·見聞虛實",
+      "aliases": [
+        "见闻占虚实"
+      ],
+      "current_rule_ids": [
+        "V17-06"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume17"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v17_07"
+      },
+      "preferred_term": "统宗卷十七·討捕叛亡",
+      "aliases": [
+        "讨捕叛亡"
+      ],
+      "current_rule_ids": [
+        "V17-07"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume17"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v17_08"
+      },
+      "preferred_term": "统宗卷十七·執囚對吏",
+      "aliases": [
+        "执囚对吏"
+      ],
+      "current_rule_ids": [
+        "V17-08"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume17"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v17_09"
+      },
+      "preferred_term": "统宗卷十七·求索所得",
+      "aliases": [
+        "明求索有无所得术"
+      ],
+      "current_rule_ids": [
+        "V17-09"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume17"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v17_10"
+      },
+      "preferred_term": "统宗卷十七·時計諸事",
+      "aliases": [
+        "时计占诸事"
+      ],
+      "current_rule_ids": [
+        "V17-10"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume17"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v17_11"
+      },
+      "preferred_term": "统宗卷十七·占望行人",
+      "aliases": [
+        "占望行人及贼来与不来"
+      ],
+      "current_rule_ids": [
+        "V17-11"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume17"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "key": "v17_d1"
+      },
+      "preferred_term": "跨卷·孤虛對照",
+      "aliases": [
+        "卷五内外占攻击 × 卷十七求索所得 对照"
+      ],
+      "current_rule_ids": [
+        "V17-D1"
+      ],
+      "current_source_profiles": [
+        "cross_volume_helper"
+      ],
       "migration_links": [],
       "legacy_match_status": "blocked_missing_original_store",
       "legacy_fields": {
@@ -3179,8 +4178,12 @@
         "释九宫所值九星",
         "釋九宮所值九星"
       ],
-      "current_rule_ids": [],
-      "current_source_profiles": [],
+      "current_rule_ids": [
+        "C124-TONGZONG-TAIYI-NINE-STARS"
+      ],
+      "current_source_profiles": [
+        "tongzong_volume6_taiyi_nine_stars"
+      ],
       "migration_links": [
         {
           "asset": "terminology/zitingjing-migration-map.json",
