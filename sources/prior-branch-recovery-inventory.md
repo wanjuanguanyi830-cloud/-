@@ -509,3 +509,37 @@ C60 新增隔离：
 旧 warfare/common 的其他纯 helper 已由 C96 / 现行 taiyi_rules 覆盖，不再复制第二份。
 
 旧 `kintaiyi.py` 也完成核销：C95 已取 selection + collector，其余 facade 依赖旧周期 / 旧聚合，不再恢复。
+
+
+### C103
+
+2026-10-04 `rules/xiaoyou/xiaoyou.json` 的“小游太乙九宫运行”此前未被 C47 覆盖；C47 只处理轨运入卦。
+
+C103 已恢复并直接重核：
+
+- 金镜：240 / 24 / 3；
+- 统宗：360 / 24 / 3；
+- 共同起一宫、顺八宫、不入中五。
+
+因此旧小游位置成果已从“缺失旧文件”转为现行 source-specific runtime。
+
+### C106
+
+2026-10-04 `rules/dayou/tianmu.json` 的金镜 72→18 与18步路径已恢复。
+
+直接再核《统宗》《易学象数论》后确认：
+
+- 神盈差214；
+- 大周180；
+- 小周18；
+- 起天道；
+- 大武/阴德重留；
+
+也有直接来源。
+
+因此 C98 对默认统宗天目的 provisional quarantine 已撤销；现由 C106 金镜/统宗两个 source profile 统一承接。
+
+仍未完成：
+
+- 大游太乙“所在宫”的金镜/统宗 source-specific 分层；
+- 当前 `bigyo(profile="jinjing_tongzong")` 继续隔离。
