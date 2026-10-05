@@ -182,6 +182,64 @@
       {
         "id": "R-INTRINSIC-WX",
         "canonical": "固有五行：太乙木、始击火、文昌土、主大将金、主参将水、客大将水、客参将木。七术Mode B与将帅乘气使用将所在九宫五行，不用固有五行；两层事实必须分开保存。"
+      },
+      {
+        "id": "R-XIAOYOU",
+        "canonical": "小游太乙所在宫稳定核心：小周24、3年一宫、路径1→2→3→4→6→7→8→9，不入中五。金镜外周240；统宗纪元周360。必须显式source profile，不把两个外周压成统一周期。",
+        "source_profiles": {
+          "jinjing": {
+            "rule_id": "C103-XIAOYOU-JINJING",
+            "runtime": "kintaiyi.xiaoyou_position.xiaoyou_position"
+          },
+          "tongzong": {
+            "rule_id": "C103-XIAOYOU-TONGZONG",
+            "runtime": "kintaiyi.xiaoyou_position.xiaoyou_position"
+          }
+        }
+      },
+      {
+        "id": "R-THREE-BASES",
+        "canonical": "三基采用统宗source cycle，均先积年+邦盈差250并顺行十二辰。君基3600/360、30年一邦、午起；臣基360/36、3年一邦、午起；民基360/12、1年一邦、戌起。位置层不自动生成同宫断语。",
+        "source_profile": "tongzong_three_bases_cycles",
+        "rule_ids": [
+          "C66-JUNJI",
+          "C66-CHENJI",
+          "C66-MINJI"
+        ],
+        "runtime": "kintaiyi.three_bases_cycles.three_base_position"
+      },
+      {
+        "id": "R-FOUR-TAIYI",
+        "canonical": "四太乙术语组固定为天乙(金)、地乙(土)、直符(火)、四神(水)。统宗卷七位置共同采用360大周/36小周/3年一宫的十二运行宫；天乙起6、地乙起9、直符起5、四神起1。四神位置由C92独立来源层实现；值符仅作旧名异写，canonical为直符。位置与同宫灾应/火气状态分层。",
+        "source_profiles": {
+          "three_spirits": {
+            "rule_ids": [
+              "C64-TIANYI",
+              "C64-DIYI",
+              "C64-ZHIFU"
+            ],
+            "runtime": "kintaiyi.state_spirit_cycles.spirit_position"
+          },
+          "four_spirit": {
+            "rule_id": "C92-FOUR-SPIRIT-POSITION",
+            "runtime": "kintaiyi.four_spirit_tongzong.four_spirit_position"
+          }
+        }
+      },
+      {
+        "id": "R-LIMITS",
+        "canonical": "阳九与百六共享积年输入但独立计算。阳九：大限4560、小限456、10小限、盈差130；百六：大限4320、小限288、15小限、盈差2050。旧pan阳九/百六地支值不是大小限结果。太游行限另层：阳九理外卦10年一宫/80年一竟；百六理内卦36年一宫/288年一竟，八宫路径7→8→9→1→2→3→4→6。",
+        "source_profile": "tongzong_yangjiu_bailiu",
+        "rule_ids": [
+          "C36-YJ",
+          "C36-BL",
+          "C38-YJ-OUTER",
+          "C38-BL-INNER"
+        ],
+        "runtimes": [
+          "kintaiyi.limit_cycles.yangjiu_bailiu_limits",
+          "kintaiyi.taiyou_limit_tracks.taiyou_limit_tracks"
+        ]
       }
     ]
   },
@@ -301,8 +359,8 @@
     "狮子普通落支候选破年缺第二古籍实例",
     "将宫刑表待校；五行克可算，刑只接受显式已校表",
     "结构全有不自动赋予三才俱足或所主俱备正式标签",
-    "淘金歌大游宫法及金镜天目历元盈差待校；不套用统宗盈差",
     "目标仓库没有原版旧config.py，旧名称可调用；外部排盘项目历史参数与返回文本需接入时核对",
-    "旧本地terminology.json尚未迁入；当前terminology目录只保存已校勘稳定词条与迁移骨架，不冒充完整旧术语主库。"
+    "旧本地terminology.json尚未迁入；当前terminology目录只保存已校勘稳定词条与迁移骨架，不冒充完整旧术语主库。",
+    "淘金歌大游宫序已保留为source variant，但历元盈差仍未确认；不得套用金镜或统宗epoch。"
   ]
 }
