@@ -55,12 +55,11 @@ attack_realm("吕申")               # 固定内，内虚宜攻外
 
 旧项目的 `+250` 只保留在 legacy quarantine，不能覆盖上述来源。软件优先使用 `calculate_rule("C67-WUFU-TONGZONG", ...)` 或 `calculate_rule("C67-WUFU-JINJING", ...)`。
 
-大游太乙所在稳定核心为7→8→9→1→2→3→4→6、36年一宫、288年宫周、不入中五：
+大游太乙共同稳定核心为36年一宫、288年完成八宫一轮、起七宫、不入中五，但行宫顺序与历元必须分source profile：
 
-- `C107-DAYOU-JINJING`：上元甲寅、无盈差、元法4320；
-- `C107-DAYOU-TONGZONG`：上元甲子、宫盈差34、外周2880。
-
-淘金歌的7→6→4→3→2→1→9→8异序只作 source variant，不与金镜/统宗执行 profile 合并。
+- `C107-DAYOU-JINJING`：上元甲寅、无盈差、元法4320；顺行7→8→9→1→2→3→4→6；
+- `C107-DAYOU-TONGZONG`：上元甲子、宫盈差34、外周2880；同样顺行7→8→9→1→2→3→4→6；
+- `C107-DAYOU-TAOJIN`：《太乙淘金歌》以唐高宗永徽五年甲寅为七宫第1年，逆行7→6→4→3→2→1→9→8，不借用金镜/统宗盈差。553年古例复算为八宫第13年。
 
 大游天目同样分金镜与统宗 source profile；核心路径与周期由各自已校 runtime 保存。软件层不得把72、180等外层周期替换为核心18步，也不得静默把来源参数混成一个默认 profile。
 
@@ -68,7 +67,7 @@ attack_realm("吕申")               # 固定内，内虚宜攻外
 
 从仓库根目录执行 `python -m pytest -q`。新增测试包括全部七术古例、八占指定组、完整十二支/九宫加位映射、四将五态、刑克优先、回军缺输入、五福/大游各周期与段界、天目全部18步、兼容入口和数据分层。
 
-仍待校项目必须以当前各 catalog/runtime 的 pending/source-boundary 字段为准，不能沿用早期文档快照。当前明确仍包括：狮子普通落支第二实例、将宫刑表、淘金歌相关历元参数、紫庭旧terminology.json与研易楼明钞本页码/逐字原形恢复，以及其他尚标记为 source-record-only / attribution-unverified 的来源项。已确认的三才杜塞、五音正比音、孤单明确数集不再列为待校。
+仍待校项目必须以当前各 catalog/runtime 的 pending/source-boundary 字段为准，不能沿用早期文档快照。当前明确仍包括：狮子普通落支第二独立实例、白龙得云“刑”映射、旧terminology.json与研易楼明钞本页码/逐字原形恢复，以及其他仍标记为 attribution-unverified 的来源项。已确认的三才杜塞、五音正比音、孤单明确数集不再列为待校。
 
 
 ## Modern production 与太乙岁界
