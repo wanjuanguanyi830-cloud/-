@@ -671,5 +671,5 @@ def test_c110_ncl_j4m06_full_table_resolves_detail_pending_without_overwriting_s
     assert rows["9"]["normalized"]["出军"] == "东南"
 
     # 四库 canonical 仍只实现其自身明确的 1/2/4/5/6/9 表。
-    assert rule["scan_rule_audit"]["locked_points"][0].startswith("仅1/2/4/5/6/9")
+    assert rule["scan_rule_audit"]["locked_points"][0].startswith("只列1/2/4/5/6/9")
     assert ncl["canonical_override"] is False
