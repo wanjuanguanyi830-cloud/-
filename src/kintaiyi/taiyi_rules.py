@@ -7,7 +7,18 @@ GODS = tuple("地主 阳德 和德 吕申 高丛 太阳 大炅 大神 大威 天
 ELEMENTS = tuple("水 土 土 木 木 土 木 火 火 土 土 金 金 土 金 水".split())
 POSITION_WX = dict(zip(SIXTEEN, ELEMENTS))
 GOD_POSITION = dict(zip(GODS, SIXTEEN))
-GOD_ALIASES = {"太炅": "大炅", "太神": "大神"}
+GOD_ALIASES = {
+    "太炅": "大炅",
+    "太神": "大神",
+    "大旲": "大炅",
+    "陽德": "阳德",
+    "呂申": "吕申",
+    "高叢": "高丛",
+    "太陽": "太阳",
+    "陰主": "阴主",
+    "陰德": "阴德",
+    "大義": "大义",
+}
 SIXTEEN_GOD_WX = dict(zip(GODS, ELEMENTS))
 PALACE_POINT = {1: "乾", 2: "午", 3: "艮", 4: "卯", 6: "酉", 7: "坤", 8: "子", 9: "巽"}
 PALACE_WX = {1: "金", 2: "火", 3: "土", 4: "木", 5: "土", 6: "金", 7: "土", 8: "水", 9: "木"}
