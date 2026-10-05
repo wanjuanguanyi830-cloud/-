@@ -30,6 +30,27 @@ from .taiyi_rules import integer
 
 C70_VERSION = "taiyi-c70-tongzong-wenchang-nine-stars-v1"
 
+DIRECT_TEXT_EVIDENCE = {
+    "witness_id": "NGJ892411999009267118912",
+    "section": "明文昌九宫所主分野术",
+    "url": "https://www.shidianguji.com/book/NGJ892411999009267118912/chapter/1lny526c1g8iw",
+    "facts": {
+        "star_names": ["文昌", "玄凤", "明维", "阴德", "招摇", "华明", "玄武", "玄冥", "维明"],
+        "years_per_star": 30,
+        "small_cycle": 270,
+        "large_cycle": 2700,
+        "rate": 30,
+        "start": "一宫文昌",
+        "direction": "顺行九宫",
+        "landing_rule": "命加所求年干建禄之宫",
+        "example": "甲辰年玄凤直事，十一年在青州；乙巳在徐",
+    },
+    "boundary": (
+        "本证据只固定NGJ卷六profile；另有CADAL见证作每星十年并与算法口径冲突，"
+        "保持独立异文；《紫庭秘诀》附篇正文未取得前不得反填。"
+    ),
+}
+
 STAR_TABLE = (
     {"index": 1, "star": "文昌", "palace": "乾", "stem": "壬", "region": "冀州"},
     {"index": 2, "star": "玄凤", "palace": "离", "stem": "丁", "region": "荆州"},
@@ -195,6 +216,7 @@ def wenchang_nine_star_tongzong(
         "name_variants": copy.deepcopy(NAME_VARIANTS),
         "source_witness": copy.deepcopy(SOURCE_WITNESS),
         "legacy_audit": copy.deepcopy(LEGACY_AUDIT),
+        "direct_text_evidence": copy.deepcopy(DIRECT_TEXT_EVIDENCE),
         "cross_source_canonical_selected": None,
         "policy": (
             "C70是统宗NGJ source-specific runtime，不等于紫庭附篇canonical。"
@@ -214,6 +236,7 @@ def c70_catalog() -> dict[str, Any]:
         "source_witness": copy.deepcopy(SOURCE_WITNESS),
         "name_variants": copy.deepcopy(NAME_VARIANTS),
         "legacy_audit": copy.deepcopy(LEGACY_AUDIT),
+        "direct_text_evidence": copy.deepcopy(DIRECT_TEXT_EVIDENCE),
         "dynamic_distribution_boundary": copy.deepcopy(DYNAMIC_DISTRIBUTION_BOUNDARY),
         "cross_source_canonical_selected": None,
     }
