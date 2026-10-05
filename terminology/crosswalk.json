@@ -12,7 +12,7 @@
   },
   "audit_snapshot": {
     "stable_catalog_count": 12,
-    "entry_count": 90,
+    "entry_count": 93,
     "exact_cross_entry_name_collisions": 0,
     "status": "clean_at_snapshot"
   },
@@ -437,6 +437,70 @@
       "forbidden_merge": [
         "C57显式合会、C58真实云气/天气观察、C59太乙数与关系断语互不替代。",
         "旧yunqi综合wrapper不得重新成为统一canonical入口。"
+      ]
+    },
+    {
+      "id": "CW-ZHIFU-C93",
+      "position": {
+        "catalog": "terminology/cycles.json",
+        "key": "four_taiyi",
+        "rule_id": "C64-ZHIFU"
+      },
+      "state": {
+        "catalog": "terminology/cycles.json",
+        "key": "zhifu_fire_states",
+        "rule_id": "C93-ZHIFU-KNOWN-FIRE-STATE"
+      },
+      "relation": "position_vs_source_limited_state_interpretation",
+      "forbidden_merge": [
+        "C64直符位置不能自动生成C93火气状态。",
+        "C93只有2旺/3长生/4败三宫直接见证；其他宫不得按十二长生补齐。"
+      ]
+    },
+    {
+      "id": "CW-C51-C58",
+      "left": {
+        "catalog": "terminology/ritual-timing.json",
+        "key": "coronation_cloud_omens",
+        "rule_id": "C51-CLOUD-OMEN",
+        "term": "天子初登位日月旁云气"
+      },
+      "right": {
+        "catalog": "terminology/ten-essences.json",
+        "key": "cloud_observations",
+        "rule_ids": [
+          "C58-CLOUD-TIMING",
+          "C58-WEATHER-OBSERVATION"
+        ],
+        "term": "十精云气观察"
+      },
+      "relation": "external_observation_layers_distinct_contexts",
+      "forbidden_merge": [
+        "C51观察登位日月旁云；C58观察太乙初移宫云色/天气。",
+        "两者都使用云气词汇，但时间点、输入与断义来源不同。"
+      ]
+    },
+    {
+      "id": "CW-C118-C69B",
+      "upstream": {
+        "catalog": "terminology/ritual-timing.json",
+        "key": "jinjing_huangdao_tables",
+        "rule_ids": [
+          "C118-SOLAR-TERM-ANCHOR",
+          "C118-MANSION-SPAN",
+          "C118-MANSION-DIVISION",
+          "C118-TERM-DAY-POSITION"
+        ]
+      },
+      "downstream": {
+        "catalog": "terminology/ritual-timing.json",
+        "key": "current_time_method",
+        "rule_id": "C69B-CURRENT-TIME-LIUREN"
+      },
+      "relation": "ancient_table_upstream",
+      "forbidden_merge": [
+        "C118黄道表只为C69/C69B提供古表日宿/分野；不负责十二天将。",
+        "C118不计算现代天文黄经，也不得改写production真实节气/冬至换岁。"
       ]
     }
   ]
