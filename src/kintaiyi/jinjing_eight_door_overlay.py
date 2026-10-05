@@ -7,7 +7,8 @@
   并同列开门加主大将、客大将、定计大将。
 
 本模块只实现“空间叠加”。
-它不计算岁计/时计值事门，也不把值事门替换成开门。
+固定开门盘与动态直事门盘并存，但用途分开：门具古法以开门加锚点；
+值事门用于时计运行、分野灾祥或定计动态盘，不静默替代固定开门盘。
 """
 
 from __future__ import annotations
@@ -128,4 +129,72 @@ def general_eight_door_context(anchor_palace: int, *, eye=None, side: str, ancho
         "eye": eye,
         "eye_palace": eye_palace,
         "eye_gate": overlay["palace_to_door"].get(eye_palace) if eye_palace is not None else None,
+    }
+
+
+
+def _open_overlay_or_unavailable(anchor_palace, *, label: str) -> dict[str, Any]:
+    if anchor_palace is None:
+        return {
+            "label": label,
+            "status": "not_computable",
+            "computable": False,
+            "anchor_palace": None,
+            "reason": "大小将不出中宫/杜塞或上游未给外八宫，不生成伪门盘",
+        }
+    if isinstance(anchor_palace, bool) or not isinstance(anchor_palace, int) or anchor_palace not in PALACE_RING:
+        return {
+            "label": label,
+            "status": "not_computable",
+            "computable": False,
+            "anchor_palace": anchor_palace,
+            "reason": "锚点须为外八宫之一",
+        }
+    data = open_door_overlay(anchor_palace)
+    return {
+        **data,
+        "label": label,
+        "status": "ok",
+        "computable": True,
+    }
+
+
+def jinjing_year_open_door_contexts(
+    *,
+    taiyi_palace: int,
+    host_big_palace: int | None,
+    guest_big_palace: int | None,
+    dingji_big_palace: int | None,
+) -> dict[str, Any]:
+    """《金镜》卷一李淳风岁计古法的四套“开门加锚点”门盘。
+
+    四盘分别以太乙、主大将、客大将、定计大将为锚点。
+    本函数只生成结构，不把“客主八门与太乙八门开休生合者大利”
+    强行解释成未被原文展开的部分重合规则。
+    """
+    contexts = {
+        "taiyi": _open_overlay_or_unavailable(taiyi_palace, label="太乙之八门"),
+        "host_big": _open_overlay_or_unavailable(host_big_palace, label="主大将之八门"),
+        "guest_big": _open_overlay_or_unavailable(guest_big_palace, label="客大将之八门"),
+        "dingji_big": _open_overlay_or_unavailable(dingji_big_palace, label="定计大将八门"),
+    }
+    good_sets = {}
+    for key, item in contexts.items():
+        if item.get("computable"):
+            good_sets[key] = {
+                door: item["door_to_palace"][door]
+                for door in ("开", "休", "生")
+            }
+        else:
+            good_sets[key] = None
+
+    return {
+        "source_profile": "jinjing_volume1_year_open_door_overlays",
+        "rule_id": "J1-YEAR-FOUR-EIGHT-DOOR-OVERLAYS",
+        "contexts": contexts,
+        "good_door_palaces": good_sets,
+        "policy": (
+            "四套门盘独立生成；不把主、客、定计门盘压成太乙门盘，"
+            "也不在缺外八宫锚点时把中五当正常宫位。"
+        ),
     }
