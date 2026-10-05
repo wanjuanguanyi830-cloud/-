@@ -491,7 +491,7 @@
         "推对阵有云气定胜负"
       ],
       "domain": "对阵云气",
-      "canonical_summary": "按云气所覆阵的方位、颜色、日干、聚散动静及所临将位综合判断胜负；原文“若在我阵上亦尔”，故断语主体必须显式标明为云气所覆之敌阵或我阵，不做未据原文的敌我反转；无云气时另作处理。",
+      "canonical_summary": "按云气所覆阵的方位、颜色、日干、聚散动静及所临将位综合判断；“若在我阵上亦尔”只允许同表用于我阵，不代表所有断语主体都改成云气所在阵。条文明写“客胜”等主客词时保留原角色。西方白云气本句只明“庚辛日弥佳”，不得按表格对称性补成“大胜”。",
       "dependencies": [
         "敌我方位",
         "云气颜色",
@@ -505,7 +505,14 @@
       },
       "implementation_status": "implemented_source_specific",
       "runtime": "kintaiyi.jinjing_v4_military.yunqi_dingshengfu",
-      "implementation_note": "以云气所覆阵方位×颜色为基础表，日干、云气聚散动静及大将/参将位置分层修正；新增 verdict_subject 显式标明断语作用于敌阵或我阵，并依“若在我阵上亦尔”保持同一判表而不机械反转；原文未列组合保持未定义，无云气返回无战或相匀，不以五行常识补表。"
+      "implementation_note": "方位×颜色表按四库正文逐项保存；C69 删除此前由对称性推入的“西方白云=大胜”，保留庚辛日弥佳而基础胜负为未明。runtime 新增 cloud_bearer / subject_mode / verdict_subject 分栏：条文明确“客胜”时主体保持客；不以“若在我阵上亦尔”机械替换主客。日干、聚散动静及大将/参将位置继续分层，原文未列组合不补。",
+      "collation_status": "source_table_audited_no_symmetry_completion",
+      "canonical_constraints": {
+        "cloud_bearer_vs_verdict_subject": "云气所在阵与断语主体必须分栏；formation-type断语随我/敌阵解释，明确主客角色词不改写。",
+        "west_white": "四库正文仅“有白云气在敌阵上，庚辛日弥佳”，基础胜负未明；禁止补“大胜”。",
+        "north_red": "四库正文明确“红云气在敌阵上，客胜”；subject=客，不得改写成云气所在的我/敌阵。",
+        "unknown_colors": "正文未列颜色保持未定义。"
+      }
     }
   ]
 }
