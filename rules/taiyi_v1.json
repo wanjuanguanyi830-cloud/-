@@ -536,6 +536,52 @@
         ],
         "catalog": "terminology/military-jingyou-v4.json",
         "runtime": null
+      },
+      {
+        "id": "R-TONGZONG-MILITARY-V15-V17",
+        "canonical": "《太乙统宗宝鉴》军事应用/占断按独立 rule units 保存：卷十五 V15-01..14、卷十七 V17-01..11。当前只有 V15-02..06 有独立 source-specific runtime；其余只登记 source rule/reference function，不把旧综合函数名冒充现行实现。与 J4M/C8 的奇伏、陈兵、随地制变、军势、出兵用时、敌国动静等近名层禁止自动合并。",
+        "rule_ids": [
+          "V15-01",
+          "V15-02",
+          "V15-03",
+          "V15-04",
+          "V15-05",
+          "V15-06",
+          "V15-07",
+          "V15-08",
+          "V15-09",
+          "V15-10",
+          "V15-11",
+          "V15-12",
+          "V15-13",
+          "V15-14",
+          "V17-01",
+          "V17-02",
+          "V17-03",
+          "V17-04",
+          "V17-05",
+          "V17-06",
+          "V17-07",
+          "V17-08",
+          "V17-09",
+          "V17-10",
+          "V17-11"
+        ],
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "implemented_rule_ids": [
+          "V15-02",
+          "V15-03",
+          "V15-04",
+          "V15-05",
+          "V15-06"
+        ]
+      },
+      {
+        "id": "R-TONGZONG-MILITARY-DERIVED",
+        "canonical": "V17-D1 孤虚对照是卷五内外占攻击 × 卷十七求索所得的跨卷 derived helper，不是卷十七 canonical source rule；不得分配为 V17 正式术号，也不得替代 V17-09 求索所得本条。",
+        "rule_id": "V17-D1",
+        "catalog": "terminology/military-tongzong-v15-v17.json",
+        "canonical_source_rule": false
       }
     ]
   },
