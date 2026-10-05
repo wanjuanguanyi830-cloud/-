@@ -7,7 +7,8 @@
 
 实现入口：
 - J4M-01 推三门具不具：sanmen_jubu / zhimen_from_cycle_count
-- J4M-02 推五将发不发：wujiang_fabu\n- CORE-WUJIANG-READY 跨层有效五将状态：effective_five_generals_readiness
+- J4M-02 推五将发不发：wujiang_fabu
+- CORE-WUJIANG-READY 跨层有效五将状态：effective_five_generals_readiness
 - J4M-03 推主客相关法：j4m03_eye_element_from_god / zhuke_xiangguan
 - J4M-04 推主客：zhuke_fa
 - J4M-05 推出师法：chushi_fa
@@ -319,23 +320,13 @@ def sanmen_jubu(*, taiyi_gate=None, tianmu_gate=None, direct_gate=None):
 def sanmen_jubu_from_positions(*, taiyi_palace, tianmu, direct_gate=None):
     """J4M-01 的位置入口。
 
-    J4M-01 本段先求当期直使门；卷一门篇又明言“直门加太乙”。
-    因此只有 direct_gate 已知时，才能把八门动态叠加到太乙宫并求天目所临门。
+    门具空间上游采用同书卷一李淳风古法“开门加太乙”：
+    太乙恒在开门锚点，再看天目落何门。
+    direct_gate 若给出，只保存卷四本条240/30直使对应的州郡吉凶，
+    不拿它替换门具盘的开门锚点。
     """
-    if direct_gate is None:
-        return {
-            **_base("J4M-01", "推三门具不具"),
-            "status": "not_computable",
-            "computable": False,
-            "input_mode": "positions",
-            "taiyi_palace": taiyi_palace,
-            "tianmu": tianmu,
-            "three_doors_ready": None,
-            "policy": "位置入口必须先由岁/月/日/时上游给出当期直使门。",
-        }
-
     context = taiyi_eight_door_context(
-        taiyi_palace, tianmu=tianmu, anchor_door=direct_gate
+        taiyi_palace, tianmu=tianmu, anchor_door="开"
     )
     result = sanmen_jubu(
         taiyi_gate=context["taiyi_gate"],
@@ -350,11 +341,16 @@ def sanmen_jubu_from_positions(*, taiyi_palace, tianmu, direct_gate=None):
         "tianmu_palace": context["tianmu_palace"],
         "eight_door_overlay": context["palace_to_door"],
         "overlay_rule_id": context["rule_id"],
+        "overlay_anchor_door": "开",
+        "policy": (
+            result.get("policy", "")
+            + " 门具空间采用卷一开门加太乙古法；直使门只作本条独立吉凶事实。"
+        ),
     }
 
 
 def sanmen_jubu_from_period_count(*, period_count, taiyi_palace, tianmu):
-    """岁计/同构周期入口：先求240/30直使，再自动判J4M-01。"""
+    """岁计/同构周期入口：240/30求直使吉凶；门具仍用开门加太乙古法。"""
     duty = zhimen_from_cycle_count(period_count)
     if not duty.get("computable"):
         return {
