@@ -188,8 +188,9 @@
       "contains": [
         "V15-01..14 卷十五军事应用",
         "V17-01..11 卷十七军事占断",
-        "V17-D1 跨卷derived helper",
-        "V15-02..06独立runtime"
+        "C23-C28 已实现20条source-specific runtime",
+        "V15-01/07/08/11/14仍source-rule-only",
+        "V17-D1 C32跨卷derived runtime"
       ]
     }
   ],
