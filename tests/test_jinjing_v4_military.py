@@ -459,6 +459,39 @@ def test_j4m12_cloud_color_table_and_day_stem_modifiers():
     assert east_delay["base_verdict"] == "将迟钝，然不可击"
 
 
+def test_j4m12_explicit_guest_role_is_not_rewritten_by_cloud_bearer():
+    enemy = yunqi_dingshengfu(
+        formation_direction="北",
+        cloud_color="红",
+        observed_formation="敌",
+    )
+    ours = yunqi_dingshengfu(
+        formation_direction="北",
+        cloud_color="红",
+        observed_formation="我",
+    )
+    assert enemy["base_verdict"] == "客胜"
+    assert ours["base_verdict"] == "客胜"
+    assert enemy["verdict_subject"] == "客"
+    assert ours["verdict_subject"] == "客"
+    assert ours["cloud_bearer"] == "我"
+    assert ours["subject_mode"] == "guest_role"
+
+
+def test_j4m12_west_white_does_not_invent_big_victory_from_table_symmetry():
+    data = yunqi_dingshengfu(
+        formation_direction="西",
+        cloud_color="白",
+        observed_formation="敌",
+        day_stem="庚",
+    )
+    assert data["base_verdict"] is None
+    assert data["effective_verdict"] is None
+    assert data["qi_class"] == "基础胜负未明"
+    assert data["day_modifier"] == "弥佳"
+    assert "未明写基础胜负" in data["source_note"]
+
+
 def test_j4m12_unknown_color_is_not_filled_by_five_elements():
     east_white = yunqi_dingshengfu(
         formation_direction="东",
