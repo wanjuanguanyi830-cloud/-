@@ -20,6 +20,19 @@ FIRE_STAGES = dict(zip(tuple("寅卯辰巳午未申酉戌亥子丑"),
 CORNER_SECTORS = {"艮": frozenset("丑艮寅"), "巽": frozenset("辰巽巳"),
                   "坤": frozenset("未坤申"), "乾": frozenset("戌乾亥")}
 
+# C96: recovered from 2026-10-04 taiyi_common.py and crosschecked against
+# current POSITION_WX / GOD_POSITION / PALACE_POINT. These are coordinate helpers,
+# not independent formula sources.
+SECTOR_GODS = {position: god for god, position in GOD_POSITION.items()}
+SECTOR_TO_NINE_PALACE = dict(
+    zip(SIXTEEN, (8, 3, 3, 4, 4, 9, 9, 2, 2, 7, 7, 6, 6, 1, 1, 8))
+)
+PALACE_TRIGRAM = {
+    1: "乾", 2: "离", 3: "艮", 4: "震", 5: "中",
+    6: "兑", 7: "坤", 8: "坎", 9: "巽",
+}
+OPPOSITE_PALACES = {1: 9, 9: 1, 3: 7, 7: 3, 2: 8, 8: 2, 4: 6, 6: 4}
+
 
 def integer(value, minimum=0, maximum=None):
     if isinstance(value, bool) or not isinstance(value, int):
@@ -73,6 +86,111 @@ def dashen_qi(anchor):
             "state": qi_state("火", POSITION_WX[landing]),
             "stage": FIRE_STAGES.get(landing), "model": "A"}
 
+
+
+def _signed_integer(value):
+    if isinstance(value, bool) or not isinstance(value, int):
+        raise TypeError("须为整数")
+    return value
+
+
+def validate_sector(sector):
+    if not isinstance(sector, str) or sector not in SIXTEEN:
+        raise ValueError("须为十六宫位置")
+    return sector
+
+
+def sector_to_nine_palace(sector):
+    """C96：十六辰/四维 -> 九宫的有损投影。"""
+    return SECTOR_TO_NINE_PALACE[validate_sector(sector)]
+
+
+def nine_palace_to_trigram(palace):
+    return PALACE_TRIGRAM[integer(palace, 1, 9)]
+
+
+def nine_palace_representative_sector(palace):
+    palace = integer(palace, 1, 9)
+    if palace == 5:
+        raise ValueError("中五无十六宫代表点")
+    return PALACE_POINT[palace]
+
+
+def rotate_sixteen(sector, steps):
+    """C96：十六环可正负步旋转；不附加任何术义。"""
+    sector = validate_sector(sector)
+    steps = _signed_integer(steps)
+    return SIXTEEN[(SIXTEEN.index(sector) + steps) % len(SIXTEEN)]
+
+
+def sector_detail(sector):
+    sector = validate_sector(sector)
+    palace = sector_to_nine_palace(sector)
+    god = SECTOR_GODS[sector]
+    return {
+        "sector": sector,
+        "god": god,
+        "element": POSITION_WX[sector],
+        "sector_element": POSITION_WX[sector],
+        "nine_palace": palace,
+        "nine_palace_trigram": nine_palace_to_trigram(palace),
+        "nine_palace_element": PALACE_WX[palace],
+        "projection_lossy": True,
+    }
+
+
+def sector_opposition(sector):
+    return rotate_sixteen(sector, 8)
+
+
+def nine_palace_opposition(palace):
+    palace = integer(palace, 1, 9)
+    if palace == 5:
+        return {
+            "computable": False,
+            "missing_inputs": [],
+            "reason": "中宫对冲来源待校",
+            "status": "pending",
+        }
+    return {
+        "computable": True,
+        "palace_id": palace,
+        "opposite_palace_id": OPPOSITE_PALACES[palace],
+    }
+
+
+def qi_relation(subject, environment):
+    """C96：在现行 qi_state 上恢复关系名包装，不改变五态公式。"""
+    state = qi_state(subject, environment)
+    if subject == environment:
+        relation = "比和"
+    elif GENERATES[environment] == subject:
+        relation = "生我"
+    elif CONTROLS[environment] == subject:
+        relation = "克我"
+    elif CONTROLS[subject] == environment:
+        relation = "我克"
+    else:
+        relation = "我生"
+    return {
+        "subject": subject,
+        "environment": environment,
+        "relation": relation,
+        "state": state,
+    }
+
+
+def general_palace_qi(general_palace, landing_sector):
+    """C96：显式九宫五行 vs 落点五行关系；不计算落点来源。"""
+    detail = sector_detail(landing_sector)
+    element = PALACE_WX[integer(general_palace, 1, 9)]
+    return {
+        **qi_relation(element, detail["element"]),
+        "palace_id": general_palace,
+        "palace_element": element,
+        "landing": detail,
+        "model": "B",
+    }
 
 def calc_components(n):
     """R-CAL-01：十/五/一存在结构，不自动赋予古籍俱足标签。"""
