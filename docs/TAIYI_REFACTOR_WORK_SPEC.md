@@ -4408,32 +4408,22 @@ C60 新增：
 
 淘金歌 profile 若显式给 epoch_offset，只作兼容试算，不升格。
 
-### bigyo_tianmu
+### bigyo_tianmu（C98阶段性结论，已由 C106 修正）
 
-2026-10-04 记录已把旧：
+C98 当时依据 2026-10-04 恢复记录，暂把旧 `%180/+214` wrapper 隔离。
 
-- `%180`
-- `+214`
+C106 后续直接核源确认：
 
-列为 `deprecated_reference`。
+- 统宗 +214 / 180 / 18 有直接来源；
+- 金镜 72 / 18 有直接来源；
+- 两者应拆 source profile，而不是整体 quarantine。
 
-所以默认 tongzong wrapper：
-
-- `canonical=None`
-- `quarantined=True`
-
-金镜 profile：
-
-- 保留已恢复的18步兼容路径；
-- 无显式 epoch_offset 不计算；
-- 即使显式给 offset，也不冒充完整 source-specific runtime。
-
-C60 新增四项：
+因此 C60 目前只保留 C98 的大游 mixed-profile 两项：
 
 - `kintaiyi.cycles.bigyo.jinjing_tongzong`
 - `config.bigyo_default`
-- `kintaiyi.cycles.bigyo_tianmu.tongzong`
-- `config.bigyo_tianmu_default`
+
+天目两项已撤销隔离并委托 C106。
 
 详细记录：
 
@@ -4553,6 +4543,88 @@ runtime 单一真源：
 3. 完整 `terminology.json` 继续由 C81 阻塞；
 4. 保持 C60 隔离清单与 compatibility API 同步；
 5. 等并行 NCL 校勘线每批提交后，以最新 HEAD 全量 CI 为准。
+
+## 9.93 C103 小游太乙所在 source profiles（已实施）
+
+从 2026-10-04：
+
+`rules/xiaoyou/xiaoyou.json`
+
+回收小游太乙所在宫核心，并重新直接核源。
+
+共同：
+
+- 小周24；
+- 每宫3年；
+- 起一宫；
+- 顺行八宫；
+- 不入中五；
+- 路径 1→2→3→4→6→7→8→9。
+
+来源分开：
+
+- 金镜：大周240；
+- 统宗：纪元周360。
+
+调用必须显式：
+
+`source_profile="jinjing" | "tongzong"`
+
+C103 只计算小游太乙所在宫。
+
+C47 仍是小游轨运入卦 / 重卦层，二者不得混为一术。
+
+C91 的小游同宫关系仍要求显式 `same_palace`，不自动调用 C103。
+
+详细记录：
+
+- `sources/c103-xiaoyou-position-record.md`
+- `tests/test_c103_xiaoyou_position.py`
+
+## 9.94 C106 大游天目 source profiles（已实施）
+
+编号说明：
+
+- C104 已由并行线用于 J4M-03 全局别名同步；
+- C105 已由并行线用于 NCL 术语对照；
+- 本项采用 C106。
+
+最近两天旧工作：
+
+`rules/dayou/tianmu.json`
+
+已保存金镜 72→18 与18步路径。
+
+进一步直接核源后建立两 profile：
+
+### 金镜
+
+- 天目元法72；
+- 周法18；
+- 起天道；
+- 顺行十六神；
+- 大武、阴德各重留一算。
+
+### 统宗
+
+- 神盈差214；
+- 大周180；
+- 小周18；
+- 同样使用18步路径。
+
+固定：
+
+- 不设默认 source profile；
+- 金镜 / 统宗参数不互写；
+- 旧 `bigyo_tianmu()` 0基 API 改为 C106 adapter；
+- 非来源自定义 `epoch_offset` 只作 compatibility 试算。
+
+C60 已撤销对默认统宗天目 wrapper 的错误隔离。
+
+详细记录：
+
+- `sources/c106-dayou-tianmu-source-profiles-record.md`
+- `tests/test_c106_dayou_tianmu_source_profiles.py`
 
 ## 10. 验收
 
