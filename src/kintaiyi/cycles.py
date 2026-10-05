@@ -5,9 +5,10 @@ C97 后：
 - source_115 显式委托 C67 tongzong；
 - jinjing 显式委托 C67 jinjing；
 - 五福吉算委托 C68；
-- 大游/大游天目仍保持原兼容实现，等待各自独立审计。
+- C98：大游/大游天目旧兼容实现也撤销 canonical 身份；
+- 数值行为可用于旧调用回归，但来源混合/旧offset不得升格。
 
-本模块不得再作为“五福 canonical 真源”引用。
+本模块不得再作为“五福 / 大游 / 大游天目 canonical 真源”引用。
 """
 
 from .taiyi_rules import GOD_POSITION, integer
@@ -40,10 +41,39 @@ WUFU_PROFILES = {
     },
 }
 DAYOU_PROFILES = {
-    "jinjing_tongzong": {"path": DAYOU_PATH, "offset": 34, "source": "金镜/统宗宫序；统宗/象数论宫盈差"},
-    "taojin": {"path": DAYOU_TAOJIN_PATH, "offset": None, "source": "淘金歌宫序；历元盈差未确认"}}
-TM_PROFILES = {"tongzong": {"offset": 214, "core_cycle": 18, "outer_cycle": 180, "source": "统宗/象数论"},
-               "jinjing": {"offset": None, "core_cycle": 18, "yuan": 72, "source": "金镜元法72/周法18；历元盈差未确认"}}
+    "jinjing_tongzong": {
+        "path": DAYOU_PATH,
+        "offset": 34,
+        "source": "legacy mixed 金镜/统宗 compatibility",
+        "status": "quarantined_mixed_source_profile",
+        "canonical_equivalent": False,
+    },
+    "taojin": {
+        "path": DAYOU_TAOJIN_PATH,
+        "offset": None,
+        "source": "淘金歌宫序；历元盈差未确认",
+        "status": "source_variant_epoch_pending",
+        "canonical_equivalent": False,
+    },
+}
+TM_PROFILES = {
+    "tongzong": {
+        "offset": 214,
+        "core_cycle": 18,
+        "outer_cycle": 180,
+        "source": "legacy %180/+214 compatibility",
+        "status": "quarantined_deprecated_reference",
+        "canonical_equivalent": False,
+    },
+    "jinjing": {
+        "offset": None,
+        "core_cycle": 18,
+        "yuan": 72,
+        "source": "2026-10-04 recovered 金镜72→18 path；完整历元接口待独立重接",
+        "status": "recovered_recent_work_epoch_pending",
+        "canonical_equivalent": False,
+    },
+}
 
 
 def _number_subject(year_number, maximum):
@@ -130,27 +160,92 @@ def dayou_xiong(year_in_palace):
 
 
 def bigyo(accumulated_year, *, profile="jinjing_tongzong", epoch_offset=None):
+    """C98：保留旧0基数值行为，但不再宣称 canonical。"""
     integer(accumulated_year)
+    if profile not in DAYOU_PROFILES:
+        raise ValueError("未知大游profile")
     spec = DAYOU_PROFILES[profile]
     offset = spec["offset"] if epoch_offset is None else integer(epoch_offset)
     if offset is None:
-        return {"rule_id": "R-DY", "profile": profile, "status": "not_computable", "pending": ["该profile历元盈差未确认；须显式提供epoch_offset"]}
+        return {
+            "rule_id": "LEGACY-DAYOU-COMPAT",
+            "canonical": None,
+            "profile": profile,
+            "status": "not_computable",
+            "pending": ["该profile历元盈差未确认；须显式提供epoch_offset"],
+            "canonical_equivalent": False,
+            "promotion_allowed": False,
+            "quarantined": profile == "jinjing_tongzong",
+            "profile_metadata": dict(spec),
+        }
     index = (accumulated_year + offset) % 288
     year = index % 36 + 1
-    return {"rule_id": "R-DY", "canonical": "taiyi-t7-d8-v1", "profile": profile,
-            "source": spec["source"], "offset": offset, "cycle_index": index,
-            "palace": spec["path"][index // 36], "year_in_palace": year,
-            "realm": ("治天", "治地", "治人")[(year - 1) // 12], "inauspicious_subject": dayou_xiong(year)}
+    return {
+        "rule_id": "LEGACY-DAYOU-COMPAT",
+        "canonical": None,
+        "profile": profile,
+        "source": spec["source"],
+        "offset": offset,
+        "cycle_index": index,
+        "palace": spec["path"][index // 36],
+        "year_in_palace": year,
+        "realm": ("治天", "治地", "治人")[(year - 1) // 12],
+        "inauspicious_subject": dayou_xiong(year),
+        "canonical_equivalent": False,
+        "promotion_allowed": False,
+        "quarantined": profile == "jinjing_tongzong",
+        "profile_metadata": dict(spec),
+        "reason": (
+            "旧jinjing_tongzong把金镜宫序与统宗+34混为单一profile；"
+            "C98仅保留兼容数值。"
+            if profile == "jinjing_tongzong"
+            else "淘金歌路径的历元未确认；显式offset只作兼容试算，不升格。"
+        ),
+    }
 
 
 def bigyo_tianmu(accumulated_year, *, profile="tongzong", epoch_offset=None):
+    """C98：旧大游天目 wrapper 只作 compatibility。
+
+    2026-10-04 已把 %180/+214 旧逻辑列为 deprecated reference；
+    金镜72→18路径虽已恢复，但完整历元接口仍待重接，因此本函数不标canonical。
+    """
     integer(accumulated_year)
+    if profile not in TM_PROFILES:
+        raise ValueError("未知大游天目profile")
     spec = TM_PROFILES[profile]
     offset = spec["offset"] if epoch_offset is None else integer(epoch_offset)
     if offset is None:
-        return {"rule_id": "R-DY-TM", "profile": profile, "status": "not_computable", "pending": ["金镜历元盈差待校；须显式提供epoch_offset"]}
+        return {
+            "rule_id": "LEGACY-DAYOU-TIANMU-COMPAT",
+            "canonical": None,
+            "profile": profile,
+            "status": "not_computable",
+            "pending": ["金镜历元盈差待校；须显式提供epoch_offset"],
+            "canonical_equivalent": False,
+            "promotion_allowed": False,
+            "quarantined": profile == "tongzong",
+            "profile_metadata": dict(spec),
+        }
     index = (accumulated_year + offset) % 18
     god = DAYOU_TM_PATH[index]
-    return {"rule_id": "R-DY-TM", "profile": profile, "source": spec["source"],
-            "offset": offset, "cycle_index": index, "step_number": index + 1,
-            "god": god, "position": GOD_POSITION[god], "profile_metadata": dict(spec)}
+    return {
+        "rule_id": "LEGACY-DAYOU-TIANMU-COMPAT",
+        "canonical": None,
+        "profile": profile,
+        "source": spec["source"],
+        "offset": offset,
+        "cycle_index": index,
+        "step_number": index + 1,
+        "god": god,
+        "position": GOD_POSITION[god],
+        "profile_metadata": dict(spec),
+        "canonical_equivalent": False,
+        "promotion_allowed": False,
+        "quarantined": profile == "tongzong",
+        "reason": (
+            "2026-10-04来源记录已将旧%180/+214逻辑列为deprecated_reference。"
+            if profile == "tongzong"
+            else "金镜72→18路径为最近两天已恢复工作，但本旧wrapper未承载完整来源历元接口。"
+        ),
+    }
