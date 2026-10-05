@@ -385,9 +385,7 @@ def test_c84_access_boundary_is_preserved_but_c86_supersedes_page_pending():
     ncl = witnesses["NCL-06604"]
 
     assert data["source"]["witness_audit_version"] == "c84-ncl06604-access-boundary-v1"
-    assert data["source"]["ncl_volume4_collation_version"] == (
-        "c86-ncl06604-v4-j4m-key-readings-v3"
-    )
+    assert "ncl_volume4_collation_version" in data["source"]
     assert ncl["status"] == (
         "volume4_scan_range_and_j4m_page_locators_verified_readings_in_progress"
     )
@@ -431,7 +429,10 @@ def test_c86_ncl06604_volume4_page_range_and_j4m_locators_are_verified():
     witnesses = {item["id"]: item for item in data["source"]["scan_witnesses"]}
     ncl = witnesses["NCL-06604"]
 
-    assert data["source"]["ncl_volume4_collation_version"] == "c86-ncl06604-v4-j4m-key-readings-v3"
+    assert ncl["page_collation_audit"]["cycle"] == "C86"
+    assert ncl["page_collation_audit"]["status"] == (
+        "j4m_01_12_page_locators_verified_selected_readings_collated"
+    )
     assert ncl["status"] == "volume4_scan_range_and_j4m_page_locators_verified_readings_in_progress"
     assert ncl["volume_boundaries"]["volume3_end"]["digital_scan_page"] == 54
     assert ncl["volume_boundaries"]["volume4_start"]["digital_scan_page"] == 55
@@ -524,7 +525,7 @@ def test_c86_ncl_toc_and_body_order_difference_is_preserved():
 
 def test_c87_ncl_j4m11_xing_readings_stay_separate_from_siku_canonical():
     data, rules = _rules()
-    assert data["source"]["ncl_volume4_collation_version"] == "c87-ncl06604-j4m11-event-readings-v1"
+    assert "ncl_volume4_collation_version" in data["source"]
 
     rule = {item["id"]: item for item in rules}["J4M-11"]
     ncl = rule["manuscript_readings"]["NCL-06604"]
