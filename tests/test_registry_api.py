@@ -35,6 +35,7 @@ def test_catalog_index_is_exposed_through_public_api():
     assert len({item["catalog_id"] for item in catalogs}) == len(catalogs)
     assert any(item["path"] == "terminology/d8-eight-divinations.json" for item in catalogs)
     assert any(item["path"] == "terminology/zitingjing.json" for item in catalogs)
+    assert any(item["path"] == "terminology/wenchang-nine-stars.json" for item in catalogs)
 
 
 def test_get_term_and_get_rule_follow_existing_owners():
@@ -46,6 +47,15 @@ def test_get_term_and_get_rule_follow_existing_owners():
     assert rule["count"] >= 1
     assert any(match["category"] == "eight_divinations" for match in rule["matches"])
 
+
+
+
+def test_get_wenchang_term_resolves_only_independent_catalog():
+    term = get_term("文昌九星")
+    assert term["count"] == 1
+    assert term["matches"][0]["catalog_path"] == "terminology/wenchang-nine-stars.json"
+    entry = term["matches"][0]["entry"]
+    assert entry["canonical_rule_id"] == "C70-TONGZONG-WENCHANG-NINE-STARS"
 
 def test_public_sancai_operation_preserves_confirmed_blocked_boundaries():
     five = calculate("eight.sancai", 5)
@@ -340,7 +350,10 @@ def test_recovery_status_distinguishes_rule_source_gaps_from_legacy_witness_gaps
     status = legacy_recovery_status()
     by_key = {item["key"]: item for item in status["priorities"]}
 
-    assert by_key["wenchang_nine_stars"]["current_rule_source_gap"] is True
+    assert by_key["wenchang_nine_stars"]["current_rule_source_gap"] is False
+    assert by_key["wenchang_nine_stars"]["known_executable_rule_id"] == (
+        "C70-TONGZONG-WENCHANG-NINE-STARS"
+    )
     assert by_key["three_banners"]["current_rule_source_gap"] is False
     assert by_key["nine_palace_nobles"]["current_rule_source_gap"] is False
     assert by_key["three_banners"]["known_executable_rule_id"] == (
