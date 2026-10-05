@@ -5,7 +5,7 @@
     "volume": 4,
     "profile": "jingyou_fuying_volume4",
     "online_transcription": "識典古籍 CADAL02094381 卷四",
-    "source_status": "ancient_parallel_text_transcription_scan_locator_pending",
+    "source_status": "ancient_parallel_text_transcription_runtime_complete_scan_locator_pending",
     "canonical_policy": "本 ruleset 只记录《景祐太乙福应经》卷四自身文字；不以《金镜》《统宗》《汉书》补缺。"
   },
   "cross_source_merge": false,
@@ -21,7 +21,9 @@
         "凡甲子自甲子至甲午，或甲午至甲子，即换直使",
         "岁/月/日/时各以三十对应单位换直使"
       ],
-      "implementation_status": "source_record_only"
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jingyou_fuying_v4_military.three_doors",
+      "textual_uncertainty": []
     },
     {
       "id": "JF4M-02",
@@ -60,7 +62,8 @@
           "reading": "主客大小将自相同宫为关",
           "role": "technical_definition_witness"
         }
-      ]
+      ],
+      "runtime": "kintaiyi.jingyou_fuying_v4_military.five_generals"
     },
     {
       "id": "JF4M-03",
@@ -72,7 +75,9 @@
         "高丛木为地目、太簇金为天目：金制木，客胜",
         "阴主土为地目、地主水为天目：土制水，主胜"
       ],
-      "implementation_status": "source_record_only"
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jingyou_fuying_v4_military.host_guest_relation",
+      "textual_uncertainty": []
     },
     {
       "id": "JF4M-04",
@@ -83,7 +88,9 @@
       "notable_readings": [
         "欲知主人视主目所算；欲知客视客目所算"
       ],
-      "implementation_status": "source_record_only"
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jingyou_fuying_v4_military.host_guest_action",
+      "textual_uncertainty": []
     },
     {
       "id": "JF4M-05",
@@ -91,7 +98,9 @@
       "parallel_jinjing_rule": "J4M-05",
       "domain": "出师略地",
       "canonical_summary": "行师出其门、略地用其二；算12/22/32且门具将发可行兵，出其门明确为开休生三吉门。",
-      "implementation_status": "source_record_only"
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jingyou_fuying_v4_military.dispatch_troops",
+      "textual_uncertainty": []
     },
     {
       "id": "JF4M-06",
@@ -112,7 +121,9 @@
         }
       },
       "divergence_from_jinjing": "本表有3/7/8而无5，且主要是出向表；不得与《金镜》1/2/4/5/6/9阵旗表互补。",
-      "implementation_status": "source_record_only"
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jingyou_fuying_v4_military.deploy_direction",
+      "textual_uncertainty": []
     },
     {
       "id": "JF4M-07",
@@ -121,7 +132,7 @@
       "domain": "地形制阵",
       "canonical_summary": "水曲、火锐、木直、金方、土圆；主客置阵后以五行相制取胜负，再依地形选阵。",
       "textual_uncertainty": [],
-      "implementation_status": "source_record_only",
+      "implementation_status": "implemented_source_specific",
       "canonical_data": {
         "formation_elements": {
           "曲阵": "水",
@@ -156,7 +167,8 @@
       "collation_status": {
         "online_transcription": "verified_in_current_source_transcription",
         "scan_image": "pending"
-      }
+      },
+      "runtime": "kintaiyi.jingyou_fuying_v4_military.formation_by_terrain"
     },
     {
       "id": "JF4M-08",
@@ -165,7 +177,7 @@
       "domain": "临敌随形制变",
       "canonical_summary": "地形、卒习服、器用为急；步兵地车骑二不当一，萑苇竹萧为矛鋋类地、长戟二不当一，另有曲道剑楯地；不习服百不当十，将不省兵五不当一。",
       "relation_to_hanshu": "整体更接近《汉书·爰盎晁错传》，但本 profile 只记录《福应经》自身转录。",
-      "implementation_status": "source_record_only",
+      "implementation_status": "implemented_source_specific",
       "canonical_data": {
         "urgent_requirements": [
           "得地形",
@@ -214,7 +226,9 @@
           "untrained": "百不当十",
           "general_does_not_inspect_troops": "五不当一"
         }
-      }
+      },
+      "runtime": "kintaiyi.jingyou_fuying_v4_military.adapt_to_terrain",
+      "textual_uncertainty": []
     },
     {
       "id": "JF4M-09",
@@ -236,7 +250,9 @@
           6
         ]
       },
-      "implementation_status": "source_record_only"
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jingyou_fuying_v4_military.taiyi_outer_inner",
+      "textual_uncertainty": []
     },
     {
       "id": "JF4M-10",
@@ -250,7 +266,7 @@
         "来翼主人阵前主人胜；来翼客阵前客胜",
         "众鸟翼噪并风云冲阵而来为凶"
       ],
-      "implementation_status": "source_record_only",
+      "implementation_status": "implemented_source_specific",
       "canonical_data": {
         "event_rules": [
           {
@@ -318,7 +334,9 @@
       "collation_status": {
         "online_transcription": "verified_in_current_source_transcription",
         "scan_image": "pending"
-      }
+      },
+      "runtime": "kintaiyi.jingyou_fuying_v4_military.weather_bird_support",
+      "textual_uncertainty": []
     },
     {
       "id": "JF4M-11",
@@ -327,7 +345,9 @@
       "domain": "奇兵伏兵",
       "canonical_summary": "奇兵以三成为法；奇兵必从大杀之地，大杀为天目所临之下；转录另记其地居高、去敌三五里；11/21/31伏藏，掩迫时发，贼近伏要害。",
       "divergence_from_jinjing": "《金镜》作“伏兵必败大煞之地”，本条作“奇兵必从大杀之地”；不得互改。",
-      "implementation_status": "source_record_only"
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.jingyou_fuying_v4_military.odd_ambush",
+      "textual_uncertainty": []
     }
   ]
 }
