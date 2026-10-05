@@ -520,3 +520,25 @@ def test_c86_ncl_toc_and_body_order_difference_is_preserved():
     assert by_id["J4M-10"]["ncl_scan_locator"]["body_title"] == "推奇兵伏兵法"
     assert by_id["J4M-11"]["ncl_scan_locator"]["toc_title"] == "推奇兵伏兵法"
     assert by_id["J4M-11"]["ncl_scan_locator"]["body_title"] == "推太乙风云飞鸟助阵法"
+
+
+def test_c87_ncl_j4m11_xing_readings_stay_separate_from_siku_canonical():
+    data, rules = _rules()
+    assert data["source"]["ncl_volume4_collation_version"] == "c87-ncl06604-j4m11-event-readings-v1"
+
+    rule = {item["id"]: item for item in rules}["J4M-11"]
+    ncl = rule["manuscript_readings"]["NCL-06604"]
+    events = ncl["event_readings"]
+
+    assert events["from_host_xing"]["reading"] == "从主人刑上来，主人败"
+    assert events["from_guest_xing"]["reading"] == "从客刑上来，客败"
+    assert events["supports_formation"]["reading"] == "扶主人阵者主人胜，扶客阵者客胜"
+    assert "冲突主人阵主人败" in events["noise_and_collision"]["reading"]
+    assert "冲突客阵客败" in events["noise_and_collision"]["reading"]
+    assert "单独‘众鸟来噪阵’" in events["noise_and_collision"]["note"]
+
+    relation = ncl["textual_relation"]
+    assert "四库当前‘主人形→客败’" in relation["to_siku"]
+    assert "《景祐太乙福应经》" in relation["to_jingyou"]
+    assert ncl["canonical_override"] is False
+    assert "不得用《福应经》冲突读法回写《金镜》canonical" in rule["scan_rule_audit"]["forbidden_inference"]
