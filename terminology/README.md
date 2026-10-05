@@ -587,8 +587,8 @@ crosswalk 专门锁定“近名但不能合并”的高风险关系，例如：
 
 当前快照：
 
-- rules 总表 rule_id：122；
-- stable terminology rule_id：158；
+- rules 总表 rule_id：127；
+- stable terminology rule_id：159；
 - rules 总表中未被术语库覆盖：0。
 
 术语层数量更大是预期行为，因为它比规则总表保留更细的 D8/T7 子规则、C69B 六壬叠盘子步骤、source-profile-specific 周期规则及八门叠盘关系层。
@@ -684,3 +684,10 @@ JF4M-01..11 当前全部标记为 `source_record_only`：保留来源术名、�
 当前状态仍是 `blocked_missing_original_store`：用户已确认本地 E 盘仍有旧副本，但当前 runtime 未挂载，因此 `original_file_available=false`、`original_schema_available=false`、`parser_allowed=false` 保持不变。
 
 同时已恢复 `terminology/zitingjing-legacy-scan-recovery.json` 这一旧扫描整理残留 witness。它证明此前研易楼明钞本扫描/术语整理存在，并可提供候选词形做未来对账；但在原扫描页/旧 store 真正挂载前，不得回填 `old_term_record_id`、`manuscript_form`、`source_page`、旧 definition/notes/aliases。
+
+
+## 《统宗》军事 runtime 闭环
+
+当前 `terminology/military-tongzong-v15-v17.json` 的 25 条 canonical military source rules 已全部有独立 source-specific runtime：V15-01..14 与 V17-01..11 均无 runtime gap。V17-D1 继续单列为 C32 derived cross-volume helper，不计入25条 canonical source rules。
+
+最新全库审计：15 个 stable catalogs、148 个正式 entries、rules 总表 127 个 rule ID、stable terminology 159 个 rule ID、rules→terminology 漏覆盖 0。
