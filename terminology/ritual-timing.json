@@ -189,6 +189,109 @@
         "C118只提供C69/C69B上游日宿与分野，不在本层安十二天将。",
         "production现代历法负责日期与真实节气时刻；C118古表不得改写真实冬至换太乙岁。"
       ]
+    },
+    {
+      "key": "xuanming_role",
+      "preferred_term": "太乙玄命法",
+      "aliases": [
+        "玄命",
+        "太乙玄命",
+        "推太乙玄命法"
+      ],
+      "term_type": "direct_role_mapping",
+      "rule_id": "C116-XUANMING-ROLE",
+      "source_profile": "jinjing_volume1_xuanming",
+      "runtime": "kintaiyi.jinjing_xuanming.xuanming_for_role",
+      "match_runtime": "kintaiyi.jinjing_xuanming.xuanming_matches",
+      "role_targets": {
+        "天子": "天乙",
+        "皇后": "天后",
+        "公侯": "太常",
+        "将军": "勾陈",
+        "九牧": "螣蛇",
+        "常侍": "天空",
+        "二千石": "青龙",
+        "大夫": "朱雀",
+        "吏士": "朱雀",
+        "庶人": "行年"
+      },
+      "boundary_notes": [
+        "玄命表只给身份到所主对象的直接映射，不由映射本身生成吉凶。",
+        "是否当前确实临玄命对象必须显式检查；旺相/相生条件由考时层另行解释。",
+        "二干石只作二千石来源/OCR alias。"
+      ]
+    },
+    {
+      "key": "time_eight_doors",
+      "preferred_term": "时计八门直门",
+      "aliases": [
+        "推八门用法",
+        "推冬至加时所直门法",
+        "推夏至加时所直门法",
+        "加时直门"
+      ],
+      "term_type": "direct_time_duty_door",
+      "rule_ids": [
+        "C119-WINTER-TIME-DUTY-DOOR",
+        "C119-SUMMER-TIME-DUTY-DOOR",
+        "C119-EIGHT-DOOR-MOVEMENT-RATES"
+      ],
+      "source_profile": "jinjing_volume1_time_eight_doors",
+      "runtime": "kintaiyi.jinjing_time_eight_doors.time_duty_door",
+      "catalog_runtime": "kintaiyi.jinjing_time_eight_doors.c119_catalog",
+      "yang_time_doors": [
+        "开",
+        "生",
+        "惊",
+        "休"
+      ],
+      "yin_time_doors": [
+        "杜",
+        "死",
+        "伤",
+        "景"
+      ],
+      "time_block": 30,
+      "time_door_cycle": 120,
+      "winter_outer_cycle": 240,
+      "movement_rates": {
+        "太乙": {
+          "time_units_per_move": 3
+        },
+        "大将": {
+          "time_units_per_move": 1
+        }
+      },
+      "boundary_notes": [
+        "三十时一移门不等于年计三十年一门；时计与岁/年计八门必须分层。",
+        "夏至本节局部有缺文，阴遁四门次序取紧邻直接正文，不扩成跨来源统一公式。",
+        "直门加太乙/大将的完整位置叠加未在C119重建；只保存移动速率与直门。"
+      ]
+    },
+    {
+      "key": "direct_envoy_anchors",
+      "preferred_term": "太乙直使六纪锚点",
+      "aliases": [
+        "太乙直使",
+        "推求阳遁太乙直使法",
+        "求阴遁太乙直使之法"
+      ],
+      "term_type": "direct_anchor_table_with_author_revision_boundary",
+      "rule_ids": [
+        "C121-DIRECT-ENVOY-ANCHOR",
+        "C121-DIRECT-ENVOY-MOVEMENT"
+      ],
+      "source_profile": "jinjing_volume1_direct_envoy",
+      "runtime": "kintaiyi.jinjing_direct_envoy.direct_envoy_anchor",
+      "catalog_runtime": "kintaiyi.jinjing_direct_envoy.c121_catalog",
+      "center_five_used": false,
+      "continuous_runtime_implemented": false,
+      "boundary_notes": [
+        "六纪夜半甲子表是直接见证锚点，不等于全年连续canonical推步。",
+        "王希明明确批评张良固定日法不顾气应盈缩；完整实际气应连续算法未重建前不得自动外推。",
+        "太乙三时一移、天目一时一移及乾坤重留等只保存为movement metadata。",
+        "阳遁以冬至气应、阴遁以夏至气应为原则，但production真实节气时刻仍由现代天文层提供。"
+      ]
     }
   ]
 }
