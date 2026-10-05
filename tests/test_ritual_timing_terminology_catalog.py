@@ -77,6 +77,15 @@ def test_c69b_catalog_contains_four_overlay_rule_ids():
         "C69B-CURRENT-TIME-LIUREN",
     ]
 
+    entry = next(e for e in _load(CATALOG)["entries"] if e["key"] == "current_time_method")
+    assert entry["upstream"]["external_inputs_still_required"] == [
+        "公历日期到节气第几日",
+        "朝/暮period",
+    ]
+    assert "虚宿" in entry["upstream_computability_limits"][0]
+    assert entry["coordinate_adapter_boundary"]["lossy"] is True
+    assert any("不表示C69B" in note for note in entry["boundary_notes"])
+
 
 def test_ritual_timing_preserves_modern_production_calendar_boundary():
     data = _load(CATALOG)

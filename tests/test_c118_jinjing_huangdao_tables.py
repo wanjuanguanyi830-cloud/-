@@ -20,6 +20,18 @@ def test_c118_catalog_has_complete_direct_tables():
     assert tuple(catalog["mansion_spans"]) == MANSION_ORDER
 
 
+def test_c118_does_not_keep_c69b_completed_steps_as_pending():
+    upstream = c118_catalog()["c69_upstream"]
+
+    assert len(upstream["implemented_by_c69b"]) == 3
+    assert len(upstream["remaining_boundaries"]) == 4
+    assert any("公历日期" in item and "节气第几日" in item for item in upstream["remaining_boundaries"])
+    assert any("朝/暮" in item for item in upstream["remaining_boundaries"])
+    assert any("虚宿" in item and "not_computable" in item for item in upstream["remaining_boundaries"])
+    assert any("有损adapter" in item and "实体地支" in item for item in upstream["remaining_boundaries"])
+    assert not any("安天乙贵神" in item or "十二天将" in item for item in upstream["remaining_boundaries"])
+
+
 @pytest.mark.parametrize(
     ("term", "mansion", "num", "den"),
     [

@@ -68,6 +68,12 @@
 
 `pan_adapter.py` 只负责旧 flat snapshot 迁移，是 legacy compatibility，不是 modern production 日期计算入口。
 
+## C69 《金镜》推太乙当时法
+
+C69 保存《太乙金镜式经》卷一直接的朝暮天乙治神、魁罡禁居与十二天将断义表。C118 提供日宿、宿度和十二分野；C69B 在 C118 可算且调用方给出显式输入时完成日宿分野支加时、天地盘、天乙落地、顺逆布十二天将，以及实体地支或九宫 adapter 查将。
+
+`C69.complete_current_time_formula=False` 只表示完整自动单入口尚未统一，不表示六壬叠盘核心未实现。仍有四项边界：公历日期到节气第几日、朝暮自动判定、虚宿整数未定造成部分输入 `not_computable`，以及有损的九宫到十二支 adapter；严格调用方可直接给实体地支。`C69B.complete_for_explicit_inputs=True` 保持。
+
 安装项目时会自动安装 production 依赖：
 
 ```powershell

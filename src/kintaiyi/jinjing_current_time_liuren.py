@@ -105,12 +105,20 @@ FORMULA_BOUNDARY = {
     "not_automatic": [
         "公历日期->节气第几日",
         "时辰->朝/暮判定",
-        "任意九宫实体投影是否采用derived adapter",
     ],
+    "upstream_computability_limits": [
+        "C118虚宿整数未定；穿越未定虚宿边界的输入返回not_computable",
+    ],
+    "coordinate_adapter_boundary": {
+        "adapter": "九宫->十二支",
+        "lossy": True,
+        "strict_alternative": "直接提供entity_branches",
+    },
     "c69_complete_current_time_formula": False,
+    "c69_complete_false_means": "完整自动单入口尚未统一；不表示C69B显式输入六壬叠盘核心未实现。",
     "reason": (
-        "六壬叠盘本身已可执行；但完整当时法的历法入口、朝暮自动判定及"
-        "所有上游盘面实体坐标仍未统一成单一日期排盘入口。"
+        "C69B在显式输入且C118日度可算时完整执行六壬叠盘；但公历日期到节气日序、"
+        "朝暮自动判定与无损坐标入口仍未统一成单一自动日期排盘入口。"
     ),
 }
 

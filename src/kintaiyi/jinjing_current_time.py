@@ -5,8 +5,8 @@
 - 魁、罡二辰禁居边界；
 - 天乙贵神及前五、后六天将的主事/吉凶表。
 
-完整“二至以后日度所在，加时位（加于时支）”仍依赖上游日度与时支排式，
-C69 不自行发明该上游。
+完整“二至以后日度所在，加时位（加于时支）”由 C118 与 C69B 在显式输入下接通；
+本模块仍只保存 C69 直接表，不把分层实现伪装成完整自动日期单入口。
 """
 
 from __future__ import annotations
@@ -173,15 +173,26 @@ FULL_FORMULA_BOUNDARY = {
         "excluded_chen_xu_boundary",
         "twelve_general_direct_omens",
     ],
+    "implemented_by_c69b": [
+        "显式输入下以C118日宿分野支加占时，建立天地盘",
+        "按显式日干与朝/暮定位天乙贵人，落地定顺逆并布十二天将",
+        "按实体地支或九宫adapter查询所临天将",
+    ],
     "pending_upstream": [
-        "C118已提供二十四气日度/宿度/十二分野上游；虚宿边界仍有影印级歧义",
-        "C69B已实现显式日度加时与六壬式十二天将叠盘",
         "公历日期到节气第几日仍由上游历法提供",
         "朝/暮仍须调用方显式给定",
-        "九宫到六壬十二支为有损adapter；严格调用可直接给entity_branches",
     ],
+    "upstream_computability_limits": [
+        "C118虚宿整数未定；穿越未定虚宿边界的输入返回not_computable",
+    ],
+    "coordinate_adapter_boundary": {
+        "adapter": "九宫到六壬十二支",
+        "lossy": True,
+        "strict_alternative": "直接给entity_branches",
+    },
     "complete_current_time_formula": False,
-    "policy": "C118+C69B已补日度加时和六壬安将核心；在历法入口、朝暮自动判定与坐标无损接入未统一前，不把C69称为完全自动当时法。",
+    "complete_false_means": "完整自动单入口尚未统一；不表示C69B显式输入六壬叠盘核心未实现。",
+    "policy": "C118+C69B已实现可算输入下的日度加时与六壬安将；complete_current_time_formula=False只表示日期到节气日序、朝暮判定和坐标入口尚未统一。",
 }
 
 
@@ -276,7 +287,7 @@ def current_time_core(
         "complete_current_time_formula": False,
         "full_formula_boundary": copy.deepcopy(FULL_FORMULA_BOUNDARY),
         "policy": (
-            "C69直接表由C118+C69B接通日度与六壬叠盘；完整自动日期入口仍待历法/朝暮/坐标层统一。"
+            "C118+C69B已接通可算输入下的日度与六壬叠盘；此标志只表示完整自动日期单入口尚未统一。"
         ),
     }
 

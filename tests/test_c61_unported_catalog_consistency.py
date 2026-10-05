@@ -53,6 +53,8 @@ def test_c61_c69_current_time_is_direct_jinjing_partial_runtime():
     assert item["source_confidence"] == "high"
     assert item["migrate_whole"] is False
     assert "complete_current_time_formula=False" in item["notes"]
+    assert "C69B已" in item["notes"]
+    assert "当前仍缺时支加位" not in item["notes"]
 
 
 def test_c61_c62_imperial巡狩_is_direct_volume5_and_runtime_implemented():

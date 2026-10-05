@@ -105,7 +105,15 @@ def test_c69_core_is_explicitly_partial_not_full_current_time_formula():
     assert data["general_omen"]["verdict"] == "吉"
     assert data["complete_current_time_formula"] is False
     assert data["full_formula_boundary"] == FULL_FORMULA_BOUNDARY
-    assert "日度" in "；".join(FULL_FORMULA_BOUNDARY["pending_upstream"])
+    pending = FULL_FORMULA_BOUNDARY["pending_upstream"]
+    assert len(pending) == 2
+    assert any("公历日期" in item and "节气第几日" in item for item in pending)
+    assert any("朝/暮" in item for item in pending)
+    assert not any("C69B" in item or "十二天将叠盘" in item for item in pending)
+    assert len(FULL_FORMULA_BOUNDARY["implemented_by_c69b"]) == 3
+    assert "虚宿" in FULL_FORMULA_BOUNDARY["upstream_computability_limits"][0]
+    assert FULL_FORMULA_BOUNDARY["coordinate_adapter_boundary"]["lossy"] is True
+    assert "不表示C69B" in FULL_FORMULA_BOUNDARY["complete_false_means"]
 
 
 def test_c69_catalog_locks_twelve_generals_and_partial_boundary():

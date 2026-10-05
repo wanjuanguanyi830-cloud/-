@@ -147,7 +147,14 @@ def test_c69b_general_order_matches_c69_front_five_back_six():
         "天乙贵神", "螣蛇", "朱雀", "六合", "勾陈", "青龙",
         "天空", "白虎", "太常", "玄武", "太阴", "天后",
     ]
-    assert catalog["formula_boundary"]["c69_complete_current_time_formula"] is False
+    boundary = catalog["formula_boundary"]
+    assert boundary["complete_for_explicit_inputs"] is True
+    assert boundary["c69_complete_current_time_formula"] is False
+    assert boundary["not_automatic"] == ["公历日期->节气第几日", "时辰->朝/暮判定"]
+    assert "虚宿" in boundary["upstream_computability_limits"][0]
+    assert boundary["coordinate_adapter_boundary"]["lossy"] is True
+    assert boundary["coordinate_adapter_boundary"]["strict_alternative"] == "直接提供entity_branches"
+    assert "不表示C69B" in boundary["c69_complete_false_means"]
 
 
 def test_c69b_rejects_invalid_branch():

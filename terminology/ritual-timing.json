@@ -108,10 +108,19 @@
           "朝/暮period"
         ]
       },
+      "upstream_computability_limits": [
+        "C118虚宿整数未定；穿越未定虚宿边界的输入返回not_computable"
+      ],
+      "coordinate_adapter_boundary": {
+        "adapter": "九宫到六壬十二支",
+        "lossy": true,
+        "strict_alternative": "直接提供entity_branches"
+      },
       "boundary_notes": [
         "天乙本神吉凶必须显式给王相/囚死气态，不能从其他旺衰模块自动猜。",
         "辰罡/戌魁为禁居边界；source form戍保留见证，canonical地支写戌。",
         "C69B九宫到十二支只作有损适配；中五不可投影。",
+        "C69 complete_current_time_formula=false只表示完整自动单入口尚未统一，不表示C69B显式输入叠盘未实现。",
         "当前不能把旧展示文本当作完整当时法算法替代。"
       ]
     },
@@ -188,7 +197,7 @@
         "虚宿度四库公开转录缺整数主体；NCL-06604明钞本PDF第21页直接影像也未补出整数，只确认旁注分数说明，因此numeric_span继续为None。",
         "不得用365¼周天闭合、后世宿度表或其他版本的虚十/九少等数值反推本profile。",
         "跨越未定虚宿边界时不得猜算；NCL witness提高证据等级但不解锁runtime。",
-        "C118只提供C69/C69B上游日宿与分野，不在本层安十二天将。",
+        "C118只提供C69/C69B上游日宿与分野；C69B消费可算结果完成显式输入叠盘，C118本层不安十二天将。",
         "production现代历法负责日期与真实节气时刻；C118古表不得改写真实冬至换太乙岁。"
       ],
       "manuscript_witness": {

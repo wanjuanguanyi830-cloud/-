@@ -25,7 +25,7 @@
 19. 天乙贵神须显式给王相/囚死才分别判吉/凶。
 20. 其他天将拒绝错误套用天乙气态。
 21. C69明确 `complete_current_time_formula=False`。
-22. 二至后日度、日度加时支及完整六壬安将仍保持 upstream pending。
+22. 本报告为 C69B 接通前的历史验证快照；当时日度、加时和六壬安将尚未接通，现已由 C118/C69B 在显式输入下实现。
 23. C15字段已升级为 jinjing_volume1_direct / high confidence。
 24. 旧 flat 仍 `migrate_whole=False`。
 25. C61严格 pending 现只剩文昌九星。
@@ -35,3 +35,9 @@
 ```
 1342 passed in 2.20s
 ```
+
+## 2026-10-06 状态补记
+
+C69B 已实现显式输入下的日宿分野支加时、天乙落地、顺逆布十二天将及实体地支 / 九宫 adapter 查将。C69 的 `complete_current_time_formula=False` 只表示完整自动单入口尚未统一；公历日期到节气日序、朝暮自动判定、C118 虚宿未定值造成的部分 `not_computable` 与有损九宫 adapter 是当前真实边界。
+
+本次状态整理验证：targeted pytest `83 passed`；全量 `pytest -q` `2456 passed in 3.88s`。
