@@ -42,16 +42,23 @@ WITNESSES = {
         },
     },
     "shanghai_yanyilou_ming_copy": {
-        "witness_type": "reported_manuscript_base",
-        "title": "太乙紫庭秘诀",
-        "copy_description": "研易楼藏明钞本（现代整理本出版说明及二级资源页如此称）",
+        "witness_type": "user_provided_manuscript_scan",
+        "title": "太乙紫庭祕訣",
+        "copy_description": "研易楼藏明钞本",
         "holding": "上海图书馆",
         "holding_evidence": "publisher_description_secondary",
         "user_previously_provided_manuscript_file": True,
-        "current_session_file_index_status": "not_retrievable_in_current_file_index",
-        "direct_text_reinspection_status": "pending_reinspection_from_previously_provided_file",
+        "current_session_file_index_status": "reattached_current_conversation",
+        "direct_text_reinspection_status": "toc_inspected",
+        "current_uploaded_pdf_pages": 150,
         "prior_terminology_extraction_status": "preliminary_completed_locally",
         "prior_terminology_repository_status": "local_terminology_json_not_migrated",
+        "manuscript_toc_evidence": {
+            "pdf_pages": [5, 6],
+            "volumes_one_to_twelve_attested": True,
+            "wenchang_nine_stars_title_attested": False,
+            "note": "目录列卷一至卷十二及后附项目，未见“文昌九星值宫术”题名；目录未见不外推为全文绝对不存在。",
+        },
         "modern_edition": {
             "title": "太乙紫庭秘诀",
             "editor": "吴炜维",
@@ -59,15 +66,14 @@ WITNESSES = {
             "year": 2015,
             "isbn": "9789881412058",
             "catalog_url": "https://www.xinyi.hk/goods-7102.html",
-        },
-        "catalog_attestation": {
             "appendix_title": "附太乙文昌九星值宫术",
-            "evidence_level": "catalog_attested_text_pending",
+            "appendix_provenance": "unresolved",
+            "note": "现代整理本收录同名附篇，不证明研易楼原钞目录含该题；是否由统宗材料增补目前只作来源假说。",
         },
-        "resource_report": {
+        "public_resource_report": {
             "reported_pages": 181,
             "reported_size": "328MB",
-            "status": "previously_user_provided_file_not_currently_retrievable",
+            "status": "secondary_public_share_report_not_identical_to_current_150_page_upload_claimed",
         },
     },
     "peking_university_reported_copy": {
@@ -107,15 +113,21 @@ def zitingjing_manuscript_witnesses() -> dict[str, Any]:
 
 
 def wenchang_nine_star_appendix_locator_status() -> dict[str, Any]:
-    """聚合“附太乙文昌九星值宫术”当前定位状态。"""
+    """聚合现代整理本“附太乙文昌九星值宫术”的当前来源状态。"""
     return {
         "rule_key": "wenchang_nine_stars",
         "target_title": "附太乙文昌九星值宫术",
-        "status": "catalog_attested_primary_text_pending",
+        "status": "manuscript_toc_not_attested_modern_appendix_provenance_unresolved",
         "shanghai_yanyilou": {
-            "catalog_attested": True,
-            "user_previously_provided_file": True,
-            "direct_text_reinspection_status": "pending",
+            "manuscript_scan_reattached": True,
+            "toc_pages": [5, 6],
+            "toc_title_attested": False,
+            "direct_text_reinspection_status": "toc_inspected",
+        },
+        "modern_edition": {
+            "appendix_title_attested": True,
+            "provenance": "unresolved",
+            "tongzong_addition_hypothesis": "plausible_not_proven",
         },
         "harvard_qing_compilation": {
             "ziting_text_present": True,
@@ -127,10 +139,13 @@ def wenchang_nine_star_appendix_locator_status() -> dict[str, Any]:
             "holding_verified_by_library_catalog": False,
             "direct_text_obtained": False,
         },
-        "primary_result_allowed": False,
+        "ziting_primary_result_allowed": False,
+        "current_rule_source_gap": False,
+        "known_executable_rule_id": "C70-TONGZONG-WENCHANG-NINE-STARS",
+        "known_executable_source_profile": "tongzong_volume6_ngj_wenchang_nine_stars",
         "next_action": (
-            "优先重新定位用户此前提供的上海研易楼明抄本并直接校读附篇；"
-            "其次核哈佛抄本是否另有同术异题；"
-            "再核北京大学馆藏目录。"
+            "如需继续研究，应追现代整理本编辑来源/附篇底本；"
+            "这属于编辑史与来源问题，不再阻塞C70文昌九星算法。"
         ),
     }
+
