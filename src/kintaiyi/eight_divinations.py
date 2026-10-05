@@ -4,17 +4,54 @@ from .taiyi_rules import (GODS, GOD_POSITION, YANG_PALACES, YIN_PALACES,
                           calc_components, integer, position, result)
 
 SANCAI_FULL_CLASSIC = frozenset(t * 10 + u for t in (1, 2, 3) for u in (6, 7, 8, 9))
+SANCAI_NO_HEAVEN_CLASSIC = frozenset(range(1, 10))
+SANCAI_NO_EARTH_CLASSIC = frozenset(
+    t * 10 + u for t in (0, 1, 2, 3) for u in (1, 2, 3, 4)
+)
+SANCAI_NO_HUMAN_CLASSIC = frozenset((10, 20, 30, 40))
+SANCAI_BLOCKED_CLASSIC = frozenset((5, 15, 25, 35))
+
 INNER_GODS = frozenset("阴德 大义 地主 阳德 和德 吕申 高丛 太阳".split())
 OUTER_GODS = frozenset(GODS) - INNER_GODS
+
+
+def _sancai_classic_tags(n):
+    """返回古典标签；与结构缺失字段严格分离。"""
+    tags = []
+    if n in SANCAI_NO_HEAVEN_CLASSIC:
+        tags.append("无天")
+    if n in SANCAI_NO_EARTH_CLASSIC:
+        tags.append("无地")
+    if n in SANCAI_NO_HUMAN_CLASSIC:
+        tags.append("无人")
+    if n in SANCAI_FULL_CLASSIC:
+        tags.append("三才俱足")
+    if n in SANCAI_BLOCKED_CLASSIC:
+        tags.append("杜塞")
+    return tags
 
 
 def sancai(n):
     parts = calc_components(n)
     names = {"ten": "天", "five": "地", "one": "人"}
-    missing = [names[k] for k, present in parts.items() if not present]
-    return result("D8-01", calc=n, components=parts, missing=missing,
-                  sancai_full_classic=n in SANCAI_FULL_CLASSIC,
-                  effects=[{"天": "天象异常", "地": "地灾", "人": "人事疾病迁徙"}[k] for k in missing])
+    structural_missing = [names[k] for k, present in parts.items() if not present]
+    classic_tags = _sancai_classic_tags(n)
+    return result(
+        "D8-01",
+        calc=n,
+        components=parts,
+        structural_missing=structural_missing,
+        # 兼容旧消费者；语义等同 structural_missing。
+        missing=list(structural_missing),
+        classic_tags=classic_tags,
+        sancai_full_classic="三才俱足" in classic_tags,
+        blocked_classic="杜塞" in classic_tags,
+        effects=[
+            {"天": "天象异常", "地": "地灾", "人": "人事疾病迁徙"}[k]
+            for k in structural_missing
+        ],
+        policy="结构缺失与古典标签分层；杜塞数不得按结构缺失改写为无天/无人等 classic 标签。",
+    )
 
 
 def cal_des(home_cal, away_cal=None, set_cal=None):
@@ -34,8 +71,10 @@ def wuyin_from_calc(n):
     tail = n % 10 or 10
     tone, element, subject = (("宫", "土", "人君"), ("徵", "火", "宗庙"),
         ("羽", "水", "后妃"), ("商", "金", "子孙"), ("角", "木", "疾病"))[(tail - 1) // 2]
-    return result("D8-03", calc=n, tone=tone, element=element, subject=subject,
-                  tone_kind=None, pending=["正音/比音字段未确认，不自动赋值"])
+    tone_kind = "正音" if tail % 2 else "比音"
+    return result("D8-03", calc=n, tail=tail, tone=tone, element=element, subject=subject,
+                  tone_kind=tone_kind, pending=[],
+                  policy="尾数0按10；1/3/5/7/9为正音，2/4/6/8/10为比音；五音本身不直接判吉凶。")
 
 
 def gudan_state(n):
