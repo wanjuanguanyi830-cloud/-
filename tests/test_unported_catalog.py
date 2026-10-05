@@ -77,13 +77,16 @@ def test_verified_ziting_rules_remain_canonical_candidates():
         assert "zitingjing" in item["source_scope"]
 
 
-def test_wenchang_nine_stars_stays_pending_until_primary_text_is_found():
+def test_wenchang_nine_stars_is_source_variant_with_c70_tongzong_runtime():
     item = catalog_unported_field("文昌九星")
-    assert item["layer"] == "pending"
+    assert item["layer"] == "source_variant"
     assert item["priority"] == "P1"
     assert item["migrate_whole"] is False
-    assert item["action"] == "await_primary_text_keep_collation_only"
-    assert "10年/30年周期" in item["notes"]
+    assert item["action"] == (
+        "use_c70_tongzong_profile_keep_zitingjing_primary_pending"
+    )
+    assert "30年一星" in item["notes"]
+    assert "紫庭primary继续pending" in item["notes"]
 
 
 def test_three_banners_and_nine_palace_nobles_keep_unverified_ziting_attribution_separate():
