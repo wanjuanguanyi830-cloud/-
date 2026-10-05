@@ -146,31 +146,39 @@ _ZHUKE_START_DEITIES = {
 
 _YUNQI_TABLE = {
     "北": {
-        "黑": {"verdict": "大胜", "qi_class": "胜气", "day_stems_good": ["壬", "癸"]},
-        "白": {"verdict": "欲罢阵求和", "qi_class": "和解"},
-        "青": {"verdict": "将宽缓，急击则平", "qi_class": "迟缓"},
-        "红": {"verdict": "客胜", "qi_class": "客胜"},
-        "黄": {"verdict": "大败", "qi_class": "败气", "day_stems_bad": ["壬", "癸"]},
+        "黑": {"verdict": "大胜", "qi_class": "胜气", "subject_mode": "formation", "day_stems_good": ["壬", "癸"]},
+        "白": {"verdict": "欲罢阵求和", "qi_class": "和解", "subject_mode": "formation"},
+        "青": {"verdict": "将宽缓，急击则平", "qi_class": "迟缓", "subject_mode": "formation_general"},
+        "红": {"verdict": "客胜", "qi_class": "客胜", "subject_mode": "guest_role"},
+        "黄": {"verdict": "大败", "qi_class": "败气", "subject_mode": "formation", "day_stems_bad": ["壬", "癸"]},
     },
     "南": {
-        "赤": {"verdict": "大胜", "qi_class": "胜气", "day_stems_good": ["丙", "丁"]},
-        "青": {"verdict": "欲罢阵求解", "qi_class": "和解"},
-        "黄": {"verdict": "将迟钝，急击则平", "qi_class": "迟缓"},
-        "白": {"verdict": "失利", "qi_class": "不利"},
-        "黑": {"verdict": "大败", "qi_class": "败气", "day_stems_bad": ["丙", "丁"]},
+        "赤": {"verdict": "大胜", "qi_class": "胜气", "subject_mode": "formation", "day_stems_good": ["丙", "丁"]},
+        "青": {"verdict": "欲罢阵求解", "qi_class": "和解", "subject_mode": "formation"},
+        "黄": {"verdict": "将迟钝，急击则平", "qi_class": "迟缓", "subject_mode": "formation_general"},
+        "白": {"verdict": "失利", "qi_class": "不利", "subject_mode": "formation"},
+        "黑": {"verdict": "大败", "qi_class": "败气", "subject_mode": "formation", "day_stems_bad": ["丙", "丁"]},
     },
     "西": {
-        "白": {"verdict": "大胜", "qi_class": "胜气", "day_stems_good": ["庚", "辛"]},
-        "黄": {"verdict": "欲求解", "qi_class": "和解"},
-        "黑": {"verdict": "将宽缓，急击平", "qi_class": "迟缓"},
-        "青": {"verdict": "败", "qi_class": "败气"},
-        "赤": {"verdict": "大败", "qi_class": "败气", "day_stems_bad": ["庚", "辛"]},
+        # 四库正文这里只写“庚辛日弥佳”，没有明写“大胜”。
+        # 不按五行对称性补成胜气。
+        "白": {
+            "verdict": None,
+            "qi_class": "基础胜负未明",
+            "subject_mode": "formation",
+            "day_stems_good": ["庚", "辛"],
+            "source_note": "白云气在敌阵上，庚辛日弥佳；本句未明写基础胜负。",
+        },
+        "黄": {"verdict": "欲求解", "qi_class": "和解", "subject_mode": "formation"},
+        "黑": {"verdict": "将宽缓，急击平", "qi_class": "迟缓", "subject_mode": "formation_general"},
+        "青": {"verdict": "败", "qi_class": "败气", "subject_mode": "formation"},
+        "赤": {"verdict": "大败", "qi_class": "败气", "subject_mode": "formation", "day_stems_bad": ["庚", "辛"]},
     },
     "东": {
-        "青": {"verdict": "大胜", "qi_class": "胜气", "day_stems_good": ["甲", "乙"]},
-        "黑": {"verdict": "欲求和", "qi_class": "和解"},
-        "赤": {"verdict": "将迟钝，然不可击", "qi_class": "迟缓勿击"},
-        "黄": {"verdict": "大败", "qi_class": "败气", "day_stems_bad": ["甲", "乙"]},
+        "青": {"verdict": "大胜", "qi_class": "胜气", "subject_mode": "formation", "day_stems_good": ["甲", "乙"]},
+        "黑": {"verdict": "欲求和", "qi_class": "和解", "subject_mode": "formation"},
+        "赤": {"verdict": "将迟钝，然不可击", "qi_class": "迟缓勿击", "subject_mode": "formation_general"},
+        "黄": {"verdict": "大败", "qi_class": "败气", "subject_mode": "formation", "day_stems_bad": ["甲", "乙"]},
     },
 }
 
@@ -1317,6 +1325,15 @@ def yunqi_dingshengfu(*, formation_direction=None, cloud_color=None,
         }
 
     item = dict(table[cloud_color])
+
+    subject_mode = item.get("subject_mode", "formation")
+    if subject_mode == "guest_role":
+        verdict_subject = "客"
+    elif subject_mode == "formation_general":
+        verdict_subject = f"{observed_formation}将"
+    else:
+        verdict_subject = observed_formation
+
     day_modifier = None
     if day_stem is not None:
         if day_stem in item.get("day_stems_good", []):
@@ -1325,7 +1342,7 @@ def yunqi_dingshengfu(*, formation_direction=None, cloud_color=None,
             day_modifier = "弥恶"
 
     morphology = []
-    effective_verdict = item["verdict"]
+    effective_verdict = item.get("verdict")
     qi_class = item["qi_class"]
 
     if qi_class == "胜气":
@@ -1359,14 +1376,18 @@ def yunqi_dingshengfu(*, formation_direction=None, cloud_color=None,
         "computable": True,
         "cloud_present": True,
         "observed_formation": observed_formation,
-        "verdict_subject": observed_formation,
+        "cloud_bearer": observed_formation,
+        "verdict_subject": verdict_subject,
+        "subject_mode": subject_mode,
         "perspective_note": (
-            f"基础断语作用于{observed_formation}阵；原文云‘若在我阵上亦尔’，"
-            "故沿用同一方位×颜色判表，不机械反转敌我。"
+            f"云气所覆为{observed_formation}阵；原文云‘若在我阵上亦尔’，故沿用同一方位×颜色条目。"
+            "但条文若明确写主客角色（如北方红云‘客胜’），断语主体仍保留原角色，"
+            "不因云气在我阵/敌阵而机械换成我/敌。"
         ),
         "formation_direction": formation_direction,
         "cloud_color": cloud_color,
-        "base_verdict": item["verdict"],
+        "base_verdict": item.get("verdict"),
+        "source_note": item.get("source_note"),
         "qi_class": qi_class,
         "day_stem": day_stem,
         "day_modifier": day_modifier,
@@ -1377,8 +1398,11 @@ def yunqi_dingshengfu(*, formation_direction=None, cloud_color=None,
         "over_general": over_general,
         "general_modifier": general_modifier,
         "effective_verdict": effective_verdict,
-        "defined_color_table": {k: v["verdict"] for k, v in table.items()},
-        "policy": "基础颜色表、日干、云气聚散动静、所临将位分层；未知颜色/未明反义不以五行常识补齐。",
+        "defined_color_table": {k: v.get("verdict") for k, v in table.items()},
+        "policy": (
+            "基础颜色表、日干、云气聚散动静、所临将位分层；云气所在阵与断语主体分栏。"
+            "未知颜色、原文未明基础胜负或未明反义，一律不以五行常识/表格对称性补齐。"
+        ),
     }
 
 
