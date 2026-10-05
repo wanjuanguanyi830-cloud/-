@@ -21,7 +21,7 @@ def test_prior_workflow_code_residue_is_not_promoted_to_yanyilou_manuscript():
     entry = next(e for e in recovery["entries"] if e["key"] == "wenchang_nine_stars")
 
     assert recovery["status"] == (
-        "prior_manuscript_scan_confirmed_code_residue_source_ambiguous"
+        "manuscript_reattached_toc_inspected_code_residue_separated"
     )
     assert entry["recovered_star_sequence"] == [
         "文曲", "玄鳳", "明維", "昭搖", "立華", "華明", "玄武", "玄冥", "雄明"
