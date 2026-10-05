@@ -19,6 +19,7 @@ import astronomy
 from .taiyi_core_chain import year_count_from_historical_year
 from .taiyi_modern_lunisolar import chinese_lunisolar_facts
 from .taiyi_modern_solar_month import resolve_solar_month
+from .taiyi_modern_month_count import modern_month_count
 
 RULE_ID = "MODERN-TAIYI-ASTRONOMICAL-CALENDAR"
 YEAR_BOUNDARY_RULE_ID = "MODERN-TAIYI-YEAR-WINTER-SOLSTICE"
@@ -185,6 +186,7 @@ def production_calendar_context(moment: datetime) -> dict[str, Any]:
         "time_half": resolve_time_solstice_half(moment),
         "lunisolar": chinese_lunisolar_facts(moment),
         "solar_month": resolve_solar_month(moment),
+        "month_count": modern_month_count(moment),
         "astronomy_provider": "astronomy-engine",
         "lunisolar_provider": "lunar_python",
         "policy": (
