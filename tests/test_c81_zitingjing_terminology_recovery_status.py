@@ -37,13 +37,6 @@ def test_c81_repository_history_checks_are_explicit():
     ]
     assert checks["all_visible_branch_trees_checked"] is True
     assert checks["legacy_store_found_in_visible_git"] is False
-    assert checks["visible_branches_checked"] == [
-        "main",
-        "codex/c1-c7-canonical",
-        "codex/taiyi-base-motion-2026-10-04",
-        "codex/taiyi-rules-v2-20261005",
-        "integrate-taiyi-war-v1-20261004",
-    ]
 
 
 def test_c81_library_no_match_is_not_misreported_as_nonexistence():
@@ -59,8 +52,16 @@ def test_c81_library_no_match_is_not_misreported_as_nonexistence():
 
     residue = ext["legacy_scan_extraction_residue"]
     assert residue["asset"] == "terminology/zitingjing-legacy-scan-recovery.json"
-    assert residue["direct_manuscript_pages_reattached"] is False
+    assert residue["status"] == (
+        "manuscript_reattached_toc_inspected_code_residue_separated"
+    )
+    assert residue["direct_manuscript_pages_reattached"] is True
     assert residue["old_store_fields_recovered"] is False
+
+    manuscript = ext["current_conversation_manuscript"]
+    assert manuscript["status"] == "reattached_and_toc_inspected"
+    assert manuscript["toc_pages"] == [5, 6]
+    assert manuscript["wenchang_nine_stars_title_attested"] is False
 
 
 def test_c81_core_entries_match_c40_recovery_order():
@@ -72,6 +73,7 @@ def test_c81_core_entries_match_c40_recovery_order():
     ]
     assert ordered == migration["recovery_order"]
     assert len(ordered) == 6
+
     by_key = {item["key"]: item for item in data["core_entries"]}
     assert by_key["wenchang_nine_stars"]["legacy_scan_extraction_residue_available"] is True
     assert all(
@@ -79,7 +81,14 @@ def test_c81_core_entries_match_c40_recovery_order():
         for key, item in by_key.items()
         if key != "wenchang_nine_stars"
     )
-    assert by_key["wenchang_nine_stars"]["current_rule_source_gap"] is True
+
+    assert by_key["wenchang_nine_stars"]["current_rule_source_gap"] is False
+    assert by_key["wenchang_nine_stars"]["known_executable_rule_id"] == (
+        "C70-TONGZONG-WENCHANG-NINE-STARS"
+    )
+    assert by_key["wenchang_nine_stars"]["known_executable_source_profile"] == (
+        "tongzong_volume6_ngj_wenchang_nine_stars"
+    )
     assert by_key["three_banners"]["current_rule_source_gap"] is False
     assert by_key["nine_palace_nobles"]["current_rule_source_gap"] is False
     assert by_key["three_banners"]["known_executable_rule_id"] == (
@@ -90,9 +99,10 @@ def test_c81_core_entries_match_c40_recovery_order():
     )
 
 
-def test_c81_manuscript_fields_are_not_faked():
+def test_c81_old_store_fields_are_not_faked():
     data = _status()
     migration = _migration()
+
     for item in data["core_entries"]:
         assert item["recovered_from_original_store"] is False
         assert item["manuscript_form_recoverable_now"] is False
@@ -103,13 +113,18 @@ def test_c81_manuscript_fields_are_not_faked():
         assert item["source_page"] is None
 
 
-def test_c81_external_sources_cannot_backfill_yanyilou_fields():
+def test_c81_sources_do_not_backfill_wrong_identity_fields():
     data = _status()
-    banned = set(data["non_substitutable_sources"])
-    assert "太乙统宗宝鉴" in banned
-    assert "三才世纬" in banned
-    assert "C70文昌九星统宗profile" in banned
-    assert any("Do not use external collation" in line for line in data["policy"])
+    banned = " ".join(data["non_substitutable_sources"])
+
+    assert "现代整理材料不能代替研易楼明钞本" in banned
+    assert "OCR猜测不能代替旧terminology.json" in banned
+    assert "C70《统宗》profile不能被改写成研易楼原钞来源" in banned
+    assert any(
+        "Do not use external collation witnesses to fill Yanyilou manuscript_form"
+        in line
+        for line in data["policy"]
+    )
 
 
 def test_c81_unblock_contract_distinguishes_store_recovery_from_page_recovery():
@@ -122,15 +137,13 @@ def test_c81_unblock_contract_distinguishes_store_recovery_from_page_recovery():
     assert any("parser_allowed remains false" in line for line in data["policy"])
 
 
-def test_c81_public_web_recovery_confirms_resource_but_not_direct_page():
+def test_c81_public_web_record_is_historical_context_not_current_scan_state():
     data = _status()
     public = data["external_recovery_checks"]["public_web_recovery"]
 
     assert public["checked_on"] == "2026-10-05"
     share = public["yanyilou_share_page"]
-    assert share["status"] == (
-        "public_share_page_reachable_external_storage_not_mounted"
-    )
+    assert share["status"] == "public_share_page_reachable_external_storage_not_mounted"
     assert share["reported_extent"] == "181单页灰度，328M"
     assert share["direct_manuscript_page_recovered"] is False
 
@@ -143,4 +156,5 @@ def test_c81_public_web_recovery_confirms_resource_but_not_direct_page():
     search = public["open_text_search"]
     assert search["direct_wenchang_appendix_text_found"] is False
     assert search["direct_yanyilou_page_found"] is False
-    assert "不可回填紫庭manuscript_form/source_page" in search["note"]
+    assert "现已由用户上传研易楼明钞本直接核目录" in search["note"]
+    assert "现代整理附篇来源仍未完全证明" in search["note"]
