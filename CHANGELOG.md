@@ -151,3 +151,16 @@
 - C124《统宗》与C125《紫庭》继续分 profile：两者都支持十年一星，但C124另有900年大周和完整年干九星布置，C125当前不继承这些额外层。
 - 来源纠正：用户确认研易楼藏《太乙紫庭祕訣》明钞本此前在术语库整理阶段已经扫描，E盘仍存原件；但旧 `kentang2017/kintaiyi/config.py` 九星段明确标注来源为《太乙统宗宝鉴》卷六。因此“文曲、玄鳳、明維、昭搖、立華、華明、玄武、玄冥、雄明”等旧代码词形只作 prior workflow code residue，不能直接称为研易楼本逐字扫描 witness。
 - `terminology/zitingjing-legacy-scan-recovery.json` 已改为同时记录“明钞本此前已扫描”与“旧统宗九星代码残留”两条独立证据链；`manuscript_form/source_page/old_term_record_id/old_notes` 继续待E盘原页或旧 `terminology.json` 恢复。
+
+
+## 2026-10-05 — 软件总库 / Public API v1 收口
+
+- 仓库固定为术语 `terminology/`、规则 `rules/`、运行时 `src/kintaiyi/`、来源证据 `sources/`、总注册表 `registry/`、数据契约 `schemas/` 六层；总注册表只存指针，不复制正文或公式。
+- `kintaiyi.api` 新增稳定查询/调用面：`get_term`、`search_terms`、`get_rule`、`calculate`、`calculate_rule`、`describe_rule`、`capabilities`、`repository_status` 等。
+- `calculate_rule(rule_id, ...)` 可从 rules/terminology exact runtime 指针解析算法；唯一 source profile 可自动选择 profile key；source-record-only 项保持不可执行。
+- 七术7项、八占8项，以及五福/大小游、阳九百六、岁计/时计八门、太乙九星 C124/C125、文昌九星 C70 等已登记 public operation alias。
+- 《统宗》卷十五 V15-01..14 与卷十七 V17-01..11 均可按 source rule id 调用；景祐 JF4M-01..11 仍保持 source-record-only。
+- 修正三才杜塞边界：5/15/25/35 classic 标签只为“杜塞”；结构层仍分别记录5仅地、15/25/35仅天+地。
+- 清理 rules registry 中五福/大游旧混合 profile，恢复金镜/统宗 source profile 明确隔离。
+- public API 固定为 `1.0`；新增 registry/operation/result/capabilities/repository-status schemas 和软件接入文档 `docs/SOFTWARE_API.md`。
+- 本轮收口期间 CI 从历史不一致状态恢复为全绿，并持续由 GitHub Actions 对 main 执行全库 pytest。
