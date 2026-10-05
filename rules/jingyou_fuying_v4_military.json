@@ -92,11 +92,43 @@
       "parallel_jinjing_rule": "J4M-07",
       "domain": "地形制阵",
       "canonical_summary": "水曲、火锐、木直、金方、土圆；主客置阵后以五行相制取胜负，再依地形选阵。",
-      "textual_uncertainty": [
-        "电子转录“地形跨斜”",
-        "电子转录“地形高而不平”均待扫描核字"
-      ],
-      "implementation_status": "source_record_only"
+      "textual_uncertainty": [],
+      "implementation_status": "source_record_only",
+      "canonical_data": {
+        "formation_elements": {
+          "曲阵": "水",
+          "锐阵": "火",
+          "直阵": "木",
+          "方阵": "金",
+          "圆阵": "土"
+        },
+        "terrain_table": {
+          "后高前低": {
+            "formation": "锐阵",
+            "effect": "利进战、溃敌"
+          },
+          "前高后低": {
+            "formation": "直阵",
+            "effect": "利近斗守御、疲敌"
+          },
+          "地形跨斜": {
+            "formation": "圆阵",
+            "effect": "不便战，宜坚固守"
+          },
+          "地形高而不平": {
+            "formation": "方阵",
+            "effect": "利四向、便斗战"
+          },
+          "左右势高岗": {
+            "formation": "曲阵",
+            "effect": "利吞敌"
+          }
+        }
+      },
+      "collation_status": {
+        "online_transcription": "verified_in_current_source_transcription",
+        "scan_image": "pending"
+      }
     },
     {
       "id": "JF4M-08",
@@ -105,7 +137,56 @@
       "domain": "临敌随形制变",
       "canonical_summary": "地形、卒习服、器用为急；步兵地车骑二不当一，萑苇竹萧为矛鋋类地、长戟二不当一，另有曲道剑楯地；不习服百不当十，将不省兵五不当一。",
       "relation_to_hanshu": "整体更接近《汉书·爰盎晁错传》，但本 profile 只记录《福应经》自身转录。",
-      "implementation_status": "source_record_only"
+      "implementation_status": "source_record_only",
+      "canonical_data": {
+        "urgent_requirements": [
+          "得地形",
+          "卒习服",
+          "利器用"
+        ],
+        "terrain_rules": [
+          {
+            "terrain_class": "步兵地",
+            "favored": "步兵",
+            "disfavored": "车骑",
+            "ratio": "车骑二不当一"
+          },
+          {
+            "terrain_class": "车骑地",
+            "favored": "车骑",
+            "disfavored": "步兵",
+            "ratio": "步兵十不当一"
+          },
+          {
+            "terrain_class": "弓弩地",
+            "favored": "弓弩",
+            "disfavored": "短兵",
+            "ratio": "短兵百不当一"
+          },
+          {
+            "terrain_class": "长戟地",
+            "favored": "长戟",
+            "disfavored": "剑楯",
+            "ratio": "剑楯三不当一"
+          },
+          {
+            "terrain_class": "矛鋋地",
+            "favored": "矛鋋",
+            "disfavored": "长戟",
+            "ratio": "长戟二不当一"
+          },
+          {
+            "terrain_class": "曲道剑楯地",
+            "favored": "剑楯",
+            "disfavored": "弓弩",
+            "ratio": "弓弩三不当一"
+          }
+        ],
+        "discipline_rules": {
+          "untrained": "百不当十",
+          "general_does_not_inspect_troops": "五不当一"
+        }
+      }
     },
     {
       "id": "JF4M-09",
@@ -141,7 +222,75 @@
         "来翼主人阵前主人胜；来翼客阵前客胜",
         "众鸟翼噪并风云冲阵而来为凶"
       ],
-      "implementation_status": "source_record_only"
+      "implementation_status": "source_record_only",
+      "canonical_data": {
+        "event_rules": [
+          {
+            "condition": "冲格迫击太乙宫",
+            "outcome": "大败"
+          },
+          {
+            "condition": "迫击客大将宫",
+            "loser": "客"
+          },
+          {
+            "condition": "迫击主将宫",
+            "loser": "主"
+          },
+          {
+            "condition": "从主人刑上来",
+            "loser": "主"
+          },
+          {
+            "condition": "从客刑上来",
+            "loser": "客"
+          },
+          {
+            "condition": "从主目上去击客大将宫",
+            "loser": "客"
+          },
+          {
+            "condition": "从客目上去击主大将宫",
+            "loser": "主"
+          },
+          {
+            "condition": "从太岁/太阴/月建上来击主人阵",
+            "loser": "主"
+          },
+          {
+            "condition": "从太岁/太阴/月建上来击客阵",
+            "loser": "客"
+          },
+          {
+            "condition": "来翼主人阵前",
+            "winner": "主"
+          },
+          {
+            "condition": "来翼客阵前",
+            "winner": "客"
+          },
+          {
+            "condition": "回旋风+飞鸟旋转阵上或旗竿折",
+            "outcome": "大败之兆"
+          },
+          {
+            "condition": "众鸟翼噪并风云冲阵",
+            "outcome": "凶"
+          },
+          {
+            "condition": "冲主人阵",
+            "loser": "主"
+          },
+          {
+            "condition": "冲客阵",
+            "loser": "客"
+          }
+        ]
+      },
+      "collation_status": {
+        "online_transcription": "verified_in_current_source_transcription",
+        "scan_image": "pending"
+      }
     },
     {
       "id": "JF4M-11",
