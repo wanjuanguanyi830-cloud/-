@@ -62,17 +62,18 @@ def test_zitingjing_stable_catalog_preserves_migration_aliases():
         assert old[key] <= stable[key]
 
 
-def test_wenchang_nine_stars_recovers_legacy_scan_but_still_blocks_primary():
+def test_wenchang_nine_stars_is_modern_appendix_cross_source_pointer():
     data = _load(CATALOG)
     entry = next(e for e in data["entries"] if e["key"] == "wenchang_nine_stars")
 
-    assert entry["primary_evidence_level"] == "prior_scan_confirmed_page_record_pending"
+    assert entry["primary_evidence_level"] == "ziting_manuscript_not_attested_modern_appendix_only"
     assert entry["primary_result_allowed"] is False
     assert entry["runtime"] is None
     assert entry["canonical_selected"] is None
-    assert entry["cycle_status"] == "cross_source_unresolved"
-    assert entry["legacy_scan_recovery"]["status"] == "manuscript_previously_scanned_original_page_record_not_reattached"
-    assert entry["legacy_scan_recovery"]["recovered_code_forms"][0] == "文曲"
+    assert entry["term_type"] == "modern_edition_cross_source_recovery_pointer"
+    assert entry["canonical_catalog"] == "terminology/wenchang-nine-stars.json"
+    assert entry["manuscript_toc_evidence"]["status"] == "title_not_attested"
+    assert entry["modern_edition_appendix"]["status"] == "modern_edition_catalog_attested_provenance_unresolved"
 
 
 def test_three_banners_and_nine_palace_nobles_are_cross_source_recovery_pointers():
@@ -116,22 +117,13 @@ def test_shiji_collation_keeps_ocr_corrections_separate_from_textual_variant():
     assert "preserve_both_no_silent_merge" in entry["textual_variant_policy"]
 
 
-def test_wenchang_public_scan_leads_do_not_unlock_primary():
+def test_wenchang_modern_appendix_does_not_restore_ziting_primary():
     data = _load(CATALOG)
     entry = next(e for e in data["entries"] if e["key"] == "wenchang_nine_stars")
 
-    leads = entry["scan_share_leads"]
-    shuge = next(item for item in leads if item["site"] == "书格")
-    assert shuge["reported_extent"] == "181单页灰度，328M"
-    assert shuge["direct_manuscript_page_recovered"] is False
-
-    catalog = next(item for item in leads if item["site"] == "现代出版目录")
-    assert catalog["appendix_title"] == "附太乙文昌九星值宮術"
-    assert catalog["direct_manuscript_page_recovered"] is False
-
+    assert entry["manuscript_toc_evidence"]["pages"] == [5, 6]
+    assert entry["manuscript_toc_evidence"]["status"] == "title_not_attested"
+    assert entry["modern_edition_appendix"]["title"] == "附太乙文昌九星值宮術"
+    assert "只作来源假说" in entry["modern_edition_appendix"]["inference"]
     assert entry["primary_result_allowed"] is False
     assert entry["runtime"] is None
-    assert any(
-        "未取得该附篇直接影印页/逐字正文" in note
-        for note in entry["boundary_notes"]
-    )
