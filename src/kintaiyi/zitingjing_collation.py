@@ -1,8 +1,9 @@
-"""文昌九星的外部参校见证。
+"""文昌九星多见证校勘层。
 
-本模块不生成《太乙紫庭经》primary_result。
-它只保存当前能直接定位的《三才世纬》卷八十一与《太乙统宗宝鉴》卷六见证，
-用于比较星名、值宫年限和推步算法异文。
+当前稳定可执行规则为《太乙统宗宝鉴》卷六 NGJ profile（C70）。
+本模块同时保存《三才世纬》与统宗 CADAL/NGJ 的星名、值宫年限与算法异文。
+研易楼明钞本目录未见文昌九星题名；现代整理本同名附篇来源未证，
+因此这里不再等待“紫庭 primary”，也不把现代附篇反推成原钞正文。
 """
 
 from __future__ import annotations
@@ -92,14 +93,14 @@ TONGZONG_NGJ_WITNESS = {
         "rule_id": "C70-TONGZONG-WENCHANG-NINE-STARS",
         "module": "wenchang_nine_stars_tongzong",
         "available": True,
-        "cross_source_canonical": False,
+        "selected_stable_profile": True,
         "zitingjing_primary_result": False,
     },
 }
 
 
 def wenchang_nine_stars_collation_witnesses() -> dict[str, Any]:
-    """返回参校见证，不选择 canonical。"""
+    """返回文昌九星多见证校勘，并声明当前稳定 C70 profile。"""
     witnesses = [
         copy.deepcopy(SANCAI_SHIWEI_WITNESS),
         copy.deepcopy(TONGZONG_CADAL_WITNESS),
@@ -109,15 +110,24 @@ def wenchang_nine_stars_collation_witnesses() -> dict[str, Any]:
         "schema_version": "1.0",
         "canonical": WENCHANG_NINE_STARS_COLLATION_VERSION,
         "rule_key": "wenchang_nine_stars",
-        "primary_source_target": "zitingjing",
-        "primary_evidence_level": "catalog_attested_text_pending",
-        "primary_result": None,
-        "canonical_selected": None,
+        "stable_rule_id": "C70-TONGZONG-WENCHANG-NINE-STARS",
+        "stable_source_profile": "tongzong_volume6_ngj_wenchang_nine_stars",
+        "canonical_selected": "tongzong_volume6_ngj",
+        "ziting_manuscript": {
+            "status": "toc_title_not_attested",
+            "toc_pages": [5, 6],
+            "primary_result": None,
+        },
+        "modern_edition_appendix": {
+            "title": "附太乙文昌九星值宫术",
+            "status": "catalog_attested_provenance_unresolved",
+        },
         "source_specific_runtimes": [
             {
                 "source_id": "tongzong_volume6_ngj",
                 "rule_id": "C70-TONGZONG-WENCHANG-NINE-STARS",
-                "cross_source_canonical": False,
+                "source_profile": "tongzong_volume6_ngj_wenchang_nine_stars",
+                "selected_stable_profile": True,
             }
         ],
         "witnesses": witnesses,
@@ -131,18 +141,18 @@ def wenchang_nine_stars_collation_witnesses() -> dict[str, Any]:
                 ],
             },
             "cycle_rate": {
-                "status": "unresolved",
+                "status": "cross_witness_conflict_selected_profile_resolved",
                 "values_seen": [10, 30],
+                "selected_profile_value": 30,
                 "critical_note": (
                     "统宗CADAL同一见证出现“每星十年一宫”与“宫率三十、小周270、大周2700”并存；"
-                    "不得据单句固化值宫周期。"
+                    "C70只对NGJ见证固定30年，不把该选择覆盖到其他见证。"
                 ),
             },
         },
         "policy": (
-            "这些文本只能作为文昌九星的外部参校见证；"
-            "在取得《太乙紫庭秘诀》附录直接正文前，不生成紫庭primary_result，"
-            "也不实现10年或30年的canonical推步。"
+            "C70按统宗NGJ直接见证独立运行；CADAL与《三才世纬》只作异文参校。"
+            "研易楼明钞目录未见文昌九星题名，现代整理附篇来源未证。"
         ),
     }
 
@@ -155,9 +165,11 @@ def tongzong_volume6_wenchang_collation_payload() -> dict[str, Any]:
             copy.deepcopy(TONGZONG_CADAL_WITNESS),
             copy.deepcopy(TONGZONG_NGJ_WITNESS),
         ],
-        "canonical_selected": None,
-        "cycle_rate_resolved": False,
-        "policy": "统宗不同在线见证自身存在星名/周期异文，不在参校层强行择一。",
+        "canonical_selected": "tongzong_volume6_ngj",
+        "selected_source_profile": "tongzong_volume6_ngj_wenchang_nine_stars",
+        "cycle_rate_resolved_for_selected_profile": True,
+        "cross_witness_cycle_conflict": True,
+        "policy": "C70选择NGJ作为当前稳定可执行profile；CADAL内部10/30年冲突继续并列，不被NGJ选择覆盖。",
     }
 
 
