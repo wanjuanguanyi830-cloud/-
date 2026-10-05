@@ -51,7 +51,7 @@ def test_jf4m_runtime_catalog_covers_exact_eleven_rules():
     assert data["implemented"] == [f"JF4M-{n:02d}" for n in range(1, 12)]
     assert data["cross_source_merge"] is False
     assert data["source_limited"] is True
-    assert set(data["pending_textual_uncertainty"]) == {"JF4M-02", "JF4M-07", "JF4M-10"}
+    assert set(data["pending_textual_uncertainty"]) == {"JF4M-02"}
 
 
 def test_jf4m_tail_order_is_not_forced_to_match_jinjing():
@@ -87,3 +87,13 @@ def test_rules_json_registers_jf4m_runtime_coverage():
     assert record["runtime_catalog"] == (
         "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog"
     )
+
+
+def test_jf4m_resolved_transcription_data_is_machine_readable():
+    data = _load(CATALOG)
+    by_id = {entry["rule_id"]: entry for entry in data["entries"]}
+
+    assert by_id["JF4M-07"]["canonical_data"]["terrain_table"]["后高前低"]["formation"] == "锐阵"
+    assert by_id["JF4M-07"]["textual_uncertainty"] == []
+    assert by_id["JF4M-08"]["canonical_data"]["terrain_rule_count"] == 6
+    assert "太岁/太阴/月建击主客阵" in by_id["JF4M-10"]["canonical_data"]["event_families"]
