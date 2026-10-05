@@ -185,10 +185,22 @@
       "downstream": "C69B-CURRENT-TIME-LIUREN",
       "boundary_notes": [
         "只实现《金镜》卷一直接黄道日度/宿度/十二分野表，不计算现代天文黄经。",
-        "虚宿度当前转录有缺字/分数歧义；跨越未定虚宿边界时不得猜算。",
+        "虚宿度四库公开转录缺整数主体；NCL-06604明钞本PDF第21页直接影像也未补出整数，只确认旁注分数说明，因此numeric_span继续为None。",
+        "不得用365¼周天闭合、后世宿度表或其他版本的虚十/九少等数值反推本profile。",
+        "跨越未定虚宿边界时不得猜算；NCL witness提高证据等级但不解锁runtime。",
         "C118只提供C69/C69B上游日宿与分野，不在本层安十二天将。",
         "production现代历法负责日期与真实节气时刻；C118古表不得改写真实冬至换太乙岁。"
-      ]
+      ],
+      "manuscript_witness": {
+        "id": "NCL-06604",
+        "edition": "明钞本",
+        "pdf_page": 21,
+        "section": "推黄道数立成",
+        "evidence_level": "direct_visual_verified",
+        "virtual_mansion_reading": "虚旁小字见二十五分半、四分度之一；整数主体未见",
+        "relation_to_siku": "confirms_missing_integer_ambiguity",
+        "canonical_effect": "none"
+      }
     },
     {
       "key": "xuanming_role",
