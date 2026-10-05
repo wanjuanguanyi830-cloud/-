@@ -120,9 +120,9 @@ _TERRAIN_ARMS = {
         "source_scope": "两阵相近、平地浅草、可前可后",
     },
     "萑苇竹萧蒙笼草木": {
-        "利": "矛锤",
+        "利": "矛鋋",
         "不利": "弓弩",
-        "source_ratio_text": "弓弩三不当一矛锤",
+        "source_ratio_text": "弓弩三不当一矛鋋",
         "source_scope": "萑苇竹萧、草木蒙笼、枝叶接茂",
     },
     "平阳相远山谷幽涧仰高临下": {
@@ -447,12 +447,12 @@ def suidi_zhibian(terrain_class, *, soldiers_trained=None,
             "君不择将，以其国与敌",
         ],
         "quotation_collation": {
-            "status": "jinjing_chao_cuo_quote_diverges_from_hanshu",
+            "status": "jinjing_quote_diverges_from_jingyou_and_hanshu",
             "canonical_for_this_profile": "太乙金镜式经_四库本_卷四实际引文",
             "external_witness": "汉书_爰盎晁错传",
             "notable_differences": [
                 "金镜步兵地作车骑三不当一；汉书作车骑二不当一",
-                "金镜萑苇竹萧地作矛锤、弓弩三不当一；汉书作矛鋋、长戟二不当一",
+                "金镜与汉书此处兵器名同为矛鋋；差异在金镜作弓弩三不当一、汉书作长戟二不当一",
                 "汉书另有曲道相伏、险厄相薄之剑楯地；金镜本段未录",
                 "金镜士卒不练作百不当一、将不习兵作十不当一；汉书分别作百不当十、五不当一",
             ],
@@ -460,7 +460,7 @@ def suidi_zhibian(terrain_class, *, soldiers_trained=None,
         },
         "policy": (
             "J4M-08 是地形—兵种/兵器—训练器械层；不得并入 J4M-07 阵形五行。"
-            "《汉书》只作引文校勘见证，不静默改写《金镜》source profile。"
+            "C75 已按 CADAL06056494 p.136 将旧误读“矛锤”改回“矛鋋”；《汉书》《福应经》只作异文校勘见证，不静默改写《金镜》source profile。"
         ),
     }
 
