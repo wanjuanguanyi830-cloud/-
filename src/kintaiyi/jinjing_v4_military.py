@@ -883,9 +883,68 @@ def chenbing_xiangbei(rule_number):
     }
 
 
-def zhizhen_suidi(terrain):
-    """J4M-07 推制阵随地法：地形 -> 阵形 -> 五行。"""
+def _formation_control_outcome(host_formation=None, guest_formation=None):
+    """J4M-07 主客阵形五行相克胜负。
+
+    原文只明言“次以五行相克而取胜负”，因此只在一方阵形五行明确克
+    另一方时给出胜负；同五行或相生关系不补断。
+    """
+    valid = set(_FORMATION_ELEMENTS)
+    if host_formation is None and guest_formation is None:
+        return {
+            "status": "not_requested",
+            "computable": False,
+            "host_formation": None,
+            "guest_formation": None,
+            "winner": None,
+            "loser": None,
+        }
+    if host_formation not in valid or guest_formation not in valid:
+        return {
+            "status": "not_computable",
+            "computable": False,
+            "host_formation": host_formation,
+            "guest_formation": guest_formation,
+            "valid_formations": list(_FORMATION_ELEMENTS),
+            "winner": None,
+            "loser": None,
+        }
+
+    host_element = _FORMATION_ELEMENTS[host_formation]
+    guest_element = _FORMATION_ELEMENTS[guest_formation]
+    if _WUXING_KE[host_element] == guest_element:
+        winner, loser, relation = "主", "客", "主阵五行克客阵五行"
+    elif _WUXING_KE[guest_element] == host_element:
+        winner, loser, relation = "客", "主", "客阵五行克主阵五行"
+    else:
+        winner, loser, relation = None, None, "本条无五行相克关系"
+
+    return {
+        "status": "ok",
+        "computable": True,
+        "host_formation": host_formation,
+        "host_element": host_element,
+        "guest_formation": guest_formation,
+        "guest_element": guest_element,
+        "relation": relation,
+        "winner": winner,
+        "loser": loser,
+        "policy": "只按阵形五行相克取胜负；同类或相生不以常识补出胜负。",
+    }
+
+
+def zhizhen_suidi(terrain, *, host_formation=None, guest_formation=None):
+    """J4M-07 推制阵随地法。
+
+    分两层保存原文：
+    1. 地形 -> 宜阵 -> 阵形五行；
+    2. 主客已经置阵时，以两阵五行相克取胜负。
+
+    第二层不要求把同一个 terrain 同时强配给主客双方。
+    """
     result = _base("J4M-07", "推制阵随地法")
+    contest = _formation_control_outcome(host_formation, guest_formation)
+
     if terrain not in _TERRAIN_FORMATIONS:
         return {
             **result,
@@ -894,7 +953,11 @@ def zhizhen_suidi(terrain):
             "terrain": terrain,
             "known_terrains": list(_TERRAIN_FORMATIONS),
             "formation_elements": dict(_FORMATION_ELEMENTS),
-            "policy": "未知地形不类推；J4M-07 不与 J4M-08 随地制变合并。",
+            "formation_contest": contest,
+            "policy": (
+                "未知地形不类推；若已显式给出主客阵形，五行相克结果仍独立保存在"
+                "formation_contest。J4M-07 不与 J4M-08 随地制变合并。"
+            ),
         }
     item = _TERRAIN_FORMATIONS[terrain]
     formation = item["宜阵"]
@@ -907,8 +970,12 @@ def zhizhen_suidi(terrain):
         "五行": _FORMATION_ELEMENTS[formation],
         "所利": item["所利"],
         "formation_elements": dict(_FORMATION_ELEMENTS),
+        "formation_contest": contest,
         "direction_relation": {"顺其向": "吉", "反其向": "凶"},
-        "policy": "只实现本条地形制阵；兵种器械随地应变属于 J4M-08。",
+        "policy": (
+            "本条同时保留地形制阵与主客阵形五行相克两层；兵种器械随地应变属于 J4M-08。"
+            "阵形同类或相生时原文未给本条胜负，不扩写。"
+        ),
     }
 
 
