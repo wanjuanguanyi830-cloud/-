@@ -244,3 +244,4 @@
 - 旧 `kentang2017/kintaiyi/config.py` 九星段明确标注《太乙统宗宝鉴》卷六；旧序列“文曲、玄鳳、明維、昭搖、立華、華明、玄武、玄冥、雄明”继续只作 prior workflow code residue，不认作研易楼原钞逐字见证。
 - 稳定术语目录数由15增至16；总稳定词条数仍为148（从紫庭目录移出1项，同时新增独立文昌九星目录1项），精确跨词条重名目标仍保持0。
 - 文昌九星 `current_rule_source_gap` 关闭；后续旧库恢复只处理历史 term id / notes / aliases 与现代附篇编辑来源，不再阻塞 C70 算法调用。
+- 本轮来源解绑、术语目录拆分、legacy source slot 与防回归测试全部收口后，GitHub Actions full pytest：**2451 passed / 0 failed**（run #1979）。
