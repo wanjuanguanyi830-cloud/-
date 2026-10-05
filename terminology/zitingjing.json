@@ -90,6 +90,8 @@
       "boundary_notes": [
         "紫庭附篇直接正文未取得前，不生成紫庭值宫runtime。",
         "C70统宗卷六NGJ可独立运行，但只属于统宗source profile；不得反填紫庭primary。",
+        "NGJ直接正文支持30年一星、270小周、2700大周、起一宫文昌顺九宫，并以年干建禄宫安当前直事星。",
+        "另有CADAL见证出现每星十年等异读/内部冲突，作为独立witness保存，不覆盖NGJ profile。",
         "C70只稳定计算直事星、入本星年数与年干落宫/分野；其余八星完整动态重排仍不支持。"
       ],
       "source_specific_profiles": {
@@ -106,7 +108,37 @@
             "direction": "forward"
           },
           "status": "direct_source_specific_runtime",
-          "full_dynamic_distribution_supported": false
+          "full_dynamic_distribution_supported": false,
+          "direct_text_evidence": {
+            "witness_id": "NGJ892411999009267118912",
+            "section": "明文昌九宫所主分野术",
+            "url": "https://www.shidianguji.com/book/NGJ892411999009267118912/chapter/1lny526c1g8iw",
+            "star_names": [
+              "文昌",
+              "玄凤",
+              "明维",
+              "阴德",
+              "招摇",
+              "华明",
+              "玄武",
+              "玄冥",
+              "维明"
+            ],
+            "cycle_text": {
+              "years_per_star": 30,
+              "big_cycle": 2700,
+              "small_cycle": 270,
+              "rate": 30,
+              "start": "一宫文昌",
+              "direction": "顺行九宫"
+            },
+            "landing_rule": "命加所求年干建禄之宫",
+            "example": "甲辰年玄凤直事，十一年在青州；乙巳在徐"
+          },
+          "variant_boundary": {
+            "cadal_witnesses": "另有CADAL见证正文作“每星十年行一宫”，且与其算法层三十年口径并存，保持独立异文，不归并。",
+            "ziting_appendix": "《太乙紫庭秘诀》目录可证附有“太乙文昌九星值宫术”，但直接正文未取得，不得据统宗反填。"
+          }
         }
       }
     },
