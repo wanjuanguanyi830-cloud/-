@@ -28,11 +28,39 @@
       "source_title": "释五将发不发第四十五",
       "parallel_jinjing_rule": "J4M-02",
       "domain": "五将",
-      "canonical_summary": "始击无掩击、文昌无囚迫、大小将不相开（电子转录字样）则将发；三门具则五将自然相会。三门不具不可出兵，五将不发不可强战。",
-      "textual_uncertainty": [
-        "“大小将不相开”疑与《金镜》“主客大小将无相关”对应，待扫描核字"
-      ],
-      "implementation_status": "source_record_only"
+      "canonical_summary": "始击无掩击、文昌无囚迫、主客大小将无关则将发；《福应经》当前电子转录作“大小将不相开”，经《金镜》《统宗》同条“无相关/相关”与太乙格局“主客大小将自相同宫为关”参校，算法规范为四将无同宫之关。三门具则五将自然相会；三门不具不可出兵，五将不发不可强战。",
+      "textual_uncertainty": [],
+      "implementation_status": "implemented_source_specific",
+      "canonical_data": {
+        "source_form": "大小将不相开",
+        "normalized_reading": "主客大小将无相关",
+        "normalized_semantics": "四将无同宫之关",
+        "relation_definition": "主客四将任两将同一非中五宫位即形成关",
+        "center_5_excluded": true,
+        "collation_confidence": "strong_parallel_witness_semantic_resolution"
+      },
+      "collation_evidence": [
+        {
+          "witness": "景祐太乙福应经卷四",
+          "reading": "大小将不相开",
+          "role": "source_form_preserved"
+        },
+        {
+          "witness": "太乙金镜式经卷四",
+          "reading": "主客大小将无相关 / 相关",
+          "role": "parallel_rule_witness"
+        },
+        {
+          "witness": "太乙统宗宝鉴卷五",
+          "reading": "主客大小将无相关 / 相关（部分OCR作相开/相辟）",
+          "role": "parallel_rule_witness"
+        },
+        {
+          "witness": "太乙秘书",
+          "reading": "主客大小将自相同宫为关",
+          "role": "technical_definition_witness"
+        }
+      ]
     },
     {
       "id": "JF4M-03",
