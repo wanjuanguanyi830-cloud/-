@@ -274,23 +274,23 @@ QUARANTINE: dict[str, dict[str, Any]] = {
         "kintaiyi.cycles.bigyo.jinjing_tongzong",
         category="mixed_source_legacy_profile",
         reason=(
-            "旧兼容profile把金镜大游宫序与统宗+34宫盈差合成单一jinjing_tongzong。"
-            "2026-10-04恢复记录已明确旧config.bigyo只作实现参照；"
-            "不同来源必须拆开后再建立source-specific runtime。"
+            "旧兼容profile把金镜大游行宫来源与统宗+34宫盈差合成单一jinjing_tongzong。"
+            "C107已拆为金镜4320/288/36与统宗+34/2880/288/36两个显式来源profile；"
+            "旧mixed profile只保留兼容数值，不得提升。"
         ),
-        replacement_rule_ids=(),
-        replacement_layer="dayou.source_specific_runtime_pending",
+        replacement_rule_ids=("C107-DAYOU-JINJING", "C107-DAYOU-TONGZONG"),
+        replacement_layer="dayou.position.source_profiles",
         source_module="cycles",
     ),
     "config.bigyo_default": _q(
         "config.bigyo_default",
         category="legacy_api_defaults_to_mixed_source_profile",
         reason=(
-            "config.bigyo无profile调用进入jinjing_tongzong混合兼容路径；"
-            "当前仅允许旧数值回归，不得作为大游统一真源。"
+            "config.bigyo无profile调用仍进入jinjing_tongzong混合兼容路径；"
+            "canonical调用必须显式改用C107金镜或统宗profile。"
         ),
-        replacement_rule_ids=(),
-        replacement_layer="dayou.source_specific_runtime_pending",
+        replacement_rule_ids=("C107-DAYOU-JINJING", "C107-DAYOU-TONGZONG"),
+        replacement_layer="dayou.position.source_profiles",
         source_module="cycles",
     ),
     "guiyun.yinyang_jiu_e": _q(
