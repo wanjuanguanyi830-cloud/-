@@ -153,6 +153,8 @@ def test_j4m03_can_resolve_elements_from_ancient_sixteen_god_table():
         guest_eye_god="太蔟",
     )
     assert source_glyph["guest_eye_element"] == "金"
+    assert source_glyph["guest_eye_god"] == "太蔟"
+    assert source_glyph["guest_eye_god_canonical"] == "太簇"
     assert source_glyph["god_name_aliases"]["太蔟"] == "太簇"
     assert source_example["winner"] == "客"
 
