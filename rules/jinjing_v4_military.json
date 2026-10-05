@@ -92,7 +92,8 @@
             "NCL卷四目录同样先列风云飞鸟、后列奇兵伏兵，而正文先奇兵伏兵、后风云飞鸟",
             "J4M-05明钞本只列算十二、二十二，随后即五将发；未见四库本三十二",
             "J4M-11明钞本p.63作主人刑上来主人败、客刑上来客败，与福应经同构而与四库主人形上来客败冲突",
-            "J4M-06明钞本算表为1/2/3/4/6/7/8/9，无5；方向骨架与福应经同构"
+            "J4M-06明钞本算表为1/2/3/4/6/7/8/9，无5；方向骨架与福应经同构",
+            "J4M-06明钞本全表已由用户提供p.59-p.60页图直接核完；1/2/3/4/6/7/8/9的战利、背地、阵形、旗色不再pending"
           ],
           "still_pending": [
             "除已列关键点外的全段逐字异文表"
@@ -154,7 +155,7 @@
     "scan_locator_version": "c79-j4m-cadal-page-locators-v1",
     "witness_audit_version": "c84-ncl06604-access-boundary-v1",
     "full_twelve_scan_audit_version": "c85-j4m01-12-scan-boundary-complete-v1",
-    "ncl_volume4_collation_version": "c88-ncl06604-j4m06-direction-table-v1",
+    "ncl_volume4_collation_version": "c110-ncl06604-j4m06-full-table-v1",
     "terminology_policy_version": "c101-taicu-traditional-variant-v1"
   },
   "separation_policy": [
@@ -570,7 +571,7 @@
         "tongzong_later_military_rule": "《统宗》另有“陈兵必出其乡”，按算方列1/2/3/4/6/7/8/9等出向，结构与本条不同。",
         "policy": "两条只可交叉比较，不得互补缺数。尤其不得拿《统宗》3/7/8补《金镜》，也不得拿《金镜》5及阵旗信息反写《统宗》陈兵出乡。",
         "jingyou_fuying_volume4": "《福应经》“释陈兵向背”列1/2/3/4/6/7/8/9而无5，证明差异并非仅《统宗》后世扩写；仍不得互补《金镜》数表。",
-        "ncl_06604_ming_manuscript": "明钞本 p.59-p.60 直接见1/2/3/4/6/7/8/9出军方向表，无5；数值与方向骨架同《福应经》，但仍作为独立 manuscript reading，不补四库本。"
+        "ncl_06604_ming_manuscript": "C110 由用户提供的 NCL-06604 p.59-p.60 页图直接核完1/2/3/4/6/7/8/9八条的出军、战利、背地、阵形、旗色；第2条未见独立战利；第3条“直戰”旁校“陣”；第4条“正南”旁校“東”。"
       },
       "source_variants": {
         "jingyou_fuying_volume4": {
@@ -670,7 +671,113 @@
             8
           ],
           "relation_to_jingyou": "number-and-direction skeleton agrees with 景祐太乙福应经释陈兵向背",
-          "detail_transcription_status": "number_direction_skeleton_direct_visual_verified; terrain_formation_flag_full_line_collation_pending"
+          "detail_transcription_status": "full_table_direct_visual_verified_C110",
+          "full_table_transcription": {
+            "evidence": {
+              "cycle": "C110",
+              "date": "2026-10-05",
+              "witness": "NCL-06604",
+              "digital_scan_pages": [
+                59,
+                60
+              ],
+              "carrier": "明钞本《太乙金镜式经》卷四",
+              "method": "user-supplied page images visually checked",
+              "status": "direct_visual_verified"
+            },
+            "rows": {
+              "1": {
+                "raw_transcription": "算得一，出軍宜西北，戰利向東南，背深澗隱匿之地，用曲陣，舉黑旗。",
+                "normalized": {
+                  "出军": "西北",
+                  "战利": "东南",
+                  "背地": "深涧隐匿之地",
+                  "阵": "曲阵",
+                  "旗": "黑旗"
+                }
+              },
+              "2": {
+                "raw_transcription": "算得二，出軍宜正南，背土山曼行邪道之地，用圓陣，舉黃旗。",
+                "normalized": {
+                  "出军": "正南",
+                  "战利": null,
+                  "背地": "土山曼行邪道之地",
+                  "阵": "圆阵",
+                  "旗": "黄旗"
+                },
+                "note": "本行出军正南后直接接背地，未见独立战利方向。"
+              },
+              "3": {
+                "raw_transcription": "算得三，出軍宜東北，戰利向南，背山邑火光耀〔重文符〕之地，用直戰〔旁校陣〕，舉青旗。",
+                "normalized": {
+                  "出军": "东北",
+                  "战利": "南",
+                  "背地": "山邑火光耀耀之地",
+                  "阵": "直阵",
+                  "旗": "青旗"
+                },
+                "scribal_features": [
+                  "“耀”后见重文符，规范转写为“耀耀”。",
+                  "正文写“直戰”，旁有小字“陣”，按可见校记规范为“直陣/直阵”，原写仍保留。"
+                ]
+              },
+              "4": {
+                "raw_transcription": "算得四，出軍宜正南〔旁校東〕，戰利向正西，背山林窮道曲堤之地，用銳陣，舉赤旗。",
+                "normalized": {
+                  "出军": "正东",
+                  "战利": "正西",
+                  "背地": "山林穷道曲堤之地",
+                  "阵": "锐阵",
+                  "旗": "赤旗"
+                },
+                "scribal_features": [
+                  "正文“正南”旁见小字“東”，作为抄本校记保存；规范字段按旁校读为“正东”。"
+                ]
+              },
+              "6": {
+                "raw_transcription": "算得六，出軍宜正西，戰利向正東，背水澤溝塹丘墟之地，用方陣，舉白旗。",
+                "normalized": {
+                  "出军": "正西",
+                  "战利": "正东",
+                  "背地": "水泽沟堑丘墟之地",
+                  "阵": "方阵",
+                  "旗": "白旗"
+                }
+              },
+              "7": {
+                "raw_transcription": "算得七，出軍宜西南，戰利向東北，背川澤丘阜積石之地，用方陣，舉白旗。",
+                "normalized": {
+                  "出军": "西南",
+                  "战利": "东北",
+                  "背地": "川泽丘阜积石之地",
+                  "阵": "方阵",
+                  "旗": "白旗"
+                }
+              },
+              "8": {
+                "raw_transcription": "算得八，出軍宜正北，戰利向正南，背積土負城邑山林之地，用曲陣，舉黑旗。",
+                "normalized": {
+                  "出军": "正北",
+                  "战利": "正南",
+                  "背地": "积土负城邑山林之地",
+                  "阵": "曲阵",
+                  "旗": "黑旗"
+                }
+              },
+              "9": {
+                "raw_transcription": "算得九，出軍宜東南，戰利向西北，背高山丘陵積土之地，用銳陣，舉赤旗。",
+                "normalized": {
+                  "出军": "东南",
+                  "战利": "西北",
+                  "背地": "高山丘陵积土之地",
+                  "阵": "锐阵",
+                  "旗": "赤旗"
+                }
+              }
+            },
+            "closing_text": "餘則太乙兵起於鄉，陣隨於地，觀方制變，皆算掩神，此用兵之神道也。"
+          },
+          "table_policy": "原写、旁校、规范字段分层保存；不得用四库或《福应经》覆盖明钞本直接影像读法。"
         }
       }
     },
