@@ -107,3 +107,21 @@ datetime在adapter层转ISO，保证C11 JSON-safe不变量。
 - 冬至前1微秒仍属旧太乙岁；
 - 冬至精确瞬间立即切下一太乙岁；
 - 之后的公历元旦不再次换岁。
+
+
+## validator硬约束
+
+`validate_pan_v2()` 对任何：
+
+- `meta.calendar_mode = production_modern`，或
+- `compat.modern_production = true`
+
+的payload强制检查：
+
+1. 必须存在 `calendar.taiyi_year`；
+2. 必须存在 `calendar.year_boundary_policy`；
+3. `unique_boundary` 必须严格等于“真实天文冬至交节瞬间”；
+4. 必须明确排除元旦、春节、立春、春分；
+5. 必须保存当前与下一太乙岁的冬至起点。
+
+因此后续任何UI、CLI、导出器或新adapter若试图把现代太乙换年改成元旦/春节/立春/春分，会直接使pan v2验证失败。
