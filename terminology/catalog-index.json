@@ -235,6 +235,11 @@
       "path": "terminology/crosswalk.json",
       "asset_id": "taiyi-terminology-crosswalk-v1",
       "purpose": "跨全部stable catalogs登记shared core、近名边界、禁止合并关系，并保存精确词形冲突审计快照"
+    },
+    {
+      "path": "terminology/zitingjing-recovery-status.json",
+      "asset_id": "C81-ZITINGJING-TERMINOLOGY-RECOVERY-AVAILABILITY",
+      "purpose": "记录旧terminology.json与研易楼明钞本恢复通道当前可用性；不生成parser、不重建旧store"
     }
   ],
   "next_merge_rule": {
