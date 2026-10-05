@@ -157,5 +157,5 @@ def test_c60_preserves_specific_known_error_reasons():
     assert "金镜" in QUARANTINE["kintaiyi.cycles.bigyo.jinjing_tongzong"]["reason"]
     assert "+34" in QUARANTINE["kintaiyi.cycles.bigyo.jinjing_tongzong"]["reason"]
     assert "C107" in QUARANTINE["kintaiyi.cycles.bigyo.jinjing_tongzong"]["reason"]
-    assert "混合" in QUARANTINE["config.bigyo_default"]["category"]
+    assert "mixed_source" in QUARANTINE["config.bigyo_default"]["category"]
     assert "C107" in QUARANTINE["config.bigyo_default"]["reason"]
