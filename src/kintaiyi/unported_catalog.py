@@ -264,14 +264,19 @@ CATALOG["太乙九星"] = _entry(
 )
 
 CATALOG["文昌九星"] = _entry(
-    "pending", "zitingjing_catalog_attested_text_pending_tongzong_volume6_collation", "P1",
-    "await_primary_text_keep_collation_only", migrate_whole=False,
-    source_confidence="medium",
-    target_hint="source_variants.zitingjing",
+    "source_variant",
+    "zitingjing_catalog_pending_vs_tongzong_volume6_ngj_direct",
+    "P1",
+    "use_c70_tongzong_profile_keep_zitingjing_primary_pending",
+    migrate_whole=False,
+    source_confidence="high",
+    target_hint="source_variants.wenchang_nine_stars",
     notes=(
-        "目前仅有《太乙紫庭秘诀》目录“附太乙文昌九星值宫术”证据；"
-        "正文未取得，10年/30年周期又存在参校冲突。旧 flat 统宗实现只可进入"
-        " collation_results，不得升为《太乙紫庭经》primary_result。"
+        "旧config.wenchang_nine_stars自身明确归《太乙统宗宝鉴》卷六；"
+        "C70已按NGJ直接见证建立30年一星、2700/270的source-specific runtime，"
+        "并修正丁→离、壬→乾及旧固定分布问题。"
+        "《太乙紫庭秘诀》仅目录见“附太乙文昌九星值宫术”，正文仍未取得；"
+        "因此紫庭primary继续pending，C70不得反填为紫庭canonical。"
     ),
 )
 
