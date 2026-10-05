@@ -120,3 +120,13 @@
 - 《紫庭经》〈释九宫所值九星〉继续作为静态九宫 primary；C124 仅属《统宗》动态 profile，不反填紫庭周期。
 - C124 与 C70 文昌九星明确分层：C124 为太乙九星 900/90/10 且可布全九星；C70 为文昌九星 2700/270/30，当前只稳定支持直事星及年干落宫/分野。
 - 新增九星 crosswalk 与 C124 专项测试，禁止太乙九星、文昌九星及跨来源周期静默合并。
+
+
+## 2026-10-05 — 研易楼明钞本旧扫描成果恢复
+
+- 用户确认研易楼藏《太乙紫庭祕訣》明钞本此前整理术语库时已经扫描，本地 E 盘仍有原文件；废止“扫描资源未取得”的旧表述。
+- 从旧 `kentang2017/kintaiyi` 派生实现残留恢复文昌九星旧整理序列：文曲、玄鳳、明維、昭搖、立華、華明、玄武、玄冥、雄明。
+- 新增 `terminology/zitingjing-legacy-scan-recovery.json`，明确其身份为 legacy scan extraction witness，而非重新生成的 manuscript transcription。
+- 文昌九星 primary evidence 更新为 `legacy_scan_extraction_recovered_page_pending`：旧扫描成果已确认存在并恢复部分残留，但 E 盘原扫描/旧 `terminology.json` 未重新挂载前仍禁止生成紫庭 primary runtime。
+- 与 C70《统宗》NGJ 见证的文昌/文曲、阴德/昭搖、招摇/立華、维明/雄明及年干落宫差异全部并列保存，不静默合并。
+- 恢复词形单列为 `recovered_scan_aliases`；`old_term_record_id`、`source_page`、`old_aliases` 等旧 store 原字段继续保持 null，防止把派生残留误当旧库原字段。
