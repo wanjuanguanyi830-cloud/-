@@ -293,30 +293,6 @@ QUARANTINE: dict[str, dict[str, Any]] = {
         replacement_layer="dayou.source_specific_runtime_pending",
         source_module="cycles",
     ),
-    "kintaiyi.cycles.bigyo_tianmu.tongzong": _q(
-        "kintaiyi.cycles.bigyo_tianmu.tongzong",
-        category="deprecated_reference_formula",
-        reason=(
-            "2026-10-04大游天目记录已将旧%180/+214实现明确列为deprecated_reference；"
-            "正式恢复工作只确认金镜72→18路径及18步次序，完整历元接口仍待重接。"
-        ),
-        replacement_rule_ids=(),
-        replacement_layer="dayou_tianmu.source_specific_runtime_pending",
-        source_module="cycles",
-    ),
-    "config.bigyo_tianmu_default": _q(
-        "config.bigyo_tianmu_default",
-        category="legacy_api_defaults_to_deprecated_reference",
-        reason=(
-            "config.bigyo_tianmu默认进入tongzong +214旧兼容路径；"
-            "该路径已被2026-10-04恢复记录标为deprecated_reference。"
-        ),
-        replacement_rule_ids=(),
-        replacement_layer="dayou_tianmu.source_specific_runtime_pending",
-        source_module="cycles",
-    ),
-
-    # 卷九/十等已明确不等价的旧实现。
     "guiyun.yinyang_jiu_e": _q(
         "guiyun.yinyang_jiu_e",
         category="wrong_threshold_model",
