@@ -17,10 +17,10 @@ def _load(path):
 
 def test_prior_ziting_scan_recovery_keeps_legacy_forms_without_promoting_primary():
     recovery = _load(RECOVERY)
-    entry = recovery["entries"][0]
+    entry = next(e for e in recovery["entries"] if e["key"] == "wenchang_nine_stars")
 
     assert recovery["status"] == (
-        "recovered_legacy_scan_extraction_residue_direct_page_not_reattached"
+        "prior_manuscript_scan_confirmed_code_residue_source_ambiguous"
     )
     assert entry["key"] == "wenchang_nine_stars"
     assert entry["recovered_star_sequence"] == [
@@ -34,14 +34,14 @@ def test_ziting_catalog_records_recovered_scan_evidence_but_blocks_primary_resul
     entry = next(e for e in catalog["entries"] if e["key"] == "wenchang_nine_stars")
 
     assert entry["primary_evidence_level"] == (
-        "legacy_scan_extraction_recovered_page_pending"
+        "prior_scan_confirmed_page_record_pending"
     )
     assert entry["primary_result_allowed"] is False
     assert entry["runtime"] is None
-    assert entry["legacy_scan_recovery"]["recovered_forms"][0] == "文曲"
+    assert entry["legacy_scan_recovery"]["code_residue_status"].startswith("source_ambiguous_for_ziting")
 
     wrapped = build_zitingjing_rule_sources("wenchang_nine_stars")
-    assert wrapped["status"] == "primary_legacy_scan_recovered_page_pending"
+    assert wrapped["status"] == "primary_prior_scan_confirmed_page_record_pending"
     assert wrapped["primary_ready"] is False
     assert wrapped["canonical_selected"] is None
 
@@ -83,3 +83,23 @@ def test_legacy_manifest_records_local_copy_without_faking_old_ids_or_pages():
     assert entry["legacy_fields"]["source_page"] is None
     assert entry["legacy_fields"]["old_aliases"] is None
     assert "文曲" in entry["recovered_scan_aliases"]
+
+
+def test_prior_tongzong_taiyi_nine_star_residue_is_separate_from_yanyilou_scan():
+    recovery = _load(RECOVERY)
+    entry = next(e for e in recovery["entries"] if e["key"] == "taiyi_nine_stars")
+
+    assert entry["explicit_source_comment"] == "《太乙统宗宝鉴》卷六·太乙九星"
+    assert entry["recovered_cycle_annotation"] == {
+        "large_cycle": 900,
+        "small_cycle": 90,
+        "rate": 10,
+        "start_text": "命起天蓬順行九星",
+    }
+    assert entry["current_audit"]["current_replacement"] == "C124-TONGZONG-TAIYI-NINE-STARS"
+    assert recovery["provenance"]["manuscript_scan_user_confirmation"]["status"] == (
+        "previously_scanned_during_terminology_workflow"
+    )
+    assert recovery["provenance"]["recovered_code_residue"]["explicit_source_comment"] == (
+        "太乙統宗寶鑑 卷六：太乙九星 + 文昌九星"
+    )
