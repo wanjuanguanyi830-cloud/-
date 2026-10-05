@@ -23,7 +23,9 @@
         "holding": "国立中央图书馆/国家图书馆（台湾）",
         "carrier": "明钞本《太乙金镜式经》十卷四册",
         "pages": 124,
-        "status": "independent_manuscript_witness_scan_identified"
+        "status": "independent_manuscript_witness_metadata_verified_page_locators_pending",
+        "metadata_verified": "National Central Library record + Wikimedia Commons 124-page scan",
+        "locator_policy": "逐页图像未核到前，不分配 J4M 页码、不覆盖 jinjing_siku_volume4 canonical。"
       }
     ],
     "order_collation": {
