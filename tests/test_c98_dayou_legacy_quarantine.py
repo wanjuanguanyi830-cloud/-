@@ -46,8 +46,8 @@ def test_c98_tianmu_default_is_superseded_by_c104_tongzong_delegate():
     data = bigyo_tianmu(0)
     assert data["profile"] == "tongzong"
     assert data["offset"] == 214
-    assert data["rule_id"] == "C104-DAYOU-TIANMU-TONGZONG"
-    assert data["canonical"] == "taiyi-c104-dayou-tianmu-source-profiles-v1"
+    assert data["rule_id"] == "C106-DAYOU-TIANMU-TONGZONG"
+    assert data["canonical"] == "taiyi-c106-dayou-tianmu-source-profiles-v1"
     assert data["canonical_equivalent"] is True
     assert data["promotion_allowed"] is True
     assert data["quarantined"] is False
@@ -56,7 +56,7 @@ def test_c98_tianmu_default_is_superseded_by_c104_tongzong_delegate():
 
 def test_c98_config_tianmu_default_is_c104_tongzong_delegate():
     data = config.bigyo_tianmu(0)
-    assert data["rule_id"] == "C104-DAYOU-TIANMU-TONGZONG"
+    assert data["rule_id"] == "C106-DAYOU-TIANMU-TONGZONG"
     assert data["quarantined"] is False
     assert data["canonical_delegate"]["surplus"] == 214
 
@@ -65,7 +65,7 @@ def test_c98_jinjing_tianmu_now_delegates_to_c104_without_custom_offset():
     data = bigyo_tianmu(0, profile="jinjing")
     assert data["god"] == DAYOU_TM_PATH[0]
     assert data["step_number"] == 1
-    assert data["rule_id"] == "C104-DAYOU-TIANMU-JINJING"
+    assert data["rule_id"] == "C106-DAYOU-TIANMU-JINJING"
     assert data["canonical_equivalent"] is True
     assert data["promotion_allowed"] is True
     assert data["quarantined"] is False
