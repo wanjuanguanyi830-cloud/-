@@ -15,8 +15,8 @@
     "entry_count": 148,
     "exact_cross_entry_name_collisions": 0,
     "status": "clean_at_snapshot",
-    "rules_json_rule_id_count": 127,
-    "terminology_rule_id_count": 159,
+    "rules_json_rule_id_count": 130,
+    "terminology_rule_id_count": 162,
     "rules_missing_from_terminology": 0,
     "rules_coverage_status": "complete_at_snapshot",
     "tongzong_military_source_runtime_coverage": "25/25",
@@ -27,7 +27,8 @@
     "jingyou_military_text_pending": [],
     "jingyou_military_resolved_collation": [
       "JF4M-02"
-    ]
+    ],
+    "tongzong_volume10_spirit_runtime_coverage": "2/2"
   },
   "bridges": [
     {
@@ -1004,6 +1005,33 @@
       ],
       "implemented_derived_runtime_rule_ids": [
         "V17-D1"
+      ]
+    },
+    {
+      "id": "CW-TONGZONG-V10-SPIRITS-ZITING-RECOVERY",
+      "members": [
+        {
+          "catalog": "terminology/zitingjing.json",
+          "key": "three_banners",
+          "term": "三旗行宫",
+          "rule_id": "C126-TONGZONG-THREE-BANNERS",
+          "source_profile": "tongzong_volume10_three_banners",
+          "role": "known_tongzong_rule_plus_legacy_ziting_store_recovery_pointer"
+        },
+        {
+          "catalog": "terminology/zitingjing.json",
+          "key": "nine_palace_nobles",
+          "term": "九宫贵神",
+          "rule_id": "C127-TONGZONG-NINE-PALACE-NOBLES",
+          "source_profile": "tongzong_volume10_nine_palace_nobles",
+          "role": "known_tongzong_rule_plus_legacy_ziting_store_recovery_pointer"
+        }
+      ],
+      "relation": "current_canonical_source_resolved_legacy_manuscript_attribution_still_recoverable",
+      "forbidden_merge": [
+        "C126/C127现行可执行公式明确属于《太乙统宗宝鉴》卷十，不得因为旧迁移骨架位于zitingjing catalog而反标成紫庭canonical。",
+        "以后若研易楼明钞原页证实同名/相关术，只新增独立紫庭witness/profile，不覆盖统宗runtime。",
+        "旧terminology.json恢复只回填旧ID、字形、页码、定义、备注与来源身份，不反写现行source-specific公式。"
       ]
     }
   ]
