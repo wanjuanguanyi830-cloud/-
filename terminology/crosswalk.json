@@ -934,32 +934,31 @@
       "id": "CW-TONGZONG-MILITARY-IMPLEMENTATION-STATUS",
       "catalog": "terminology/military-tongzong-v15-v17.json",
       "relation": "source_rule_vs_runtime_boundary",
-      "source_rule_only": [
-        "V15-01",
-        "V15-07",
-        "V15-08",
-        "V15-11",
-        "V15-14"
-      ],
+      "source_rule_only": [],
       "derived_helpers": [
         "V17-D1"
       ],
       "forbidden_merge": [
-        "reference_function字段只记录旧综合层函数名，不等于当前独立runtime。",
-        "C23-C28已实现20条source-specific runtime；仅V15-01/07/08/11/14继续source_rule_catalog_only。",
+        "25条canonical source rules均有独立runtime，但不同来源/J4M/C8近名层仍不得自动合并。",
+        "V15-01/07/08/11/14的新runtime以来源限定输入替换旧综合代码的近似与跨层条件。",
         "V17-D1是C32已实现derived helper runtime，但不是卷十七canonical source rule。",
-        "未列入implemented_source_runtime_rule_ids或implemented_derived_runtime_rule_ids的条目不得被UI/API标成已实现算法。"
+        "reference_function仅作历史接口线索，不再作为implementation_status判断依据。"
       ],
       "implemented_source_runtime_rule_ids": [
+        "V15-01",
         "V15-02",
         "V15-03",
         "V15-04",
         "V15-05",
         "V15-06",
+        "V15-07",
+        "V15-08",
         "V15-09",
         "V15-10",
+        "V15-11",
         "V15-12",
         "V15-13",
+        "V15-14",
         "V17-01",
         "V17-02",
         "V17-03",
