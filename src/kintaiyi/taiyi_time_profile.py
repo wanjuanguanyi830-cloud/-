@@ -48,6 +48,7 @@ def time_count_profile(
     return {
         "rule_id": RULE_ID,
         "source_profile": "jinjing_tongzong_time_count_integration",
+        "count_type": "时计",
         "solstice_half": solstice_half,
         "dun": dun,
         "entry_count": entry_count,
