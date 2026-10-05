@@ -186,10 +186,9 @@
       "catalog_id": "taiyi-tongzong-v15-v17-military-terminology-v1",
       "scope": "source_sensitive_tongzong_volume15_volume17_military",
       "contains": [
-        "V15-01..14 卷十五军事应用",
-        "V17-01..11 卷十七军事占断",
-        "C23-C28 已实现20条source-specific runtime",
-        "V15-01/07/08/11/14仍source-rule-only",
+        "V15-01..14 卷十五军事应用，全部source-specific runtime",
+        "V17-01..11 卷十七军事占断，全部source-specific runtime",
+        "V15-01/07/08/11/14采用source-limited纠偏实现",
         "V17-D1 C32跨卷derived runtime"
       ]
     }
