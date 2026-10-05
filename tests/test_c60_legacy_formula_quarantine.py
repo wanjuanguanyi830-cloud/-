@@ -47,6 +47,10 @@ def test_c60_high_risk_known_wrong_or_nonequivalent_legacy_is_centralized():
         "config.wenchang_nine_stars",
         "kintaiyi.cycles.wufu.project",
         "config.wufu_default",
+        "kintaiyi.cycles.bigyo.jinjing_tongzong",
+        "config.bigyo_default",
+        "kintaiyi.cycles.bigyo_tianmu.tongzong",
+        "config.bigyo_tianmu_default",
     }
     assert required <= set(QUARANTINE)
 
@@ -146,3 +150,8 @@ def test_c60_preserves_specific_known_error_reasons():
     assert "gong" in QUARANTINE["config.wenchang_nine_stars"]["reason"]
     assert "+250" in QUARANTINE["kintaiyi.cycles.wufu.project"]["reason"]
     assert "quarantined" in QUARANTINE["config.wufu_default"]["reason"]
+    assert "金镜" in QUARANTINE["kintaiyi.cycles.bigyo.jinjing_tongzong"]["reason"]
+    assert "+34" in QUARANTINE["kintaiyi.cycles.bigyo.jinjing_tongzong"]["reason"]
+    assert "混合" in QUARANTINE["config.bigyo_default"]["reason"]
+    assert "%180/+214" in QUARANTINE["kintaiyi.cycles.bigyo_tianmu.tongzong"]["reason"]
+    assert "deprecated_reference" in QUARANTINE["config.bigyo_tianmu_default"]["reason"]
