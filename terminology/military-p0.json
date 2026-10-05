@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "catalog_id": "taiyi-military-p0-terminology-v1",
+  "scope": "source_sensitive_military_p0",
+  "status": "repository_source_profile_terminology_catalog",
+  "legacy_terminology_json_migrated": false,
+  "shared_catalog": "terminology/common-core.json",
+  "cross_source_policy": {
+    "canonical_selected": null,
+    "cross_source_merge": false,
+    "c8_formula_equivalent": false,
+    "policy": "金镜、福应经、统宗与C8的同名/近名层只并列登记；C8归一化层不得冒充古籍公式。"
+  },
+  "source_profiles": {
+    "jinjing_siku_volume4": {
+      "source": "四库本《太乙金镜式经》卷四",
+      "ruleset": "jinjing-siku-v4-military-12",
+      "status": "implemented_source_specific"
+    },
+    "jingyou_fuying_volume4": {
+      "source": "《景祐太乙福应经》卷四",
+      "ruleset": "jingyou-fuying-v4-military-11",
+      "status": "source_record_only"
+    },
+    "tongzong_volume5": {
+      "source": "《太乙统宗宝鉴》卷五",
+      "status": "parallel_source_profile"
+    },
+    "c8_upstream": {
+      "source": "C8组合层上游/归一化角色",
+      "status": "integration_role_only",
+      "ancient_source": false
+    }
+  },
+  "entries": [
+    {
+      "key": "three_doors",
+      "preferred_term": "三门",
+      "aliases": ["三门", "三門", "三门具不具", "三門具不具", "推三门具不具", "推三門具不具"],
+      "term_type": "source_sensitive_method",
+      "source_rule_refs": {
+        "jinjing_siku_volume4": "J4M-01",
+        "jingyou_fuying_volume4": "JF4M-01"
+      },
+      "source_profiles": ["jinjing_siku_volume4", "jingyou_fuying_volume4", "tongzong_volume5", "c8_upstream"],
+      "c8_relation": "C8-L2只消费/归一化three_doors事实",
+      "c8_equivalent_formula": false,
+      "definition": "开、休、生三门的具不具判断；不同来源的门具公式与补文必须分profile保存。",
+      "boundary_notes": [
+        "C8-L2不是J4M-01或JF4M-01的公式实现。",
+        "不同古籍profile不得互补缺失条件后合成一个结果。"
+      ]
+    },
+    {
+      "key": "five_generals",
+      "preferred_term": "五将",
+      "aliases": ["五将", "五將", "五将发不发", "五將發不發", "推五将发不发", "推五將發不發"],
+      "term_type": "source_sensitive_method",
+      "source_rule_refs": {
+        "jinjing_siku_volume4": "J4M-02",
+        "jingyou_fuying_volume4": "JF4M-02"
+      },
+      "source_profiles": ["jinjing_siku_volume4", "jingyou_fuying_volume4", "tongzong_volume5", "c8_upstream"],
+      "c8_relation": "C8-L2只消费/归一化five_generals事实",
+      "c8_equivalent_formula": false,
+      "definition": "以始击掩击、文昌囚迫、主客大小将相关等来源条件判断五将发不发；三门事实与五将本体条件分栏。",
+      "boundary_notes": [
+        "杜塞取五将不发属于CORE-WUJIANG-READY跨层整合口径，不回写成J4M-02原文第四条件。",
+        "C8-L2不是J4M-02或JF4M-02的公式实现。"
+      ]
+    },
+    {
+      "key": "host_guest_relation",
+      "preferred_term": "主客相关法",
+      "aliases": ["主客相关", "主客相闗", "主客相关法", "主客相闗法", "推主客相关", "推主客相关法"],
+      "term_type": "source_sensitive_method",
+      "source_rule_refs": {
+        "jinjing_siku_volume4": "J4M-03",
+        "jingyou_fuying_volume4": "JF4M-03"
+      },
+      "source_profiles": ["jinjing_siku_volume4", "jingyou_fuying_volume4", "tongzong_volume5"],
+      "c8_relation": "C8-L3是主客动静/先后层，只是邻近主题，不是本法替代",
+      "c8_equivalent_formula": false,
+      "definition": "日计主客二目所临神五行相制之关法；客目克主目则客关得主人，主目克客目则主人关得客。",
+      "boundary_notes": [
+        "不得把本法与J4M-04/C8-L3的主客先后动静合并。",
+        "不得把旧独立日干支六十甲子纳音变量当成本法唯一输入。",
+        "本法接口用主目/客目，避免“天目”多义。"
+      ]
+    },
+    {
+      "key": "effective_five_generals_readiness",
+      "preferred_term": "有效五将发不发",
+      "aliases": ["有效五将", "有效五將", "有效五将发不发"],
+      "term_type": "cross_layer_integration",
+      "rule_id": "CORE-WUJIANG-READY",
+      "runtime": "kintaiyi.jinjing_v4_military.effective_five_generals_readiness",
+      "canonical_source_rule": false,
+      "definition": "项目整合层把source-specific五将结果与上游杜塞事实合成有效状态；杜塞时取五将不发。",
+      "boundary_notes": ["该整合规则不是《金镜》J4M-02原文组成部分，不得回写source profile。"]
+    }
+  ]
+}
