@@ -141,3 +141,25 @@ def test_ncl_witness_does_not_unlock_cross_xu_progression():
     assert data["computable"] is False
     assert data["blocked_by"] == "虚"
     assert "影印" in data["pending"][0] or "虚宿" in data["pending"][0]
+
+
+def test_additional_facsimile_locators_do_not_promote_xu_value():
+    catalog = c118_catalog()
+    witness = catalog["source_witness"]
+    locators = witness["additional_facsimile_locators"]
+
+    assert {item["id"] for item in locators} == {
+        "CADAL06056494",
+        "SSID-12326977",
+        "SSID-13003380",
+        "wenyuange-siku-0810",
+    }
+    wenyuange = next(item for item in locators if item["id"] == "wenyuange-siku-0810")
+    assert wenyuange["taiyi_page_range"] == [855, 920]
+    assert all(item["canonical_effect"] == "none" for item in locators)
+    assert all("visually_verified" in item["status"] for item in locators)
+
+    xu = catalog["mansion_spans"]["虚"]
+    assert xu["numeric_span"] is None
+    assert xu["status"] == "transcription_ambiguous_confirmed_by_manuscript"
+    assert "不得提升为数值见证" in witness["policy"]
