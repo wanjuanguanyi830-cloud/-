@@ -431,7 +431,7 @@ def test_c86_ncl06604_volume4_page_range_and_j4m_locators_are_verified():
     witnesses = {item["id"]: item for item in data["source"]["scan_witnesses"]}
     ncl = witnesses["NCL-06604"]
 
-    assert data["source"]["ncl_volume4_collation_version"] == "c86-ncl06604-v4-j4m-locators-and-key-readings-v2"
+    assert data["source"]["ncl_volume4_collation_version"] == "c86-ncl06604-v4-j4m-key-readings-v3"
     assert ncl["status"] == "volume4_scan_range_and_j4m_page_locators_verified_readings_in_progress"
     assert ncl["volume_boundaries"]["volume3_end"]["digital_scan_page"] == 54
     assert ncl["volume_boundaries"]["volume4_start"]["digital_scan_page"] == 55
@@ -462,6 +462,12 @@ def test_c86_ncl06604_volume4_page_range_and_j4m_locators_are_verified():
 def test_c86_ncl06604_selected_manuscript_readings_stay_noncanonical():
     _, rules = _rules()
     by_id = {item["id"]: item for item in rules}
+
+    j5 = by_id["J4M-05"]["manuscript_readings"]["NCL-06604"]
+    assert j5["explicit_calculation_values"] == [12, 22]
+    assert j5["omitted_vs_siku"] == [32]
+    assert j5["canonical_override"] is False
+    assert "12/22/32" in by_id["J4M-05"]["scan_rule_audit"]["locked_points"][0]
 
     assert by_id["J4M-06"]["manuscript_readings"]["NCL-06604"]["body_title"] == "推陈兵向背"
     assert by_id["J4M-07"]["manuscript_readings"]["NCL-06604"]["body_title"] == "推制阵随地法"
