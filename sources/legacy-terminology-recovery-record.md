@@ -15,6 +15,7 @@ blocked_missing_original_store
 - terminology/zitingjing-migration-map.json
 - terminology/ncl06604-legacy-reconciliation-map.json
 - terminology/zitingjing-legacy-scan-recovery.json
+- terminology/zitingjing-recovery-status.json
 - terminology/legacy-recovery-manifest.json
 
 其中 legacy-recovery-manifest 是可逆映射层，不是 master store；zitingjing-legacy-scan-recovery 是旧扫描整理残留 witness，不回填 old_term_record_id / manuscript_form / source_page 等旧 store 字段。
