@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0",
+  "catalog_id": "taiyi-wenchang-nine-stars-terminology-v1",
+  "scope": "source_sensitive_wenchang_nine_stars",
+  "status": "stable_source_specific_catalog",
+  "policy": [
+    "文昌九星不再作为《太乙紫庭祕訣》研易楼明钞本的primary/pending术法。",
+    "当前可执行canonical只对《太乙统宗宝鉴》卷六NGJ见证成立；其他统宗见证与《三才世纬》保留为异文/参校。",
+    "现代整理本目录中的“附太乙文昌九星值宮術”只证明现代编辑层收有该题，不证明研易楼原钞含有该篇。",
+    "研易楼明钞本目录页未列文昌九星值宫术；若以后取得另一完整原钞或新增直接页证，新增独立witness，不覆盖C70。"
+  ],
+  "entries": [
+    {
+      "key": "wenchang_nine_stars",
+      "preferred_term": "文昌九星",
+      "aliases": [
+        "文昌九星",
+        "文昌九宫",
+        "文昌九星值宫术",
+        "文昌九星值宮術"
+      ],
+      "term_type": "direct_tongzong_source_specific_term",
+      "canonical_rule_id": "C70-TONGZONG-WENCHANG-NINE-STARS",
+      "canonical_source_profile": "tongzong_volume6_ngj_wenchang_nine_stars",
+      "runtime": "kintaiyi.wenchang_nine_stars_tongzong.wenchang_nine_star_tongzong",
+      "direct_source": {
+        "work": "太乙统宗宝鉴",
+        "volume": 6,
+        "witness_id": "NGJ892411999009267118912",
+        "section": "明文昌九宫所主分野术",
+        "evidence_level": "direct_text_verified"
+      },
+      "star_sequence": [
+        "文昌",
+        "玄凤",
+        "明维",
+        "阴德",
+        "招摇",
+        "华明",
+        "玄武",
+        "玄冥",
+        "维明"
+      ],
+      "cycle": {
+        "large_cycle": 2700,
+        "small_cycle": 270,
+        "years_per_star": 30,
+        "start": "一宫文昌",
+        "direction": "顺行九宫"
+      },
+      "supported_runtime_scope": [
+        "当前直事星",
+        "入本星第几年",
+        "年干建禄宫落宫/分野"
+      ],
+      "unsupported_runtime_scope": [
+        "其余八星完整动态重排"
+      ],
+      "known_variant_groups": [
+        [
+          "明维",
+          "明雄"
+        ],
+        [
+          "阴德",
+          "阴玄"
+        ],
+        [
+          "招摇",
+          "招煥"
+        ],
+        [
+          "华明",
+          "革明"
+        ],
+        [
+          "维明",
+          "雄明"
+        ]
+      ],
+      "witness_boundaries": {
+        "cadal": "部分CADAL见证前文出现10年一星而算法仍用2700/270/30，保留内部冲突，不覆盖NGJ profile。",
+        "sancai_shiwei": "《三才世纬》仅作独立参校，不覆盖统宗NGJ。",
+        "legacy_code": "旧kentang2017/kintaiyi词形“文曲/昭搖/立華/雄明”等只作prior workflow code residue；旧代码本身明确标注来源为《太乙统宗宝鉴》卷六。"
+      },
+      "ziting_manuscript_boundary": {
+        "manuscript": "研易楼藏《太乙紫庭祕訣》明钞本",
+        "evidence": "用户上传原钞扫描；目录页列卷一至卷十二及后附项目，未见“文昌九星值宫术”题名。",
+        "scan_pages": [
+          5,
+          6
+        ],
+        "status": "not_attested_in_manuscript_toc",
+        "modern_edition_appendix": {
+          "title": "附太乙文昌九星值宮術",
+          "status": "modern_edition_catalog_attested_provenance_unresolved",
+          "inference": "可能为现代整理时收入的统宗相关材料，但目前只能作为来源假说，不能写成已证事实。"
+        }
+      }
+    }
+  ]
+}
