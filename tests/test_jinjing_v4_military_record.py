@@ -202,3 +202,29 @@ def test_j4m04_first_mover_victory_is_resolved_by_ancient_parallel_texts():
     assert "先起则胜" in rule["collation_evidence"]["wujing_zongyao_siku_houji_18"]
     assert "先起则胜" in rule["collation_evidence"]["taiyi_mishu"]
     assert "不自动回写" in rule["collation_evidence"]["policy"]
+
+
+def test_j4m05_two_conditions_are_disambiguated_without_importing_tongzong_expansions():
+    _, rules = _rules()
+    rule = {item["id"]: item for item in rules}["J4M-05"]
+    assert rule["collation_status"] == "two_conditions_disambiguated_by_tongzong_gloss"
+    assert "出其门" in rule["collation_evidence"]["tongzong_volume5"]
+    assert "用其二" in rule["collation_evidence"]["tongzong_volume5"]
+    assert "兵额" in rule["collation_evidence"]["do_not_import"]
+
+
+def test_j4m06_jinjing_and_tongzong_chenbing_rules_do_not_fill_each_other():
+    _, rules = _rules()
+    rule = {item["id"]: item for item in rules}["J4M-06"]
+    evidence = rule["source_boundary_evidence"]
+    assert "1/2/4/5/6/9" in evidence["jinjing_siku_volume4"]
+    assert "1/2/3/4/6/7/8/9" in evidence["tongzong_later_military_rule"]
+    assert "不得互补缺数" in evidence["policy"]
+
+
+def test_j4m07_record_includes_explicit_formation_control_layer():
+    _, rules = _rules()
+    rule = {item["id"]: item for item in rules}["J4M-07"]
+    assert "五行相克" in rule["canonical_summary"]
+    assert "主阵五行克客阵则主胜" in rule["implementation_note"]
+    assert "C66" in rule["completion_note"]
