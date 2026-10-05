@@ -164,3 +164,20 @@
 - 清理 rules registry 中五福/大游旧混合 profile，恢复金镜/统宗 source profile 明确隔离。
 - public API 固定为 `1.0`；新增 registry/operation/result/capabilities/repository-status schemas 和软件接入文档 `docs/SOFTWARE_API.md`。
 - 本轮收口期间 CI 从历史不一致状态恢复为全绿，并持续由 GitHub Actions 对 main 执行全库 pytest。
+
+
+## 2026-10-05 — 景祐卷四军事 runtime 收口
+
+- JF4M-01..11 从仅有 source records 推进为《景祐太乙福应经》卷四自身的 source-specific runtime，11/11 均可按 rule_id 解析。
+- JF4M 与《太乙金镜式经》J4M 继续保持平行 crosswalk，不允许调用 J4M runtime 替代景祐规则。
+- JF4M-10 对应 J4M-11 风云飞鸟；JF4M-11 对应 J4M-10 奇伏；J4M-12 没有直接 JF4M 对应项。
+- JF4M-02“大小将不相开”、JF4M-07完整地形字表、JF4M-10部分观测句仍保留文本/扫描 pending；runtime 可用不等于来源文字已经完全无疑点。
+- catalog-index 与 crosswalk audit 已同步：景祐军事 runtime coverage 固定为 11/11，并单列 02/07/10 pending。
+
+## 2026-10-05 — 旧术语库恢复状态分层
+
+- 新增 `legacy_recovery_status()`，把“算法/规则待校”与“历史原件当前不可访问”分开。
+- 当前旧 `terminology.json` 的真实 schema 与原文件仍未重新挂载；parser 与 synthetic reconstruction 均保持禁止。
+- 用户已确认研易楼藏《太乙紫庭祕訣》明钞本及相关旧资料在本地 E 盘仍存，但当前运行环境未挂载。
+- 未取得原件前，old_term_record_id、旧定义、旧 notes、manuscript_form、source_page 等字段继续保持 null；外部参校来源不得代填研易楼明钞本逐字字段。
+- 新增 `schemas/legacy-recovery-status.schema.json` 与公开 API 回归测试。
