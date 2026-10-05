@@ -89,7 +89,8 @@
             "J4M-12正文题=推对阵有云气定胜负",
             "J4M-11正文题=推太乙风云飞鸟助阵法；正文起句仍作经曰助战之法",
             "J4M-12西方白云条明写大胜，庚辛日弥佳",
-            "NCL卷四目录同样先列风云飞鸟、后列奇兵伏兵，而正文先奇兵伏兵、后风云飞鸟"
+            "NCL卷四目录同样先列风云飞鸟、后列奇兵伏兵，而正文先奇兵伏兵、后风云飞鸟",
+            "J4M-05明钞本只列算十二、二十二，随后即五将发；未见四库本三十二"
           ],
           "still_pending": [
             "J4M-03例文太蔟/太簇的明钞本字形需更高倍率确认",
@@ -149,7 +150,7 @@
     "scan_locator_version": "c79-j4m-cadal-page-locators-v1",
     "witness_audit_version": "c84-ncl06604-access-boundary-v1",
     "full_twelve_scan_audit_version": "c85-j4m01-12-scan-boundary-complete-v1",
-    "ncl_volume4_collation_version": "c86-ncl06604-v4-j4m-locators-and-key-readings-v2"
+    "ncl_volume4_collation_version": "c86-ncl06604-v4-j4m-key-readings-v3"
   },
   "separation_policy": [
     "本表只记录四库本《太乙金镜式经》卷四十二法，不自动并入《太乙统宗宝鉴》卷五或旧代码同名函数。",
@@ -501,6 +502,24 @@
         "canonical_effect": "none",
         "toc_title": "推出师",
         "body_title": "推出师法"
+      },
+      "manuscript_readings": {
+        "NCL-06604": {
+          "body_title": "推出师法",
+          "digital_scan_pages": [
+            58
+          ],
+          "explicit_calculation_values": [
+            12,
+            22
+          ],
+          "reading": "人君欲略地及安置诸军者，算十二、二十二，五将发，三门具，乃可举兵",
+          "omitted_vs_siku": [
+            32
+          ],
+          "relation_to_siku": "substantive_numeric_variant; NCL line proceeds directly from 二十二 to 五将发",
+          "canonical_override": false
+        }
       }
     },
     {
