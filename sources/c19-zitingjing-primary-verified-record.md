@@ -133,3 +133,18 @@ https://www.shidianguji.com/zh/book/SDZJ0646/chapter/1kg32qffweib7
 - 九星主来源链接统一为 `1kg32q85u4tgl`。
 - 早期记录中的“配干”已撤销：当前 C19 canonical 表只保留已核稳的宫、星、分野、吉凶。
 - 剩余三项定位状态与 C20 证据等级统一，不再使用笼统 `pending_direct_locator`。
+
+
+## C19/C31/C34 术语目录接线
+
+当前新增稳定入口：`terminology/zitingjing.json`。
+
+该目录不改变既有证据等级，只把六项术语、aliases、runtime 与来源门禁集中登记：
+
+- 太乙九星 / 文昌变化 / 始击变化：direct_text_verified；
+- 文昌九星：catalog_attested_text_pending；
+- 三旗行宫 / 九宫贵神：project_attribution_unverified。
+
+C18 `build_zitingjing_rule_sources()` 仍是 primary_result 的唯一门禁：非 direct_text_verified 项传入 primary_result 必须拒绝。
+
+旧 `terminology/zitingjing-migration-map.json` 继续只负责历史本地术语库恢复，不与稳定消费目录合并。
