@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "audit_id": "C105-NCL06604-LEGACY-TERMINOLOGY-RECONCILIATION",
   "date": "2026-10-05",
   "witness": {
@@ -96,7 +96,7 @@
         60,
         61
       ],
-      "current_verified_evidence": "明钞本同样见矛鋋，句作弓弩三不当一；支持四库C79纠字。",
+      "current_verified_evidence": "C115 已连续核完 NCL J4M-08 正文：三急、五类地形兵种/比例、训练段、器械/将帅段、指挥链及收尾；矛鋋=弓弩三不当一；另见将不习兵五不当一，与四库十不当一不同。",
       "legacy_record_id": null,
       "legacy_fields_to_recover": [
         "old_term_record_id",
@@ -109,8 +109,9 @@
       "merge_key": [
         "witness_id",
         "rule_id",
-        "concept=矛鋋"
-      ]
+        "concept=随地制变/矛鋋"
+      ],
+      "current_verification_cycle": "C115"
     },
     {
       "key": "j4m09_inner_palaces",
@@ -209,5 +210,6 @@
     "synthetic_legacy_ids_allowed": false,
     "overwrite_current_verified_evidence_without_review": false,
     "duplicate_import_as_new_source_allowed": false
-  }
+  },
+  "last_update": "C115"
 }
