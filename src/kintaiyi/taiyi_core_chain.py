@@ -26,6 +26,7 @@ from .taiyi_jishen_shiji import shiji_from_taisui_wenchang
 from .taiyi_wenchang import wenchang_from_ju
 from .taiyi_position import taiyi_from_ju
 from .taiyi_taisui import year_entry_from_accumulated_year
+from .taiyi_epoch import epoch_context
 
 
 CORE_CHAIN_ID = "CORE-G4-G7-CHAIN"
@@ -210,5 +211,45 @@ def g1_to_g7_from_accumulated_year(
         "policy": (
             "正式岁计核心入口从积年求太岁与本元局号；"
             "G2/G3消费local_ju，G4消费taisui_branch，后续只消费上游结果。"
+        ),
+    }
+
+
+
+def l0_to_g7_from_historical_year(
+    *,
+    historical_year: int,
+    dun: str,
+) -> dict[str, Any]:
+    """历史年份 -> L0历元 -> G1→G7完整岁计核心链。
+
+    注意：historical_year只是已经解析好的岁计年份编号。
+    本函数不判断某个具体公历日期是否已跨传统岁界。
+    """
+    l0 = epoch_context(historical_year)
+    accumulated_year = l0["long_epoch"]["accumulated_year"]
+    core = g1_to_g7_from_accumulated_year(
+        accumulated_year=accumulated_year,
+        dun=dun,
+    )
+    return {
+        **core,
+        "rule_id": "CORE-L0-G7-CHAIN",
+        "historical_year": historical_year,
+        "accumulated_year": accumulated_year,
+        "five_zi_short_accumulated_year": (
+            l0["five_zi_short_epoch"]["five_zi_accumulated_year"]
+        ),
+        "six_ji_three_yuan": l0["six_ji_three_yuan"],
+        "five_zi_from_long": l0["five_zi_from_long"],
+        "five_zi_from_short": l0["five_zi_from_short"],
+        "epoch_equivalent_mod_360": l0["equivalent_mod_360"],
+        "stages": {
+            "l0": l0,
+            **core["stages"],
+        },
+        "policy": (
+            "正式G1-G7消费卷一长积年；卷三五子元短积年仅并列保存并做mod360校验。"
+            "日期到岁界的历法转换属于更上游日历层。"
         ),
     }
