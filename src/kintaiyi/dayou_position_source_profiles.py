@@ -26,6 +26,7 @@ from .taiyi_rules import integer
 C107_VERSION = "taiyi-c107-dayou-position-source-profiles-v1"
 
 PALACE_PATH = (7, 8, 9, 1, 2, 3, 4, 6)
+TAOJIN_PATH = (7, 6, 4, 3, 2, 1, 9, 8)
 
 PROFILES = {
     "jinjing": {
@@ -58,6 +59,23 @@ PROFILES = {
         "years_per_palace": 36,
         "status": "collated_tongzong_profile_with_witness_variants",
     },
+    "taojin": {
+        "rule_id": "C107-DAYOU-TAOJIN",
+        "source_profile": "taojin_dayou_position",
+        "work": "太乙淘金歌",
+        "section": "大游太乙行八宫",
+        "epoch": "唐高宗永徽五年甲寅",
+        "surplus_name": None,
+        "surplus": 0,
+        "outer_cycle_name": "大游周法",
+        "outer_cycle": 288,
+        "secondary_cycle_metadata": {
+            "count_contract": "永徽五年甲寅为第1年，逐年加一",
+        },
+        "small_cycle": 288,
+        "years_per_palace": 36,
+        "status": "direct_taojin_profile_with_historical_example",
+    },
 }
 
 SOURCE_WITNESS = {
@@ -71,6 +89,28 @@ SOURCE_WITNESS = {
         "historical_example_context": (
             "同卷另列开元十二年积13331与元法4320/纪法720/小周288参数。"
         ),
+    },
+    "taojin": {
+        "url": "https://www.shidianguji.com/book/7504934605703610380/chapter/1lx5eg1yd22we",
+        "formula_core": (
+            "大游太乙行八宫，七宫为首不入中五，三十六年移一位；"
+            "永徽五年甲寅岁初起七宫为法例。"
+        ),
+        "route": list(TAOJIN_PATH),
+        "historical_check": {
+            "epoch_count": 1,
+            "epoch": "唐高宗永徽五年甲寅",
+            "target": "开禧二年丙寅",
+            "accumulated_count": 553,
+            "expected_palace": 8,
+            "expected_year_in_palace": 13,
+            "source_statement": "共得五百五十三年……今在八宫住一十三年",
+        },
+        "route_corroboration": {
+            "work": "古今图书集成·艺术典卷六百八十七",
+            "url": "https://zh.wikisource.org/zh-hans/欽定古今圖書集成/博物彙編/藝術典/第687卷",
+            "statement": "七六四三二一九八，此大游所行之序",
+        },
     },
     "tongzong": {
         "selected_execution": {
@@ -126,7 +166,7 @@ RECENT_WORK_RECOVERY = {
         "jinjing_outer_cycle": 4320,
         "small_cycle": 288,
         "years_per_palace": 36,
-        "path": list(PALACE_PATH),
+        "path": list(path),
     },
     "status": "recovered_and_direct_source_reverified",
     "time_window_policy": "only_2026-10-04_and_2026-10-05_prior_work",
@@ -141,7 +181,7 @@ BOUNDARY = {
     "auto_three_bases_relations": False,
     "policy": (
         "C107只求位置；C65/C91等同宫关系仍须显式same_palace证据。"
-        "金镜与统宗参数不静默合并。"
+        "金镜、统宗、淘金歌参数与行宫方向不静默合并。"
     ),
 }
 
@@ -150,7 +190,7 @@ def _profile(name: str) -> dict[str, Any]:
     try:
         return PROFILES[name]
     except KeyError as exc:
-        raise ValueError("source_profile须为jinjing/tongzong") from exc
+        raise ValueError("source_profile须为jinjing/tongzong/taojin") from exc
 
 
 def _cycle_count(value: int, cycle: int) -> tuple[int, int]:
@@ -174,7 +214,8 @@ def dayou_position(
     zero_index = small_count - 1
     palace_index = zero_index // spec["years_per_palace"]
     year_in_palace = zero_index % spec["years_per_palace"] + 1
-    palace = PALACE_PATH[palace_index]
+    path = TAOJIN_PATH if source_profile == "taojin" else PALACE_PATH
+    palace = path[palace_index]
 
     return {
         "schema_version": "1.0",
@@ -217,6 +258,11 @@ def c107_catalog() -> dict[str, Any]:
         "canonical": C107_VERSION,
         "profiles": copy.deepcopy(PROFILES),
         "path": list(PALACE_PATH),
+        "source_paths": {
+            "jinjing": list(PALACE_PATH),
+            "tongzong": list(PALACE_PATH),
+            "taojin": list(TAOJIN_PATH),
+        },
         "excluded_palace": 5,
         "source_witness": copy.deepcopy(SOURCE_WITNESS),
         "recent_work_recovery": copy.deepcopy(RECENT_WORK_RECOVERY),
