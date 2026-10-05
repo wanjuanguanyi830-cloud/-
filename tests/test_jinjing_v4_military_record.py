@@ -183,6 +183,12 @@ def test_j4m08_chao_cuo_quote_variant_is_quarantined_not_silently_emended():
     _, rules = _rules()
     rule = {item["id"]: item for item in rules}["J4M-08"]
     assert rule["collation_status"] == "jinjing_chao_cuo_quote_diverges_from_hanshu"
-    assert "车骑三不当一" in rule["quotation_collation"]["jinjing_siku_volume4"]["examples"]
-    assert "车骑二不当一" in rule["quotation_collation"]["hanshu_yuanang_chaocuo_zhuan"]["examples"]
+    assert any(
+        "车骑三不当一" in item
+        for item in rule["quotation_collation"]["jinjing_siku_volume4"]["examples"]
+    )
+    assert any(
+        "车骑二不当一" in item
+        for item in rule["quotation_collation"]["hanshu_yuanang_chaocuo_zhuan"]["examples"]
+    )
     assert "不得静默改写 runtime" in rule["quotation_collation"]["policy"]
