@@ -58,7 +58,7 @@ def test_c109_ncl_jingyou_agreement_cluster_is_observation_not_stemma():
     data = _matrix()
     cluster = data["agreement_patterns"]["NCL06604_JINGYOU_CLUSTER"]
 
-    assert data["schema_version"] == "1.2"
+    assert data["schema_version"] == "1.3"
     assert cluster["status"] == "observed_agreement_pattern_not_stemma"
 
     matches = {item["rule_id"]: item for item in cluster["matches"]}
@@ -78,7 +78,7 @@ def test_c110_ncl_j4m06_full_table_is_directly_verified_from_supplied_scans():
     row = {item["rule_id"]: item for item in data["entries"]}["J4M-06"]
     table = row["ncl"]["full_table"]
 
-    assert data["last_update"] == "C110"
+    assert data["last_update"] in {"C110", "C111"}
     assert table["1"] == {
         "出军": "西北",
         "战利": "东南",
@@ -101,3 +101,26 @@ def test_c110_ncl_j4m06_full_table_is_directly_verified_from_supplied_scans():
     assert any("直戰" in item and "陣" in item for item in row["ncl"]["scribal_features"])
     assert any("正南" in item and "東" in item for item in row["ncl"]["scribal_features"])
     assert "觀方制變" in row["ncl"]["closing_text"]
+
+
+def test_c111_ncl_j4m07_body_preserves_terrain_wording_without_overwriting_siku():
+    data = _matrix()
+    row = {item["rule_id"]: item for item in data["entries"]}["J4M-07"]
+
+    assert data["last_update"] == "C111"
+    assert row["ncl"]["formation_elements"] == {
+        "曲阵": "水",
+        "锐阵": "火",
+        "直阵": "木",
+        "方阵": "金",
+        "圆阵": "土",
+    }
+    assert row["ncl"]["terrain_table"]["后高前下"] == "锐阵"
+    assert row["ncl"]["terrain_table"]["前高后下"] == "直阵"
+    assert row["ncl"]["terrain_table"]["地跨邪"] == "圆阵"
+    assert row["ncl"]["terrain_table"]["地高而平"] == "方阵"
+    assert row["ncl"]["terrain_table"]["左右势高"] == "曲阵"
+    assert row["ncl"]["direction_rule"] == "地顺其向则吉；地反其向则凶"
+    assert "觀方置變" in row["ncl"]["closing_text"]
+    assert "地跨邪" in row["hard_boundary"]
+    assert "四库canonical" in row["hard_boundary"]
