@@ -155,3 +155,35 @@ C98 的目的不是增加公式数量，而是减少“看起来能算所以像�
 - 金镜与统宗不乱合；
 - deprecated reference 不升级；
 - 缺 source-specific runtime 时明确 pending，而不是借 legacy compatibility 顶上。
+
+
+## 8. C106 直接来源复核后的修正
+
+C98 对“大游天目”的隔离结论属于**阶段性治理结论**，现已被 C106 的直接来源复核部分推翻。
+
+后续直接核得：
+
+- 《太乙金镜式经》：天目元法72、周法18、起天道、顺十六神、大武/阴德重留；
+- 《太乙统宗宝鉴》：神盈差214、大周180、小周18、顺十六宫、大武/阴德重留；
+- 《易学象数论》平行条又明确“余起天道”，支持统宗电子转录中起点 OCR 的正规化。
+
+因此：
+
+- `bigyo_tianmu(profile="tongzong")` 不再是错误公式隔离项；
+- `bigyo_tianmu(profile="jinjing")` 也不再是“缺完整来源接口”的旧试算；
+- 两者都由 C106 source-specific runtime 承担；
+- legacy 0基 API 只作为 C106 的输入/输出适配层。
+
+C60 已撤销：
+
+- `kintaiyi.cycles.bigyo_tianmu.tongzong`
+- `config.bigyo_tianmu_default`
+
+两项 quarantine。
+
+C98 仍然有效的隔离只剩：
+
+- `bigyo(profile="jinjing_tongzong")`
+- `config.bigyo_default`
+
+因为大游太乙行宫本身仍把金镜宫序与统宗 +34 混为一个旧 profile，尚未完成 source-specific 重接。
