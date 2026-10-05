@@ -81,3 +81,25 @@ production日计统一：
 `accumulated_day -> 日计阳局 -> G2..G7`
 
 因此production日计不再要求调用方手工提供积日。
+
+
+## 证据等级拆分
+
+必须区分两件事：
+
+1. `707,501,061` —— 《金镜》直接给出的积日数值锚点，属于 primary source direct；
+2. “梁天监三年六月八日”映射到哪一个连续现代历日 —— 由现代历史历法重建工具完成，不是《金镜》直接给出的Gregorian日期。
+
+当前 provider：
+
+`lunar_python`
+
+其底层 `LunarYear` 使用节气/合朔计算，`ShouXingUtil` 包含历史历法分段与气朔算法，覆盖远早于近现代的年份。
+
+因此项目允许它作为 production 的**历史锚点重建工具**，但字段明确标记：
+
+`modern_historical_calendar_reconstruction`
+
+不得在文档或UI中把重建出的公历日期说成“《金镜》原文日期”。
+
+若未来取得更高等级的历史历日校勘，可以替换锚点映射，而不改变原典积日数值。
