@@ -265,3 +265,14 @@ def test_j4m11_conflicting_jingyou_event_readings_are_not_merged():
     assert "从主人刑上来 -> 主人败" in joined
     assert "《金镜》“从主人形上来客败”" in joined
     assert variant["canonical_override"] is False
+
+
+def test_j4m12_record_forbids_symmetry_completion_and_separates_subject():
+    _, rules = _rules()
+    rule = {item["id"]: item for item in rules}["J4M-12"]
+    assert rule["collation_status"] == "source_table_audited_no_symmetry_completion"
+    constraints = rule["canonical_constraints"]
+    assert "基础胜负未明" in constraints["west_white"]
+    assert "禁止补“大胜”" in constraints["west_white"]
+    assert "subject=客" in constraints["north_red"]
+    assert "云气所在阵与断语主体必须分栏" in constraints["cloud_bearer_vs_verdict_subject"]
