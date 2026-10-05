@@ -86,9 +86,21 @@
       "catalog_id": "taiyi-zitingjing-terminology-v1",
       "scope": "source_sensitive_zitingjing",
       "contains": [
-        "紫庭直接/待恢复：太乙九星、文昌九星、文昌变化、始击变化",
+        "紫庭直接：太乙九星、文昌变化、始击变化",
+        "现代整理/跨来源恢复指针：文昌九星",
         "旧store跨来源恢复指针：三旗行宫、九宫贵神",
         "三旗/九宫贵神现行可执行canonical归《太乙统宗宝鉴》卷十 C126/C127"
+      ]
+    },
+    {
+      "path": "terminology/wenchang-nine-stars.json",
+      "catalog_id": "taiyi-wenchang-nine-stars-terminology-v1",
+      "scope": "source_sensitive_wenchang_nine_stars",
+      "contains": [
+        "C70《太乙统宗宝鉴》卷六NGJ文昌九星",
+        "CADAL 10/30年内部异读",
+        "《三才世纬》参校",
+        "现代整理本“附太乙文昌九星值宮術”来源边界"
       ]
     },
     {
