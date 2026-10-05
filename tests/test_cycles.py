@@ -101,6 +101,12 @@ def test_profile_metadata_and_pending_epoch():
     assert DAYOU_TAOJIN_PATH == (7,6,4,3,2,1,9,8)
     assert bigyo(0,profile="taojin")["status"] == "not_computable"
     assert bigyo(0,profile="taojin",epoch_offset=0)["palace"] == 7
-    assert bigyo_tianmu(0)["profile_metadata"]["outer_cycle"] == 180
-    assert bigyo_tianmu(0,profile="jinjing")["status"] == "not_computable"
+    tongzong = bigyo_tianmu(0)
+    assert tongzong["profile_metadata"]["outer_cycle"] == 180
+    assert tongzong["rule_id"] == "C104-DAYOU-TIANMU-TONGZONG"
+    assert tongzong["canonical_equivalent"] is True
+    jinjing = bigyo_tianmu(0, profile="jinjing")
+    assert jinjing["rule_id"] == "C104-DAYOU-TIANMU-JINJING"
+    assert jinjing["canonical_equivalent"] is True
+    assert jinjing["profile_metadata"]["yuan"] == 72
     assert bigyo_tianmu(0,profile="jinjing",epoch_offset=0)["profile_metadata"]["yuan"] == 72
