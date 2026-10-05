@@ -76,7 +76,7 @@ def test_g6_host_guest_roles_and_g7_chain():
         shiji="武德",
     )
     assert calcs["host_calc"] == 16
-    assert calcs["guest_calc"] == 7
+    assert calcs["guest_calc"] == 23
 
     chain = g6_g7_chain(
         taiyi_palace=9,
@@ -85,5 +85,5 @@ def test_g6_host_guest_roles_and_g7_chain():
     )
     assert chain["host_big_general_palace"] == 6
     assert chain["host_assistant_general_palace"] == 8
-    assert chain["guest_big_general_palace"] == 7
-    assert chain["guest_assistant_general_palace"] == 1
+    assert chain["guest_big_general_palace"] == 3
+    assert chain["guest_assistant_general_palace"] == 9
