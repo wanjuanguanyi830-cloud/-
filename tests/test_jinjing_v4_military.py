@@ -402,6 +402,41 @@ def test_j4m11_requires_external_observation_and_maps_explicit_cases():
     assert data["judgments"][2]["winner"] == "客"
 
 
+def test_j4m11_requires_explicit_phenomenon_for_every_observation():
+    missing = fengyun_feiniao_zhuzhan([
+        {"action": "扶", "target": "主人阵"}
+    ])
+    assert missing["computable"] is False
+    assert missing["status"] == "not_defined_by_source_passage"
+    assert missing["judgments"][0]["matched"] is False
+    assert missing["judgments"][0]["source_case"] == "缺失或未知观测类型"
+
+
+def test_j4m11_does_not_expand_po_ji_into_chong_ji_synonym():
+    unsupported = fengyun_feiniao_zhuzhan([
+        {
+            "phenomenon": "风",
+            "action": "冲击",
+            "target": "大将宫",
+        }
+    ])
+    assert unsupported["computable"] is False
+    assert unsupported["judgments"][0]["matched"] is False
+    assert unsupported["judgments"][0]["source_case"] == "正文未覆盖该观测组合"
+
+    supported = fengyun_feiniao_zhuzhan([
+        {
+            "phenomenon": "风",
+            "action": "迫击",
+            "target": "大将宫",
+        }
+    ])
+    assert supported["computable"] is True
+    assert supported["judgments"][0]["matched"] is True
+    assert supported["judgments"][0]["loser"] == "主"
+    assert supported["judgments"][0]["source_case"] == "迫击大将宫"
+
+
 def test_j4m11_keeps_unstated_noise_outcome_unscored():
     data = fengyun_feiniao_zhuzhan([
         {"phenomenon": "飞鸟", "action": "噪阵", "crowd_noisy": True}
