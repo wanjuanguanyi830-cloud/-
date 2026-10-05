@@ -8,7 +8,8 @@
     "stable_entry_count": 148,
     "migration_assets": [
       "terminology/zitingjing-migration-map.json",
-      "terminology/ncl06604-legacy-reconciliation-map.json"
+      "terminology/ncl06604-legacy-reconciliation-map.json",
+      "terminology/zitingjing-legacy-scan-recovery.json"
     ]
   },
   "original_store_availability": {
@@ -18,7 +19,16 @@
     "chatgpt_library_listing": "no_visible_files_returned_at_audit_time",
     "schema_recovered": false,
     "original_bytes_recovered": false,
-    "policy": "零结果不证明文件绝对不存在；在取得原件或真实schema前，不生成合成old_term_record_id，不把stable catalog反写成旧库。"
+    "policy": "零结果不证明文件绝对不存在；在取得原件或真实schema前，不生成合成old_term_record_id，不把stable catalog反写成旧库。",
+    "user_reported_local_copy": {
+      "location": "local E drive",
+      "status": "exists_user_confirmed_not_mounted_in_current_runtime"
+    },
+    "prior_manuscript_scan_workflow": {
+      "manuscript": "研易楼藏《太乙紫庭祕訣》明钞本",
+      "status": "previously_scanned_during_terminology_work_user_confirmed",
+      "recovered_residue": "terminology/zitingjing-legacy-scan-recovery.json"
+    }
   },
   "legacy_field_policy": {
     "fields": [
@@ -4291,9 +4301,14 @@
           "asset": "terminology/zitingjing-migration-map.json",
           "asset_entry_key": "wenchang_nine_stars",
           "role": "old_local_store_recovery_skeleton"
+        },
+        {
+          "asset": "terminology/zitingjing-legacy-scan-recovery.json",
+          "asset_entry_key": "wenchang_nine_stars",
+          "role": "prior_manuscript_scan_extraction_recovery"
         }
       ],
-      "legacy_match_status": "migration_asset_available_old_store_fields_missing",
+      "legacy_match_status": "legacy_scan_extraction_residue_recovered_original_store_fields_still_missing",
       "legacy_fields": {
         "old_term_record_id": null,
         "manuscript_form": null,
@@ -4301,7 +4316,17 @@
         "source_section": null,
         "old_definition": null,
         "old_notes": null,
-        "old_aliases": null
+        "old_aliases": [
+          "文曲",
+          "玄鳳",
+          "明維",
+          "昭搖",
+          "立華",
+          "華明",
+          "玄武",
+          "玄冥",
+          "雄明"
+        ]
       }
     }
   ],
