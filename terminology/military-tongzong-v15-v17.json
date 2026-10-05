@@ -39,7 +39,9 @@
       "rule_ids": [
         "V17-D1"
       ],
-      "canonical_source_rule": false
+      "canonical_source_rule": false,
+      "implementation_status": "implemented_derived_helper",
+      "runtime": "kintaiyi.cross_volume_helpers.build_guxu_cross_volume_helper"
     }
   },
   "global_policy": [
@@ -809,14 +811,16 @@
         "V17-09"
       ],
       "reference_function": "guxu_duizhao",
-      "implementation_status": "source_rule_catalog_only",
-      "runtime": null,
+      "implementation_status": "implemented_derived_helper",
+      "runtime": "kintaiyi.cross_volume_helpers.build_guxu_cross_volume_helper",
       "canonical_source_rule": false,
       "notes": "不是独立卷十七原法；不得分配V17 canonical source rule号。",
       "boundary_notes": [
-        "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
-        "这是跨卷derived helper，不是卷十七canonical source rule。"
-      ]
+        "这是C32已实现的跨卷derived helper，不是卷十七canonical source rule。",
+        "只接受D8-05与V17-09已结构化结果，不重算内外、不重跑求索。",
+        "不得把helper输出反写D8-05或V17-09，也不得把V17-D1计入卷十七source-rule数量。"
+      ],
+      "catalog_runtime": "kintaiyi.cross_volume_helpers.c32_catalog"
     },
     {
       "key": "v17_10",
