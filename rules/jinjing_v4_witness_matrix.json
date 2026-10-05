@@ -39,7 +39,7 @@
         ],
         "status": "locator_verified_no_substantive_variant_recorded",
         "coverage": {
-          "cycle": "C123",
+          "cycle": "C124",
           "status_group": "locator_only",
           "evidence_level": "page_locator_direct_visual_verified"
         }
@@ -59,7 +59,7 @@
         ],
         "status": "locator_verified_no_substantive_variant_recorded",
         "coverage": {
-          "cycle": "C123",
+          "cycle": "C124",
           "status_group": "locator_only",
           "evidence_level": "page_locator_direct_visual_verified"
         }
@@ -80,7 +80,7 @@
         ],
         "status": "locator_verified_source_glyph_detail_nonblocking",
         "coverage": {
-          "cycle": "C123",
+          "cycle": "C124",
           "status_group": "locator_only",
           "evidence_level": "page_locator_direct_visual_verified"
         }
@@ -104,7 +104,7 @@
         ],
         "status": "locator_verified_no_substantive_variant_recorded",
         "coverage": {
-          "cycle": "C123",
+          "cycle": "C124",
           "status_group": "locator_only",
           "evidence_level": "page_locator_direct_visual_verified"
         }
@@ -137,7 +137,7 @@
         ],
         "status": "direct_visual_verified",
         "coverage": {
-          "cycle": "C123",
+          "cycle": "C124",
           "status_group": "selected_readings",
           "evidence_level": "numeric_variant_direct_visual_verified"
         }
@@ -260,7 +260,7 @@
         ],
         "closing_text": "餘則太乙兵起於鄉，陣隨於地，觀方制變，皆算掩神，此用兵之神道也。",
         "coverage": {
-          "cycle": "C123",
+          "cycle": "C124",
           "status_group": "full_rule",
           "evidence_level": "full_table_and_closing_direct_visual_verified"
         }
@@ -324,7 +324,7 @@
         "closing_text": "太乙兵起於鄉，陣隨其地，觀方置變，皆算掩神，此用兵之法也。",
         "status": "body_structure_direct_visual_verified_C111",
         "coverage": {
-          "cycle": "C123",
+          "cycle": "C124",
           "status_group": "full_rule",
           "evidence_level": "full_body_structure_direct_visual_verified"
         }
@@ -409,7 +409,7 @@
         "next_rule": "J4M-09",
         "pending": [],
         "coverage": {
-          "cycle": "C123",
+          "cycle": "C124",
           "status_group": "full_rule",
           "evidence_level": "full_contiguous_body_direct_visual_verified"
         }
@@ -464,7 +464,7 @@
         "boundary_status": "J4M-08_to_J4M-09_direct_visual_verified_C120",
         "palace_group_status": "direct_visual_verified_C86",
         "coverage": {
-          "cycle": "C123",
+          "cycle": "C124",
           "status_group": "selected_readings",
           "evidence_level": "opening_and_palace_groups_direct_visual_verified"
         }
@@ -502,7 +502,7 @@
         "body_title": "推奇兵伏兵法",
         "status": "direct_visual_verified",
         "coverage": {
-          "cycle": "C123",
+          "cycle": "C124",
           "status_group": "selected_readings",
           "evidence_level": "body_heading_direct_visual_verified"
         }
@@ -535,7 +535,7 @@
         ],
         "status": "direct_visual_verified",
         "coverage": {
-          "cycle": "C123",
+          "cycle": "C124",
           "status_group": "selected_readings",
           "evidence_level": "heading_and_key_event_readings_direct_visual_verified"
         }
@@ -580,7 +580,7 @@
         },
         "status": "direct_visual_verified",
         "coverage": {
-          "cycle": "C123",
+          "cycle": "C124",
           "status_group": "selected_readings",
           "evidence_level": "heading_and_key_verdict_direct_visual_verified"
         }
@@ -687,7 +687,7 @@
       ]
     }
   },
-  "last_update": "C123",
+  "last_update": "C124",
   "updates": {
     "C110": {
       "witness": "NCL-06604",
@@ -719,14 +719,14 @@
       "evidence": "user-supplied page image directly visually checked",
       "effect": "verified J4M-08 closing to J4M-09 heading/opening boundary; palace groups unchanged from C86"
     },
-    "C123": {
+    "C124": {
       "witness": "NCL-06604",
       "effect": "normalized per-rule collation completeness: 4 locator-only, 5 selected-readings, 3 full-rule",
       "canonical_effect": "none"
     }
   },
   "ncl_coverage_summary": {
-    "cycle": "C123",
+    "cycle": "C124",
     "witness": "NCL-06604",
     "counts": {
       "locator_only": 4,
