@@ -154,15 +154,21 @@
         "away_vassal"
       ],
       "qi_model": "B",
-      "definition": "以当日太乙与四将判将帅乘气；旺相宜部署，休囚死不宜。敌大将五行克我大将/参将可直接计算；“刑”只接受独立来源校勘后的显式宫位对。",
+      "definition": "以当日太乙与四将判将帅乘气；旺相宜部署，休囚死不宜。严重敌我关系的canonical只按敌大将九宫五行克我方大将/参将九宫五行计算。",
       "boundary_notes": [
-        "四库、统宗、金钥匙均见“彼军大将刑克我军大小将之宫”一类句，但本条没有给出可执行将宫刑映射。",
-        "五行克按九宫五行直接计算；显式刑关系同时适用于大将和参将。",
-        "不得把地支三刑、九宫变化神名相刑或其他来源刑表自动投影成本条将宫刑。",
-        "未提供独立校勘的xing_pairs时，刑保持未判，不等于无刑。"
+        "四库、统宗、金钥匙均见“刑克”措辞，但三源都未给独立将宫刑表或演算例。",
+        "四库本同段对大将用“刑克”，紧接小将平行句简作“克小将亦然”，支持本条运行时以五行克为可执行核心。",
+        "不得把地支三刑、九宫变化神名相刑或其他来源刑表自动投影成本条将宫关系。",
+        "兼容参数xing_pairs只作为explicit external extension返回，不进入canonical events，也不改变canonical severe/verdict。"
       ],
-      "collation_status": "three_source_phrase_verified_xing_mapping_unresolved",
-      "collation_record": "sources/t7-06-white-dragon-xing-collation.md"
+      "collation_status": "three_source_phrase_verified_control_only_canonical_no_independent_xing_operator",
+      "collation_record": "sources/t7-06-white-dragon-xing-collation.md",
+      "algorithm_pending": false,
+      "compatibility_extension": {
+        "input": "xing_pairs",
+        "status": "explicit_external_extension_not_canonical",
+        "affects_canonical_verdict": false
+      }
     },
     {
       "key": "return_army_silent",
