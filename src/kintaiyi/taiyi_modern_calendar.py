@@ -179,7 +179,10 @@ def modern_year_count(moment: datetime) -> dict[str, Any]:
 
 
 def production_calendar_context(moment: datetime) -> dict[str, Any]:
-    """一次返回岁计换年与时计二至半岁的现代天文事实。"""
+    """一次返回现代production四计所需的统一日历事实与计数结果。"""
+    # lazy import 避免 taiyi_modern_time_count -> taiyi_modern_calendar 的循环导入
+    from .taiyi_modern_time_count import modern_time_count
+
     return {
         "rule_id": RULE_ID,
         "source_profile": "production_modern_calendar",
@@ -189,10 +192,12 @@ def production_calendar_context(moment: datetime) -> dict[str, Any]:
         "solar_month": resolve_solar_month(moment),
         "month_count": modern_month_count(moment),
         "day_count": modern_day_count(moment),
+        "time_count": modern_time_count(moment),
         "astronomy_provider": "astronomy-engine",
         "lunisolar_provider": "lunar_python",
         "policy": (
             "天文引擎提供冬夏至与十二节精确交节；现代农历库提供农历/干支事实。"
-            "太乙岁由冬至决定，太乙月界由十二节决定；春节、立春的其他历法语义不得互相覆盖。"
+            "production已自动生成岁/月/日/时四计所需计数；"
+            "太乙岁由冬至决定，月界由十二节决定，日界/连续时序由中国标准民用日决定。"
         ),
     }
