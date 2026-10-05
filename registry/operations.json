@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "registry_id": "taiyi-public-operations-v1",
+  "policy": [
+    "operation只登记稳定软件入口和runtime指针，不复制算法。",
+    "需要source profile的算法必须由调用者显式传入，不设置跨来源默认值。",
+    "pending或source-record-only规则不登记为stable calculation operation。"
+  ],
+  "operations": [
+    {"name":"modern.calendar_context","domain":"modern","rule_ids":["MODERN-TAIYI-ASTRONOMICAL-CALENDAR"],"runtime":"kintaiyi.taiyi_modern_calendar.production_calendar_context","status":"stable"},
+    {"name":"modern.pan_v2","domain":"modern","rule_ids":["MODERN-PAN-V2-ADAPTER"],"runtime":"kintaiyi.taiyi_modern_pan.build_modern_pan_v2","status":"stable"},
+    {"name":"eight.sancai","domain":"eight_divinations","rule_ids":["D8-01"],"runtime":"kintaiyi.eight_divinations.sancai","status":"stable"},
+    {"name":"eight.wuyin","domain":"eight_divinations","rule_ids":["D8-03"],"runtime":"kintaiyi.eight_divinations.wuyin_from_calc","status":"stable"},
+    {"name":"eight.gudan","domain":"eight_divinations","rule_ids":["D8-04"],"runtime":"kintaiyi.eight_divinations.gudan_state","status":"stable"},
+    {"name":"eight.yinyang_ehui","domain":"eight_divinations","rule_ids":["D8-07"],"runtime":"kintaiyi.eight_divinations.tui_danger","status":"stable"},
+    {"name":"seven.lijin","domain":"seven_methods","rule_ids":["T7-01"],"runtime":"kintaiyi.seven_methods.lijin","status":"stable"},
+    {"name":"seven.lion","domain":"seven_methods","rule_ids":["T7-02"],"runtime":"kintaiyi.seven_methods.lion","status":"stable"},
+    {"name":"cycles.wufu.position","domain":"cycles","rule_ids":["C67-WUFU-TONGZONG","C67-WUFU-JINJING"],"runtime":"kintaiyi.wufu_source_profiles.wufu_position","status":"stable","source_profile_required":true},
+    {"name":"stars.taiyi.ziting_static","domain":"nine_stars","rule_ids":["taiyi_nine_stars"],"runtime":"kintaiyi.zitingjing_primary.taiyi_nine_stars_primary","status":"stable"},
+    {"name":"stars.taiyi.tongzong_dynamic","domain":"nine_stars","rule_ids":["C124-TONGZONG-TAIYI-NINE-STARS"],"runtime":"kintaiyi.taiyi_nine_stars_tongzong.taiyi_nine_stars_tongzong","status":"stable","source_profile":"tongzong_volume6_taiyi_nine_stars"},
+    {"name":"stars.wenchang.tongzong","domain":"nine_stars","rule_ids":["C70-TONGZONG-WENCHANG-NINE-STARS"],"runtime":"kintaiyi.wenchang_nine_stars_tongzong.wenchang_nine_star_tongzong","status":"stable","source_profile":"tongzong_volume6_ngj_wenchang_nine_stars","boundary_note":"不得升级为紫庭canonical；紫庭附篇正文仍独立校勘。"}
+  ]
+}
