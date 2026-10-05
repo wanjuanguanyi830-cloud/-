@@ -109,12 +109,9 @@
       "catalog_id": "taiyi-volume9-10-source-rules-terminology-v1",
       "scope": "source_sensitive_volume9_10_rules",
       "contains": [
-        "C41太游重卦",
-        "C42历数长短/安居",
-        "C43厄会行限",
-        "C44国政革易",
-        "C45岁中灾发",
-        "C46阴阳九厄"
+        "C41-C46 太游/历数/厄会/国政/灾期",
+        "C47-C49 小游卦运/爻灾祥/太小游区别",
+        "C50 太乙历数之期证据总纲"
       ]
     },
     {
@@ -135,9 +132,14 @@
       "catalog_id": "taiyi-ritual-timing-terminology-v1",
       "scope": "source_sensitive_ritual_timing",
       "contains": [
+        "C51天子初登位云气",
         "C62天子巡狩",
-        "C69推太乙当时法核心",
-        "C69B六壬叠盘"
+        "C69/C69B推太乙当时法",
+        "C116太乙玄命",
+        "C118黄道日度宿度分野",
+        "C119时计八门",
+        "C121直使六纪",
+        "C123年计八门"
       ]
     },
     {
