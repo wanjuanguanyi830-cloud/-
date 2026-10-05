@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 from kintaiyi.taiyi_core_chain import (
+    l0_to_g7_from_historical_year,
     g1_to_g7_from_accumulated_year,
     g2_to_g7_from_ju,
     g3_to_g7_from_ju,
@@ -184,3 +185,59 @@ def test_g1_to_g7_kaiyuan_12_anchor_enters_second_yuan_49th_ju():
     assert data["taisui_ganzhi"] == "甲子"
     assert data["five_yuan"] == "丙子"
     assert data["local_ju"] == 49
+
+
+
+def test_l0_to_g7_kaiyuan_anchor_matches_direct_long_count_chain():
+    via_year = l0_to_g7_from_historical_year(
+        historical_year=724,
+        dun="阳",
+    )
+    via_count = g1_to_g7_from_accumulated_year(
+        accumulated_year=1_937_281,
+        dun="阳",
+    )
+
+    assert via_year["accumulated_year"] == 1_937_281
+    assert via_year["five_zi_short_accumulated_year"] == 30_001
+    assert via_year["epoch_equivalent_mod_360"] is True
+    assert via_year["taisui_ganzhi"] == "甲子"
+    assert via_year["five_yuan"] == "丙子"
+    assert via_year["local_ju"] == 49
+
+    for key in (
+        "taiyi_palace",
+        "wenchang_sector",
+        "shiji_sector",
+        "host_calc",
+        "guest_calc",
+        "host_big_general_palace",
+        "guest_big_general_palace",
+    ):
+        assert via_year[key] == via_count[key]
+
+
+def test_l0_to_g7_2026_enters_expected_cycle_context():
+    data = l0_to_g7_from_historical_year(
+        historical_year=2026,
+        dun="阳",
+    )
+    assert data["accumulated_year"] == 1_938_583
+    assert data["taisui_ganzhi"] == "丙午"
+    assert data["six_ji_three_yuan"]["ji_index_1based"] == 6
+    assert data["six_ji_three_yuan"]["yuan_label"] == "下元"
+    assert data["five_zi_from_long"]["five_zi_yuan"] == "壬子"
+    assert data["local_ju"] == 55
+
+
+def test_l0_to_g7_long_short_epochs_land_same_five_zi_ju():
+    for year in (724, 1024, 2026):
+        data = l0_to_g7_from_historical_year(
+            historical_year=year,
+            dun="阳",
+        )
+        assert (
+            data["five_zi_from_long"]["local_ju"]
+            == data["five_zi_from_short"]["local_ju"]
+            == data["local_ju"]
+        )
