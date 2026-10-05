@@ -199,7 +199,7 @@ rules/jinjing_v4_military.json：
 - 新增 volume_boundaries
 - 十二条均新增 ncl_scan_locator
 - J4M-06/07/08/09/10/11/12 新增 manuscript_readings["NCL-06604"]
-- source.ncl_volume4_collation_version = c86-ncl06604-v4-j4m-locators-and-key-readings-v2
+- source.ncl_volume4_collation_version = c86-ncl06604-v4-j4m-key-readings-v3
 
 测试锁定：
 
@@ -258,3 +258,27 @@ NCL p.55 卷四目录可直接读出：
 **目录先列风云飞鸟，后列奇兵伏兵；正文却先奇兵伏兵，后风云飞鸟。**
 
 这进一步证明 J4M-10/J4M-11 的编号应依据正文实际出现顺序，而不应依据目录顺序。
+
+
+## 十、J4M-05 出师数值异文：明钞本未见三十二
+
+NCL p.58 “推出师法”正文直接写：
+
+**人君欲略地及安置诸军者，算十二、二十二，五将发，三门具，乃可举兵……**
+
+该行在“二十二”后直接进入“五将发”，未见四库本的“三十二”。
+
+因此：
+
+- 四库 jinjing_siku_volume4：explicit values = [12, 22, 32]
+- NCL-06604 明钞本：explicit values = [12, 22]
+
+这是**数值型 manuscript variant**，不是标题 alias。
+
+处理：
+
+- J4M-05 四库 canonical runtime 保持 12/22/32；
+- NCL manuscript reading 单独保存 [12,22]；
+- canonical_override=false；
+- 不得反过来因为明钞本少“三十二”就删除四库本已明确写出的 32；
+- 同样不得把两本的差异“平均”为任意尾数2。
