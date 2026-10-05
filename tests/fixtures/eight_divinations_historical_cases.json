@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "audit_id": "C114-EIGHT-DIVINATIONS-HISTORICAL-CASES",
+  "source_work": "太乙统宗宝鉴",
+  "source_volume": 5,
+  "recovery_origin": {
+    "branch": "integrate-taiyi-war-v1-20261004",
+    "file": "tests/fixtures/warfare_v1_historical_cases.json",
+    "policy": "旧 fixture 只作为已完成工作线索；本文件按卷五直接见证重新核对。"
+  },
+  "witnesses": [
+    {
+      "id": "NGJ892411999009267118912",
+      "url": "https://www.shidianguji.com/book/NGJ892411999009267118912/chapter/1lny524fmn96c"
+    },
+    {
+      "id": "CADAL02094393",
+      "url": "https://www.shidianguji.com/book/CADAL02094393/chapter/1lcppwswbwf8a"
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "EX-D8-02-ZHENGUAN-4",
+      "rule_id": "D8-02",
+      "method": "calc_length",
+      "args": [
+        31
+      ],
+      "source_section": "明长短之数，以占缓急术",
+      "historical_context": "唐太宗贞观四年，主算三十一；原文以算长、利深入解释李靖深入破突厥之例。",
+      "expected": {
+        "length": "长",
+        "verdict": "宜缓、深入"
+      },
+      "scope_boundary": "只锁D8-02长短层；不把整局军事胜负归因于单一长短规则。"
+    },
+    {
+      "case_id": "EX-D8-04-GUANGHUA-3",
+      "rule_id": "D8-04",
+      "method": "gudan_state",
+      "args": [
+        3
+      ],
+      "source_section": "明数有孤单，以占成败术",
+      "historical_context": "唐昭宗光化三年，主算得单三，为单阳；原文随后记废立幽帝之事。",
+      "expected": {
+        "state": "单阳",
+        "disadvantaged": "主",
+        "danger": null
+      },
+      "scope_boundary": "只锁D8-04单阳分类及不利方；不把后续历史事件扩张成额外算法。"
+    },
+    {
+      "case_id": "EX-D8-08-TIANBAO-10",
+      "rule_id": "D8-08",
+      "method": "calc_preparedness",
+      "args": [
+        17
+      ],
+      "source_section": "明数有所主，以占凶吉术",
+      "historical_context": "唐玄宗天宝十年，客算得十七；原文明写将吏兵卒皆备。",
+      "expected": {
+        "present": [
+          "将军",
+          "吏士",
+          "兵卒"
+        ],
+        "missing": [],
+        "classic_label": "将吏兵卒俱备"
+      },
+      "scope_boundary": "只锁17这一直接古例；不得反推“16以上一律皆具”，5/15/25/35等仍按结构层独立判断。"
+    }
+  ]
+}
