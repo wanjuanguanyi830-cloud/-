@@ -1,0 +1,213 @@
+{
+  "schema_version": "1.0",
+  "audit_id": "C105-NCL06604-LEGACY-TERMINOLOGY-RECONCILIATION",
+  "date": "2026-10-05",
+  "witness": {
+    "id": "NCL-06604",
+    "work": "太乙金镜式经",
+    "edition": "明钞本",
+    "historical_processing_status": "prior_scan_and_preliminary_terminology_work_confirmed_by_user",
+    "old_store_status": "not_retrieved",
+    "current_reverification": "C86-C88"
+  },
+  "purpose": "旧 terminology.json 恢复后，把历史 NCL 条目与当前直接影像复核结果对账合并；禁止把同一来源再次作为新来源重复建档。",
+  "merge_policy": [
+    "旧记录ID、旧定义、旧备注、旧aliases只从真实旧store恢复，不猜。",
+    "C86-C88直接图像复核的页码与读法作为current_verified_evidence，与旧记录并列比对。",
+    "旧记录与当前图像复核一致时合并来源链，不复制新词条。",
+    "旧记录与当前图像复核冲突时保留两版并标记conflict，禁止静默覆盖。",
+    "四库canonical与NCL manuscript reading继续分source profile，不因术语合并而合并规则。"
+  ],
+  "entries": [
+    {
+      "key": "j4m03_taicu",
+      "rule_id": "J4M-03",
+      "canonical_term": "太簇",
+      "accepted_variant": "太蔟",
+      "ncl_pages": [
+        56,
+        57
+      ],
+      "current_verified_evidence": "NCL页级locator已核；明钞本太蔟/太簇具体字形不再阻塞canonical，后续只补manuscript_form。",
+      "legacy_record_id": null,
+      "legacy_fields_to_recover": [
+        "old_term_record_id",
+        "manuscript_form",
+        "source_page",
+        "old_definition",
+        "old_notes",
+        "old_aliases"
+      ],
+      "merge_key": [
+        "witness_id",
+        "rule_id",
+        "concept=太簇"
+      ]
+    },
+    {
+      "key": "j4m05_chushi_values",
+      "rule_id": "J4M-05",
+      "canonical_term": "出师",
+      "ncl_pages": [
+        58
+      ],
+      "current_verified_evidence": "明钞本只列算十二、二十二；未见三十二。",
+      "legacy_record_id": null,
+      "legacy_fields_to_recover": [
+        "old_term_record_id",
+        "source_page",
+        "old_definition",
+        "old_notes"
+      ],
+      "merge_key": [
+        "witness_id",
+        "rule_id",
+        "concept=出师"
+      ]
+    },
+    {
+      "key": "j4m06_chenbing_xiangbei",
+      "rule_id": "J4M-06",
+      "canonical_term": "陈兵向背",
+      "ncl_pages": [
+        59,
+        60
+      ],
+      "current_verified_evidence": "正文题推陈兵向背；数表1/2/3/4/6/7/8/9，无5；方向骨架已直接核。",
+      "legacy_record_id": null,
+      "legacy_fields_to_recover": [
+        "old_term_record_id",
+        "manuscript_form",
+        "source_page",
+        "old_definition",
+        "old_notes"
+      ],
+      "merge_key": [
+        "witness_id",
+        "rule_id",
+        "concept=陈兵向背"
+      ]
+    },
+    {
+      "key": "j4m08_maoshan",
+      "rule_id": "J4M-08",
+      "canonical_term": "矛鋋",
+      "ncl_pages": [
+        60,
+        61
+      ],
+      "current_verified_evidence": "明钞本同样见矛鋋，句作弓弩三不当一；支持四库C79纠字。",
+      "legacy_record_id": null,
+      "legacy_fields_to_recover": [
+        "old_term_record_id",
+        "manuscript_form",
+        "source_page",
+        "old_definition",
+        "old_notes",
+        "old_aliases"
+      ],
+      "merge_key": [
+        "witness_id",
+        "rule_id",
+        "concept=矛鋋"
+      ]
+    },
+    {
+      "key": "j4m09_inner_palaces",
+      "rule_id": "J4M-09",
+      "canonical_term": "太乙在天外地内",
+      "ncl_pages": [
+        61,
+        62
+      ],
+      "current_verified_evidence": "NCL地内组一八三四，天外组九二七六；只作manuscript variant。",
+      "legacy_record_id": null,
+      "legacy_fields_to_recover": [
+        "old_term_record_id",
+        "source_page",
+        "old_definition",
+        "old_notes"
+      ],
+      "merge_key": [
+        "witness_id",
+        "rule_id",
+        "concept=天外地内"
+      ]
+    },
+    {
+      "key": "j4m10_qibing_fubing_title",
+      "rule_id": "J4M-10",
+      "canonical_term": "奇伏",
+      "ncl_pages": [
+        62
+      ],
+      "current_verified_evidence": "NCL正文题推奇兵伏兵法；四库正文canonical仍推奇伏法。",
+      "legacy_record_id": null,
+      "legacy_fields_to_recover": [
+        "old_term_record_id",
+        "manuscript_form",
+        "source_page",
+        "old_aliases",
+        "old_notes"
+      ],
+      "merge_key": [
+        "witness_id",
+        "rule_id",
+        "concept=奇伏"
+      ]
+    },
+    {
+      "key": "j4m11_fengyun_feiniao",
+      "rule_id": "J4M-11",
+      "canonical_term": "风云飞鸟助战",
+      "ncl_pages": [
+        62,
+        63
+      ],
+      "current_verified_evidence": "NCL标题推太乙风云飞鸟助阵法，正文起句助战之法；主人刑/客刑双分支已核。",
+      "legacy_record_id": null,
+      "legacy_fields_to_recover": [
+        "old_term_record_id",
+        "manuscript_form",
+        "source_page",
+        "old_definition",
+        "old_notes",
+        "old_aliases"
+      ],
+      "merge_key": [
+        "witness_id",
+        "rule_id",
+        "concept=风云飞鸟助战"
+      ]
+    },
+    {
+      "key": "j4m12_yunqi",
+      "rule_id": "J4M-12",
+      "canonical_term": "阵有风云气定胜负",
+      "ncl_pages": [
+        63,
+        64
+      ],
+      "current_verified_evidence": "NCL正文题推对阵有云气定胜负；西方白云条明写大胜，庚辛日弥佳。",
+      "legacy_record_id": null,
+      "legacy_fields_to_recover": [
+        "old_term_record_id",
+        "manuscript_form",
+        "source_page",
+        "old_definition",
+        "old_notes",
+        "old_aliases"
+      ],
+      "merge_key": [
+        "witness_id",
+        "rule_id",
+        "concept=云气定胜负"
+      ]
+    }
+  ],
+  "safety": {
+    "synthetic_legacy_ids_allowed": false,
+    "overwrite_current_verified_evidence_without_review": false,
+    "duplicate_import_as_new_source_allowed": false
+  }
+}
