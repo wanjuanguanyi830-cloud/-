@@ -136,6 +136,7 @@ def test_j4m03_host_guest_control_follows_two_eye_five_element_examples():
 def test_j4m03_can_resolve_elements_from_ancient_sixteen_god_table():
     assert j4m03_eye_element_from_god("高丛") == "木"
     assert j4m03_eye_element_from_god("太簇") == "金"
+    assert j4m03_eye_element_from_god("太蔟") == "金"
     assert j4m03_eye_element_from_god("阳德") == "土"
     assert j4m03_eye_element_from_god("地主") == "水"
 
@@ -146,6 +147,13 @@ def test_j4m03_can_resolve_elements_from_ancient_sixteen_god_table():
     assert source_example["host_eye_element"] == "木"
     assert source_example["guest_eye_element"] == "金"
     assert source_example["relation"] == "客关得主人"
+
+    source_glyph = zhuke_xiangguan(
+        host_eye_god="高丛",
+        guest_eye_god="太蔟",
+    )
+    assert source_glyph["guest_eye_element"] == "金"
+    assert source_glyph["god_name_aliases"]["太蔟"] == "太簇"
     assert source_example["winner"] == "客"
 
     second_example = zhuke_xiangguan(
