@@ -155,7 +155,7 @@
     "witness_audit_version": "c84-ncl06604-access-boundary-v1",
     "full_twelve_scan_audit_version": "c85-j4m01-12-scan-boundary-complete-v1",
     "ncl_volume4_collation_version": "c88-ncl06604-j4m06-direction-table-v1",
-    "terminology_policy_version": "c99-taicu-canonical-v1"
+    "terminology_policy_version": "c101-taicu-traditional-variant-v1"
   },
   "separation_policy": [
     "本表只记录四库本《太乙金镜式经》卷四十二法，不自动并入《太乙统宗宝鉴》卷五或旧代码同名函数。",
@@ -361,9 +361,18 @@
       "terminology_aliases": {
         "太蔟": {
           "canonical": "太簇",
-          "status": "historical_source_form_alias",
-          "evidence": "四库卷四J4M-03首例写太蔟；runtime规范词形沿用太簇",
-          "behavior": "输入可接受太蔟并保留原始source form，但canonical始终输出太簇；五行仍为金。"
+          "status": "dictionary_attested_traditional_variant",
+          "evidence": "四库卷四J4M-03首例写太蔟；辞书条目“太蔟”释为“亦作太簇”；项目canonical固定太簇。",
+          "behavior": "输入可接受太蔟并保留原始source form；canonical始终输出太簇；五行仍为金；不得把太蔟标成OCR误字。",
+          "variant_relation": "太蔟、太簇为同一律名的传统异写；项目规范词形采用太簇。",
+          "dictionary_evidence": {
+            "source": "汉语大词典/聚典数据开放平台",
+            "entry": "太蔟",
+            "reading": "tài cù",
+            "statement": "亦作太簇",
+            "url": "https://app.hanyudacidian.cn/",
+            "provided_by_user": "2026-10-05"
+          }
         }
       },
       "ncl_scan_locator": {
@@ -385,8 +394,9 @@
           "太簇",
           "太蔟"
         ],
-        "rule": "项目术语、runtime canonical 输出、对外文档统一采用“太簇”；“太蔟”只保留为来源字形/异文见证，不作为待决规范词形。",
-        "cycle": "C99"
+        "rule": "项目术语、runtime canonical 输出、对外文档统一采用“太簇”；“太蔟”作为辞书可证的传统异写及古籍来源字形保留，不视为OCR误字。",
+        "cycle": "C101",
+        "variant_classification": "dictionary_attested_traditional_variant"
       }
     },
     {
