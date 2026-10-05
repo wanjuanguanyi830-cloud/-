@@ -194,7 +194,7 @@
     "wenchang_changes",
     "shiji_changes"
   ],
-  "recovery_reason": "文昌九星仍可直接解决紫庭primary正文/字形缺口；三旗行宫与九宫贵神现行canonical已归统宗卷十，恢复它们只为核对旧store身份、明钞是否另有独立witness及补旧字段。后三项已有紫庭结构化规则，主要补旧术语字形与页码。",
+  "recovery_reason": "旧terminology.json仍未恢复，因此六个历史键继续保留恢复顺序。文昌九星现行规则来源已由C70《太乙统宗宝鉴》卷六解决，研易楼明钞目录未见该题；后续仅恢复旧store身份字段与追查现代整理附篇来源。三旗行宫/九宫贵神现行canonical已归统宗卷十；后三项已有紫庭结构化规则，主要补旧术语字形、页码、notes与旧term id。",
   "recovery_assets": [
     "terminology/zitingjing-legacy-scan-recovery.json"
   ]
