@@ -406,6 +406,29 @@
           "C57/C59不从位置自动制造合冲",
           "C58只解释真实观察或显式证据"
         ]
+      },
+      {
+        "id": "R-ZHIFU-FIRE-STATE",
+        "canonical": "C93直符火气状态只采用直接见证三项：二宫旺、三宫长生、四宫败。其他宫保持source_pending；不得按十二长生或五行常识自动补全。C93只解释显式宫位，不从积年自动调用C64直符位置。",
+        "rule_id": "C93-ZHIFU-KNOWN-FIRE-STATE",
+        "runtime": "kintaiyi.zhifu_fire_states.zhifu_known_fire_state"
+      },
+      {
+        "id": "R-CORONATION-CLOUD",
+        "canonical": "C51天子初登位日月旁云气只解释显式云色/云形与登位日干支。云生日、云生辰、云克日、日生云、比和可并列；阴云/五色彩云可独立保留形态断义。干支数只求和，不擅自选择云气生数/成数或年/月/日时尺度。C51与C58太乙初移宫云气严格分层。",
+        "rule_id": "C51-CLOUD-OMEN",
+        "runtime": "kintaiyi.coronation_cloud_omens.coronation_cloud_omens"
+      },
+      {
+        "id": "R-JINJING-HUANGDAO",
+        "canonical": "C118《金镜》卷一黄道上游表包含二十四气黄道日度锚点、二十八宿宿度、列宿十二分野与一日一度推进helper。虚宿度转录未定时跨界返回not_computable；C118不计算现代天文黄经，不安十二天将，只为C69/C69B提供古表上游。production日期/真实节气与冬至换岁仍由现代天文历法负责。",
+        "rule_ids": [
+          "C118-SOLAR-TERM-ANCHOR",
+          "C118-MANSION-SPAN",
+          "C118-MANSION-DIVISION",
+          "C118-TERM-DAY-POSITION"
+        ],
+        "runtime": "kintaiyi.jinjing_huangdao_tables.term_day_position"
       }
     ]
   },
