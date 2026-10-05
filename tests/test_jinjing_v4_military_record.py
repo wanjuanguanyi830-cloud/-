@@ -412,3 +412,63 @@ def test_c85_j4m11_j4m12_complete_the_twelve_rule_scan_audit():
     assert any("西方白云" in x for x in j12["locked_points"])
     assert any("五行常识" in x for x in j12["forbidden_inference"])
     assert any("cloud_bearer" in x for x in j12["forbidden_inference"])
+
+
+def test_c86_ncl06604_volume4_page_range_and_j4m_locators_are_verified():
+    data, rules = _rules()
+    witnesses = {item["id"]: item for item in data["source"]["scan_witnesses"]}
+    ncl = witnesses["NCL-06604"]
+
+    assert data["source"]["ncl_volume4_collation_version"] == "c86-ncl06604-v4-j4m-locators-v1"
+    assert ncl["status"] == "volume4_scan_range_and_j4m_page_locators_verified_readings_in_progress"
+    assert ncl["volume_boundaries"]["volume3_end"]["digital_scan_page"] == 54
+    assert ncl["volume_boundaries"]["volume4_start"]["digital_scan_page"] == 55
+    assert ncl["volume_boundaries"]["volume4_end"]["digital_scan_page"] == 64
+
+    expected = {
+        "J4M-01": [55, 56],
+        "J4M-02": [56],
+        "J4M-03": [56, 57],
+        "J4M-04": [57, 58],
+        "J4M-05": [58],
+        "J4M-06": [59, 60],
+        "J4M-07": [60],
+        "J4M-08": [60, 61],
+        "J4M-09": [61, 62],
+        "J4M-10": [62],
+        "J4M-11": [62, 63],
+        "J4M-12": [63, 64],
+    }
+    for item in rules:
+        locator = item["ncl_scan_locator"]
+        assert locator["witness"] == "NCL-06604"
+        assert locator["status"] == "visual_scan_verified"
+        assert locator["digital_scan_pages"] == expected[item["id"]]
+        assert locator["canonical_effect"] == "none"
+
+
+def test_c86_ncl06604_selected_manuscript_readings_stay_noncanonical():
+    _, rules = _rules()
+    by_id = {item["id"]: item for item in rules}
+
+    assert by_id["J4M-06"]["manuscript_readings"]["NCL-06604"]["body_title"] == "推陈兵向背"
+    assert by_id["J4M-07"]["manuscript_readings"]["NCL-06604"]["body_title"] == "推制阵随地法"
+
+    j8 = by_id["J4M-08"]["manuscript_readings"]["NCL-06604"]
+    assert j8["body_title"] == "推随地制变"
+    assert j8["weapon_reading"] == "矛鋋"
+    assert j8["ratio_reading"] == "弓弩三不当一"
+
+    j9 = by_id["J4M-09"]["manuscript_readings"]["NCL-06604"]
+    assert j9["inner_palaces_help_host"] == [1, 8, 3, 4]
+    assert j9["outer_palaces_help_guest"] == [9, 2, 7, 6]
+    assert j9["canonical_override"] is False
+    assert by_id["J4M-09"]["canonical"]["inner_palaces_help_host"] == [8, 3, 4]
+
+    j10 = by_id["J4M-10"]["manuscript_readings"]["NCL-06604"]
+    assert j10["body_title"] == "推奇兵伏兵法"
+    assert j10["canonical_override"] is False
+
+    j12 = by_id["J4M-12"]["manuscript_readings"]["NCL-06604"]
+    assert j12["body_title"] == "推对阵有云气定胜负"
+    assert j12["canonical_override"] is False
