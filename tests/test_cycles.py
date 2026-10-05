@@ -1,31 +1,69 @@
 import pytest
 from kintaiyi.cycles import (wufu,wufu_gb,bigyo,bigyo_tianmu,dayou_xiong,
                              WUFU_PATH,DAYOU_PATH,DAYOU_TAOJIN_PATH,DAYOU_TM_PATH)
+from kintaiyi.wufu_source_profiles import wufu_position
 
 
-def test_wufu_canonical_offset_and_source_profile_isolation():
-    assert wufu(0)["offset"] == 250
-    assert wufu(0,profile="source_115")["offset"] == 115
-    assert wufu(0)["offset"] == 250
+def test_wufu_legacy_project_250_is_quarantined_not_canonical():
+    data = wufu(0)
+    assert data["offset"] == 250
+    assert data["canonical"] is None
+    assert data["canonical_equivalent"] is False
+    assert data["quarantined"] is True
+    assert data["promotion_allowed"] is False
+    assert data["replacement_rule_ids"] == [
+        "C67-WUFU-TONGZONG", "C67-WUFU-JINJING"
+    ]
+
+
+@pytest.mark.parametrize("year", [0, 1, 44, 45, 224, 225, 13330])
+def test_wufu_source115_zero_based_adapter_delegates_to_c67_tongzong(year):
+    legacy = wufu(year, profile="source_115")
+    direct = wufu_position(year + 1, source_profile="tongzong")
+    palace_by_position = {"乾": 1, "艮": 3, "巽": 9, "坤": 7, "中": 5}
+    assert legacy["rule_id"] == "C67-WUFU-TONGZONG"
+    assert legacy["canonical_equivalent"] is True
+    assert legacy["quarantined"] is False
+    assert legacy["offset"] == 115
+    assert legacy["palace"] == palace_by_position[direct["position"]]
+    assert legacy["year_in_palace"] == direct["year_in_palace"]
+
+
+@pytest.mark.parametrize("year", [0, 44, 45, 224, 225, 13330])
+def test_wufu_jinjing_zero_based_adapter_delegates_to_c67_jinjing(year):
+    legacy = wufu(year, profile="jinjing")
+    direct = wufu_position(year + 1, source_profile="jinjing")
+    palace_by_position = {"乾": 1, "艮": 3, "巽": 9, "坤": 7, "中": 5}
+    assert legacy["rule_id"] == "C67-WUFU-JINJING"
+    assert legacy["offset"] == 0
+    assert legacy["palace"] == palace_by_position[direct["position"]]
+    assert legacy["year_in_palace"] == direct["year_in_palace"]
 
 
 @pytest.mark.parametrize("i,palace", list(enumerate(WUFU_PATH)))
-def test_wufu_palace_cycle(i,palace):
+def test_wufu_legacy_project_cycle_is_preserved_only_for_compatibility(i,palace):
     year = (i*45 - 250) % 225
     data = wufu(year)
+    assert data["quarantined"] is True
     assert (data["palace"],data["year_in_palace"],data["realm"]) == (palace,1,"理天")
     assert wufu(year+225)["palace"] == palace
 
 
 @pytest.mark.parametrize("year,realm", [(1,"理天"),(15,"理天"),(16,"理地"),(30,"理地"),(31,"理人"),(45,"理人")])
-def test_wufu_realms(year,realm):
-    assert wufu((year-1-250)%225)["realm"] == realm
+def test_wufu_legacy_realms_are_marked_compatibility_derived(year,realm):
+    data = wufu((year-1-250)%225)
+    assert data["realm"] == realm
+    assert data["realm_status"] == "legacy_compatibility_derived"
 
 
-@pytest.mark.parametrize("year,subject", [(1,"君王"),(2,"王侯臣宰"),(3,"后妃"),(4,"太子"),(5,"民庶"),(6,"师帅"),(7,"上将军"),(8,"中将军"),(9,"下将军"),(10,"士卒"),(36,"师帅")])
-def test_number_subjects(year,subject):
-    assert dayou_xiong(year) == subject
+@pytest.mark.parametrize("year,subject", [(1,"君王"),(2,"公侯"),(3,"后妃"),(4,"太子"),(5,"民"),(6,"师帅"),(7,"上将军"),(8,"中将军"),(9,"下将军"),(10,"士卒"),(36,"师帅")])
+def test_wufu_gb_delegates_to_c68_labels(year,subject):
     assert wufu_gb(year) == subject
+
+
+@pytest.mark.parametrize("year,subject", [(1,"君王"),(2,"王侯臣宰"),(5,"民庶"),(6,"师帅"),(10,"士卒"),(36,"师帅")])
+def test_dayou_number_subject_legacy_labels_remain_separate(year,subject):
+    assert dayou_xiong(year) == subject
 
 
 def test_wufu_46_removed():
