@@ -40,3 +40,24 @@ NGJ witness：
 - `internal_conflict=False`
 
 这使得“直接按统宗实现文昌九星”在当前阶段被明确禁止。
+
+
+## C70 后续分层验证
+
+原 C34 跨来源结论保持：
+
+- `primary_result=None`
+- `canonical_selected=None`
+- 10 / 30 年跨见证冲突仍为 unresolved。
+
+新增的 C70 只把统宗 NGJ 见证单独变成可运行 source profile：
+
+`C70-TONGZONG-WENCHANG-NINE-STARS`
+
+测试明确保证：
+
+- `source_specific_runtime.available=True`
+- `cross_source_canonical=False`
+- `zitingjing_primary_result=False`
+
+因此“统宗可运行”和“紫庭 primary 未取得”可同时成立，不再用一个 pending 标签混淆。
