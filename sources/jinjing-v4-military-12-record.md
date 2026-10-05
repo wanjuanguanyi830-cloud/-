@@ -238,7 +238,7 @@ J4M-03 虽已 canonical complete，但 C8 当前没有独立“关法” layer�
 
 另有一份 CText 转录把同组内容编作“卷三”，在底本未确认前只登记为卷次 variant，不覆盖四库卷四 canonical。
 
-J4M-08 的“晁错曰”已与《汉书·爰盎晁错传》对勘，确认存在实质异文：车骑三/二不当一、矛鋋地所对兵种与比例（弓弩三不当一/长戟二不当一），以及《汉书》另有曲道剑楯段；训练与将领失误的比例亦不同。故《汉书》只作外部引文 witness，不静默校正《金镜》runtime。详细记录见 sources/c64-jinjing-v4-witness-collation-record.md。
+J4M-08 的“晁错曰”已与《汉书·爰盎晁错传》对勘，确认存在实质异文：车骑三/二不当一、矛鋋地所对兵种与比例（弓弩三不当一/长戟二不当一），以及《汉书》另有曲道剑楯段；训练与将领失误的比例亦不同。故《汉书》只作外部引文 witness，不静默校正《金镜》runtime。详细记录见 sources/c76-jinjing-v4-witness-collation-record.md。
 
 
 ## C71–C73 / C76 后续复核汇总（2026-10-05）
@@ -305,7 +305,7 @@ JF4M 只作 source_record_only，不继承 J4M runtime；两书只能通过 para
 详细记录：sources/c75-j4m11-event-schema-audit-record.md
 
 
-## C75：四库扫描逐条 locator 与 J4M-08 字形纠正（2026-10-05）
+## C79：四库扫描逐条 locator 与 J4M-08 字形纠正（2026-10-05）
 
 已直接核 CADAL06056494（浙江大学图书馆四库本卷一~卷四）图像页，将十二法绑定到数字扫描页：
 
