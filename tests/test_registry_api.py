@@ -127,3 +127,39 @@ def test_operation_registry_now_covers_all_seven_and_eight_method_aliases():
         )),
     }
     assert expected <= set(operations)
+
+
+def test_all_tongzong_military_source_rules_resolve_through_public_rule_api():
+    source_rule_ids = [
+        *(f"V15-{n:02d}" for n in range(1, 15)),
+        *(f"V17-{n:02d}" for n in range(1, 12)),
+    ]
+    for rule_id in source_rule_ids:
+        candidates = __import__("kintaiyi.api", fromlist=["rule_runtime_candidates"]).rule_runtime_candidates(rule_id)
+        assert len(candidates) == 1
+        assert callable(resolve_runtime(candidates[0]["runtime"]))
+
+
+def test_public_rule_facade_normalizes_source_rule_id_without_removing_original():
+    result = calculate_rule(
+        "V15-01",
+        skyeyes="巽",
+        shiji="乾",
+        home_cal=11,
+        away_cal=22,
+        pattern_evidence=[],
+    )
+
+    assert result["source_rule_id"] == "V15-01"
+    assert result["rule_id"] == "V15-01"
+    assert result["registry_normalized_rule_id"] is True
+    explanation = explain_result(result)
+    assert explanation["rule_id"] == "V15-01"
+    assert explanation["rule_registry"]["count"] >= 1
+
+
+def test_source_record_only_jingyou_rule_is_not_promoted_to_calculation_runtime():
+    import pytest
+
+    with pytest.raises(KeyError):
+        calculate_rule("JF4M-04")
