@@ -57,3 +57,17 @@ def test_return_army_keeps_legacy_alias_without_input_substitution():
 
     assert "回车无言" in entry["aliases"]
     assert any("不得代替" in note for note in entry["boundary_notes"])
+
+
+def test_lion_collation_records_three_source_pass_without_inventing_ordinary_year():
+    data = _load()
+    entry = next(e for e in data["entries"] if e.get("rule_id") == "T7-02")
+
+    assert entry["collation_status"] == (
+        "three_source_pass_complete_no_second_ordinary_branch_example"
+    )
+    assert entry["collation_record"] == "sources/t7-02-lion-collation.md"
+    joined = " ".join(entry["boundary_notes"])
+    assert "未发现第二个普通落支完整应年例" in joined
+    assert "太乙杜塞则当年破" in joined
+    assert "不伪造唯一年干" in joined
