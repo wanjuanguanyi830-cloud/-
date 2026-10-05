@@ -115,8 +115,4 @@ def test_crosswalk_snapshot_tracks_military_runtime_coverage():
 
     assert snapshot["tongzong_military_source_runtime_coverage"] == "25/25"
     assert snapshot["jingyou_military_source_runtime_coverage"] == "11/11"
-    assert snapshot["jingyou_military_text_pending"] == [
-        "JF4M-02",
-        "JF4M-07",
-        "JF4M-10",
-    ]
+    assert snapshot["jingyou_military_text_pending"] == ["JF4M-02"]
