@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.5",
+  "schema_version": "1.6",
   "audit_id": "C109-JINJING-V4-WITNESS-AGREEMENT-PATTERNS",
   "date": "2026-10-05",
   "scope": "太乙金镜式经卷四军事十二法",
@@ -417,7 +417,12 @@
           7,
           6
         ],
-        "status": "direct_visual_verified"
+        "status": "direct_visual_verified",
+        "body_title": "推太乙在天外地内法",
+        "opening_text": "古法曰太乙在一八三四宫者为地内宫助主人",
+        "previous_rule_closing": "此之要也",
+        "boundary_status": "J4M-08_to_J4M-09_direct_visual_verified_C119",
+        "palace_group_status": "direct_visual_verified_C86"
       },
       "jingyou": {
         "parallel_rule": "JF4M-09",
@@ -437,7 +442,7 @@
       "difference_class": [
         "palace_group"
       ],
-      "hard_boundary": "NCL/景祐的1宫不得补入四库canonical。"
+      "hard_boundary": "C119只补页内边界与首句；完整宫组仍沿用C86直接图像校勘，不重复推导，不以NCL的1宫补四库canonical。"
     },
     {
       "rule_id": "J4M-10",
@@ -622,7 +627,7 @@
       ]
     }
   },
-  "last_update": "C115",
+  "last_update": "C119",
   "updates": {
     "C110": {
       "witness": "NCL-06604",
@@ -647,6 +652,12 @@
       "rule_id": "J4M-08",
       "evidence": "user-supplied contiguous page images directly visually checked",
       "effect": "resolved C112 middle-text pending and recorded mixed witness pattern"
+    },
+    "C119": {
+      "witness": "NCL-06604",
+      "rule_id": "J4M-09",
+      "evidence": "user-supplied page image directly visually checked",
+      "effect": "verified J4M-08 closing to J4M-09 heading/opening boundary; palace groups unchanged from C86"
     }
   }
 }
