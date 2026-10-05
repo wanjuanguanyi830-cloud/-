@@ -1,4 +1,5 @@
 from kintaiyi.jinjing_eight_door_overlay import (
+    duty_door_overlay,
     open_door_overlay,
     taiyi_eight_door_context,
 )
