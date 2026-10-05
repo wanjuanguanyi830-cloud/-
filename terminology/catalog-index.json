@@ -170,6 +170,16 @@
         "J4M-11风云飞鸟助战",
         "J4M-12阵有风云气定胜负"
       ]
+    },
+    {
+      "path": "terminology/military-jingyou-v4.json",
+      "catalog_id": "taiyi-jingyou-fuying-v4-military-terminology-v1",
+      "scope": "source_record_jingyou_fuying_volume4_military",
+      "contains": [
+        "JF4M-01..11 福应经卷四军事source records",
+        "与J4M逐条parallel crosswalk",
+        "无独立runtime"
+      ]
     }
   ],
   "migration_assets": [
