@@ -324,7 +324,7 @@
 
 `terminology/catalog-index.json`
 
-当前 stable catalogs 共十二组：
+当前 stable catalogs 共十三组：
 
 1. `common-core.json`：公共坐标/神名/五态；
 2. `t7-seven-methods.json`：七术；
@@ -337,7 +337,8 @@
 9. `volume9-10.json`：C41–C46 卷九/卷十严格来源规则；
 10. `relations.json`：显式同宫/同域关系层；
 11. `ritual-timing.json`：天子巡狩与推太乙当时法；
-12. `ten-essences.json`：十精 C52–C59 分层体系。
+12. `ten-essences.json`：十精 C52–C59 分层体系；
+13. `military-jinjing-v4.json`：《金镜》卷四 J4M-04..12 军事扩展术语。
 
 另外单列：
 
@@ -443,7 +444,7 @@ C74 的五福初交、C90/C91 的条件治理分支、C94 的 interpretation pro
 
 当前快照：
 
-- stable catalogs：12；
+- stable catalogs：13；
 - 正式 entries：97；
 - 不同 entry 之间的精确 preferred/alias 重名：0。
 
@@ -576,8 +577,54 @@ crosswalk 专门锁定“近名但不能合并”的高风险关系，例如：
 
 当前快照：
 
-- rules 总表 rule_id：75；
-- stable terminology rule_id：108；
+- rules 总表 rule_id：84；
+- stable terminology rule_id：123；
 - rules 总表中未被术语库覆盖：0。
 
 术语层数量更大是预期行为，因为它比规则总表保留更细的 D8/T7 子规则、C69B 六壬叠盘子步骤、source-profile-specific 周期规则及八门叠盘关系层。
+
+
+## 《金镜》卷四 J4M-04..12 扩展军事术语
+
+已建立：
+
+`terminology/military-jinjing-v4.json`
+
+目录拆分固定：
+
+- `military-p0.json`：J4M-01 三门、J4M-02 五将、J4M-03 主客相关；
+- `military-jinjing-v4.json`：J4M-04..12。
+
+扩展九项：
+
+- J4M-04 主客先后动静；
+- J4M-05 出师法；
+- J4M-06 陈兵向背；
+- J4M-07 制阵随地；
+- J4M-08 随地制变；
+- J4M-09 太乙在天外地内；
+- J4M-10 奇伏；
+- J4M-11 太乙风云飞鸟助战；
+- J4M-12 阵有风云气定胜负。
+
+NCL-06604 明钞本继续作为 independent manuscript witness，不覆盖四库 canonical。重点异文包括 J4M-05 的 12/22/32、J4M-06 算表、J4M-09 一宫地内、J4M-11 主人刑/客刑败方、J4M-12 西方白云等。
+
+十精飞鸟 C53 与 J4M-11 也已正式做 catalog-to-catalog crosswalk：前者是推步神位，后者是外部军事观测。
+
+
+## 旧 `terminology.json` 可逆恢复 manifest
+
+已建立：
+
+`terminology/legacy-recovery-manifest.json`
+
+原则：
+
+- 现有 111 个 stable entry 全部逐项列入 manifest；
+- 旧 `old_term_record_id`、原字形、页码、section、旧 definition/notes/aliases 在原件未取得前全部保持 `null`；
+- 不生成 synthetic legacy id；
+- 紫庭 migration map 与 NCL-06604 reconciliation map 只作为命中线索；
+- 一致时合并来源链，冲突时保留 legacy/current 并列 witness；
+- 无法唯一命中的旧词条保持 `unmapped`，不为追求100%覆盖而猜归属。
+
+本轮在补齐 J4M-04..12 后，NCL reconciliation map 的 migration-only 候选已降为 0：其 8 个对账项均能指向 stable terminology entry；但旧 `terminology.json` 原始 bytes/schema 仍未恢复，所以该 manifest 仍不是旧 master store 的替代品。
