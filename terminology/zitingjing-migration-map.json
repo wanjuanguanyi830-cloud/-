@@ -151,16 +151,18 @@
         "三旗行宫",
         "三旗行宮"
       ],
-      "terminology_status": "existing_term_or_related_terms_expected_in_local_store",
-      "current_rule_status": "zitingjing_attribution_unverified",
+      "terminology_status": "old_store_related_term_recovery_candidate",
+      "current_rule_status": "tongzong_volume10_direct_ziting_legacy_attribution_unverified",
       "rule_key": "three_banners",
-      "runtime": null,
+      "runtime": "kintaiyi.tongzong_volume10_spirits.three_banners",
       "source_refs": [
-        "c20-zitingjing-pending-locators-record"
+        "c20-zitingjing-pending-locators-record",
+        "sources/c126-c127-tongzong-volume10-spirits-record.md"
       ],
       "manuscript_form": null,
       "source_page": null,
-      "source_boundary": "统宗卷十有直接术文；紫庭归属未证。旧术语条目不能据此自动升为紫庭canonical。"
+      "source_boundary": "现行可执行公式已由《太乙统宗宝鉴》卷十直接证明；旧store/明钞只用于判断是否另有紫庭witness及恢复旧字形页码，不再决定当前canonical来源。",
+      "current_rule_id": "C126-TONGZONG-THREE-BANNERS"
     },
     {
       "key": "nine_palace_nobles",
@@ -171,16 +173,18 @@
         "九宫贵神术",
         "九宮貴神術"
       ],
-      "terminology_status": "existing_term_or_related_terms_expected_in_local_store",
-      "current_rule_status": "zitingjing_attribution_unverified",
+      "terminology_status": "old_store_related_term_recovery_candidate",
+      "current_rule_status": "tongzong_volume10_direct_ziting_legacy_attribution_unverified",
       "rule_key": "nine_palace_nobles",
-      "runtime": null,
+      "runtime": "kintaiyi.tongzong_volume10_spirits.nine_palace_nobles",
       "source_refs": [
-        "c20-zitingjing-pending-locators-record"
+        "c20-zitingjing-pending-locators-record",
+        "sources/c126-c127-tongzong-volume10-spirits-record.md"
       ],
       "manuscript_form": null,
       "source_page": null,
-      "source_boundary": "统宗卷十有直接术文；紫庭归属未证。历史九宫贵神体系也不能替代紫庭来源证明。"
+      "source_boundary": "现行可执行公式已由《太乙统宗宝鉴》卷十直接证明；旧store/明钞只用于判断是否另有紫庭witness及恢复旧字形页码，不再决定当前canonical来源。",
+      "current_rule_id": "C127-TONGZONG-NINE-PALACE-NOBLES"
     }
   ],
   "recovery_order": [
@@ -191,7 +195,7 @@
     "wenchang_changes",
     "shiji_changes"
   ],
-  "recovery_reason": "前三项可直接解决当前紫庭来源/正文缺口；后三项已有结构化规则，优先用于核对旧术语字形与页码。",
+  "recovery_reason": "文昌九星仍可直接解决紫庭primary正文/字形缺口；三旗行宫与九宫贵神现行canonical已归统宗卷十，恢复它们只为核对旧store身份、明钞是否另有独立witness及补旧字段。后三项已有紫庭结构化规则，主要补旧术语字形与页码。",
   "recovery_assets": [
     "terminology/zitingjing-legacy-scan-recovery.json"
   ]
