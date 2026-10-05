@@ -60,3 +60,14 @@
 - C60 建立集中旧公式 quarantine registry，除单项错误公式外，也隔离 `shijing_luo`、`yunqi_hehui`、`yunqi_zongduan`、`zonghe` 等会重新制造自动同宫和混层的旧综合 wrapper。
 - 现代纳音 profile 继续作为独立 modern reconstruction，不因非古籍来源而误归“错误公式”。
 - C60 扩展后整库验证：1197 passed / 0 failed。
+
+
+## 2026-10-05 — C112 旧分支遗留同宫关系恢复
+
+- 重新清点 2026-10-04 / 2026-10-05 旧分支，确认四组已完成但未正式迁入 main 的关系：五福×大游、五福×小游、四神×小游、大游×小游。
+- 按《太乙统宗宝鉴》卷七 NGJ / CADAL 见证重新核源，不直接 cherry-pick 旧 project canonical。
+- 新增 `src/kintaiyi/wander_conjunctions.py` 与 `tests/test_c112_wander_conjunctions.py`。
+- 五福×大游保留“五福条 / 大游条”两个来源层；不自动计算“对冲之分”。
+- 五福×小游要求显式 `virtue=True/False` 才选择“有德者昌 / 失德者殃”。
+- 四神×小游锁定“人民不安、多生水涝疾疫”；大游×小游据两见证稳定采用“兵丧、水旱、凶暴大作”。
+- 更新 `sources/prior-branch-recovery-inventory.md`：C107 已 supersede 旧“大游所在宫未完成”状态；C112 完成上述四组关系核销。
