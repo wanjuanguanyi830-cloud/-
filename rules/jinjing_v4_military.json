@@ -68,7 +68,8 @@
       }
     ],
     "scan_locator_version": "c79-j4m-cadal-page-locators-v1",
-    "witness_audit_version": "c84-ncl06604-access-boundary-v1"
+    "witness_audit_version": "c84-ncl06604-access-boundary-v1",
+    "full_twelve_scan_audit_version": "c85-j4m01-12-scan-boundary-complete-v1"
   },
   "separation_policy": [
     "本表只记录四库本《太乙金镜式经》卷四十二法，不自动并入《太乙统宗宝鉴》卷五或旧代码同名函数。",
@@ -783,6 +784,22 @@
         ],
         "status": "visual_scan_verified",
         "note": "标题起于p.139；助战各观测断语续至p.140，J4M-12标题位于p.140左端后序位置。"
+      },
+      "scan_rule_audit": {
+        "cycle": "C85",
+        "status": "scan_observation_schema_confirmed_no_event_inference",
+        "locked_points": [
+          "必须有显式外部风/云/飞鸟观测事件",
+          "迫击大将宫、主目去击客、客目击主、扶主人阵/客阵、冲突主人阵/客阵等按正文词面分项",
+          "众来噪阵单独只记观测，不生成独立胜负",
+          "《福应经》大将宫与主人刑/客刑不同断语只留独立variant"
+        ],
+        "forbidden_inference": [
+          "不得由盘内字段、天气API或legacy flybird_wl伪造观测",
+          "不得把冲击等近义词自动扩成迫击",
+          "不得把众来噪阵补成主人败或其他固定胜负",
+          "不得用《福应经》冲突读法回写《金镜》canonical"
+        ]
       }
     },
     {
@@ -825,6 +842,24 @@
         ],
         "status": "visual_scan_verified",
         "note": "标题见p.140末部；实质云气方色表及聚散/将位规则见p.141-p.143。"
+      },
+      "scan_rule_audit": {
+        "cycle": "C85",
+        "status": "scan_cloud_table_confirmed_no_symmetry_or_subject_inversion",
+        "locked_points": [
+          "云气方位×颜色逐项按正文保存",
+          "西方白云仅明庚辛日弥佳，基础胜负未明",
+          "北方红云原文明客胜，断语主体保持客",
+          "若在我阵上亦尔表示同表可用于我阵，不机械反转主客",
+          "聚散动静、大将参将位置与方色基础表分层"
+        ],
+        "forbidden_inference": [
+          "不得以五行常识补缺色",
+          "不得以四方表格对称性补西方白云大胜",
+          "不得把cloud_bearer自动改写为verdict_subject",
+          "无云气时不得强制主客胜负",
+          "正文未列的方色/形态组合保持未定义"
+        ]
       }
     }
   ]
