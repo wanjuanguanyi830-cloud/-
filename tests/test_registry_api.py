@@ -13,6 +13,7 @@ from kintaiyi.api import (
     list_operations,
     operations_for_rule,
     registry_snapshot,
+    registry_versions,
     resolve_runtime,
     rule_runtime_candidates,
 )
@@ -217,3 +218,15 @@ def test_capabilities_are_lossless_projection_of_operation_registry():
         for item in domain_items
     }
     assert flattened == {item["name"] for item in list_operations()}
+
+
+def test_registry_versions_are_explicit_and_consistent():
+    versions = registry_versions()
+    assert versions["public_api_version"] == "1.0"
+    assert versions["operations_api_version"] == "1.0"
+    assert versions["registry_schema_version"] == "1.0"
+    assert versions["operations_schema_version"] == "1.0"
+    assert versions["operations_registry_id"] == "taiyi-public-operations-v1"
+
+    capability_data = capabilities()
+    assert capability_data["api_version"] == versions["public_api_version"]
