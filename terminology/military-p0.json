@@ -23,9 +23,7 @@
       "status": "implemented_source_specific",
       "runtime_catalog": "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog",
       "pending_textual_uncertainty": [
-        "JF4M-02",
-        "JF4M-07",
-        "JF4M-10"
+        "JF4M-02"
       ]
     },
     "tongzong_volume5": {
