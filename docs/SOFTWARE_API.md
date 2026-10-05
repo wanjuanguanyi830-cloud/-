@@ -57,7 +57,7 @@ describe_rule("C67-WUFU-TONGZONG")
 - exact runtime candidates；
 - 对应公开 operation alias。
 
-source-record-only 项也可以查询，但 runtime candidates 为空。
+没有 exact runtime 的 source-record-only / attribution-pending 项也可以查询，但 runtime candidates 为空。JF4M-01..11 已不属于这一类：它们目前均有《景祐太乙福应经》独立 source-specific runtime。
 
 ## 5. 首选：按 rule_id 计算
 
@@ -128,20 +128,9 @@ pan = build_pan(moment, count_type="岁计")
 
 只有 source record、来源归属待证、正文待取得的规则不得因为进入总库就变成算法。
 
-例如景祐 JF4M source records：
+《景祐太乙福应经》JF4M-01..11 当前已全部有独立 runtime，可按 rule_id 调用；但 JF4M-02/07/10 仍保留疑字或扫描待核字段，因此“可执行”不等于“来源文本已完全无 pending”。
 
-```python
-calculate_rule("JF4M-04")
-# KeyError: no runtime registered ...
-```
-
-但仍可：
-
-```python
-describe_rule("JF4M-04")
-```
-
-用于显示文献说明。
+对于仍无 exact runtime 的 source-record-only / attribution-pending 条目，`describe_rule()` 仍可用于显示规则和来源说明，而 `calculate_rule()` 会拒绝执行。
 
 ## 10. 错误语义
 
@@ -195,3 +184,14 @@ status = repository_status()
 - public API 版本。
 
 因此后续继续增加术法或术语时，软件状态页可以自动更新。
+
+
+## 14. 旧术语库恢复状态
+
+```python
+from kintaiyi import legacy_recovery_status
+
+recovery = legacy_recovery_status()
+```
+
+该接口专门显示旧 `terminology.json`、研易楼明钞本原页和旧字段恢复是否具备条件。它不会从当前 canonical 反推旧 term id、旧定义、旧 notes、manuscript_form 或 source_page。
