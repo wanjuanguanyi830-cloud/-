@@ -113,7 +113,9 @@ def test_runtime_status_matches_observation_batch_implementation():
 
     assert by_id["J4M-11"]["implementation_status"] == "implemented_source_specific"
     assert by_id["J4M-11"]["runtime"].endswith(".fengyun_feiniao_zhuzhan")
-    assert "not_computable" in by_id["J4M-11"]["implementation_note"]
+    assert "显式声明 phenomenon" in by_id["J4M-11"]["implementation_note"]
+    assert "不做近义词扩张" in by_id["J4M-11"]["implementation_note"]
+    assert "C75" in by_id["J4M-11"]["implementation_note"]
 
     assert by_id["J4M-12"]["implementation_status"] == "implemented_source_specific"
     assert by_id["J4M-12"]["runtime"].endswith(".yunqi_dingshengfu")
