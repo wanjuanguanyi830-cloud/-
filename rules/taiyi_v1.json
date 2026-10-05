@@ -598,6 +598,12 @@
         "catalog": "terminology/military-tongzong-v15-v17.json",
         "canonical_source_rule": false,
         "runtime": "kintaiyi.cross_volume_helpers.build_guxu_cross_volume_helper"
+      },
+      {
+        "id": "R-TAIYI-NINE-STARS-ZITING-CYCLE",
+        "canonical": "C125只代表《太乙紫庭经》〈释九宫所值九星〉主来源直符周期：九星每星十年，合90年循环，天蓬起顺九星；开元十二年积1937281余31，得天辅直符第1年。当前不从OCR残文强推完整十干加宫，不借C124统宗动态表反填。",
+        "rule_id": "C125-ZITING-TAIYI-NINE-STARS-CYCLE",
+        "runtime": "kintaiyi.zitingjing_primary.taiyi_nine_stars_primary_cycle"
       }
     ]
   },
