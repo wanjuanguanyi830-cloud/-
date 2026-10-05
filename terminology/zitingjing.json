@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0",
+  "catalog_id": "taiyi-zitingjing-terminology-v1",
+  "scope": "source_sensitive_zitingjing",
+  "status": "repository_source_sensitive_terminology_catalog",
+  "legacy_terminology_json_migrated": false,
+  "migration_asset": "terminology/zitingjing-migration-map.json",
+  "source_container_runtime": "kintaiyi.zitingjing_sources.build_zitingjing_p1_sources",
+  "primary_source": {
+    "id": "zitingjing",
+    "title": "太乙紫庭经"
+  },
+  "policy": [
+    "六项都以《太乙紫庭经》作为项目主来源目标，但证据等级逐项独立。",
+    "只有direct_text_verified项目允许生成非空primary_result。",
+    "catalog_attested_text_pending只能证明传本目录关联，不能代替直接正文。",
+    "project_attribution_unverified不能标成紫庭canonical。",
+    "统宗、《三才世纬》及其他材料只作collation/source-specific profile，不得静默覆盖紫庭主来源。",
+    "旧术语库中的manuscript_form/source_page/old_term_record_id仍须从旧terminology.json或扫描页恢复。"
+  ],
+  "entries": [
+    {
+      "key": "taiyi_nine_stars",
+      "preferred_term": "太乙九星",
+      "aliases": ["太乙九星", "太乙九星术", "太乙九星術", "释九宫所值九星", "釋九宮所值九星"],
+      "term_type": "direct_primary_text_term",
+      "primary_evidence_level": "direct_text_verified",
+      "primary_result_allowed": true,
+      "runtime": "kintaiyi.zitingjing_primary.taiyi_nine_stars_primary",
+      "source_section": "释九宫所值九星",
+      "structured_scope": ["九宫", "九星", "分野", "当前见证吉凶"],
+      "variant_policy": "三宫天冲：紫庭当前在线见证为凶，统宗参校见吉；两者并列，不静默统一。"
+    },
+    {
+      "key": "wenchang_nine_stars",
+      "preferred_term": "文昌九星",
+      "aliases": ["文昌九星", "文昌九星值宫术", "文昌九星值宮術", "附太乙文昌九星值宫术", "附太乙文昌九星值宮術"],
+      "term_type": "primary_text_pending_term",
+      "primary_evidence_level": "catalog_attested_text_pending",
+      "primary_result_allowed": false,
+      "runtime": null,
+      "source_section": "附太乙文昌九星值宫术",
+      "collation_sources": ["tongzong_volume6", "sancai_shiwei_volume81"],
+      "collation_runtime": "kintaiyi.zitingjing_collation.wenchang_nine_stars_collation_witnesses",
+      "canonical_selected": null,
+      "known_variant_groups": [
+        ["明雄", "明维", "明維"],
+        ["阴玄", "陰玄", "阴德", "陰德"],
+        ["招摇", "招搖", "招煥"],
+        ["雄明", "维明", "維明"]
+      ],
+      "cycle_status": "cross_source_unresolved",
+      "boundary_notes": ["紫庭附篇直接正文未取得前，不生成紫庭值宫runtime。"]
+    },
+    {
+      "key": "wenchang_changes",
+      "preferred_term": "文昌变化",
+      "aliases": ["文昌变化", "文昌變化", "天目变化", "天目變化", "释天目变化", "釋天目變化"],
+      "term_type": "direct_primary_text_term",
+      "primary_evidence_level": "direct_text_verified",
+      "primary_result_allowed": true,
+      "runtime": "kintaiyi.zitingjing_primary.wenchang_changes_primary",
+      "source_section": "释天目变化",
+      "structured_scope": ["文昌身份", "囚", "内迫", "外迫", "对", "二目相关"],
+      "boundary_notes": ["旺相算法调用独立五行层，不在紫庭条目重复定义。"]
+    },
+    {
+      "key": "shiji_changes",
+      "preferred_term": "始击变化",
+      "aliases": ["始击变化", "始擊變化"],
+      "term_type": "direct_primary_text_collated_term",
+      "primary_evidence_level": "direct_text_verified",
+      "primary_result_allowed": true,
+      "runtime": "kintaiyi.zitingjing_primary.shiji_changes_primary_core",
+      "source_section": "始击变化",
+      "structured_scope": ["始击身份", "客目军事角色", "掩/关/击关系", "岁干组×五行灾应25槽"],
+      "collation_status": "25_rows_collated_with_ocr_corrections_and_preserved_textual_variants",
+      "ocr_corrections": [
+        {"stem_group": "戊己", "witness_label": "水", "normalized_element": "木"},
+        {"stem_group": "壬癸", "witness_label": "王", "normalized_element": "土"}
+      ],
+      "textual_variant_policy": "庚辛岁土项夏大旱/夏大水并列保存，preserve_both_no_silent_merge。"
+    },
+    {
+      "key": "three_banners",
+      "preferred_term": "三旗行宫",
+      "aliases": ["三旗", "三旗行宫", "三旗行宮"],
+      "term_type": "primary_attribution_unverified_term",
+      "primary_evidence_level": "project_attribution_unverified",
+      "primary_result_allowed": false,
+      "runtime": null,
+      "ziting_catalog_status": "同名题目未见",
+      "collation_sources": ["tongzong_volume10"],
+      "collation_section": "明太乙与三旗行宫会合术",
+      "canonical_selected": null,
+      "boundary_notes": ["统宗卷十有直接文本，但不能据此反标为紫庭来源。"]
+    },
+    {
+      "key": "nine_palace_nobles",
+      "preferred_term": "九宫贵神",
+      "aliases": ["九宫贵神", "九宮貴神", "九宫贵神术", "九宮貴神術"],
+      "term_type": "primary_attribution_unverified_term",
+      "primary_evidence_level": "project_attribution_unverified",
+      "primary_result_allowed": false,
+      "runtime": null,
+      "ziting_catalog_status": "同名题目未见",
+      "collation_sources": ["tongzong_volume10"],
+      "collation_section": "明太乙九宫贵神术",
+      "canonical_selected": null,
+      "boundary_notes": ["统宗卷十直接文本与更早九宫贵神背景都不能替代紫庭归属证明。"]
+    }
+  ]
+}
