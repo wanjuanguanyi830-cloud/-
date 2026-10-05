@@ -240,3 +240,91 @@ def c117_catalog() -> dict[str, Any]:
         "direct_envoy_boundary": copy.deepcopy(DIRECT_ENVOY_BOUNDARY),
         "auto_rule_lookups": False,
     }
+
+
+def evaluate_taigong_with_rule_readiness(
+    *,
+    taiyi_gate: str | None,
+    tianmu_gate: str | None,
+    shiji_yanji: bool | None,
+    wenchang_qiupo: bool | None,
+    major_minor_generals_related: bool | None,
+    calc_blocked: bool | None,
+    right_taiyi_left_tianmu: bool | None,
+    yinyang_harmonious: bool | None,
+    blocking_patterns: Iterable[str] | None,
+    taiyi_in_yang_jue: bool | None,
+    spirits_independent: bool | None,
+    door: str | None,
+    door_has_malefic_spirit: bool | None,
+    role: str | None = None,
+    occupied_xuanming_target: str | None = None,
+    xuanming_in_wangxiang: bool | None = None,
+    upper_lower_generating: bool | None = None,
+    direct_envoy_clause_matched: bool | None = None,
+) -> dict[str, Any]:
+    """用现行 source profiles 接入 C117 的“三门具 / 五将发”。
+
+    这是 cross-source integration，不回写成《金镜》卷一逐字公式：
+    - 三门正面条件：采用《统宗》卷五独立 profile；
+    - 五将本体阻断：采用《金镜》卷四 J4M-02；
+    - 杜塞覆盖：采用项目 CORE-WUJIANG-READY 整合层。
+
+    其余 C117 条件仍须显式输入。
+    """
+    from .jinjing_v4_military import (
+        effective_five_generals_readiness,
+        wujiang_fabu,
+    )
+    from .tongzong_v5_doors import sanmen_jubu_tongzong
+
+    sanmen = sanmen_jubu_tongzong(
+        taiyi_gate=taiyi_gate,
+        tianmu_gate=tianmu_gate,
+    )
+    source_wujiang = wujiang_fabu(
+        shiji_yanji=shiji_yanji,
+        wenchang_qiupo=wenchang_qiupo,
+        major_minor_generals_related=major_minor_generals_related,
+        three_doors_ready=sanmen["three_doors_ready"],
+    )
+    effective_wujiang = effective_five_generals_readiness(
+        source_five_generals_released=source_wujiang.get("five_generals_released"),
+        calc_blocked=calc_blocked,
+    )
+
+    evaluated = evaluate_taigong_timing(
+        right_taiyi_left_tianmu=right_taiyi_left_tianmu,
+        yinyang_harmonious=yinyang_harmonious,
+        blocking_patterns=blocking_patterns,
+        taiyi_in_yang_jue=taiyi_in_yang_jue,
+        spirits_independent=spirits_independent,
+        door=door,
+        door_has_malefic_spirit=door_has_malefic_spirit,
+        three_doors_complete=sanmen["three_doors_ready"],
+        five_generals_active=effective_wujiang[
+            "effective_five_generals_released"
+        ],
+        role=role,
+        occupied_xuanming_target=occupied_xuanming_target,
+        xuanming_in_wangxiang=xuanming_in_wangxiang,
+        upper_lower_generating=upper_lower_generating,
+        direct_envoy_clause_matched=direct_envoy_clause_matched,
+    )
+    evaluated["readiness_integration"] = {
+        "profile": "cross_source_taigong_readiness_v1",
+        "three_doors": sanmen,
+        "source_five_generals": source_wujiang,
+        "effective_five_generals": effective_wujiang,
+        "source_boundaries": {
+            "three_doors": "太乙统宗宝鉴_卷五",
+            "five_generals": "太乙金镜式经_卷四_J4M-02",
+            "calc_blocked": "项目跨层整合事实，不伪装为J4M-02第四原文条件",
+            "taigong": "太乙金镜式经_卷一_推太公考时法",
+        },
+        "policy": (
+            "只把已分层核定的ready布尔值送入C117；"
+            "不把《统宗》卷五文字回填为《金镜》卷一原文。"
+        ),
+    }
+    return evaluated
