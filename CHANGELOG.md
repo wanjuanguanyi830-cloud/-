@@ -231,3 +231,16 @@
 - 本轮公开全文与片段检索仍未取得该附篇的研易楼明钞直接影印页或可逐字校读正文；搜索到的文昌九星正文主要属于《太乙统宗宝鉴》卷六，继续禁止反填紫庭。
 - `manuscript_form`、`source_page`、紫庭文昌九星 primary runtime 继续保持未恢复。
 - recovery audit 现区分“资源/附篇目录已确认”与“直接明钞页未恢复”，避免以后因目录证据误升 primary evidence。
+
+
+## 2026-10-06 — 研易楼原钞目录复核与文昌九星来源解绑
+
+- 用户重新提供研易楼藏《太乙紫庭祕訣》明钞本扫描件；直接核验 PDF 第5–6页目录，目录列卷一至卷十二及后附项目，未见“文昌九星”“文昌九星值宫术”“附太乙文昌九星值宫术”题名。
+- 本次结论只到“目录未见题名”，不由目录缺项外推全文绝对不存在。
+- 纠正此前“紫庭文昌九星 primary pending”模型：文昌九星不再作为研易楼原钞/紫庭 primary 恢复目标。
+- 新建稳定术语目录 `terminology/wenchang-nine-stars.json`；当前直接可执行 source profile 固定为 `C70-TONGZONG-WENCHANG-NINE-STARS`（《太乙统宗宝鉴》卷六 NGJ）。
+- `terminology/zitingjing.json` 稳定目录删除文昌九星词条；历史迁移键继续保存在 `zitingjing-migration-map.json` 与 source-container compatibility slot 中，避免旧数据失去恢复路径。
+- 现代整理本目录中的“附太乙文昌九星值宮術”降为 `modern_edition_catalog_attested_provenance_unresolved`：现代整理时收入《统宗》相关材料是合理假说，但没有编辑说明/直接拼合证据前不写成已证事实。
+- 旧 `kentang2017/kintaiyi/config.py` 九星段明确标注《太乙统宗宝鉴》卷六；旧序列“文曲、玄鳳、明維、昭搖、立華、華明、玄武、玄冥、雄明”继续只作 prior workflow code residue，不认作研易楼原钞逐字见证。
+- 稳定术语目录数由15增至16；总稳定词条数仍为148（从紫庭目录移出1项，同时新增独立文昌九星目录1项），精确跨词条重名目标仍保持0。
+- 文昌九星 `current_rule_source_gap` 关闭；后续旧库恢复只处理历史 term id / notes / aliases 与现代附篇编辑来源，不再阻塞 C70 算法调用。
