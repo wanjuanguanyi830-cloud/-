@@ -77,11 +77,11 @@ def test_calendar_contract_rejects_cross_layer_convenience_inputs():
         )
 
 
-def test_calendar_automation_status_keeps_datetime_boundary_pending():
+def test_calendar_automation_status_four_counts_are_datetime_automated():
     status = calendar_automation_status()
-    assert status["automatic_gregorian_resolution"] is False
-    assert not any("岁计历史年边界" in item for item in status["pending"])
-    assert not any("冬至/夏至气应时刻" in item for item in status["pending"])
-    assert not any("月计" in item for item in status["pending"])
-    assert not any("日计" in item for item in status["pending"])
-    assert any("时计" in item for item in status["pending"])
+    assert status["automatic_gregorian_resolution"] is True
+    assert status["pending"] == []
+    assert any("岁计" in item for item in status["resolved"])
+    assert any("月计" in item for item in status["resolved"])
+    assert any("日计" in item for item in status["resolved"])
+    assert any("时计" in item for item in status["resolved"])
