@@ -57,8 +57,18 @@ OVERLAY_BOUNDARY = {
         "开门加主大将、客大将、定计大将，各立其八门",
         "客主八门与太乙八门开休生三门合者大利",
     ],
-    "position_overlay_implemented": False,
-    "reason": "这些语句涉及各自八门的空间叠加；C123只先锁定岁计直门周期。",
+    "position_overlay_implemented": True,
+    "overlay_runtime": "kintaiyi.jinjing_eight_door_overlay.jinjing_year_open_door_contexts",
+    "meeting_runtime": "kintaiyi.jinjing_year_door_relations.year_door_meeting",
+    "meeting_interpretation": (
+        "经《太乙淘金歌》平行释文校明：先开门加太乙，"
+        "视主将（《金镜》原句并称客主）落太乙盘开休生之一者为吉/大利；"
+        "不解释成三张门盘三吉门逐名全部重合。"
+    ),
+    "wang_ximing_direct_overlay_status": (
+        "直使加太乙/主将的空间操作有《淘金歌》《讲武全书》平行证据，"
+        "暂作为parallel-reconstruction，未覆盖李淳风开门古法。"
+    ),
 }
 
 
