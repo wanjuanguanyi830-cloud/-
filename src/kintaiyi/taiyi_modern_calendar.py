@@ -18,6 +18,7 @@ import astronomy
 
 from .taiyi_core_chain import year_count_from_historical_year
 from .taiyi_modern_lunisolar import chinese_lunisolar_facts
+from .taiyi_modern_solar_month import resolve_solar_month
 
 RULE_ID = "MODERN-TAIYI-ASTRONOMICAL-CALENDAR"
 YEAR_BOUNDARY_RULE_ID = "MODERN-TAIYI-YEAR-WINTER-SOLSTICE"
@@ -183,10 +184,11 @@ def production_calendar_context(moment: datetime) -> dict[str, Any]:
         "year_boundary": resolve_taiyi_year(moment),
         "time_half": resolve_time_solstice_half(moment),
         "lunisolar": chinese_lunisolar_facts(moment),
+        "solar_month": resolve_solar_month(moment),
         "astronomy_provider": "astronomy-engine",
         "lunisolar_provider": "lunar_python",
         "policy": (
-            "天文引擎只提供季节瞬间；现代农历库只提供农历/干支事实。"
-            "太乙岁始终由冬至边界单独决定，春节立春等不得覆盖。"
+            "天文引擎提供冬夏至与十二节精确交节；现代农历库提供农历/干支事实。"
+            "太乙岁由冬至决定，太乙月界由十二节决定；春节、立春的其他历法语义不得互相覆盖。"
         ),
     }
