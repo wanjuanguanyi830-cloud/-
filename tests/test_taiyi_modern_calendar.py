@@ -5,6 +5,7 @@ import pytest
 from kintaiyi.taiyi_modern_calendar import (
     modern_year_count,
     production_calendar_context,
+    production_boundary_registry,
     resolve_taiyi_year,
     resolve_time_solstice_half,
     season_instants_utc,
@@ -200,3 +201,26 @@ def test_production_context_contains_all_four_count_results():
     assert data["month_count"]["result"]["count_type"] == "月计"
     assert data["day_count"]["result"]["count_type"] == "日计"
     assert data["time_count"]["result"]["count_type"] == "时计"
+
+
+
+def test_production_boundary_registry_separates_all_year_boundaries():
+    registry = production_boundary_registry()
+    assert registry["taiyi_year"]["boundary"] == "真实天文冬至交节瞬间"
+    assert registry["taiyi_year"]["canonical"] is True
+    assert registry["gregorian_year"]["canonical_for_taiyi_year"] is False
+    assert registry["lunar_year"]["canonical_for_taiyi_year"] is False
+    assert registry["jieqi_ganzhi_year"]["canonical_for_taiyi_year"] is False
+    assert registry["spring_equinox"]["canonical_for_taiyi_year"] is False
+
+
+def test_production_context_exposes_boundary_registry():
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+
+    data = production_calendar_context(
+        datetime(2027, 1, 1, 12, tzinfo=ZoneInfo("Asia/Shanghai"))
+    )
+    assert data["boundary_registry"]["taiyi_year"]["boundary"] == "真实天文冬至交节瞬间"
+    assert data["year_boundary"]["taiyi_historical_year"] == 2027
+    assert data["lunisolar"]["lunar"]["year"] == 2026
