@@ -64,6 +64,46 @@ def list_catalogs() -> list[dict[str, Any]]:
     return list(index["stable_catalogs"])
 
 
+def legacy_recovery_status() -> dict[str, Any]:
+    """Report what legacy terminology/manuscript recovery is blocked on.
+
+    This is an availability/status facade only. It never reconstructs missing
+    historical fields from current canonical data.
+    """
+    ziting = _load_json("terminology", "zitingjing-recovery-status.json")
+    manifest = _load_json("terminology", "legacy-recovery-manifest.json")
+    local = (
+        ziting.get("external_recovery_checks", {})
+        .get("user_reported_local_copy", {})
+    )
+    priorities = [
+        {
+            "key": item["key"],
+            "priority": item["priority"],
+            "recovered_from_original_store": item["recovered_from_original_store"],
+            "manuscript_form_recoverable_now": item["manuscript_form_recoverable_now"],
+            "source_page_recoverable_now": item["source_page_recoverable_now"],
+        }
+        for item in ziting.get("core_entries", [])
+    ]
+    return {
+        "legacy_store_status": manifest["status"],
+        "ziting_recovery_status": ziting["recovery_status"],
+        "original_schema_available": ziting["original_schema_available"],
+        "original_file_available": ziting["original_file_available"],
+        "parser_allowed": ziting["parser_allowed"],
+        "synthetic_reconstruction_allowed": ziting["synthetic_reconstruction_allowed"],
+        "user_reported_local_copy": dict(local),
+        "priorities": priorities,
+        "acceptable_unblock_evidence": list(ziting["acceptable_unblock_evidence"]),
+        "non_substitutable_sources": list(ziting["non_substitutable_sources"]),
+        "policy": (
+            "status only; missing legacy ids, definitions, notes, manuscript forms "
+            "and page fields remain null until exact source material is recovered"
+        ),
+    }
+
+
 def repository_status() -> dict[str, Any]:
     """Build a live repository summary from the packaged canonical indexes."""
     terminology_index = _load_json("terminology", "catalog-index.json")
