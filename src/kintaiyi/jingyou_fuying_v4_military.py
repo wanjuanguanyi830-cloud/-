@@ -33,32 +33,28 @@ FORMATION_ELEMENTS = {
     "方阵": "金",
     "圆阵": "土",
 }
+
+JF4M07_TERRAIN_TABLE = {
+    "后高前低": {"formation": "锐阵", "effect": "利进战、溃敌"},
+    "前高后低": {"formation": "直阵", "effect": "利近斗守御、疲敌"},
+    "地形跨斜": {"formation": "圆阵", "effect": "不便战，宜坚固守"},
+    "地形高而不平": {"formation": "方阵", "effect": "利四向、便斗战"},
+    "左右势高岗": {"formation": "曲阵", "effect": "利吞敌"},
+}
 CONTROLS = {"木": "土", "土": "水", "水": "火", "火": "金", "金": "木"}
 GOD_ELEMENTS = dict(zip(GODS, ELEMENTS))
 GOD_ALIASES = {"太蔟": "太簇"}
 HIDDEN_CALCS = {11, 21, 31}
 
 JF4M08_SOURCE_FACTS = {
-    "urgent_requirements": ["地形", "卒习服", "器用"],
+    "urgent_requirements": ["得地形", "卒习服", "利器用"],
     "terrain_rules": [
-        {
-            "terrain_class": "步兵地",
-            "favored": "步兵",
-            "disfavored": "车骑",
-            "source_ratio_text": "车骑二不当一",
-        },
-        {
-            "terrain_class": "萑苇竹萧",
-            "favored": "矛鋋类",
-            "disfavored": "长戟",
-            "source_ratio_text": "长戟二不当一",
-        },
-        {
-            "terrain_class": "曲道",
-            "favored": "剑楯类",
-            "disfavored": None,
-            "source_ratio_text": None,
-        },
+        {"terrain_class": "步兵地", "favored": "步兵", "disfavored": "车骑", "source_ratio_text": "车骑二不当一"},
+        {"terrain_class": "车骑地", "favored": "车骑", "disfavored": "步兵", "source_ratio_text": "步兵十不当一"},
+        {"terrain_class": "弓弩地", "favored": "弓弩", "disfavored": "短兵", "source_ratio_text": "短兵百不当一"},
+        {"terrain_class": "长戟地", "favored": "长戟", "disfavored": "剑楯", "source_ratio_text": "剑楯三不当一"},
+        {"terrain_class": "矛鋋地", "favored": "矛鋋", "disfavored": "长戟", "source_ratio_text": "长戟二不当一"},
+        {"terrain_class": "曲道剑楯地", "favored": "剑楯", "disfavored": "弓弩", "source_ratio_text": "弓弩三不当一"},
     ],
     "discipline_rules": {
         "soldiers_untrained": "不习服百不当十",
@@ -491,42 +487,37 @@ def formation_by_terrain(
     host_formation: str | None = None,
     guest_formation: str | None = None,
     terrain_shape: str | None = None,
-    terrain_recommended_formation: str | None = None,
 ) -> dict[str, Any]:
-    """JF4M-07 置阵随地。
-
-    当前 ruleset 尚未锁定可直接机器化的完整地形→阵形字表，
-    因此地形建议仅接调用方显式校勘结果，不借J4M地形表。
-    """
+    """JF4M-07 置阵随地。"""
     result = _base("JF4M-07", "释置阵随地")
     contest = _formation_contest(host_formation, guest_formation)
-    if terrain_recommended_formation is not None and terrain_recommended_formation not in FORMATION_ELEMENTS:
-        return {
-            **result,
-            "status": "not_computable",
-            "computable": False,
-            "terrain_recommended_formation": terrain_recommended_formation,
-            "known_formations": list(FORMATION_ELEMENTS),
-        }
+    terrain_rule = copy.deepcopy(JF4M07_TERRAIN_TABLE.get(terrain_shape))
 
-    terrain_status = (
-        "explicit_collation_input"
-        if terrain_shape is not None and terrain_recommended_formation is not None
-        else "pending_full_scan_table"
-    )
+    if terrain_shape is None:
+        terrain_status = "not_requested"
+    elif terrain_rule is None:
+        terrain_status = "not_defined_by_source_passage"
+    else:
+        terrain_status = "ok"
+
     return {
         **result,
-        "status": "ok" if contest["relation"] not in {"not_computable", "unknown_formation"} else "partial",
-        "computable": contest["relation"] not in {"not_computable", "unknown_formation"},
+        "status": (
+            "ok"
+            if terrain_rule is not None or contest["relation"] not in {"not_computable", "unknown_formation"}
+            else "partial"
+        ),
+        "computable": terrain_rule is not None or contest["relation"] not in {"not_computable", "unknown_formation"},
         "formation_elements": dict(FORMATION_ELEMENTS),
         "host_formation": host_formation,
         "guest_formation": guest_formation,
         "formation_contest": contest,
         "terrain_shape": terrain_shape,
-        "terrain_recommended_formation": terrain_recommended_formation,
+        "terrain_rule": terrain_rule,
+        "terrain_table": copy.deepcopy(JF4M07_TERRAIN_TABLE),
         "terrain_status": terrain_status,
-        "textual_uncertainty": ["地形跨斜", "地形高而不平"],
-        "policy": "阵形五行相制可独立执行；完整地形表待扫描核字，不借《金镜》表补齐。",
+        "direction_relation": {"顺其乡": "益吉", "反其乡": "不取为自动胜负"},
+        "policy": "五阵五行相制与地形选阵分栏；当前地形表来自《福应经》卷四转录，不借J4M表。",
     }
 
 
@@ -626,7 +617,7 @@ JF4M10_PHENOMENA = {"风", "云", "飞鸟", "众鸟"}
 
 
 def weather_bird_support(events: list[dict[str, Any]]) -> dict[str, Any]:
-    """JF4M-10 风云飞鸟助战：只解释 ruleset 已明确的观测句。"""
+    """JF4M-10 风云飞鸟助战：解释当前《福应经》卷四转录已锁定的观测句。"""
     result = _base("JF4M-10", "释太乙风云飞鸟置战")
     if not isinstance(events, list):
         raise TypeError("events须为list")
@@ -648,6 +639,9 @@ def weather_bird_support(events: list[dict[str, Any]]) -> dict[str, Any]:
         source_anchor = event.get("source_anchor")
         target = event.get("target")
         wing_target = event.get("wing_target")
+        returning_wind = event.get("returning_wind")
+        birds_circling = event.get("birds_circling")
+        flag_broken = event.get("flag_broken")
         crowd_noisy = event.get("crowd_noisy")
 
         judgment = {
@@ -659,36 +653,59 @@ def weather_bird_support(events: list[dict[str, Any]]) -> dict[str, Any]:
             "source_case": None,
         }
 
-        if action in {"迫", "击", "迫击"} and target in {"客大将", "客将"}:
+        if target in {"太乙", "太乙宫"} and action in {"冲", "格", "迫", "击", "冲格迫击"}:
+            judgment.update(omen="大败", source_case="风云飞鸟冲格迫击太乙宫")
+        elif action in {"迫", "击", "迫击"} and target in {"客大将", "客将", "客大将宫"}:
             judgment.update(loser="客", source_case="迫击客大将宫")
-        elif action in {"迫", "击", "迫击"} and target in {"主大将", "主将"}:
-            judgment.update(loser="主", source_case="迫击主将宫")
+        elif action in {"迫", "击", "迫击"} and target in {"主大将", "主将", "主大将宫"}:
+            judgment.update(loser="主", source_case="迫击主大将宫")
         elif source_anchor in {"主人刑", "主刑"} and action in {"来", "上来"}:
             judgment.update(loser="主", source_case="从主人刑上来")
-        elif source_anchor in {"客刑"} and action in {"来", "上来"}:
+        elif source_anchor == "客刑" and action in {"来", "上来"}:
             judgment.update(loser="客", source_case="从客刑上来")
+        elif source_anchor in {"主目"} and action in {"击", "去击"} and target in {"客大将", "客大将宫"}:
+            judgment.update(loser="客", source_case="从主目上去击客大将宫")
+        elif source_anchor in {"客", "客目"} and action in {"击", "去击"} and target in {"主大将", "主大将宫"}:
+            judgment.update(loser="主", source_case="从客目上去击主大将宫")
+        elif source_anchor in {"太岁", "太阴", "月建"} and action == "击" and target in {"主人阵", "主阵"}:
+            judgment.update(loser="主", source_case=f"从{source_anchor}上来击主人阵")
+        elif source_anchor in {"太岁", "太阴", "月建"} and action == "击" and target == "客阵":
+            judgment.update(loser="客", source_case=f"从{source_anchor}上来击客阵")
         elif wing_target in {"主人阵前", "主阵前"}:
             judgment.update(winner="主", source_case="来翼主人阵前")
-        elif wing_target in {"客阵前"}:
+        elif wing_target == "客阵前":
             judgment.update(winner="客", source_case="来翼客阵前")
+        elif returning_wind is True and (birds_circling is True or flag_broken is True):
+            judgment.update(omen="大败之兆", source_case="回旋风起且飞鸟旋阵或旗竿折")
+        elif crowd_noisy is True and action in {"冲阵", "冲", "衝阵", "衝"} and target in {"主人阵", "主阵"}:
+            judgment.update(loser="主", omen="凶", source_case="众鸟翼噪并风云冲主人阵")
+        elif crowd_noisy is True and action in {"冲阵", "冲", "衝阵", "衝"} and target == "客阵":
+            judgment.update(loser="客", omen="凶", source_case="众鸟翼噪并风云冲客阵")
         elif crowd_noisy is True and action in {"冲阵", "冲", "衝阵", "衝"}:
             judgment.update(omen="凶", source_case="众鸟翼噪并风云冲阵而来")
         else:
             judgment.update(
                 matched=False,
-                source_case="ruleset未锁定该观测组合",
-                note="太岁/太阴/月建及主客目等更多句仍待直接扫描定位后逐条扩展。",
+                source_case="当前转录未覆盖该观测组合",
+                note="不以J4M-11或盘内飞鸟位置补断。",
             )
         judgments.append(judgment)
 
     matched = [x for x in judgments if x["matched"]]
     return {
         **result,
-        "status": "ok" if matched else "not_defined_by_current_source_record",
+        "status": "ok" if matched else "not_defined_by_source_passage",
         "computable": bool(matched),
         "events": copy.deepcopy(events),
         "judgments": judgments,
-        "policy": "只实现《福应经》ruleset已锁定句；不调用J4M-11，也不从盘内飞鸟位置伪造外部观测。",
+        "observation_schema": {
+            "phenomenon": sorted(JF4M10_PHENOMENA),
+            "fields": [
+                "phenomenon", "action", "source_anchor", "target", "wing_target",
+                "returning_wind", "birds_circling", "flag_broken", "crowd_noisy",
+            ],
+        },
+        "policy": "只解释《福应经》卷四当前转录明确观测句；不调用J4M-11，不从盘内飞鸟位置伪造外部观测。",
     }
 
 
@@ -759,9 +776,7 @@ def jf4m_runtime_catalog() -> dict[str, Any]:
         "cross_source_merge": False,
         "source_limited": True,
         "pending_textual_uncertainty": {
-            "JF4M-02": "大小将不相开待扫描核字",
-            "JF4M-07": "完整地形字表待扫描核字",
-            "JF4M-10": "太岁/太阴/月建及主客目更多观测句待逐条扫描定位",
+            "JF4M-02": "大小将不相开的技术义仍待扫描/异本核字",
         },
         "policy": "11条均有独立福应经runtime；不调用J4M平行实现，疑字/未锁定句保持pending。",
     }
