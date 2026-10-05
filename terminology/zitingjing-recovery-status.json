@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "audit_id": "C80-ZITINGJING-TERMINOLOGY-RECOVERY-AVAILABILITY",
+  "date": "2026-10-05",
+  "target_file": "terminology.json",
+  "target_store": "prior_local_terminology_store",
+  "recovery_status": "blocked_missing_original_store",
+  "original_schema_available": false,
+  "original_file_available": false,
+  "parser_allowed": false,
+  "synthetic_reconstruction_allowed": false,
+  "repository_checks": {
+    "current_tree_contains_target": false,
+    "git_history_paths_checked": [
+      "terminology.json",
+      "terminology/terminology.json",
+      "data/terminology.json"
+    ],
+    "git_history_matches": 0
+  },
+  "external_recovery_checks": {
+    "chatgpt_library_title_or_content_match": false,
+    "status": "no_retrievable_prior_file_found_in_current_recovery_pass",
+    "note": "This is a recovery-channel result, not evidence that the historical local file never existed."
+  },
+  "migration_map": "terminology/zitingjing-migration-map.json",
+  "required_original_fields": [
+    "old_term_record_id",
+    "manuscript_form",
+    "source_page",
+    "source_section",
+    "old_definition",
+    "old_notes",
+    "old_aliases"
+  ],
+  "core_entries": [
+    {
+      "key": "wenchang_nine_stars",
+      "priority": 1,
+      "recovered_from_original_store": false,
+      "manuscript_form_recoverable_now": false,
+      "source_page_recoverable_now": false
+    },
+    {
+      "key": "three_banners",
+      "priority": 2,
+      "recovered_from_original_store": false,
+      "manuscript_form_recoverable_now": false,
+      "source_page_recoverable_now": false
+    },
+    {
+      "key": "nine_palace_nobles",
+      "priority": 3,
+      "recovered_from_original_store": false,
+      "manuscript_form_recoverable_now": false,
+      "source_page_recoverable_now": false
+    },
+    {
+      "key": "taiyi_nine_stars",
+      "priority": 4,
+      "recovered_from_original_store": false,
+      "manuscript_form_recoverable_now": false,
+      "source_page_recoverable_now": false
+    },
+    {
+      "key": "wenchang_changes",
+      "priority": 5,
+      "recovered_from_original_store": false,
+      "manuscript_form_recoverable_now": false,
+      "source_page_recoverable_now": false
+    },
+    {
+      "key": "shiji_changes",
+      "priority": 6,
+      "recovered_from_original_store": false,
+      "manuscript_form_recoverable_now": false,
+      "source_page_recoverable_now": false
+    }
+  ],
+  "acceptable_unblock_evidence": [
+    "the exact historical terminology.json or another exact snapshot of the old local terminology store",
+    "for manuscript_form/source_page only: direct recoverable pages from the Yanyilou Ming manuscript witness"
+  ],
+  "non_substitutable_sources": [
+    "太乙统宗宝鉴",
+    "三才世纬",
+    "现代整理材料",
+    "OCR猜测",
+    "C70文昌九星统宗profile"
+  ],
+  "policy": [
+    "C80 is an availability audit, not a reconstructed terminology store.",
+    "Do not infer the old JSON schema, ids, aliases, definitions, notes, or page fields.",
+    "Do not use external collation witnesses to fill Yanyilou manuscript_form or source_page.",
+    "C70 may inform source comparison but may not backfill Zitingjing primary terminology fields.",
+    "When the original store becomes available, write a one-time adapter against the observed schema."
+  ]
+}
