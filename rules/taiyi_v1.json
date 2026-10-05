@@ -19,22 +19,35 @@
       {
         "id": "T7-02",
         "name": "狮子反掷",
-        "canonical": "起年支求大神；A模型旺相不破，休囚死合破。四维分区第18年候破，含起年内部+17；普通支只返回候选破年支。",
-        "pending": [
-          "普通落支应期缺第二古籍实例"
-        ],
-        "collation_status": "three_source_pass_complete_no_second_ordinary_branch_example",
+        "canonical": "吕申加敌起兵年，大神所临为破年；大神旺相不破，休囚死合破。普通落子卯午酉四正时取第4年（offset +3）；若大神落四维之方则取第18年（offset +17）。完整干支输入可直接顺六十甲子得到完整破年；仅年支输入只返回破年支，不补造年干。",
+        "collation_status": "three_source_rule_resolved_direct_break_year_vs_corner_18_year",
         "collation_sources": [
           "四库本《太乙金镜式经》卷六",
           "《太乙统宗宝鉴》卷十一",
           "《太乙金钥匙》"
         ],
-        "collation_note": "三源均未提供第二条大神落普通支且给出唯一完整破年干支的古例；普通落支继续只返回candidate_branch。",
+        "collation_note": "统宗卷十一与《太乙金钥匙》均直接说明大神所临为破年、四维十八年；第二个普通古例不再是算法闭合的必要条件。",
         "source_variants": [
           "相关版本墓为易破",
           "《太乙金钥匙》补充：起兵年太乙杜塞则当年破；不并入四库canonical普通落支应期算法。"
         ],
-        "source_record": "sources/t7-02-lion-collation.md"
+        "source_record": "sources/t7-02-lion-collation.md",
+        "timing_profile": {
+          "ordinary_cardinal": {
+            "start_branches": [
+              "子",
+              "卯",
+              "午",
+              "酉"
+            ],
+            "offset": 3,
+            "year_number": 4
+          },
+          "corner_sector": {
+            "offset": 17,
+            "year_number": 18
+          }
+        }
       },
       {
         "id": "T7-03",
@@ -827,7 +840,6 @@
     }
   ],
   "pending": [
-    "T7-02狮子反掷：普通落支候选破年仍缺第二古籍实例，当前不外推唯一应期。",
     "旧本地terminology.json真实schema与原文件尚未重新挂载；旧term id、旧定义、旧notes等不得从当前catalog反推。",
     "研易楼藏《太乙紫庭祕訣》明钞本已重新提供并核验目录，未见文昌九星题名；C70《太乙统宗宝鉴》卷六NGJ已解决现行文昌九星规则来源。剩余仅现代整理本“附太乙文昌九星值宮術”的编辑来源未证，不阻塞算法。"
   ]
