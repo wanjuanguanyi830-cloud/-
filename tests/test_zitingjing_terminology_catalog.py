@@ -114,3 +114,24 @@ def test_shiji_collation_keeps_ocr_corrections_separate_from_textual_variant():
         {"stem_group": "壬癸", "witness_label": "王", "normalized_element": "土"},
     ]
     assert "preserve_both_no_silent_merge" in entry["textual_variant_policy"]
+
+
+def test_wenchang_public_scan_leads_do_not_unlock_primary():
+    data = _load(CATALOG)
+    entry = next(e for e in data["entries"] if e["key"] == "wenchang_nine_stars")
+
+    leads = entry["scan_share_leads"]
+    shuge = next(item for item in leads if item["site"] == "书格")
+    assert shuge["reported_extent"] == "181单页灰度，328M"
+    assert shuge["direct_manuscript_page_recovered"] is False
+
+    catalog = next(item for item in leads if item["site"] == "现代出版目录")
+    assert catalog["appendix_title"] == "附太乙文昌九星值宮術"
+    assert catalog["direct_manuscript_page_recovered"] is False
+
+    assert entry["primary_result_allowed"] is False
+    assert entry["runtime"] is None
+    assert any(
+        "未取得该附篇直接影印页/逐字正文" in note
+        for note in entry["boundary_notes"]
+    )
