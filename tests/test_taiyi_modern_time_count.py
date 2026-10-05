@@ -40,7 +40,7 @@ def test_accumulated_time_is_monotonic_across_midnight():
     after = accumulated_time_from_moment(
         datetime(2026, 3, 25, 0, 0, tzinfo=TZ)
     )
-    assert after["accumulated_time"] == before["accumulated_time"] + 1
+    assert after["entry_count"] == before["entry_count"] + 1
 
 
 def test_2300_does_not_reset_taiyi_time_or_day():
@@ -50,9 +50,9 @@ def test_2300_does_not_reset_taiyi_time_or_day():
     zi = accumulated_time_from_moment(
         datetime(2026, 3, 24, 23, 30, tzinfo=TZ)
     )
-    assert zi["accumulated_day"] == before["accumulated_day"]
+    assert zi["day_index_1based"] == before["day_index_1based"]
     assert zi["time_unit_1based"] == 12
-    assert zi["accumulated_time"] == before["accumulated_time"]
+    assert zi["entry_count"] == before["entry_count"]
 
 
 def test_entry_count_and_duty_time_real_are_separate_fields_from_same_base():
@@ -63,18 +63,19 @@ def test_entry_count_and_duty_time_real_are_separate_fields_from_same_base():
     assert data["fields_remain_separate"] is True
 
 
-def test_exact_summer_solstice_switches_to_yin_without_rewriting_time_base():
+def test_exact_summer_solstice_switches_to_yin_and_resets_half_year_count():
     boundary = summer_solstice_utc(2026)
     before = modern_time_count(boundary - timedelta(microseconds=1))
     exact = modern_time_count(boundary)
 
     assert before["dun"] == "阳"
     assert exact["dun"] == "阴"
-    # 若交节未跨两小时边界，连续积时本身保持同一算；变化来自阴阳profile切换。
-    assert abs(exact["entry_count"] - before["entry_count"]) <= 1
+    assert exact["entry_count"] <= 12
+    assert exact["entry_count"] < before["entry_count"]
+    assert exact["arithmetic"]["day_index_1based"] == 1
 
 
-def test_exact_winter_solstice_switches_to_yang():
+def test_exact_winter_solstice_switches_to_yang_and_resets_half_year_count():
     boundary = winter_solstice_utc(2026)
     before = modern_time_count(boundary - timedelta(microseconds=1))
     exact = modern_time_count(boundary)
@@ -82,6 +83,9 @@ def test_exact_winter_solstice_switches_to_yang():
     assert before["dun"] == "阴"
     assert exact["dun"] == "阳"
     assert exact["solstice_half"] == "冬至后"
+    assert exact["entry_count"] <= 12
+    assert exact["entry_count"] < before["entry_count"]
+    assert exact["arithmetic"]["day_index_1based"] == 1
 
 
 def test_same_absolute_instant_uses_same_china_standard_time_count():
@@ -103,3 +107,17 @@ def test_modern_time_count_is_fully_connected_to_core_and_c119():
     assert data["result"]["dun"] == data["dun"]
     assert data["direct_door"] is not None
     assert data["taiyi_palace"] in {1, 2, 3, 4, 6, 7, 8, 9}
+
+
+
+def test_time_count_uses_days_since_current_solstice_not_absolute_day_epoch():
+    boundary = winter_solstice_utc(2026)
+    exact = accumulated_time_from_moment(boundary)
+    next_day = accumulated_time_from_moment(boundary + timedelta(days=1))
+
+    assert exact["day_index_1based"] == 1
+    assert next_day["day_index_1based"] in {1, 2}
+    # 跨过同一中国民用日边界后才增加12；绝不出现梁代以来的巨型绝对时数。
+    assert exact["entry_count"] < 20
+    assert next_day["entry_count"] < 40
+    assert exact["source_profile"] == "production_modern_solstice_relative_time_count"
