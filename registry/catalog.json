@@ -9,18 +9,50 @@
     "同名术跨来源保持source profile隔离；registry只建立关系，不静默合并。"
   ],
   "layers": {
-    "terminology": {"owner":"terminology","index":"terminology/catalog-index.json","crosswalk":"terminology/crosswalk.json","role":"术语、别名、定义、边界、rule/source引用"},
-    "rules": {"owner":"rules","index":"rules/taiyi_v1.json","role":"canonical规则、source profiles、机器配置"},
-    "runtime": {"owner":"src/kintaiyi","public_facade":"kintaiyi.api","role":"可执行算法；兼容旧runtime路径但新软件不直接依赖内部模块路径"},
-    "sources": {"owner":"sources","role":"古籍证据、页码、见证、异文、OCR修正和校勘说明"},
-    "registry": {"owner":"registry","operations":"registry/operations.json","role":"软件级总入口与跨层指针"},
-    "schemas": {"owner":"schemas","role":"registry、operation、result等稳定数据契约"},
-    "tests": {"owner":"tests","role":"规则回归、registry完整性、公开API稳定性"}
+    "terminology": {
+      "owner": "terminology",
+      "index": "terminology/catalog-index.json",
+      "crosswalk": "terminology/crosswalk.json",
+      "role": "术语、别名、定义、边界、rule/source引用"
+    },
+    "rules": {
+      "owner": "rules",
+      "index": "rules/taiyi_v1.json",
+      "role": "canonical规则、source profiles、机器配置"
+    },
+    "runtime": {
+      "owner": "src/kintaiyi",
+      "public_facade": "kintaiyi.api",
+      "role": "可执行算法；兼容旧runtime路径但新软件不直接依赖内部模块路径"
+    },
+    "sources": {
+      "owner": "sources",
+      "role": "古籍证据、页码、见证、异文、OCR修正和校勘说明"
+    },
+    "registry": {
+      "owner": "registry",
+      "operations": "registry/operations.json",
+      "role": "软件级总入口与跨层指针"
+    },
+    "schemas": {
+      "owner": "schemas",
+      "role": "registry、operation、result等稳定数据契约"
+    },
+    "tests": {
+      "owner": "tests",
+      "role": "规则回归、registry完整性、公开API稳定性"
+    }
   },
   "compatibility": {
     "legacy_imports_preserved": true,
     "root_config_preserved": true,
     "migration_strategy": "additive_facade_before_physical_moves",
     "legacy_terminology_master_migrated": false
+  },
+  "public_api": {
+    "version": "1.0",
+    "facade": "kintaiyi.api",
+    "stability": "stable_v1",
+    "breaking_change_policy": "breaking public API changes require a major API version bump"
   }
 }
