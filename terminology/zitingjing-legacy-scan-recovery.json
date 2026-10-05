@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "zitingjing-legacy-scan-recovery-v1",
+  "status": "recovered_legacy_scan_extraction_residue_direct_page_not_reattached",
+  "canonical_catalog": false,
+  "manuscript_source_id": "shanghai_yanyilou_ming_copy",
+  "manuscript_title": "太乙紫庭祕訣",
+  "provenance": {
+    "user_confirmation": "用户确认该明钞本在此前整理术语库时已经扫描过，且本地E盘仍留有原文件。",
+    "current_access_boundary": "当前执行环境未直接挂载E盘原扫描文件，也未恢复旧terminology.json原始字节。",
+    "recovered_derived_residue": {
+      "repository": "kentang2017/kintaiyi",
+      "commit": "11f78555d5e77c81ac8af69d243a981c22934733",
+      "path": "src/kintaiyi/config.py",
+      "lines": "1045-1111",
+      "role": "旧整理成果的派生实现残留，不等同于原扫描页或旧terminology.json本体"
+    }
+  },
+  "policy": [
+    "本资产恢复的是此前扫描/术语整理留下的可辨识成果，不重做外部资料搜寻。",
+    "派生代码中的词形、表格和算法可作为legacy witness，但不能单独证明研易楼明钞本逐字原文。",
+    "旧实现与当前直接古籍校勘冲突时并列保存，不覆盖当前source-specific canonical。",
+    "在E盘原扫描或旧terminology.json重新挂载前，old_term_record_id、source_page、逐字manuscript_form仍不得猜填。"
+  ],
+  "entries": [
+    {
+      "key": "wenchang_nine_stars",
+      "preferred_term": "文昌九星",
+      "legacy_scan_extraction_status": "recovered_from_prior_workflow_residue",
+      "recovered_star_sequence": [
+        "文曲",
+        "玄鳳",
+        "明維",
+        "昭搖",
+        "立華",
+        "華明",
+        "玄武",
+        "玄冥",
+        "雄明"
+      ],
+      "recovered_palace_region_table": [
+        {"star": "文曲", "palace": "乾", "region": "冀州"},
+        {"star": "玄鳳", "palace": "離", "region": "荊州"},
+        {"star": "明維", "palace": "艮", "region": "青州"},
+        {"star": "昭搖", "palace": "震", "region": "徐州"},
+        {"star": "立華", "palace": "中", "region": "豫州"},
+        {"star": "華明", "palace": "兌", "region": "雍州"},
+        {"star": "玄武", "palace": "坤", "region": "梁益"},
+        {"star": "玄冥", "palace": "坎", "region": "兖州"},
+        {"star": "雄明", "palace": "巽", "region": "揚州"}
+      ],
+      "recovered_cycle_annotation": {
+        "large_cycle": 2700,
+        "small_cycle": 270,
+        "rate": 30,
+        "start_text": "命起一宮文曲順行",
+        "note": "此注释来自旧派生实现；当前C70-NGJ直接见证为一宫文昌，故二者作为来源差异并列。"
+      },
+      "recovered_year_stem_palace_table": {
+        "甲": 3,
+        "乙": 4,
+        "丙": 9,
+        "丁": 9,
+        "戊": 5,
+        "己": 5,
+        "庚": 7,
+        "辛": 6,
+        "壬": 5,
+        "癸": 8
+      },
+      "current_audit": {
+        "canonical_equivalent": false,
+        "known_conflicts_with_c70_ngj": [
+          "首星旧记录为文曲，C70-NGJ直接见证采用文昌。",
+          "第四/第五星旧记录为昭搖/立華，C70-NGJ直接见证采用阴德/招摇。",
+          "第九星旧记录为雄明，C70-NGJ直接见证采用维明。",
+          "旧年干落宫丁→9、壬→5，与C70-NGJ直接表丁→2、壬→1冲突。",
+          "旧完整分布实现未形成可靠动态排布证据，不能据此升级紫庭canonical。"
+        ],
+        "preservation_rule": "作为先前扫描整理的legacy witness保留；待E盘原扫描或旧terminology.json恢复后逐项回填页码、原字形和旧notes。"
+      }
+    }
+  ]
+}
