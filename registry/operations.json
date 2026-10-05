@@ -291,6 +291,26 @@
       "runtime": "kintaiyi.zitingjing_primary.taiyi_nine_stars_primary_cycle",
       "status": "stable",
       "source_profile": "zitingjing_primary"
+    },
+    {
+      "name": "spirits.three_banners.tongzong",
+      "domain": "spirits",
+      "rule_ids": [
+        "C126-TONGZONG-THREE-BANNERS"
+      ],
+      "runtime": "kintaiyi.tongzong_volume10_spirits.three_banners",
+      "status": "stable",
+      "source_profile": "tongzong_volume10_three_banners"
+    },
+    {
+      "name": "spirits.nine_palace_nobles.tongzong",
+      "domain": "spirits",
+      "rule_ids": [
+        "C127-TONGZONG-NINE-PALACE-NOBLES"
+      ],
+      "runtime": "kintaiyi.tongzong_volume10_spirits.nine_palace_nobles",
+      "status": "stable",
+      "source_profile": "tongzong_volume10_nine_palace_nobles"
     }
   ],
   "api_version": "1.0"
