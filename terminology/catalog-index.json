@@ -177,8 +177,8 @@
       "scope": "source_sensitive_jingyou_fuying_volume4_military",
       "contains": [
         "JF4M-01..11 福应经卷四军事，全部source-specific runtime",
+        "JF4M-02原字形‘大小将不相开’已完成平行见证语义校勘，规范为四将无同宫之关",
         "JF4M-07地形表与JF4M-10风云飞鸟观测句已按当前卷四转录结构化",
-        "JF4M-02‘大小将不相开’技术义仍保留pending",
         "与J4M逐条parallel crosswalk，禁止runtime替代"
       ]
     },
