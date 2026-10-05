@@ -59,3 +59,51 @@ def test_modern_pan_v2_scenario_remains_explicit():
         scenario={"enemy_camp_day_taiyi_palace": 3},
     )
     assert pan["meta"]["scenario"]["enemy_camp_day_taiyi_palace"] == 3
+
+
+
+def test_modern_pan_v2_declares_winter_solstice_as_unique_year_boundary():
+    pan = build_modern_pan_v2(MOMENT, count_type="岁计")
+    policy = pan["calendar"]["year_boundary_policy"]
+    assert policy["unique_boundary"] == "真实天文冬至交节瞬间"
+    assert "Y+1" in policy["label_rule"]
+    assert policy["ignored_boundaries"] == ["元旦", "春节", "立春", "春分"]
+
+
+def test_modern_pan_v2_year_switches_at_exact_winter_solstice():
+    from datetime import timedelta
+    from kintaiyi.taiyi_modern_calendar import winter_solstice_utc
+
+    boundary = winter_solstice_utc(2026)
+    before = build_modern_pan_v2(
+        boundary - timedelta(microseconds=1),
+        count_type="岁计",
+    )
+    exact = build_modern_pan_v2(
+        boundary,
+        count_type="岁计",
+    )
+
+    assert before["calendar"]["taiyi_year"] == 2026
+    assert exact["calendar"]["taiyi_year"] == 2027
+    assert (
+        exact["calendar"]["year_boundary_policy"]["taiyi_year_start_utc"]
+        == boundary.isoformat()
+    )
+
+
+def test_modern_pan_v2_new_year_day_does_not_change_taiyi_year_again():
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+
+    tz = ZoneInfo("Asia/Shanghai")
+    dec31 = build_modern_pan_v2(
+        datetime(2026, 12, 31, 12, tzinfo=tz),
+        count_type="岁计",
+    )
+    jan1 = build_modern_pan_v2(
+        datetime(2027, 1, 1, 12, tzinfo=tz),
+        count_type="岁计",
+    )
+    assert dec31["calendar"]["taiyi_year"] == 2027
+    assert jan1["calendar"]["taiyi_year"] == 2027
