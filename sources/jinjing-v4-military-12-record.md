@@ -291,3 +291,15 @@ JF4M 只作 source_record_only，不继承 J4M runtime；两书只能通过 para
 - sources/c67-jingyou-v4-j4m-collation-record.md
 - sources/c68-jingyou-v4-independent-profile-record.md
 - sources/c69-j4m12-cloud-table-audit-record.md
+
+
+## C70 J4M-11 观测事件语法收紧（2026-10-05）
+
+运行时复核发现两处 source overreach，现已修正：
+
+1. 每条风云飞鸟事件必须显式声明 phenomenon 为风、云、飞鸟、风云或风云飞鸟；不能缺失现象类型后只凭“扶、迫击、冲突”等动作生成古籍断语。
+2. 《金镜》正文只写“迫击大将宫者主败”，旧 runtime 曾额外把“冲击大将宫”视为同义匹配，现已删除。古籍动作词不再自动接受现代近义词扩张。
+
+《景祐太乙福应经》对客大将/主大将及主人刑/客刑有独立、更展开且部分冲突的断法，继续归 JF4M source profile，不回写 J4M。
+
+详细记录：sources/c70-j4m11-event-schema-audit-record.md
