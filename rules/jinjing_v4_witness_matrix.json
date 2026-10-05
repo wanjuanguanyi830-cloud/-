@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.6",
+  "schema_version": "1.7",
   "audit_id": "C109-JINJING-V4-WITNESS-AGREEMENT-PATTERNS",
   "date": "2026-10-05",
   "scope": "太乙金镜式经卷四军事十二法",
@@ -37,7 +37,12 @@
           55,
           56
         ],
-        "status": "locator_verified_no_substantive_variant_recorded"
+        "status": "locator_verified_no_substantive_variant_recorded",
+        "coverage": {
+          "cycle": "C123",
+          "status_group": "locator_only",
+          "evidence_level": "page_locator_direct_visual_verified"
+        }
       },
       "jingyou": {
         "parallel_rule": "JF4M-01",
@@ -52,7 +57,12 @@
         "locator": [
           56
         ],
-        "status": "locator_verified_no_substantive_variant_recorded"
+        "status": "locator_verified_no_substantive_variant_recorded",
+        "coverage": {
+          "cycle": "C123",
+          "status_group": "locator_only",
+          "evidence_level": "page_locator_direct_visual_verified"
+        }
       },
       "jingyou": {
         "parallel_rule": "JF4M-02",
@@ -68,7 +78,12 @@
           56,
           57
         ],
-        "status": "locator_verified_source_glyph_detail_nonblocking"
+        "status": "locator_verified_source_glyph_detail_nonblocking",
+        "coverage": {
+          "cycle": "C123",
+          "status_group": "locator_only",
+          "evidence_level": "page_locator_direct_visual_verified"
+        }
       },
       "jingyou": {
         "parallel_rule": "JF4M-03",
@@ -87,7 +102,12 @@
           57,
           58
         ],
-        "status": "locator_verified_no_substantive_variant_recorded"
+        "status": "locator_verified_no_substantive_variant_recorded",
+        "coverage": {
+          "cycle": "C123",
+          "status_group": "locator_only",
+          "evidence_level": "page_locator_direct_visual_verified"
+        }
       },
       "jingyou": {
         "parallel_rule": "JF4M-04",
@@ -115,7 +135,12 @@
         "omitted_vs_siku": [
           32
         ],
-        "status": "direct_visual_verified"
+        "status": "direct_visual_verified",
+        "coverage": {
+          "cycle": "C123",
+          "status_group": "selected_readings",
+          "evidence_level": "numeric_variant_direct_visual_verified"
+        }
       },
       "jingyou": {
         "parallel_rule": "JF4M-05"
@@ -233,7 +258,12 @@
           "算四正文“正南”旁校小字“東”，规范字段读作正东。",
           "算三“耀”后见重文符，规范转写为耀耀。"
         ],
-        "closing_text": "餘則太乙兵起於鄉，陣隨於地，觀方制變，皆算掩神，此用兵之神道也。"
+        "closing_text": "餘則太乙兵起於鄉，陣隨於地，觀方制變，皆算掩神，此用兵之神道也。",
+        "coverage": {
+          "cycle": "C123",
+          "status_group": "full_rule",
+          "evidence_level": "full_table_and_closing_direct_visual_verified"
+        }
       },
       "jingyou": {
         "parallel_rule": "JF4M-06",
@@ -292,7 +322,12 @@
         },
         "direction_rule": "地顺其向则吉；地反其向则凶",
         "closing_text": "太乙兵起於鄉，陣隨其地，觀方置變，皆算掩神，此用兵之法也。",
-        "status": "body_structure_direct_visual_verified_C111"
+        "status": "body_structure_direct_visual_verified_C111",
+        "coverage": {
+          "cycle": "C123",
+          "status_group": "full_rule",
+          "evidence_level": "full_body_structure_direct_visual_verified"
+        }
       },
       "jingyou": {
         "parallel_rule": "JF4M-07",
@@ -372,7 +407,12 @@
         ],
         "closing": "出兵当从奇门，临敌随形制变，此之要也",
         "next_rule": "J4M-09",
-        "pending": []
+        "pending": [],
+        "coverage": {
+          "cycle": "C123",
+          "status_group": "full_rule",
+          "evidence_level": "full_contiguous_body_direct_visual_verified"
+        }
       },
       "jingyou": {
         "parallel_rule": "JF4M-08"
@@ -422,7 +462,12 @@
         "opening_text": "古法曰太乙在一八三四宫者为地内宫助主人",
         "previous_rule_closing": "此之要也",
         "boundary_status": "J4M-08_to_J4M-09_direct_visual_verified_C120",
-        "palace_group_status": "direct_visual_verified_C86"
+        "palace_group_status": "direct_visual_verified_C86",
+        "coverage": {
+          "cycle": "C123",
+          "status_group": "selected_readings",
+          "evidence_level": "opening_and_palace_groups_direct_visual_verified"
+        }
       },
       "jingyou": {
         "parallel_rule": "JF4M-09",
@@ -455,7 +500,12 @@
           62
         ],
         "body_title": "推奇兵伏兵法",
-        "status": "direct_visual_verified"
+        "status": "direct_visual_verified",
+        "coverage": {
+          "cycle": "C123",
+          "status_group": "selected_readings",
+          "evidence_level": "body_heading_direct_visual_verified"
+        }
       },
       "jingyou": {
         "parallel_rule": "JF4M-11",
@@ -483,7 +533,12 @@
           "主人刑上来主人败",
           "客刑上来客败"
         ],
-        "status": "direct_visual_verified"
+        "status": "direct_visual_verified",
+        "coverage": {
+          "cycle": "C123",
+          "status_group": "selected_readings",
+          "evidence_level": "heading_and_key_event_readings_direct_visual_verified"
+        }
       },
       "jingyou": {
         "parallel_rule": "JF4M-10",
@@ -523,7 +578,12 @@
             "辛"
           ]
         },
-        "status": "direct_visual_verified"
+        "status": "direct_visual_verified",
+        "coverage": {
+          "cycle": "C123",
+          "status_group": "selected_readings",
+          "evidence_level": "heading_and_key_verdict_direct_visual_verified"
+        }
       },
       "jingyou": {
         "parallel_rule": null,
@@ -627,7 +687,7 @@
       ]
     }
   },
-  "last_update": "C120",
+  "last_update": "C123",
   "updates": {
     "C110": {
       "witness": "NCL-06604",
@@ -658,6 +718,50 @@
       "rule_id": "J4M-09",
       "evidence": "user-supplied page image directly visually checked",
       "effect": "verified J4M-08 closing to J4M-09 heading/opening boundary; palace groups unchanged from C86"
+    },
+    "C123": {
+      "witness": "NCL-06604",
+      "effect": "normalized per-rule collation completeness: 4 locator-only, 5 selected-readings, 3 full-rule",
+      "canonical_effect": "none"
     }
+  },
+  "ncl_coverage_summary": {
+    "cycle": "C123",
+    "witness": "NCL-06604",
+    "counts": {
+      "locator_only": 4,
+      "selected_readings": 5,
+      "full_rule": 3,
+      "total": 12
+    },
+    "full_rule_ids": [
+      "J4M-06",
+      "J4M-07",
+      "J4M-08"
+    ],
+    "selected_reading_ids": [
+      "J4M-05",
+      "J4M-09",
+      "J4M-10",
+      "J4M-11",
+      "J4M-12"
+    ],
+    "locator_only_ids": [
+      "J4M-01",
+      "J4M-02",
+      "J4M-03",
+      "J4M-04"
+    ],
+    "next_priority": [
+      "J4M-09",
+      "J4M-10",
+      "J4M-11",
+      "J4M-12",
+      "J4M-01",
+      "J4M-02",
+      "J4M-03",
+      "J4M-04"
+    ],
+    "policy": "coverage只描述NCL证据完整度，不改变任何canonical或runtime。"
   }
 }
