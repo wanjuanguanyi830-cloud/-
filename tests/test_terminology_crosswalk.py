@@ -117,3 +117,21 @@ def test_crosswalk_snapshot_tracks_military_runtime_coverage():
     assert snapshot["jingyou_military_source_runtime_coverage"] == "11/11"
     assert snapshot["jingyou_military_text_pending"] == []
     assert snapshot["jingyou_military_resolved_collation"] == ["JF4M-02"]
+
+
+def test_crosswalk_tracks_tongzong_volume10_spirit_resolution():
+    crosswalk = _load(CROSSWALK)
+    snapshot = crosswalk["audit_snapshot"]
+    by_id = {item["id"]: item for item in crosswalk["bridges"]}
+
+    assert snapshot["tongzong_volume10_spirit_runtime_coverage"] == "2/2"
+
+    bridge = by_id["CW-TONGZONG-V10-SPIRITS-ZITING-RECOVERY"]
+    members = {item["key"]: item for item in bridge["members"]}
+    assert members["three_banners"]["rule_id"] == "C126-TONGZONG-THREE-BANNERS"
+    assert members["nine_palace_nobles"]["rule_id"] == (
+        "C127-TONGZONG-NINE-PALACE-NOBLES"
+    )
+    assert "现行可执行公式明确属于《太乙统宗宝鉴》卷十" in (
+        " ".join(bridge["forbidden_merge"])
+    )
