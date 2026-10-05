@@ -673,3 +673,28 @@ def test_c110_ncl_j4m06_full_table_resolves_detail_pending_without_overwriting_s
     # 四库 canonical 仍只实现其自身明确的 1/2/4/5/6/9 表。
     assert rule["scan_rule_audit"]["locked_points"][0].startswith("只列1/2/4/5/6/9")
     assert ncl["canonical_override"] is False
+
+
+def test_c111_ncl_j4m07_body_is_verified_but_siku_runtime_stays_source_specific():
+    data, rules = _rules()
+    assert data["source"]["ncl_volume4_collation_version"] == "c111-ncl06604-j4m07-body-v1"
+
+    rule = {item["id"]: item for item in rules}["J4M-07"]
+    ncl = rule["manuscript_readings"]["NCL-06604"]
+
+    assert ncl["status"] == "body_structure_direct_visual_verified_C111"
+    assert ncl["formation_elements"] == {
+        "曲阵": "水",
+        "锐阵": "火",
+        "直阵": "木",
+        "方阵": "金",
+        "圆阵": "土",
+    }
+    assert ncl["terrain_table"]["地跨邪"]["宜阵"] == "圆阵"
+    assert ncl["direction_rule"]["顺"] == "地顺其向则吉"
+    assert ncl["direction_rule"]["反"] == "地反其向则凶"
+    assert "觀方置變" in ncl["closing_text"]
+    assert ncl["canonical_override"] is False
+
+    # 四库 canonical 本身仍锁“地洿邪”，不被明钞本词形覆盖。
+    assert any("地洿邪" in x for x in rule["scan_rule_audit"]["locked_points"])
