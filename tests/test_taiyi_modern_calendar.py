@@ -224,3 +224,33 @@ def test_production_context_exposes_boundary_registry():
     assert data["boundary_registry"]["taiyi_year"]["boundary"] == "真实天文冬至交节瞬间"
     assert data["year_boundary"]["taiyi_historical_year"] == 2027
     assert data["lunisolar"]["lunar"]["year"] == 2026
+
+
+
+def test_daxue_enters_zi_month_without_advancing_taiyi_year():
+    from datetime import timedelta
+    from kintaiyi.taiyi_modern_solar_month import jie_instant_utc
+    from kintaiyi.taiyi_modern_calendar import winter_solstice_utc
+
+    daxue = jie_instant_utc(2026, "大雪")
+    winter = winter_solstice_utc(2026)
+    assert daxue < winter
+
+    probe = daxue + (winter - daxue) / 2
+    data = production_calendar_context(probe)
+
+    assert data["solar_month"]["month_build_branch"] == "子"
+    assert data["month_count"]["month_formula_year"] == 2027
+    assert data["year_boundary"]["taiyi_historical_year"] == 2026
+    assert data["boundary_registry"]["taiyi_year"]["boundary"] == "真实天文冬至交节瞬间"
+
+
+def test_winter_solstice_advances_taiyi_year_inside_same_zi_month():
+    from kintaiyi.taiyi_modern_calendar import winter_solstice_utc
+
+    winter = winter_solstice_utc(2026)
+    data = production_calendar_context(winter)
+
+    assert data["solar_month"]["month_build_branch"] == "子"
+    assert data["month_count"]["month_formula_year"] == 2027
+    assert data["year_boundary"]["taiyi_historical_year"] == 2027
