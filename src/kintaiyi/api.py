@@ -228,7 +228,14 @@ def calculate_rule(rule_id: str, *args: Any, **kwargs: Any) -> Any:
             profile_keys = candidate.get("profile_keys") or []
             if len(profile_keys) == 1:
                 kwargs["source_profile"] = profile_keys[0]
-    return runtime(*args, **kwargs)
+    result = runtime(*args, **kwargs)
+    if isinstance(result, dict):
+        source_rule_id = result.get("source_rule_id")
+        if "rule_id" not in result and source_rule_id == rule_id:
+            result = dict(result)
+            result["rule_id"] = rule_id
+            result["registry_normalized_rule_id"] = True
+    return result
 
 
 def list_operations() -> list[dict[str, Any]]:
@@ -273,7 +280,7 @@ def build_pan(
 def explain_result(result: dict[str, Any]) -> dict[str, Any]:
     if not isinstance(result, dict):
         raise TypeError("result must be a dict")
-    rule_id = result.get("rule_id")
+    rule_id = result.get("rule_id") or result.get("source_rule_id")
     rule = get_rule(rule_id) if isinstance(rule_id, str) else {
         "rule_id": None, "count": 0, "matches": []
     }
