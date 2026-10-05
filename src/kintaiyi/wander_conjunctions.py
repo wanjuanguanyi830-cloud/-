@@ -1,4 +1,4 @@
-"""C112 五福 / 四神 / 大游 / 小游遗留同宫关系恢复层。
+"""C113 五福 / 四神 / 大游 / 小游遗留同宫关系恢复层。
 
 本模块只恢复 2026-10-04 旧分支已经实现、但此前未正式迁入 main 的四组关系：
 - 五福 × 大游
@@ -21,7 +21,7 @@ from __future__ import annotations
 import copy
 from typing import Any
 
-C112_VERSION = "taiyi-c112-recovered-wander-conjunctions-v1"
+C113_VERSION = "taiyi-c113-recovered-wander-conjunctions-v1"
 
 ENTITY_ORDER = ("五福", "四神", "大游", "小游")
 ALIASES = {
@@ -48,7 +48,7 @@ PAIR_RULES: dict[tuple[str, str], dict[str, Any]] = {
             },
         ],
         "localization_boundary": (
-            "原文只说明灾降对冲之分；C112不调用坐标 runtime 自动求具体对冲分野。"
+            "原文只说明灾降对冲之分；C113不调用坐标 runtime 自动求具体对冲分野。"
         ),
     },
     ("五福", "小游"): {
@@ -124,7 +124,7 @@ RECOVERY_PROVENANCE = {
         },
     ],
     "recovery_policy": (
-        "旧实现仅作为完成工作线索；C112按直接来源重核后重新建模，"
+        "旧实现仅作为完成工作线索；C113按直接来源重核后重新建模，"
         "不复制旧 project canonical 或旧自动坐标判断。"
     ),
 }
@@ -137,7 +137,7 @@ POSITION_BOUNDARY = {
     "auto_position_lookup_used": False,
     "auto_same_palace_inference_used": False,
     "auto_opposite_division_lookup_used": False,
-    "policy": "C112只消费显式关系证据，不调用位置层自动制造同宫或对冲分野。",
+    "policy": "C113只消费显式关系证据，不调用位置层自动制造同宫或对冲分野。",
 }
 
 
@@ -171,7 +171,7 @@ def wander_conjunction_relation(
     key = _pair_key(a, b)
     rule = PAIR_RULES.get(key)
     if rule is None:
-        raise ValueError("该pair不属于C112；请使用对应现行关系模块")
+        raise ValueError("该pair不属于C113；请使用对应现行关系模块")
 
     if same_palace not in (None, True, False):
         raise TypeError("same_palace须为bool或None")
@@ -188,7 +188,7 @@ def wander_conjunction_relation(
 
     if same_palace is None:
         status = "same_palace_unchecked"
-        pending.append("须显式确认是否同宫；C112不从位置runtime自动判断")
+        pending.append("须显式确认是否同宫；C113不从位置runtime自动判断")
     elif same_palace is False:
         status = "not_same_palace"
     elif rule["structure"] == "layered_direct":
@@ -212,8 +212,8 @@ def wander_conjunction_relation(
 
     return {
         "schema_version": "1.0",
-        "canonical": C112_VERSION,
-        "rule_id": "C112-RECOVERED-WANDER-CONJUNCTIONS",
+        "canonical": C113_VERSION,
+        "rule_id": "C113-RECOVERED-WANDER-CONJUNCTIONS",
         "source_profile": "tongzong_volume7_wander_conjunctions",
         "first": a,
         "second": b,
@@ -238,10 +238,10 @@ def wander_conjunction_relation(
     }
 
 
-def c112_catalog() -> dict[str, Any]:
+def c113_catalog() -> dict[str, Any]:
     return {
-        "canonical": C112_VERSION,
-        "rule_id": "C112-RECOVERED-WANDER-CONJUNCTIONS",
+        "canonical": C113_VERSION,
+        "rule_id": "C113-RECOVERED-WANDER-CONJUNCTIONS",
         "source_profile": "tongzong_volume7_wander_conjunctions",
         "pair_count": len(PAIR_RULES),
         "pair_rules": copy.deepcopy(PAIR_RULES),
