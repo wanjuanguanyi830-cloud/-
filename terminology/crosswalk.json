@@ -810,7 +810,22 @@
           "term": "文昌九星",
           "primary_status": "catalog_attested_text_pending",
           "source_specific_rule_id": "C70-TONGZONG-WENCHANG-NINE-STARS",
-          "source_specific_profile": "tongzong_volume6_ngj_wenchang_nine_stars"
+          "source_specific_profile": "tongzong_volume6_ngj_wenchang_nine_stars",
+          "legacy_scan_witness": {
+            "asset": "terminology/zitingjing-legacy-scan-recovery.json",
+            "forms": [
+              "文曲",
+              "玄鳳",
+              "明維",
+              "昭搖",
+              "立華",
+              "華明",
+              "玄武",
+              "玄冥",
+              "雄明"
+            ],
+            "status": "prior_scan_extraction_recovered_direct_page_pending"
+          }
         }
       ],
       "relation": "shared_nine_star_label_distinct_systems_and_source_boundaries",
@@ -819,7 +834,9 @@
         "《紫庭经》太乙九星静态九宫primary与C124《统宗》太乙九星900/90/10动态profile分层；可互校星名/底表，但不得静默移植周期。",
         "C124太乙九星与C70文昌九星是两套不同动态法：前者900/90/10并可按年干布全九星，后者2700/270/30且当前只支持直事星落宫/分野。",
         "《紫庭秘诀》文昌九星附篇正文未取得前，C70不得升级为紫庭canonical。",
-        "C70不得借C124太乙九星的全动态排布反推文昌九星其余八星。"
+        "C70不得借C124太乙九星的全动态排布反推文昌九星其余八星。",
+        "研易楼明钞本旧扫描提取残留必须作为独立legacy witness保存；在原扫描页重新挂载前，不得把文曲/昭搖/立華/雄明等旧词形直接升级为紫庭逐字canonical。",
+        "旧扫描派生实现中的年干落宫表不得覆盖C70-NGJ直接见证；冲突字段保持并列待原页复核。"
       ]
     },
     {
