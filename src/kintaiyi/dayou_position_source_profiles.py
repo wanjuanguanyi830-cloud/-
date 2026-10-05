@@ -56,7 +56,7 @@ PROFILES = {
         "secondary_cycle_metadata": None,
         "small_cycle": 288,
         "years_per_palace": 36,
-        "status": "primary_direct_with_numeric_collation",
+        "status": "collated_tongzong_profile_with_witness_variants",
     },
 }
 
@@ -73,21 +73,41 @@ SOURCE_WITNESS = {
         ),
     },
     "tongzong": {
-        "url": "https://www.shidianguji.com/zh/book/CADAL02094393/chapter/1lcppwvvwt996",
-        "formula_core": (
-            "置上元甲子至所求积年，加宫盈差三十四；"
-            "算法转录见太游大周法二千八百八十；"
-            "行宫率三十六；命起七宫，顺行八宫，不入中五。"
-        ),
-        "same_section_stable_statement": "其神三十六年考治一宫，二百八十八年一周而行其罚。",
-        "small_cycle_transcription_variant": {
-            "electronic_reading": "三百八十八",
-            "execution_value": 288,
-            "status": "resolved_numeric_transcription_conflict",
+        "selected_execution": {
+            "surplus": 34,
+            "outer_cycle": 2880,
+            "small_cycle": 288,
+            "years_per_palace": 36,
+            "status": "collated_selection_not_single_witness_literal",
             "reason": (
-                "同条前文明言二百八十八年一周；8宫×36年=288；"
-                "《易学象数论》又明确宫周288、宫率36、宫盈差34。"
+                "两份统宗电子见证分别出现+32/288与+34/388；"
+                "同条稳定叙述为288年一周，且《易学象数论》平行见证为+34/288。"
+                "因此执行层采用+34/288，同时完整保留两份统宗原读法。"
             ),
+        },
+        "witness_variants": [
+            {
+                "id": "NGJ892411999009267118912",
+                "url": "https://www.shidianguji.com/book/NGJ892411999009267118912/chapter/1lny528zm2srn",
+                "surplus_reading": 32,
+                "outer_cycle_reading": 2880,
+                "small_cycle_reading": 288,
+                "status": "direct_witness_numeric_variant",
+                "canonical_override": False
+            },
+            {
+                "id": "CADAL02094393",
+                "url": "https://www.shidianguji.com/zh/book/CADAL02094393/chapter/1lcppwvvwt996",
+                "surplus_reading": 34,
+                "outer_cycle_reading": 2880,
+                "small_cycle_reading": 388,
+                "status": "direct_witness_numeric_variant",
+                "canonical_override": False
+            }
+        ],
+        "stable_text": {
+            "same_section_statement": "其神三十六年考治一宫，二百八十八年一周而行其罚。",
+            "route": "命起七宫，顺行八宫，不入中五。",
         },
         "parallel_witness": {
             "work": "易学象数论",
