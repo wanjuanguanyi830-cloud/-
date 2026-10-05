@@ -1,0 +1,1563 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "G6-72JU-PATH-REGRESSION-V1",
+  "role": "source_collated_regression_witness_not_formula_source",
+  "ring": [
+    "子",
+    "丑",
+    "艮",
+    "寅",
+    "卯",
+    "辰",
+    "巽",
+    "巳",
+    "午",
+    "未",
+    "坤",
+    "申",
+    "酉",
+    "戌",
+    "乾",
+    "亥"
+  ],
+  "provenance": {
+    "base_reference": "kentang2017/kintaiyi config.py skyeyes_dict/sf_list/yangcal/yingcal",
+    "source_authority": "太乙金镜式经阴阳72局立成 + 卷二运式法",
+    "calc_corrections": [
+      {
+        "dun": "阳",
+        "ju": 44,
+        "side": "主",
+        "from": 23,
+        "to": 33
+      },
+      {
+        "dun": "阴",
+        "ju": 10,
+        "side": "客",
+        "from": 24,
+        "to": 34
+      },
+      {
+        "dun": "阴",
+        "ju": 39,
+        "side": "主",
+        "from": 27,
+        "to": 37
+      },
+      {
+        "dun": "阴",
+        "ju": 43,
+        "side": "客",
+        "from": 1,
+        "to": 38
+      },
+      {
+        "dun": "阴",
+        "ju": 44,
+        "side": "客",
+        "from": 38,
+        "to": 31
+      },
+      {
+        "dun": "阴",
+        "ju": 61,
+        "side": "客",
+        "from": 22,
+        "to": 12
+      }
+    ],
+    "guest_eye_corrections": [
+      {
+        "dun": "阳",
+        "ju": 31,
+        "from": "酉",
+        "to": "戌"
+      },
+      {
+        "dun": "阳",
+        "ju": 67,
+        "from": "乾",
+        "to": "戌"
+      },
+      {
+        "dun": "阴",
+        "ju": 31,
+        "from": "酉",
+        "to": "戌"
+      },
+      {
+        "dun": "阴",
+        "ju": 43,
+        "from": "巳",
+        "to": "坤"
+      },
+      {
+        "dun": "阴",
+        "ju": 44,
+        "from": "坤",
+        "to": "酉"
+      },
+      {
+        "dun": "阴",
+        "ju": 67,
+        "from": "乾",
+        "to": "戌"
+      }
+    ],
+    "unresolved": [
+      {
+        "dun": "阴",
+        "ju": 37,
+        "side": "客",
+        "issue": "电子转录大威 vs 客算25及旧见证支持大武",
+        "regression_choice": "坤/大武",
+        "status": "witness_conflict_scan_required"
+      }
+    ]
+  },
+  "yang": [
+    {
+      "ju": 1,
+      "taiyi_palace": 1,
+      "host_eye": "申",
+      "guest_eye": "坤",
+      "host_calc": 7,
+      "guest_calc": 13,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 2,
+      "taiyi_palace": 1,
+      "host_eye": "酉",
+      "guest_eye": "戌",
+      "host_calc": 6,
+      "guest_calc": 1,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 3,
+      "taiyi_palace": 1,
+      "host_eye": "戌",
+      "guest_eye": "亥",
+      "host_calc": 1,
+      "guest_calc": 40,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 4,
+      "taiyi_palace": 2,
+      "host_eye": "乾",
+      "guest_eye": "丑",
+      "host_calc": 25,
+      "guest_calc": 17,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 5,
+      "taiyi_palace": 2,
+      "host_eye": "乾",
+      "guest_eye": "寅",
+      "host_calc": 25,
+      "guest_calc": 14,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 6,
+      "taiyi_palace": 2,
+      "host_eye": "亥",
+      "guest_eye": "辰",
+      "host_calc": 25,
+      "guest_calc": 10,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 7,
+      "taiyi_palace": 3,
+      "host_eye": "子",
+      "guest_eye": "巳",
+      "host_calc": 8,
+      "guest_calc": 25,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 8,
+      "taiyi_palace": 3,
+      "host_eye": "丑",
+      "guest_eye": "坤",
+      "host_calc": 1,
+      "guest_calc": 22,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 9,
+      "taiyi_palace": 3,
+      "host_eye": "艮",
+      "guest_eye": "酉",
+      "host_calc": 3,
+      "guest_calc": 15,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 10,
+      "taiyi_palace": 4,
+      "host_eye": "寅",
+      "guest_eye": "乾",
+      "host_calc": 1,
+      "guest_calc": 12,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 11,
+      "taiyi_palace": 4,
+      "host_eye": "卯",
+      "guest_eye": "丑",
+      "host_calc": 4,
+      "guest_calc": 4,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 12,
+      "taiyi_palace": 4,
+      "host_eye": "辰",
+      "guest_eye": "寅",
+      "host_calc": 37,
+      "guest_calc": 1,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 13,
+      "taiyi_palace": 6,
+      "host_eye": "巽",
+      "guest_eye": "辰",
+      "host_calc": 18,
+      "guest_calc": 19,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 14,
+      "taiyi_palace": 6,
+      "host_eye": "巳",
+      "guest_eye": "午",
+      "host_calc": 10,
+      "guest_calc": 9,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 15,
+      "taiyi_palace": 6,
+      "host_eye": "午",
+      "guest_eye": "坤",
+      "host_calc": 9,
+      "guest_calc": 7,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 16,
+      "taiyi_palace": 7,
+      "host_eye": "未",
+      "guest_eye": "酉",
+      "host_calc": 1,
+      "guest_calc": 33,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 17,
+      "taiyi_palace": 7,
+      "host_eye": "坤",
+      "guest_eye": "亥",
+      "host_calc": 7,
+      "guest_calc": 27,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 18,
+      "taiyi_palace": 7,
+      "host_eye": "坤",
+      "guest_eye": "子",
+      "host_calc": 7,
+      "guest_calc": 26,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 19,
+      "taiyi_palace": 8,
+      "host_eye": "申",
+      "guest_eye": "艮",
+      "host_calc": 8,
+      "guest_calc": 32,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 20,
+      "taiyi_palace": 8,
+      "host_eye": "酉",
+      "guest_eye": "辰",
+      "host_calc": 7,
+      "guest_calc": 26,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 21,
+      "taiyi_palace": 8,
+      "host_eye": "戌",
+      "guest_eye": "巳",
+      "host_calc": 2,
+      "guest_calc": 17,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 22,
+      "taiyi_palace": 9,
+      "host_eye": "乾",
+      "guest_eye": "未",
+      "host_calc": 16,
+      "guest_calc": 30,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 23,
+      "taiyi_palace": 9,
+      "host_eye": "乾",
+      "guest_eye": "申",
+      "host_calc": 16,
+      "guest_calc": 23,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 24,
+      "taiyi_palace": 9,
+      "host_eye": "亥",
+      "guest_eye": "戌",
+      "host_calc": 16,
+      "guest_calc": 17,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 25,
+      "taiyi_palace": 1,
+      "host_eye": "子",
+      "guest_eye": "亥",
+      "host_calc": 39,
+      "guest_calc": 40,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 26,
+      "taiyi_palace": 1,
+      "host_eye": "丑",
+      "guest_eye": "艮",
+      "host_calc": 32,
+      "guest_calc": 31,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 27,
+      "taiyi_palace": 1,
+      "host_eye": "艮",
+      "guest_eye": "卯",
+      "host_calc": 31,
+      "guest_calc": 28,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 28,
+      "taiyi_palace": 2,
+      "host_eye": "寅",
+      "guest_eye": "巽",
+      "host_calc": 14,
+      "guest_calc": 9,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 29,
+      "taiyi_palace": 2,
+      "host_eye": "卯",
+      "guest_eye": "未",
+      "host_calc": 13,
+      "guest_calc": 39,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 30,
+      "taiyi_palace": 2,
+      "host_eye": "辰",
+      "guest_eye": "申",
+      "host_calc": 10,
+      "guest_calc": 32,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 31,
+      "taiyi_palace": 3,
+      "host_eye": "巽",
+      "guest_eye": "戌",
+      "host_calc": 33,
+      "guest_calc": 10,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 32,
+      "taiyi_palace": 3,
+      "host_eye": "巳",
+      "guest_eye": "子",
+      "host_calc": 25,
+      "guest_calc": 8,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 33,
+      "taiyi_palace": 3,
+      "host_eye": "午",
+      "guest_eye": "艮",
+      "host_calc": 24,
+      "guest_calc": 3,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 34,
+      "taiyi_palace": 4,
+      "host_eye": "未",
+      "guest_eye": "卯",
+      "host_calc": 26,
+      "guest_calc": 4,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 35,
+      "taiyi_palace": 4,
+      "host_eye": "坤",
+      "guest_eye": "巳",
+      "host_calc": 25,
+      "guest_calc": 28,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 36,
+      "taiyi_palace": 4,
+      "host_eye": "坤",
+      "guest_eye": "午",
+      "host_calc": 25,
+      "guest_calc": 27,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 37,
+      "taiyi_palace": 6,
+      "host_eye": "申",
+      "guest_eye": "坤",
+      "host_calc": 1,
+      "guest_calc": 7,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 38,
+      "taiyi_palace": 6,
+      "host_eye": "酉",
+      "guest_eye": "戌",
+      "host_calc": 6,
+      "guest_calc": 35,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 39,
+      "taiyi_palace": 6,
+      "host_eye": "戌",
+      "guest_eye": "亥",
+      "host_calc": 35,
+      "guest_calc": 34,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 40,
+      "taiyi_palace": 7,
+      "host_eye": "乾",
+      "guest_eye": "丑",
+      "host_calc": 27,
+      "guest_calc": 19,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 41,
+      "taiyi_palace": 7,
+      "host_eye": "乾",
+      "guest_eye": "寅",
+      "host_calc": 27,
+      "guest_calc": 16,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 42,
+      "taiyi_palace": 7,
+      "host_eye": "亥",
+      "guest_eye": "辰",
+      "host_calc": 27,
+      "guest_calc": 12,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 43,
+      "taiyi_palace": 8,
+      "host_eye": "子",
+      "guest_eye": "巳",
+      "host_calc": 8,
+      "guest_calc": 17,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 44,
+      "taiyi_palace": 8,
+      "host_eye": "丑",
+      "guest_eye": "坤",
+      "host_calc": 33,
+      "guest_calc": 14,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 45,
+      "taiyi_palace": 8,
+      "host_eye": "艮",
+      "guest_eye": "酉",
+      "host_calc": 32,
+      "guest_calc": 7,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 46,
+      "taiyi_palace": 9,
+      "host_eye": "寅",
+      "guest_eye": "乾",
+      "host_calc": 5,
+      "guest_calc": 16,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 47,
+      "taiyi_palace": 9,
+      "host_eye": "卯",
+      "guest_eye": "丑",
+      "host_calc": 4,
+      "guest_calc": 8,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 48,
+      "taiyi_palace": 9,
+      "host_eye": "辰",
+      "guest_eye": "寅",
+      "host_calc": 1,
+      "guest_calc": 5,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 49,
+      "taiyi_palace": 1,
+      "host_eye": "巽",
+      "guest_eye": "辰",
+      "host_calc": 24,
+      "guest_calc": 25,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 50,
+      "taiyi_palace": 1,
+      "host_eye": "巳",
+      "guest_eye": "午",
+      "host_calc": 16,
+      "guest_calc": 15,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 51,
+      "taiyi_palace": 1,
+      "host_eye": "午",
+      "guest_eye": "坤",
+      "host_calc": 15,
+      "guest_calc": 13,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 52,
+      "taiyi_palace": 2,
+      "host_eye": "未",
+      "guest_eye": "酉",
+      "host_calc": 39,
+      "guest_calc": 31,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 53,
+      "taiyi_palace": 2,
+      "host_eye": "坤",
+      "guest_eye": "亥",
+      "host_calc": 38,
+      "guest_calc": 25,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 54,
+      "taiyi_palace": 2,
+      "host_eye": "坤",
+      "guest_eye": "子",
+      "host_calc": 38,
+      "guest_calc": 24,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 55,
+      "taiyi_palace": 3,
+      "host_eye": "申",
+      "guest_eye": "艮",
+      "host_calc": 16,
+      "guest_calc": 3,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 56,
+      "taiyi_palace": 3,
+      "host_eye": "酉",
+      "guest_eye": "辰",
+      "host_calc": 15,
+      "guest_calc": 34,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 57,
+      "taiyi_palace": 3,
+      "host_eye": "戌",
+      "guest_eye": "巳",
+      "host_calc": 10,
+      "guest_calc": 25,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 58,
+      "taiyi_palace": 4,
+      "host_eye": "乾",
+      "guest_eye": "未",
+      "host_calc": 12,
+      "guest_calc": 26,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 59,
+      "taiyi_palace": 4,
+      "host_eye": "乾",
+      "guest_eye": "申",
+      "host_calc": 12,
+      "guest_calc": 19,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 60,
+      "taiyi_palace": 4,
+      "host_eye": "亥",
+      "guest_eye": "戌",
+      "host_calc": 12,
+      "guest_calc": 13,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 61,
+      "taiyi_palace": 6,
+      "host_eye": "子",
+      "guest_eye": "亥",
+      "host_calc": 33,
+      "guest_calc": 34,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 62,
+      "taiyi_palace": 6,
+      "host_eye": "丑",
+      "guest_eye": "艮",
+      "host_calc": 26,
+      "guest_calc": 25,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 63,
+      "taiyi_palace": 6,
+      "host_eye": "艮",
+      "guest_eye": "卯",
+      "host_calc": 25,
+      "guest_calc": 22,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 64,
+      "taiyi_palace": 7,
+      "host_eye": "寅",
+      "guest_eye": "巽",
+      "host_calc": 16,
+      "guest_calc": 11,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 65,
+      "taiyi_palace": 7,
+      "host_eye": "卯",
+      "guest_eye": "未",
+      "host_calc": 15,
+      "guest_calc": 1,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 66,
+      "taiyi_palace": 7,
+      "host_eye": "辰",
+      "guest_eye": "申",
+      "host_calc": 12,
+      "guest_calc": 34,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 67,
+      "taiyi_palace": 8,
+      "host_eye": "巽",
+      "guest_eye": "戌",
+      "host_calc": 25,
+      "guest_calc": 2,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 68,
+      "taiyi_palace": 8,
+      "host_eye": "巳",
+      "guest_eye": "子",
+      "host_calc": 17,
+      "guest_calc": 8,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 69,
+      "taiyi_palace": 8,
+      "host_eye": "午",
+      "guest_eye": "艮",
+      "host_calc": 16,
+      "guest_calc": 32,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 70,
+      "taiyi_palace": 9,
+      "host_eye": "未",
+      "guest_eye": "卯",
+      "host_calc": 30,
+      "guest_calc": 4,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 71,
+      "taiyi_palace": 9,
+      "host_eye": "坤",
+      "guest_eye": "巳",
+      "host_calc": 29,
+      "guest_calc": 32,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 72,
+      "taiyi_palace": 9,
+      "host_eye": "坤",
+      "guest_eye": "午",
+      "host_calc": 29,
+      "guest_calc": 31,
+      "witness_status": "resolved",
+      "witness_note": null
+    }
+  ],
+  "yin": [
+    {
+      "ju": 1,
+      "taiyi_palace": 9,
+      "host_eye": "寅",
+      "guest_eye": "坤",
+      "host_calc": 5,
+      "guest_calc": 29,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 2,
+      "taiyi_palace": 9,
+      "host_eye": "卯",
+      "guest_eye": "戌",
+      "host_calc": 4,
+      "guest_calc": 17,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 3,
+      "taiyi_palace": 9,
+      "host_eye": "辰",
+      "guest_eye": "亥",
+      "host_calc": 1,
+      "guest_calc": 16,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 4,
+      "taiyi_palace": 8,
+      "host_eye": "巽",
+      "guest_eye": "丑",
+      "host_calc": 25,
+      "guest_calc": 33,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 5,
+      "taiyi_palace": 8,
+      "host_eye": "巽",
+      "guest_eye": "寅",
+      "host_calc": 25,
+      "guest_calc": 30,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 6,
+      "taiyi_palace": 8,
+      "host_eye": "巳",
+      "guest_eye": "辰",
+      "host_calc": 17,
+      "guest_calc": 26,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 7,
+      "taiyi_palace": 7,
+      "host_eye": "午",
+      "guest_eye": "巳",
+      "host_calc": 2,
+      "guest_calc": 3,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 8,
+      "taiyi_palace": 7,
+      "host_eye": "未",
+      "guest_eye": "坤",
+      "host_calc": 1,
+      "guest_calc": 7,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 9,
+      "taiyi_palace": 7,
+      "host_eye": "坤",
+      "guest_eye": "酉",
+      "host_calc": 7,
+      "guest_calc": 33,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 10,
+      "taiyi_palace": 6,
+      "host_eye": "申",
+      "guest_eye": "乾",
+      "host_calc": 1,
+      "guest_calc": 34,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 11,
+      "taiyi_palace": 6,
+      "host_eye": "酉",
+      "guest_eye": "丑",
+      "host_calc": 6,
+      "guest_calc": 26,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 12,
+      "taiyi_palace": 6,
+      "host_eye": "戌",
+      "guest_eye": "寅",
+      "host_calc": 35,
+      "guest_calc": 23,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 13,
+      "taiyi_palace": 4,
+      "host_eye": "乾",
+      "guest_eye": "辰",
+      "host_calc": 12,
+      "guest_calc": 37,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 14,
+      "taiyi_palace": 4,
+      "host_eye": "亥",
+      "guest_eye": "午",
+      "host_calc": 12,
+      "guest_calc": 27,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 15,
+      "taiyi_palace": 4,
+      "host_eye": "子",
+      "guest_eye": "坤",
+      "host_calc": 11,
+      "guest_calc": 25,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 16,
+      "taiyi_palace": 3,
+      "host_eye": "丑",
+      "guest_eye": "酉",
+      "host_calc": 1,
+      "guest_calc": 15,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 17,
+      "taiyi_palace": 3,
+      "host_eye": "艮",
+      "guest_eye": "亥",
+      "host_calc": 3,
+      "guest_calc": 9,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 18,
+      "taiyi_palace": 3,
+      "host_eye": "艮",
+      "guest_eye": "子",
+      "host_calc": 3,
+      "guest_calc": 8,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 19,
+      "taiyi_palace": 2,
+      "host_eye": "寅",
+      "guest_eye": "艮",
+      "host_calc": 14,
+      "guest_calc": 16,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 20,
+      "taiyi_palace": 2,
+      "host_eye": "卯",
+      "guest_eye": "辰",
+      "host_calc": 13,
+      "guest_calc": 10,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 21,
+      "taiyi_palace": 2,
+      "host_eye": "辰",
+      "guest_eye": "巳",
+      "host_calc": 10,
+      "guest_calc": 1,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 22,
+      "taiyi_palace": 1,
+      "host_eye": "巽",
+      "guest_eye": "未",
+      "host_calc": 24,
+      "guest_calc": 14,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 23,
+      "taiyi_palace": 1,
+      "host_eye": "巽",
+      "guest_eye": "申",
+      "host_calc": 24,
+      "guest_calc": 7,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 24,
+      "taiyi_palace": 1,
+      "host_eye": "巳",
+      "guest_eye": "戌",
+      "host_calc": 16,
+      "guest_calc": 1,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 25,
+      "taiyi_palace": 9,
+      "host_eye": "午",
+      "guest_eye": "亥",
+      "host_calc": 31,
+      "guest_calc": 16,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 26,
+      "taiyi_palace": 9,
+      "host_eye": "未",
+      "guest_eye": "艮",
+      "host_calc": 30,
+      "guest_calc": 7,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 27,
+      "taiyi_palace": 9,
+      "host_eye": "坤",
+      "guest_eye": "卯",
+      "host_calc": 29,
+      "guest_calc": 4,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 28,
+      "taiyi_palace": 8,
+      "host_eye": "申",
+      "guest_eye": "巽",
+      "host_calc": 8,
+      "guest_calc": 25,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 29,
+      "taiyi_palace": 8,
+      "host_eye": "酉",
+      "guest_eye": "未",
+      "host_calc": 7,
+      "guest_calc": 15,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 30,
+      "taiyi_palace": 8,
+      "host_eye": "戌",
+      "guest_eye": "申",
+      "host_calc": 2,
+      "guest_calc": 8,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 31,
+      "taiyi_palace": 7,
+      "host_eye": "乾",
+      "guest_eye": "戌",
+      "host_calc": 27,
+      "guest_calc": 28,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 32,
+      "taiyi_palace": 7,
+      "host_eye": "亥",
+      "guest_eye": "子",
+      "host_calc": 27,
+      "guest_calc": 26,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 33,
+      "taiyi_palace": 7,
+      "host_eye": "子",
+      "guest_eye": "艮",
+      "host_calc": 26,
+      "guest_calc": 18,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 34,
+      "taiyi_palace": 6,
+      "host_eye": "丑",
+      "guest_eye": "卯",
+      "host_calc": 26,
+      "guest_calc": 22,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 35,
+      "taiyi_palace": 6,
+      "host_eye": "艮",
+      "guest_eye": "巳",
+      "host_calc": 25,
+      "guest_calc": 10,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 36,
+      "taiyi_palace": 6,
+      "host_eye": "艮",
+      "guest_eye": "午",
+      "host_calc": 25,
+      "guest_calc": 9,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 37,
+      "taiyi_palace": 4,
+      "host_eye": "寅",
+      "guest_eye": "坤",
+      "host_calc": 1,
+      "guest_calc": 25,
+      "witness_status": "guest_eye_witness_conflict",
+      "witness_note": "阴37客目：部分电子转录作大威；客算25与旧见证支持大武（坤）。本fixture取坤作回归选择，但不宣告眼位校勘完成。"
+    },
+    {
+      "ju": 38,
+      "taiyi_palace": 4,
+      "host_eye": "卯",
+      "guest_eye": "戌",
+      "host_calc": 4,
+      "guest_calc": 13,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 39,
+      "taiyi_palace": 4,
+      "host_eye": "辰",
+      "guest_eye": "亥",
+      "host_calc": 37,
+      "guest_calc": 12,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 40,
+      "taiyi_palace": 3,
+      "host_eye": "巽",
+      "guest_eye": "丑",
+      "host_calc": 33,
+      "guest_calc": 1,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 41,
+      "taiyi_palace": 3,
+      "host_eye": "巽",
+      "guest_eye": "寅",
+      "host_calc": 33,
+      "guest_calc": 38,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 42,
+      "taiyi_palace": 3,
+      "host_eye": "巳",
+      "guest_eye": "辰",
+      "host_calc": 25,
+      "guest_calc": 34,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 43,
+      "taiyi_palace": 2,
+      "host_eye": "午",
+      "guest_eye": "坤",
+      "host_calc": 2,
+      "guest_calc": 38,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 44,
+      "taiyi_palace": 2,
+      "host_eye": "未",
+      "guest_eye": "酉",
+      "host_calc": 39,
+      "guest_calc": 31,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 45,
+      "taiyi_palace": 2,
+      "host_eye": "坤",
+      "guest_eye": "酉",
+      "host_calc": 38,
+      "guest_calc": 31,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 46,
+      "taiyi_palace": 1,
+      "host_eye": "申",
+      "guest_eye": "乾",
+      "host_calc": 7,
+      "guest_calc": 1,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 47,
+      "taiyi_palace": 1,
+      "host_eye": "酉",
+      "guest_eye": "丑",
+      "host_calc": 6,
+      "guest_calc": 32,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 48,
+      "taiyi_palace": 1,
+      "host_eye": "戌",
+      "guest_eye": "寅",
+      "host_calc": 1,
+      "guest_calc": 29,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 49,
+      "taiyi_palace": 9,
+      "host_eye": "乾",
+      "guest_eye": "辰",
+      "host_calc": 16,
+      "guest_calc": 1,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 50,
+      "taiyi_palace": 9,
+      "host_eye": "亥",
+      "guest_eye": "午",
+      "host_calc": 16,
+      "guest_calc": 31,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 51,
+      "taiyi_palace": 9,
+      "host_eye": "子",
+      "guest_eye": "坤",
+      "host_calc": 15,
+      "guest_calc": 29,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 52,
+      "taiyi_palace": 8,
+      "host_eye": "丑",
+      "guest_eye": "酉",
+      "host_calc": 33,
+      "guest_calc": 7,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 53,
+      "taiyi_palace": 8,
+      "host_eye": "艮",
+      "guest_eye": "亥",
+      "host_calc": 32,
+      "guest_calc": 1,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 54,
+      "taiyi_palace": 8,
+      "host_eye": "艮",
+      "guest_eye": "子",
+      "host_calc": 32,
+      "guest_calc": 8,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 55,
+      "taiyi_palace": 7,
+      "host_eye": "寅",
+      "guest_eye": "艮",
+      "host_calc": 16,
+      "guest_calc": 18,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 56,
+      "taiyi_palace": 7,
+      "host_eye": "卯",
+      "guest_eye": "辰",
+      "host_calc": 15,
+      "guest_calc": 12,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 57,
+      "taiyi_palace": 7,
+      "host_eye": "辰",
+      "guest_eye": "巳",
+      "host_calc": 12,
+      "guest_calc": 3,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 58,
+      "taiyi_palace": 6,
+      "host_eye": "巽",
+      "guest_eye": "未",
+      "host_calc": 18,
+      "guest_calc": 8,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 59,
+      "taiyi_palace": 6,
+      "host_eye": "巽",
+      "guest_eye": "申",
+      "host_calc": 18,
+      "guest_calc": 1,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 60,
+      "taiyi_palace": 6,
+      "host_eye": "巳",
+      "guest_eye": "戌",
+      "host_calc": 10,
+      "guest_calc": 35,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 61,
+      "taiyi_palace": 4,
+      "host_eye": "午",
+      "guest_eye": "亥",
+      "host_calc": 27,
+      "guest_calc": 12,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 62,
+      "taiyi_palace": 4,
+      "host_eye": "未",
+      "guest_eye": "艮",
+      "host_calc": 26,
+      "guest_calc": 3,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 63,
+      "taiyi_palace": 4,
+      "host_eye": "坤",
+      "guest_eye": "卯",
+      "host_calc": 25,
+      "guest_calc": 4,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 64,
+      "taiyi_palace": 3,
+      "host_eye": "申",
+      "guest_eye": "巽",
+      "host_calc": 16,
+      "guest_calc": 33,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 65,
+      "taiyi_palace": 3,
+      "host_eye": "酉",
+      "guest_eye": "未",
+      "host_calc": 15,
+      "guest_calc": 23,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 66,
+      "taiyi_palace": 3,
+      "host_eye": "戌",
+      "guest_eye": "申",
+      "host_calc": 10,
+      "guest_calc": 16,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 67,
+      "taiyi_palace": 2,
+      "host_eye": "乾",
+      "guest_eye": "戌",
+      "host_calc": 25,
+      "guest_calc": 26,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 68,
+      "taiyi_palace": 2,
+      "host_eye": "亥",
+      "guest_eye": "子",
+      "host_calc": 25,
+      "guest_calc": 24,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 69,
+      "taiyi_palace": 2,
+      "host_eye": "子",
+      "guest_eye": "艮",
+      "host_calc": 24,
+      "guest_calc": 16,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 70,
+      "taiyi_palace": 1,
+      "host_eye": "丑",
+      "guest_eye": "卯",
+      "host_calc": 32,
+      "guest_calc": 28,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 71,
+      "taiyi_palace": 1,
+      "host_eye": "艮",
+      "guest_eye": "巳",
+      "host_calc": 31,
+      "guest_calc": 16,
+      "witness_status": "resolved",
+      "witness_note": null
+    },
+    {
+      "ju": 72,
+      "taiyi_palace": 1,
+      "host_eye": "艮",
+      "guest_eye": "午",
+      "host_calc": 31,
+      "guest_calc": 15,
+      "witness_status": "resolved",
+      "witness_note": null
+    }
+  ]
+}
