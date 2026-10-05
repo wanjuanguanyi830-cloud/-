@@ -1,0 +1,16 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://example.invalid/taiyi/registry.schema.json",
+  "title":"Taiyi software registry",
+  "type":"object",
+  "required":["schema_version","registry_id","status","policy","layers","compatibility"],
+  "properties":{
+    "schema_version":{"type":"string"},
+    "registry_id":{"type":"string"},
+    "status":{"type":"string"},
+    "policy":{"type":"array","items":{"type":"string"}},
+    "layers":{"type":"object","additionalProperties":{"type":"object"}},
+    "compatibility":{"type":"object"}
+  },
+  "additionalProperties":true
+}
