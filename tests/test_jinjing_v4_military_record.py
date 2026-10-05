@@ -376,3 +376,18 @@ def test_c83_j4m01_to_j4m04_scan_audit_and_taicu_alias_boundaries():
     j4 = by_id["J4M-04"]["scan_rule_audit"]
     assert j4["status"] == "scan_roles_confirmed_parallel_gloss_limited"
     assert any("混合条件不扩写" in x for x in j4["forbidden_inference"])
+
+
+def test_c84_ncl06604_is_verified_as_witness_but_page_collation_stays_pending():
+    data, _ = _rules()
+    witnesses = {item["id"]: item for item in data["source"]["scan_witnesses"]}
+    ncl = witnesses["NCL-06604"]
+
+    assert data["source"]["witness_audit_version"] == "c84-ncl06604-access-boundary-v1"
+    assert ncl["status"] == "independent_manuscript_witness_metadata_verified_page_locators_pending"
+    assert ncl["evidence_level"] == "bibliographic_and_whole_scan_identity_verified_not_page_collated"
+    assert ncl["public_scan"]["pages"] == 124
+    assert ncl["public_scan"]["edition"] == "明鈔本"
+    assert ncl["access_audit"]["canonical_effect"] == "none"
+    assert any("逐條頁碼" in x for x in ncl["access_audit"]["not_verified"])
+    assert "不分配 J4M 页码" in ncl["locator_policy"]
