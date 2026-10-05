@@ -17,17 +17,31 @@ def test_c61_layer_counts_after_source_reclassification():
     assert data["layer_counts"] == {
         "canonical": 32,
         "derived": 18,
-        "pending": 1,
-        "source_variant": 16,
+        "source_variant": 17,
     }
 
 
-def test_c61_only_one_strict_pending_field_remains_after_c69():
+def test_c61_no_strict_pending_fields_remain_after_c70():
     pending = sorted(
         key for key, item in CATALOG.items()
         if item["layer"] == "pending"
     )
-    assert pending == ["文昌九星"]
+    assert pending == []
+
+
+def test_c61_c70_wenchang_is_source_variant_not_fake_zitingjing_canonical():
+    item = catalog_unported_field("文昌九星")
+    assert item["layer"] == "source_variant"
+    assert item["source_scope"] == (
+        "zitingjing_catalog_pending_vs_tongzong_volume6_ngj_direct"
+    )
+    assert item["action"] == (
+        "use_c70_tongzong_profile_keep_zitingjing_primary_pending"
+    )
+    assert item["source_confidence"] == "high"
+    assert item["migrate_whole"] is False
+    assert "30年一星" in item["notes"]
+    assert "紫庭primary继续pending" in item["notes"]
 
 
 def test_c61_c69_current_time_is_direct_jinjing_partial_runtime():
