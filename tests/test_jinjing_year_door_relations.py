@@ -23,7 +23,7 @@ def test_same_palace_is_only_locally_open_door_favorable_not_global_override():
     )
     assert data["host"]["gate_under_taiyi_overlay"] == "开"
     assert data["host"]["meets_three_good_doors"] is True
-    assert "不覆盖囚" in data["policy"]
+    assert "囚迫格对" in data["policy"]\n    assert "最终军事判断" in data["policy"]
 
 
 def test_blocked_center_general_stays_unknown_in_door_meeting():
