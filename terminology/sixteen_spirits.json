@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.2.0",
+  "schema_version": "1.3.0",
   "catalog_id": "recovered-sixteen-spirits",
   "canonical_name": "十六神规范名与九宫关系",
   "coordinate_space": "sixteen_spirit_to_nine_palace",
@@ -161,6 +161,12 @@
       "canonical_name": "大义",
       "status": "recovered_traditional_glyph_alias",
       "note": "2026-10-04 warfare 公共层明确接受繁体字形。"
+    },
+    {
+      "alias": "太蔟",
+      "canonical_name": "太簇",
+      "status": "dictionary_attested_traditional_variant",
+      "note": "辞书条目“太蔟”注明“亦作太簇”；四库《太乙金镜式经》卷四 J4M-03 首例亦见太蔟。项目规范输出统一太簇。"
     }
   ],
   "recovery": {
@@ -176,7 +182,19 @@
       "path": "rules/common/taiyi_space.py",
       "status": "recovered_glyph_aliases_only",
       "policy": "只恢复明确字形别名；不回写旧 warfare 五行/宫位模型。"
-    }
+    },
+    "c101_dictionary_variant": "sources/c101-taicu-traditional-variant-record.md",
+    "c102_global_alias_policy": "太蔟→太簇进入公共 GOD_ALIASES；只做词形归一，不改变宫位、五行或公式。"
   },
-  "status": "terminology_reference_not_formula_source"
+  "status": "terminology_reference_not_formula_source",
+  "canonical_glyph_policy": {
+    "太簇": {
+      "canonical_name": "太簇",
+      "accepted_variants": [
+        "太簇",
+        "太蔟"
+      ],
+      "policy": "太蔟为辞书可证传统异写；规范输出太簇，不建立第二神名。"
+    }
+  }
 }
