@@ -26,6 +26,8 @@
 - J4M-11/12 必须由外部观测驱动，不得从盘内事实伪造。
 """
 
+from .taiyi_rules import GOD_ALIASES as _GLOBAL_GOD_ALIASES
+
 J4M_RULESET = "jinjing-siku-v4-military-12"
 J4M_SOURCE_PROFILE = "jinjing_siku_volume4"
 
@@ -60,7 +62,7 @@ _J4M03_GOD_ELEMENT = {
 # 四库卷四 J4M-03 例文可见“太蔟”；项目规范词形沿用“太簇”。
 # 这是同名异体/传本文字归一，不是另一个神名，也不改变五行。
 _J4M03_GOD_ALIASES = {
-    "太蔟": "太簇",
+    "太蔟": _GLOBAL_GOD_ALIASES["太蔟"],
 }
 
 _CHENBING_XIANGBEI = {
