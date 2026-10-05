@@ -255,3 +255,13 @@
 - 旧参数 xing_pairs 保留兼容，但降为 explicit external extension：只返回 external_xing_events，不进入 canonical events，也不改变 severe/verdict 或 dragon() 的主判。
 - `terminology/t7-seven-methods.json` 状态更新为 `three_source_phrase_verified_control_only_canonical_no_independent_xing_operator`。
 - GitHub Actions full pytest：**2452 passed / 0 failed**（run #1989）。
+
+
+## 2026-10-06 — T7-02 狮子反掷应期算法收口
+
+- 重新对照《太乙统宗宝鉴》卷十一与《太乙金钥匙》“大神所临为破年；四维十八年”的直接规则，确认此前“普通落支必须等待第二个完整古例”属于过度要求。
+- 结合仓库已确认的吕申十六环顺四格：普通情形只落子/卯/午/酉四正，取第4年（offset +3）；其余落四维之方，取第18年（offset +17）。
+- 完整干支输入现在直接返回完整破年；仅年支输入只返回 break_year_branch 并标记 branch_only_input_no_stem，不伪造年干，也不再视作研究 pending。
+- 甲戌→丑/艮→第18年辛卯古例继续作为四维特殊分支回归；新增整个60甲子循环的 +3 / +17 防回归测试。
+- T7-02 从项目总 pending 删除；七术层当前无算法 pending。
+- GitHub Actions full pytest：**2454 passed / 0 failed**（run #1997）。
