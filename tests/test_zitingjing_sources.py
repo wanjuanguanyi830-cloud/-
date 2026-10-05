@@ -31,17 +31,18 @@ def test_six_legacy_source_slots_record_current_evidence_role():
     assert RULES["taiyi_nine_stars"]["primary_evidence_level"] == "direct_text_verified"
     assert RULES["wenchang_changes"]["primary_evidence_level"] == "direct_text_verified"
     assert RULES["shiji_changes"]["primary_evidence_level"] == "direct_text_verified"
-    assert RULES["wenchang_nine_stars"]["primary_evidence_level"] == "prior_scan_confirmed_page_record_pending"
+    assert RULES["wenchang_nine_stars"]["primary_evidence_level"] == "ziting_manuscript_not_attested_modern_appendix_only"
+    assert RULES["wenchang_nine_stars"]["known_source_rule_id"] == "C70-TONGZONG-WENCHANG-NINE-STARS"
     assert RULES["three_banners"]["primary_evidence_level"] == "ziting_not_attested_cross_source_only"
     assert RULES["nine_palace_nobles"]["primary_evidence_level"] == "ziting_not_attested_cross_source_only"
     assert RULES["three_banners"]["known_source_rule_id"] == "C126-TONGZONG-THREE-BANNERS"
     assert RULES["nine_palace_nobles"]["known_source_rule_id"] == "C127-TONGZONG-NINE-PALACE-NOBLES"
 
 
-def test_volume6_items_keep_tongzong_as_collation_only():
+def test_volume6_items_keep_source_boundaries_without_silent_merge():
     expected_status = {
         "taiyi_nine_stars": "primary_pending",
-        "wenchang_nine_stars": "primary_prior_scan_confirmed_page_record_pending",
+        "wenchang_nine_stars": "modern_appendix_cross_source_recovery_pointer",
         "wenchang_changes": "primary_pending",
         "shiji_changes": "primary_pending",
     }
