@@ -324,14 +324,19 @@
 
 `terminology/catalog-index.json`
 
-当前 stable catalogs 共六组：
+当前 stable catalogs 共十一组：
 
 1. `common-core.json`：公共坐标/神名/五态；
 2. `t7-seven-methods.json`：七术；
 3. `d8-eight-divinations.json`：八占；
 4. `patterns.json`：格局 source profiles；
 5. `military-p0.json`：三门/五将/主客相关；
-6. `cycles.json`：三基、五福、大小游、四太乙、阳九百六等周期。
+6. `cycles.json`：三基、五福、五福吉算、大小游、四太乙、阳九百六等周期；
+7. `zitingjing.json`：紫庭六项及统宗文昌九星独立 profile；
+8. `wuyun-wuyin.json`：五运六气 / 五音之数；
+9. `volume9-10.json`：C41–C46 卷九/卷十严格来源规则；
+10. `relations.json`：显式同宫/同域关系层；
+11. `ritual-timing.json`：天子巡狩与推太乙当时法。
 
 另外单列：
 
@@ -425,3 +430,58 @@
 - 未列 pair 不按对称、类推或五行常识补断。
 
 C74 的五福初交、C90/C91 的条件治理分支、C94 的 interpretation profile、C113 五福×小游的 virtue 分支都保留各自显式输入，不能被展示层自动省略。
+
+
+## 跨目录 crosswalk 与全库验收
+
+已建立：
+
+`terminology/crosswalk.json`
+
+该文件是 supporting asset，不是第十二个 stable catalog，也不是旧 `terminology.json` 的替代品。
+
+当前快照：
+
+- stable catalogs：11；
+- 正式 entries：76；
+- 不同 entry 之间的精确 preferred/alias 重名：0。
+
+crosswalk 专门锁定“近名但不能合并”的高风险关系，例如：
+
+- D8-03 五音 ↔ C37-V3-WYIN 五音之数：共享算数→五音核心，但来源身份不同；
+- D8-02 长短 ↔ C42 历数长短：名称相近，公式完全不同；
+- C36 阳九/百六 ↔ C38 太游行限 ↔ C43 厄会行限 ↔ C46 阴阳九厄：相关但不能互代；
+- C67 五福位置 ↔ C68 五福吉算：位置周期与1..45余数解释分层；
+- 紫庭文昌九星 primary pending ↔ C70 统宗卷六 runtime：同题异来源，不得反填；
+- C64/C66/C67/C92/C103/C107 位置层 ↔ C65/C74/C90/C91/C94/C113 关系层：位置相同不自动触发断语。
+
+另外新增 runtime reference 回归，逐条解析 stable catalog 中的 Python runtime/module/constant 引用，防止以后文件重命名后术语目录静默失效。
+
+## C62 / C68 / C69 / C70 补充入口
+
+### C62 天子巡狩
+
+位于 `ritual-timing.json`。
+
+太乙与天目都在乾/艮/巽/坤四维才成立巡狩年；出方按天目四维决定。囚/挟/格/对只作显式行月条件；直接术文未提供月份数值换算，因此不造具体月份。
+
+### C68 五福吉算
+
+位于 `cycles.json`。
+
+只接正文“宫法所余”1..45，不从积年自动调用 C67。十组所利对象均由正文逐项列举，不能把它降成无证的个位数公式。
+
+### C69 / C69B 推太乙当时法
+
+位于 `ritual-timing.json`。
+
+- C69：日干朝暮天乙治神、魁罡禁居、十二天将主事；
+- C69B：接 C118 日宿/分野上游，以时加位、求贵人落地、顺逆布十二天将。
+
+朝/暮仍须显式输入；九宫到六壬十二支是有损 adapter，中五不可投影。
+
+### C70 统宗文昌九星
+
+挂在 `zitingjing.json` 的 `wenchang_nine_stars` 条目下作为独立 source profile。
+
+它可按统宗卷六 NGJ 运行 30年一星 / 270小周 / 2700大周，并给直事星与年干落宫/分野；但紫庭附篇正文仍未取得，所以 C70 **不能**反填紫庭 primary。
