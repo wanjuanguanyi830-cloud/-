@@ -40,14 +40,16 @@ RULES = {
     "three_banners": {
         "legacy_name": "三旗行宫",
         "primary_source": PRIMARY_SOURCE_ID,
-        "primary_evidence_level": "project_attribution_unverified",
+        "primary_evidence_level": "ziting_not_attested_cross_source_only",
         "collation_sources": ["tongzong_volume10"],
+        "known_source_rule_id": "C126-TONGZONG-THREE-BANNERS",
     },
     "nine_palace_nobles": {
         "legacy_name": "九宫贵神",
         "primary_source": PRIMARY_SOURCE_ID,
-        "primary_evidence_level": "project_attribution_unverified",
+        "primary_evidence_level": "ziting_not_attested_cross_source_only",
         "collation_sources": ["tongzong_volume10"],
+        "known_source_rule_id": "C127-TONGZONG-NINE-PALACE-NOBLES",
     },
 }
 
@@ -94,6 +96,8 @@ def build_zitingjing_rule_sources(
         status = "primary_prior_scan_confirmed_page_record_pending"
     elif evidence_level == "catalog_attested_text_pending":
         status = "primary_text_pending"
+    elif evidence_level == "ziting_not_attested_cross_source_only":
+        status = "legacy_cross_source_recovery_pointer"
     else:
         status = "primary_attribution_unverified"
 
@@ -114,9 +118,9 @@ def build_zitingjing_rule_sources(
         "cross_source_merge": False,
         "status": status,
         "policy": (
-            "《太乙紫庭经》是项目拟定的主来源目标，但证据等级必须逐条记录。"
-            "只有已定位直接正文的项目可注入primary_result；用户确认的既往扫描事实、旧代码残留、目录证据或项目归属"
-            "都不能代替重新挂载的逐页正文。统宗只作参校，不得静默覆盖。"
+            "证据等级必须逐条记录。只有已定位紫庭直接正文的项目可注入primary_result；"
+            "三旗行宫/九宫贵神当前只是旧术语恢复指针，现行可执行公式归统宗卷十。"
+            "若未来明钞页证实另有紫庭同术，应新增独立witness/profile，不得静默覆盖统宗。"
         ),
     }
 
@@ -125,8 +129,9 @@ def build_zitingjing_p1_sources(
     *,
     results: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
-    """批量构建六项C18来源容器。
+    """批量构建六项历史来源容器。
 
+    其中三旗行宫/九宫贵神只保留旧术语恢复指针；其现行公式归统宗卷十。
     results[rule_key] 可含 primary_result / collation_results。
     """
     supplied = results or {}
@@ -154,8 +159,11 @@ def build_zitingjing_p1_sources(
         "primary_source_title": PRIMARY_SOURCE_TITLE,
         "rules": rules,
         "cross_source_merge": False,
-        "policy": ("六项均保留《太乙紫庭经》为项目主来源目标，但证据等级不同；"
-                   "只有direct_text_verified可生成primary_result；prior_scan_confirmed_page_record_pending只表示该明钞本此前已扫描但原页记录尚未重新挂载。统宗卷六/卷十只作参校。"),
+        "policy": (
+            "太乙九星、文昌九星、文昌变化、始击变化继续按紫庭证据等级管理；"
+            "三旗行宫与九宫贵神仅作为旧术语恢复指针，现行可执行canonical归《太乙统宗宝鉴》卷十。"
+            "未来若恢复明钞同术，只新增独立紫庭witness/profile。"
+        ),
     }
 
 
