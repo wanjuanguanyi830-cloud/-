@@ -196,12 +196,13 @@
       "implementation_status": "implemented_source_specific",
       "runtime": "kintaiyi.jinjing_v4_military.chushi_fa",
       "implementation_note": "分栏判断12/22/32、三门具、五将发与开休生三吉门。《统宗》同段明确把“出其门”解释为开休生，把“用其二”解释为算得二之数，支持当前把算条件与出门条件分开；不使用《统宗》卷五兵额表及其他扩展。",
-      "collation_status": "two_conditions_disambiguated_by_tongzong_gloss",
+      "collation_status": "two_conditions_resolved_by_jingyou_parallel_and_tongzong_gloss",
       "collation_evidence": {
         "jinjing_siku_volume4": "经曰“行师必出奇门，略地并用其二”；继列算十二、二十二、三十二，五将发、三门具，并释出开休生三吉门。",
         "tongzong_volume5": "改作/释作“行师必出其门，略地并用其二”，并分别解释：出其门=出开休生三吉门；用其二=算得二之数。",
-        "canonical_use": "《统宗》只用于拆解《金镜》本句的两个条件；J4M-05 本身仍以《金镜》明确列出的12/22/32、三门具、五将发、开休生为 canonical。",
-        "do_not_import": "《统宗》卷五的天子万乘/诸侯千乘兵额、二为大威离宫等扩展说明不自动进入 J4M-05 runtime。"
+        "canonical_use": "《福应经》平行条先确认“其门”和“其二”为分立语义，《统宗》再明释“用其二=算得二之数”；J4M-05 仍只采用《金镜》自身明列的12/22/32、三门具、五将发、开休生。",
+        "do_not_import": "《统宗》卷五的天子万乘/诸侯千乘兵额、二为大威离宫等扩展说明不自动进入 J4M-05 runtime。",
+        "jingyou_fuying_volume4": "“行师必出其门，略地并用其二”，并明列算12/22/32、门具将发，末句直接释“出其门者，开、休、生三吉之门也”。"
       }
     },
     {
@@ -225,7 +226,33 @@
       "source_boundary_evidence": {
         "jinjing_siku_volume4": "本条是“陈兵向背”：明确列1/2/4/5/6/9，并同时给出出军方向、战利方向、背地、阵形、旗色。",
         "tongzong_later_military_rule": "《统宗》另有“陈兵必出其乡”，按算方列1/2/3/4/6/7/8/9等出向，结构与本条不同。",
-        "policy": "两条只可交叉比较，不得互补缺数。尤其不得拿《统宗》3/7/8补《金镜》，也不得拿《金镜》5及阵旗信息反写《统宗》陈兵出乡。"
+        "policy": "两条只可交叉比较，不得互补缺数。尤其不得拿《统宗》3/7/8补《金镜》，也不得拿《金镜》5及阵旗信息反写《统宗》陈兵出乡。",
+        "jingyou_fuying_volume4": "《福应经》“释陈兵向背”列1/2/3/4/6/7/8/9而无5，证明差异并非仅《统宗》后世扩写；仍不得互补《金镜》数表。"
+      },
+      "source_variants": {
+        "jingyou_fuying_volume4": {
+          "source_title": "释陈兵向背第四十九",
+          "direction_table": {
+            "1": "西北",
+            "2": "正南",
+            "3": "东北",
+            "4": "正东",
+            "6": "正西",
+            "7": "西南",
+            "8": "正北",
+            "9": "东南"
+          },
+          "omitted_in_variant": [
+            5
+          ],
+          "extra_vs_jinjing": [
+            3,
+            7,
+            8
+          ],
+          "structure": "主要给算数->出兵方向，不具《金镜》本条完整的战利方向、背地、阵形、旗色层。",
+          "status": "separate_ancient_source_variant"
+        }
       }
     },
     {
@@ -249,7 +276,19 @@
       "implementation_status": "implemented_source_specific",
       "runtime": "kintaiyi.jinjing_v4_military.zhizhen_suidi",
       "implementation_note": "实现五类地形与五阵五行映射，并补足正文明确的“主客置阵，次以五行相克而取胜负”：主阵五行克客阵则主胜，客阵五行克主阵则客胜；同类或相生不补胜负。未知地形不类推，兵种器械层仍归 J4M-08。",
-      "completion_note": "C66 补齐此前 runtime 漏掉的主客阵形五行相克胜负层；不改变地形->阵形表。"
+      "completion_note": "C66 补齐此前 runtime 漏掉的主客阵形五行相克胜负层；不改变地形->阵形表。",
+      "source_variants": {
+        "jingyou_fuying_volume4": {
+          "source_title": "释置阵随地第五十",
+          "five_formations": "水曲、火锐、木直、金方、土圆；主客置阵后五行相制取胜负。",
+          "notable_readings": [
+            "《金镜》“地洿邪”对应《福应经》转录“地形跨斜”",
+            "《金镜》“地高而平”对应《福应经》转录“地形高而不平”"
+          ],
+          "locator_status": "transcription_variant_pending_scan_check",
+          "canonical_override": false
+        }
+      }
     },
     {
       "id": "J4M-08",
@@ -272,7 +311,7 @@
       "implementation_status": "implemented_source_specific",
       "runtime": "kintaiyi.jinjing_v4_military.suidi_zhibian",
       "implementation_note": "实现《金镜》四库本本条实际写出的五类地形与优势兵种/兵器映射，并保留其三不当一、十不当一、百不当一等原文比例文字；已确认该段“晁错曰”与《汉书·爰盎晁错传》存在多处异文及脱段，不以《汉书》静默校正本 profile。训练、器械、将知兵、君择将只作事实/警告层，不转成现代战力分数。",
-      "collation_status": "jinjing_chao_cuo_quote_diverges_from_hanshu",
+      "collation_status": "jinjing_quote_diverges_from_jingyou_and_hanshu",
       "quotation_collation": {
         "jinjing_siku_volume4": {
           "status": "canonical_for_J4M-08_source_profile",
@@ -293,7 +332,18 @@
             "将不省兵：五不当一"
           ]
         },
-        "policy": "J4M-08 以《金镜》四库本实际引文为本 profile 真源；《汉书》只证明引文存在明显异文/传抄差异，不得静默改写 runtime。若将来建立“晁错原典校正版”，须另立 source_variant。"
+        "policy": "J4M-08 以《金镜》四库本实际引文为本 profile 真源；《汉书》只证明引文存在明显异文/传抄差异，不得静默改写 runtime。若将来建立“晁错原典校正版”，须另立 source_variant。",
+        "jingyou_fuying_volume4": {
+          "status": "ancient_taiyi_parallel_close_to_hanshu_not_canonical_override",
+          "examples": [
+            "步兵地：车骑二不当一",
+            "萑苇竹萧：矛𮣴之地，长戟二不当一",
+            "另列曲道相伏、险阻相薄之剑楯地，弓弩三不当一",
+            "不习服之过：百不当十",
+            "将不省兵之祸：五不当一"
+          ],
+          "note": "与《汉书》体系明显更接近，进一步证明《金镜》四库本文字属于独立传本状态；仍不静默改写 J4M-08。"
+        }
       }
     },
     {
@@ -338,6 +388,22 @@
             6
           ],
           "status": "separate_source_variant"
+        },
+        "jingyou_fuying_volume4": {
+          "inner_palaces_help_host": [
+            1,
+            8,
+            3,
+            4
+          ],
+          "outer_palaces_help_guest": [
+            9,
+            2,
+            7,
+            6
+          ],
+          "source_title": "释太乙在天外地内宫第五十二",
+          "status": "separate_ancient_source_variant"
         }
       },
       "target_crosswalk": {
@@ -346,7 +412,7 @@
       },
       "implementation_status": "implemented_source_specific",
       "runtime": "kintaiyi.jinjing_v4_military.taiyi_tianwai_dinei",
-      "implementation_note": "仅实现金镜卷四profile；1宫不从统宗variant补入。"
+      "implementation_note": "仅实现金镜卷四profile；《福应经》与《统宗》均把1宫列入地内助主，但《金镜》四库本卷四正文只写8/3/4，因此1宫继续作为独立 source variant，不反填 canonical。"
     },
     {
       "id": "J4M-10",
@@ -369,7 +435,13 @@
       },
       "implementation_status": "implemented_source_specific",
       "runtime": "kintaiyi.jinjing_v4_military.qifu_fa",
-      "implementation_note": "奇兵三成、12/22/32伏兵、11/21/31伏藏、天目大煞、掩迫时机与贼急要害均分栏；不借卷十五近名算法。"
+      "implementation_note": "奇兵三成、12/22/32伏兵、11/21/31伏藏、天目大煞、掩迫时机与贼急要害均分栏；《金镜》“伏兵必败大煞之地”与《福应经》“奇兵必从大杀之地”异文已隔离，不对“败”造公式，也不借卷十五近名算法。",
+      "collation_status": "jinjing_dasha_phrase_textually_uncertain_jingyou_parallel_preserved",
+      "textual_variants": {
+        "jinjing_siku_volume4": "古者伏兵必败大煞之地，望敌鼓噪而发。",
+        "jingyou_fuying_volume4": "古云：奇兵必从大杀之地，其地居高，去敌三五里，则鼓噪而发伏也。天目所临之下，即大杀也。",
+        "policy": "“败/从”“伏兵/奇兵”存在实质异文。J4M-10 只执行两本共同且明确的事实：天目所临之下为大煞/大杀定位、奇兵约三成、11/21/31伏藏、掩迫时发、贼急伏要害；不把《金镜》“败”单字解释成额外动作或胜负。《福应经》“居高、去敌三五里”只作 variant，不静默并入。"
+      }
     },
     {
       "id": "J4M-11",
@@ -395,7 +467,22 @@
       },
       "implementation_status": "implemented_source_specific",
       "runtime": "kintaiyi.jinjing_v4_military.fengyun_feiniao_zhuzhan",
-      "implementation_note": "以显式外部观测事件列表驱动，逐条匹配冲格迫击、扶阵、回风飞鸟、冲突阵等正文事件；无观测返回not_computable，众来噪阵因本句未单独明示结果而不补断。"
+      "implementation_note": "J4M-11 runtime继续逐字服从《金镜》四库本：迫击“大将宫”按本句主败、“从主人形上来”按本句客败；《福应经》有更展开且部分相反的平行读法，已单列 variant，绝不混入 canonical。无观测返回not_computable，单独“众来噪阵”仍不补胜负。",
+      "source_variants": {
+        "jingyou_fuying_volume4": {
+          "source_title": "释太乙风云飞鸟置战第五十三",
+          "distinct_readings": [
+            "迫击客大将宫 -> 客败；迫击主将宫 -> 主败（比《金镜》“迫击大将宫者主败”更展开）",
+            "从主人刑上来 -> 主人败；从客刑上来 -> 客败（与《金镜》“从主人形上来客败”存在实质冲突）",
+            "主目击客大将宫 -> 客败；客目击主大将宫 -> 主败",
+            "来翼主人阵前 -> 主胜；来翼客阵前 -> 客胜",
+            "众鸟翼噪并风云冲阵而来为凶；冲主阵主败、冲客阵客败"
+          ],
+          "status": "separate_ancient_source_variant",
+          "canonical_override": false
+        }
+      },
+      "collation_status": "jinjing_and_jingyou_have_material_event_reading_differences"
     },
     {
       "id": "J4M-12",
