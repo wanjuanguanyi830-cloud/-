@@ -71,3 +71,20 @@ def test_lion_collation_records_three_source_pass_without_inventing_ordinary_yea
     assert "未发现第二个普通落支完整应年例" in joined
     assert "太乙杜塞则当年破" in joined
     assert "不伪造唯一年干" in joined
+
+
+def test_white_dragon_xing_collation_forbids_foreign_tables():
+    data = _load()
+    entry = next(e for e in data["entries"] if e.get("rule_id") == "T7-06")
+
+    assert entry["collation_status"] == (
+        "three_source_phrase_verified_xing_mapping_unresolved"
+    )
+    assert entry["collation_record"] == (
+        "sources/t7-06-white-dragon-xing-collation.md"
+    )
+    joined = " ".join(entry["boundary_notes"])
+    assert "没有给出可执行将宫刑映射" in joined
+    assert "同时适用于大将和参将" in joined
+    assert "不得把地支三刑" in joined
+    assert "刑保持未判，不等于无刑" in joined
