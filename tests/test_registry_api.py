@@ -86,6 +86,7 @@ def test_packaged_registry_and_schemas_are_json_resources():
     json.loads(resources.files("schemas").joinpath("operation.schema.json").read_text(encoding="utf-8"))
     json.loads(resources.files("schemas").joinpath("result.schema.json").read_text(encoding="utf-8"))
     json.loads(resources.files("schemas").joinpath("capabilities.schema.json").read_text(encoding="utf-8"))
+    json.loads(resources.files("schemas").joinpath("repository-status.schema.json").read_text(encoding="utf-8"))
 
 
 def test_calculate_rule_resolves_d8_by_rule_id():
