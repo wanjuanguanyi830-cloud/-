@@ -76,7 +76,7 @@ def test_adapter_preserves_j4m04_as_overlay_without_rewriting_c8_l3():
 
     assert c8_l3["winner"] is None
     assert overlay["source_campaign_verdict"] == "所向必克"
-    assert overlay["source_temporal_outcome"] == "先胜后负"
+    assert overlay["source_temporal_outcome"] == "先起者胜，后起者负"
     assert overlay["winner"] is None
     assert overlay["start_deity"] == "和德"
     assert data["default_c8_profile_unchanged"] is True
