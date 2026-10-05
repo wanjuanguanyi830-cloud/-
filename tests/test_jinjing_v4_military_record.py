@@ -702,8 +702,9 @@ def test_c111_ncl_j4m07_body_is_verified_but_siku_runtime_stays_source_specific(
 
 def test_c112_ncl_j4m08_opening_triplet_is_direct_visual_but_not_full_body():
     data, rules = _rules()
-    assert data["source"]["ncl_volume4_collation_version"] == "c112-ncl06604-j4m08-opening-v1"
+    assert data["source"]["ncl_volume4_collation_version"] == "c112-ncl06604-j4m08-opening-v2"
     assert "c112-ncl06604-j4m08-opening-v1" in data["source"]["ncl_volume4_collation_history"]
+    assert "c112-ncl06604-j4m08-opening-v2" in data["source"]["ncl_volume4_collation_history"]
 
     rule = {item["id"]: item for item in rules}["J4M-08"]
     ncl = rule["manuscript_readings"]["NCL-06604"]
@@ -712,8 +713,8 @@ def test_c112_ncl_j4m08_opening_triplet_is_direct_visual_but_not_full_body():
     assert opening["source_attribution"] == "晁错"
     assert opening["three_urgencies"] == ["士卒服习", "随其地形", "善用兵器"]
     assert opening["status"] == "opening_triplet_direct_visual_verified"
-    assert opening["continuation_visible_only"] == "五丈之沟……"
-    assert "不据本图声明已核" in opening["scope_policy"]
+    assert opening["continuation_visible_only"] == "五丈之沟居堑之水山林"
+    assert "五丈之沟居堑之水山林" in opening["scope_policy"]
     assert ncl["weapon_reading"] == "矛鋋"
     assert ncl["ratio_reading"] == "弓弩三不当一"
     assert ncl["canonical_override"] is False
