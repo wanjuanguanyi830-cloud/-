@@ -293,7 +293,7 @@ JF4M 只作 source_record_only，不继承 J4M runtime；两书只能通过 para
 - sources/c69-j4m12-cloud-table-audit-record.md
 
 
-## C70 J4M-11 观测事件语法收紧（2026-10-05）
+## C75 J4M-11 观测事件语法收紧（2026-10-05）
 
 运行时复核发现两处 source overreach，现已修正：
 
@@ -302,4 +302,4 @@ JF4M 只作 source_record_only，不继承 J4M runtime；两书只能通过 para
 
 《景祐太乙福应经》对客大将/主大将及主人刑/客刑有独立、更展开且部分冲突的断法，继续归 JF4M source profile，不回写 J4M。
 
-详细记录：sources/c70-j4m11-event-schema-audit-record.md
+详细记录：sources/c75-j4m11-event-schema-audit-record.md
