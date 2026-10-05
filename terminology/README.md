@@ -359,13 +359,13 @@
 六项固定分级：
 
 - 太乙九星：`direct_text_verified`；
-- 文昌九星：`prior_scan_confirmed_page_record_pending`；
+- 文昌九星：`ziting_manuscript_not_attested_modern_appendix_only`；
 - 文昌变化：`direct_text_verified`；
 - 始击变化：`direct_text_verified`；
-- 三旗行宫：`project_attribution_unverified`；
-- 九宫贵神：`project_attribution_unverified`。
+- 三旗行宫：`ziting_not_attested_cross_source_only`；
+- 九宫贵神：`ziting_not_attested_cross_source_only`。
 
-只有 `direct_text_verified` 的太乙九星、文昌变化、始击变化允许注入 `primary_result`。文昌九星的研易楼明钞本此前已扫描且E盘仍存，但当前执行环境未重新挂载原扫描页/旧 `terminology.json`，所以仍禁止生成紫庭 primary runtime；旧 `kentang2017/kintaiyi` 九星代码又明确标注为《太乙统宗宝鉴》卷六来源，不能拿代码残留冒充研易楼本逐字见证。三旗行宫与九宫贵神目前只有统宗卷十直接文本，不能反标为紫庭 canonical。
+只有 `direct_text_verified` 的太乙九星、文昌变化、始击变化允许注入 `primary_result`。用户重新提供研易楼明钞本后，直接核其目录页：卷一至卷十二及后附项目中未见“文昌九星值宫术”。因此文昌九星不再作为紫庭 primary/pending，而只在 `zitingjing.json` 保留现代整理附篇/旧术语迁移指针；当前稳定术语入口改为 `terminology/wenchang-nine-stars.json`，可执行规则归《太乙统宗宝鉴》卷六 C70。现代整理本为何收入同名附篇，目前只作来源假说，不反推原钞。
 
 `terminology/zitingjing-migration-map.json` 继续作为旧本地术语库恢复资产，负责未来回填 old term id / manuscript form / source page 等；它不再承担当前稳定术语消费入口。
 
@@ -487,9 +487,9 @@ crosswalk 专门锁定“近名但不能合并”的高风险关系，例如：
 
 ### C70 统宗文昌九星
 
-挂在 `zitingjing.json` 的 `wenchang_nine_stars` 条目下作为独立 source profile。
+稳定术语入口：`terminology/wenchang-nine-stars.json`。
 
-它可按统宗卷六 NGJ 运行 30年一星 / 270小周 / 2700大周，并给直事星与年干落宫/分野；研易楼本附篇此前虽已扫描，但当前原页/旧术语记录未重新挂载，所以 C70 **不能**反填紫庭 primary。
+C70 按《太乙统宗宝鉴》卷六 NGJ 独立运行：30年一星 / 270小周 / 2700大周，并给直事星与年干落宫/分野。研易楼明钞本目录未见“文昌九星值宫术”；现代整理本同名附篇另记为编辑层证据，来源尚未完全证明。因此 C70 不再描述为“紫庭 pending 的参校”，而是文昌九星当前直接可执行 source profile。
 
 
 ### C124 / C125 太乙九星双来源层
