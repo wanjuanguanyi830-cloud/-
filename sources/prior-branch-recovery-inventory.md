@@ -602,3 +602,33 @@ C113 没有直接复制旧代码，而是重新核《太乙统宗宝鉴》卷七
 3. 完整旧 `terminology.json` 仍为 `blocked_missing_original_store`。
 
 旧周期公式、旧 project canonical 与已经被后续校勘 supersede 的测试，不再列为“待并入完成品”。
+
+
+## 10. C114 八占历史例恢复
+
+旧 `integrate-taiyi-war-v1-20261004/tests/fixtures/warfare_v1_historical_cases.json`
+中七术历史例已经由当前 `seven_methods_classics` fixture 吸收；
+八占则还有三条“规则已测试、历史身份未迁”的完成工作。
+
+C114 已按《太乙统宗宝鉴》卷五 NGJ / CADAL 直接见证重核并恢复：
+
+- D8-02：贞观四年主算31，长，利深入；
+- D8-04：光化三年主算单3，为单阳；
+- D8-08：天宝十年客算17，将吏兵卒皆备。
+
+新增：
+
+- `tests/fixtures/eight_divinations_historical_cases.json`
+- `tests/test_c114_eight_divinations_historical_cases.py`
+- `sources/c114-eight-divinations-historical-cases-record.md`
+
+没有恢复旧 fixture 中已经由当前单元测试覆盖的结构例，避免重复。
+
+特别锁定：
+
+- 17 的“将吏兵卒皆备”是直接古例；
+- 不据此恢复“16以上皆具”阈值；
+- 5 仍只有吏士；
+- 15 / 25 / 35 仍只有将军 + 吏士。
+
+完成 C114 后，旧 warfare fixture 的可迁历史回归价值基本核销完毕。
