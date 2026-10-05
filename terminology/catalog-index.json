@@ -87,8 +87,8 @@
       "scope": "source_sensitive_zitingjing",
       "contains": [
         "紫庭直接：太乙九星、文昌变化、始击变化",
-        "现代整理/跨来源恢复指针：文昌九星",
         "旧store跨来源恢复指针：三旗行宫、九宫贵神",
+        "文昌九星已独立到 terminology/wenchang-nine-stars.json",
         "三旗/九宫贵神现行可执行canonical归《太乙统宗宝鉴》卷十 C126/C127"
       ]
     },
