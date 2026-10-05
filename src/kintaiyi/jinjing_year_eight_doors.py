@@ -1,4 +1,4 @@
-"""C122 《太乙金镜式经》卷一“推八门占岁计法”。
+"""C123 《太乙金镜式经》卷一“推八门占岁计法”。
 
 本层只实现王希明“别立新术”的岁计直门：
 - 上元甲子以来积年；
@@ -9,7 +9,7 @@
 
 与C119时计八门严格分层：
 - C119：30时一移门；
-- C122：30年一移门。
+- C123：30年一移门。
 """
 
 from __future__ import annotations
@@ -17,7 +17,7 @@ from __future__ import annotations
 import copy
 from typing import Any
 
-C122_VERSION = "taiyi-c122-jinjing-volume1-year-eight-doors-v1"
+C123_VERSION = "taiyi-c123-jinjing-volume1-year-eight-doors-v1"
 
 YEAR_DOOR_ORDER = ("开", "休", "生", "伤", "杜", "景", "死", "惊")
 OUTER_CYCLE = 720
@@ -47,7 +47,7 @@ LEGACY_BOUNDARY = {
     "legacy_previous_docstring_scope": "卷四",
     "correct_source_scope": "金镜卷一推八门占岁计法",
     "compatibility_zero_input": (
-        "旧API允许0并把它当240周期末；C122 canonical积年要求>=1。"
+        "旧API允许0并把它当240周期末；C123 canonical积年要求>=1。"
     ),
 }
 
@@ -58,7 +58,7 @@ OVERLAY_BOUNDARY = {
         "客主八门与太乙八门开休生三门合者大利",
     ],
     "position_overlay_implemented": False,
-    "reason": "这些语句涉及各自八门的空间叠加；C122只先锁定岁计直门周期。",
+    "reason": "这些语句涉及各自八门的空间叠加；C123只先锁定岁计直门周期。",
 }
 
 
@@ -78,8 +78,8 @@ def year_duty_door(accumulated_year: int) -> dict[str, Any]:
     year_in_door = (remainder_240 - 1) % YEARS_PER_DOOR + 1
     return {
         "schema_version": "1.0",
-        "canonical": C122_VERSION,
-        "rule_id": "C122-YEAR-DUTY-DOOR",
+        "canonical": C123_VERSION,
+        "rule_id": "C123-YEAR-DUTY-DOOR",
         "source_profile": "jinjing_volume1_year_eight_doors",
         "accumulated_year": n,
         "remainder_720": remainder_720,
@@ -94,10 +94,10 @@ def year_duty_door(accumulated_year: int) -> dict[str, Any]:
     }
 
 
-def c122_catalog() -> dict[str, Any]:
+def c123_catalog() -> dict[str, Any]:
     return {
-        "canonical": C122_VERSION,
-        "rule_id": "C122-YEAR-DUTY-DOOR",
+        "canonical": C123_VERSION,
+        "rule_id": "C123-YEAR-DUTY-DOOR",
         "door_order": list(YEAR_DOOR_ORDER),
         "outer_cycle": OUTER_CYCLE,
         "inner_cycle": INNER_CYCLE,
