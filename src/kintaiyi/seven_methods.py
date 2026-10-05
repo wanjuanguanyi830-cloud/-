@@ -25,8 +25,12 @@ def lion(enemy_start_year):
                   timing={"sector": sector, "year_number": 18 if sector else None,
                           "offset": offset, "year": year,
                           "candidate_branch": qi["position"] if sector is None else None},
-                  pending=[] if sector else ["普通落支应期缺第二古籍实例"],
-                  source_variants=["相关版本墓为易破"])
+                  pending=[] if sector else ["普通落支唯一应期缺第二独立古籍实例"],
+                  source_variants=[
+                      "相关版本墓为易破",
+                      "《太乙金钥匙》补充：起兵年太乙杜塞则当年破；未并入四库canonical普通落支应期算法",
+                  ],
+                  collation_record="sources/t7-02-lion-collation.md")
 
 
 def _cloud_general(palace):
