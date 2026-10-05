@@ -598,3 +598,28 @@ def test_c88_ncl_j4m06_direction_table_is_variant_not_siku_completion():
     assert "1/2/4/5/6/9" in evidence["jinjing_siku_volume4"]
     assert "1/2/3/4/6/7/8/9" in evidence["ncl_06604_ming_manuscript"]
     assert "不得互补缺数" in evidence["policy"]
+
+
+def test_c99_taicu_is_fixed_as_project_canonical_form():
+    data, rules = _rules()
+    assert data["source"]["terminology_policy_version"] == "c99-taicu-canonical-v1"
+
+    rule = {item["id"]: item for item in rules}["J4M-03"]
+    policy = rule["terminology_policy"]
+    assert policy["canonical_form"] == "太簇"
+    assert policy["status"] == "project_canonical_fixed"
+    assert policy["source_forms"] == ["太簇", "太蔟"]
+
+    alias = rule["terminology_aliases"]["太蔟"]
+    assert alias["canonical"] == "太簇"
+    assert alias["status"] == "historical_source_form_alias"
+
+    ncl = {item["id"]: item for item in data["source"]["scan_witnesses"]}["NCL-06604"]
+    assert not any(
+        "太蔟" in item or "太簇" in item
+        for item in ncl["page_collation_audit"]["still_pending"]
+    )
+    assert any(
+        "canonical=太簇" in item
+        for item in ncl["page_collation_audit"]["nonblocking_source_glyph_checks"]
+    )
