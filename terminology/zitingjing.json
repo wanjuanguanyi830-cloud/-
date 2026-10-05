@@ -38,7 +38,8 @@
         "九宫",
         "九星",
         "分野",
-        "当前见证吉凶"
+        "当前见证吉凶",
+        "十年一星直符周期"
       ],
       "variant_policy": "三宫天冲：紫庭当前在线见证为凶，统宗参校见吉；两者并列，不静默统一。",
       "source_specific_profiles": {
@@ -66,8 +67,33 @@
         "《紫庭经》〈释九宫所值九星〉仍是本条primary：保存九宫、九星、分野与当前见证吉凶。",
         "C124《统宗》卷六另建动态profile：900大周、90小周、10年一星，天蓬起顺九星；不得把该周期反填《紫庭》primary。",
         "C124给年干时可按六干星宫锚点布全九星；这是统宗动态层，不改写紫庭静态九宫表。",
-        "三宫天冲吉凶异文继续并列，不因C124加入而静默统一。"
-      ]
+        "三宫天冲吉凶异文继续并列，不因C124加入而静默统一。",
+        "C125《紫庭》主来源直接支持九星十年一易，九星合90年循环；1937281原例余31，落天辅第1年。",
+        "C125只算紫庭主来源可直接证明的直符周期，不借C124《统宗》完整十干加宫表补全动态分布。"
+      ],
+      "primary_subrules": {
+        "ziting_direct_star_cycle": {
+          "rule_id": "C125-ZITING-TAIYI-NINE-STARS-CYCLE",
+          "runtime": "kintaiyi.zitingjing_primary.taiyi_nine_stars_primary_cycle",
+          "source_section": "释九宫所值九星",
+          "status": "direct_text_verified_runtime",
+          "cycle": {
+            "years_per_star": 10,
+            "star_count": 9,
+            "cycle_years": 90,
+            "start_star": "天蓬",
+            "direction": "顺行九星"
+          },
+          "example": {
+            "accumulated_count": 1937281,
+            "cycle_remainder": 31,
+            "direct_star": "天辅",
+            "year_in_star": 1
+          },
+          "full_year_stem_distribution_supported": false,
+          "evidence_note": "正文明确九星十年一易；开元十二年积算例按90年循环余31，落天辅第1年。完整十干加宫暂不从OCR残文强推。"
+        }
+      }
     },
     {
       "key": "wenchang_nine_stars",
