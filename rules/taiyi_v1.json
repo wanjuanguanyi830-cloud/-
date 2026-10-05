@@ -139,17 +139,53 @@
       },
       {
         "id": "R-WF",
-        "canonical": "宫序乾艮巽坤中，45年宫225年周；项目offset+250；入宫1..15理天16..30理地31..45理人；吉算=入宫第几年，尾数十类，5民庶，无46。",
+        "canonical": "五福位置稳定核心为乾→艮→巽→坤→中、45年一宫、225年一轮；统宗与金镜必须显式分source profile：统宗宫盈差115、大周2250/小周225；金镜无盈差、225年直接成周。旧项目+250只作quarantine，不得覆盖已校来源。",
         "source_profiles": {
-          "source_115": {
-            "offset": 115
+          "tongzong": {
+            "rule_id": "C67-WUFU-TONGZONG",
+            "source_profile": "tongzong_volume6_7_wufu",
+            "runtime": "kintaiyi.wufu_source_profiles.wufu_position",
+            "surplus": 115,
+            "big_cycle": 2250,
+            "small_cycle": 225
+          },
+          "jinjing": {
+            "rule_id": "C67-WUFU-JINJING",
+            "source_profile": "jinjing_volume5_wufu",
+            "runtime": "kintaiyi.wufu_source_profiles.wufu_position",
+            "surplus": 0,
+            "big_cycle": 225,
+            "small_cycle": null
           }
+        },
+        "legacy_quarantine": {
+          "project_plus_250": "legacy compatibility only; not a C67 source profile"
         }
       },
       {
         "id": "R-DY",
-        "canonical": "金镜/统宗宫序7/8/9/1/2/3/4/6，36年宫288年周不入5；统宗/象数论宫盈差+34；凶算入宫1..36尾数十类，36师帅；1..12治天13..24治地25..36治人。",
+        "canonical": "大游太乙所在稳定核心为7→8→9→1→2→3→4→6、36年一宫、288年宫周、不入中五；金镜与统宗必须显式分source profile：金镜上元甲寅、元法4320、无盈差；统宗上元甲子、宫盈差34、外周2880。淘金歌异序只作source variant。",
         "source_profiles": {
+          "jinjing": {
+            "rule_id": "C107-DAYOU-JINJING",
+            "source_profile": "jinjing_volume5_dayou_position",
+            "runtime": "kintaiyi.dayou_position_source_profiles.dayou_position",
+            "epoch": "上元甲寅",
+            "surplus": 0,
+            "outer_cycle": 4320,
+            "small_cycle": 288
+          },
+          "tongzong": {
+            "rule_id": "C107-DAYOU-TONGZONG",
+            "source_profile": "tongzong_volume7_dayou_position",
+            "runtime": "kintaiyi.dayou_position_source_profiles.dayou_position",
+            "epoch": "上元甲子",
+            "surplus": 34,
+            "outer_cycle": 2880,
+            "small_cycle": 288
+          }
+        },
+        "source_variants": {
           "taojin": {
             "path": [
               7,
@@ -161,7 +197,7 @@
               9,
               8
             ],
-            "epoch_offset": null
+            "epoch_status": "pending"
           }
         }
       },
