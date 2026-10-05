@@ -12,7 +12,7 @@
   },
   "audit_snapshot": {
     "stable_catalog_count": 12,
-    "entry_count": 98,
+    "entry_count": 101,
     "exact_cross_entry_name_collisions": 0,
     "status": "clean_at_snapshot"
   },
@@ -629,6 +629,71 @@
       "forbidden_merge": [
         "年计直门周期不自动等于开门空间叠盘。",
         "三吉门会合只给局部大利，不覆盖囚迫格对、杜塞、五将发不发。"
+      ]
+    },
+    {
+      "id": "CW-XIAOYOU-POSITION-HEXAGRAM",
+      "position": {
+        "catalog": "terminology/cycles.json",
+        "key": "small_wander_position",
+        "term": "小游太乙所在",
+        "rule_id": "C103-XIAOYOU-POSITION"
+      },
+      "hexagram": {
+        "catalog": "terminology/volume9-10.json",
+        "key": "xiaoyou_hexagram",
+        "term": "小游轨运内外重卦",
+        "rule_ids": [
+          "C47-XY-INNER",
+          "C47-XY-OUTER",
+          "C47-XY-HEX"
+        ]
+      },
+      "relation": "same_subject_distinct_coordinate_and_hexagram_layers",
+      "forbidden_merge": [
+        "C103只算小游太乙位置；C47算小游内外卦轨运。",
+        "不得从C103位置自动制造C47卦、动爻或三才。"
+      ]
+    },
+    {
+      "id": "CW-XIAOYOU-C47-C48",
+      "structure": {
+        "catalog": "terminology/volume9-10.json",
+        "key": "xiaoyou_hexagram",
+        "rule_id": "C47-XY-HEX"
+      },
+      "omen": {
+        "catalog": "terminology/volume9-10.json",
+        "key": "xiaoyou_line_omens",
+        "rule_id": "C48-XY-OMEN"
+      },
+      "relation": "structure_to_explicit_omen_interpretation",
+      "forbidden_merge": [
+        "C48消费C47结构，但格局证据与动爻纳甲必须显式输入。",
+        "C48不得调用旧六十四卦纳甲表强行补齐，也不得让格局覆盖基础爻位判断。"
+      ]
+    },
+    {
+      "id": "CW-DAYOU-XIAOYOU-C49",
+      "dayou": {
+        "catalog": "terminology/volume9-10.json",
+        "key": "dayou_heavy_hexagram",
+        "rule_id": "C41-DY-HEX"
+      },
+      "xiaoyou": {
+        "catalog": "terminology/volume9-10.json",
+        "key": "xiaoyou_hexagram",
+        "rule_id": "C47-XY-HEX"
+      },
+      "comparison": {
+        "catalog": "terminology/volume9-10.json",
+        "key": "dayou_xiaoyou_difference",
+        "rule_id": "C49-DY-XY-DIFF"
+      },
+      "relation": "explicit_cycle_comparison_without_auspice",
+      "forbidden_merge": [
+        "C49只比较太游36年/乾策与小游24年/坤策的职责差异。",
+        "同卦或异卦本身不生成吉凶，不得把C41/C47合并成单一周期。"
       ]
     }
   ]
