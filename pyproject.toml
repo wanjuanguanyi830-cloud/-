@@ -21,10 +21,12 @@ py-modules = ["config"]
 
 [tool.setuptools.packages.find]
 where = [".", "src"]
-include = ["kintaiyi*", "rules*"]
+include = ["kintaiyi*", "rules*", "terminology*", "registry*", "schemas*"]
 
 [tool.setuptools.package-data]
-rules = ["taiyi_v1.json", "jinjing_v4_military.json"]
+rules = ["*.json"]
 "rules.jinjing.geju" = ["ruleset.json"]
-"rules.variants" = ["modern_liunian_nayin.json"]
-
+"rules.variants" = ["*.json"]
+terminology = ["*.json"]
+registry = ["*.json"]
+schemas = ["*.json"]
