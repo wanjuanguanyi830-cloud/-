@@ -141,3 +141,13 @@
 - 将 `terminology`、`rules`、`registry`、`schemas` 作为 package data 随 Python 包安装，避免软件依赖仓库相对路径。
 - 新增 registry/API 回归测试，锁定三才 5 与 15/25/35 边界、C124 太乙九星 source profile、runtime 可解析性和 packaged JSON 资源。
 - 新增 `docs/ARCHITECTURE.md`，明确单一事实来源、兼容策略和后续旧术语库迁移原则。
+
+
+## 2026-10-05 — C125 《紫庭经》太乙九星直符周期 + 旧扫描来源纠正
+
+- 直接复核《太乙紫庭经》〈释九宫所值九星〉，确认本篇自身明确“九星十年一易”；九星合为90年直符循环。
+- 开元十二年原例积算 1937281，按90年循环余31，前三星各十年后余1，得到天辅直符第1年；新增 `C125-ZITING-TAIYI-NINE-STARS-CYCLE` runtime。
+- C125只实现紫庭主来源可直接证明的直符周期；正文虽见甲/乙年加六甲/六乙句，但OCR残文不足以单独重建完整十干动态布星，因此不借C124《统宗》反填。
+- C124《统宗》与C125《紫庭》继续分 profile：两者都支持十年一星，但C124另有900年大周和完整年干九星布置，C125当前不继承这些额外层。
+- 来源纠正：用户确认研易楼藏《太乙紫庭祕訣》明钞本此前在术语库整理阶段已经扫描，E盘仍存原件；但旧 `kentang2017/kintaiyi/config.py` 九星段明确标注来源为《太乙统宗宝鉴》卷六。因此“文曲、玄鳳、明維、昭搖、立華、華明、玄武、玄冥、雄明”等旧代码词形只作 prior workflow code residue，不能直接称为研易楼本逐字扫描 witness。
+- `terminology/zitingjing-legacy-scan-recovery.json` 已改为同时记录“明钞本此前已扫描”与“旧统宗九星代码残留”两条独立证据链；`manuscript_form/source_page/old_term_record_id/old_notes` 继续待E盘原页或旧 `terminology.json` 恢复。
