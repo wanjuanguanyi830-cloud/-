@@ -222,3 +222,36 @@
 - 主大将固有五行金、主参将水；七术 Mode B 仍必须取将实际所在九宫五行。
 
 `terminology/d8-eight-divinations.json` 与 `terminology/t7-seven-methods.json` 已显式声明 `shared_catalog=terminology/common-core.json`，后续不得在各自目录复制一套公共表。
+
+
+## 格局 source-profile 术语目录
+
+已建立：
+
+`terminology/patterns.json`
+
+该目录不是把所有古籍格局合并成一套，而是明确区分：
+
+- `jinjing_geju`：目标仓库《太乙金镜式经》source-limited 格局引擎；
+- `tongzong_volume4`：《太乙统宗宝鉴》卷四并列 profile。
+
+固定：
+
+- `canonical_selected=null`
+- `cross_source_merge=false`
+
+`jinjing_geju` 术语覆盖：
+
+- 掩、击、迫、囚、关、格、对；
+- 提挟、挟闭；
+- 四郭固、四郭杜；
+- 执提、提格。
+
+卷次边界：
+
+- 前十一项主体来自《金镜》卷三；
+- 执提、提格使用值事门，引用卷四。
+
+机器主字段固定“**四郭杜**”；“四郭社”只作来源异文，不建立第二个 canonical 格局词条。
+
+该目录继续复用 `terminology/common-core.json` 的九宫与十六辰坐标，不在格局目录另抄一套坐标表。
