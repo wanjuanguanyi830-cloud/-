@@ -77,12 +77,12 @@ def test_legacy_manifest_records_local_copy_without_faking_old_ids_or_pages():
         }
     )
     assert entry["legacy_match_status"].startswith(
-        "legacy_scan_extraction_residue_recovered"
+        "prior_manuscript_scan_confirmed"
     )
     assert entry["legacy_fields"]["old_term_record_id"] is None
     assert entry["legacy_fields"]["source_page"] is None
     assert entry["legacy_fields"]["old_aliases"] is None
-    assert "文曲" in entry["recovered_scan_aliases"]
+    assert "文曲" in entry["recovered_prior_workflow_forms"]
 
 
 def test_prior_tongzong_taiyi_nine_star_residue_is_separate_from_yanyilou_scan():
