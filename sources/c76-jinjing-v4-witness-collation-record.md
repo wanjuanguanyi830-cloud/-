@@ -27,7 +27,7 @@
 - Wikimedia Commons：File:CADAL06056494 太乙金鏡式經·卷一~卷四.djvu
 - CText Library resource：res=5784
 
-不得把“已锁定扫描文件”写成“已逐页核完”；具体页码未核到时继续 pending。
+C76 初稿阶段不得把“已锁定扫描文件”写成“已逐页核完”；该 pending 状态已由 C79 的直接图像核验 supersede。
 
 ### NCL-06604
 
