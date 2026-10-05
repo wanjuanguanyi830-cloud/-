@@ -134,3 +134,12 @@
 - 十六神主表仍只有“太簇”，不建立第二条神名；
 - 宫位仍为酉，五行仍为金；
 - 古籍原字形继续保留在 source/manuscript 字段。
+
+
+## C105 NCL-06604 旧术语记录对账
+
+已建立 `terminology/ncl06604-legacy-reconciliation-map.json`。
+
+该明钞本此前已经扫描并用于术语整理；当前映射用于旧 `terminology.json` 恢复后的去重与合并，不代表首次处理 NCL-06604。
+
+原则：旧记录与 C86-C88 当前影像复核按 witness / rule / concept 对账；一致则合并来源链，冲突则并列保存，不重复建立同一来源。
