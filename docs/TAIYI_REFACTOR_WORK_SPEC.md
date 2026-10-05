@@ -4334,20 +4334,70 @@ C96 已确认基线：
 
 `sources/prior-branch-recovery-inventory.md`
 
-## 9.87 后续
+## 9.87 C97 五福旧 compatibility 回流隔离（已实施）
 
-继续恢复旧工作时仍只采用：
+发现当前 `main` 的：
+
+`src/kintaiyi/cycles.py`
+
+仍保留旧：
+
+`profile="project" / offset=250`
+
+并由 `config.wufu` 直接暴露。
+
+C97 不删除兼容 API，而是撤销其 canonical 身份。
+
+旧 project 路径固定：
+
+- `canonical=None`
+- `canonical_equivalent=False`
+- `quarantined=True`
+- `promotion_allowed=False`
+- replacement → C67 Tongzong / Jinjing profiles。
+
+旧0基 API 的正确来源适配：
+
+- `profile="source_115"` → C67 `tongzong`
+- `profile="jinjing"` → C67 `jinjing`
+- 适配关系：`C67 accumulated_count = legacy accumulated_year + 1`
+
+五福吉算：
+
+`wufu_gb()`
+
+改委托：
+
+`C68-WUFU-AUSPICIOUS-NUMBER`
+
+因此旧“2=王侯臣宰 / 5=民庶”兼容标签不再冒充 C68 canonical；当前输出采用 C68：
+
+- 2 = 公侯；
+- 5 = 民。
+
+C60 新增：
+
+- `kintaiyi.cycles.wufu.project`
+- `config.wufu_default`
+
+详细记录：
+
+- `sources/c97-wufu-legacy-compat-quarantine-record.md`
+
+## 9.88 后续
+
+继续时仍严格限定旧工作恢复窗口：
 
 - 2026-10-04；
 - 2026-10-05。
 
 下一优先级：
 
-1. 等 C86 NCL 卷四页级校勘并行线稳定后，统一最新 witness 测试与工作规范；
-2. 检查 10月4日旧 facade 是否还有**不依赖旧公式**的接口片段可复用；若没有则停止 facade 回收；
-3. 检查 10月4日 base-motion / warfare fixture，只有当前 main 未覆盖且仍符合现行 source profile 的才迁；
-4. 完整 `terminology.json` 继续由 C81 阻塞，不猜 schema；
-5. 不因旧代码存在而恢复任何已被后续来源校勘否定的公式。
+1. 对当前 `cycles.py` 中大游 / 大游天目做独立来源审计，不能因为与旧10月4日代码相同就默认 canonical；
+2. 检查旧 facade 剩余接口是否还有不依赖旧公式的可恢复部分；
+3. 完整 `terminology.json` 继续由 C81 阻塞；
+4. 等并行 NCL C86/C87 校勘线稳定后统一最终 CI；
+5. 所有旧 compatibility 必须明确 canonical / quarantine 身份，禁止“能运行=真源”。
 
 ## 10. 验收
 
