@@ -139,7 +139,7 @@ CATALOG["推太乙當時法"] = _entry(
     source_confidence="high", target_hint="analysis.rules.jinjing_current_time",
     notes=(
         "C69 已核《太乙金镜式经》卷一原题并实现十日干朝暮天乙治神表、"
-        "魁罡禁居与十二天将直接主事/吉凶。C115 已接通二十四气黄道日度、"
+        "魁罡禁居与十二天将直接主事/吉凶。C118 已接通二十四气黄道日度、"
         "宿度与十二分野上游，并回归‘立冬六日日在心宿’；当前仍缺时支加位与完整六壬安将，"
         "故C69继续complete_current_time_formula=False；旧flat不得冒充完整术。"
     ),
