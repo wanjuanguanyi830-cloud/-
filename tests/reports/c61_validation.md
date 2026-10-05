@@ -36,3 +36,21 @@ C69 同步后的完整 CI：
 ```
 1342 passed in 2.20s
 ```
+
+
+## 后续状态（C70）
+
+17. C15 仍完整覆盖67字段。
+18. layer 统计更新为 canonical 32 / source_variant 17 / derived 18 / pending 0。
+19. strict pending 字段集合为空。
+20. `文昌九星` 不再把“紫庭正文未得”和“统宗已有直接见证”混成一个 pending。
+21. C70 提供统宗卷六 NGJ source-specific runtime。
+22. 紫庭附篇继续 `primary_result=None` / `canonical_selected=None`。
+23. 旧 `config.wenchang_nine_stars` 已进入 C60 quarantine。
+24. “pending=0”不等于所有局部公式已完成；只表示 C15 来源治理分类已闭合。
+
+C70 分层完成时已确认完整 CI：
+
+```
+1362 passed in 2.31s
+```
