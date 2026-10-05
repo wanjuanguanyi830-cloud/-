@@ -429,6 +429,37 @@
           "C118-TERM-DAY-POSITION"
         ],
         "runtime": "kintaiyi.jinjing_huangdao_tables.term_day_position"
+      },
+      {
+        "id": "R-XUANMING",
+        "canonical": "C116《金镜》卷一太乙玄命法只保存身份→玄命所主映射：天子天乙、皇后天后、公侯太常、将军勾陈、九牧螣蛇、常侍天空、二千石青龙、大夫/吏士朱雀、庶人行年。映射本身不生成吉凶；当前是否临所主与旺相/相生条件须另行显式检查。",
+        "rule_id": "C116-XUANMING-ROLE",
+        "runtime": "kintaiyi.jinjing_xuanming.xuanming_for_role"
+      },
+      {
+        "id": "R-TAIGONG-TIMING",
+        "canonical": "C117《金镜》卷一太公考时法为显式军事时机证据链。右太乙左天目、阴阳和顺、无阻断格局、非阳绝、神将独立、吉道清虚、三门具、五将发、玄命旺相相生及直使条件均不得自动补造。现行三门/五将ready可跨source接入，但须标cross-source integration，不回写成卷一逐字公式。",
+        "rule_id": "C117-TAIGONG-TIMING",
+        "runtime": "kintaiyi.jinjing_taigong_timing.evaluate_taigong_timing"
+      },
+      {
+        "id": "R-TIME-EIGHT-DOORS",
+        "canonical": "C119《金镜》卷一时计八门：阳遁开生惊休、阴遁杜死伤景，30时一移门；冬至时实240→120→30，夏至120→30。时计30时一门与年计30年一门不是同一公式；太乙3时一移、大将1时一移仅作移动速率，具体叠加位置未在C119重建。",
+        "rule_ids": [
+          "C119-WINTER-TIME-DUTY-DOOR",
+          "C119-SUMMER-TIME-DUTY-DOOR",
+          "C119-EIGHT-DOOR-MOVEMENT-RATES"
+        ],
+        "runtime": "kintaiyi.jinjing_time_eight_doors.time_duty_door"
+      },
+      {
+        "id": "R-DIRECT-ENVOY",
+        "canonical": "C121《金镜》卷一直使六纪只保存阳遁/阴遁夜半甲子锚点与移动原则。王希明明确批评张良固定日法不顾气应盈缩；在真实气应连续替代链未完整重建前，六纪锚点不得扩成全年连续canonical。太乙不游中五。",
+        "rule_ids": [
+          "C121-DIRECT-ENVOY-ANCHOR",
+          "C121-DIRECT-ENVOY-MOVEMENT"
+        ],
+        "runtime": "kintaiyi.jinjing_direct_envoy.direct_envoy_anchor"
       }
     ]
   },
