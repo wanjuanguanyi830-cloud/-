@@ -23,7 +23,7 @@ Python 软件优先调用 kintaiyi.api，不要直接依赖内部模块文件名
 - V15-01..14：全部可按 rule_id 调用；
 - V17-01..11：全部可按 rule_id 调用；
 - V17-D1：可调用，但身份固定为 derived cross-volume helper；
-- JF4M-01..11：全部已有《景祐太乙福应经》独立 source-specific runtime；JF4M-02/07/10 仍保留文本待核项。
+- JF4M-01..11：全部已有《景祐太乙福应经》独立 source-specific runtime；当前仅 JF4M-02 技术义仍待扫描/异本核定。
 
 底层 source-specific runtime 可能返回 `source_rule_id`。public facade 在其与请求 rule_id 一致时，只做加法归一：
 
