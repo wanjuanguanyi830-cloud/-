@@ -12,7 +12,9 @@ def _data():
 def test_ziting_terminology_migration_map_tracks_prior_local_work():
     data = _data()
     assert data["prior_local_terminology_status"] == "preliminary_completed_locally"
-    assert data["current_repository_status"] == "local_terminology_json_not_migrated"
+    assert data["current_repository_status"] == (
+        "prior_manuscript_scan_confirmed_original_store_and_pages_not_reattached"
+    )
     assert data["manuscript_source_id"] == "shanghai_yanyilou_ming_copy"
 
 
