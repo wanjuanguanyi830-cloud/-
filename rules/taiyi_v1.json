@@ -22,7 +22,19 @@
         "canonical": "起年支求大神；A模型旺相不破，休囚死合破。四维分区第18年候破，含起年内部+17；普通支只返回候选破年支。",
         "pending": [
           "普通落支应期缺第二古籍实例"
-        ]
+        ],
+        "collation_status": "three_source_pass_complete_no_second_ordinary_branch_example",
+        "collation_sources": [
+          "四库本《太乙金镜式经》卷六",
+          "《太乙统宗宝鉴》卷十一",
+          "《太乙金钥匙》"
+        ],
+        "collation_note": "三源均未提供第二条大神落普通支且给出唯一完整破年干支的古例；普通落支继续只返回candidate_branch。",
+        "source_variants": [
+          "相关版本墓为易破",
+          "《太乙金钥匙》补充：起兵年太乙杜塞则当年破；不并入四库canonical普通落支应期算法。"
+        ],
+        "source_record": "sources/t7-02-lion-collation.md"
       },
       {
         "id": "T7-03",
