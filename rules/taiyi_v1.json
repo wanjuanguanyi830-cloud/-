@@ -511,6 +511,12 @@
         ],
         "catalog": "terminology/military-jinjing-v4.json",
         "runtime": "kintaiyi.jinjing_v4_military"
+      },
+      {
+        "id": "R-TAIYI-NINE-STARS-TONGZONG",
+        "canonical": "C124只代表《太乙统宗宝鉴》卷六太乙九星动态source profile：900年大周、90年小周、10年一星，命起天蓬顺九星；1121积年原例应得天禽直符初入一年。给定年干时按六干星宫锚点安当前直符并顺排九星。不得反填《紫庭经》静态九宫primary，也不得与文昌九星C70混并。",
+        "rule_id": "C124-TONGZONG-TAIYI-NINE-STARS",
+        "runtime": "kintaiyi.taiyi_nine_stars_tongzong.taiyi_nine_stars_tongzong"
       }
     ]
   },
