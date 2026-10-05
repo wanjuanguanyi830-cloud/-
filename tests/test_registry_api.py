@@ -83,6 +83,7 @@ def test_packaged_registry_and_schemas_are_json_resources():
     json.loads(resources.files("schemas").joinpath("registry.schema.json").read_text(encoding="utf-8"))
     json.loads(resources.files("schemas").joinpath("operation.schema.json").read_text(encoding="utf-8"))
     json.loads(resources.files("schemas").joinpath("result.schema.json").read_text(encoding="utf-8"))
+    json.loads(resources.files("schemas").joinpath("capabilities.schema.json").read_text(encoding="utf-8"))
 
 
 def test_calculate_rule_resolves_d8_by_rule_id():
@@ -189,3 +190,30 @@ def test_capabilities_groups_operations_for_frontend_discovery():
 def test_calculate_rule_reaches_source_specific_military_runtime_without_curated_alias():
     result = calculate_rule("V15-05")
     assert result["source_rule_id"] == "V15-05"
+
+
+def test_public_operation_names_are_unique_and_link_rules():
+    operations = list_operations()
+    names = [item["name"] for item in operations]
+    assert len(names) == len(set(names))
+    for item in operations:
+        assert item["rule_ids"]
+        assert item["status"] == "stable"
+        assert callable(resolve_runtime(item["runtime"]))
+
+
+def test_source_record_only_rule_is_describable_but_not_executable():
+    descriptor = describe_rule("JF4M-04")
+    assert descriptor["rule"]["count"] >= 1
+    assert descriptor["runtime_candidates"] == []
+    assert descriptor["operations"] == []
+
+
+def test_capabilities_are_lossless_projection_of_operation_registry():
+    data = capabilities()
+    flattened = {
+        item["name"]
+        for domain_items in data["domains"].values()
+        for item in domain_items
+    }
+    assert flattened == {item["name"] for item in list_operations()}
