@@ -34,7 +34,10 @@
       "JF4M-11"
     ],
     "runtime_catalog": "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog",
-    "policy": "JF4M-01..11均有《福应经》独立source-specific runtime；不得调用J4M平行函数替代，疑字/未锁定句保持pending。"
+    "policy": "JF4M-01..11均有《福应经》独立source-specific runtime；不得调用J4M平行函数替代，疑字/未锁定句保持pending。",
+    "pending_textual_uncertainty": {
+      "JF4M-02": "‘大小将不相开’字面已见当前转录，技术义仍待扫描/异本核定；runtime不自动解释。"
+    }
   },
   "parallel_order_note": {
     "j4m_has_12_rules": true,
@@ -102,7 +105,7 @@
         "本条由《景祐太乙福应经》卷四独立runtime实现。",
         "不得调用平行《金镜》runtime冒充本条，也不得跨来源自动补缺。",
         "与J4M-02只做crosswalk，不自动合并。",
-        "电子转录疑字/未锁定细节继续保留pending，不因runtime实现而消失。"
+        "‘大小将不相开’技术义仍待核定；runtime只接第三条件显式真假，不自动解释。"
       ],
       "runtime_catalog": "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog"
     },
@@ -238,18 +241,44 @@
       "parallel_jinjing_rule": "J4M-07",
       "implementation_status": "implemented_source_specific",
       "runtime": "kintaiyi.jingyou_fuying_v4_military.formation_by_terrain",
-      "textual_uncertainty": [
-        "电子转录“地形跨斜”",
-        "电子转录“地形高而不平”均待扫描核字"
-      ],
+      "textual_uncertainty": [],
       "notable_readings": [],
-      "canonical_data": null,
+      "canonical_data": {
+        "formation_elements": {
+          "曲阵": "水",
+          "锐阵": "火",
+          "直阵": "木",
+          "方阵": "金",
+          "圆阵": "土"
+        },
+        "terrain_table": {
+          "后高前低": {
+            "formation": "锐阵",
+            "effect": "利进战、溃敌"
+          },
+          "前高后低": {
+            "formation": "直阵",
+            "effect": "利近斗守御、疲敌"
+          },
+          "地形跨斜": {
+            "formation": "圆阵",
+            "effect": "不便战，宜坚固守"
+          },
+          "地形高而不平": {
+            "formation": "方阵",
+            "effect": "利四向、便斗战"
+          },
+          "左右势高岗": {
+            "formation": "曲阵",
+            "effect": "利吞敌"
+          }
+        }
+      },
       "divergence_from_jinjing": null,
       "boundary_notes": [
         "本条由《景祐太乙福应经》卷四独立runtime实现。",
         "不得调用平行《金镜》runtime冒充本条，也不得跨来源自动补缺。",
-        "与J4M-07只做crosswalk，不自动合并。",
-        "电子转录疑字/未锁定细节继续保留pending，不因runtime实现而消失。"
+        "与J4M-07只做crosswalk，不自动合并。"
       ],
       "runtime_catalog": "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog"
     },
@@ -270,7 +299,19 @@
       "runtime": "kintaiyi.jingyou_fuying_v4_military.adapt_to_terrain",
       "textual_uncertainty": [],
       "notable_readings": [],
-      "canonical_data": null,
+      "canonical_data": {
+        "terrain_rule_count": 6,
+        "ratios": [
+          "车骑二不当一",
+          "步兵十不当一",
+          "短兵百不当一",
+          "剑楯三不当一",
+          "长戟二不当一",
+          "弓弩三不当一",
+          "不习服百不当十",
+          "将不省兵五不当一"
+        ]
+      },
       "divergence_from_jinjing": null,
       "boundary_notes": [
         "本条由《景祐太乙福应经》卷四独立runtime实现。",
@@ -340,7 +381,18 @@
         "来翼主人阵前主人胜；来翼客阵前客胜",
         "众鸟翼噪并风云冲阵而来为凶"
       ],
-      "canonical_data": null,
+      "canonical_data": {
+        "event_families": [
+          "冲格迫击太乙宫",
+          "迫击主客大将宫",
+          "主人刑/客刑",
+          "主目/客目击对方大将",
+          "太岁/太阴/月建击主客阵",
+          "翼主客阵前",
+          "回旋风/飞鸟旋阵/旗竿折",
+          "众鸟翼噪并风云冲阵"
+        ]
+      },
       "divergence_from_jinjing": null,
       "boundary_notes": [
         "本条由《景祐太乙福应经》卷四独立runtime实现。",
