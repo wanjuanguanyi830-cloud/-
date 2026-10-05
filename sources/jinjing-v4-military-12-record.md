@@ -415,4 +415,6 @@ C84 时 NCL-06604 只能确认书目与整卷扫描身份；C86 已通过 Wikime
 
 因此 NCL-06604 已从“书目级 witness”升级为“卷四页级 locator 已核、关键异文校勘进行中”的独立明钞 witness。四库 jinjing_siku_volume4 canonical 不因这些异文自动改变。
 
+此外，NCL p.55 目录同样先列“推风云飞鸟助战法”、后列“推奇兵伏兵法”，而正文 p.62 实际先“推奇兵伏兵法”、后“推太乙风云飞鸟助阵法”。因此“目录顺序≠正文顺序”得到独立明钞本支持，J4M-10/J4M-11 继续按正文顺序编号。
+
 详细见：sources/c86-ncl06604-volume4-j4m-collation-record.md。
