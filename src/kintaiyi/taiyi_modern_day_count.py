@@ -65,6 +65,13 @@ def accumulated_day_from_solar_date(solar: Solar) -> dict[str, Any]:
             "day": anchor.getDay(),
         },
         "anchor_accumulated_day": ANCHOR_ACCUMULATED_DAY,
+        "anchor_numeric_source_status": "primary_source_direct",
+        "anchor_calendar_reconstruction": {
+            "provider": "lunar_python",
+            "provider_algorithm_family": "ShouXingUtil historical qi/shuo reconstruction",
+            "status": "modern_historical_calendar_reconstruction",
+            "not_primary_source_fact": True,
+        },
         "target_solar": {
             "year": solar.getYear(),
             "month": solar.getMonth(),
@@ -95,6 +102,7 @@ def modern_day_count(moment: datetime) -> dict[str, Any]:
     return {
         "rule_id": RULE_ID,
         "source_profile": "production_modern_calendar_day_count",
+        "historical_anchor_status": "primary_number_plus_modern_calendar_reconstruction",
         "calendar_timezone": CALENDAR_TIMEZONE,
         "input": source,
         "calendar_local_time": local,
