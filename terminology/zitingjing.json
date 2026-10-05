@@ -116,6 +116,7 @@
       "cycle_status": "cross_source_unresolved",
       "boundary_notes": [
         "紫庭附篇直接正文未取得前，不生成紫庭值宫runtime。",
+        "已定位书格研易楼明钞本181页扫描分享页，但正文页尚未取得；此线索不改变catalog_attested_text_pending。",
         "C70统宗卷六NGJ可独立运行，但只属于统宗source profile；不得反填紫庭primary。",
         "NGJ直接正文支持30年一星、270小周、2700大周、起一宫文昌顺九宫，并以年干建禄宫安当前直事星。",
         "另有CADAL见证出现每星十年等异读/内部冲突，作为独立witness保存，不覆盖NGJ profile。",
@@ -167,7 +168,17 @@
             "ziting_appendix": "《太乙紫庭秘诀》目录可证附有“太乙文昌九星值宫术”，但直接正文未取得，不得据统宗反填。"
           }
         }
-      }
+      },
+      "scan_share_leads": [
+        {
+          "site": "书格",
+          "title": "太乙紫庭祕訣 研易樓藏明鈔本",
+          "url": "https://www.shuge.org/meet/topic/96517/",
+          "reported_extent": "181单页灰度，328M",
+          "status": "share_page_located_scan_not_inspected",
+          "note": "分享帖列出夸克/阿里/百度等转存；当前未取得扫描正文页，不能升级primary evidence。"
+        }
+      ]
     },
     {
       "key": "wenchang_changes",
