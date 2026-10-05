@@ -47,20 +47,6 @@
       },
       {
         "dun": "阴",
-        "ju": 43,
-        "side": "客",
-        "from": 1,
-        "to": 38
-      },
-      {
-        "dun": "阴",
-        "ju": 44,
-        "side": "客",
-        "from": 38,
-        "to": 31
-      },
-      {
-        "dun": "阴",
         "ju": 61,
         "side": "客",
         "from": 22,
@@ -88,18 +74,6 @@
       },
       {
         "dun": "阴",
-        "ju": 43,
-        "from": "巳",
-        "to": "坤"
-      },
-      {
-        "dun": "阴",
-        "ju": 44,
-        "from": "坤",
-        "to": "酉"
-      },
-      {
-        "dun": "阴",
         "ju": 67,
         "from": "乾",
         "to": "戌"
@@ -110,9 +84,25 @@
         "dun": "阴",
         "ju": 37,
         "side": "客",
-        "issue": "电子转录大威 vs 客算25及旧见证支持大武",
+        "issue": "《金镜》部分电子转录作大威；平行古籍与G5公式作大武",
         "regression_choice": "坤/大武",
-        "status": "witness_conflict_scan_required"
+        "status": "parallel_witnesses_support_regression_reading_scan_collation_still_useful"
+      },
+      {
+        "dun": "阴",
+        "ju": 43,
+        "side": "客",
+        "issue": "《金镜》电子立成与《武经总要》《太乙秘书》/G5公式冲突",
+        "regression_choice": "巳/大神 + 客算1",
+        "status": "resolved_for_runtime_by_parallel_witnesses"
+      },
+      {
+        "dun": "阴",
+        "ju": 44,
+        "side": "客",
+        "issue": "《金镜》电子立成与《武经总要》《太乙秘书》/G5公式冲突",
+        "regression_choice": "坤/大武 + 客算38",
+        "status": "resolved_for_runtime_by_parallel_witnesses"
       }
     ]
   },
@@ -1206,8 +1196,8 @@
       "guest_eye": "坤",
       "host_calc": 1,
       "guest_calc": 25,
-      "witness_status": "guest_eye_witness_conflict",
-      "witness_note": "阴37客目：部分电子转录作大威；客算25与旧见证支持大武（坤）。本fixture取坤作回归选择，但不宣告眼位校勘完成。"
+      "witness_status": "parallel_witnesses_support_regression_reading",
+      "witness_note": "《金镜》部分电子转录作大威；G5公式、《武经总要》《太乙秘书》支持大武(坤)，客算25亦与G6相合。"
     },
     {
       "ju": 38,
@@ -1263,21 +1253,21 @@
       "ju": 43,
       "taiyi_palace": 2,
       "host_eye": "午",
-      "guest_eye": "坤",
+      "guest_eye": "巳",
       "host_calc": 2,
-      "guest_calc": 38,
-      "witness_status": "resolved",
-      "witness_note": null
+      "guest_calc": 1,
+      "witness_status": "resolved_by_parallel_witnesses",
+      "witness_note": "《金镜》电子立成作大武/38；G5公式、《武经总要》《太乙秘书》均支持大神(巳)/客算1。"
     },
     {
       "ju": 44,
       "taiyi_palace": 2,
       "host_eye": "未",
-      "guest_eye": "酉",
+      "guest_eye": "坤",
       "host_calc": 39,
-      "guest_calc": 31,
-      "witness_status": "resolved",
-      "witness_note": null
+      "guest_calc": 38,
+      "witness_status": "resolved_by_parallel_witnesses",
+      "witness_note": "《金镜》电子立成作太蔟/31；G5公式、《武经总要》《太乙秘书》均支持大武(坤)/客算38。"
     },
     {
       "ju": 45,
