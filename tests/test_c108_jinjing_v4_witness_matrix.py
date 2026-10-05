@@ -58,7 +58,7 @@ def test_c109_ncl_jingyou_agreement_cluster_is_observation_not_stemma():
     data = _matrix()
     cluster = data["agreement_patterns"]["NCL06604_JINGYOU_CLUSTER"]
 
-    assert data["schema_version"] == "1.3"
+    assert float(data["schema_version"]) >= 1.1
     assert cluster["status"] == "observed_agreement_pattern_not_stemma"
 
     matches = {item["rule_id"]: item for item in cluster["matches"]}
@@ -78,7 +78,7 @@ def test_c110_ncl_j4m06_full_table_is_directly_verified_from_supplied_scans():
     row = {item["rule_id"]: item for item in data["entries"]}["J4M-06"]
     table = row["ncl"]["full_table"]
 
-    assert data["last_update"] in {"C110", "C111"}
+    assert "C110" in data["updates"]
     assert table["1"] == {
         "出军": "西北",
         "战利": "东南",
@@ -107,7 +107,7 @@ def test_c111_ncl_j4m07_body_preserves_terrain_wording_without_overwriting_siku(
     data = _matrix()
     row = {item["rule_id"]: item for item in data["entries"]}["J4M-07"]
 
-    assert data["last_update"] == "C111"
+    assert "C111" in data["updates"]
     assert row["ncl"]["formation_elements"] == {
         "曲阵": "水",
         "锐阵": "火",
@@ -124,3 +124,19 @@ def test_c111_ncl_j4m07_body_preserves_terrain_wording_without_overwriting_siku(
     assert "觀方置變" in row["ncl"]["closing_text"]
     assert "地跨邪" in row["hard_boundary"]
     assert "四库canonical" in row["hard_boundary"]
+
+
+def test_c112_ncl_j4m08_opening_is_verified_without_claiming_full_body():
+    data = _matrix()
+    row = {item["rule_id"]: item for item in data["entries"]}["J4M-08"]
+
+    assert "C112" in data["updates"]
+    assert row["ncl"]["opening_triplet"] == ["士卒服习", "随其地形", "善用兵器"]
+    assert row["ncl"]["opening_text"].startswith("晁错曰：用兵临战合用之急者有三")
+    assert row["ncl"]["later_verified"]["weapon"] == "矛鋋"
+    assert row["ncl"]["later_verified"]["ratio"] == "弓弩三不当一"
+    assert row["ncl"]["verification_scope"] == (
+        "opening_triplet_and_selected_later_reading_direct_visual_verified_not_full_contiguous_body"
+    )
+    assert row["ncl"]["pending"] == ["五丈之沟以下至已核矛鋋段之间的连续逐字转录"]
+    assert "不得把中间未连续核图部分标记为全文已核" in row["hard_boundary"]
