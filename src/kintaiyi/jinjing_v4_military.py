@@ -1160,18 +1160,18 @@ def fengyun_feiniao_zhuzhan(events):
             "source_case": None,
         }
 
-        if phenomenon is not None and phenomenon not in _J4M11_PHENOMENA:
+        if phenomenon not in _J4M11_PHENOMENA:
             judgment.update(
                 matched=False,
-                source_case="未知观测类型",
-                note="只接受风、云、飞鸟及其组合；不类推其他自然现象。",
+                source_case="缺失或未知观测类型",
+                note="必须明确记录风、云、飞鸟及其组合；缺失 phenomenon 也不得仅凭动作字段生成古籍断语。",
             )
         elif source_anchor == "太乙所在宫" and target == "太乙" and action in {"冲格", "迫击", "冲格迫击"}:
             judgment.update(
                 omen="大败之兆",
                 source_case="太乙所在宫风云飞鸟冲格迫击太乙",
             )
-        elif target == "大将宫" and action in {"迫击", "冲击"}:
+        elif target == "大将宫" and action == "迫击":
             judgment.update(
                 loser="主",
                 source_case="迫击大将宫",
@@ -1256,7 +1256,11 @@ def fengyun_feiniao_zhuzhan(events):
                 "returning_wind", "birds_circling", "flag_broken", "crowd_noisy",
             ],
         },
-        "policy": "逐条解释外部观测；允许同日多事件并存，不强制折算为单一总胜负。",
+        "policy": (
+            "逐条解释外部观测；每条必须明确 phenomenon 为风/云/飞鸟类，"
+            "动作词只接受《金镜》本条明写值，不把近义词自动视作等价。"
+            "允许同日多事件并存，不强制折算为单一总胜负。"
+        ),
     }
 
 
