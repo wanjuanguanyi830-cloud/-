@@ -196,3 +196,14 @@ def test_common_terminology_catalog_matches_runtime_tables():
     assert by_key["lushen_shift"]["mapping"] == EXPECTED_LUSHEN_SHIFT
     assert by_key["five_element_qi"]["state_matrix"] == EXPECTED_QI
     assert by_key["intrinsic_vs_palace_element"]["intrinsic_elements"] == INTRINSIC_WX
+
+
+def test_d8_and_t7_catalogs_reference_common_core():
+    d8 = json.loads(Path("terminology/d8-eight-divinations.json").read_text(encoding="utf-8"))
+    t7 = json.loads(Path("terminology/t7-seven-methods.json").read_text(encoding="utf-8"))
+
+    for catalog in (d8, t7):
+        assert catalog["shared_catalog"] == "terminology/common-core.json"
+        assert "R-QI" in catalog["shared_rule_refs"]
+        assert "R-9" in catalog["shared_rule_refs"]
+        assert "R-16" in catalog["shared_rule_refs"]
