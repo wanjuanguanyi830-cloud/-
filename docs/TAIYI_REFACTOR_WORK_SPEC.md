@@ -3917,15 +3917,357 @@ J4M-08 p.136 直接确认：
 
 `1422 passed / 0 failed`
 
-## 9.73 后续 C80+
+## 9.73 旧工作回收时间边界（当前硬约束）
 
-下一优先级：
+用户要求：
 
-1. 恢复旧 `terminology.json` 并按 C40 对齐紫庭明钞本；未找回真实旧 schema 前不写猜测 parser；
-2. 继续追索紫庭文昌九星附篇正文，C70 不得反填紫庭 primary；
-3. 补 C69 “二至以后日度所在 + 加时位/时支”的古法上游依赖；
-4. 继续拆三基 / 五福与天乙、地乙、直符、四神、大小游的关系层，仍须显式关系证据；
-5. NCL-06604 明钞本只在实际图像核验后升级 glyph / locator 状态。
+`仅采用最近两天的工作内容`
+
+以当前项目日期 2026-10-05 计，旧工作回收只允许：
+
+- 2026-10-04；
+- 2026-10-05。
+
+执行规则：
+
+- 不能只看分支头日期；
+- 具体恢复文件必须能追到这两天内的文件提交；
+- 更早提交即使被近期分支包含，也不作为恢复依据；
+- 无法把近期修改与更早历史分离的文件，不直接恢复；
+- 古籍原典不受此“工作时间”限制，它们仍是来源证据，不属于旧代码回收内容。
+
+恢复总清单：
+
+`sources/prior-branch-recovery-inventory.md`
+
+## 9.74 C80 J4M-05～10 影印规则边界复扫（已实施）
+
+C80 不扩公式，重点锁“禁止推补”：
+
+- J4M-05：12/22/32 只作明列值，不扩尾数2；
+- J4M-06：只用《金镜》1/2/4/5/6/9，不拿福应经/统宗补3/7/8；
+- J4M-07：同类 / 相生不自动判和；
+- J4M-08：继续固定“矛鋋”；
+- J4M-09：一宫只作 source variant，不反填四库 profile；
+- J4M-10：奇伏比例、节点和大煞边界分层，不造取整法。
+
+记录：
+
+- `sources/c80-j4m05-10-scan-rule-audit-record.md`
+
+## 9.75 C81 紫庭旧 terminology.json 恢复可用性审计（已实施）
+
+结论：
+
+`blocked_missing_original_store`
+
+已检查：
+
+- 当前 main 常见路径；
+- Git 历史常见路径；
+- 当前可检索 ChatGPT Library。
+
+仍未取得旧本地：
+
+`terminology.json`
+
+或其真实 schema。
+
+固定：
+
+- `original_schema_available=false`
+- `parser_allowed=false`
+- `synthetic_reconstruction_allowed=false`
+
+新增：
+
+`terminology/zitingjing-recovery-status.json`
+
+C81 只定义“目前能不能恢复”，不生成假的 terminology store。
+
+## 9.76 C83 J4M-01～04 影印边界复扫（已实施）
+
+重点：
+
+- J4M-01 三门具 / 不具的未展开组合继续不自动判；
+- J4M-02 三门与五将阻断分栏；
+- J4M-03 继续使用二目所临十六神五行，不恢复当天干支纳音错误模型；
+- 四库原文字形“太蔟”登记为 `太簇` 的 source glyph alias；
+- J4M-04 先后 / 主客只按本条明示条件，不并入别条胜负模型。
+
+记录：
+
+- `sources/c83-j4m01-04-scan-rule-audit-record.md`
+
+## 9.77 C84 NCL-06604 明钞本访问边界（已实施）
+
+已确认：
+
+- 明钞本；
+- 十卷；
+- 四册；
+- NCL 06604；
+- 整部公开扫描身份。
+
+仍未确认：
+
+- J4M-01..12 逐条 NCL 数字页 locator；
+- 各关键字形的实际页图。
+
+所以状态固定：
+
+`independent_manuscript_witness_metadata_verified_page_locators_pending`
+
+“整卷身份已核”不等于“逐页校勘已核”。
+
+记录：
+
+- `sources/c84-ncl06604-witness-access-audit-record.md`
+
+## 9.78 C85 J4M-11～12 影印规则边界复扫（已实施）
+
+C85 后 J4M-01..12 全部具备 scan_rule_audit。
+
+J4M-11：
+
+- 必须显式外部观测；
+- phenomenon 必须明确；
+- 近义词不自动扩张；
+- 不从天气 API / 盘内飞鸟字段制造古籍观测。
+
+J4M-12：
+
+- 方位×颜色逐项保存；
+- 西方白云基础胜负仍未明；
+- 北方红云“客胜”保留 verdict_subject；
+- cloud_bearer 与 verdict_subject 分栏；
+- 不按五行 / 对称性补缺表。
+
+记录：
+
+- `sources/c85-j4m11-12-scan-rule-audit-record.md`
+
+## 9.79 C90 / C91 三基关系层补全（已实施）
+
+C90：
+
+- 三基 × 天乙 / 地乙 / 直符，共9个 pair；
+- 君基三条保留治理条件正反双支；
+- 臣基 / 民基六条按直接灾应；
+- 不从 C66 / C64 自动判断同宫。
+
+C91：
+
+- 三基 × 四神 / 大游 / 小游，共9个 pair；
+- 君基保留治理 / 应对结构；
+- 臣基 / 民基按直接灾应；
+- 不从位置 runtime 自动制造关系。
+
+三基当前职责拆分：
+
+- C66：位置；
+- C74：三基彼此 / 五福；
+- C90：天乙 / 地乙 / 直符；
+- C91：四神 / 大游 / 小游。
+
+旧 flat 仍 `migrate_whole=False`。
+
+## 9.80 C92 四神太乙水神：10月4日旧工作回收（已实施）
+
+回收来源文件：
+
+`codex/c1-c7-canonical/src/kintaiyi/four_taiyi.py`
+
+文件提交：
+
+`f02c052ae88e — 2026-10-04T19:52:53Z`
+
+只恢复并重新核源：
+
+- 四神大周360；
+- 小周36；
+- 三年一宫；
+- 一宫起；
+- 1..9 → 绛宫 → 明堂 → 玉堂；
+- 克贼 / 战克明列组合。
+
+不恢复：
+
+- 旧 yuan 三元默认起点；
+- 自动同宫断语；
+- 自动五福同域 effects。
+
+C92 验证基线：
+
+`1494 passed / 0 failed`
+
+记录：
+
+- `sources/c92-four-spirit-tongzong-recovery-record.md`
+
+## 9.81 C93 直符已见证火气状态回收（已实施）
+
+同样只回收 2026-10-04 `four_taiyi.py` 已有三条：
+
+- 二宫 = 旺；
+- 三宫 = 长生；
+- 四宫 = 败。
+
+并以《太乙秘书》直接历史例重新核定。
+
+其余九宫：
+
+`source_pending`
+
+固定：
+
+`full_twelve_palace_state_table_ready=False`
+
+不按十二长生常识自动补齐。
+
+C93 验证基线：
+
+`1510 passed / 0 failed`
+
+记录：
+
+- `sources/c93-zhifu-fire-states-recovery-record.md`
+
+## 9.82 C94 五福 × 四太乙五行同域解释回收（已实施）
+
+回收 2026-10-04：
+
+- `FIVE_MEETING_EFFECTS`
+- `FIVE_DOMAINS`
+- `PALACE_DOMAINS`
+
+并新增术语坐标参考：
+
+`terminology/wufu_domains.json`
+
+五福五域：
+
+- 戌乾亥 → 乾；
+- 丑艮寅 → 艮；
+- 辰巽巳 → 巽；
+- 未坤申 → 坤；
+- 子午卯酉 → 中。
+
+四元素解释：
+
+- 天乙金 → 兵盗；
+- 地乙土 → 疫疠 / 民灾；
+- 直符火 → 旱蝗；
+- 四神水 → 淋雨 / 川溃。
+
+现行比旧实现更严格：
+
+- `interpretation_profile` 必须显式；
+- `same_wufu_domain` 必须显式；
+- 不自动读取 C64/C92/C67 位置触发关系。
+
+C15 五福 action：
+
+`use_c67_c74_c94_wufu_layers`
+
+五福与大游 / 小游继续单独待迁。
+
+C94 验证基线：
+
+`1524 passed / 0 failed`
+
+记录：
+
+- `sources/c94-wufu-four-taiyi-domain-relations-record.md`
+
+## 9.83 C95 snapshot collector 回收（已实施）
+
+回收来源：
+
+`codex/c1-c7-canonical/src/kintaiyi/kintaiyi.py`
+
+相关工作全部在 2026-10-04。
+
+只恢复：
+
+`collect_core_snapshot()`
+
+及 selection validation 意图。
+
+固定：
+
+- 当前计式积年单取；
+- 年积年显式取 style=0；
+- 日太乙显式取 style=2；
+- 每个盘面 primitive 对 selected style 只调用一次；
+- 只输出 raw core snapshot；
+- 不调用周期 / 七术 / 八占 / 军事；
+- 不构建 pan v2。
+
+未恢复：
+
+- 旧 `TaiyiCanonicalMixin`；
+- 旧 `Taiyi(snapshot).pan()`；
+- 旧 `project_legacy_pan()`。
+
+原因：
+
+这些旧 facade 绑定了后来已经被 C64/C66/C67/C68/C92 等重新校勘的周期层；当前又已有 C11/C12/C30 聚合体系。
+
+C95 验证基线：
+
+`1535 passed / 0 failed`
+
+记录：
+
+- `sources/c95-snapshot-collector-recovery-record.md`
+
+## 9.84 最近两天旧分支回收状态
+
+当前已检查的 2026-10-04 工作分支：
+
+- `codex/c1-c7-canonical`
+- `codex/taiyi-base-motion-2026-10-04`
+- `codex/taiyi-rules-v2-20261005`
+- `integrate-taiyi-war-v1-20261004`
+
+具体文件级日期已核。
+
+已恢复：
+
+- 十二运行宫 terminology；
+- 十六神 terminology；
+- 五福五域 terminology；
+- 四神直接位置 / 克贼战克；
+- 直符三宫火气状态；
+- 五福×四太乙最近两天解释；
+- raw snapshot collector。
+
+已由现行模块覆盖而不重复复制：
+
+- 10月4日 pan v2 大部分契约测试；
+- legacy quarantine；
+- D8 / T7；
+- 三基 / 五福旧周期 facade。
+
+明确不恢复：
+
+- 已被后续来源校勘推翻的旧五福 +250 project canonical；
+- 旧四太乙 yuan 默认旋转；
+- 依赖旧周期的 TaiyiCanonicalMixin；
+- 旧 project_legacy_pan 覆盖路径。
+
+## 9.85 后续
+
+继续时仍只采用 2026-10-04 / 2026-10-05 已做工作。
+
+优先顺序：
+
+1. 检查 10月4日 `taiyi_common.py` 还有哪些纯坐标 / 纯五行 helper 尚未被现行 `taiyi_rules.py` 覆盖；
+2. 检查 10月4日 `kintaiyi.py` facade 是否还有不依赖旧公式的接口片段可安全回收；
+3. 检查 10月4日 base-motion / warfare 历史 fixture，只有仍符合当前 source profile 的才迁测试；
+4. 完整 `terminology.json` 继续由 C81 阻塞，不猜 schema；
+5. 不因为“旧代码存在”就把已经被后续来源校勘否定的公式恢复回来。
 
 ## 10. 验收
 
