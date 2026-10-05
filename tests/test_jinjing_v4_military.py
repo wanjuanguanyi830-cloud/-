@@ -539,8 +539,8 @@ def test_j4m12_unknown_color_is_not_filled_by_five_elements():
 
 def test_j4m12_morphology_modifies_only_source_explicit_cases():
     broken_victory = yunqi_dingshengfu(
-        formation_direction="西",
-        cloud_color="白",
+        formation_direction="北",
+        cloud_color="黑",
         continuity="断续",
     )
     assert broken_victory["base_verdict"] == "大胜"
