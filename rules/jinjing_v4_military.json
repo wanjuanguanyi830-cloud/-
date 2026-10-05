@@ -88,13 +88,47 @@
             "J4M-10正文题=推奇兵伏兵法",
             "J4M-12正文题=推对阵有云气定胜负",
             "J4M-11正文题=推太乙风云飞鸟助阵法；正文起句仍作经曰助战之法",
-            "J4M-12西方白云条明写大胜，庚辛日弥佳"
+            "J4M-12西方白云条明写大胜，庚辛日弥佳",
+            "NCL卷四目录同样先列风云飞鸟、后列奇兵伏兵，而正文先奇兵伏兵、后风云飞鸟"
           ],
           "still_pending": [
             "J4M-03例文太蔟/太簇的明钞本字形需更高倍率确认",
             "除已列关键点外的全段逐字异文表"
           ],
           "canonical_effect": "none"
+        },
+        "volume4_heading_collation": {
+          "toc_page": 55,
+          "toc_titles": [
+            "推三门具不具",
+            "推五将发不发",
+            "推主客相关",
+            "推主客",
+            "推出师",
+            "推障向背法",
+            "推置阵随地法",
+            "推随地置变",
+            "推太乙在天外地内法",
+            "推风云飞鸟助战法",
+            "推奇兵伏兵法",
+            "推对阵有云气定胜负"
+          ],
+          "body_titles": [
+            "推三门具不具",
+            "推五将发不发",
+            "推主客相关法",
+            "推主客",
+            "推出师法",
+            "推陈兵向背",
+            "推制阵随地法",
+            "推随地制变",
+            "推太乙在天外地内法",
+            "推奇兵伏兵法",
+            "推太乙风云飞鸟助阵法",
+            "推对阵有云气定胜负"
+          ],
+          "order_difference": "目录在太乙在天外地内法之后先列风云飞鸟、后列奇兵伏兵；正文实际先奇兵伏兵、后风云飞鸟。",
+          "canonical_policy": "J4M id/order remains based on jinjing_siku_volume4 body order; NCL heading/order variants are manuscript evidence only."
         }
       }
     ],
@@ -178,7 +212,9 @@
           56
         ],
         "status": "visual_scan_verified",
-        "canonical_effect": "none"
+        "canonical_effect": "none",
+        "toc_title": "推三门具不具",
+        "body_title": "推三门具不具"
       }
     },
     {
@@ -233,7 +269,9 @@
           56
         ],
         "status": "visual_scan_verified",
-        "canonical_effect": "none"
+        "canonical_effect": "none",
+        "toc_title": "推五将发不发",
+        "body_title": "推五将发不发"
       }
     },
     {
@@ -330,7 +368,9 @@
           57
         ],
         "status": "visual_scan_verified",
-        "canonical_effect": "none"
+        "canonical_effect": "none",
+        "toc_title": "推主客相关",
+        "body_title": "推主客相关法"
       }
     },
     {
@@ -395,7 +435,9 @@
           58
         ],
         "status": "visual_scan_verified",
-        "canonical_effect": "none"
+        "canonical_effect": "none",
+        "toc_title": "推主客",
+        "body_title": "推主客"
       }
     },
     {
@@ -456,7 +498,9 @@
           58
         ],
         "status": "visual_scan_verified",
-        "canonical_effect": "none"
+        "canonical_effect": "none",
+        "toc_title": "推出师",
+        "body_title": "推出师法"
       }
     },
     {
@@ -539,7 +583,9 @@
           60
         ],
         "status": "visual_scan_verified",
-        "canonical_effect": "none"
+        "canonical_effect": "none",
+        "toc_title": "推障向背法",
+        "body_title": "推陈兵向背"
       },
       "manuscript_readings": {
         "NCL-06604": {
@@ -617,7 +663,9 @@
           60
         ],
         "status": "visual_scan_verified",
-        "canonical_effect": "none"
+        "canonical_effect": "none",
+        "toc_title": "推置阵随地法",
+        "body_title": "推制阵随地法"
       },
       "manuscript_readings": {
         "NCL-06604": {
@@ -725,7 +773,9 @@
           61
         ],
         "status": "visual_scan_verified",
-        "canonical_effect": "none"
+        "canonical_effect": "none",
+        "toc_title": "推随地置变",
+        "body_title": "推随地制变"
       },
       "manuscript_readings": {
         "NCL-06604": {
@@ -838,7 +888,9 @@
           62
         ],
         "status": "visual_scan_verified",
-        "canonical_effect": "none"
+        "canonical_effect": "none",
+        "toc_title": "推太乙在天外地内法",
+        "body_title": "推太乙在天外地内法"
       },
       "manuscript_readings": {
         "NCL-06604": {
@@ -925,7 +977,9 @@
           62
         ],
         "status": "visual_scan_verified",
-        "canonical_effect": "none"
+        "canonical_effect": "none",
+        "toc_title": "推风云飞鸟助战法",
+        "body_title": "推奇兵伏兵法"
       },
       "manuscript_readings": {
         "NCL-06604": {
@@ -1018,7 +1072,9 @@
           63
         ],
         "status": "visual_scan_verified",
-        "canonical_effect": "none"
+        "canonical_effect": "none",
+        "toc_title": "推奇兵伏兵法",
+        "body_title": "推太乙风云飞鸟助阵法"
       },
       "manuscript_readings": {
         "NCL-06604": {
@@ -1100,7 +1156,9 @@
           64
         ],
         "status": "visual_scan_verified",
-        "canonical_effect": "none"
+        "canonical_effect": "none",
+        "toc_title": "推对阵有云气定胜负",
+        "body_title": "推对阵有云气定胜负"
       },
       "manuscript_readings": {
         "NCL-06604": {
