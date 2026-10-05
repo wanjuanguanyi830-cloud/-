@@ -215,3 +215,31 @@ C60 扩展后的全量 CI：
 ```
 1197 passed in 1.47s
 ```
+
+
+## C70 补充隔离：config.wenchang_nine_stars
+
+旧实现虽采用：
+
+- 大周2700；
+- 小周270；
+- 30年一星；
+
+这一周期核心可与统宗 NGJ 见证参校，但整体并不等价。
+
+已确认问题：
+
+- 星名表混入“文曲 / 昭摇 / 立华”等非 C70-NGJ 读法；
+- 丁旧落巽9，直接表应落离2；
+- 壬旧落中5，直接表应落乾1；
+- 旧九星分布循环计算 `gong` 后未使用，实际仍输出固定星宫表；
+- 没有保存 CADAL 10/30 内部冲突；
+- 没有保存紫庭附篇正文未取得的来源边界。
+
+因此：
+
+- `canonical_equivalent=False`
+- `promotion_allowed=False`
+- replacement → `C70-TONGZONG-WENCHANG-NINE-STARS`
+
+C70 只替代统宗 NGJ source profile，不替代紫庭 primary。
