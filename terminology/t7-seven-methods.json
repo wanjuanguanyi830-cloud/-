@@ -64,7 +64,14 @@
       "qi_model": "A",
       "definition": "敌起兵年支经大神落辰后，以大神火与落辰五行判五态；旺相不破，休囚死合破。",
       "timing_note": "若落四维，取第18年（offset +17）为破应。",
-      "source_variant_note": "墓为易破等说法只作来源异文。"
+      "source_variant_note": "墓为易破等说法只作来源异文。",
+      "collation_status": "three_source_pass_complete_no_second_ordinary_branch_example",
+      "collation_record": "sources/t7-02-lion-collation.md",
+      "boundary_notes": [
+        "四库与统宗现见古例均为甲戌→丑/艮四维→十八年→辛卯；未发现第二个普通落支完整应年例。",
+        "《太乙金钥匙》补充起兵年太乙杜塞则当年破，只作来源补充，不改写四库canonical普通落支算法。",
+        "普通落支仍只返回候选破年支，不伪造唯一年干。"
+      ]
     },
     {
       "key": "cloud_rolls_empty",
