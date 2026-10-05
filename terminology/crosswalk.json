@@ -867,7 +867,7 @@
         "terminology/military-p0.json",
         "terminology/military-jinjing-v4.json"
       ],
-      "relation": "parallel_source_rules_no_runtime_substitution",
+      "relation": "parallel_source_rules_independent_runtimes_no_substitution",
       "direct_pairs": {
         "JF4M-01": "J4M-01",
         "JF4M-02": "J4M-02",
@@ -885,9 +885,23 @@
         "J4M-12"
       ],
       "forbidden_merge": [
-        "JF4M当前source_record_only，不得调用J4M runtime冒充实现。",
+        "JF4M-01..11已有《福应经》独立runtime；仍不得调用J4M平行runtime作为替代或补缺。",
+        "JF4M-02‘大小将不相开’、JF4M-07地形字表、JF4M-10部分观测句的文本pending必须保留。",
         "JF4M-10/11与J4M-11/10尾部次序不同，不能按编号机械对齐。",
-        "福应经与金镜的方向表、地内宫、飞鸟败方、奇伏大杀句等差异保留source profile。"
+        "福应经与金镜的方向表、1宫地内、主人刑/客刑败方、奇兵大杀句等差异继续分source profile。"
+      ],
+      "implemented_jingyou_rule_ids": [
+        "JF4M-01",
+        "JF4M-02",
+        "JF4M-03",
+        "JF4M-04",
+        "JF4M-05",
+        "JF4M-06",
+        "JF4M-07",
+        "JF4M-08",
+        "JF4M-09",
+        "JF4M-10",
+        "JF4M-11"
       ]
     },
     {
