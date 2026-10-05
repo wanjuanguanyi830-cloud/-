@@ -34,3 +34,23 @@ def test_taiyi_overlay_projects_tianmu_interstitial_sector_to_palace():
     same_palace_interstitial = taiyi_eight_door_context(1, tianmu="戌")
     assert same_palace_interstitial["tianmu_palace"] == 1
     assert same_palace_interstitial["tianmu_gate"] == "开"
+
+
+
+def test_duty_door_overlay_places_current_direct_gate_at_anchor():
+    data = duty_door_overlay(1, "伤")
+    assert data["palace_to_door"] == {
+        1: "伤",
+        8: "杜",
+        3: "景",
+        4: "死",
+        9: "惊",
+        2: "开",
+        7: "休",
+        6: "生",
+    }
+
+    context = taiyi_eight_door_context(1, tianmu="卯", anchor_door="伤")
+    assert context["taiyi_gate"] == "伤"
+    assert context["tianmu_palace"] == 4
+    assert context["tianmu_gate"] == "死"
