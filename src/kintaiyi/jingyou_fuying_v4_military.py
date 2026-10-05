@@ -176,17 +176,55 @@ def three_doors(
     }
 
 
+def _general_same_palace_pairs(
+    *,
+    home_big: int | None,
+    home_vassal: int | None,
+    away_big: int | None,
+    away_vassal: int | None,
+) -> list[tuple[str, str]] | None:
+    """按四将同宫判“关”；中五不作为八宫关位。"""
+    values = {
+        "主大": home_big,
+        "主参": home_vassal,
+        "客大": away_big,
+        "客参": away_vassal,
+    }
+    if all(value is None for value in values.values()):
+        return None
+    if any(value is None for value in values.values()):
+        return None
+    for name, value in values.items():
+        if isinstance(value, bool) or not isinstance(value, int) or not 1 <= value <= 9:
+            raise ValueError(f"{name}宫位须为1..9整数或None")
+    items = list(values.items())
+    pairs = []
+    for index, (left_name, left) in enumerate(items):
+        for right_name, right in items[index + 1:]:
+            if left != 5 and right != 5 and left == right:
+                pairs.append((left_name, right_name))
+    return pairs
+
+
 def five_generals(
     *,
     shiji_yanji: bool | None = None,
     wenchang_qiupo: bool | None = None,
+    home_big: int | None = None,
+    home_vassal: int | None = None,
+    away_big: int | None = None,
+    away_vassal: int | None = None,
     third_condition_clear: bool | None = None,
     three_doors_ready: bool | None = None,
 ) -> dict[str, Any]:
     """JF4M-02 五将发不发。
 
-    third_condition_clear 对应电子转录“大小将不相开”这一待核字条件：
-    True 只表示调用方确认“第三条件满足”，不在本函数解释“相开”的技术含义。
+    当前《福应经》转录作“大小将不相开”。经《金镜》《统宗》同条
+    “主客大小将无相关/相关”及太乙格局定义“主客大小将自相同宫为关”
+    参校，本项目把算法语义规范为“四将无同宫之关”。
+
+    原字形“不相开”继续保留为 source_form；不把《太乙秘书》“无格对”
+    等其他传本条件静默并入本 profile。
     """
     result = _base("JF4M-02", "释五将发不发")
     shiji_yanji = _bool_or_none("shiji_yanji", shiji_yanji)
@@ -194,17 +232,47 @@ def five_generals(
     third_condition_clear = _bool_or_none("third_condition_clear", third_condition_clear)
     three_doors_ready = _bool_or_none("three_doors_ready", three_doors_ready)
 
+    relation_pairs = _general_same_palace_pairs(
+        home_big=home_big,
+        home_vassal=home_vassal,
+        away_big=away_big,
+        away_vassal=away_vassal,
+    )
+    structural_clear = None if relation_pairs is None else not relation_pairs
+
+    if (
+        third_condition_clear is not None
+        and structural_clear is not None
+        and third_condition_clear != structural_clear
+    ):
+        return {
+            **result,
+            "status": "not_computable",
+            "computable": False,
+            "source_form": "大小将不相开",
+            "normalized_reading": "主客大小将无相关",
+            "normalized_semantics": "四将无同宫之关",
+            "third_condition_clear": third_condition_clear,
+            "structural_third_condition_clear": structural_clear,
+            "general_relation_pairs": relation_pairs,
+            "policy": "显式第三条件与四将宫位推得的关关系冲突；不自动择一。",
+        }
+
+    effective_third_clear = (
+        structural_clear if structural_clear is not None else third_condition_clear
+    )
+
     blockers = []
     if shiji_yanji is True:
         blockers.append("始击有掩击")
     if wenchang_qiupo is True:
         blockers.append("文昌有囚迫")
-    if third_condition_clear is False:
-        blockers.append("第三条件未满足（原转录‘大小将不相开’待核字）")
+    if effective_third_clear is False:
+        blockers.append("主客大小将有同宫之关")
 
     facts_known = all(
         isinstance(v, bool)
-        for v in (shiji_yanji, wenchang_qiupo, third_condition_clear)
+        for v in (shiji_yanji, wenchang_qiupo, effective_third_clear)
     )
     if blockers:
         released = False
@@ -226,16 +294,33 @@ def five_generals(
         "computable": released is not None,
         "shiji_yanji": shiji_yanji,
         "wenchang_qiupo": wenchang_qiupo,
-        "third_condition_clear": third_condition_clear,
-        "third_condition_source_reading": "大小将不相开",
-        "textual_uncertainty": "该字样待扫描核字；不得自动等同《金镜》‘主客大小将无相关’。",
+        "home_big": home_big,
+        "home_vassal": home_vassal,
+        "away_big": away_big,
+        "away_vassal": away_vassal,
+        "general_relation_pairs": relation_pairs,
+        "third_condition_clear": effective_third_clear,
+        "third_condition_input": third_condition_clear,
+        "third_condition_structural": structural_clear,
+        "source_form": "大小将不相开",
+        "normalized_reading": "主客大小将无相关",
+        "normalized_semantics": "四将无同宫之关",
+        "collation_confidence": "strong_parallel_witness_semantic_resolution",
+        "collation_note": (
+            "《金镜》《统宗》同条正条件均作无相关，反条件作相关；"
+            "太乙格局定义主客大小将自相同宫为关。故算法按无关处理，"
+            "但保留《福应经》当前转录‘不相开’原字形。"
+        ),
         "blockers": blockers if released is not None else None,
         "five_generals_released": released,
         "three_doors_ready": three_doors_ready,
         "combined_ready": combined,
         "deployment_allowed_by_doors": three_doors_ready,
         "engagement_allowed_by_generals": released,
-        "policy": "五将条件与三门条件分栏；疑字条件只接显式事实，不跨来源解释。",
+        "policy": (
+            "五将条件与三门条件分栏；第三条件可由四将宫位直接判同宫之关，"
+            "也兼容旧third_condition_clear显式输入；两者冲突时拒绝计算。"
+        ),
     }
 
 
@@ -775,8 +860,14 @@ def jf4m_runtime_catalog() -> dict[str, Any]:
         "implemented": [f"JF4M-{n:02d}" for n in range(1, 12)],
         "cross_source_merge": False,
         "source_limited": True,
-        "pending_textual_uncertainty": {
-            "JF4M-02": "大小将不相开的技术义仍待扫描/异本核字",
+        "pending_textual_uncertainty": {},
+        "resolved_collation": {
+            "JF4M-02": {
+                "source_form": "大小将不相开",
+                "normalized_reading": "主客大小将无相关",
+                "normalized_semantics": "四将无同宫之关",
+                "confidence": "strong_parallel_witness_semantic_resolution"
+            }
         },
-        "policy": "11条均有独立福应经runtime；不调用J4M平行实现，疑字/未锁定句保持pending。",
+        "policy": "11条均有独立福应经runtime；不调用J4M平行实现。JF4M-02保留原转录字形，同时按平行见证与格局定义规范算法语义。",
     }
