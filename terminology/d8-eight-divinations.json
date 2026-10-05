@@ -16,15 +16,29 @@
     {
       "key": "eight_divinations",
       "preferred_term": "八占",
-      "aliases": ["八占"],
+      "aliases": [
+        "八占"
+      ],
       "term_type": "method_group",
-      "rule_ids": ["D8-01", "D8-02", "D8-03", "D8-04", "D8-05", "D8-06", "D8-07", "D8-08"],
+      "rule_ids": [
+        "D8-01",
+        "D8-02",
+        "D8-03",
+        "D8-04",
+        "D8-05",
+        "D8-06",
+        "D8-07",
+        "D8-08"
+      ],
       "definition": "以主客算及相关盘面事实为输入的八类独立判断；各术保留自身rule_id，不互相偷换。"
     },
     {
       "key": "sancai",
       "preferred_term": "三才",
-      "aliases": ["三才", "三才占"],
+      "aliases": [
+        "三才",
+        "三才占"
+      ],
       "term_type": "canonical_method",
       "rule_id": "D8-01",
       "runtime": "kintaiyi.eight_divinations.sancai",
@@ -35,11 +49,61 @@
         "人": "尾数不是0或5时存在"
       },
       "classic_tags": {
-        "无天": [1, 2, 3, 4, 5, 6, 7, 8, 9],
-        "无地": [1, 2, 3, 4, 11, 12, 13, 14, 21, 22, 23, 24, 31, 32, 33, 34],
-        "无人": [10, 20, 30, 40],
-        "三才俱足": [16, 17, 18, 19, 26, 27, 28, 29, 36, 37, 38, 39],
-        "杜塞": [5, 15, 25, 35]
+        "无天": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "无地": [
+          1,
+          2,
+          3,
+          4,
+          11,
+          12,
+          13,
+          14,
+          21,
+          22,
+          23,
+          24,
+          31,
+          32,
+          33,
+          34
+        ],
+        "无人": [
+          10,
+          20,
+          30,
+          40
+        ],
+        "三才俱足": [
+          16,
+          17,
+          18,
+          19,
+          26,
+          27,
+          28,
+          29,
+          36,
+          37,
+          38,
+          39
+        ],
+        "杜塞": [
+          5,
+          15,
+          25,
+          35
+        ]
       },
       "boundary_notes": [
         "5仅有地；15/25/35仅有天与地。",
@@ -49,7 +113,11 @@
     {
       "key": "calc_length",
       "preferred_term": "长短",
-      "aliases": ["长短", "算长短", "长短缓急"],
+      "aliases": [
+        "长短",
+        "算长短",
+        "长短缓急"
+      ],
       "term_type": "canonical_method",
       "rule_id": "D8-02",
       "runtime": "kintaiyi.eight_divinations.calc_length",
@@ -59,82 +127,225 @@
     {
       "key": "wuyin",
       "preferred_term": "五音",
-      "aliases": ["五音", "算数五音"],
+      "aliases": [
+        "五音",
+        "算数五音"
+      ],
       "term_type": "canonical_method",
       "rule_id": "D8-03",
       "runtime": "kintaiyi.eight_divinations.wuyin_from_calc",
       "definition": "按算数尾数两两配宫、徵、羽、商、角，并区分正音与比音；尾数0按10。",
       "mapping": {
-        "1/2": {"音": "宫", "五行": "土", "所主": "人君"},
-        "3/4": {"音": "徵", "五行": "火", "所主": "宗庙"},
-        "5/6": {"音": "羽", "五行": "水", "所主": "后妃"},
-        "7/8": {"音": "商", "五行": "金", "所主": "子孙/太子"},
-        "9/10": {"音": "角", "五行": "木", "所主": "疾病"}
+        "1/2": {
+          "音": "宫",
+          "五行": "土",
+          "所主": "人君"
+        },
+        "3/4": {
+          "音": "徵",
+          "五行": "火",
+          "所主": "宗庙"
+        },
+        "5/6": {
+          "音": "羽",
+          "五行": "水",
+          "所主": "后妃"
+        },
+        "7/8": {
+          "音": "商",
+          "五行": "金",
+          "所主": "子孙/太子"
+        },
+        "9/10": {
+          "音": "角",
+          "五行": "木",
+          "所主": "疾病"
+        }
       },
       "tone_kind": {
-        "正音": [1, 3, 5, 7, 9],
-        "比音": [2, 4, 6, 8, 10]
+        "正音": [
+          1,
+          3,
+          5,
+          7,
+          9
+        ],
+        "比音": [
+          2,
+          4,
+          6,
+          8,
+          10
+        ]
       },
-      "boundary_notes": ["五音本身不直接判吉凶。", "尾数0按10，因此10/20/30/40均落角音比音。"]
+      "boundary_notes": [
+        "五音本身不直接判吉凶。",
+        "尾数0按10，因此10/20/30/40均落角音比音。"
+      ]
     },
     {
       "key": "gudan",
       "preferred_term": "孤单",
-      "aliases": ["孤单", "孤單", "数孤单成败", "數孤單成敗"],
+      "aliases": [
+        "孤单",
+        "孤單",
+        "数孤单成败",
+        "數孤單成敗"
+      ],
       "term_type": "canonical_method",
       "rule_id": "D8-04",
       "runtime": "kintaiyi.eight_divinations.gudan_state",
       "definition": "按明确数集判单阳、单阴、孤阳、孤阴、重阳、重阴；未列混合数不由十位和尾数自行拼类。",
       "classes": {
-        "单阳": {"numbers": [1, 3, 7, 9], "disadvantaged": "主"},
-        "单阴": {"numbers": [2, 4, 6, 8], "disadvantaged": "客"},
-        "孤阳": {"numbers": [10, 30], "disadvantaged": "主"},
-        "孤阴": {"numbers": [20, 40], "disadvantaged": "客"},
-        "重阳": {"numbers": [11, 13, 17, 19, 31, 33, 37, 39], "disadvantaged": "主", "danger": "火厄"},
-        "重阴": {"numbers": [22, 24, 26, 28], "disadvantaged": "客", "danger": "水厄"}
+        "单阳": {
+          "numbers": [
+            1,
+            3,
+            7,
+            9
+          ],
+          "disadvantaged": "主"
+        },
+        "单阴": {
+          "numbers": [
+            2,
+            4,
+            6,
+            8
+          ],
+          "disadvantaged": "客"
+        },
+        "孤阳": {
+          "numbers": [
+            10,
+            30
+          ],
+          "disadvantaged": "主"
+        },
+        "孤阴": {
+          "numbers": [
+            20,
+            40
+          ],
+          "disadvantaged": "客"
+        },
+        "重阳": {
+          "numbers": [
+            11,
+            13,
+            17,
+            19,
+            31,
+            33,
+            37,
+            39
+          ],
+          "disadvantaged": "主",
+          "danger": "火厄"
+        },
+        "重阴": {
+          "numbers": [
+            22,
+            24,
+            26,
+            28
+          ],
+          "disadvantaged": "客",
+          "danger": "水厄"
+        }
       },
-      "boundary_notes": ["5/15/25/35杜塞数不强塞孤单分类。"]
+      "boundary_notes": [
+        "5/15/25/35杜塞数不强塞孤单分类。"
+      ]
     },
     {
       "key": "inner_outer",
       "preferred_term": "内外",
-      "aliases": ["内外", "内外占", "内外占攻击"],
+      "aliases": [
+        "内外",
+        "内外占",
+        "内外占攻击"
+      ],
       "term_type": "canonical_method",
       "rule_id": "D8-05",
       "runtime": "kintaiyi.eight_divinations.attack_realm",
       "definition": "天目落固定八内则内虚、宜攻外；落固定八外则外孤、宜攻内，不以太乙为中心。",
-      "inner_gods": ["阴德", "大义", "地主", "阳德", "和德", "吕申", "高丛", "太阳"],
-      "outer_gods": ["大炅", "大神", "大威", "天道", "大武", "武德", "太簇", "阴主"]
+      "inner_gods": [
+        "阴德",
+        "大义",
+        "地主",
+        "阳德",
+        "和德",
+        "吕申",
+        "高丛",
+        "太阳"
+      ],
+      "outer_gods": [
+        "大炅",
+        "大神",
+        "大威",
+        "天道",
+        "大武",
+        "武德",
+        "太簇",
+        "阴主"
+      ]
     },
     {
       "key": "quantity_comparison",
       "preferred_term": "多少",
-      "aliases": ["多少", "多少占胜负"],
+      "aliases": [
+        "多少",
+        "多少占胜负"
+      ],
       "term_type": "canonical_method",
       "rule_id": "D8-06",
       "runtime": "kintaiyi.eight_divinations.suenwl",
       "definition": "只比较主算与客算：客大于主则客胜，客小于主则主胜，相等不强设胜负。",
-      "boundary_notes": ["将居5、杜塞、三门五将等后续条件不得覆盖本术基础比较结果。"]
+      "boundary_notes": [
+        "将居5、杜塞、三门五将等后续条件不得覆盖本术基础比较结果。"
+      ]
     },
     {
       "key": "yinyang_danger",
       "preferred_term": "阴阳厄会",
-      "aliases": ["阴阳厄会", "陰陽厄會", "阴阳厄", "重阴重阳厄会"],
+      "aliases": [
+        "阴阳厄会",
+        "陰陽厄會",
+        "阴阳厄",
+        "重阴重阳厄会"
+      ],
       "term_type": "canonical_method",
       "rule_id": "D8-07",
       "runtime": "kintaiyi.eight_divinations.tui_danger",
       "definition": "太乙在阳宫且算为奇数时成重阳火厄；太乙在阴宫且算为偶数时成重阴水厄；其余无厄。",
       "palaces": {
-        "阳宫": [8, 3, 4, 9],
-        "阴宫": [2, 7, 6, 1],
+        "阳宫": [
+          8,
+          3,
+          4,
+          9
+        ],
+        "阴宫": [
+          2,
+          7,
+          6,
+          1
+        ],
         "中五": "不参与"
       },
-      "boundary_notes": ["本术只看宫阴阳与算数奇偶，与D8-04孤单分类独立。"]
+      "boundary_notes": [
+        "本术只看宫阴阳与算数奇偶，与D8-04孤单分类独立。"
+      ]
     },
     {
       "key": "number_subject",
       "preferred_term": "数有所主",
-      "aliases": ["数有所主", "數有所主", "算数有所主"],
+      "aliases": [
+        "数有所主",
+        "數有所主",
+        "算数有所主"
+      ],
       "term_type": "canonical_method",
       "rule_id": "D8-08",
       "runtime": "kintaiyi.eight_divinations.calc_preparedness",
@@ -145,15 +356,49 @@
         "人": "兵卒"
       },
       "boundary_examples": {
-        "5": ["吏士"],
-        "15": ["将军", "吏士"],
-        "25": ["将军", "吏士"],
-        "35": ["将军", "吏士"],
-        "16": ["将军", "吏士", "兵卒"],
-        "26": ["将军", "吏士", "兵卒"],
-        "36": ["将军", "吏士", "兵卒"],
-        "40": ["将军"]
+        "5": [
+          "吏士"
+        ],
+        "15": [
+          "将军",
+          "吏士"
+        ],
+        "16": [
+          "将军",
+          "吏士",
+          "兵卒"
+        ],
+        "25": [
+          "将军",
+          "吏士"
+        ],
+        "26": [
+          "将军",
+          "吏士",
+          "兵卒"
+        ],
+        "35": [
+          "将军",
+          "吏士"
+        ],
+        "36": [
+          "将军",
+          "吏士",
+          "兵卒"
+        ],
+        "40": [
+          "将军"
+        ]
       }
     }
+  ],
+  "shared_catalog": "terminology/common-core.json",
+  "shared_rule_refs": [
+    "R-16",
+    "R-9",
+    "R-LS-01",
+    "R-QI",
+    "R-QI-FIRE",
+    "R-INTRINSIC-WX"
   ]
 }
