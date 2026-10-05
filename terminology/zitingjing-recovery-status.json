@@ -38,8 +38,9 @@
     "legacy_scan_extraction_residue": {
       "asset": "terminology/zitingjing-legacy-scan-recovery.json",
       "status": "recovered_from_prior_workflow_residue",
-      "direct_manuscript_pages_reattached": false,
-      "old_store_fields_recovered": false
+      "direct_manuscript_pages_reattached": true,
+      "old_store_fields_recovered": false,
+      "note": "用户已在当前会话重新提供研易楼明钞本扫描；目录页已直接核验。旧terminology.json仍未恢复。"
     },
     "public_web_recovery": {
       "checked_on": "2026-10-05",
@@ -69,6 +70,17 @@
         "note": "公开检索可确认附篇题名与扫描资源存在，但未取得可逐字校读的研易楼明钞本附篇正文；搜索到的文昌九星正文仍主要属于《太乙统宗宝鉴》卷六，不可回填紫庭manuscript_form/source_page。"
       },
       "access_policy": "只记录公开可访问页面；未绕过付费/网盘访问限制，也未把外部统宗文本冒充研易楼本。"
+    },
+    "current_conversation_manuscript": {
+      "manuscript": "研易楼藏《太乙紫庭祕訣》明钞本",
+      "status": "reattached_and_toc_inspected",
+      "pdf_pages": 150,
+      "toc_pages": [
+        5,
+        6
+      ],
+      "wenchang_nine_stars_title_attested": false,
+      "note": "目录列十二卷及后附项目，未见文昌九星值宫术题名。"
     }
   },
   "migration_map": "terminology/zitingjing-migration-map.json",
@@ -89,8 +101,10 @@
       "manuscript_form_recoverable_now": false,
       "source_page_recoverable_now": false,
       "legacy_scan_extraction_residue_available": true,
-      "current_rule_source_gap": true,
-      "recovery_purpose": "ziting_primary_manuscript_form_page_and_text_recovery"
+      "current_rule_source_gap": false,
+      "recovery_purpose": "old_store_identity_and_modern_appendix_provenance_only",
+      "known_executable_rule_id": "C70-TONGZONG-WENCHANG-NINE-STARS",
+      "known_executable_source_profile": "tongzong_volume6_ngj_wenchang_nine_stars"
     },
     {
       "key": "three_banners",
@@ -161,6 +175,7 @@
     "A user-confirmed local copy or recovered derived scan residue does not make the old terminology.json schema available; parser_allowed remains false until the exact store is mounted.",
     "All five visible Git branches were recursively checked on 2026-10-05; no historical terminology.json was present. This narrows recovery to the exact local/previously uploaded store rather than an unmerged Git branch.",
     "Three banners and nine-palace noble gods now have direct Tongzong volume10 runtimes; their legacy recovery entries remain only to recover old-store identity or prove an additional Ziting manuscript witness.",
-    "Public-web recovery on 2026-10-05 confirmed the Yanyilou 181-page/328MB share record and the published appendix title, but recovered no directly readable Wenchang appendix manuscript page; manuscript_form/source_page therefore remain null."
+    "用户已重新提供研易楼明钞本扫描；目录直接核验未见文昌九星题名，因此文昌九星当前规则来源缺口已关闭，C70统宗卷六为可执行source profile。",
+    "现代整理本同名附篇来源仍未完全证明；这属于编辑史/来源问题，不再阻塞文昌九星算法。"
   ]
 }
