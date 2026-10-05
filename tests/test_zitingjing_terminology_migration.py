@@ -48,17 +48,28 @@ def test_wenchang_external_variants_do_not_become_manuscript_reading():
     assert "不选canonical" in item["variant_policy"]
 
 
-def test_unverified_ziting_attributions_remain_unverified_in_terminology_map():
+def test_tongzong_rules_are_resolved_while_ziting_legacy_attribution_stays_recoverable():
     data = _data()
     entries = {item["key"]: item for item in data["entries"]}
-    for key in ("three_banners", "nine_palace_nobles"):
+    expected = {
+        "three_banners": "C126-TONGZONG-THREE-BANNERS",
+        "nine_palace_nobles": "C127-TONGZONG-NINE-PALACE-NOBLES",
+    }
+    for key, rule_id in expected.items():
         item = entries[key]
-        assert item["current_rule_status"] == "zitingjing_attribution_unverified"
-        assert item["runtime"] is None
-        assert "不能" in item["source_boundary"] or "未证" in item["source_boundary"]
+        assert item["current_rule_status"] == (
+            "tongzong_volume10_direct_ziting_legacy_attribution_unverified"
+        )
+        assert item["current_rule_id"] == rule_id
+        assert item["runtime"].startswith(
+            "kintaiyi.tongzong_volume10_spirits."
+        )
+        assert "现行可执行公式已由《太乙统宗宝鉴》卷十直接证明" in item["source_boundary"]
+        assert item["manuscript_form"] is None
+        assert item["source_page"] is None
 
 
-def test_recovery_order_prioritizes_current_source_gaps():
+def test_recovery_order_keeps_old_store_priorities_without_implying_rule_source_gap():
     data = _data()
     assert data["recovery_order"][:3] == [
         "wenchang_nine_stars",
