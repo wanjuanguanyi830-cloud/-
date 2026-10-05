@@ -86,11 +86,12 @@
             "J4M-08正文题=推随地制变；萑苇竹萧段兵器=矛鋋，仍作弓弩三不当一",
             "J4M-09地内组=一八三四，天外组=九二七六",
             "J4M-10正文题=推奇兵伏兵法",
-            "J4M-12正文题=推对阵有云气定胜负"
+            "J4M-12正文题=推对阵有云气定胜负",
+            "J4M-11正文题=推太乙风云飞鸟助阵法；正文起句仍作经曰助战之法",
+            "J4M-12西方白云条明写大胜，庚辛日弥佳"
           ],
           "still_pending": [
             "J4M-03例文太蔟/太簇的明钞本字形需更高倍率确认",
-            "J4M-11正文标题助战字形与个别句读继续逐字校验",
             "除已列关键点外的全段逐字异文表"
           ],
           "canonical_effect": "none"
@@ -114,7 +115,7 @@
     "scan_locator_version": "c79-j4m-cadal-page-locators-v1",
     "witness_audit_version": "c84-ncl06604-access-boundary-v1",
     "full_twelve_scan_audit_version": "c85-j4m01-12-scan-boundary-complete-v1",
-    "ncl_volume4_collation_version": "c86-ncl06604-v4-j4m-locators-v1"
+    "ncl_volume4_collation_version": "c86-ncl06604-v4-j4m-locators-and-key-readings-v2"
   },
   "separation_policy": [
     "本表只记录四库本《太乙金镜式经》卷四十二法，不自动并入《太乙统宗宝鉴》卷五或旧代码同名函数。",
@@ -1018,6 +1019,18 @@
         ],
         "status": "visual_scan_verified",
         "canonical_effect": "none"
+      },
+      "manuscript_readings": {
+        "NCL-06604": {
+          "body_title": "推太乙风云飞鸟助阵法",
+          "opening_phrase": "经曰助战之法",
+          "digital_scan_pages": [
+            62,
+            63
+          ],
+          "relation_to_siku": "title_助阵法_differs_from_siku_body_助战法_while_opening_phrase_still_助战之法",
+          "canonical_override": false
+        }
       }
     },
     {
@@ -1096,8 +1109,17 @@
             63,
             64
           ],
-          "relation_to_siku": "matches_siku_toc_alias_but_differs_from_siku_body_title_推阵有风云气定胜负",
-          "canonical_override": false
+          "relation_to_siku": "heading_matches_siku_toc_alias; west_white_preserves_大胜_absent_from_siku_body_profile",
+          "canonical_override": false,
+          "west_white": {
+            "base_verdict": "大胜",
+            "day_stems_good": [
+              "庚",
+              "辛"
+            ],
+            "reading": "在西方有白云气在敌阵上大胜，庚辛日弥佳",
+            "status": "direct_visual_manuscript_reading"
+          }
         }
       }
     }
