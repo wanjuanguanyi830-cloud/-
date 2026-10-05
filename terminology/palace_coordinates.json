@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.1.0",
+  "catalog_id": "recovered-palace-coordinates",
+  "coordinate_spaces": {
+    "running_palace": {
+      "range": [1, 12],
+      "meaning": "十二运行位序号；九宫之后续绛宫、明堂、玉堂",
+      "order": ["乾", "离", "艮", "震", "中", "兑", "坤", "坎", "巽", "绛宫", "明堂", "玉堂"]
+    },
+    "nine_palace": {
+      "range": [1, 9],
+      "meaning": "太乙九宫数",
+      "names_by_number": {
+        "1": "乾",
+        "2": "离",
+        "3": "艮",
+        "4": "震",
+        "5": "中",
+        "6": "兑",
+        "7": "坤",
+        "8": "坎",
+        "9": "巽"
+      }
+    }
+  },
+  "running_palaces": [
+    {"running_palace": 1, "name": "乾", "nine_palace": 1, "unique_spirit": "阴德", "unique_marker": "乾·阴德"},
+    {"running_palace": 2, "name": "离", "nine_palace": 2, "unique_spirit": "大威", "unique_marker": "午·大威"},
+    {"running_palace": 3, "name": "艮", "nine_palace": 3, "unique_spirit": "和德", "unique_marker": "艮·和德"},
+    {"running_palace": 4, "name": "震", "nine_palace": 4, "unique_spirit": "高丛", "unique_marker": "卯·高丛"},
+    {"running_palace": 5, "name": "中", "nine_palace": 5, "unique_spirit": null, "unique_marker": "无"},
+    {"running_palace": 6, "name": "兑", "nine_palace": 6, "unique_spirit": "太簇", "unique_marker": "酉·太簇"},
+    {"running_palace": 7, "name": "坤", "nine_palace": 7, "unique_spirit": "大武", "unique_marker": "坤·大武"},
+    {"running_palace": 8, "name": "坎", "nine_palace": 8, "unique_spirit": "地主", "unique_marker": "子·地主"},
+    {"running_palace": 9, "name": "巽", "nine_palace": 9, "unique_spirit": "大炅", "unique_marker": "巽·大炅"},
+    {"running_palace": 10, "name": "绛宫", "nine_palace": 2, "unique_spirit": "大神", "unique_marker": "巳·大神"},
+    {"running_palace": 11, "name": "明堂", "nine_palace": 6, "unique_spirit": "武德", "unique_marker": "申·武德"},
+    {"running_palace": 12, "name": "玉堂", "nine_palace": 4, "unique_spirit": "吕申", "unique_marker": "寅·吕申"}
+  ],
+  "recovery": {
+    "from_branch": "codex/taiyi-base-motion-2026-10-04",
+    "original_path": "terminology/palace_coordinates.json",
+    "original_blob_sha": "87b4f1a5106c345070aa9be810cb77748f4336ff",
+    "status": "recovered_prior_work_crosschecked",
+    "crosschecked_against": [
+      "src/kintaiyi/taiyi_rules.py",
+      "src/kintaiyi/state_spirit_cycles.py"
+    ]
+  },
+  "status": "terminology_reference_not_formula_source"
+}
