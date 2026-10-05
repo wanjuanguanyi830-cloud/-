@@ -327,3 +327,26 @@ def test_c79_j4m08_scan_corrects_maochui_to_maochan():
     joined = " ".join(rule["quotation_collation"]["jinjing_siku_volume4"]["examples"])
     assert "矛鋋之地，弓弩三不当一" in joined
     assert "矛锤" not in joined
+
+
+def test_c80_j4m05_to_j4m10_scan_audit_locks_no_inference_boundaries():
+    _, rules = _rules()
+    by_id = {item["id"]: item for item in rules}
+
+    assert by_id["J4M-05"]["scan_rule_audit"]["status"] == "scan_structure_confirmed_no_expansion"
+    assert "不得扩成所有尾数2" in by_id["J4M-05"]["scan_rule_audit"]["forbidden_inference"]
+
+    assert by_id["J4M-06"]["scan_rule_audit"]["status"] == "scan_table_confirmed_no_completion"
+    assert "不得对任意算数取个位" in by_id["J4M-06"]["scan_rule_audit"]["forbidden_inference"]
+
+    assert by_id["J4M-07"]["scan_rule_audit"]["status"] == "scan_structure_confirmed"
+    assert "同类或相生不补胜负" in by_id["J4M-07"]["scan_rule_audit"]["forbidden_inference"]
+
+    assert by_id["J4M-08"]["scan_rule_audit"]["status"] == "scan_text_confirmed_after_C79_correction"
+    assert "p.136矛鋋" in by_id["J4M-08"]["scan_rule_audit"]["locked_points"]
+
+    assert by_id["J4M-09"]["scan_rule_audit"]["status"] == "scan_groups_confirmed_no_palace1_completion"
+    assert any("未列1宫" in x for x in by_id["J4M-09"]["scan_rule_audit"]["forbidden_inference"])
+
+    assert by_id["J4M-10"]["scan_rule_audit"]["status"] == "scan_nodes_confirmed_textual_uncertainty_preserved"
+    assert any("不解释《金镜》‘败’字" in x for x in by_id["J4M-10"]["scan_rule_audit"]["forbidden_inference"])
