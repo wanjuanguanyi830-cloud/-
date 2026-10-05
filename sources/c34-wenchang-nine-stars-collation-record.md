@@ -75,3 +75,29 @@
 - 不得用《三才世纬》替代紫庭附篇正文；
 - 不得用统宗某一见证直接生成 primary_result；
 - 不得在 10 / 30 年冲突未解时固化 canonical runtime。
+
+
+## C70 后续分层
+
+C34 的“跨来源不选择 canonical”结论保持不变。
+
+后续 C70 仅对《太乙统宗宝鉴》卷六 NGJ 见证建立：
+
+`C70-TONGZONG-WENCHANG-NINE-STARS`
+
+该 source-specific runtime 固定：
+
+- 30年一星；
+- 小周270；
+- 大周2700；
+- NGJ 星名读法；
+- 年干落宫 / 分野。
+
+这不改变：
+
+- 紫庭附篇 `primary_result=None`；
+- `canonical_selected=None`；
+- CADAL 10/30 内部冲突；
+- 三才及其他见证异文。
+
+C34 管“异文边界”，C70 管“一个明确见证的可运行规则”，职责不得合并。
