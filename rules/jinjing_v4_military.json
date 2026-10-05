@@ -195,7 +195,14 @@
       },
       "implementation_status": "implemented_source_specific",
       "runtime": "kintaiyi.jinjing_v4_military.chushi_fa",
-      "implementation_note": "分栏判断12/22/32、三门具、五将发与开休生三吉门；不使用统宗卷五兵额表。"
+      "implementation_note": "分栏判断12/22/32、三门具、五将发与开休生三吉门。《统宗》同段明确把“出其门”解释为开休生，把“用其二”解释为算得二之数，支持当前把算条件与出门条件分开；不使用《统宗》卷五兵额表及其他扩展。",
+      "collation_status": "two_conditions_disambiguated_by_tongzong_gloss",
+      "collation_evidence": {
+        "jinjing_siku_volume4": "经曰“行师必出奇门，略地并用其二”；继列算十二、二十二、三十二，五将发、三门具，并释出开休生三吉门。",
+        "tongzong_volume5": "改作/释作“行师必出其门，略地并用其二”，并分别解释：出其门=出开休生三吉门；用其二=算得二之数。",
+        "canonical_use": "《统宗》只用于拆解《金镜》本句的两个条件；J4M-05 本身仍以《金镜》明确列出的12/22/32、三门具、五将发、开休生为 canonical。",
+        "do_not_import": "《统宗》卷五的天子万乘/诸侯千乘兵额、二为大威离宫等扩展说明不自动进入 J4M-05 runtime。"
+      }
     },
     {
       "id": "J4M-06",
@@ -214,7 +221,12 @@
       },
       "implementation_status": "implemented_source_specific",
       "runtime": "kintaiyi.jinjing_v4_military.chenbing_xiangbei",
-      "implementation_note": "只接受正文明确的算类编号1/2/4/5/6/9；不自动把任意算数取个位。"
+      "implementation_note": "只接受《金镜》正文明确的算类编号1/2/4/5/6/9；不自动把任意算数取个位，也不从《统宗》“陈兵必出其乡”的1/2/3/4/6/7/8/9方向表补缺。",
+      "source_boundary_evidence": {
+        "jinjing_siku_volume4": "本条是“陈兵向背”：明确列1/2/4/5/6/9，并同时给出出军方向、战利方向、背地、阵形、旗色。",
+        "tongzong_later_military_rule": "《统宗》另有“陈兵必出其乡”，按算方列1/2/3/4/6/7/8/9等出向，结构与本条不同。",
+        "policy": "两条只可交叉比较，不得互补缺数。尤其不得拿《统宗》3/7/8补《金镜》，也不得拿《金镜》5及阵旗信息反写《统宗》陈兵出乡。"
+      }
     },
     {
       "id": "J4M-07",
