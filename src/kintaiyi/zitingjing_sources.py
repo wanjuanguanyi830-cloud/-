@@ -114,6 +114,7 @@ def build_zitingjing_rule_sources(
         "primary_ready": primary_ready,
         "collation_sources": list(meta["collation_sources"]),
         "collation_results": collations,
+        "known_source_rule_id": meta.get("known_source_rule_id"),
         "canonical_selected": "zitingjing" if primary_ready else None,
         "cross_source_merge": False,
         "status": status,
