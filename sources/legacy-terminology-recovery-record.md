@@ -66,3 +66,26 @@ NCL 的 8 个旧对账项现均可指向 stable terminology：
 - OCR 或旧录入错误不能覆盖当前直接来源复核。
 - 同名跨来源规则继续分 profile。
 - 旧库恢复只增加历史身份、字形、页码、定义与 notes，不逆转已经完成的 source-specific 校勘。
+
+
+## 研易楼明钞本旧扫描恢复
+
+用户已确认：研易楼藏《太乙紫庭祕訣》明钞本此前在整理术语库阶段已经扫描，且本地 E 盘仍保存原文件。因此“未取得扫描资源”的旧表述废止。
+
+当前执行环境仍未重新挂载 E 盘原扫描，也未恢复旧 `terminology.json` 原始字节，但已从旧 `kentang2017/kintaiyi` 派生实现残留恢复文昌九星旧整理成果：
+
+- 文曲
+- 玄鳳
+- 明維
+- 昭搖
+- 立華
+- 華明
+- 玄武
+- 玄冥
+- 雄明
+
+恢复资产：`terminology/zitingjing-legacy-scan-recovery.json`。
+
+这组记录现在定义为 **legacy scan extraction witness**：证明此前扫描/术语整理确有产物，但在原扫描页重新挂载前，不等同于逐字 manuscript transcription，也不直接升级《紫庭》文昌九星 canonical runtime。
+
+它与当前 C70《统宗》NGJ 见证并列保存。尤其“文曲/文昌、昭搖/阴德、立華/招摇、雄明/维明”及旧年干落宫表的差异不得静默归一。
