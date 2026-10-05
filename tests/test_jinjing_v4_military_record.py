@@ -645,3 +645,31 @@ def test_c101_taicu_variant_is_dictionary_attested_but_canonical_stays_taicu():
     assert policy["canonical_form"] == "太簇"
     assert policy["variant_classification"] == "dictionary_attested_traditional_variant"
     assert policy["source_forms"] == ["太簇", "太蔟"]
+
+
+def test_c110_ncl_j4m06_full_table_resolves_detail_pending_without_overwriting_siku():
+    data, rules = _rules()
+    assert data["source"]["ncl_volume4_collation_version"] == "c110-ncl06604-j4m06-full-table-v1"
+
+    rule = {item["id"]: item for item in rules}["J4M-06"]
+    ncl = rule["manuscript_readings"]["NCL-06604"]
+    assert ncl["detail_transcription_status"] == "full_table_direct_visual_verified_C110"
+
+    rows = ncl["full_table_transcription"]["rows"]
+    assert rows["1"]["normalized"]["阵"] == "曲阵"
+    assert rows["1"]["normalized"]["旗"] == "黑旗"
+    assert rows["2"]["normalized"]["战利"] is None
+    assert rows["2"]["normalized"]["阵"] == "圆阵"
+    assert rows["2"]["normalized"]["旗"] == "黄旗"
+    assert rows["3"]["normalized"]["阵"] == "直阵"
+    assert any("直戰" in x and "陣" in x for x in rows["3"]["scribal_features"])
+    assert rows["4"]["normalized"]["出军"] == "正东"
+    assert any("正南" in x and "東" in x for x in rows["4"]["scribal_features"])
+    assert rows["6"]["normalized"]["背地"] == "水泽沟堑丘墟之地"
+    assert rows["7"]["normalized"]["出军"] == "西南"
+    assert rows["8"]["normalized"]["出军"] == "正北"
+    assert rows["9"]["normalized"]["出军"] == "东南"
+
+    # 四库 canonical 仍只实现其自身明确的 1/2/4/5/6/9 表。
+    assert rule["scan_rule_audit"]["locked_points"][0].startswith("仅1/2/4/5/6/9")
+    assert ncl["canonical_override"] is False
