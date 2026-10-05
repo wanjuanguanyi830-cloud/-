@@ -242,7 +242,8 @@
         "NGJ直接正文支持30年一星、270小周、2700大周、起一宫文昌顺九宫，并以年干建禄宫安当前直事星。",
         "旧代码残留与C70-NGJ的文曲/文昌、昭搖/阴德、立華/招摇、雄明/维明及年干落宫差异继续并列，来源未定前不得静默统一。",
         "另有CADAL见证出现每星十年等异读/内部冲突，作为独立witness保存，不覆盖NGJ profile。",
-        "C70只稳定计算直事星、入本星年数与年干落宫/分野；其余八星完整动态重排仍不支持。"
+        "C70只稳定计算直事星、入本星年数与年干落宫/分野；其余八星完整动态重排仍不支持。",
+        "2026-10-05公开网络恢复复核：可确认研易楼本181页/328M资源帖及现代出版目录中的“附太乙文昌九星值宮術”题名，但未取得该附篇直接影印页/逐字正文，故manuscript_form/source_page继续保持未恢复。"
       ],
       "source_specific_profiles": {
         "tongzong_volume6_ngj": {
@@ -297,8 +298,19 @@
           "title": "太乙紫庭祕訣 研易樓藏明鈔本",
           "url": "https://www.shuge.org/meet/topic/96517/",
           "reported_extent": "181单页灰度，328M",
-          "status": "share_page_located_scan_not_inspected",
-          "note": "分享帖列出夸克/阿里/百度等转存；当前未取得扫描正文页，不能升级primary evidence。"
+          "status": "public_share_page_reachable_external_storage_not_mounted",
+          "direct_manuscript_page_recovered": false,
+          "note": "资源帖与转存入口可见，但当前执行环境未挂载扫描文件；不能据资源帖生成manuscript_form/source_page。"
+        },
+        {
+          "site": "现代出版目录",
+          "titles": [
+            "星易圖書",
+            "進源書局"
+          ],
+          "status": "appendix_title_attested_no_direct_text",
+          "appendix_title": "附太乙文昌九星值宮術",
+          "direct_manuscript_page_recovered": false
         }
       ],
       "legacy_scan_recovery": {
