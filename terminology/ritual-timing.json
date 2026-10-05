@@ -292,6 +292,58 @@
         "太乙三时一移、天目一时一移及乾坤重留等只保存为movement metadata。",
         "阳遁以冬至气应、阴遁以夏至气应为原则，但production真实节气时刻仍由现代天文层提供。"
       ]
+    },
+    {
+      "key": "year_eight_doors",
+      "preferred_term": "年计八门直门",
+      "aliases": [
+        "岁计八门",
+        "歲計八門",
+        "推八门占岁计法",
+        "推八門占歲計法"
+      ],
+      "term_type": "direct_year_duty_door_with_spatial_overlay",
+      "rule_id": "C123-YEAR-DUTY-DOOR",
+      "source_profile": "jinjing_volume1_year_eight_doors",
+      "runtime": "kintaiyi.jinjing_year_eight_doors.year_duty_door",
+      "catalog_runtime": "kintaiyi.jinjing_year_eight_doors.c123_catalog",
+      "runtimes": [
+        "kintaiyi.jinjing_eight_door_overlay.jinjing_year_open_door_contexts",
+        "kintaiyi.jinjing_year_door_relations.year_door_meeting"
+      ],
+      "door_order": [
+        "开",
+        "休",
+        "生",
+        "伤",
+        "杜",
+        "景",
+        "死",
+        "惊"
+      ],
+      "outer_cycle": 720,
+      "inner_cycle": 240,
+      "years_per_door": 30,
+      "overlay_layers": {
+        "fixed_open_door": {
+          "rule_ids": [
+            "J1-EIGHT-DOOR-OVERLAY",
+            "J1-YEAR-FOUR-EIGHT-DOOR-OVERLAYS"
+          ],
+          "semantics": "开门加太乙/主大将/客大将/定计大将的空间盘"
+        },
+        "three_good_door_meeting": {
+          "rule_id": "J1-YEAR-DOOR-MEETING",
+          "semantics": "主/客大将在太乙开门盘下落开休生之一，则该方由此局部规则得大利"
+        }
+      },
+      "boundary_notes": [
+        "C123是30年一门；C119是30时一门，周期和输入严格分离。",
+        "canonical积年要求>=1；旧API把0当240周期末只属兼容行为。",
+        "空间叠盘与直门周期分层；固定开门盘不被动态直使门盘静默替代。",
+        "三吉门会合只给局部大利，不覆盖囚迫格对、杜塞、五将发不发等军事判断。",
+        "叠盘重建有平行《淘金歌》《讲武全书》证据，但不覆盖李淳风古法来源层。"
+      ]
     }
   ]
 }
