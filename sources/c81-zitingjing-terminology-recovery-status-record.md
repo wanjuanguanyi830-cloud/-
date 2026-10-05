@@ -38,7 +38,19 @@ C81 不重建术语库。
 
 `prior_local_terminology_status = preliminary_completed_locally`
 
-只是当前没有原文件可安全迁移。
+只是当前执行环境没有挂载原文件，因此仍不能安全迁移。用户已经确认本地 E 盘仍有副本；这改变“历史文件是否还存在”的证据状态，但不改变当前 parser 禁止状态。
+
+## 当前新增恢复线索
+
+机器状态现在同时记录：
+
+- 用户确认本地 E 盘副本存在；
+- 当前 runtime 未挂载该副本；
+- `terminology/zitingjing-legacy-scan-recovery.json` 已从此前工作残留恢复文昌九星旧扫描整理词形；
+- 原始扫描页尚未重新挂载；
+- 旧 terminology.json 的真实 schema / old IDs / old definitions 仍未取得。
+
+这些线索只提高“可恢复性”，不等于旧 store 已恢复。
 
 ## 为什么不写 parser
 
@@ -53,7 +65,7 @@ C81 不重建术语库。
 - 页码字段类型；
 - 一个术名是否允许多个来源记录。
 
-C81 固定：
+C81 继续固定：
 
 - `original_schema_available=false`
 - `parser_allowed=false`
@@ -129,3 +141,8 @@ C40 的恢复顺序保持不变：
 - C81：定义“目前能不能恢复”。
 
 两者都不是新的 `terminology.json`。
+
+
+## Legacy scan residue 边界
+
+文昌九星旧扫描残留现在属于 `legacy scan extraction residue`。它可以证明此前扫描/术语整理确有产物，并提供候选词形用于未来对账；但在 E 盘原扫描页重新挂载前，不得把这些词形写入 `manuscript_form` 或 `source_page`，更不能据此猜旧 `old_term_record_id`。
