@@ -17,7 +17,8 @@ from typing import Any
 from .taiyi_rules import GOD_ALIASES, GOD_POSITION, SIXTEEN, sector_to_nine_palace
 
 SOURCE_PROFILE = "jinjing_volume1_2_eight_door_overlay"
-RULE_ID = "J1-EIGHT-DOOR-OVERLAY"\nDUTY_RULE_ID = "J1-EIGHT-DOOR-DUTY-OVERLAY"
+RULE_ID = "J1-EIGHT-DOOR-OVERLAY"
+DUTY_RULE_ID = "J1-EIGHT-DOOR-DUTY-OVERLAY"
 
 DOOR_ORDER = ("开", "休", "生", "伤", "杜", "景", "死", "惊")
 
@@ -118,7 +119,7 @@ def general_eight_door_context(anchor_palace: int, *, eye=None, side: str, ancho
     """
     if side not in {"主", "客", "定计"}:
         raise ValueError("side须为主、客或定计")
-    overlay = open_door_overlay(anchor_palace)
+    overlay = door_overlay(anchor_palace, anchor_door)
     eye_palace = _subject_palace(eye) if eye is not None else None
     return {
         **overlay,
