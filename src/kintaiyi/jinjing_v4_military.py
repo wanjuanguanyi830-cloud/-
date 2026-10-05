@@ -629,7 +629,9 @@ def zhuke_fa(context, *, three_doors_ready=None, five_generals_released=None,
     3. 东南西北四方始发神；
     4. 客欲知主、主人欲知客时“视其算”的互查关系。
 
-    “先胜后负”仅作为原文时序断语保存，不擅自解释成某一方最终胜负。
+    “先胜后负”经《武经总要》《太乙秘书》同段参校，明确为
+    “先起则胜，后起则败”；仅在三门具、五将发、阴阳和的有利三项中
+    按当前场景的先起/后应角色落实胜负。
     """
     result = _base("J4M-04", "推主客")
 
@@ -744,7 +746,7 @@ def zhuke_fa(context, *, three_doors_ready=None, five_generals_released=None,
     return {
         **result,
         "status": "ok" if action_status not in {"not_computable", "mixed_combination_not_defined"} else action_status,
-        "computable": True,
+        "computable": action_status != "not_computable",
         "role_computable": True,
         "source_combination_computable": all_favorable or all_unfavorable,
         "hard_constraints_computable": bool(blockers),
