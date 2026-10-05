@@ -4,7 +4,7 @@
   "manuscript_source_id": "shanghai_yanyilou_ming_copy",
   "manuscript_title": "太乙紫庭祕訣",
   "prior_local_terminology_status": "preliminary_completed_locally",
-  "current_repository_status": "local_terminology_json_not_migrated",
+  "current_repository_status": "legacy_scan_extraction_residue_recovered_original_terminology_json_not_migrated",
   "policy": [
     "本文件是旧本地术语库的迁移骨架，不是重建后的完整terminology.json。",
     "不得把外部参校异文直接当成研易楼明钞本文字。",
@@ -50,7 +50,7 @@
         "附太乙文昌九星值宫术",
         "附太乙文昌九星值宮術"
       ],
-      "terminology_status": "existing_term_expected_in_local_store",
+      "terminology_status": "legacy_scan_extraction_recovered_original_store_fields_pending",
       "current_rule_status": "catalog_attested_primary_text_pending",
       "rule_key": "wenchang_nine_stars",
       "runtime": null,
@@ -88,7 +88,20 @@
           "維明"
         ]
       ],
-      "variant_policy": "这些只用于旧术语库命中与异文对照；研易楼本实际字形未回填前不选canonical。"
+      "variant_policy": "这些只用于旧术语库命中与异文对照；研易楼本实际字形未回填前不选canonical。",
+      "legacy_scan_recovery_asset": "terminology/zitingjing-legacy-scan-recovery.json",
+      "legacy_recovered_forms": [
+        "文曲",
+        "玄鳳",
+        "明維",
+        "昭搖",
+        "立華",
+        "華明",
+        "玄武",
+        "玄冥",
+        "雄明"
+      ],
+      "legacy_recovery_note": "这些词形来自此前扫描/术语整理的派生实现残留；在E盘原扫描或旧terminology.json重新挂载前，不等同逐字manuscript_form。"
     },
     {
       "key": "wenchang_changes",
@@ -178,5 +191,8 @@
     "wenchang_changes",
     "shiji_changes"
   ],
-  "recovery_reason": "前三项可直接解决当前紫庭来源/正文缺口；后三项已有结构化规则，优先用于核对旧术语字形与页码。"
+  "recovery_reason": "前三项可直接解决当前紫庭来源/正文缺口；后三项已有结构化规则，优先用于核对旧术语字形与页码。",
+  "recovery_assets": [
+    "terminology/zitingjing-legacy-scan-recovery.json"
+  ]
 }
