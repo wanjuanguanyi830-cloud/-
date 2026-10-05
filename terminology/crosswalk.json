@@ -516,8 +516,18 @@
       "relation": "ancient_table_upstream",
       "forbidden_merge": [
         "C118黄道表只为C69/C69B提供古表日宿/分野；不负责十二天将。",
-        "C118不计算现代天文黄经，也不得改写production真实节气/冬至换岁。"
-      ]
+        "C118不计算现代天文黄经，也不得改写production真实节气/冬至换岁。",
+        "NCL-06604 p.21与四库公开转录共同缺少虚宿整数主体；不得因有第二见证就把分数旁注误当完整宿度。",
+        "365¼周天闭合、隋书等平行宿度只可作校验背景，不得作为jinjing_volume1_huangdao_upstream的自动补值来源。"
+      ],
+      "manuscript_witness": {
+        "id": "NCL-06604",
+        "edition": "明钞本",
+        "pdf_page": 21,
+        "section": "推黄道数立成",
+        "result": "confirms_missing_integer_ambiguity",
+        "numeric_unlock": false
+      }
     },
     {
       "id": "CW-C116-C117",
