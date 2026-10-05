@@ -207,7 +207,8 @@
       "domain": "cycles",
       "rule_ids": [
         "C107-DAYOU-JINJING",
-        "C107-DAYOU-TONGZONG"
+        "C107-DAYOU-TONGZONG",
+        "C107-DAYOU-TAOJIN"
       ],
       "runtime": "kintaiyi.dayou_position_source_profiles.dayou_position",
       "status": "stable",
