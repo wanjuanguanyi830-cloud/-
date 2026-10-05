@@ -57,6 +57,12 @@ _J4M03_GOD_ELEMENT = {
     "大武": "土", "阴主": "土", "阳德": "土",
 }
 
+# 四库卷四 J4M-03 例文可见“太蔟”；项目规范词形沿用“太簇”。
+# 这是同名异体/传本文字归一，不是另一个神名，也不改变五行。
+_J4M03_GOD_ALIASES = {
+    "太蔟": "太簇",
+}
+
 _CHENBING_XIANGBEI = {
     1: {"出军": "西北", "战利": "东南", "背地": "深涧隐匿之地", "阵": "方阵", "旗": "白旗"},
     2: {"出军": "正南", "战利": "正北", "邪道": "西南", "背地": "山邑火光耀耀焦之地", "阵": "直阵", "旗": "青旗"},
@@ -477,7 +483,8 @@ def j4m03_eye_element_from_god(god):
     """
     if god is None:
         return None
-    return _J4M03_GOD_ELEMENT.get(god)
+    normalized = _J4M03_GOD_ALIASES.get(god, god)
+    return _J4M03_GOD_ELEMENT.get(normalized)
 
 
 def zhuke_xiangguan(host_eye_element=None, guest_eye_element=None, *,
@@ -623,7 +630,8 @@ def zhuke_xiangguan(host_eye_element=None, guest_eye_element=None, *,
             "warning": "“天目”在太乙文献中有多义；J4M-03 接口只用主目/客目避免歧义。",
         },
         "god_element_table": dict(_J4M03_GOD_ELEMENT),
-        "policy": "canonical 只以日计主客二目所临神五行相制判关胜负；淘金歌同音/相生只作参校提示。",
+        "god_name_aliases": dict(_J4M03_GOD_ALIASES),
+        "policy": "canonical 只以日计主客二目所临神五行相制判关胜负；太蔟按四库例文归一为规范词形太簇；淘金歌同音/相生只作参校提示。",
     }
 
 def zhuke_fa(context, *, three_doors_ready=None, five_generals_released=None,
