@@ -1,4 +1,4 @@
-"""C104 大游天目：金镜 / 统宗 source-specific profiles。
+"""C106 大游天目：金镜 / 统宗 source-specific profiles。
 
 共同路径：
 - 起天道；
@@ -20,7 +20,7 @@ from typing import Any
 
 from .taiyi_rules import GOD_POSITION, integer
 
-C104_VERSION = "taiyi-c104-dayou-tianmu-source-profiles-v1"
+C106_VERSION = "taiyi-c106-dayou-tianmu-source-profiles-v1"
 
 TIANMU_PATH = (
     "天道",
@@ -45,7 +45,7 @@ TIANMU_PATH = (
 
 PROFILES = {
     "jinjing": {
-        "rule_id": "C104-DAYOU-TIANMU-JINJING",
+        "rule_id": "C106-DAYOU-TIANMU-JINJING",
         "source_profile": "jinjing_volume5_dayou_tianmu",
         "work": "太乙金镜式经",
         "section": "推大游天目所在法",
@@ -58,7 +58,7 @@ PROFILES = {
         "status": "primary_direct",
     },
     "tongzong": {
-        "rule_id": "C104-DAYOU-TIANMU-TONGZONG",
+        "rule_id": "C106-DAYOU-TIANMU-TONGZONG",
         "source_profile": "tongzong_volume7_dayou_tianmu",
         "work": "太乙统宗宝鉴",
         "section": "明太游天目所主术",
@@ -108,7 +108,7 @@ RECENT_WORK_RECOVERY = {
     },
     "old_reference_note": (
         "10月4日记录当时把%180/+214旧实现仅列deprecated_reference；"
-        "C104经直接统宗/象数论来源重核后，确认+214/180/18本身有来源，"
+        "C106经直接统宗/象数论来源重核后，确认+214/180/18本身有来源，"
         "因此应建立独立tongzong profile，而不是继续整体隔离。"
     ),
     "time_window_policy": "only_2026-10-04_and_2026-10-05_prior_work",
@@ -119,7 +119,7 @@ BOUNDARY = {
     "auto_dayou_palace_lookup_used": False,
     "relation_omens_applied": False,
     "policy": (
-        "C104只求大游天目位置；不自动读取大游太乙所在宫，"
+        "C106只求大游天目位置；不自动读取大游太乙所在宫，"
         "不应用卷七天目所主治理断语或同宫关系。"
     ),
 }
@@ -156,7 +156,7 @@ def dayou_tianmu_position(
 
     return {
         "schema_version": "1.0",
-        "canonical": C104_VERSION,
+        "canonical": C106_VERSION,
         "rule_id": spec["rule_id"],
         "source_profile": spec["source_profile"],
         "profile_key": source_profile,
@@ -184,9 +184,9 @@ def dayou_tianmu_position(
     }
 
 
-def c104_catalog() -> dict[str, Any]:
+def c106_catalog() -> dict[str, Any]:
     return {
-        "canonical": C104_VERSION,
+        "canonical": C106_VERSION,
         "profiles": copy.deepcopy(PROFILES),
         "path": list(TIANMU_PATH),
         "path_length": len(TIANMU_PATH),
