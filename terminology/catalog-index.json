@@ -214,8 +214,8 @@
     },
     {
       "path": "terminology/zitingjing-legacy-scan-recovery.json",
-      "asset_id": "zitingjing-legacy-scan-recovery-v1",
-      "purpose": "恢复此前研易楼明钞本扫描/术语整理留下的文昌九星派生词形与表格残留；原扫描页与旧terminology.json重新挂载前只作legacy witness",
+      "asset_id": "zitingjing-prior-workflow-recovery-v2",
+      "purpose": "分离记录两件事：用户确认研易楼明钞本此前已扫描；以及旧kentang2017/kintaiyi中明确标注《统宗》卷六来源的九星代码残留。后者不得冒充研易楼本逐字见证。",
       "canonical_catalog": false
     }
   ],
