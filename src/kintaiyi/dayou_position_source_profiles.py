@@ -42,6 +42,8 @@ PROFILES = {
         "secondary_cycle_metadata": {"纪法": 720},
         "small_cycle": 288,
         "years_per_palace": 36,
+        "path": PALACE_PATH,
+        "direction": "forward",
         "status": "primary_direct",
     },
     "tongzong": {
@@ -57,6 +59,8 @@ PROFILES = {
         "secondary_cycle_metadata": None,
         "small_cycle": 288,
         "years_per_palace": 36,
+        "path": PALACE_PATH,
+        "direction": "forward",
         "status": "collated_tongzong_profile_with_witness_variants",
     },
     "taojin": {
@@ -74,6 +78,8 @@ PROFILES = {
         },
         "small_cycle": 288,
         "years_per_palace": 36,
+        "path": TAOJIN_PATH,
+        "direction": "reverse",
         "status": "direct_taojin_profile_with_historical_example",
     },
 }
@@ -214,8 +220,8 @@ def dayou_position(
     zero_index = small_count - 1
     palace_index = zero_index // spec["years_per_palace"]
     year_in_palace = zero_index % spec["years_per_palace"] + 1
-    path = TAOJIN_PATH if source_profile == "taojin" else PALACE_PATH
-    direction = "reverse" if source_profile == "taojin" else "forward"
+    path = tuple(spec["path"])
+    direction = spec["direction"]
     palace = path[palace_index]
 
     return {
