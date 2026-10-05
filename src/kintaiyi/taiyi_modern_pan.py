@@ -108,14 +108,14 @@ def build_modern_pan_v2(
         "input_moment": moment.isoformat(),
         "count_type": kind,
         "taiyi_year": context["year_boundary"]["taiyi_historical_year"],
-        "year_boundary_policy": {
+        "year_boundary_policy": _json_calendar({
             "unique_boundary": "真实天文冬至交节瞬间",
             "label_rule": "公历Y年冬至瞬间起进入太乙Y+1岁",
             "comparison": context["year_boundary"]["boundary_operator"],
             "ignored_boundaries": context["year_boundary"]["ignored_year_boundaries"],
             "taiyi_year_start_utc": context["year_boundary"]["taiyi_year_start_utc"],
             "next_taiyi_year_start_utc": context["year_boundary"]["next_taiyi_year_start_utc"],
-        },
+        }),
         "lunar": _json_calendar(context["lunisolar"]["lunar"]),
         "ganzhi": _json_calendar(context["lunisolar"]["ganzhi"]),
         "solar_month": _json_calendar(context["solar_month"]),
