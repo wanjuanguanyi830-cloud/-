@@ -60,7 +60,7 @@ def test_sancai_shiwei_can_be_stored_as_external_collation_for_wenchang_only():
         },
     )
     assert data["primary_ready"] is False
-    assert data["status"] == "primary_text_pending"
+    assert data["status"] == "primary_prior_scan_confirmed_page_record_pending"
     assert data["canonical_selected"] is None
     assert set(data["collation_results"]) == {
         "tongzong_volume6",
