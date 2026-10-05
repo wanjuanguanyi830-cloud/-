@@ -47,7 +47,7 @@ def test_c100_terminology_catalog_matches_runtime_aliases():
     aliases = {row["alias"]: row["canonical_name"] for row in data["aliases"]}
     for alias, canonical in GOD_ALIASES.items():
         assert aliases[alias] == canonical
-    assert data["schema_version"] == "1.2.0"
+    assert data["schema_version"] == "1.3.0"  # C102 adds 太蔟→太簇 global alias
     assert data["recovery"]["additional_oct4_source"]["path"] == (
         "rules/common/taiyi_space.py"
     )
