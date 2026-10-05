@@ -10,23 +10,22 @@
       "rule_count": 14,
       "implementation_status": {
         "implemented": [
+          "V15-01",
           "V15-02",
           "V15-03",
           "V15-04",
           "V15-05",
           "V15-06",
-          "V15-09",
-          "V15-10",
-          "V15-12",
-          "V15-13"
-        ],
-        "source_rule_only": [
-          "V15-01",
           "V15-07",
           "V15-08",
+          "V15-09",
+          "V15-10",
           "V15-11",
+          "V15-12",
+          "V15-13",
           "V15-14"
-        ]
+        ],
+        "source_rule_only": []
       },
       "volume_note": "不同电子本卷次编排有差异；项目沿用volume15 profile并以术目标题共同认源。"
     },
@@ -62,7 +61,7 @@
   "global_policy": [
     "卷十五、卷十七与J4M/C8只做crosswalk，不自动等价或覆盖。",
     "reference_function只记录旧综合层函数名；implementation_status/runtime才表示当前独立实现状态。",
-    "C23-C28分别实现卷十五/卷十七不同依赖层；未实现的卷十五5条继续source_rule_catalog_only。",
+    "C23-C28加remaining_v15已覆盖卷十五V15-01..14与卷十七V17-01..11全部source-specific runtime。",
     "V17-D1为C32已实现跨卷helper，不计入卷十七canonical source rule数。"
   ],
   "entries": [
@@ -91,14 +90,15 @@
         "J4M-10"
       ],
       "reference_function": "qibing_fubing",
-      "implementation_status": "source_rule_catalog_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v15_remaining.qibing_fubing",
       "canonical_source_rule": true,
       "notes": "与金镜卷四推奇伏法近名，必须保持独立source profile。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v15_remaining.remaining_v15_catalog"
     },
     {
       "key": "v15_02",
@@ -266,14 +266,15 @@
         "J4M-08"
       ],
       "reference_function": "suidi_zhibian",
-      "implementation_status": "source_rule_catalog_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v15_remaining.suidi_zhibian",
       "canonical_source_rule": true,
       "notes": "与金镜制阵随地/随地制变分层，不自动合并。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v15_remaining.remaining_v15_catalog"
     },
     {
       "key": "v15_08",
@@ -302,14 +303,15 @@
         "C8-L3"
       ],
       "reference_function": "fenhe_yongbing",
-      "implementation_status": "source_rule_catalog_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v15_remaining.fenhe_yongbing",
       "canonical_source_rule": true,
       "notes": null,
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v15_remaining.remaining_v15_catalog"
     },
     {
       "key": "v15_09",
@@ -396,14 +398,15 @@
       "external_inputs": [],
       "overlaps": [],
       "reference_function": "anying_rishi",
-      "implementation_status": "source_rule_catalog_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v15_remaining.anying_rishi",
       "canonical_source_rule": true,
       "notes": null,
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v15_remaining.remaining_v15_catalog"
     },
     {
       "key": "v15_12",
@@ -498,14 +501,15 @@
         "J4M-12"
       ],
       "reference_function": "jungshi_shengfu_pan",
-      "implementation_status": "source_rule_catalog_only",
-      "runtime": null,
+      "implementation_status": "implemented_source_specific",
+      "runtime": "kintaiyi.tongzong_v15_remaining.jungshi_shengfu_pan",
       "canonical_source_rule": true,
       "notes": "卷十五综合军势不得覆盖J4M外部风云飞鸟观测层。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
         "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
-      ]
+      ],
+      "catalog_runtime": "kintaiyi.tongzong_v15_remaining.remaining_v15_catalog"
     },
     {
       "key": "v17_01",
