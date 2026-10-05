@@ -487,8 +487,10 @@ def test_j4m04_host_guest_roles_and_favorable_triad_are_separate():
     assert data["action_status"] == "raise_forces_favorable"
     assert data["action_advice"] == "称兵"
     assert data["source_campaign_verdict"] == "所向必克"
-    assert data["source_temporal_outcome"] == "先胜后负"
-    assert data["winner"] is None
+    assert data["source_temporal_outcome"] == "先起者胜，后起者负"
+    assert data["winner"] == "客"
+    assert data["loser"] == "主"
+    assert "先起则胜" in data["winner_basis"]
     assert data["start_deity"] == "阴德"
     assert data["cross_side_calc_reference"]["客欲知主"]["target_calc"] == "主算"
     assert data["cross_side_calc_reference"]["客欲知主"]["value"] == 17
@@ -556,3 +558,29 @@ def test_j4m12_same_source_table_can_apply_to_our_formation_without_side_inversi
     assert invalid["computable"] is False
     assert invalid["status"] == "not_computable"
     assert invalid["valid_observed_formations"] == ["敌", "我"]
+
+
+def test_j4m04_favorable_settled_context_makes_host_the_first_mover_winner():
+    data = zhuke_fa(
+        "安居之势",
+        three_doors_ready=True,
+        five_generals_released=True,
+        yin_yang_harmonious=True,
+    )
+    assert data["roles"] == {"first_mover": "主", "responder": "客"}
+    assert data["winner"] == "主"
+    assert data["loser"] == "客"
+    assert data["source_temporal_outcome"] == "先起者胜，后起者负"
+
+
+def test_j4m04_unfavorable_triad_does_not_import_other_books_reverse_winner():
+    data = zhuke_fa(
+        "陈兵原野",
+        three_doors_ready=False,
+        five_generals_released=False,
+        yin_yang_harmonious=False,
+    )
+    assert data["action_status"] == "hold_and_defend"
+    assert data["winner"] is None
+    assert data["loser"] is None
+    assert "不自动回写" in data["temporal_outcome_policy"]
