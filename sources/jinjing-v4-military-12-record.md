@@ -241,7 +241,7 @@ J4M-03 虽已 canonical complete，但 C8 当前没有独立“关法” layer�
 J4M-08 的“晁错曰”已与《汉书·爰盎晁错传》对勘，确认存在实质异文：车骑三/二不当一、矛鋋地所对兵种与比例（弓弩三不当一/长戟二不当一），以及《汉书》另有曲道剑楯段；训练与将领失误的比例亦不同。故《汉书》只作外部引文 witness，不静默校正《金镜》runtime。详细记录见 sources/c76-jinjing-v4-witness-collation-record.md。
 
 
-## C71–C73 / C76 后续复核汇总（2026-10-05）
+## C71–C73 / C78 后续复核汇总（2026-10-05）
 
 ### C71：J4M-04 先后胜负
 
@@ -269,7 +269,7 @@ J4M-08 的“晁错曰”已与《汉书·爰盎晁错传》对勘，确认存�
 
 JF4M 只作 source_record_only，不继承 J4M runtime；两书只能通过 parallel_jinjing_rule 对照，不互补字段。
 
-### C76：J4M-12 云气表去推补
+### C78：J4M-12 云气表去推补
 
 重新逐项对四库正文后发现旧 runtime 曾把“西方白云气在敌阵上，庚辛日弥佳”按四方对称性补成“大胜”，现已删除：
 
@@ -289,8 +289,7 @@ JF4M 只作 source_record_only，不继承 J4M runtime；两书只能通过 para
 - sources/c71-j4m04-first-mover-collation-record.md
 - sources/c72-j4m05-07-collation-record.md
 - sources/c73-jingyou-v4-j4m-collation-record.md
-- sources/c68-jingyou-v4-independent-profile-record.md
-- sources/c76-j4m12-cloud-table-audit-record.md
+- - sources/c78-j4m12-cloud-table-audit-record.md
 
 
 ## C75 J4M-11 观测事件语法收紧（2026-10-05）
