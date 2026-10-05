@@ -339,7 +339,7 @@
 11. `ritual-timing.json`：天子巡狩与推太乙当时法；
 12. `ten-essences.json`：十精 C52–C59 分层体系；
 13. `military-jinjing-v4.json`：《金镜》卷四 J4M-04..12 军事扩展术语；
-14. `military-jingyou-v4.json`：《景祐太乙福应经》卷四 JF4M-01..11 source-record 术语；
+14. `military-jingyou-v4.json`：《景祐太乙福应经》卷四 JF4M-01..11 source-specific 军事术语；
 15. `military-tongzong-v15-v17.json`：《统宗》卷十五/卷十七军事 rule-unit 术语。
 
 另外单列：
@@ -640,13 +640,17 @@ NCL-06604 明钞本继续作为 independent manuscript witness，不覆盖四库
 本轮在补齐 J4M-04..12 后，NCL reconciliation map 的 migration-only 候选已降为 0：其 8 个对账项均能指向 stable terminology entry；但旧 `terminology.json` 原始 bytes/schema 仍未恢复，所以该 manifest 仍不是旧 master store 的替代品。
 
 
-## 《景祐太乙福应经》卷四 JF4M source records
+## 《景祐太乙福应经》卷四 JF4M source-specific runtimes
 
 已建立：
 
 `terminology/military-jingyou-v4.json`
 
-JF4M-01..11 当前全部标记为 `source_record_only`：保留来源术名、规则摘要、关键异文和与 J4M 的 parallel mapping，但**没有独立 runtime**，因此严禁调用《金镜》函数冒充实现。
+运行模块：
+
+`src/kintaiyi/jingyou_fuying_v4_military.py`
+
+JF4M-01..11 现在 **11/11 全部有《福应经》自身 source-specific runtime**。实现不调用 J4M 平行函数；《金镜》只保留 crosswalk 身份，不承担福应经缺文补算。
 
 特别边界：
 
@@ -656,6 +660,14 @@ JF4M-01..11 当前全部标记为 `source_record_only`：保留来源术名、�
 - J4M-12 阵有风云气定胜负没有直接 JF4M 对应项。
 
 福应经与金镜的陈兵方向表、地内宫、风云飞鸟败方、大杀/大煞句等差异全部保留 source profile，不互补成一个“完整版”。
+
+当前仍保留三类文本 pending：
+
+- JF4M-02 的“大小将不相开”仍待扫描核字；runtime 只接受“第三条件是否满足”的显式布尔，不解释其技术义；
+- JF4M-07 的完整地形字表未锁定前，只执行五阵五行相制与调用方显式校勘的地形建议；
+- JF4M-10 当前只执行 ruleset 已锁定的迫击主客将、主人刑/客刑、翼阵、众鸟冲阵等句；太岁/太阴/月建及主客目更多组合继续待直接扫描定位。
+
+这些 pending 不影响其余已锁定结构的 runtime 身份，但也不会因为“已有 runtime”而被自动补齐。
 
 
 ## 《统宗》卷十五 / 卷十七军事 rule units
