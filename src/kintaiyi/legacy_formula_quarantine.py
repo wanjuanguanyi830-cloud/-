@@ -270,6 +270,51 @@ QUARANTINE: dict[str, dict[str, Any]] = {
         replacement_layer="wufu.position.source_profiles",
         source_module="wufu_source_profiles",
     ),
+    "kintaiyi.cycles.bigyo.jinjing_tongzong": _q(
+        "kintaiyi.cycles.bigyo.jinjing_tongzong",
+        category="mixed_source_legacy_profile",
+        reason=(
+            "旧兼容profile把金镜大游宫序与统宗+34宫盈差合成单一jinjing_tongzong。"
+            "2026-10-04恢复记录已明确旧config.bigyo只作实现参照；"
+            "不同来源必须拆开后再建立source-specific runtime。"
+        ),
+        replacement_rule_ids=(),
+        replacement_layer="dayou.source_specific_runtime_pending",
+        source_module="cycles",
+    ),
+    "config.bigyo_default": _q(
+        "config.bigyo_default",
+        category="legacy_api_defaults_to_mixed_source_profile",
+        reason=(
+            "config.bigyo无profile调用进入jinjing_tongzong混合兼容路径；"
+            "当前仅允许旧数值回归，不得作为大游统一真源。"
+        ),
+        replacement_rule_ids=(),
+        replacement_layer="dayou.source_specific_runtime_pending",
+        source_module="cycles",
+    ),
+    "kintaiyi.cycles.bigyo_tianmu.tongzong": _q(
+        "kintaiyi.cycles.bigyo_tianmu.tongzong",
+        category="deprecated_reference_formula",
+        reason=(
+            "2026-10-04大游天目记录已将旧%180/+214实现明确列为deprecated_reference；"
+            "正式恢复工作只确认金镜72→18路径及18步次序，完整历元接口仍待重接。"
+        ),
+        replacement_rule_ids=(),
+        replacement_layer="dayou_tianmu.source_specific_runtime_pending",
+        source_module="cycles",
+    ),
+    "config.bigyo_tianmu_default": _q(
+        "config.bigyo_tianmu_default",
+        category="legacy_api_defaults_to_deprecated_reference",
+        reason=(
+            "config.bigyo_tianmu默认进入tongzong +214旧兼容路径；"
+            "该路径已被2026-10-04恢复记录标为deprecated_reference。"
+        ),
+        replacement_rule_ids=(),
+        replacement_layer="dayou_tianmu.source_specific_runtime_pending",
+        source_module="cycles",
+    ),
 
     # 卷九/十等已明确不等价的旧实现。
     "guiyun.yinyang_jiu_e": _q(
