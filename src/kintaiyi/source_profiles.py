@@ -9,6 +9,10 @@ import copy
 from typing import Any
 
 from .jinjing_v4_military import J4M_RULESET, J4M_SOURCE_PROFILE
+from .jingyou_fuying_v4_military import (
+    RULESET as JF4M_RULESET,
+    SOURCE_PROFILE as JF4M_SOURCE_PROFILE,
+)
 
 SOURCE_PROFILE_VERSION = "taiyi-c17-source-profiles-v1"
 
@@ -148,10 +152,12 @@ def build_p0_source_variants(
 def build_weather_bird_source_variant(
     *,
     jinjing_result: dict[str, Any] | None = None,
+    jingyou_result: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    """保存 J4M-11 风云飞鸟外部观测结果。
+    """并列保存 J4M-11 / JF4M-10 外部风云飞鸟结果。
 
-    旧 pan.flybird_wl 仅按盘内飞鸟位置生成断语，不得作为本 profile 替代。
+    两个来源不合并；旧 pan.flybird_wl 仅按盘内飞鸟位置生成断语，
+    不得作为任一古籍 profile 替代。
     """
     profiles: dict[str, Any] = {}
     if jinjing_result is not None:
@@ -165,6 +171,18 @@ def build_weather_bird_source_variant(
             raise ValueError("jinjing_result必须来自J4M-11")
         profiles["jinjing_siku_volume4"] = copy.deepcopy(jinjing_result)
 
+    if jingyou_result is not None:
+        if not isinstance(jingyou_result, dict):
+            raise TypeError("jingyou_result须为dict或None")
+        if jingyou_result.get("source_profile") != JF4M_SOURCE_PROFILE:
+            raise ValueError("JF4M-10 source_profile mismatch")
+        if jingyou_result.get("ruleset") != JF4M_RULESET:
+            raise ValueError("JF4M-10 ruleset mismatch")
+        rule_id = jingyou_result.get("rule_id") or jingyou_result.get("source_rule_id")
+        if rule_id != "JF4M-10":
+            raise ValueError("jingyou_result必须来自JF4M-10")
+        profiles["jingyou_fuying_volume4"] = copy.deepcopy(jingyou_result)
+
     return {
         "schema_version": "1.0",
         "canonical": SOURCE_PROFILE_VERSION,
@@ -175,7 +193,7 @@ def build_weather_bird_source_variant(
         "observation_required": True,
         "legacy_flat_auto_promoted": False,
         "policy": (
-            "只接经J4M-11验证的外部风云飞鸟观测结果；"
-            "旧flybird_wl盘内推断不得自动升为source profile。"
+            "J4M-11与JF4M-10只并列保存，不互相覆盖；"
+            "旧flybird_wl盘内推断不得自动升为任一source profile。"
         ),
     }
