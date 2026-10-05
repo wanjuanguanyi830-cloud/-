@@ -14,7 +14,7 @@ CASES = json.loads(
 @pytest.mark.parametrize("case", CASES["cases"], ids=lambda c: c["case_id"])
 def test_c114_eight_divinations_historical_cases(case):
     data = getattr(d8, case["method"])(*case["args"])
-    assert data["id"] == case["rule_id"]
+    assert data["rule_id"] == case["rule_id"]
 
     for key, expected in case["expected"].items():
         assert data[key] == expected
