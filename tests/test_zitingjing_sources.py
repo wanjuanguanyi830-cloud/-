@@ -16,7 +16,7 @@ def test_full_primary_source_title_is_taiyi_zitingjing():
     assert PRIMARY_SOURCE_TITLE == "太乙紫庭经"
 
 
-def test_six_p1_rules_keep_project_primary_target_but_record_evidence_level():
+def test_six_legacy_source_slots_record_current_evidence_role():
     assert set(RULES) == {
         "taiyi_nine_stars",
         "wenchang_nine_stars",
@@ -32,8 +32,10 @@ def test_six_p1_rules_keep_project_primary_target_but_record_evidence_level():
     assert RULES["wenchang_changes"]["primary_evidence_level"] == "direct_text_verified"
     assert RULES["shiji_changes"]["primary_evidence_level"] == "direct_text_verified"
     assert RULES["wenchang_nine_stars"]["primary_evidence_level"] == "prior_scan_confirmed_page_record_pending"
-    assert RULES["three_banners"]["primary_evidence_level"] == "project_attribution_unverified"
-    assert RULES["nine_palace_nobles"]["primary_evidence_level"] == "project_attribution_unverified"
+    assert RULES["three_banners"]["primary_evidence_level"] == "ziting_not_attested_cross_source_only"
+    assert RULES["nine_palace_nobles"]["primary_evidence_level"] == "ziting_not_attested_cross_source_only"
+    assert RULES["three_banners"]["known_source_rule_id"] == "C126-TONGZONG-THREE-BANNERS"
+    assert RULES["nine_palace_nobles"]["known_source_rule_id"] == "C127-TONGZONG-NINE-PALACE-NOBLES"
 
 
 def test_volume6_items_keep_tongzong_as_collation_only():
@@ -56,16 +58,21 @@ def test_volume6_items_keep_tongzong_as_collation_only():
         assert data["cross_source_merge"] is False
 
 
-def test_volume10_items_keep_tongzong_as_collation_only_and_primary_unverified():
-    for key in ("three_banners", "nine_palace_nobles"):
+def test_volume10_items_are_legacy_recovery_pointers_with_resolved_tongzong_rules():
+    expected = {
+        "three_banners": "C126-TONGZONG-THREE-BANNERS",
+        "nine_palace_nobles": "C127-TONGZONG-NINE-PALACE-NOBLES",
+    }
+    for key, rule_id in expected.items():
         data = build_zitingjing_rule_sources(
             key,
-            collation_results={"tongzong_volume10": {"legacy": "参校"}},
+            collation_results={"tongzong_volume10": {"legacy": "兼容迁移值"}},
         )
         assert data["primary_ready"] is False
         assert data["primary_result_allowed"] is False
-        assert data["primary_evidence_level"] == "project_attribution_unverified"
-        assert data["status"] == "primary_attribution_unverified"
+        assert data["primary_evidence_level"] == "ziting_not_attested_cross_source_only"
+        assert data["status"] == "legacy_cross_source_recovery_pointer"
+        assert data["known_source_rule_id"] == rule_id
         assert data["canonical_selected"] is None
         assert data["collation_sources"] == ["tongzong_volume10"]
 
