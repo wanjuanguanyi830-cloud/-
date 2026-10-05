@@ -53,8 +53,8 @@ def test_g6_full_72ju_same_palace_boundaries():
                     interval_cases.append((dun, row["ju"], side, expected))
                     assert expected == 1
 
-    # 经本轮把阴43/44始击与客算一起回原表校正后，稳定计数如下。
-    assert len(interval_cases) == 21
+    # 阴43/44按G5公式与《武经总要》《太乙秘书》校回大神/大武后。
+    assert len(interval_cases) == 22
     assert len(positive_cases) == 20
 
 
@@ -80,15 +80,17 @@ def test_g6_fixture_preserves_source_corrections_and_one_open_witness_conflict()
         ("阳", 44, "主", 33),
         ("阴", 10, "客", 34),
         ("阴", 39, "主", 37),
-        ("阴", 43, "客", 38),
-        ("阴", 44, "客", 31),
         ("阴", 61, "客", 12),
     }
 
-    conflicts = [
+    reviewed = [
         (dun, row["ju"], row["witness_status"])
         for dun, rows in (("阳", data["yang"]), ("阴", data["yin"]))
         for row in rows
         if row["witness_status"] != "resolved"
     ]
-    assert conflicts == [("阴", 37, "guest_eye_witness_conflict")]
+    assert reviewed == [
+        ("阴", 37, "parallel_witnesses_support_regression_reading"),
+        ("阴", 43, "resolved_by_parallel_witnesses"),
+        ("阴", 44, "resolved_by_parallel_witnesses"),
+    ]
