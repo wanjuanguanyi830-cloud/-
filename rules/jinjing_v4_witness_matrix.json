@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "audit_id": "C109-JINJING-V4-WITNESS-AGREEMENT-PATTERNS",
   "date": "2026-10-05",
   "scope": "太乙金镜式经卷四军事十二法",
@@ -162,13 +162,78 @@
           "8": "正北",
           "9": "东南"
         },
-        "pending": [
+        "pending": [],
+        "status": "full_table_direct_visual_verified_C110",
+        "historical_pending_c108": [
           "战利方向逐项",
           "背地逐项",
           "阵形逐项",
           "旗色逐项"
         ],
-        "status": "number_direction_skeleton_direct_visual_verified_details_pending"
+        "full_table": {
+          "1": {
+            "出军": "西北",
+            "战利": "东南",
+            "背地": "深涧隐匿之地",
+            "阵": "曲阵",
+            "旗": "黑旗"
+          },
+          "2": {
+            "出军": "正南",
+            "战利": null,
+            "背地": "土山曼行邪道之地",
+            "阵": "圆阵",
+            "旗": "黄旗"
+          },
+          "3": {
+            "出军": "东北",
+            "战利": "南",
+            "背地": "山邑火光耀耀之地",
+            "阵": "直阵",
+            "旗": "青旗"
+          },
+          "4": {
+            "出军": "正东",
+            "战利": "正西",
+            "背地": "山林穷道曲堤之地",
+            "阵": "锐阵",
+            "旗": "赤旗"
+          },
+          "6": {
+            "出军": "正西",
+            "战利": "正东",
+            "背地": "水泽沟堑丘墟之地",
+            "阵": "方阵",
+            "旗": "白旗"
+          },
+          "7": {
+            "出军": "西南",
+            "战利": "东北",
+            "背地": "川泽丘阜积石之地",
+            "阵": "方阵",
+            "旗": "白旗"
+          },
+          "8": {
+            "出军": "正北",
+            "战利": "正南",
+            "背地": "积土负城邑山林之地",
+            "阵": "曲阵",
+            "旗": "黑旗"
+          },
+          "9": {
+            "出军": "东南",
+            "战利": "西北",
+            "背地": "高山丘陵积土之地",
+            "阵": "锐阵",
+            "旗": "赤旗"
+          }
+        },
+        "scribal_features": [
+          "算三正文“直戰”旁校“陣”，规范读作直阵。",
+          "算四正文“正南”旁校小字“東”，规范字段读作正东。",
+          "算三“耀”后见重文符，规范转写为耀耀。"
+        ],
+        "closing_text": "餘則太乙兵起於鄉，陣隨於地，觀方制變，皆算掩神，此用兵之神道也。"
       },
       "jingyou": {
         "parallel_rule": "JF4M-06",
@@ -198,7 +263,7 @@
         "numeric",
         "table_structure"
       ],
-      "hard_boundary": "三见证不得互补缺数；NCL未核细项不得从其他见证复制。"
+      "hard_boundary": "C110 已直接核完 NCL 全表；NCL 与四库/《福应经》仍分见证保存，不互补、不覆盖。"
     },
     {
       "rule_id": "J4M-07",
@@ -445,6 +510,15 @@
         "不把NCL与《福应经》合并成一个source profile。",
         "仅记录当前可验证的文本一致现象。"
       ]
+    }
+  },
+  "last_update": "C110",
+  "updates": {
+    "C110": {
+      "witness": "NCL-06604",
+      "rule_id": "J4M-06",
+      "evidence": "user-supplied p.59-p.60 page images directly visually checked",
+      "effect": "resolved C108 pending fields for battle direction, terrain, formation and flag"
     }
   }
 }
