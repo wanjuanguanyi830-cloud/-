@@ -120,3 +120,27 @@ def test_c81_unblock_contract_distinguishes_store_recovery_from_page_recovery():
     assert any("one-time adapter" in line for line in data["policy"])
     assert any("C81 is an availability audit" in line for line in data["policy"])
     assert any("parser_allowed remains false" in line for line in data["policy"])
+
+
+def test_c81_public_web_recovery_confirms_resource_but_not_direct_page():
+    data = _status()
+    public = data["external_recovery_checks"]["public_web_recovery"]
+
+    assert public["checked_on"] == "2026-10-05"
+    share = public["yanyilou_share_page"]
+    assert share["status"] == (
+        "public_share_page_reachable_external_storage_not_mounted"
+    )
+    assert share["reported_extent"] == "181单页灰度，328M"
+    assert share["direct_manuscript_page_recovered"] is False
+
+    catalogs = public["published_edition_catalogs"]
+    assert len(catalogs) == 2
+    assert {
+        item["appendix_title_attested"] for item in catalogs
+    } == {"附太乙文昌九星值宮術"}
+
+    search = public["open_text_search"]
+    assert search["direct_wenchang_appendix_text_found"] is False
+    assert search["direct_yanyilou_page_found"] is False
+    assert "不可回填紫庭manuscript_form/source_page" in search["note"]
