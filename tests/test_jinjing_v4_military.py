@@ -55,6 +55,32 @@ def test_j4m07_terrain_formations_keep_formation_and_five_element_together():
         assert (data["宜阵"], data["五行"]) == expected
         assert data["direction_relation"] == {"顺其向": "吉", "反其向": "凶"}
 
+    control = zhizhen_suidi(
+        "后高前下",
+        host_formation="直阵",
+        guest_formation="方阵",
+    )
+    assert control["formation_contest"]["host_element"] == "木"
+    assert control["formation_contest"]["guest_element"] == "金"
+    assert control["formation_contest"]["winner"] == "客"
+    assert control["formation_contest"]["loser"] == "主"
+
+    reverse = zhizhen_suidi(
+        "地高而平",
+        host_formation="锐阵",
+        guest_formation="方阵",
+    )
+    assert reverse["formation_contest"]["winner"] == "主"
+    assert reverse["formation_contest"]["relation"] == "主阵五行克客阵五行"
+
+    no_control = zhizhen_suidi(
+        "左右势高",
+        host_formation="直阵",
+        guest_formation="锐阵",
+    )
+    assert no_control["formation_contest"]["winner"] is None
+    assert no_control["formation_contest"]["relation"] == "本条无五行相克关系"
+
     unknown = zhizhen_suidi("未知地形")
     assert unknown["computable"] is False
     assert unknown["status"] == "not_computable"
