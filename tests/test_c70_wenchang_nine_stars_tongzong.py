@@ -138,12 +138,13 @@ def test_c70_legacy_function_is_not_canonical_equivalent():
     assert any("gong变量" in item for item in LEGACY_AUDIT["problems"])
 
 
-def test_c70_catalog_keeps_zitingjing_primary_unselected():
+def test_c70_catalog_selects_ngj_profile_and_keeps_modern_appendix_unmerged():
     data = c70_catalog()
     assert data["source_profile"] == "tongzong_volume6_ngj_wenchang_nine_stars"
     assert data["cross_source_canonical_selected"] == (
         "tongzong_volume6_ngj_wenchang_nine_stars"
     )
-    assert data["source_witness"]["variants_not_merged"]["zitingjing_appendix"][
-        "direct_text_available"
-    ] is False
+    appendix = data["source_witness"]["variants_not_merged"]["modern_edition_appendix"]
+    assert appendix["status"] == "modern_edition_catalog_attested_provenance_unresolved"
+    assert appendix["yanyilou_manuscript_toc_attested"] is False
+    assert appendix["direct_manuscript_text_available"] is False
