@@ -23,6 +23,16 @@ GOD_ALIASES = {
 SIXTEEN_GOD_WX = dict(zip(GODS, ELEMENTS))
 PALACE_POINT = {1: "乾", 2: "午", 3: "艮", 4: "卯", 6: "酉", 7: "坤", 8: "子", 9: "巽"}
 PALACE_WX = {1: "金", 2: "火", 3: "土", 4: "木", 5: "土", 6: "金", 7: "土", 8: "水", 9: "木"}
+PALACE_YINYANG = {1: "阴", 2: "阴", 3: "阳", 4: "阳", 5: None, 6: "阴", 7: "阴", 8: "阳", 9: "阳"}
+INTRINSIC_WX = {
+    "太乙": "木",
+    "始击": "火",
+    "文昌": "土",
+    "主大将": "金",
+    "主参将": "水",
+    "客大将": "水",
+    "客参将": "木",
+}
 YANG_PALACES = frozenset((8, 3, 4, 9))
 YIN_PALACES = frozenset((2, 7, 6, 1))
 GENERATES = {"木": "火", "火": "土", "土": "金", "金": "水", "水": "木"}
@@ -56,6 +66,25 @@ def integer(value, minimum=0, maximum=None):
 
 def palace_element(palace):
     return PALACE_WX[integer(palace, 1, 9)]
+
+
+def nine_palace_detail(palace):
+    """太乙九宫稳定事实；中五无十六辰代表点。"""
+    palace = integer(palace, 1, 9)
+    return {
+        "palace_id": palace,
+        "trigram": PALACE_TRIGRAM[palace],
+        "representative_sector": PALACE_POINT.get(palace),
+        "element": PALACE_WX[palace],
+        "yin_yang": PALACE_YINYANG[palace],
+    }
+
+
+def intrinsic_element(name):
+    """星神/主客将固有五行；不得替代 Mode B 所在宫五行。"""
+    if name not in INTRINSIC_WX:
+        raise ValueError("未知固有五行对象")
+    return INTRINSIC_WX[name]
 
 
 def position(anchor):
