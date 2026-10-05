@@ -421,7 +421,7 @@
         "body_title": "推太乙在天外地内法",
         "opening_text": "古法曰太乙在一八三四宫者为地内宫助主人",
         "previous_rule_closing": "此之要也",
-        "boundary_status": "J4M-08_to_J4M-09_direct_visual_verified_C119",
+        "boundary_status": "J4M-08_to_J4M-09_direct_visual_verified_C120",
         "palace_group_status": "direct_visual_verified_C86"
       },
       "jingyou": {
@@ -442,7 +442,7 @@
       "difference_class": [
         "palace_group"
       ],
-      "hard_boundary": "C119只补页内边界与首句；完整宫组仍沿用C86直接图像校勘，不重复推导，不以NCL的1宫补四库canonical。"
+      "hard_boundary": "C120只补页内边界与首句；完整宫组仍沿用C86直接图像校勘，不重复推导，不以NCL的1宫补四库canonical。"
     },
     {
       "rule_id": "J4M-10",
@@ -627,7 +627,7 @@
       ]
     }
   },
-  "last_update": "C119",
+  "last_update": "C120",
   "updates": {
     "C110": {
       "witness": "NCL-06604",
@@ -653,7 +653,7 @@
       "evidence": "user-supplied contiguous page images directly visually checked",
       "effect": "resolved C112 middle-text pending and recorded mixed witness pattern"
     },
-    "C119": {
+    "C120": {
       "witness": "NCL-06604",
       "rule_id": "J4M-09",
       "evidence": "user-supplied page image directly visually checked",
