@@ -14,6 +14,7 @@ from kintaiyi.api import (
     operations_for_rule,
     registry_snapshot,
     registry_versions,
+    repository_status,
     resolve_runtime,
     rule_runtime_candidates,
 )
@@ -230,3 +231,17 @@ def test_registry_versions_are_explicit_and_consistent():
 
     capability_data = capabilities()
     assert capability_data["api_version"] == versions["public_api_version"]
+
+
+def test_repository_status_is_derived_from_live_indexes():
+    status = repository_status()
+    assert status["public_api_version"] == "1.0"
+    assert status["stable_catalog_count"] == len(list_catalogs())
+    assert status["operation_count"] == len(list_operations())
+    assert status["stable_term_entry_count"] > 0
+    assert status["legacy_terminology_json_migrated"] is False
+    assert isinstance(status["crosswalk_audit"], dict)
+    assert status["crosswalk_audit"]["status"] == "clean_at_snapshot"
+    assert set(status["operation_domains"]) == {
+        item["domain"] for item in list_operations()
+    }
