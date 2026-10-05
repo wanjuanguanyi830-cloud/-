@@ -12,7 +12,7 @@
   },
   "audit_snapshot": {
     "stable_catalog_count": 12,
-    "entry_count": 101,
+    "entry_count": 102,
     "exact_cross_entry_name_collisions": 0,
     "status": "clean_at_snapshot"
   },
@@ -694,6 +694,42 @@
       "forbidden_merge": [
         "C49只比较太游36年/乾策与小游24年/坤策的职责差异。",
         "同卦或异卦本身不生成吉凶，不得把C41/C47合并成单一周期。"
+      ]
+    },
+    {
+      "id": "CW-C50-LISHU-EVIDENCE",
+      "bundle": {
+        "catalog": "terminology/volume9-10.json",
+        "key": "taiyi_lishu_evidence",
+        "rule_id": "C50-LISHU-EVIDENCE"
+      },
+      "dependencies": [
+        {
+          "catalog": "terminology/volume9-10.json",
+          "key": "dayou_heavy_hexagram",
+          "rule_id": "C41-DY-HEX"
+        },
+        {
+          "catalog": "terminology/volume9-10.json",
+          "key": "ehui_limit",
+          "rule_id": "C43-V9-EHUI"
+        },
+        {
+          "catalog": "terminology/volume9-10.json",
+          "key": "xiaoyou_hexagram",
+          "rule_id": "C47-XY-HEX"
+        },
+        {
+          "catalog": "terminology/ritual-timing.json",
+          "key": "coronation_cloud_omens",
+          "rule_id": "C51-CLOUD-OMEN"
+        }
+      ],
+      "relation": "evidence_bundle_without_single_formula",
+      "forbidden_merge": [
+        "C50并列参详C41/C43/C47及其他显式证据，但不把它们静默压成唯一寿数公式。",
+        "C42历数长短和C43厄会各自保留独立source rule，不因被C50消费而改写。",
+        "C51登位云气是C50末段观察解释层，不反向成为C50唯一结论。"
       ]
     }
   ]
