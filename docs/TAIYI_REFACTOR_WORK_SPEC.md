@@ -3439,7 +3439,9 @@ C66 不自动应用三基与五福 / 三神等同宫断语。
 
 C15 三基 action：
 
-`use_c66_three_bases_cycle_runtime`
+`use_c66_c74_three_bases_layers`
+
+其中 C66 负责位置，C74 负责三基 / 五福显式同宫关系；禁止由 C66 位置自动制造关系断语。
 
 完整验证：
 
@@ -3488,10 +3490,15 @@ C67 不解释：
 - 五福吉算受益对象；
 - 五福同宫断语。
 
+后续已分层：
+
+- C68：五福吉算 1..45 显式数表；
+- C74：五福与君基 / 臣基 / 民基的显式同宫关系。
+
 C15：
 
-- `明五福太乙所主術` → `use_c67_wufu_tongzong_profile`
-- `明五福吉算所主術` 继续独立待实现。
+- `明五福太乙所主術` → `use_c67_c74_wufu_layers`
+- `明五福吉算所主術` → `use_c68_wufu_auspicious_number_runtime`。
 
 完整验证：
 
@@ -3502,28 +3509,51 @@ C15：
 - `sources/c67-wufu-source-profiles-record.md`
 - `tests/reports/c67_validation.md`
 
-## 9.61 C68 五福吉算数列（来源阻塞，未实施）
+## 9.61 C68 五福吉算 1..45 显式数表（已实施）
 
-直接正文已确认：
+唯一 runtime：
 
-- 225年一周；
-- 45年一宫；
-- 吉算余数分别利君主、公侯、后妃、太子、民、师帅、上中下将、士卒。
+`src/kintaiyi/wufu_auspicious_numbers.py`
 
-但当前在线OCR在关键数列处分词粘连，例如：
+rule id：
 
-- 2 / 12 被连成“二十二”；
-- 3 / 13 被连成“三十三”。
+`C68-WUFU-AUSPICIOUS-NUMBER`
 
-大体十组模式可见，但不满足“每项逐数核来源”的标准。
+NGJ / CADAL 两个统宗直接见证互校后，固定十组：
 
-当前大型影印PDF无法通过截图接口解析相应页，因此固定：
+- 君王：1 / 11 / 21 / 31 / 41；
+- 公侯：2 / 12 / 22 / 32 / 42；
+- 后妃：3 / 13 / 23 / 33 / 43；
+- 太子：4 / 14 / 24 / 34 / 44；
+- 民：5 / 15 / 25 / 35 / 45；
+- 师帅：6 / 16 / 26 / 36；
+- 上将军：7 / 17 / 27 / 37；
+- 中将军：8 / 18 / 28 / 38；
+- 下将军：9 / 19 / 29 / 39；
+- 士卒：10 / 20 / 30 / 40。
 
-- 不按个位规律自动补表；
-- 不把OCR推定序列写入 canonical；
-- `明五福吉算所主術` 继续 `source_verified_split_runtime_next`。
+45 个整数恰好完整覆盖 1..45 且无重复。
 
-待取得可核页图或更干净独立见证后再实施。
+关键边界：
+
+- 不写成 `remainder % 10`；
+- 46..50 不按个位规律补造；
+- 不从积年自动调用 C67；
+- 只消费显式 `remainder=1..45`；
+- 后期“250年一周”保持 source variant，不覆盖统宗225年主见证。
+
+C15：
+
+`明五福吉算所主術` → `use_c68_wufu_auspicious_number_runtime`
+
+完整验证基线：
+
+`1391 passed / 0 failed`
+
+详细记录：
+
+- `sources/c68-wufu-auspicious-number-record.md`
+- `tests/reports/c68_validation.md`
 
 ## 9.62 C69 《金镜》卷一“推太乙当时法”核心表（已实施）
 
@@ -3721,15 +3751,181 @@ J4M-04 原《金镜》“先胜后负”经：
 - `sources/c71-j4m04-first-mover-collation-record.md`
 - `changelog/2026-10-05-c71-j4m04-first-mover-collation.md`
 
-## 9.65 后续 C72+
+## 9.65 C72 J4M-05～07 出师 / 陈兵 / 制阵复核（已实施）
+
+C72 继续保持《金镜》source-specific：
+
+- J4M-05：`出其门` 与 `用其二` 分开；12/22/32 不与开休生三吉门混成同一条件；
+- J4M-06：《金镜》1/2/4/5/6/9 与《福应经》《统宗》近名方向表分 profile，不互补缺数；
+- J4M-07：补齐“主客置阵后以五行相克取胜负”的正文层。
+
+记录：
+
+- `sources/c72-j4m05-07-collation-record.md`
+- `changelog/2026-10-05-c72-j4m05-07-collation.md`
+
+## 9.66 C73 《景祐太乙福应经》卷四平行校勘（已实施）
+
+C73 将《福应经》与 J4M-05～11 逐条对读。
+
+固定：
+
+- 同义平行文本可解释省略句；
+- 数表、宫组、胜负方向实质不同则保留 source variant；
+- 不因《福应经》更完整就补写《金镜》；
+- JF4M 独立编号空间，不能复用 J4M runtime 冒充。
+
+记录：
+
+- `sources/c73-jingyou-v4-j4m-collation-record.md`
+
+## 9.67 C74 三基 / 五福同宫关系显式层（已实施）
+
+唯一 runtime：
+
+`src/kintaiyi/three_bases_wufu_conjunctions.py`
+
+只处理：
+
+- 君基；
+- 臣基；
+- 民基；
+- 五福；
+
+四者之间六个 pair。
+
+固定：
+
+- `same_palace` 必须显式输入；
+- 不读取 C66 / C67 自动判断同宫；
+- 五福“同宫在初交之始”须另给 `initial_conjunction`；
+- 三基条与五福条的附加细节分层保存；
+- “五福与君基相冲”不是同宫规则，不在 C74 应用。
+
+C15：
+
+- 三基 → `use_c66_c74_three_bases_layers`
+- 五福 → `use_c67_c74_wufu_layers`
+
+完整验证已进入：
+
+`1422 passed / 0 failed`
+
+详细记录：
+
+- `sources/c74-three-bases-wufu-conjunctions-record.md`
+- `tests/reports/c74_validation.md`
+
+## 9.68 C75 J4M-11 风云飞鸟事件语法审计（已实施）
+
+收紧外部观测输入：
+
+- 每条事件必须显式声明 phenomenon 为风 / 云 / 飞鸟 / 风云 / 风云飞鸟；
+- 不允许缺 phenomenon 只凭“扶 / 迫击 / 冲突”等动作生成断语；
+- “迫击大将宫”只接受原文动作“迫击”，不把“冲击”自动当同义词；
+- 单独“众来噪阵”继续只记观测，不补独立胜负；
+- 《福应经》更展开且冲突的断法继续归 JF4M，不回写 J4M。
+
+记录：
+
+- `sources/c75-j4m11-event-schema-audit-record.md`
+
+## 9.69 C76 《金镜》卷四底本见证 / 引文异文（已实施）
+
+锁定：
+
+- CADAL06056494 四库本卷一～卷四为 J4M canonical scan witness；
+- NCL-06604 明钞本为独立校字 witness；
+- 四库目录与正文标题 / 顺序存在差异，J4M 编号按正文顺序；
+- CText “卷三”标法只作卷次 variant；
+- J4M-08 晁错引文与《汉书》有实质异文，不用《汉书》静默改写《金镜》。
+
+具体数字扫描页随后由 C79 直接核定。
+
+记录：
+
+- `sources/c76-jinjing-v4-witness-collation-record.md`
+
+## 9.70 C77 《景祐太乙福应经》卷四独立 profile（已实施）
+
+建立独立 ruleset：
+
+`jingyou-fuying-v4-military-11`
+
+source profile：
+
+`jingyou_fuying_volume4`
+
+编号：
+
+`JF4M-01..JF4M-11`
+
+当前统一：
+
+`implementation_status=source_record_only`
+
+不得借用 J4M runtime 冒充 JF4M executable profile。
+
+记录：
+
+- `sources/c77-jingyou-v4-independent-profile-record.md`
+
+## 9.71 C78 J4M-12 云气表去对称推补（已实施）
+
+关键修正：
+
+- 西方白云正文只明“庚辛日弥佳”，基础胜负保持 null；
+- 删除旧“按四方五行对称补成大胜”；
+- `cloud_bearer` 与 `verdict_subject` 分栏；
+- 北方红云原文明“客胜”，即使云在我阵也不机械改写成“我胜”；
+- 未列颜色继续未定义。
+
+记录：
+
+- `sources/c78-j4m12-cloud-table-audit-record.md`
+
+## 9.72 C79 J4M CADAL 数字扫描定位 / J4M-08 字形校勘（已实施）
+
+直接核 CADAL06056494 图像：
+
+- J4M-01：p.128–129；
+- J4M-02：p.129–130；
+- J4M-03：p.130–131；
+- J4M-04：p.131–132；
+- J4M-05：p.132；
+- J4M-06：p.132–134；
+- J4M-07：p.134–135；
+- J4M-08：p.135–137；
+- J4M-09：p.137–138；
+- J4M-10：p.138–139；
+- J4M-11：p.139–140；
+- J4M-12：p.140–143。
+
+这些是数字扫描 sequence，不冒充原书叶码。
+
+J4M-08 p.136 直接确认：
+
+`此矛鋋之地也，弓弩三不当一`
+
+因此旧“矛锤”纠正为“矛鋋”；这是扫描核字，不是借《汉书》反校。
+
+记录：
+
+- `sources/c79-j4m-cadal-scan-locators-record.md`
+
+当前已确认整库基线：
+
+`1422 passed / 0 failed`
+
+## 9.73 后续 C80+
 
 下一优先级：
 
-1. 继续寻找 C68 五福吉算的干净独立见证 / 可核页图，逐数核定后再实现；
-2. 三基 / 五福同宫断语按显式关系层继续拆，不由位置自动制造；
-3. 恢复旧 `terminology.json` 并按 C40 对齐紫庭明钞本；
-4. 补 C69 “日度加时位”的古法上游依赖；
-5. 紫庭文昌九星附篇正文继续追索，但不得用 C70 反填 primary。
+1. 恢复旧 `terminology.json` 并按 C40 对齐紫庭明钞本；未找回真实旧 schema 前不写猜测 parser；
+2. 继续追索紫庭文昌九星附篇正文，C70 不得反填紫庭 primary；
+3. 补 C69 “二至以后日度所在 + 加时位/时支”的古法上游依赖；
+4. 继续拆三基 / 五福与天乙、地乙、直符、四神、大小游的关系层，仍须显式关系证据；
+5. NCL-06604 明钞本只在实际图像核验后升级 glyph / locator 状态。
 
 ## 10. 验收
 
