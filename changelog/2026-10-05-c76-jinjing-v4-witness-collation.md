@@ -13,7 +13,7 @@
 
 新增：
 
-- sources/c64-jinjing-v4-witness-collation-record.md
+- sources/c76-jinjing-v4-witness-collation-record.md
 
 更新：
 
@@ -21,3 +21,13 @@
 - src/kintaiyi/jinjing_v4_military.py
 - tests/test_jinjing_v4_military.py
 - tests/test_jinjing_v4_military_record.py
+
+
+## C79 后续状态
+
+C79 已直接核 CADAL06056494 图像页并 supersede C76 的两个 provisional 项：
+
+- 十二法逐条数字扫描 locator 已完成（p.128-p.143）；
+- J4M-08 旧转录“矛锤”已按 p.136 纠正为“矛鋋”。
+
+C76 的来源边界原则不变；仅上述 locator 状态与字形读法被后续影印核验更新。
