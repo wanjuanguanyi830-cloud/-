@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "index_id": "taiyi-terminology-repository-index-v1",
+  "status": "repository_index_not_legacy_master_store",
+  "legacy_terminology_json_migrated": false,
+  "policy": [
+    "本索引统一当前GitHub仓库的稳定术语入口，但不冒充尚未恢复的旧本地terminology.json。",
+    "stable_catalogs用于当前规则/术语消费；migration_assets只用于历史旧库恢复和来源对账。",
+    "supporting_assets保存坐标、来源字形等辅助数据，不自动升级为独立古法canonical规则。",
+    "同名术跨来源时以catalog内部source profile边界为准，不因进入总索引而合并。"
+  ],
+  "stable_catalogs": [
+    {
+      "path": "terminology/common-core.json",
+      "catalog_id": "taiyi-common-core-terminology-v1",
+      "scope": "canonical_common_core",
+      "contains": ["太乙九宫", "十六辰", "十六神", "吕申加位", "大神", "五态", "十二长生", "固有五行/所在宫五行"]
+    },
+    {
+      "path": "terminology/t7-seven-methods.json",
+      "catalog_id": "t7-seven-methods-terminology-v1",
+      "scope": "canonical_seven_methods",
+      "contains": ["T7-01..07 七术"]
+    },
+    {
+      "path": "terminology/d8-eight-divinations.json",
+      "catalog_id": "d8-eight-divinations-terminology-v1",
+      "scope": "canonical_eight_divinations",
+      "contains": ["D8-01..08 八占", "三才", "五音", "孤单", "阴阳厄会"]
+    },
+    {
+      "path": "terminology/patterns.json",
+      "catalog_id": "taiyi-pattern-terminology-v1",
+      "scope": "source_sensitive_patterns",
+      "contains": ["金镜格局术语", "统宗卷四并列profile"]
+    },
+    {
+      "path": "terminology/military-p0.json",
+      "catalog_id": "taiyi-military-p0-terminology-v1",
+      "scope": "source_sensitive_military_p0",
+      "contains": ["三门", "五将", "主客相关法", "CORE-WUJIANG-READY边界"]
+    },
+    {
+      "path": "terminology/cycles.json",
+      "catalog_id": "taiyi-cycle-terminology-v1",
+      "scope": "canonical_and_source_specific_cycles",
+      "contains": ["三基", "五福", "大游", "大游天目", "小游", "四太乙", "阳九", "百六", "太游行限"]
+    }
+  ],
+  "migration_assets": [
+    {
+      "path": "terminology/zitingjing-migration-map.json",
+      "asset_id": "zitingjing-terminology-migration-v1",
+      "purpose": "恢复旧本地术语库中的紫庭相关term id、原字形、页码、定义、notes与aliases",
+      "canonical_catalog": false
+    },
+    {
+      "path": "terminology/ncl06604-legacy-reconciliation-map.json",
+      "asset_id": "ncl06604-legacy-reconciliation-map",
+      "purpose": "旧NCL-06604术语记录与当前页级影像复核结果去重/对账",
+      "canonical_catalog": false
+    }
+  ],
+  "supporting_assets": [
+    {
+      "path": "terminology/jinjing-v4-aliases.json",
+      "asset_id": "jinjing-v4-source-form-aliases",
+      "purpose": "保存金镜卷四来源字形与canonical词形映射，如太蔟→太簇"
+    },
+    {
+      "path": "terminology/wufu_domains.json",
+      "asset_id": "recovered-wufu-five-domains",
+      "purpose": "保存五福五域坐标恢复数据，供显式关系层引用；不自动制造同域断语"
+    }
+  ],
+  "next_merge_rule": {
+    "when_legacy_store_returns": [
+      "先按preferred term / aliases命中stable_catalogs",
+      "再用旧term id、manuscript_form、source_page、source_section对账migration_assets",
+      "冲突保留并列witness/variant，不覆盖当前rule_id/source profile",
+      "未知旧词条保持unmapped，不猜归属"
+    ],
+    "master_store_creation_policy": "在旧terminology.json真实schema恢复前，不创建伪造的全量master terminology store。"
+  }
+}
