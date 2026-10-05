@@ -20,7 +20,13 @@
     "jingyou_fuying_volume4": {
       "source": "《景祐太乙福应经》卷四",
       "ruleset": "jingyou-fuying-v4-military-11",
-      "status": "source_record_only"
+      "status": "implemented_source_specific",
+      "runtime_catalog": "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog",
+      "pending_textual_uncertainty": [
+        "JF4M-02",
+        "JF4M-07",
+        "JF4M-10"
+      ]
     },
     "tongzong_volume5": {
       "source": "《太乙统宗宝鉴》卷五",
