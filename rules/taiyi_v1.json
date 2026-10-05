@@ -517,6 +517,25 @@
         "canonical": "C124只代表《太乙统宗宝鉴》卷六太乙九星动态source profile：900年大周、90年小周、10年一星，命起天蓬顺九星；1121积年原例应得天禽直符初入一年。给定年干时按六干星宫锚点安当前直符并顺排九星。不得反填《紫庭经》静态九宫primary，也不得与文昌九星C70混并。",
         "rule_id": "C124-TONGZONG-TAIYI-NINE-STARS",
         "runtime": "kintaiyi.taiyi_nine_stars_tongzong.taiyi_nine_stars_tongzong"
+      },
+      {
+        "id": "R-JF4M-SOURCE-RECORDS",
+        "canonical": "《景祐太乙福应经》卷四 JF4M-01..11 作为独立 source-record profile 保存。当前没有独立runtime，不得用《金镜》J4M平行函数冒充实现。JF4M-10平行J4M-11风云飞鸟，JF4M-11平行J4M-10奇伏；J4M-12阵有风云气定胜负没有直接JF4M对应项。",
+        "rule_ids": [
+          "JF4M-01",
+          "JF4M-02",
+          "JF4M-03",
+          "JF4M-04",
+          "JF4M-05",
+          "JF4M-06",
+          "JF4M-07",
+          "JF4M-08",
+          "JF4M-09",
+          "JF4M-10",
+          "JF4M-11"
+        ],
+        "catalog": "terminology/military-jingyou-v4.json",
+        "runtime": null
       }
     ]
   },
