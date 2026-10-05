@@ -543,3 +543,27 @@ J4M-03 仍保留 source-specific alias metadata，用于记录四库 p.130 的�
 J4M-06 的 NCL 战利方向、背地、阵形、旗色仍明确标为 pending。即使 NCL 数值/出军方向与《福应经》一致，也禁止复制后者细项。
 
 详细见：sources/c108-jinjing-v4-witness-matrix-record.md。
+
+
+## C109：NCL 明钞本与《景祐太乙福应经》一致读法簇（2026-10-05）
+
+C108 三见证矩阵进一步显示，NCL-06604 与《景祐太乙福应经》在至少三个实质规则点上保存相同或同构读法：
+
+- J4M-06：1/2/3/4/6/7/8/9 及出军方向骨架一致；
+- J4M-09：地内 [1,8,3,4]、天外 [9,2,7,6] 一致；
+- J4M-11：主人刑→主人败、客刑→客败双分支一致。
+
+四库 profile 在上述三点均存在差异。
+
+这里只登记为：
+
+`observed_agreement_pattern_not_stemma`
+
+明确不据此推断：
+
+- NCL 抄自《福应经》；
+- 《福应经》抄自 NCL；
+- 二者必出同一直接祖本；
+- 二者可以合并成同一个 source profile。
+
+详细见：sources/c109-ncl-jingyou-agreement-pattern-record.md。
