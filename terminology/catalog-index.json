@@ -139,6 +139,19 @@
         "C69推太乙当时法核心",
         "C69B六壬叠盘"
       ]
+    },
+    {
+      "path": "terminology/ten-essences.json",
+      "catalog_id": "taiyi-ten-essences-terminology-v1",
+      "scope": "source_sensitive_ten_essences",
+      "contains": [
+        "C52十精来源注册",
+        "C53/C55/C56位置",
+        "C54太乙数",
+        "C57合会云气",
+        "C58外部云气观察",
+        "C59太乙数天气"
+      ]
     }
   ],
   "migration_assets": [
