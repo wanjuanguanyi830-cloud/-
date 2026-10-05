@@ -136,3 +136,5 @@ menu = capabilities()
 `calculate_rule` 只解析当前稳定术语/规则层中已有的精确 runtime，不会把 source-record-only 项提升成可执行算法。需要来源 profile 的函数，在 rule_id 能唯一确定 profile 时由 facade 选择相应 profile key；来源仍保持隔离。
 
 `capabilities()` 按 domain 返回公开 operation，可供桌面软件、Web/API 或移动端动态生成可用功能菜单。
+
+《太乙统宗宝鉴》卷十的三旗行宫与九宫贵神现已分别登记为 `C126-TONGZONG-THREE-BANNERS` / `C127-TONGZONG-NINE-PALACE-NOBLES`，属于 `spirits` domain；紫庭目录中的同名项只保留旧术语/明钞恢复指针，不反标来源。
