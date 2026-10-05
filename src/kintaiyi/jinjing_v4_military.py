@@ -319,13 +319,24 @@ def sanmen_jubu(*, taiyi_gate=None, tianmu_gate=None, direct_gate=None):
 def sanmen_jubu_from_positions(*, taiyi_palace, tianmu, direct_gate=None):
     """J4M-01 的位置入口。
 
-    先按《金镜》卷一“开门加太乙”生成太乙八门，再把天目十六宫位置
-    投影到外八宫，最后交给 J4M-01 严格判定。
-
-    注意：本入口仍保持《金镜》卷四保守边界；如果天目落伤/杜/景/死/惊，
-    J4M-01 本句没有明确给出“门具”正面结论，仍返回未定义。
+    J4M-01 本段先求当期直使门；卷一门篇又明言“直门加太乙”。
+    因此只有 direct_gate 已知时，才能把八门动态叠加到太乙宫并求天目所临门。
     """
-    context = taiyi_eight_door_context(taiyi_palace, tianmu=tianmu)
+    if direct_gate is None:
+        return {
+            **_base("J4M-01", "推三门具不具"),
+            "status": "not_computable",
+            "computable": False,
+            "input_mode": "positions",
+            "taiyi_palace": taiyi_palace,
+            "tianmu": tianmu,
+            "three_doors_ready": None,
+            "policy": "位置入口必须先由岁/月/日/时上游给出当期直使门。",
+        }
+
+    context = taiyi_eight_door_context(
+        taiyi_palace, tianmu=tianmu, anchor_door=direct_gate
+    )
     result = sanmen_jubu(
         taiyi_gate=context["taiyi_gate"],
         tianmu_gate=context["tianmu_gate"],
@@ -339,6 +350,28 @@ def sanmen_jubu_from_positions(*, taiyi_palace, tianmu, direct_gate=None):
         "tianmu_palace": context["tianmu_palace"],
         "eight_door_overlay": context["palace_to_door"],
         "overlay_rule_id": context["rule_id"],
+    }
+
+
+def sanmen_jubu_from_period_count(*, period_count, taiyi_palace, tianmu):
+    """岁计/同构周期入口：先求240/30直使，再自动判J4M-01。"""
+    duty = zhimen_from_cycle_count(period_count)
+    if not duty.get("computable"):
+        return {
+            **duty,
+            "input_mode": "period_count+positions",
+            "three_doors_ready": None,
+        }
+    result = sanmen_jubu_from_positions(
+        taiyi_palace=taiyi_palace,
+        tianmu=tianmu,
+        direct_gate=duty["direct_gate"],
+    )
+    return {
+        **result,
+        "period_count": period_count,
+        "within_240_cycle": duty["within_240_cycle"],
+        "block_of_30": duty["block_of_30"],
     }
 
 
