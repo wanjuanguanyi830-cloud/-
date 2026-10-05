@@ -44,35 +44,27 @@ PRIMARY_LOCATORS = {
         "witness_context": "《太乙紫庭经》卷一段落",
     },
     "wenchang_nine_stars": {
-        "status": "prior_scan_confirmed_page_record_pending",
-        "section": "附太乙文昌九星值宫术",
+        "status": "manuscript_toc_not_attested",
+        "section": None,
         "url": None,
-        "legacy_scan_recovery": {
-            "asset": "terminology/zitingjing-legacy-scan-recovery.json",
-            "status": "manuscript_previously_scanned_original_page_record_not_reattached",
-            "user_confirmed_manuscript": "研易楼藏《太乙紫庭祕訣》明钞本",
-            "local_copy_status": "E盘仍存，当前执行环境未挂载",
-            "code_residue_note": "旧config.py九星段明确标注来源为《太乙统宗宝鉴》卷六，因此其中词形不能直接认定为研易楼本逐字扫描结果。",
+        "manuscript_toc_evidence": {
+            "manuscript": "研易楼藏《太乙紫庭祕訣》明钞本",
+            "scan_pages": [5, 6],
+            "result": "目录列卷一至卷十二及后附项目，未见“附太乙文昌九星值宫术”题名。",
+            "evidence_level": "direct_manuscript_toc_inspection",
         },
-        "catalog_witness": {
-            "title": "太乙紫庭秘诀（现代整理本目录）",
-            "urls": [
-                "https://www.chinyuan.com.tw/all_book/more?id=7195",
-                "https://www.xinyi.hk/goods-7102.html",
-            ],
-            "evidence": "两处现代整理本目录均列“附太乙文昌九星值宫术”",
+        "modern_edition_appendix": {
+            "title": "附太乙文昌九星值宮術",
+            "status": "modern_edition_catalog_attested_provenance_unresolved",
+            "note": "现代整理本收录该题不能反推研易楼原钞含有该篇；可能为整理时收入的统宗相关材料，但目前只作来源假说。",
         },
-        "scan_share_leads": [
-            {
-                "site": "书格",
-                "title": "太乙紫庭祕訣 研易樓藏明鈔本",
-                "url": "https://www.shuge.org/meet/topic/96517/",
-                "reported_extent": "181单页灰度，328M",
-                "status": "share_page_located_scan_not_inspected",
-                "note": "分享帖称文本与北大本可互补，并列出多个网盘转存；当前未取得可逐页核读的扫描正文。",
-            },
-        ],
-        "witness_context": "该术附属于《太乙紫庭秘诀》传本系统；用户确认研易楼明钞本此前已在术语库整理阶段扫描且E盘仍有原件，但原扫描页/旧terminology.json尚未在本执行环境重新挂载。旧config.py九星残留明确标注为统宗卷六来源，不作为研易楼本逐字见证。",
+        "known_direct_source": {
+            "work": "太乙统宗宝鉴",
+            "volume": 6,
+            "rule_id": "C70-TONGZONG-WENCHANG-NINE-STARS",
+            "runtime": "kintaiyi.wenchang_nine_stars_tongzong.wenchang_nine_star_tongzong",
+        },
+        "witness_context": "文昌九星不再作为紫庭primary/pending；这里只保留现代整理附篇与旧术语恢复的来源边界。",
     },
     "three_banners": {
         "status": "project_primary_attribution_unverified",
