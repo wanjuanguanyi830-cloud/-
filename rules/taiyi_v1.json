@@ -312,6 +312,42 @@
         "rule_id": "C46-YJ-9E",
         "source_profile": "tongzong_yinyang_nine_calamities",
         "runtime": "kintaiyi.yinyang_nine_calamities.yinyang_nine_calamities"
+      },
+      {
+        "id": "R-REL-C65",
+        "canonical": "C65解释天乙/地乙/直符条下直接列出的同宫pair；same_palace必须显式输入，不读取C64位置自动判断。值符不是默认canonical名，兼容时才映射直符；未列pair不类推补断。",
+        "rule_id": "C65-THREE-SPIRIT-SAME-PALACE",
+        "runtime": "kintaiyi.state_spirit_conjunctions.same_palace_omen"
+      },
+      {
+        "id": "R-REL-C74",
+        "canonical": "C74处理君基/臣基/民基/五福之间六个同宫pair；不调用C66/C67自动比较。含五福pair如有‘同宫在初交之始’附加断语，必须显式initial_conjunction=True才应用；相冲等非同宫关系不混入。",
+        "rule_id": "C74-THREE-BASES-WUFU-SAME-PALACE",
+        "runtime": "kintaiyi.three_bases_wufu_conjunctions.same_palace_relation"
+      },
+      {
+        "id": "R-REL-C90",
+        "canonical": "C90处理三基×天乙/地乙/直符九个显式同宫pair；不读取C66/C64自动比较。君基三条保留行为条件分支，未选conduct branch时不压成单一吉凶；臣基/民基按直接灾应保存。",
+        "rule_id": "C90-THREE-BASES-THREE-SPIRITS",
+        "runtime": "kintaiyi.three_bases_three_spirits_relations.three_base_spirit_relation"
+      },
+      {
+        "id": "R-REL-C91",
+        "canonical": "C91处理三基×四神/大游/小游九个显式同宫pair；不读取位置runtime自动判断。君基+四神/大游保留条件治理结构，君基+小游保留争象与应对；不转成现代评分。",
+        "rule_id": "C91-THREE-BASES-OTHER-SPIRITS",
+        "runtime": "kintaiyi.three_bases_other_spirits_relations.three_base_other_relation"
+      },
+      {
+        "id": "R-REL-C94",
+        "canonical": "C94为五福×四太乙同五福域解释层，要求显式interpretation_profile=oct4_recovered_four_taiyi_elemental与same_wufu_domain。金/土/火/水分别映射天乙/地乙/直符/四神是最近工作解释且有来源序列支持，不自动读取C64/C92/C67或五域坐标制造关系。",
+        "rule_id": "C94-WUFU-FOUR-TAIYI-DOMAIN-RELATION",
+        "runtime": "kintaiyi.wufu_four_taiyi_relations.wufu_four_taiyi_relation"
+      },
+      {
+        "id": "R-REL-C113",
+        "canonical": "C113恢复五福×大游、五福×小游、四神×小游、大游×小游四组同宫关系并重核统宗卷七。same_palace必须显式；五福×小游另须virtue选择有德/失德；五福×大游保留五福条/大游条双层，不自动求对冲分野。",
+        "rule_id": "C113-RECOVERED-WANDER-CONJUNCTIONS",
+        "runtime": "kintaiyi.wander_conjunctions.wander_conjunction_relation"
       }
     ]
   },
