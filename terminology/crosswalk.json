@@ -11,8 +11,8 @@
     "master_store_policy": "本文件只做跨目录对账，不替代缺失的旧terminology.json。"
   },
   "audit_snapshot": {
-    "stable_catalog_count": 11,
-    "entry_count": 76,
+    "stable_catalog_count": 12,
+    "entry_count": 90,
     "exact_cross_entry_name_collisions": 0,
     "status": "clean_at_snapshot"
   },
@@ -352,6 +352,91 @@
         "C69核心表与C69B六壬叠盘分层。",
         "九宫到六壬十二支是有损adapter，中五不可投影。",
         "外部production历法负责公历日期到节气第几日，不由C69反向改写。"
+      ]
+    },
+    {
+      "id": "CW-TEN-ESSENCE-FLYBIRD",
+      "left": {
+        "catalog": "terminology/ten-essences.json",
+        "key": "flybird",
+        "term": "飞鸟",
+        "rule_id": "C53-FLYBIRD"
+      },
+      "right": {
+        "rule_id": "J4M-11",
+        "term": "军事外部飞鸟观测"
+      },
+      "relation": "same_name_family_forbidden_merge",
+      "forbidden_merge": [
+        "C53飞鸟是十精推步神位；J4M-11飞鸟是外部实测观测。",
+        "不得用十精飞鸟位置伪造军事飞鸟出现、飞向或助战观测。"
+      ]
+    },
+    {
+      "id": "CW-TEN-ESSENCE-WUXING",
+      "left": {
+        "catalog": "terminology/ten-essences.json",
+        "key": "wuxing_essence",
+        "term": "五行",
+        "rule_id": "C53-WUXING"
+      },
+      "right": {
+        "catalog": "terminology/common-core.json",
+        "key": "five_element_qi",
+        "term": "五态"
+      },
+      "relation": "same_vocabulary_domain_distinct_object",
+      "forbidden_merge": [
+        "C53“五行”是十精神名与位置周期；common-core五行/五态是元素关系模型。",
+        "不得把十精五行的位置结果当作公共五行关系表。"
+      ]
+    },
+    {
+      "id": "CW-TAIYI-NUMBER",
+      "left": {
+        "catalog": "terminology/ten-essences.json",
+        "key": "taiyi_number",
+        "term": "太乙数",
+        "rule_id": "C54-TAIYI-NUMBER"
+      },
+      "right": {
+        "catalog": "terminology/ten-essences.json",
+        "key": "number_weather_omens",
+        "term": "太乙数天气断语",
+        "rule_id": "C59-TAIYI-NUMBER-OMEN"
+      },
+      "relation": "number_generation_vs_explicit_omen_interpretation",
+      "forbidden_merge": [
+        "C54只生成1..72太乙数，不自动附天气。",
+        "C59必须显式接太乙数与关系证据，不调用C54重算积年。"
+      ]
+    },
+    {
+      "id": "CW-TEN-ESSENCE-CLOUD-LAYERS",
+      "members": [
+        {
+          "catalog": "terminology/ten-essences.json",
+          "key": "cloud_conjunctions",
+          "rule_id": "C57-TEN-ESSENCE-CLOUD-CONJUNCTION"
+        },
+        {
+          "catalog": "terminology/ten-essences.json",
+          "key": "cloud_observations",
+          "rule_ids": [
+            "C58-CLOUD-TIMING",
+            "C58-WEATHER-OBSERVATION"
+          ]
+        },
+        {
+          "catalog": "terminology/ten-essences.json",
+          "key": "number_weather_omens",
+          "rule_id": "C59-TAIYI-NUMBER-OMEN"
+        }
+      ],
+      "relation": "three_distinct_omen_layers",
+      "forbidden_merge": [
+        "C57显式合会、C58真实云气/天气观察、C59太乙数与关系断语互不替代。",
+        "旧yunqi综合wrapper不得重新成为统一canonical入口。"
       ]
     }
   ]
