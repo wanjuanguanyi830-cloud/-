@@ -37,26 +37,30 @@ def test_only_c23_implemented_volume15_rules_have_runtime_refs():
     by_id = {e["rule_id"]: e for e in data["entries"]}
 
     implemented = set(c23["implemented"])
-    catalog_runtime_ids = {rid for rid, e in by_id.items() if e["runtime"] is not None}
+    source_runtime_ids = {
+        rid for rid, e in by_id.items()
+        if e["runtime"] is not None and e["canonical_source_rule"]
+    }
 
     assert implemented == {"V15-02", "V15-03", "V15-04", "V15-05", "V15-06"}
-    assert catalog_runtime_ids == implemented
+    assert source_runtime_ids == implemented
 
     for rid in implemented:
         assert callable(_resolve(by_id[rid]["runtime"]))
+
+    assert by_id["V17-D1"]["implementation_status"] == "implemented_derived_helper"
+    assert callable(_resolve(by_id["V17-D1"]["runtime"]))
 
 
 def test_reference_function_is_not_treated_as_runtime_for_pending_units():
     data = _load(CATALOG)
 
     for entry in data["entries"]:
-        if entry["rule_id"] not in {"V15-02", "V15-03", "V15-04", "V15-05", "V15-06"}:
-            assert entry["runtime"] is None
-            assert entry["reference_function"]
-            assert entry["implementation_status"] in {
-                "source_rule_catalog_only",
-                "source_rule_catalog_only",
-            }
+        if entry["rule_id"] in {"V15-02", "V15-03", "V15-04", "V15-05", "V15-06", "V17-D1"}:
+            continue
+        assert entry["runtime"] is None
+        assert entry["reference_function"]
+        assert entry["implementation_status"] == "source_rule_catalog_only"
 
 
 def test_high_risk_overlaps_remain_source_separated():
@@ -78,6 +82,8 @@ def test_v17_d1_is_explicit_cross_volume_helper():
     assert helper["source_profile"] == "cross_volume_helper"
     assert helper["canonical_source_rule"] is False
     assert helper["dependency_class"] == "derived_cross_volume"
+    assert helper["implementation_status"] == "implemented_derived_helper"
+    assert helper["runtime"] == "kintaiyi.cross_volume_helpers.build_guxu_cross_volume_helper"
     assert set(helper["overlaps"]) == {"volume5_inner_outer_attack", "V17-09"}
 
 
