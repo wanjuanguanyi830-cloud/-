@@ -244,8 +244,8 @@ def c117_catalog() -> dict[str, Any]:
 
 def evaluate_taigong_with_rule_readiness(
     *,
-    taiyi_gate: str | None,
-    tianmu_gate: str | None,
+    taiyi_palace: int,
+    tianmu: Any,
     shiji_yanji: bool | None,
     wenchang_qiupo: bool | None,
     major_minor_generals_related: bool | None,
@@ -266,7 +266,7 @@ def evaluate_taigong_with_rule_readiness(
     """用现行 source profiles 接入 C117 的“三门具 / 五将发”。
 
     这是 cross-source integration，不回写成《金镜》卷一逐字公式：
-    - 三门正面条件：采用《统宗》卷五独立 profile；
+    - 三门正面条件：采用《统宗》卷二“开门加太乙、视天目”的独立 profile；
     - 五将本体阻断：采用《金镜》卷四 J4M-02；
     - 杜塞覆盖：采用项目 CORE-WUJIANG-READY 整合层。
 
@@ -276,12 +276,16 @@ def evaluate_taigong_with_rule_readiness(
         effective_five_generals_readiness,
         wujiang_fabu,
     )
-    from .tongzong_v5_doors import sanmen_jubu_tongzong
+    from .tongzong_v2_doors import taiyi_door_readiness
 
-    sanmen = sanmen_jubu_tongzong(
-        taiyi_gate=taiyi_gate,
-        tianmu_gate=tianmu_gate,
+    sanmen_source = taiyi_door_readiness(
+        taiyi_palace,
+        tianmu=tianmu,
     )
+    sanmen = {
+        **sanmen_source,
+        "three_doors_ready": sanmen_source.get("door_ready"),
+    }
     source_wujiang = wujiang_fabu(
         shiji_yanji=shiji_yanji,
         wenchang_qiupo=wenchang_qiupo,
@@ -317,14 +321,14 @@ def evaluate_taigong_with_rule_readiness(
         "source_five_generals": source_wujiang,
         "effective_five_generals": effective_wujiang,
         "source_boundaries": {
-            "three_doors": "太乙统宗宝鉴_卷五",
+            "three_doors": "太乙统宗宝鉴_卷二_明太乙八门通变术",
             "five_generals": "太乙金镜式经_卷四_J4M-02",
             "calc_blocked": "项目跨层整合事实，不伪装为J4M-02第四原文条件",
             "taigong": "太乙金镜式经_卷一_推太公考时法",
         },
         "policy": (
             "只把已分层核定的ready布尔值送入C117；"
-            "不把《统宗》卷五文字回填为《金镜》卷一原文。"
+            "不把《统宗》卷二门具文字回填为《金镜》卷一原文。"
         ),
     }
     return evaluated
