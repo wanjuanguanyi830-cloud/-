@@ -55,12 +55,24 @@ def test_c107_tongzong_uses_plus34_and_288_execution_cycle():
     assert (next_palace["palace"], next_palace["year_in_palace"]) == (8, 1)
 
 
-def test_c107_tongzong_keeps_388_as_transcription_variant_not_runtime_cycle():
+def test_c107_tongzong_preserves_both_direct_numeric_witness_variants():
     data = dayou_position(1, source_profile="tongzong")
-    variant = data["source_witness"]["small_cycle_transcription_variant"]
-    assert variant["electronic_reading"] == "三百八十八"
-    assert variant["execution_value"] == 288
-    assert variant["status"] == "resolved_numeric_transcription_conflict"
+    witness = data["source_witness"]
+    variants = {row["id"]: row for row in witness["witness_variants"]}
+
+    ngj = variants["NGJ892411999009267118912"]
+    assert ngj["surplus_reading"] == 32
+    assert ngj["small_cycle_reading"] == 288
+
+    cadal = variants["CADAL02094393"]
+    assert cadal["surplus_reading"] == 34
+    assert cadal["small_cycle_reading"] == 388
+
+    selected = witness["selected_execution"]
+    assert selected["surplus"] == 34
+    assert selected["small_cycle"] == 288
+    assert selected["status"] == "collated_selection_not_single_witness_literal"
+    assert data["surplus"] == 34
     assert data["small_cycle"] == 288
 
 
