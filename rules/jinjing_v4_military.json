@@ -90,7 +90,8 @@
             "J4M-11正文题=推太乙风云飞鸟助阵法；正文起句仍作经曰助战之法",
             "J4M-12西方白云条明写大胜，庚辛日弥佳",
             "NCL卷四目录同样先列风云飞鸟、后列奇兵伏兵，而正文先奇兵伏兵、后风云飞鸟",
-            "J4M-05明钞本只列算十二、二十二，随后即五将发；未见四库本三十二"
+            "J4M-05明钞本只列算十二、二十二，随后即五将发；未见四库本三十二",
+            "J4M-11明钞本p.63作主人刑上来主人败、客刑上来客败，与福应经同构而与四库主人形上来客败冲突"
           ],
           "still_pending": [
             "J4M-03例文太蔟/太簇的明钞本字形需更高倍率确认",
@@ -150,7 +151,7 @@
     "scan_locator_version": "c79-j4m-cadal-page-locators-v1",
     "witness_audit_version": "c84-ncl06604-access-boundary-v1",
     "full_twelve_scan_audit_version": "c85-j4m01-12-scan-boundary-complete-v1",
-    "ncl_volume4_collation_version": "c86-ncl06604-v4-j4m-key-readings-v3"
+    "ncl_volume4_collation_version": "c87-ncl06604-j4m11-event-readings-v1"
   },
   "separation_policy": [
     "本表只记录四库本《太乙金镜式经》卷四十二法，不自动并入《太乙统宗宝鉴》卷五或旧代码同名函数。",
@@ -1104,7 +1105,50 @@
             63
           ],
           "relation_to_siku": "title_助阵法_differs_from_siku_body_助战法_while_opening_phrase_still_助战之法",
-          "canonical_override": false
+          "canonical_override": false,
+          "event_readings": {
+            "guest_eye_attacks_host": {
+              "reading": "从客目上去击主，主败",
+              "digital_scan_page": 63,
+              "status": "direct_visual_manuscript_reading"
+            },
+            "from_host_xing": {
+              "reading": "从主人刑上来，主人败",
+              "digital_scan_page": 63,
+              "status": "direct_visual_manuscript_reading"
+            },
+            "from_guest_xing": {
+              "reading": "从客刑上来，客败",
+              "digital_scan_page": 63,
+              "status": "direct_visual_manuscript_reading"
+            },
+            "from_taisui_taiyin_yuejian": {
+              "reading": "从太岁太阴月建上来，击主人主人败，击客客败",
+              "digital_scan_page": 63,
+              "status": "direct_visual_manuscript_reading"
+            },
+            "supports_formation": {
+              "reading": "扶主人阵者主人胜，扶客阵者客胜",
+              "digital_scan_page": 63,
+              "status": "direct_visual_manuscript_reading"
+            },
+            "whirling_birds_flag_break": {
+              "reading": "回风起伏，飞鸟旋转于阵中旗折，大败之兆",
+              "digital_scan_page": 63,
+              "status": "direct_visual_manuscript_reading"
+            },
+            "noise_and_collision": {
+              "reading": "众鸟来噪阵者及有风云冲突主人阵主人败，冲突客阵客败",
+              "digital_scan_page": 63,
+              "status": "direct_visual_manuscript_reading",
+              "note": "仍不把单独‘众鸟来噪阵’拆成独立胜负；句中明确胜负挂在后续风云冲突主人/客阵。"
+            }
+          },
+          "textual_relation": {
+            "to_siku": "NCL 的‘主人刑→主人败；客刑→客败’与四库当前‘主人形→客败’存在实质冲突，不能归为形/刑单字异体。",
+            "to_jingyou": "NCL 的主人刑/客刑双分支与《景祐太乙福应经》已记录读法同构，支持其为独立古传本文字系统。",
+            "runtime_policy": "jinjing_siku_volume4 runtime 不改；NCL/Jingyou 只作 manuscript/source variants。"
+          }
         }
       }
     },
