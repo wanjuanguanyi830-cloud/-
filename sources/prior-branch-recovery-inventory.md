@@ -301,3 +301,107 @@
 原则：
 
 > 旧工作优先复用；旧结论仍须服从后来的来源校勘。
+
+
+## 7. 2026-10-05 回收进度
+
+本节只记录 2026-10-04 / 2026-10-05 工作的回收状态。
+
+### 已安全恢复
+
+#### terminology 坐标资产
+
+- `terminology/palace_coordinates.json`
+  - 来源：2026-10-04 `codex/taiyi-base-motion-2026-10-04`
+  - 状态：recovered_prior_work_crosschecked
+- `terminology/sixteen_spirits.json`
+  - 来源：2026-10-04 同分支
+  - 状态：recovered_prior_work_crosschecked
+- `terminology/wufu_domains.json`
+  - 来源：2026-10-04 `taiyi_cycles.py`
+  - 状态：coordinate_reference_not_relation_formula
+
+#### C92
+
+从 2026-10-04 `four_taiyi.py` 回收并按直接来源重核：
+
+- 四神 360 / 36；
+- 三年一宫；
+- 一宫起；
+- 十二运行宫；
+- 四神克贼 / 战克明列组合。
+
+不恢复旧 yuan 三元默认表。
+
+#### C93
+
+从 2026-10-04 `zhifu_known_state()` 回收：
+
+- 二宫火旺；
+- 三宫火长生；
+- 四宫火败。
+
+其他宫继续 source_pending。
+
+#### C94
+
+从 2026-10-04：
+
+- `FIVE_MEETING_EFFECTS`
+- `FIVE_DOMAINS`
+- `PALACE_DOMAINS`
+
+回收五福 × 四太乙金土火水灾应解释。
+
+现行收紧：
+
+- 必须显式 `interpretation_profile`；
+- 必须显式 `same_wufu_domain`；
+- 不再自动读取坐标或位置生成关系。
+
+#### C95
+
+从 2026-10-04 `kintaiyi.py` 回收：
+
+- `collect_core_snapshot()` 的 collector 设计；
+- 当前 style / 年 style / 日 style 明确分取；
+- primitive 单次调用；
+- selection validation 意图。
+
+未恢复：
+
+- 旧 `TaiyiCanonicalMixin`；
+- 旧 `Taiyi(snapshot).pan()`；
+- 旧 `project_legacy_pan()`。
+
+### 已由现行模块覆盖，不再重复恢复
+
+10月4日 `test_pan_v2.py` 中以下意图已有现行覆盖：
+
+- pan v2 根结构 / JSON-safe → C11；
+- 中五 sector=null → C11 / C30；
+- scenario 必须显式 → C11；
+- modern game theory 必须 derived → C30；
+- legacy 军事 / 七术 / modern 不自动提升 → C12；
+- 年积年不得借月日时积年 → C95；
+- 日太乙必须明确取 day style → C95；
+- primitive 单次采集 → C95。
+
+因此旧 `tests/test_pan_v2.py` 不整文件恢复。
+
+10月4日 `tests/test_legacy_compat.py` 中：
+
+- legacy flat quarantine → C12 / C60；
+- JSON key collision → C12；
+- 七术 / 八占 canonical delegate → 现行 T7 / D8 tests；
+- 旧周期 facade 等价测试因公式后来 source-specific 化，不再原样恢复。
+
+### 已明确淘汰 / 不直接恢复
+
+- 旧 `taiyi_cycles.py` 中五福 `project_canonical=+250`；
+- 旧 `four_taiyi.py` yuan 默认旋转公式；
+- 旧 `TaiyiCanonicalMixin` 对上述旧周期的直接委托；
+- 旧 `project_legacy_pan` 覆盖 canonical flat 值的做法；
+- 旧 `docs/pan_v2_schema.md` 中已经被后续 C30/C67/C68 等改写的周期说明。
+
+这些内容保留在 2026-10-04 分支历史中作为过程证据，不重新写入现行 canonical。
