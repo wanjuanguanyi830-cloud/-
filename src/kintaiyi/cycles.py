@@ -14,6 +14,7 @@ C97 后：
 from .taiyi_rules import GOD_POSITION, integer
 from .wufu_source_profiles import wufu_position as _c67_wufu_position
 from .wufu_auspicious_numbers import wufu_auspicious_beneficiary as _c68_wufu_beneficiary
+from .dayou_tianmu_source_profiles import dayou_tianmu_position as _c104_dayou_tianmu_position
 
 WUFU_PATH = (1, 3, 9, 7, 5)
 DAYOU_PATH = (7, 8, 9, 1, 2, 3, 4, 6)
@@ -61,17 +62,20 @@ TM_PROFILES = {
         "offset": 214,
         "core_cycle": 18,
         "outer_cycle": 180,
-        "source": "legacy %180/+214 compatibility",
-        "status": "quarantined_deprecated_reference",
-        "canonical_equivalent": False,
+        "source": "C104 tongzong source profile",
+        "status": "delegated_canonical_source_profile",
+        "canonical_equivalent": True,
+        "replacement": "C104-DAYOU-TIANMU-TONGZONG",
     },
     "jinjing": {
-        "offset": None,
+        "offset": 0,
         "core_cycle": 18,
         "yuan": 72,
-        "source": "2026-10-04 recovered 金镜72→18 path；完整历元接口待独立重接",
-        "status": "recovered_recent_work_epoch_pending",
-        "canonical_equivalent": False,
+        "outer_cycle": 72,
+        "source": "C104 jinjing source profile",
+        "status": "delegated_canonical_source_profile",
+        "canonical_equivalent": True,
+        "replacement": "C104-DAYOU-TIANMU-JINJING",
     },
 }
 
@@ -205,36 +209,48 @@ def bigyo(accumulated_year, *, profile="jinjing_tongzong", epoch_offset=None):
 
 
 def bigyo_tianmu(accumulated_year, *, profile="tongzong", epoch_offset=None):
-    """C98：旧大游天目 wrapper 只作 compatibility。
+    """C104 adapter：旧0基输入 -> C104 1基 source-specific runtime。
 
-    2026-10-04 已把 %180/+214 旧逻辑列为 deprecated reference；
-    金镜72→18路径虽已恢复，但完整历元接口仍待重接，因此本函数不标canonical。
+    省略 epoch_offset，或显式给出该来源本身的 offset 时，委托 C104。
+    只有非来源自定义 offset 才保留 legacy compatibility 试算。
     """
-    integer(accumulated_year)
+    year0 = integer(accumulated_year)
     if profile not in TM_PROFILES:
         raise ValueError("未知大游天目profile")
     spec = TM_PROFILES[profile]
-    offset = spec["offset"] if epoch_offset is None else integer(epoch_offset)
-    if offset is None:
+    source_offset = spec["offset"]
+
+    if epoch_offset is None or epoch_offset == source_offset:
+        canonical = _c104_dayou_tianmu_position(
+            year0 + 1,
+            source_profile=profile,
+        )
         return {
-            "rule_id": "LEGACY-DAYOU-TIANMU-COMPAT",
-            "canonical": None,
+            "rule_id": canonical["rule_id"],
+            "canonical": canonical["canonical"],
             "profile": profile,
-            "status": "not_computable",
-            "pending": ["金镜历元盈差待校；须显式提供epoch_offset"],
-            "canonical_equivalent": False,
-            "promotion_allowed": False,
-            "quarantined": profile == "tongzong",
+            "source": canonical["source_work"],
+            "offset": canonical["surplus"],
+            "cycle_index": canonical["step_number"] - 1,
+            "step_number": canonical["step_number"],
+            "god": canonical["god"],
+            "position": canonical["position"],
             "profile_metadata": dict(spec),
+            "canonical_delegate": canonical,
+            "canonical_equivalent": True,
+            "promotion_allowed": True,
+            "quarantined": False,
         }
-    index = (accumulated_year + offset) % 18
+
+    custom_offset = integer(epoch_offset)
+    index = (year0 + custom_offset) % 18
     god = DAYOU_TM_PATH[index]
     return {
-        "rule_id": "LEGACY-DAYOU-TIANMU-COMPAT",
+        "rule_id": "LEGACY-DAYOU-TIANMU-CUSTOM-OFFSET",
         "canonical": None,
         "profile": profile,
-        "source": spec["source"],
-        "offset": offset,
+        "source": "legacy explicit custom epoch_offset",
+        "offset": custom_offset,
         "cycle_index": index,
         "step_number": index + 1,
         "god": god,
@@ -242,10 +258,10 @@ def bigyo_tianmu(accumulated_year, *, profile="tongzong", epoch_offset=None):
         "profile_metadata": dict(spec),
         "canonical_equivalent": False,
         "promotion_allowed": False,
-        "quarantined": profile == "tongzong",
+        "quarantined": False,
         "reason": (
-            "2026-10-04来源记录已将旧%180/+214逻辑列为deprecated_reference。"
-            if profile == "tongzong"
-            else "金镜72→18路径为最近两天已恢复工作，但本旧wrapper未承载完整来源历元接口。"
+            "调用方显式offset与C104该来源参数不同；"
+            "仅作旧接口兼容试算，不覆盖source-specific runtime。"
         ),
     }
+
