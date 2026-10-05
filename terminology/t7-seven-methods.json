@@ -62,16 +62,19 @@
         "enemy_start_year_branch"
       ],
       "qi_model": "A",
-      "definition": "敌起兵年支经大神落辰后，以大神火与落辰五行判五态；旺相不破，休囚死合破。",
-      "timing_note": "若落四维，取第18年（offset +17）为破应。",
+      "definition": "敌起兵年支经吕申顺行十六环四格得到大神落点；旺相不破，休囚死合破。普通四正落点以大神所临为破年，对应起兵年offset +3；落四维之方则按原文特殊规则取第18年，offset +17。",
+      "timing_note": "普通四正：第4年（offset +3）；四维之方：第18年（offset +17）。完整干支输入返回完整破年；仅年支输入只返回破年支。",
       "source_variant_note": "墓为易破等说法只作来源异文。",
-      "collation_status": "three_source_pass_complete_no_second_ordinary_branch_example",
+      "collation_status": "three_source_rule_resolved_direct_break_year_vs_corner_18_year",
       "collation_record": "sources/t7-02-lion-collation.md",
       "boundary_notes": [
-        "四库与统宗现见古例均为甲戌→丑/艮四维→十八年→辛卯；未发现第二个普通落支完整应年例。",
-        "《太乙金钥匙》补充起兵年太乙杜塞则当年破，只作来源补充，不改写四库canonical普通落支算法。",
-        "普通落支仍只返回候选破年支，不伪造唯一年干。"
-      ]
+        "《太乙统宗宝鉴》卷十一与《太乙金钥匙》均明言大神所临为破年，四维之方另取十八年。",
+        "十六环顺四格后，普通情形只落子卯午酉四正，对应起兵年后第3年；四维区域采用+17。",
+        "甲戌→丑/艮四维→第18年辛卯的古例继续作为特殊分支回归。",
+        "仅输入年支时因缺原始年干只能返回break_year_branch；这属于输入精度限制，不再记算法pending。",
+        "《太乙金钥匙》“起兵年太乙杜塞则当年破”仍为来源补充，不静默覆盖四库主profile。"
+      ],
+      "algorithm_pending": false
     },
     {
       "key": "cloud_rolls_empty",
