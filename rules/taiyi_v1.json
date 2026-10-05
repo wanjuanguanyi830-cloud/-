@@ -578,10 +578,11 @@
       },
       {
         "id": "R-TONGZONG-MILITARY-DERIVED",
-        "canonical": "V17-D1 孤虚对照是卷五内外占攻击 × 卷十七求索所得的跨卷 derived helper，不是卷十七 canonical source rule；不得分配为 V17 正式术号，也不得替代 V17-09 求索所得本条。",
+        "canonical": "V17-D1 孤虚对照是 C32 已实现的卷五/D8-05内外占攻击 × 卷十七V17-09求索所得跨卷 derived helper；它不是卷十七 canonical source rule，只比较两个已结构化结果，不重算内外、不重跑求索，也不得反写两边来源规则。",
         "rule_id": "V17-D1",
         "catalog": "terminology/military-tongzong-v15-v17.json",
-        "canonical_source_rule": false
+        "canonical_source_rule": false,
+        "runtime": "kintaiyi.cross_volume_helpers.build_guxu_cross_volume_helper"
       }
     ]
   },
