@@ -324,7 +324,7 @@
 
 `terminology/catalog-index.json`
 
-当前 stable catalogs 共十三组：
+当前 stable catalogs 共十五组：
 
 1. `common-core.json`：公共坐标/神名/五态；
 2. `t7-seven-methods.json`：七术；
@@ -338,7 +338,9 @@
 10. `relations.json`：显式同宫/同域关系层；
 11. `ritual-timing.json`：天子巡狩与推太乙当时法；
 12. `ten-essences.json`：十精 C52–C59 分层体系；
-13. `military-jinjing-v4.json`：《金镜》卷四 J4M-04..12 军事扩展术语。
+13. `military-jinjing-v4.json`：《金镜》卷四 J4M-04..12 军事扩展术语；
+14. `military-jingyou-v4.json`：《景祐太乙福应经》卷四 JF4M-01..11 source-record 术语；
+15. `military-tongzong-v15-v17.json`：《统宗》卷十五/卷十七军事 rule-unit 术语。
 
 另外单列：
 
@@ -444,8 +446,8 @@ C74 的五福初交、C90/C91 的条件治理分支、C94 的 interpretation pro
 
 当前快照：
 
-- stable catalogs：13；
-- 正式 entries：111；
+- stable catalogs：15；
+- 正式 entries：148；
 - 不同 entry 之间的精确 preferred/alias 重名：0。
 
 crosswalk 专门锁定“近名但不能合并”的高风险关系，例如：
@@ -577,8 +579,8 @@ crosswalk 专门锁定“近名但不能合并”的高风险关系，例如：
 
 当前快照：
 
-- rules 总表 rule_id：84；
-- stable terminology rule_id：123；
+- rules 总表 rule_id：122；
+- stable terminology rule_id：158；
 - rules 总表中未被术语库覆盖：0。
 
 术语层数量更大是预期行为，因为它比规则总表保留更细的 D8/T7 子规则、C69B 六壬叠盘子步骤、source-profile-specific 周期规则及八门叠盘关系层。
@@ -620,7 +622,7 @@ NCL-06604 明钞本继续作为 independent manuscript witness，不覆盖四库
 
 原则：
 
-- 现有 111 个 stable entry 全部逐项列入 manifest；
+- 现有 148 个 stable entry 全部逐项列入 manifest；
 - 旧 `old_term_record_id`、原字形、页码、section、旧 definition/notes/aliases 在原件未取得前全部保持 `null`；
 - 不生成 synthetic legacy id；
 - 紫庭 migration map 与 NCL-06604 reconciliation map 只作为命中线索；
@@ -628,3 +630,38 @@ NCL-06604 明钞本继续作为 independent manuscript witness，不覆盖四库
 - 无法唯一命中的旧词条保持 `unmapped`，不为追求100%覆盖而猜归属。
 
 本轮在补齐 J4M-04..12 后，NCL reconciliation map 的 migration-only 候选已降为 0：其 8 个对账项均能指向 stable terminology entry；但旧 `terminology.json` 原始 bytes/schema 仍未恢复，所以该 manifest 仍不是旧 master store 的替代品。
+
+
+## 《景祐太乙福应经》卷四 JF4M source records
+
+已建立：
+
+`terminology/military-jingyou-v4.json`
+
+JF4M-01..11 当前全部标记为 `source_record_only`：保留来源术名、规则摘要、关键异文和与 J4M 的 parallel mapping，但**没有独立 runtime**，因此严禁调用《金镜》函数冒充实现。
+
+特别边界：
+
+- JF4M-01..09 大体对应 J4M-01..09；
+- JF4M-10 对应 J4M-11 风云飞鸟；
+- JF4M-11 对应 J4M-10 奇伏；
+- J4M-12 阵有风云气定胜负没有直接 JF4M 对应项。
+
+福应经与金镜的陈兵方向表、地内宫、风云飞鸟败方、大杀/大煞句等差异全部保留 source profile，不互补成一个“完整版”。
+
+
+## 《统宗》卷十五 / 卷十七军事 rule units
+
+已建立：
+
+`terminology/military-tongzong-v15-v17.json`
+
+本目录以 `src/kintaiyi/military_rule_units.py` 为机器可读清单：
+
+- 卷十五：V15-01..14，共14条军事应用 source rules；
+- 卷十七：V17-01..11，共11条军事占断 source rules；
+- V17-D1：跨卷孤虚对照 derived helper，不是卷十七 canonical source rule。
+
+当前只有 C23 已明确实现的 V15-02..06 登记独立 runtime：五阵置旗、出兵称神、陈兵出乡、选将、教兵。其余条目仅登记 source rule 与 `reference_function`，**reference function 名不等于独立 runtime 已实现**。
+
+跨层边界：V15-01 奇兵伏兵 ≠ J4M-10 奇伏；V15-04 陈兵出乡 ≠ J4M-06 陈兵向背；V15-07 随地制变不得吞并 J4M-07/08；V15-14 综合军势不得覆盖 J4M-11/12 外部观测；V17-02 敌国动静也不是 C8-L3 主客动静。
