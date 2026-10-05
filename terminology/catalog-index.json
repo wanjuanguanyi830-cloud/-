@@ -86,12 +86,9 @@
       "catalog_id": "taiyi-zitingjing-terminology-v1",
       "scope": "source_sensitive_zitingjing",
       "contains": [
-        "太乙九星",
-        "文昌九星",
-        "文昌变化",
-        "始击变化",
-        "三旗行宫",
-        "九宫贵神"
+        "紫庭直接/待恢复：太乙九星、文昌九星、文昌变化、始击变化",
+        "旧store跨来源恢复指针：三旗行宫、九宫贵神",
+        "三旗/九宫贵神现行可执行canonical归《太乙统宗宝鉴》卷十 C126/C127"
       ]
     },
     {
