@@ -157,10 +157,11 @@ def test_v15_06_training_is_progressive_and_non_calculational():
     assert data["computable"] is True
 
 
-def test_c23_catalog_stops_before_external_observation_rules():
+def test_c23_catalog_delegates_implemented_external_observation_rules():
     data = c23_catalog()
     assert data["implemented"] == ["V15-02", "V15-03", "V15-04", "V15-05", "V15-06"]
-    assert data["pending_low_dependency"] == ["V15-09", "V15-12", "V15-13"]
+    assert data["pending_low_dependency"] == []
+    assert data["implemented_by_c24"] == ["V15-09", "V15-12", "V15-13"]
 
 
 @pytest.mark.parametrize("bad", [0, 41, -1])

@@ -144,3 +144,11 @@ menu = capabilities()
 `capabilities()` 按 domain 返回公开 operation，可供桌面软件、Web/API 或移动端动态生成可用功能菜单。
 
 《太乙统宗宝鉴》卷十的三旗行宫与九宫贵神现已分别登记为 `C126-TONGZONG-THREE-BANNERS` / `C127-TONGZONG-NINE-PALACE-NOBLES`，属于 `spirits` domain；紫庭目录中的同名项只保留旧术语/明钞恢复指针，不反标来源。
+
+### 2026-10-06 执行覆盖状态校正
+
+C23 风云待实现清单已清空：V15-09/12/13 由 C24 执行；C24 的 V15-10 后续项已由 C25 执行。
+风向、风起宫、云来向及风声仍须实际观测，缺输入返回 `not_computable`。
+卷十五/十七术语的旧“只登记”说明已与现有独立 runtime 同步。
+C123 来源记录同步已实现的岁计开门叠加及合门判断；C119 时计移动叠加和王希明平行重建边界分别保留。
+详见 [本轮收口记录](changelog/2026-10-06-execution-coverage-pending-closure.md)。

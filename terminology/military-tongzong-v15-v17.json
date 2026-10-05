@@ -96,7 +96,7 @@
       "notes": "与金镜卷四推奇伏法近名，必须保持独立source profile。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
-        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+        "本条已有独立runtime；implementation_status/runtime记录现行实现，reference_function仅保留旧函数名。"
       ],
       "catalog_runtime": "kintaiyi.tongzong_v15_remaining.remaining_v15_catalog"
     },
@@ -272,7 +272,7 @@
       "notes": "与金镜制阵随地/随地制变分层，不自动合并。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
-        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+        "本条已有独立runtime；implementation_status/runtime记录现行实现，reference_function仅保留旧函数名。"
       ],
       "catalog_runtime": "kintaiyi.tongzong_v15_remaining.remaining_v15_catalog"
     },
@@ -309,7 +309,7 @@
       "notes": null,
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
-        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+        "本条已有独立runtime；implementation_status/runtime记录现行实现，reference_function仅保留旧函数名。"
       ],
       "catalog_runtime": "kintaiyi.tongzong_v15_remaining.remaining_v15_catalog"
     },
@@ -341,7 +341,7 @@
       "notes": null,
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
-        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+        "本条已有独立runtime；implementation_status/runtime记录现行实现，reference_function仅保留旧函数名。"
       ],
       "catalog_runtime": "kintaiyi.tongzong_v15_observations.c24_catalog"
     },
@@ -371,7 +371,7 @@
       "notes": "原文按风声形态辨五音察将；不得以V15-09风向五音替代实际风声。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
-        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+        "本条已有独立runtime；implementation_status/runtime记录现行实现，reference_function仅保留旧函数名。"
       ],
       "catalog_runtime": "kintaiyi.tongzong_v15_wind_sound.c25_catalog"
     },
@@ -404,7 +404,7 @@
       "notes": null,
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
-        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+        "本条已有独立runtime；implementation_status/runtime记录现行实现，reference_function仅保留旧函数名。"
       ],
       "catalog_runtime": "kintaiyi.tongzong_v15_remaining.remaining_v15_catalog"
     },
@@ -434,7 +434,7 @@
       "notes": null,
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
-        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+        "本条已有独立runtime；implementation_status/runtime记录现行实现，reference_function仅保留旧函数名。"
       ],
       "catalog_runtime": "kintaiyi.tongzong_v15_observations.c24_catalog"
     },
@@ -466,7 +466,7 @@
       "notes": null,
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
-        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+        "本条已有独立runtime；implementation_status/runtime记录现行实现，reference_function仅保留旧函数名。"
       ],
       "catalog_runtime": "kintaiyi.tongzong_v15_observations.c24_catalog"
     },
@@ -507,7 +507,7 @@
       "notes": "卷十五综合军势不得覆盖J4M外部风云飞鸟观测层。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
-        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+        "本条已有独立runtime；implementation_status/runtime记录现行实现，reference_function仅保留旧函数名。"
       ],
       "catalog_runtime": "kintaiyi.tongzong_v15_remaining.remaining_v15_catalog"
     },
@@ -543,7 +543,7 @@
       "notes": null,
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
-        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+        "本条已有独立runtime；implementation_status/runtime记录现行实现，reference_function仅保留旧函数名。"
       ],
       "catalog_runtime": "kintaiyi.tongzong_v17_high_dependency.c28_catalog"
     },
@@ -584,7 +584,7 @@
       "notes": "敌情占断应用，不是C8主客动静。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
-        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+        "本条已有独立runtime；implementation_status/runtime记录现行实现，reference_function仅保留旧函数名。"
       ],
       "catalog_runtime": "kintaiyi.tongzong_v17_high_dependency.c28_catalog"
     },
@@ -616,7 +616,7 @@
       "notes": "内外深浅由上游结构化；本条不复刻旧_realm_of_gong近似。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
-        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+        "本条已有独立runtime；implementation_status/runtime记录现行实现，reference_function仅保留旧函数名。"
       ],
       "catalog_runtime": "kintaiyi.tongzong_v17_low_dependency.c26_catalog"
     },
@@ -646,7 +646,7 @@
       "notes": "直接比较五行制化证据；不在本条猜十六神/九宫五行。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
-        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+        "本条已有独立runtime；implementation_status/runtime记录现行实现，reference_function仅保留旧函数名。"
       ],
       "catalog_runtime": "kintaiyi.tongzong_v17_low_dependency.c26_catalog"
     },
@@ -677,7 +677,7 @@
       "notes": "来方按客目左/右/前/后；兵众须满足16以上且阴阳和。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
-        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+        "本条已有独立runtime；implementation_status/runtime记录现行实现，reference_function仅保留旧函数名。"
       ],
       "catalog_runtime": "kintaiyi.tongzong_v17_low_dependency.c26_catalog"
     },
@@ -710,7 +710,7 @@
       "notes": "只消费明确条件；不扫描旧格局字符串或中文断语。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
-        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+        "本条已有独立runtime；implementation_status/runtime记录现行实现，reference_function仅保留旧函数名。"
       ],
       "catalog_runtime": "kintaiyi.tongzong_v17_structured.c27_catalog"
     },
@@ -747,7 +747,7 @@
       "notes": "所捕地旺相须作用于hideout_qi_state，不得拿主将旺相代替。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
-        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+        "本条已有独立runtime；implementation_status/runtime记录现行实现，reference_function仅保留旧函数名。"
       ],
       "catalog_runtime": "kintaiyi.tongzong_v17_structured.c27_catalog"
     },
@@ -780,7 +780,7 @@
       "notes": "不同见证对掩击/主人在外/旺神条件有相反断法，必须source_variant。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
-        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+        "本条已有独立runtime；implementation_status/runtime记录现行实现，reference_function仅保留旧函数名。"
       ],
       "catalog_runtime": "kintaiyi.tongzong_v17_structured.c27_catalog"
     },
@@ -817,7 +817,7 @@
       "notes": "求索本条独立判据，不调用V17-D1跨卷孤虚对照。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
-        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+        "本条已有独立runtime；implementation_status/runtime记录现行实现，reference_function仅保留旧函数名。"
       ],
       "catalog_runtime": "kintaiyi.tongzong_v17_structured.c27_catalog"
     },
@@ -893,7 +893,7 @@
       "notes": null,
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
-        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+        "本条已有独立runtime；implementation_status/runtime记录现行实现，reference_function仅保留旧函数名。"
       ],
       "catalog_runtime": "kintaiyi.tongzong_v17_high_dependency.c28_catalog"
     },
@@ -924,7 +924,7 @@
       "notes": "四方来否按原文数对；南方来数存在版本异文，必须保留。",
       "boundary_notes": [
         "本条按military_rule_units.py独立rule id保存，不由卷十五/十七综合payload代替。",
-        "当前只登记source rule与reference function；reference function名不代表现行独立runtime已实现。"
+        "本条已有独立runtime；implementation_status/runtime记录现行实现，reference_function仅保留旧函数名。"
       ],
       "catalog_runtime": "kintaiyi.tongzong_v17_low_dependency.c26_catalog"
     }

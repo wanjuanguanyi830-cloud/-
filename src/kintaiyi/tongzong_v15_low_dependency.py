@@ -329,8 +329,9 @@ def c23_catalog() -> dict[str, Any]:
         "canonical": C23_VERSION,
         "source_profile": SOURCE_PROFILE,
         "implemented": ["V15-02", "V15-03", "V15-04", "V15-05", "V15-06"],
-        "pending_low_dependency": ["V15-09", "V15-12", "V15-13"],
+        "pending_low_dependency": [],
+        "implemented_by_c24": ["V15-09", "V15-12", "V15-13"],
         "policy": (
-            "第一批只实现无外部观测或低依赖规则；风、云等外部观测规则留到下一批。"
+            "本模块实现低依赖规则；风云规则已由C24实现，仍须显式提供现实观测。"
         ),
     }

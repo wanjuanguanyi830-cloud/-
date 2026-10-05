@@ -125,3 +125,10 @@ C23 不照抄旧代码，采用相互自洽的来源读法：
 - 训练与器械必须齐备
 
 属于静态兵法原则，不参与 C8/J4M 古法胜负链。
+
+## 当前执行覆盖（2026-10-06）
+
+`c23_catalog().implemented` 仍只描述本模块五条规则。
+此前 `pending_low_dependency` 中的 V15-09、V15-12、V15-13 已由 C24 独立实现，现移至 `implemented_by_c24`；待实现列表为空。
+直接规则和观测边界见 [C24 来源记录](c24-tongzong-v15-observations-record.md)。
+显式观测仍为必需输入，缺观测的 `not_computable` 不代表算法未实现。

@@ -132,3 +132,30 @@ def test_rules_json_registers_complete_tongzong_runtime_coverage():
     assert derived["rule_id"] == "V17-D1"
     assert derived["canonical_source_rule"] is False
     assert derived["runtime"] == "kintaiyi.cross_volume_helpers.build_guxu_cross_volume_helper"
+
+def test_observation_catalog_handoffs_match_executable_coverage():
+    c23, c24, c25 = c23_catalog(), c24_catalog(), c25_catalog()
+    assert c23["pending_low_dependency"] == []
+    assert c24["next_dependency"] == []
+    assert c23["implemented_by_c24"] == c24["implemented"]
+    assert c24["implemented_by_c25"] == c25["implemented"]
+
+    entries = {e["rule_id"]: e for e in _load(CATALOG)["entries"]}
+    calls = {
+        "V15-09": (("子",), {}),
+        "V15-12": ((None,), {}),
+        "V15-13": ((18, 12), {"cloud_from_direction": None}),
+        "V15-10": ((None,), {}),
+    }
+    for rid, (args, kwargs) in calls.items():
+        result = _resolve(entries[rid]["runtime"])(*args, **kwargs)
+        assert result["status"] == "not_computable"
+        assert result["computable"] is False
+        assert result["missing_inputs"]
+
+
+def test_implemented_military_terms_do_not_claim_registration_only():
+    for entry in _load(CATALOG)["entries"]:
+        if entry["canonical_source_rule"]:
+            assert callable(_resolve(entry["runtime"]))
+            assert not any("当前只登记source rule" in note for note in entry["boundary_notes"])

@@ -338,6 +338,7 @@ def c24_catalog() -> dict[str, Any]:
         "source_profile": SOURCE_PROFILE,
         "implemented": ["V15-09", "V15-12", "V15-13"],
         "all_require_external_observation": True,
-        "next_dependency": ["V15-10"],
+        "next_dependency": [],
+        "implemented_by_c25": ["V15-10"],
         "policy": "风云观测必须显式提供；缺观测返回not_computable。",
     }

@@ -102,20 +102,18 @@ C123 将其来源正式校正为：
 
 后续兼容层应委托 C123，而不是继续作为第二套公式真源。
 
-## 6. 尚未实现
+## 6. 已实现的空间叠加与来源边界
 
-原文还说：
+原文所列开门加太乙、主大将、客大将、定计大将，现已由
+`kintaiyi.jinjing_eight_door_overlay.jinjing_year_open_door_contexts` 实现。
+当前 `position_overlay_implemented=True`，岁计直门周期与显式位置输入仍分层。
+见 [八门空间叠加来源记录](jinjing-eight-door-overlay-record.md)。
 
-- 开门加太乙；
-- 开门加主大将；
-- 开门加客大将；
-- 开门加定计大将；
-- 客主八门与太乙八门开休生三门合者大利。
+“客主八门与太乙八门开休生三门合者大利”由
+`kintaiyi.jinjing_year_door_relations.year_door_meeting` 实现。
+经《太乙淘金歌》平行释文校明，判断将落太乙盘的开、休、生之一；
+不要求三张门盘的三吉门逐名全部重合。
+见 [岁计八门合门来源记录](jinjing-year-door-meeting-record.md)。
 
-这些属于位置叠加关系。
-
-C123 当前：
-
-`position_overlay_implemented=False`
-
-不由“直门是什么”自动制造空间叠加。
+王希明直使加锚点继续单列 `parallel_reconstruction`，其空间操作使用平行来源，
+不覆盖李淳风固定开门古法。C119 时计移动叠加仍需独立重建，不由岁计实现自动升级。

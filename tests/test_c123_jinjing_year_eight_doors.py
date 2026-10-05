@@ -64,3 +64,15 @@ def test_c123_rejects_zero_as_canonical_accumulated_year():
         year_duty_door(0)
     with pytest.raises(TypeError):
         year_duty_door(True)
+
+def test_c123_source_record_matches_implemented_overlay_boundary():
+    from pathlib import Path
+
+    record = Path("sources/c123-jinjing-year-eight-doors-record.md").read_text(encoding="utf-8")
+    boundary = c123_catalog()["overlay_boundary"]
+    assert boundary["position_overlay_implemented"] is True
+    assert "position_overlay_implemented=True" in record
+    assert "position_overlay_implemented=False" not in record
+    for field in ("overlay_runtime", "meeting_runtime"):
+        assert boundary[field] in record
+    assert "parallel_reconstruction" in record

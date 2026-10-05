@@ -167,4 +167,5 @@ def test_c24_catalog_requires_external_observations():
     data = c24_catalog()
     assert data["implemented"] == ["V15-09", "V15-12", "V15-13"]
     assert data["all_require_external_observation"] is True
-    assert data["next_dependency"] == ["V15-10"]
+    assert data["next_dependency"] == []
+    assert data["implemented_by_c25"] == ["V15-10"]
