@@ -10,7 +10,7 @@ from kintaiyi.taiyi_calendar_upstream import (
 def test_calendar_contract_year_requires_resolved_historical_year():
     req = calendar_upstream_requirements("岁计")
     assert req["required_facts"] == ["resolved_historical_year"]
-    assert req["automatic_gregorian_resolution"] is False
+    assert req["automatic_gregorian_resolution"] is True
 
     data = run_resolved_calendar_count(
         count_type="岁计",
@@ -80,5 +80,6 @@ def test_calendar_contract_rejects_cross_layer_convenience_inputs():
 def test_calendar_automation_status_keeps_datetime_boundary_pending():
     status = calendar_automation_status()
     assert status["automatic_gregorian_resolution"] is False
-    assert any("datetime" in item for item in status["pending"])
+    assert not any("岁计历史年边界" in item for item in status["pending"])
+    assert not any("冬至/夏至气应时刻" in item for item in status["pending"])
     assert any("月计" in item for item in status["pending"])
