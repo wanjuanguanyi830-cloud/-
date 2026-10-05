@@ -20,8 +20,8 @@ blocked_missing_original_store
 
 ## Manifest 当前覆盖
 
-- stable catalogs: 13
-- stable entries: 111
+- stable catalogs: 15
+- stable entries: 148
 - migration-linked stable entries: 14
 - NCL migration-only candidates: 0
 
