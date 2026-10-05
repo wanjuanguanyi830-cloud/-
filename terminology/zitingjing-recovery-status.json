@@ -37,10 +37,10 @@
     },
     "legacy_scan_extraction_residue": {
       "asset": "terminology/zitingjing-legacy-scan-recovery.json",
-      "status": "recovered_from_prior_workflow_residue",
+      "status": "manuscript_reattached_toc_inspected_code_residue_separated",
       "direct_manuscript_pages_reattached": true,
       "old_store_fields_recovered": false,
-      "note": "用户已在当前会话重新提供研易楼明钞本扫描；目录页已直接核验。旧terminology.json仍未恢复。"
+      "note": "研易楼明钞本已重新提供并核验目录；旧terminology.json仍未恢复。"
     },
     "public_web_recovery": {
       "checked_on": "2026-10-05",
@@ -67,7 +67,7 @@
       "open_text_search": {
         "direct_wenchang_appendix_text_found": false,
         "direct_yanyilou_page_found": false,
-        "note": "公开检索可确认附篇题名与扫描资源存在，但未取得可逐字校读的研易楼明钞本附篇正文；搜索到的文昌九星正文仍主要属于《太乙统宗宝鉴》卷六，不可回填紫庭manuscript_form/source_page。"
+        "note": "历史公开检索主要取得《太乙统宗宝鉴》卷六文昌九星正文；现已由用户上传研易楼明钞本直接核目录，目录未见文昌九星题名。现代整理附篇来源仍未完全证明。"
       },
       "access_policy": "只记录公开可访问页面；未绕过付费/网盘访问限制，也未把外部统宗文本冒充研易楼本。"
     },
@@ -160,22 +160,21 @@
     "for manuscript_form/source_page only: direct recoverable pages from the Yanyilou Ming manuscript witness"
   ],
   "non_substitutable_sources": [
-    "太乙统宗宝鉴",
-    "三才世纬",
-    "现代整理材料",
-    "OCR猜测",
-    "C70文昌九星统宗profile"
+    "现代整理材料不能代替研易楼明钞本 manuscript_form/source_page",
+    "OCR猜测不能代替旧terminology.json真实历史字段",
+    "C70《统宗》profile不能被改写成研易楼原钞来源；但它是当前文昌九星独立可执行source profile"
   ],
   "policy": [
     "C81 is an availability audit, not a reconstructed terminology store.",
     "Do not infer the old JSON schema, ids, aliases, definitions, notes, or page fields.",
     "Do not use external collation witnesses to fill Yanyilou manuscript_form or source_page.",
-    "C70 may inform source comparison but may not backfill Zitingjing primary terminology fields.",
     "When the original store becomes available, write a one-time adapter against the observed schema.",
     "A user-confirmed local copy or recovered derived scan residue does not make the old terminology.json schema available; parser_allowed remains false until the exact store is mounted.",
     "All five visible Git branches were recursively checked on 2026-10-05; no historical terminology.json was present. This narrows recovery to the exact local/previously uploaded store rather than an unmerged Git branch.",
     "Three banners and nine-palace noble gods now have direct Tongzong volume10 runtimes; their legacy recovery entries remain only to recover old-store identity or prove an additional Ziting manuscript witness.",
     "用户已重新提供研易楼明钞本扫描；目录直接核验未见文昌九星题名，因此文昌九星当前规则来源缺口已关闭，C70统宗卷六为可执行source profile。",
-    "现代整理本同名附篇来源仍未完全证明；这属于编辑史/来源问题，不再阻塞文昌九星算法。"
+    "现代整理本同名附篇来源仍未完全证明；这属于编辑史/来源问题，不再阻塞文昌九星算法。",
+    "文昌九星不再作为紫庭primary恢复目标：研易楼明钞目录未见该题，当前直接可执行规则归C70《太乙统宗宝鉴》卷六。",
+    "现代整理本“附太乙文昌九星值宮術”来源仍未证；可研究其编辑来源，但不得反推研易楼原钞。"
   ]
 }
