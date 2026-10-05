@@ -147,3 +147,20 @@ C17 source-profile 架构不依赖某条 J4M 当前是 implemented/partial/pendi
 - 格局坐标继续引用 `terminology/common-core.json`，不复制第二套九宫/十六辰定义。
 
 因此“术语统一”只统一名称、字段和来源归属，不等于合并金镜与统宗的格局判断。
+
+
+## 9. 军事 P0 术语目录接线
+
+新增 `terminology/military-p0.json`，将 C17 三项 source-sensitive 术语与 crosswalk 固定关联：
+
+- three_doors: J4M-01 / JF4M-01；
+- five_generals: J4M-02 / JF4M-02；
+- host_guest_relation: J4M-03 / JF4M-03。
+
+术语层同步 C17 的强制边界：
+
+- 三门、五将允许登记 `c8_upstream`，但仅表示 C8-L2 的消费/归一化角色；
+- 主客相关法禁止登记 `c8_upstream` 为替代 profile；
+- C8-L3 主客动静不是 J4M-03/JF4M-03；
+- `CORE-WUJIANG-READY` 仅为跨层整合规则，不属于古籍 source rule；
+- 所有 profile 继续 `canonical_selected=None`、`cross_source_merge=False`。
