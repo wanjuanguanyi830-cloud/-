@@ -72,7 +72,7 @@ def test_wenchang_nine_stars_recovers_legacy_scan_but_still_blocks_primary():
     assert entry["canonical_selected"] is None
     assert entry["cycle_status"] == "cross_source_unresolved"
     assert entry["legacy_scan_recovery"]["status"] == "manuscript_previously_scanned_original_page_record_not_reattached"
-    assert entry["legacy_scan_recovery"]["recovered_forms"][0] == "文曲"
+    assert entry["legacy_scan_recovery"]["recovered_code_forms"][0] == "文曲"
 
 
 def test_three_banners_and_nine_palace_nobles_remain_unverified_attribution():
