@@ -130,3 +130,14 @@
 - 文昌九星 primary evidence 更新为 `legacy_scan_extraction_recovered_page_pending`：旧扫描成果已确认存在并恢复部分残留，但 E 盘原扫描/旧 `terminology.json` 未重新挂载前仍禁止生成紫庭 primary runtime。
 - 与 C70《统宗》NGJ 见证的文昌/文曲、阴德/昭搖、招摇/立華、维明/雄明及年干落宫差异全部并列保存，不静默合并。
 - 恢复词形单列为 `recovered_scan_aliases`；`old_term_record_id`、`source_page`、`old_aliases` 等旧 store 原字段继续保持 null，防止把派生残留误当旧库原字段。
+
+
+## 2026-10-05 — 软件调用分层 / registry / public API
+
+- 保留现有 `terminology/`、`rules/`、`sources/` 和 `src/kintaiyi/` owner，不进行破坏性物理搬迁。
+- 新增 `registry/catalog.json`：统一登记术语、规则、runtime、来源、schemas 与测试层的稳定指针，不复制算法和正文。
+- 新增 `registry/operations.json`：登记软件可直接调用的 stable operations；待校或 source-record-only 项不得伪装成可运行接口。
+- 新增 `kintaiyi.api`：提供 `get_term`、`search_terms`、`get_rule`、`calculate`、`calendar_context`、`build_pan`、`explain_result`。
+- 将 `terminology`、`rules`、`registry`、`schemas` 作为 package data 随 Python 包安装，避免软件依赖仓库相对路径。
+- 新增 registry/API 回归测试，锁定三才 5 与 15/25/35 边界、C124 太乙九星 source profile、runtime 可解析性和 packaged JSON 资源。
+- 新增 `docs/ARCHITECTURE.md`，明确单一事实来源、兼容策略和后续旧术语库迁移原则。
