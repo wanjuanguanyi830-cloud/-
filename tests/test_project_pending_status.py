@@ -20,7 +20,9 @@ def test_top_level_pending_contains_only_current_unresolved_work():
     assert "淘金歌大游" in joined
     assert "terminology.json" in joined
     assert "研易楼藏《太乙紫庭祕訣》明钞本" in joined
-    assert "JF4M-02、JF4M-07、JF4M-10" in joined
+    assert "JF4M-02" in joined
+    assert "JF4M-07" not in joined
+    assert "JF4M-10" not in joined
 
     # These are confirmed boundaries/history, not unresolved research items.
     assert "结构全有不自动赋予" not in joined
@@ -35,8 +37,4 @@ def test_jingyou_p0_profile_is_runtime_available_but_keeps_text_pending():
     assert profile["runtime_catalog"] == (
         "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog"
     )
-    assert profile["pending_textual_uncertainty"] == [
-        "JF4M-02",
-        "JF4M-07",
-        "JF4M-10",
-    ]
+    assert profile["pending_textual_uncertainty"] == ["JF4M-02"]
