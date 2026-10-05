@@ -573,7 +573,7 @@ def test_c88_ncl_j4m06_direction_table_is_separate_from_siku():
 
 def test_c88_ncl_j4m06_direction_table_is_variant_not_siku_completion():
     data, rules = _rules()
-    assert data["source"]["ncl_volume4_collation_version"] == "c88-ncl06604-j4m06-direction-table-v1"
+    assert "c88-ncl06604-j4m06-direction-table-v1" in data["source"]["ncl_volume4_collation_history"]
 
     rule = {item["id"]: item for item in rules}["J4M-06"]
     ncl = rule["manuscript_readings"]["NCL-06604"]
