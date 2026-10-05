@@ -95,17 +95,18 @@ def test_jf4m05_and_06_preserve_fuying_calcs_and_direction_table():
     assert deploy_direction(5)["computable"] is False
 
 
-def test_jf4m07_formation_control_works_without_borrowing_jinjing_terrain_table():
+def test_jf4m07_formation_control_and_terrain_table_are_fuying_native():
     result = formation_by_terrain(
         host_formation="锐阵",
         guest_formation="方阵",
-        terrain_shape="电子转录待核地形",
-        terrain_recommended_formation="锐阵",
+        terrain_shape="后高前低",
     )
     assert result["formation_contest"]["winner"] == "主"
     assert result["formation_contest"]["relation"] == "火制金"
-    assert result["terrain_status"] == "explicit_collation_input"
-    assert result["textual_uncertainty"]
+    assert result["terrain_status"] == "ok"
+    assert result["terrain_rule"]["formation"] == "锐阵"
+    assert result["terrain_table"]["地形跨斜"]["formation"] == "圆阵"
+    assert result["terrain_table"]["左右势高岗"]["formation"] == "曲阵"
 
 
 def test_jf4m08_preserves_fuying_specific_ratios():
@@ -116,6 +117,11 @@ def test_jf4m08_preserves_fuying_specific_ratios():
         general_inspects_troops=False,
     )
     assert result["terrain_rule"]["source_ratio_text"] == "车骑二不当一"
+    assert len(result["source_facts"]["terrain_rules"]) == 6
+    assert any(
+        item["source_ratio_text"] == "长戟二不当一"
+        for item in result["source_facts"]["terrain_rules"]
+    )
     assert any("百不当十" in warning for warning in result["warnings"])
     assert any("五不当一" in warning for warning in result["warnings"])
 
@@ -170,3 +176,43 @@ def test_jf4m11_odd_ambush_keeps_fuying_great_kill_reading():
     assert "伏于要害" in result["recommendations"]
     assert "奇兵必从大杀之地" in result["divergence_from_jinjing"]
     assert "12" not in str(result["concealment_calcs"])
+
+
+def test_jf4m10_extended_source_transcription_cases():
+    result = weather_bird_support([
+        {
+            "phenomenon": "云",
+            "action": "冲格迫击",
+            "target": "太乙宫",
+        },
+        {
+            "phenomenon": "飞鸟",
+            "source_anchor": "主目",
+            "action": "去击",
+            "target": "客大将宫",
+        },
+        {
+            "phenomenon": "风",
+            "source_anchor": "太岁",
+            "action": "击",
+            "target": "主人阵",
+        },
+        {
+            "phenomenon": "飞鸟",
+            "returning_wind": True,
+            "birds_circling": True,
+        },
+        {
+            "phenomenon": "众鸟",
+            "action": "冲阵",
+            "target": "客阵",
+            "crowd_noisy": True,
+        },
+    ])
+
+    assert result["judgments"][0]["omen"] == "大败"
+    assert result["judgments"][1]["loser"] == "客"
+    assert result["judgments"][2]["loser"] == "主"
+    assert result["judgments"][3]["omen"] == "大败之兆"
+    assert result["judgments"][4]["loser"] == "客"
+    assert result["judgments"][4]["omen"] == "凶"
