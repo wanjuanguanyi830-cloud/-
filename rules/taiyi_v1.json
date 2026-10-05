@@ -460,6 +460,12 @@
           "C121-DIRECT-ENVOY-MOVEMENT"
         ],
         "runtime": "kintaiyi.jinjing_direct_envoy.direct_envoy_anchor"
+      },
+      {
+        "id": "R-YEAR-EIGHT-DOORS",
+        "canonical": "C123《金镜》卷一年计八门：积年先720再240，余按30年一门，门序开休生伤杜景死惊。它与C119时计八门30时一门严格分层。固定开门空间叠盘和三吉门会合为已实现附层；三吉门大利只属局部门关系，不覆盖囚迫格对、杜塞、五将发不发等军事条件。",
+        "rule_id": "C123-YEAR-DUTY-DOOR",
+        "runtime": "kintaiyi.jinjing_year_eight_doors.year_duty_door"
       }
     ]
   },
