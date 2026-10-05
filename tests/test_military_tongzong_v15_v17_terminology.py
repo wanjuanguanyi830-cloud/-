@@ -7,6 +7,7 @@ from kintaiyi.military_rule_units import military_rule_unit_catalog
 from kintaiyi.tongzong_v15_low_dependency import c23_catalog
 from kintaiyi.tongzong_v15_observations import c24_catalog
 from kintaiyi.tongzong_v15_wind_sound import c25_catalog
+from kintaiyi.tongzong_v15_remaining import remaining_v15_catalog
 from kintaiyi.tongzong_v17_low_dependency import c26_catalog
 from kintaiyi.tongzong_v17_structured import c27_catalog
 from kintaiyi.tongzong_v17_high_dependency import c28_catalog
@@ -46,6 +47,7 @@ def test_c23_to_c28_implemented_source_rules_match_terminology_runtime_ids():
         c23_catalog(),
         c24_catalog(),
         c25_catalog(),
+        remaining_v15_catalog(),
         c26_catalog(),
         c27_catalog(),
         c28_catalog(),
@@ -53,10 +55,8 @@ def test_c23_to_c28_implemented_source_rules_match_terminology_runtime_ids():
         declared.update(catalog["implemented"])
 
     expected = {
-        "V15-02", "V15-03", "V15-04", "V15-05", "V15-06",
-        "V15-09", "V15-10", "V15-12", "V15-13",
-        "V17-01", "V17-02", "V17-03", "V17-04", "V17-05",
-        "V17-06", "V17-07", "V17-08", "V17-09", "V17-10", "V17-11",
+        *{f"V15-{n:02d}" for n in range(1, 15)},
+        *{f"V17-{n:02d}" for n in range(1, 12)},
     }
     source_runtime_ids = {
         rid for rid, entry in by_id.items()
@@ -72,7 +72,7 @@ def test_c23_to_c28_implemented_source_rules_match_terminology_runtime_ids():
         assert callable(_resolve(by_id[rid]["catalog_runtime"]))
 
 
-def test_only_five_volume15_source_rules_remain_runtime_pending():
+def test_no_canonical_tongzong_military_source_rule_remains_runtime_pending():
     data = _load(CATALOG)
 
     pending = {
@@ -81,13 +81,12 @@ def test_only_five_volume15_source_rules_remain_runtime_pending():
         if entry["canonical_source_rule"] and entry["runtime"] is None
     }
 
-    assert pending == {"V15-01", "V15-07", "V15-08", "V15-11", "V15-14"}
-
-    for entry in data["entries"]:
-        if entry["rule_id"] in pending:
-            assert entry["reference_function"]
-            assert entry["implementation_status"] == "source_rule_catalog_only"
-
+    assert pending == set()
+    assert all(
+        entry["implementation_status"] == "implemented_source_specific"
+        for entry in data["entries"]
+        if entry["canonical_source_rule"]
+    )
 
 def test_v17_d1_is_implemented_cross_volume_helper_not_source_rule():
     data = _load(CATALOG)
@@ -125,10 +124,8 @@ def test_rules_json_registers_complete_tongzong_runtime_coverage():
     source = by_id["R-TONGZONG-MILITARY-V15-V17"]
     assert len(source["rule_ids"]) == 25
     assert set(source["implemented_rule_ids"]) == {
-        "V15-02", "V15-03", "V15-04", "V15-05", "V15-06",
-        "V15-09", "V15-10", "V15-12", "V15-13",
-        "V17-01", "V17-02", "V17-03", "V17-04", "V17-05",
-        "V17-06", "V17-07", "V17-08", "V17-09", "V17-10", "V17-11",
+        *{f"V15-{n:02d}" for n in range(1, 15)},
+        *{f"V17-{n:02d}" for n in range(1, 12)},
     }
 
     derived = by_id["R-TONGZONG-MILITARY-DERIVED"]
