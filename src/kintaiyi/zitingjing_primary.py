@@ -52,7 +52,17 @@ PRIMARY_LOCATORS = {
             ],
             "evidence": "两处现代整理本目录均列“附太乙文昌九星值宫术”",
         },
-        "witness_context": "可确认该术附属于现存《太乙紫庭秘诀》传本系统，但尚未取得可逐条校读的直接正文。",
+        "scan_share_leads": [
+            {
+                "site": "书格",
+                "title": "太乙紫庭祕訣 研易樓藏明鈔本",
+                "url": "https://www.shuge.org/meet/topic/96517/",
+                "reported_extent": "181单页灰度，328M",
+                "status": "share_page_located_scan_not_inspected",
+                "note": "分享帖称文本与北大本可互补，并列出多个网盘转存；当前未取得可逐页核读的扫描正文。",
+            },
+        ],
+        "witness_context": "可确认该术附属于现存《太乙紫庭秘诀》传本系统；且已定位研易楼明钞本公开分享页，但尚未取得可逐条校读的直接正文。",
     },
     "three_banners": {
         "status": "project_primary_attribution_unverified",
