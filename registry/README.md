@@ -32,3 +32,17 @@ Python 软件优先调用 kintaiyi.api，不要直接依赖内部模块文件名
 - 增加 `registry_normalized_rule_id=true`。
 
 这不会改写底层 runtime 或 source profile，只为软件统一消费结果。
+
+
+## API 版本
+
+公开软件接口当前为 `public_api_version = 1.0`。
+
+调用方可通过：
+
+```python
+from kintaiyi import registry_versions
+versions = registry_versions()
+```
+
+读取 public API、registry schema 与 operations schema 版本。破坏性公开接口变更必须提升主版本；仓库内部文件移动或来源校勘若不改变公开契约，不要求软件端跟随修改。
