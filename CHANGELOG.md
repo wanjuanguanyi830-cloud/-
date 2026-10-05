@@ -245,3 +245,13 @@
 - 稳定术语目录数由15增至16；总稳定词条数仍为148（从紫庭目录移出1项，同时新增独立文昌九星目录1项），精确跨词条重名目标仍保持0。
 - 文昌九星 `current_rule_source_gap` 关闭；后续旧库恢复只处理历史 term id / notes / aliases 与现代附篇编辑来源，不再阻塞 C70 算法调用。
 - 本轮来源解绑、术语目录拆分、legacy source slot 与防回归测试全部收口后，GitHub Actions full pytest：**2451 passed / 0 failed**（run #1979）。
+
+
+## 2026-10-06 — T7-06 白龙得云“刑克”运行解释收口
+
+- 重新对照四库本《太乙金镜式经》卷六、《太乙统宗宝鉴》卷十二与《太乙金钥匙》；三源均有“刑克”措辞，但均未提供独立将宫刑表或演算例。
+- 四库本同段对大将写“刑克”，紧接小将平行句简作“克小将亦然”；结合本条古例只实际演示五行生比，当前 canonical 收口为敌大将九宫五行克我方大将/参将九宫五行。
+- 删除 T7-06 “必须等待将宫刑映射”算法 pending；不再从地支三刑、神名相刑或其他九宫刑表制造第二套 operator。
+- 旧参数 xing_pairs 保留兼容，但降为 explicit external extension：只返回 external_xing_events，不进入 canonical events，也不改变 severe/verdict 或 dragon() 的主判。
+- `terminology/t7-seven-methods.json` 状态更新为 `three_source_phrase_verified_control_only_canonical_no_independent_xing_operator`。
+- GitHub Actions full pytest：**2452 passed / 0 failed**（run #1989）。
