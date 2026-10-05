@@ -92,3 +92,31 @@ def test_production_context_keeps_year_and_time_boundaries_separate():
     assert data["year_boundary"]["taiyi_historical_year"] == 2027
     assert data["time_half"]["solstice_half"] == "冬至后"
     assert data["time_half"]["dun"] == "阳"
+
+
+
+def test_production_context_keeps_taiyi_year_separate_from_lunar_new_year():
+    from datetime import datetime
+
+    data = production_calendar_context(
+        datetime(2027, 1, 1, 12, tzinfo=timezone.utc)
+    )
+    assert data["year_boundary"]["taiyi_historical_year"] == 2027
+    assert data["lunisolar"]["lunar"]["year"] == 2026
+    assert data["lunisolar"]["boundary_separation"]["taiyi_year"] == "由真实冬至瞬间单独决定"
+
+
+def test_production_context_chinese_new_year_changes_lunar_year_not_taiyi_year():
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+
+    before = production_calendar_context(
+        datetime(2027, 2, 5, 12, tzinfo=ZoneInfo("Asia/Shanghai"))
+    )
+    new_year = production_calendar_context(
+        datetime(2027, 2, 6, 12, tzinfo=ZoneInfo("Asia/Shanghai"))
+    )
+    assert before["year_boundary"]["taiyi_historical_year"] == 2027
+    assert new_year["year_boundary"]["taiyi_historical_year"] == 2027
+    assert before["lunisolar"]["lunar"]["year"] == 2026
+    assert new_year["lunisolar"]["lunar"]["year"] == 2027
