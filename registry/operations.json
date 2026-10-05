@@ -4,20 +4,292 @@
   "policy": [
     "operation只登记稳定软件入口和runtime指针，不复制算法。",
     "需要source profile的算法必须由调用者显式传入，不设置跨来源默认值。",
-    "pending或source-record-only规则不登记为stable calculation operation。"
+    "pending或source-record-only规则不登记为stable calculation operation。",
+    "新软件可优先按rule_id调用kintaiyi.api.calculate_rule；operation名称作为稳定的人类可读别名。"
   ],
   "operations": [
-    {"name":"modern.calendar_context","domain":"modern","rule_ids":["MODERN-TAIYI-ASTRONOMICAL-CALENDAR"],"runtime":"kintaiyi.taiyi_modern_calendar.production_calendar_context","status":"stable"},
-    {"name":"modern.pan_v2","domain":"modern","rule_ids":["MODERN-PAN-V2-ADAPTER"],"runtime":"kintaiyi.taiyi_modern_pan.build_modern_pan_v2","status":"stable"},
-    {"name":"eight.sancai","domain":"eight_divinations","rule_ids":["D8-01"],"runtime":"kintaiyi.eight_divinations.sancai","status":"stable"},
-    {"name":"eight.wuyin","domain":"eight_divinations","rule_ids":["D8-03"],"runtime":"kintaiyi.eight_divinations.wuyin_from_calc","status":"stable"},
-    {"name":"eight.gudan","domain":"eight_divinations","rule_ids":["D8-04"],"runtime":"kintaiyi.eight_divinations.gudan_state","status":"stable"},
-    {"name":"eight.yinyang_ehui","domain":"eight_divinations","rule_ids":["D8-07"],"runtime":"kintaiyi.eight_divinations.tui_danger","status":"stable"},
-    {"name":"seven.lijin","domain":"seven_methods","rule_ids":["T7-01"],"runtime":"kintaiyi.seven_methods.lijin","status":"stable"},
-    {"name":"seven.lion","domain":"seven_methods","rule_ids":["T7-02"],"runtime":"kintaiyi.seven_methods.lion","status":"stable"},
-    {"name":"cycles.wufu.position","domain":"cycles","rule_ids":["C67-WUFU-TONGZONG","C67-WUFU-JINJING"],"runtime":"kintaiyi.wufu_source_profiles.wufu_position","status":"stable","source_profile_required":true},
-    {"name":"stars.taiyi.ziting_static","domain":"nine_stars","rule_ids":["taiyi_nine_stars"],"runtime":"kintaiyi.zitingjing_primary.taiyi_nine_stars_primary","status":"stable"},
-    {"name":"stars.taiyi.tongzong_dynamic","domain":"nine_stars","rule_ids":["C124-TONGZONG-TAIYI-NINE-STARS"],"runtime":"kintaiyi.taiyi_nine_stars_tongzong.taiyi_nine_stars_tongzong","status":"stable","source_profile":"tongzong_volume6_taiyi_nine_stars"},
-    {"name":"stars.wenchang.tongzong","domain":"nine_stars","rule_ids":["C70-TONGZONG-WENCHANG-NINE-STARS"],"runtime":"kintaiyi.wenchang_nine_stars_tongzong.wenchang_nine_star_tongzong","status":"stable","source_profile":"tongzong_volume6_ngj_wenchang_nine_stars","boundary_note":"不得升级为紫庭canonical；紫庭附篇正文仍独立校勘。"}
+    {
+      "name": "modern.calendar_context",
+      "domain": "modern",
+      "rule_ids": [
+        "MODERN-TAIYI-ASTRONOMICAL-CALENDAR"
+      ],
+      "runtime": "kintaiyi.taiyi_modern_calendar.production_calendar_context",
+      "status": "stable"
+    },
+    {
+      "name": "modern.pan_v2",
+      "domain": "modern",
+      "rule_ids": [
+        "MODERN-PAN-V2-ADAPTER"
+      ],
+      "runtime": "kintaiyi.taiyi_modern_pan.build_modern_pan_v2",
+      "status": "stable"
+    },
+    {
+      "name": "eight.sancai",
+      "domain": "eight_divinations",
+      "rule_ids": [
+        "D8-01"
+      ],
+      "runtime": "kintaiyi.eight_divinations.sancai",
+      "status": "stable"
+    },
+    {
+      "name": "eight.wuyin",
+      "domain": "eight_divinations",
+      "rule_ids": [
+        "D8-03"
+      ],
+      "runtime": "kintaiyi.eight_divinations.wuyin_from_calc",
+      "status": "stable"
+    },
+    {
+      "name": "eight.gudan",
+      "domain": "eight_divinations",
+      "rule_ids": [
+        "D8-04"
+      ],
+      "runtime": "kintaiyi.eight_divinations.gudan_state",
+      "status": "stable"
+    },
+    {
+      "name": "eight.yinyang_ehui",
+      "domain": "eight_divinations",
+      "rule_ids": [
+        "D8-07"
+      ],
+      "runtime": "kintaiyi.eight_divinations.tui_danger",
+      "status": "stable"
+    },
+    {
+      "name": "seven.lijin",
+      "domain": "seven_methods",
+      "rule_ids": [
+        "T7-01"
+      ],
+      "runtime": "kintaiyi.seven_methods.lijin",
+      "status": "stable"
+    },
+    {
+      "name": "seven.lion",
+      "domain": "seven_methods",
+      "rule_ids": [
+        "T7-02"
+      ],
+      "runtime": "kintaiyi.seven_methods.lion",
+      "status": "stable"
+    },
+    {
+      "name": "cycles.wufu.position",
+      "domain": "cycles",
+      "rule_ids": [
+        "C67-WUFU-TONGZONG",
+        "C67-WUFU-JINJING"
+      ],
+      "runtime": "kintaiyi.wufu_source_profiles.wufu_position",
+      "status": "stable",
+      "source_profile_required": true
+    },
+    {
+      "name": "stars.taiyi.ziting_static",
+      "domain": "nine_stars",
+      "rule_ids": [
+        "taiyi_nine_stars"
+      ],
+      "runtime": "kintaiyi.zitingjing_primary.taiyi_nine_stars_primary",
+      "status": "stable"
+    },
+    {
+      "name": "stars.taiyi.tongzong_dynamic",
+      "domain": "nine_stars",
+      "rule_ids": [
+        "C124-TONGZONG-TAIYI-NINE-STARS"
+      ],
+      "runtime": "kintaiyi.taiyi_nine_stars_tongzong.taiyi_nine_stars_tongzong",
+      "status": "stable",
+      "source_profile": "tongzong_volume6_taiyi_nine_stars"
+    },
+    {
+      "name": "stars.wenchang.tongzong",
+      "domain": "nine_stars",
+      "rule_ids": [
+        "C70-TONGZONG-WENCHANG-NINE-STARS"
+      ],
+      "runtime": "kintaiyi.wenchang_nine_stars_tongzong.wenchang_nine_star_tongzong",
+      "status": "stable",
+      "source_profile": "tongzong_volume6_ngj_wenchang_nine_stars",
+      "boundary_note": "不得升级为紫庭canonical；紫庭附篇正文仍独立校勘。"
+    },
+    {
+      "name": "eight.length",
+      "domain": "eight_divinations",
+      "rule_ids": [
+        "D8-02"
+      ],
+      "runtime": "kintaiyi.eight_divinations.calc_length",
+      "status": "stable"
+    },
+    {
+      "name": "eight.inner_outer",
+      "domain": "eight_divinations",
+      "rule_ids": [
+        "D8-05"
+      ],
+      "runtime": "kintaiyi.eight_divinations.attack_realm",
+      "status": "stable"
+    },
+    {
+      "name": "eight.quantity",
+      "domain": "eight_divinations",
+      "rule_ids": [
+        "D8-06"
+      ],
+      "runtime": "kintaiyi.eight_divinations.suenwl",
+      "status": "stable"
+    },
+    {
+      "name": "eight.preparedness",
+      "domain": "eight_divinations",
+      "rule_ids": [
+        "D8-08"
+      ],
+      "runtime": "kintaiyi.eight_divinations.calc_preparedness",
+      "status": "stable"
+    },
+    {
+      "name": "seven.cloud",
+      "domain": "seven_methods",
+      "rule_ids": [
+        "T7-03"
+      ],
+      "runtime": "kintaiyi.seven_methods.cloud",
+      "status": "stable"
+    },
+    {
+      "name": "seven.tiger",
+      "domain": "seven_methods",
+      "rule_ids": [
+        "T7-04"
+      ],
+      "runtime": "kintaiyi.seven_methods.tiger",
+      "status": "stable"
+    },
+    {
+      "name": "seven.leigong",
+      "domain": "seven_methods",
+      "rule_ids": [
+        "T7-05"
+      ],
+      "runtime": "kintaiyi.seven_methods.leigong",
+      "status": "stable"
+    },
+    {
+      "name": "seven.dragon",
+      "domain": "seven_methods",
+      "rule_ids": [
+        "T7-06"
+      ],
+      "runtime": "kintaiyi.seven_methods.dragon",
+      "status": "stable"
+    },
+    {
+      "name": "seven.return_army",
+      "domain": "seven_methods",
+      "rule_ids": [
+        "T7-07"
+      ],
+      "runtime": "kintaiyi.seven_methods.returnarmy",
+      "status": "stable"
+    },
+    {
+      "name": "cycles.dayou.position",
+      "domain": "cycles",
+      "rule_ids": [
+        "C107-DAYOU-JINJING",
+        "C107-DAYOU-TONGZONG"
+      ],
+      "runtime": "kintaiyi.dayou_position_source_profiles.dayou_position",
+      "status": "stable",
+      "source_profile_required": true
+    },
+    {
+      "name": "cycles.dayou.skyeye",
+      "domain": "cycles",
+      "rule_ids": [
+        "C106-DAYOU-TIANMU-JINJING",
+        "C106-DAYOU-TIANMU-TONGZONG"
+      ],
+      "runtime": "kintaiyi.dayou_tianmu_source_profiles.dayou_tianmu_position",
+      "status": "stable",
+      "source_profile_required": true
+    },
+    {
+      "name": "cycles.xiaoyou.position",
+      "domain": "cycles",
+      "rule_ids": [
+        "C103-XIAOYOU-JINJING",
+        "C103-XIAOYOU-TONGZONG"
+      ],
+      "runtime": "kintaiyi.xiaoyou_position.xiaoyou_position",
+      "status": "stable",
+      "source_profile_required": true
+    },
+    {
+      "name": "cycles.wufu.auspicious_number",
+      "domain": "cycles",
+      "rule_ids": [
+        "C68-WUFU-AUSPICIOUS-NUMBER"
+      ],
+      "runtime": "kintaiyi.wufu_auspicious_numbers.wufu_auspicious_beneficiary",
+      "status": "stable"
+    },
+    {
+      "name": "cycles.yangjiu",
+      "domain": "cycles",
+      "rule_ids": [
+        "C36-YJ"
+      ],
+      "runtime": "kintaiyi.limit_cycles.yangjiu_limit",
+      "status": "stable"
+    },
+    {
+      "name": "cycles.bailiu",
+      "domain": "cycles",
+      "rule_ids": [
+        "C36-BL"
+      ],
+      "runtime": "kintaiyi.limit_cycles.bailiu_limit",
+      "status": "stable"
+    },
+    {
+      "name": "doors.time",
+      "domain": "doors",
+      "rule_ids": [
+        "C119-WINTER-TIME-DUTY-DOOR",
+        "C119-SUMMER-TIME-DUTY-DOOR"
+      ],
+      "runtime": "kintaiyi.jinjing_time_eight_doors.time_duty_door",
+      "status": "stable"
+    },
+    {
+      "name": "doors.year",
+      "domain": "doors",
+      "rule_ids": [
+        "C123-YEAR-DUTY-DOOR"
+      ],
+      "runtime": "kintaiyi.jinjing_year_eight_doors.year_duty_door",
+      "status": "stable"
+    },
+    {
+      "name": "stars.taiyi.ziting_cycle",
+      "domain": "nine_stars",
+      "rule_ids": [
+        "C125-ZITING-TAIYI-NINE-STARS-CYCLE"
+      ],
+      "runtime": "kintaiyi.zitingjing_primary.taiyi_nine_stars_primary_cycle",
+      "status": "stable",
+      "source_profile": "zitingjing_primary"
+    }
   ]
 }
