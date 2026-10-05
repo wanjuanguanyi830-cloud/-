@@ -24,6 +24,7 @@ from .taiyi_calculations import host_guest_calculations
 from .taiyi_generals import host_guest_generals
 from .taiyi_jishen_shiji import shiji_from_taisui_wenchang
 from .taiyi_wenchang import wenchang_from_ju
+from .taiyi_position import taiyi_from_ju
 
 
 CORE_CHAIN_ID = "CORE-G4-G7-CHAIN"
@@ -140,5 +141,40 @@ def g3_to_g7_from_ju(
         "policy": (
             "局号只用于G3十八周法；G4仍消费显式太岁支。"
             "不得从局号暗推太岁支进入正式业务接口。"
+        ),
+    }
+
+
+
+def g2_to_g7_from_ju(
+    *,
+    ju: int,
+    dun: str,
+    taisui_branch: str,
+) -> dict[str, Any]:
+    """局号自动生成太乙与文昌，再串G4→G7。"""
+    g2 = taiyi_from_ju(ju, dun=dun)
+    g3 = wenchang_from_ju(ju, dun=dun)
+    core = g4_to_g7_core(
+        taisui_branch=taisui_branch,
+        dun=dun,
+        taiyi_palace=g2["taiyi_palace"],
+        wenchang=g3["wenchang_sector"],
+    )
+    return {
+        **core,
+        "rule_id": "CORE-G2-G7-CHAIN",
+        "ju": ju,
+        "taiyi_palace": g2["taiyi_palace"],
+        "wenchang_sector": g3["wenchang_sector"],
+        "wenchang_god": g3["wenchang_god"],
+        "stages": {
+            "g2": g2,
+            "g3": g3,
+            **core["stages"],
+        },
+        "policy": (
+            "局号只负责G2/G3入局积数；G4仍显式消费太岁支。"
+            "这样避免把局号与太岁支的12支关系偷偷混成同一层。"
         ),
     }
