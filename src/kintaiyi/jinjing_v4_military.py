@@ -460,7 +460,7 @@ def suidi_zhibian(terrain_class, *, soldiers_trained=None,
         },
         "policy": (
             "J4M-08 是地形—兵种/兵器—训练器械层；不得并入 J4M-07 阵形五行。"
-            "C75 已按 CADAL06056494 p.136 将旧误读“矛锤”改回“矛鋋”；《汉书》《福应经》只作异文校勘见证，不静默改写《金镜》source profile。"
+            "C79 已按 CADAL06056494 p.136 将旧误读“矛锤”改回“矛鋋”；《汉书》《福应经》只作异文校勘见证，不静默改写《金镜》source profile。"
         ),
     }
 
