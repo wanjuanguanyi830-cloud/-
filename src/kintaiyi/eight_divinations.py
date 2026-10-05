@@ -24,6 +24,8 @@ OUTER_GODS = frozenset(GODS) - INNER_GODS
 
 def _sancai_classic_tags(n):
     """返回古典标签；与结构缺失字段严格分离。"""
+    if n in SANCAI_BLOCKED_CLASSIC:
+        return ["杜塞"]
     tags = []
     if n in SANCAI_NO_HEAVEN_CLASSIC:
         tags.append("无天")
@@ -33,8 +35,6 @@ def _sancai_classic_tags(n):
         tags.append("无人")
     if n in SANCAI_FULL_CLASSIC:
         tags.append("三才俱足")
-    if n in SANCAI_BLOCKED_CLASSIC:
-        tags.append("杜塞")
     return tags
 
 
