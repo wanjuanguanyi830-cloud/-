@@ -30,6 +30,104 @@
   ],
   "entries": [
     {
+      "key": "taiyi_nine_stars",
+      "preferred_term": "太乙九星",
+      "residue_status": "recovered_from_prior_tongzong_implementation",
+      "explicit_source_comment": "《太乙统宗宝鉴》卷六·太乙九星",
+      "recovered_star_sequence": [
+        "天蓬",
+        "天芮",
+        "天冲",
+        "天輔",
+        "天禽",
+        "天心",
+        "天柱",
+        "天任",
+        "天英"
+      ],
+      "recovered_alias_and_omen": [
+        {
+          "star": "天蓬",
+          "alias": "招搖",
+          "omen": "主撼動不寧、更易之象"
+        },
+        {
+          "star": "天芮",
+          "alias": "玄戈",
+          "omen": "主軍盜賊興廢"
+        },
+        {
+          "star": "天冲",
+          "alias": "瑤光",
+          "omen": "主兵戈殺戮"
+        },
+        {
+          "star": "天輔",
+          "alias": "闓陽",
+          "omen": "主倉廩五谷"
+        },
+        {
+          "star": "天禽",
+          "alias": "玉衡",
+          "omen": "主中央殺伐"
+        },
+        {
+          "star": "天心",
+          "alias": "權",
+          "omen": "主理伐無道"
+        },
+        {
+          "star": "天柱",
+          "alias": "璣",
+          "omen": "主殃禍號令"
+        },
+        {
+          "star": "天任",
+          "alias": "璇",
+          "omen": "主陰刑女主"
+        },
+        {
+          "star": "天英",
+          "alias": "樞",
+          "omen": "主陽德天子"
+        }
+      ],
+      "recovered_cycle_annotation": {
+        "large_cycle": 900,
+        "small_cycle": 90,
+        "rate": 10,
+        "start_text": "命起天蓬順行九星"
+      },
+      "recovered_fixed_palace": {
+        "天蓬": 1,
+        "天芮": 2,
+        "天冲": 3,
+        "天輔": 4,
+        "天禽": 5,
+        "天心": 6,
+        "天柱": 7,
+        "天任": 8,
+        "天英": 9
+      },
+      "recovered_year_stem_palace": {
+        "甲": 1,
+        "乙": 9,
+        "丙": 8,
+        "丁": 7,
+        "戊": 1,
+        "己": 2,
+        "庚": 3,
+        "辛": 4,
+        "壬": 5,
+        "癸": 6
+      },
+      "current_audit": {
+        "canonical_equivalent": false,
+        "current_replacement": "C124-TONGZONG-TAIYI-NINE-STARS",
+        "note": "旧实现可用于核对词形/别名/历史接口，但现行周期与动态算法以C124直接见证校勘为准；旧别名所主尚未全部逐条接入C124 canonical。"
+      }
+    },
+    {
       "key": "wenchang_nine_stars",
       "preferred_term": "文昌九星",
       "legacy_scan_extraction_status": "prior_workflow_code_residue_recovered_source_ambiguous",
@@ -123,5 +221,6 @@
         "provenance_correction": "旧config.py第1020-1024行明确标注来源为《太乙统宗宝鉴》卷六，故此前将该残留直接称为研易楼明钞本legacy witness属于过度归因，现已纠正。"
       }
     }
-  ]
+  ],
+  "scope": "prior_workflow_nine_star_residue_with_separate_yanyilou_scan_confirmation"
 }
