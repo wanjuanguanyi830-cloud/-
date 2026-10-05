@@ -801,7 +801,14 @@
             "rule_id": "C124-TONGZONG-TAIYI-NINE-STARS",
             "profile": "tongzong_volume6_taiyi_nine_stars",
             "runtime": "kintaiyi.taiyi_nine_stars_tongzong.taiyi_nine_stars_tongzong",
-            "cycle": "900/90/10"
+            "cycle": "900/90/10",
+            "full_dynamic_distribution_supported": true
+          },
+          "primary_cycle": {
+            "rule_id": "C125-ZITING-TAIYI-NINE-STARS-CYCLE",
+            "runtime": "kintaiyi.zitingjing_primary.taiyi_nine_stars_primary_cycle",
+            "cycle": "90/10",
+            "full_year_stem_distribution_supported": false
           }
         },
         {
@@ -838,7 +845,9 @@
         "C70不得借C124太乙九星的全动态排布反推文昌九星其余八星。",
         "旧扫描派生实现中的年干落宫表不得覆盖C70-NGJ直接见证；冲突字段保持并列待原页复核。",
         "研易楼明钞本此前确实扫描过，但旧config.py九星段明确标注为《太乙统宗宝鉴》卷六；故代码残留词形不能直接升级为紫庭逐字canonical。",
-        "旧代码残留中的年干落宫表不得覆盖C70-NGJ直接见证；冲突字段保持并列，待E盘原扫描或旧terminology.json逐页复核。"
+        "旧代码残留中的年干落宫表不得覆盖C70-NGJ直接见证；冲突字段保持并列，待E盘原扫描或旧terminology.json逐页复核。",
+        "C125《紫庭》与C124《统宗》都含十年一星，但C125当前只证明90年直符循环；C124另有900年大周和完整年干布星，不能因局部一致而合并source profile。",
+        "C125开元十二年1937281→余31→天辅第1年是紫庭主来源自身例证，不需要借C124成立。"
       ]
     },
     {
