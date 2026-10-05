@@ -35,6 +35,15 @@ def test_c81_repository_history_checks_are_explicit():
         "terminology/terminology.json",
         "data/terminology.json",
     ]
+    assert checks["all_visible_branch_trees_checked"] is True
+    assert checks["legacy_store_found_in_visible_git"] is False
+    assert checks["visible_branches_checked"] == [
+        "main",
+        "codex/c1-c7-canonical",
+        "codex/taiyi-base-motion-2026-10-04",
+        "codex/taiyi-rules-v2-20261005",
+        "integrate-taiyi-war-v1-20261004",
+    ]
 
 
 def test_c81_library_no_match_is_not_misreported_as_nonexistence():
@@ -69,6 +78,15 @@ def test_c81_core_entries_match_c40_recovery_order():
         not item["legacy_scan_extraction_residue_available"]
         for key, item in by_key.items()
         if key != "wenchang_nine_stars"
+    )
+    assert by_key["wenchang_nine_stars"]["current_rule_source_gap"] is True
+    assert by_key["three_banners"]["current_rule_source_gap"] is False
+    assert by_key["nine_palace_nobles"]["current_rule_source_gap"] is False
+    assert by_key["three_banners"]["known_executable_rule_id"] == (
+        "C126-TONGZONG-THREE-BANNERS"
+    )
+    assert by_key["nine_palace_nobles"]["known_executable_rule_id"] == (
+        "C127-TONGZONG-NINE-PALACE-NOBLES"
     )
 
 
