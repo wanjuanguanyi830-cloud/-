@@ -21,7 +21,17 @@
   "external_recovery_checks": {
     "chatgpt_library_title_or_content_match": false,
     "status": "no_retrievable_prior_file_found_in_current_recovery_pass",
-    "note": "This is a recovery-channel result, not evidence that the historical local file never existed."
+    "note": "This is a recovery-channel result, not evidence that the historical local file never existed.",
+    "user_reported_local_copy": {
+      "location": "local E drive",
+      "status": "exists_user_confirmed_not_mounted_in_current_runtime"
+    },
+    "legacy_scan_extraction_residue": {
+      "asset": "terminology/zitingjing-legacy-scan-recovery.json",
+      "status": "recovered_from_prior_workflow_residue",
+      "direct_manuscript_pages_reattached": false,
+      "old_store_fields_recovered": false
+    }
   },
   "migration_map": "terminology/zitingjing-migration-map.json",
   "required_original_fields": [
@@ -39,42 +49,48 @@
       "priority": 1,
       "recovered_from_original_store": false,
       "manuscript_form_recoverable_now": false,
-      "source_page_recoverable_now": false
+      "source_page_recoverable_now": false,
+      "legacy_scan_extraction_residue_available": true
     },
     {
       "key": "three_banners",
       "priority": 2,
       "recovered_from_original_store": false,
       "manuscript_form_recoverable_now": false,
-      "source_page_recoverable_now": false
+      "source_page_recoverable_now": false,
+      "legacy_scan_extraction_residue_available": false
     },
     {
       "key": "nine_palace_nobles",
       "priority": 3,
       "recovered_from_original_store": false,
       "manuscript_form_recoverable_now": false,
-      "source_page_recoverable_now": false
+      "source_page_recoverable_now": false,
+      "legacy_scan_extraction_residue_available": false
     },
     {
       "key": "taiyi_nine_stars",
       "priority": 4,
       "recovered_from_original_store": false,
       "manuscript_form_recoverable_now": false,
-      "source_page_recoverable_now": false
+      "source_page_recoverable_now": false,
+      "legacy_scan_extraction_residue_available": false
     },
     {
       "key": "wenchang_changes",
       "priority": 5,
       "recovered_from_original_store": false,
       "manuscript_form_recoverable_now": false,
-      "source_page_recoverable_now": false
+      "source_page_recoverable_now": false,
+      "legacy_scan_extraction_residue_available": false
     },
     {
       "key": "shiji_changes",
       "priority": 6,
       "recovered_from_original_store": false,
       "manuscript_form_recoverable_now": false,
-      "source_page_recoverable_now": false
+      "source_page_recoverable_now": false,
+      "legacy_scan_extraction_residue_available": false
     }
   ],
   "acceptable_unblock_evidence": [
@@ -89,10 +105,11 @@
     "C70文昌九星统宗profile"
   ],
   "policy": [
-    "C80 is an availability audit, not a reconstructed terminology store.",
+    "C81 is an availability audit, not a reconstructed terminology store.",
     "Do not infer the old JSON schema, ids, aliases, definitions, notes, or page fields.",
     "Do not use external collation witnesses to fill Yanyilou manuscript_form or source_page.",
     "C70 may inform source comparison but may not backfill Zitingjing primary terminology fields.",
-    "When the original store becomes available, write a one-time adapter against the observed schema."
+    "When the original store becomes available, write a one-time adapter against the observed schema.",
+    "A user-confirmed local copy or recovered derived scan residue does not make the old terminology.json schema available; parser_allowed remains false until the exact store is mounted."
   ]
 }
