@@ -677,7 +677,7 @@ def test_c110_ncl_j4m06_full_table_resolves_detail_pending_without_overwriting_s
 
 def test_c111_ncl_j4m07_body_is_verified_but_siku_runtime_stays_source_specific():
     data, rules = _rules()
-    assert data["source"]["ncl_volume4_collation_version"] == "c111-ncl06604-j4m07-body-v1"
+    assert "c111-ncl06604-j4m07-body-v1" in data["source"]["ncl_volume4_collation_history"]
 
     rule = {item["id"]: item for item in rules}["J4M-07"]
     ncl = rule["manuscript_readings"]["NCL-06604"]
