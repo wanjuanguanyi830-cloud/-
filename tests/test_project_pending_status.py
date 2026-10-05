@@ -14,13 +14,13 @@ def test_top_level_pending_contains_only_current_unresolved_work():
     pending = _load(RULES)["pending"]
     joined = "\n".join(pending)
 
-    assert len(pending) == 5
+    assert len(pending) == 4
     assert "T7-02" in joined
     assert "T7-06" in joined
     assert "淘金歌大游" not in joined
     assert "terminology.json" in joined
     assert "研易楼藏《太乙紫庭祕訣》明钞本" in joined
-    assert "JF4M-02" in joined
+    assert "JF4M-02" not in joined
     assert "JF4M-07" not in joined
     assert "JF4M-10" not in joined
 
@@ -29,7 +29,7 @@ def test_top_level_pending_contains_only_current_unresolved_work():
     assert "目标仓库没有原版旧config.py" not in joined
 
 
-def test_jingyou_p0_profile_is_runtime_available_but_keeps_text_pending():
+def test_jingyou_p0_profile_is_runtime_available_and_collation_resolved():
     data = _load(MILITARY_P0)
     profile = data["source_profiles"]["jingyou_fuying_volume4"]
 
@@ -37,4 +37,7 @@ def test_jingyou_p0_profile_is_runtime_available_but_keeps_text_pending():
     assert profile["runtime_catalog"] == (
         "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog"
     )
-    assert profile["pending_textual_uncertainty"] == ["JF4M-02"]
+    assert profile["pending_textual_uncertainty"] == []
+    assert profile["resolved_collation"]["JF4M-02"]["normalized_semantics"] == (
+        "四将无同宫之关"
+    )
