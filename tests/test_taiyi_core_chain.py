@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from kintaiyi.taiyi_core_chain import g2_to_g7_from_ju, g3_to_g7_from_ju, g4_to_g7_from_ju
+from kintaiyi.taiyi_core_chain import (\n    g1_to_g7_from_accumulated_year,\n    g2_to_g7_from_ju,\n    g3_to_g7_from_ju,\n    g4_to_g7_from_ju,\n)
 
 
 FIXTURE = Path(__file__).parent / "fixtures" / "g6_72ju_paths.json"
@@ -121,3 +121,61 @@ def test_g2_to_g7_full_72ju_chain_matches_taiyi_wenchang_shiji_and_calcs():
                     mismatches.append((dun, row["ju"], name, got, expected))
 
     assert mismatches == []
+
+
+
+def test_g1_to_g7_full_72ju_first_yuan_matches_fixture():
+    fixture = json.loads(FIXTURE.read_text(encoding="utf-8"))
+    mismatches = []
+
+    for dun, rows in (("阳", fixture["yang"]), ("阴", fixture["yin"])):
+        for row in rows:
+            data = g1_to_g7_from_accumulated_year(
+                accumulated_year=row["ju"],
+                dun=dun,
+            )
+            checks = [
+                ("局号", data["local_ju"], row["ju"]),
+                ("太乙", data["taiyi_palace"], row["taiyi_palace"]),
+                ("文昌", data["wenchang_sector"], row["host_eye"]),
+                ("始击", data["shiji_sector"], row["guest_eye"]),
+                ("主算", data["host_calc"], row["host_calc"]),
+                ("客算", data["guest_calc"], row["guest_calc"]),
+            ]
+            for name, got, expected in checks:
+                if got != expected:
+                    mismatches.append((dun, row["ju"], name, got, expected))
+
+    assert mismatches == []
+
+
+def test_g1_to_g7_same_local_ju_is_stable_across_five_yuan():
+    # 同局五元年支相同，G2-G7盘面核心应一致；完整干支/五元本身不同。
+    snapshots = []
+    for accumulated_year in (31, 103, 175, 247, 319):
+        data = g1_to_g7_from_accumulated_year(
+            accumulated_year=accumulated_year,
+            dun="阳",
+        )
+        snapshots.append(
+            (
+                data["local_ju"],
+                data["taisui_branch"],
+                data["taiyi_palace"],
+                data["wenchang_sector"],
+                data["shiji_sector"],
+                data["host_calc"],
+                data["guest_calc"],
+            )
+        )
+    assert len(set(snapshots)) == 1
+
+
+def test_g1_to_g7_kaiyuan_12_anchor_enters_second_yuan_49th_ju():
+    data = g1_to_g7_from_accumulated_year(
+        accumulated_year=1_937_281,
+        dun="阳",
+    )
+    assert data["taisui_ganzhi"] == "甲子"
+    assert data["five_yuan"] == "丙子"
+    assert data["local_ju"] == 49
