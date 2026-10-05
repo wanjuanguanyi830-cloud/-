@@ -16,7 +16,8 @@ from __future__ import annotations
 
 from typing import Any
 
-from .jinjing_eight_door_overlay import door_overlay, open_door_overlay\nfrom .jinjing_year_eight_doors import year_duty_door
+from .jinjing_eight_door_overlay import door_overlay, open_door_overlay
+from .jinjing_year_eight_doors import year_duty_door
 
 SOURCE_PROFILE = "jinjing_volume1_li_chunfeng_year_door_meeting"
 RULE_ID = "J1-YEAR-DOOR-MEETING"
