@@ -157,7 +157,7 @@
     "scan_locator_version": "c79-j4m-cadal-page-locators-v1",
     "witness_audit_version": "c84-ncl06604-access-boundary-v1",
     "full_twelve_scan_audit_version": "c85-j4m01-12-scan-boundary-complete-v1",
-    "ncl_volume4_collation_version": "c112-ncl06604-j4m08-opening-v1",
+    "ncl_volume4_collation_version": "c112-ncl06604-j4m08-opening-v2",
     "terminology_policy_version": "c101-taicu-traditional-variant-v1",
     "ncl_volume4_collation_history": [
       "c86-ncl06604-v4-j4m-locators-v1",
@@ -167,7 +167,8 @@
       "c88-ncl06604-j4m06-direction-table-v1",
       "c110-ncl06604-j4m06-full-table-v1",
       "c111-ncl06604-j4m07-body-v1",
-      "c112-ncl06604-j4m08-opening-v1"
+      "c112-ncl06604-j4m08-opening-v1",
+      "c112-ncl06604-j4m08-opening-v2"
     ]
   },
   "separation_policy": [
@@ -1034,8 +1035,8 @@
               "随其地形",
               "善用兵器"
             ],
-            "continuation_visible_only": "五丈之沟……",
-            "scope_policy": "本页只足以完整确认三急总纲；“五丈之沟”以下被裁切部分不据本图声明已核。"
+            "continuation_visible_only": "五丈之沟居堑之水山林",
+            "scope_policy": "本页可继续确认到“五丈之沟居堑之水山林”；其后仍被裁切，未直接看见的文字不据本图补写。"
           }
         }
       }
