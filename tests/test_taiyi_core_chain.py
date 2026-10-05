@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from kintaiyi.taiyi_core_chain import g3_to_g7_from_ju, g4_to_g7_from_ju
+from kintaiyi.taiyi_core_chain import g2_to_g7_from_ju, g3_to_g7_from_ju, g4_to_g7_from_ju
 
 
 FIXTURE = Path(__file__).parent / "fixtures" / "g6_72ju_paths.json"
@@ -83,6 +83,34 @@ def test_g3_to_g7_full_72ju_chain_matches_wenchang_shiji_and_calcs():
                 taiyi_palace=row["taiyi_palace"],
             )
             checks = [
+                ("文昌", data["wenchang_sector"], row["host_eye"]),
+                ("始击", data["shiji_sector"], row["guest_eye"]),
+                ("主算", data["host_calc"], row["host_calc"]),
+                ("客算", data["guest_calc"], row["guest_calc"]),
+            ]
+            for name, got, expected in checks:
+                if got != expected:
+                    mismatches.append((dun, row["ju"], name, got, expected))
+
+    assert mismatches == []
+
+
+
+def test_g2_to_g7_full_72ju_chain_matches_taiyi_wenchang_shiji_and_calcs():
+    fixture = json.loads(FIXTURE.read_text(encoding="utf-8"))
+    from kintaiyi.taiyi_rules import BRANCHES
+
+    mismatches = []
+    for dun, rows in (("阳", fixture["yang"]), ("阴", fixture["yin"])):
+        for row in rows:
+            taisui_branch = BRANCHES[(row["ju"] - 1) % 12]
+            data = g2_to_g7_from_ju(
+                ju=row["ju"],
+                dun=dun,
+                taisui_branch=taisui_branch,
+            )
+            checks = [
+                ("太乙", data["taiyi_palace"], row["taiyi_palace"]),
                 ("文昌", data["wenchang_sector"], row["host_eye"]),
                 ("始击", data["shiji_sector"], row["guest_eye"]),
                 ("主算", data["host_calc"], row["host_calc"]),
