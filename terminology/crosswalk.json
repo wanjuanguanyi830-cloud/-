@@ -12,7 +12,7 @@
   },
   "audit_snapshot": {
     "stable_catalog_count": 12,
-    "entry_count": 93,
+    "entry_count": 97,
     "exact_cross_entry_name_collisions": 0,
     "status": "clean_at_snapshot"
   },
@@ -501,6 +501,105 @@
       "forbidden_merge": [
         "C118黄道表只为C69/C69B提供古表日宿/分野；不负责十二天将。",
         "C118不计算现代天文黄经，也不得改写production真实节气/冬至换岁。"
+      ]
+    },
+    {
+      "id": "CW-C116-C117",
+      "upstream": {
+        "catalog": "terminology/ritual-timing.json",
+        "key": "xuanming_role",
+        "rule_id": "C116-XUANMING-ROLE"
+      },
+      "downstream": {
+        "catalog": "terminology/military-p0.json",
+        "key": "taigong_timing",
+        "rule_id": "C117-TAIGONG-TIMING"
+      },
+      "relation": "explicit_identity_mapping_dependency",
+      "forbidden_merge": [
+        "C116只给身份→玄命所主，不生成吉凶。",
+        "C117仍须显式给当前是否临玄命对象、旺相与上下相生；不能只凭C116表自动判时。"
+      ]
+    },
+    {
+      "id": "CW-C117-READINESS",
+      "method": {
+        "catalog": "terminology/military-p0.json",
+        "key": "taigong_timing",
+        "rule_id": "C117-TAIGONG-TIMING"
+      },
+      "dependencies": [
+        {
+          "catalog": "terminology/military-p0.json",
+          "key": "three_doors",
+          "term": "三门"
+        },
+        {
+          "catalog": "terminology/military-p0.json",
+          "key": "five_generals",
+          "term": "五将"
+        },
+        {
+          "catalog": "terminology/military-p0.json",
+          "key": "effective_five_generals_readiness",
+          "rule_id": "CORE-WUJIANG-READY"
+        }
+      ],
+      "relation": "cross_source_boolean_integration",
+      "forbidden_merge": [
+        "统宗卷二三门ready与金镜卷四五将事实可以作为C117输入，但不能回写成金镜卷一逐字公式。",
+        "杜塞覆盖是项目整合层，不是J4M-02第四原文条件。"
+      ]
+    },
+    {
+      "id": "CW-C119-EIGHT-DOORS",
+      "method": {
+        "catalog": "terminology/ritual-timing.json",
+        "key": "time_eight_doors",
+        "rule_ids": [
+          "C119-WINTER-TIME-DUTY-DOOR",
+          "C119-SUMMER-TIME-DUTY-DOOR"
+        ]
+      },
+      "related_layer": {
+        "external_runtime": "rules/jinjing/eight_door.py",
+        "semantics": "year-count / 30-year duty-door cycle"
+      },
+      "relation": "same_door_names_distinct_time_scales",
+      "forbidden_merge": [
+        "C119是30时一移门；仓库既有年计八门是30年一门。",
+        "门名相同不表示周期、输入或公式相同。"
+      ]
+    },
+    {
+      "id": "CW-C121-DIRECT-ENVOY",
+      "method": {
+        "catalog": "terminology/ritual-timing.json",
+        "key": "direct_envoy_anchors",
+        "rule_ids": [
+          "C121-DIRECT-ENVOY-ANCHOR",
+          "C121-DIRECT-ENVOY-MOVEMENT"
+        ]
+      },
+      "related": [
+        {
+          "catalog": "terminology/military-p0.json",
+          "key": "taigong_timing",
+          "rule_id": "C117-TAIGONG-TIMING"
+        },
+        {
+          "catalog": "terminology/ritual-timing.json",
+          "key": "time_eight_doors",
+          "rule_ids": [
+            "C119-WINTER-TIME-DUTY-DOOR",
+            "C119-SUMMER-TIME-DUTY-DOOR"
+          ]
+        }
+      ],
+      "relation": "direct_anchor_metadata_not_continuous_runtime",
+      "forbidden_merge": [
+        "C121六纪表是直接锚点，不是全年连续位置算法。",
+        "王希明对固定日法的批评必须随数据保留；不得用六纪表填平气应早晚差异。"
       ]
     }
   ]
