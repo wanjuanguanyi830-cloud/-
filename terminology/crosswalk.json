@@ -11,12 +11,12 @@
     "master_store_policy": "本文件只做跨目录对账，不替代缺失的旧terminology.json。"
   },
   "audit_snapshot": {
-    "stable_catalog_count": 14,
-    "entry_count": 122,
+    "stable_catalog_count": 15,
+    "entry_count": 148,
     "exact_cross_entry_name_collisions": 0,
     "status": "clean_at_snapshot",
-    "rules_json_rule_id_count": 92,
-    "terminology_rule_id_count": 131,
+    "rules_json_rule_id_count": 122,
+    "terminology_rule_id_count": 158,
     "rules_missing_from_terminology": 0,
     "rules_coverage_status": "complete_at_snapshot"
   },
@@ -850,6 +850,98 @@
         "JF4M当前source_record_only，不得调用J4M runtime冒充实现。",
         "JF4M-10/11与J4M-11/10尾部次序不同，不能按编号机械对齐。",
         "福应经与金镜的方向表、地内宫、飞鸟败方、奇伏大杀句等差异保留source profile。"
+      ]
+    },
+    {
+      "id": "CW-TONGZONG-V15-J4M",
+      "tongzong_catalog": "terminology/military-tongzong-v15-v17.json",
+      "jinjing_catalog": "terminology/military-jinjing-v4.json",
+      "relation": "near_name_parallel_source_rules_no_auto_merge",
+      "overlaps": {
+        "V15-01": [
+          "J4M-10"
+        ],
+        "V15-04": [
+          "J4M-06"
+        ],
+        "V15-07": [
+          "J4M-07",
+          "J4M-08"
+        ],
+        "V15-14": [
+          "J4M-11",
+          "J4M-12"
+        ]
+      },
+      "forbidden_merge": [
+        "V15-01奇兵伏兵不得替代J4M-10奇伏。",
+        "V15-04陈兵出乡不得替代J4M-06陈兵向背。",
+        "V15-07统宗随地制变不得把J4M-07地形制阵与J4M-08兵种器械应变揉成一条金镜规则。",
+        "V15-14综合军势胜负不得覆盖J4M-11/12必须显式外部观测的风云飞鸟/云气规则。"
+      ]
+    },
+    {
+      "id": "CW-TONGZONG-V17-OTHER-LAYERS",
+      "tongzong_catalog": "terminology/military-tongzong-v15-v17.json",
+      "relation": "application_divination_layers_distinct_from_j4m_c8",
+      "overlaps": {
+        "V17-01": [
+          "J4M-05"
+        ],
+        "V17-02": [
+          "C8-L3"
+        ],
+        "V17-09": [
+          "V17-D1",
+          "volume5_inner_outer_attack"
+        ]
+      },
+      "forbidden_merge": [
+        "V17-01出兵用时是卷十七应用性择时，不替代J4M-05出师法。",
+        "V17-02敌国动静是敌情占断应用，不是C8主客动静层。",
+        "V17-09求索所得是独立source rule；V17-D1只是卷五内外占攻击×卷十七求索所得的derived helper。"
+      ]
+    },
+    {
+      "id": "CW-TONGZONG-MILITARY-IMPLEMENTATION-STATUS",
+      "catalog": "terminology/military-tongzong-v15-v17.json",
+      "relation": "source_rule_vs_runtime_boundary",
+      "implemented_runtime_rule_ids": [
+        "V15-02",
+        "V15-03",
+        "V15-04",
+        "V15-05",
+        "V15-06"
+      ],
+      "source_rule_only": [
+        "V15-01",
+        "V15-07",
+        "V15-08",
+        "V15-09",
+        "V15-10",
+        "V15-11",
+        "V15-12",
+        "V15-13",
+        "V15-14",
+        "V17-01",
+        "V17-02",
+        "V17-03",
+        "V17-04",
+        "V17-05",
+        "V17-06",
+        "V17-07",
+        "V17-08",
+        "V17-09",
+        "V17-10",
+        "V17-11"
+      ],
+      "derived_helpers": [
+        "V17-D1"
+      ],
+      "forbidden_merge": [
+        "reference_function字段只记录旧综合层函数名，不等于当前独立runtime。",
+        "未列入implemented_runtime_rule_ids的条目不得被UI/API标成已实现算法。",
+        "V17-D1不得计入卷十七canonical source rule数。"
       ]
     }
   ]
