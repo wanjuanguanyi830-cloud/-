@@ -1,0 +1,181 @@
+{
+  "schema_version": "1.0",
+  "catalog_id": "taiyi-common-core-terminology-v1",
+  "scope": "canonical_common_core",
+  "status": "repository_canonical_terminology_catalog",
+  "legacy_terminology_json_migrated": false,
+  "policy": [
+    "本目录只登记七术/八占/盘面共同复用的稳定公共事实；旧本地terminology.json尚未迁入。",
+    "九宫、十六辰/十六神、四太乙十二宫等不同坐标体系不得混型。",
+    "十六辰投影九宫是有损映射；九宫中五没有十六辰代表点。",
+    "五态关系只由五行生克生成，不手抄第二套关系表。",
+    "七术Mode A与Mode B共享公共五行规则，但主体不同：Mode A用大神火，Mode B用将所在九宫五行。",
+    "固有五行与所在宫五行必须并列保存，不能互相替代。"
+  ],
+  "entries": [
+    {
+      "key": "taiyi_nine_palaces",
+      "preferred_term": "太乙九宫",
+      "aliases": ["九宫", "太乙九宫"],
+      "term_type": "coordinate_system",
+      "rule_id": "R-9",
+      "runtime": "kintaiyi.taiyi_rules.nine_palace_detail",
+      "palaces": {
+        "1": {"trigram": "乾", "representative_sector": "乾", "element": "金", "yin_yang": "阴"},
+        "2": {"trigram": "离", "representative_sector": "午", "element": "火", "yin_yang": "阴"},
+        "3": {"trigram": "艮", "representative_sector": "艮", "element": "土", "yin_yang": "阳"},
+        "4": {"trigram": "震", "representative_sector": "卯", "element": "木", "yin_yang": "阳"},
+        "5": {"trigram": "中", "representative_sector": null, "element": "土", "yin_yang": null},
+        "6": {"trigram": "兑", "representative_sector": "酉", "element": "金", "yin_yang": "阴"},
+        "7": {"trigram": "坤", "representative_sector": "坤", "element": "土", "yin_yang": "阴"},
+        "8": {"trigram": "坎", "representative_sector": "子", "element": "水", "yin_yang": "阳"},
+        "9": {"trigram": "巽", "representative_sector": "巽", "element": "木", "yin_yang": "阳"}
+      },
+      "boundary_notes": ["中五有土五行，但无十六辰代表点。"]
+    },
+    {
+      "key": "sixteen_sectors",
+      "preferred_term": "十六辰",
+      "aliases": ["十六辰", "十六宫", "十六位"],
+      "term_type": "coordinate_system",
+      "rule_id": "R-16",
+      "runtime": "kintaiyi.taiyi_rules.SIXTEEN",
+      "ring": ["子", "丑", "艮", "寅", "卯", "辰", "巽", "巳", "午", "未", "坤", "申", "酉", "戌", "乾", "亥"],
+      "nine_palace_projection": {
+        "8": ["亥", "子"],
+        "3": ["丑", "艮"],
+        "4": ["寅", "卯"],
+        "9": ["辰", "巽"],
+        "2": ["巳", "午"],
+        "7": ["未", "坤"],
+        "6": ["申", "酉"],
+        "1": ["戌", "乾"]
+      },
+      "projection_lossy": true,
+      "boundary_notes": ["中五不在十六辰环中。"]
+    },
+    {
+      "key": "sixteen_gods",
+      "preferred_term": "十六神",
+      "aliases": ["十六神"],
+      "term_type": "canonical_table",
+      "rule_id": "R-16",
+      "runtime": "kintaiyi.taiyi_rules.GOD_POSITION",
+      "table": [
+        {"sector": "子", "god": "地主", "element": "水"},
+        {"sector": "丑", "god": "阳德", "element": "土"},
+        {"sector": "艮", "god": "和德", "element": "土"},
+        {"sector": "寅", "god": "吕申", "element": "木"},
+        {"sector": "卯", "god": "高丛", "element": "木"},
+        {"sector": "辰", "god": "太阳", "element": "土"},
+        {"sector": "巽", "god": "大炅", "element": "木"},
+        {"sector": "巳", "god": "大神", "element": "火"},
+        {"sector": "午", "god": "大威", "element": "火"},
+        {"sector": "未", "god": "天道", "element": "土"},
+        {"sector": "坤", "god": "大武", "element": "土"},
+        {"sector": "申", "god": "武德", "element": "金"},
+        {"sector": "酉", "god": "太簇", "element": "金"},
+        {"sector": "戌", "god": "阴主", "element": "土"},
+        {"sector": "乾", "god": "阴德", "element": "金"},
+        {"sector": "亥", "god": "大义", "element": "水"}
+      ],
+      "source_form_aliases": {
+        "太炅": "大炅",
+        "太神": "大神",
+        "太蔟": "太簇",
+        "陽德": "阳德",
+        "呂申": "吕申",
+        "高叢": "高丛",
+        "太陽": "太阳",
+        "陰主": "阴主",
+        "陰德": "阴德",
+        "大義": "大义"
+      },
+      "boundary_notes": ["和德=土、大炅=木、大武=土；辰太阳=土、戌阴主=土。", "太簇为项目canonical词形，太蔟只作来源异写。"]
+    },
+    {
+      "key": "lushen_shift",
+      "preferred_term": "吕申加位",
+      "aliases": ["吕申加位", "呂申加位"],
+      "term_type": "canonical_operation",
+      "rule_id": "R-LS-01",
+      "runtime": "kintaiyi.taiyi_rules.dashen_from_lushen",
+      "definition": "在十六辰环上顺行四格。",
+      "mapping": {
+        "子": "卯", "丑": "辰", "艮": "巽", "寅": "巳",
+        "卯": "午", "辰": "未", "巽": "坤", "巳": "申",
+        "午": "酉", "未": "戌", "坤": "乾", "申": "亥",
+        "酉": "子", "戌": "丑", "乾": "艮", "亥": "寅"
+      },
+      "boundary_notes": ["吕申本位寅，经+4得到大神巳。", "九宫5无十六辰代表点，不能参与此变换。"]
+    },
+    {
+      "key": "dashen",
+      "preferred_term": "大神",
+      "aliases": ["大神", "太神"],
+      "term_type": "shared_actor",
+      "rule_refs": ["R-16", "R-LS-01", "R-QI", "R-QI-FIRE"],
+      "intrinsic_element": "火",
+      "definition": "十六神之一，本位巳；七术中常由输入位置经吕申加位得到大神落辰，再按不同模型使用其落辰五行。",
+      "boundary_notes": ["不存在“天游太乙”。", "Mode A主体为大神火；Mode B只把大神落辰五行作为环境。"]
+    },
+    {
+      "key": "five_element_qi",
+      "preferred_term": "五态",
+      "aliases": ["五态", "旺相休囚死", "旺相囚死休"],
+      "term_type": "canonical_relation",
+      "rule_id": "R-QI",
+      "runtime": "kintaiyi.taiyi_rules.qi_relation",
+      "definition": "主体与环境五行的五态关系：同类旺，环境生主体相，环境克主体死，主体克环境囚，主体生环境休。",
+      "relations": {
+        "比和": "旺",
+        "生我": "相",
+        "克我": "死",
+        "我克": "囚",
+        "我生": "休"
+      },
+      "state_matrix": {
+        "木": {"木": "旺", "火": "休", "土": "囚", "金": "死", "水": "相"},
+        "火": {"木": "相", "火": "旺", "土": "休", "金": "囚", "水": "死"},
+        "土": {"木": "死", "火": "相", "土": "旺", "金": "休", "水": "囚"},
+        "金": {"木": "囚", "火": "死", "土": "相", "金": "旺", "水": "休"},
+        "水": {"木": "休", "火": "囚", "土": "死", "金": "相", "水": "旺"}
+      }
+    },
+    {
+      "key": "fire_twelve_stages",
+      "preferred_term": "大神火十二长生",
+      "aliases": ["十二长生", "大神十二长生", "大神火十二长生"],
+      "term_type": "derived_cycle",
+      "rule_id": "R-QI-FIRE",
+      "runtime": "kintaiyi.taiyi_rules.FIRE_STAGES",
+      "mapping": {
+        "寅": "长生", "卯": "沐浴", "辰": "冠带", "巳": "临官",
+        "午": "帝旺", "未": "衰", "申": "病", "酉": "死",
+        "戌": "墓", "亥": "绝", "子": "胎", "丑": "养"
+      },
+      "non_branch_sectors": {"艮": null, "巽": null, "坤": null, "乾": null},
+      "boundary_notes": ["十二长生与五态是两层事实；墓不等于废。"]
+    },
+    {
+      "key": "intrinsic_vs_palace_element",
+      "preferred_term": "固有五行与所在宫五行",
+      "aliases": ["固有五行", "所在宫五行", "将宫五行"],
+      "term_type": "data_model_boundary",
+      "rule_id": "R-INTRINSIC-WX",
+      "intrinsic_runtime": "kintaiyi.taiyi_rules.intrinsic_element",
+      "palace_runtime": "kintaiyi.taiyi_rules.general_palace_qi",
+      "intrinsic_elements": {
+        "太乙": "木",
+        "始击": "火",
+        "文昌": "土",
+        "主大将": "金",
+        "主参将": "水",
+        "客大将": "水",
+        "客参将": "木"
+      },
+      "definition": "星神固有五行用于对象本体描述；将帅乘气Mode B使用将实际所在九宫五行作为主体。",
+      "boundary_notes": ["主大将固有五行=金、主参将=水。", "Mode B不得拿固有五行替代所在宫五行。"]
+    }
+  ]
+}
