@@ -166,7 +166,7 @@ RECENT_WORK_RECOVERY = {
         "jinjing_outer_cycle": 4320,
         "small_cycle": 288,
         "years_per_palace": 36,
-        "path": list(path),
+        "path": list(PALACE_PATH),
     },
     "status": "recovered_and_direct_source_reverified",
     "time_window_policy": "only_2026-10-04_and_2026-10-05_prior_work",
@@ -215,6 +215,7 @@ def dayou_position(
     palace_index = zero_index // spec["years_per_palace"]
     year_in_palace = zero_index % spec["years_per_palace"] + 1
     path = TAOJIN_PATH if source_profile == "taojin" else PALACE_PATH
+    direction = "reverse" if source_profile == "taojin" else "forward"
     palace = path[palace_index]
 
     return {
@@ -243,9 +244,9 @@ def dayou_position(
         "palace": palace,
         "palace_id": palace,
         "year_in_palace": year_in_palace,
-        "path": list(PALACE_PATH),
+        "path": list(path),
         "excluded_palace": 5,
-        "direction": "forward",
+        "direction": direction,
         "source_witness": copy.deepcopy(SOURCE_WITNESS[source_profile]),
         "recent_work_recovery": copy.deepcopy(RECENT_WORK_RECOVERY),
         "boundary": copy.deepcopy(BOUNDARY),
