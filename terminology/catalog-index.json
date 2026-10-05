@@ -103,6 +103,19 @@
         "卷十五运六气C39校勘",
         "五音之数C37-V3-WYIN"
       ]
+    },
+    {
+      "path": "terminology/volume9-10.json",
+      "catalog_id": "taiyi-volume9-10-source-rules-terminology-v1",
+      "scope": "source_sensitive_volume9_10_rules",
+      "contains": [
+        "C41太游重卦",
+        "C42历数长短/安居",
+        "C43厄会行限",
+        "C44国政革易",
+        "C45岁中灾发",
+        "C46阴阳九厄"
+      ]
     }
   ],
   "migration_assets": [
