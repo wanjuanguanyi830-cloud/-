@@ -22,8 +22,9 @@ RULES = {
     "wenchang_nine_stars": {
         "legacy_name": "文昌九星",
         "primary_source": PRIMARY_SOURCE_ID,
-        "primary_evidence_level": "prior_scan_confirmed_page_record_pending",
+        "primary_evidence_level": "ziting_manuscript_not_attested_modern_appendix_only",
         "collation_sources": ["tongzong_volume6", "sancai_shiwei_volume81"],
+        "known_source_rule_id": "C70-TONGZONG-WENCHANG-NINE-STARS",
     },
     "wenchang_changes": {
         "legacy_name": "文昌变化",
@@ -92,8 +93,8 @@ def build_zitingjing_rule_sources(
         status = "primary_ready"
     elif evidence_level == "direct_text_verified":
         status = "primary_pending"
-    elif evidence_level == "prior_scan_confirmed_page_record_pending":
-        status = "primary_prior_scan_confirmed_page_record_pending"
+    elif evidence_level == "ziting_manuscript_not_attested_modern_appendix_only":
+        status = "modern_appendix_cross_source_recovery_pointer"
     elif evidence_level == "catalog_attested_text_pending":
         status = "primary_text_pending"
     elif evidence_level == "ziting_not_attested_cross_source_only":
@@ -120,8 +121,9 @@ def build_zitingjing_rule_sources(
         "status": status,
         "policy": (
             "证据等级必须逐条记录。只有已定位紫庭直接正文的项目可注入primary_result；"
-            "三旗行宫/九宫贵神当前只是旧术语恢复指针，现行可执行公式归统宗卷十。"
-            "若未来明钞页证实另有紫庭同术，应新增独立witness/profile，不得静默覆盖统宗。"
+            "文昌九星的研易楼明钞目录未见题名，现代整理附篇只作跨来源恢复指针，现行可执行规则归统宗卷六C70。"
+            "三旗行宫/九宫贵神现行可执行公式归统宗卷十。若未来原钞/异本证实另有同术，"
+            "必须新增独立witness/profile，不得静默覆盖统宗。"
         ),
     }
 
