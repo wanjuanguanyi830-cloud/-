@@ -83,6 +83,12 @@ def legacy_recovery_status() -> dict[str, Any]:
             "recovered_from_original_store": item["recovered_from_original_store"],
             "manuscript_form_recoverable_now": item["manuscript_form_recoverable_now"],
             "source_page_recoverable_now": item["source_page_recoverable_now"],
+            "current_rule_source_gap": item.get("current_rule_source_gap"),
+            "known_executable_rule_id": item.get("known_executable_rule_id"),
+            "known_executable_source_profile": item.get(
+                "known_executable_source_profile"
+            ),
+            "recovery_purpose": item.get("recovery_purpose"),
         }
         for item in ziting.get("core_entries", [])
     ]
