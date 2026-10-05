@@ -35,8 +35,14 @@
     ],
     "runtime_catalog": "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog",
     "policy": "JF4M-01..11均有《福应经》独立source-specific runtime；不得调用J4M平行函数替代，疑字/未锁定句保持pending。",
-    "pending_textual_uncertainty": {
-      "JF4M-02": "‘大小将不相开’字面已见当前转录，技术义仍待扫描/异本核定；runtime不自动解释。"
+    "pending_textual_uncertainty": {},
+    "resolved_collation": {
+      "JF4M-02": {
+        "source_form": "大小将不相开",
+        "normalized_reading": "主客大小将无相关",
+        "normalized_semantics": "四将无同宫之关",
+        "confidence": "strong_parallel_witness_semantic_resolution"
+      }
     }
   },
   "parallel_order_note": {
@@ -91,21 +97,27 @@
       "source_profile": "jingyou_fuying_volume4",
       "source_title": "释五将发不发第四十五",
       "domain": "五将",
-      "canonical_summary": "始击无掩击、文昌无囚迫、大小将不相开（电子转录字样）则将发；三门具则五将自然相会。三门不具不可出兵，五将不发不可强战。",
+      "canonical_summary": "始击无掩击、文昌无囚迫、主客大小将无关则将发；《福应经》当前电子转录作“大小将不相开”，经《金镜》《统宗》同条“无相关/相关”与太乙格局“主客大小将自相同宫为关”参校，算法规范为四将无同宫之关。三门具则五将自然相会；三门不具不可出兵，五将不发不可强战。",
       "parallel_jinjing_rule": "J4M-02",
       "implementation_status": "implemented_source_specific",
       "runtime": "kintaiyi.jingyou_fuying_v4_military.five_generals",
-      "textual_uncertainty": [
-        "“大小将不相开”疑与《金镜》“主客大小将无相关”对应，待扫描核字"
-      ],
+      "textual_uncertainty": [],
       "notable_readings": [],
-      "canonical_data": null,
+      "canonical_data": {
+        "source_form": "大小将不相开",
+        "normalized_reading": "主客大小将无相关",
+        "normalized_semantics": "四将无同宫之关",
+        "relation_definition": "主客四将任两将同一非中五宫位即形成关",
+        "center_5_excluded": true,
+        "collation_confidence": "strong_parallel_witness_semantic_resolution"
+      },
       "divergence_from_jinjing": null,
       "boundary_notes": [
         "本条由《景祐太乙福应经》卷四独立runtime实现。",
-        "不得调用平行《金镜》runtime冒充本条，也不得跨来源自动补缺。",
-        "与J4M-02只做crosswalk，不自动合并。",
-        "‘大小将不相开’技术义仍待核定；runtime只接第三条件显式真假，不自动解释。"
+        "原转录字形“大小将不相开”继续保留，不静默改写source_form。",
+        "算法规范读法为“主客大小将无相关”，技术义按四将任两将同一非中五宫位为关。",
+        "该规范来自《金镜》《统宗》同条正反条件与《太乙秘书》关定义的平行校勘；仍不得调用J4M runtime替代本条。",
+        "与J4M-02只做crosswalk，不自动合并。"
       ],
       "runtime_catalog": "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog"
     },
