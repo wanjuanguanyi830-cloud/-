@@ -168,3 +168,59 @@ C61 当批统计随后被各 runtime 分批推进。
 - 五福位置 → C67（显式统宗 / 金镜 profile）。
 
 五福吉算继续等待 C68 的干净数列见证。
+
+
+## 9. C70 后续状态同步
+
+截至 C70，C15 的67个 legacy 顶层字段已经全部完成“来源治理层”分类：
+
+- canonical: 32
+- source_variant: 17
+- derived: 18
+- pending: 0
+
+这里的 `pending=0` 只表示：
+
+- 不再有字段处于“连来源类别都无法判定”的严格 pending；
+- 每个旧字段都已被分配到 canonical / source_variant / derived 三类之一。
+
+它不表示所有细节公式都已完成。
+
+仍存在明确的局部 pending / unresolved：
+
+- `文昌九星`：紫庭附篇目录已证，但正文未取得；统宗 NGJ 已由 C70 独立实现；
+- `明五福吉算所主術`：来源已核，但数列需更干净见证；
+- C69 完整“日度加时位”上游仍未接通；
+- 三旗 / 九宫贵神的紫庭归属仍未证。
+
+### 文昌九星为何不再是 strict pending
+
+旧 `config.wenchang_nine_stars` 本身直接注明来源：
+
+`《太乙统宗宝鉴》卷六`
+
+C70 又取得卷六 NGJ 直接见证：
+
+- 每星30年；
+- 大周2700；
+- 小周270；
+- 宫率30；
+- 年干落宫表。
+
+因此 legacy 字段的来源已经明确，可以归：
+
+`source_variant`
+
+而不是继续写：
+
+`pending`
+
+但《太乙紫庭秘诀》附篇：
+
+`附太乙文昌九星值宫术`
+
+仍：
+
+`catalog_attested_primary_text_pending`
+
+两条状态必须并存，不能互相覆盖。
