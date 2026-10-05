@@ -4,7 +4,7 @@ from pathlib import Path
 
 
 INDEX = Path("terminology/catalog-index.json")
-RUNTIME_KEYS = {"runtime", "collation_runtime", "origin_table_runtime", "catalog_runtime"}
+RUNTIME_KEYS = {"runtime", "collation_runtime", "origin_table_runtime", "catalog_runtime", "match_runtime", "readiness_integration_runtime"}
 
 
 def _load(path):
