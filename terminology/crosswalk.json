@@ -787,6 +787,33 @@
         "NCL页级见证不得覆盖jinjing_siku_volume4 canonical。",
         "旧terminology.json恢复时必须把manuscript_form/source_page挂在witness侧，不改写stable preferred term/rule semantics。"
       ]
+    },
+    {
+      "id": "CW-NINE-STARS-SOURCE-BOUNDARY",
+      "members": [
+        {
+          "catalog": "terminology/zitingjing.json",
+          "key": "taiyi_nine_stars",
+          "term": "太乙九星",
+          "source": "太乙紫庭经·释九宫所值九星",
+          "runtime": "kintaiyi.zitingjing_primary.taiyi_nine_stars_primary"
+        },
+        {
+          "catalog": "terminology/zitingjing.json",
+          "key": "wenchang_nine_stars",
+          "term": "文昌九星",
+          "primary_status": "catalog_attested_text_pending",
+          "source_specific_rule_id": "C70-TONGZONG-WENCHANG-NINE-STARS",
+          "source_specific_profile": "tongzong_volume6_ngj_wenchang_nine_stars"
+        }
+      ],
+      "relation": "shared_nine_star_label_distinct_systems_and_source_boundaries",
+      "forbidden_merge": [
+        "太乙九星是天蓬、天芮、天冲、天辅、天禽、天心、天柱、天任、天英；文昌九星是文昌、玄凤、明维、阴德、招摇、华明、玄武、玄冥、维明，不得因都称九星而合表。",
+        "太乙九星《紫庭经》静态九宫表与C70《统宗》文昌九星30年直事周期属于不同规则层，不共享周期公式。",
+        "《紫庭秘诀》文昌九星附篇正文未取得前，C70不得升级为紫庭canonical。",
+        "C70当前只支持直事星及其年干建禄落宫/分野，不得借太乙九星完整动态排布反推文昌九星其余八星。"
+      ]
     }
   ]
 }
