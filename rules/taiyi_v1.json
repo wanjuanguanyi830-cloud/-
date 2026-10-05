@@ -466,6 +466,28 @@
         "canonical": "C123《金镜》卷一年计八门：积年先720再240，余按30年一门，门序开休生伤杜景死惊。它与C119时计八门30时一门严格分层。固定开门空间叠盘和三吉门会合为已实现附层；三吉门大利只属局部门关系，不覆盖囚迫格对、杜塞、五将发不发等军事条件。",
         "rule_id": "C123-YEAR-DUTY-DOOR",
         "runtime": "kintaiyi.jinjing_year_eight_doors.year_duty_door"
+      },
+      {
+        "id": "R-XIAOYOU-HEXAGRAM",
+        "canonical": "C47《统宗》小游卦运：内卦1920/192、24年一卦且4年一爻；外卦纪元360、24小周、3年一卦，并分理天/理地/理人。C47只算卦运结构，不等于C103小游太乙位置；不调用C38，也不使用大游epoch偏移或强制六十四卦名。",
+        "rule_ids": [
+          "C47-XY-INNER",
+          "C47-XY-OUTER",
+          "C47-XY-HEX"
+        ],
+        "runtime": "kintaiyi.xiaoyou_hexagram.xiaoyou_heavy_hexagram"
+      },
+      {
+        "id": "R-XIAOYOU-OMENS",
+        "canonical": "C48小游行爻灾祥消费C47结构。爻位、三才、格局、纳甲四层并列；格局只加重，不覆盖基础爻位判断。关囚掩迫击挟格对必须显式检查，动爻纳甲必须显式输入；不得调用旧najia_for_yao或因未命名六十四卦而伪造。",
+        "rule_id": "C48-XY-OMEN",
+        "runtime": "kintaiyi.xiaoyou_line_omens.xiaoyou_line_omens"
+      },
+      {
+        "id": "R-DAYOU-XIAOYOU-DIFF",
+        "canonical": "C49只比较太游C41与小游C47当前内卦职责：太游36年一内卦取乾天之策，小游24年一内卦取坤地之策。当前同卦/异卦是结构事实，来源未据此单独赋吉凶；两周期不得合并，也不接C38行限。",
+        "rule_id": "C49-DY-XY-DIFF",
+        "runtime": "kintaiyi.dayou_xiaoyou_difference.dayou_xiaoyou_difference"
       }
     ]
   },
