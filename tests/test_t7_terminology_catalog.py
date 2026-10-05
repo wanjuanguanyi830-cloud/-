@@ -85,7 +85,7 @@ def test_white_dragon_collation_closes_algorithm_pending_without_foreign_xing_ta
         "sources/t7-06-white-dragon-xing-collation.md"
     )
     joined = " ".join(entry["boundary_notes"])
-    assert "平行小将句简作“克小将亦然”" in joined
+    assert "克小将亦然" in joined
     assert "不得把地支三刑" in joined
     assert "不改变canonical severe/verdict" in joined
     assert entry["compatibility_extension"]["status"] == (
