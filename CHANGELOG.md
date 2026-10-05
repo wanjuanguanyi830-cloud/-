@@ -199,3 +199,26 @@
 - 行宫序固定为 7→6→4→3→2→1→9→8，与《金镜》《统宗》的顺行 7→8→9→1→2→3→4→6 分 profile 保存。
 - 原书553年古例复算为八宫第13年；《古今图书集成》平行抄本明确保存“七六四三二一九八”次序。
 - Public API、operation registry、terminology 与测试均已接入 `C107-DAYOU-TAOJIN`；顶层 pending 删除旧“淘金歌历元盈差未定”项。
+
+
+## 2026-10-05 — C126/C127 《统宗》卷十三旗 / 九宫贵神
+
+- 将此前仅挂在紫庭旧术语恢复骨架中的“三旗行宫”“九宫贵神”重新按直接来源核定：现行可执行公式明确归《太乙统宗宝鉴》卷十。
+- 新增 `src/kintaiyi/tongzong_volume10_spirits.py`：
+  - `C126-TONGZONG-THREE-BANNERS`：太岁青龙旗60/12顺十二辰；太阴黑旗+25、360/36、亥起逆十二辰、3年一移；害气赤旗+1、40/4、亥起逆四孟、1年一移。
+  - `C127-TONGZONG-NINE-PALACE-NOBLES`：周纪360、宫盈差3、小周9、起一逆九神；直事神钧入中宫，相次神由乾起顺河图九宫。
+- 三旗计数统一按古法1基“算外”边界：青龙余1=子/余12=亥；太阴第1–3年均在亥；害气余1=亥。没有复用旧参考代码会提前一位的0基索引。
+- 九宫贵神锁定原书“余3=太阴”并复现太阴钧中例：天乙乾、太乙兑、摄提艮、轩辕离、招摇坎、天符坤、青龙震、咸池巽。
+- 新增 Public API operations：
+  - `spirits.three_banners.tongzong`
+  - `spirits.nine_palace_nobles.tongzong`
+- `terminology/zitingjing.json` 中两项改为 `legacy_cross_source_recovery_pointer`：只为旧 `terminology.json` / 研易楼明钞恢复保留，不再表示紫庭 canonical 待定。
+- 若以后明钞原页证实存在同名/相关术，只新增独立紫庭 witness/profile，不覆盖 C126/C127。
+
+## 2026-10-05 — 旧 terminology.json 全分支恢复审计
+
+- 递归检查当前仓库全部5条可见分支：`main`、`codex/c1-c7-canonical`、`codex/taiyi-base-motion-2026-10-04`、`codex/taiyi-rules-v2-20261005`、`integrate-taiyi-war-v1-20261004`。
+- 所有分支树均未发现历史 `terminology.json`；ChatGPT Library 本轮检索也未取得该原件。
+- 因此该资产不是“Git分支漏合并”，恢复路径已明确收缩为用户本地 E 盘旧文件或其他真实原始副本。
+- 在取得原文件/schema前继续禁止合成 old_term_record_id、旧定义、旧notes、manuscript_form 与 source_page。
+- 三旗/九宫贵神的现行规则来源已由 C126/C127 解决；后续旧库恢复这两项只核历史身份/明钞 witness，不再阻塞软件算法。
