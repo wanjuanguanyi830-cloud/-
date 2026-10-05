@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "catalog_id": "taiyi-ritual-timing-terminology-v1",
+  "scope": "source_sensitive_ritual_timing",
+  "status": "repository_source_profile_terminology_catalog",
+  "legacy_terminology_json_migrated": false,
+  "shared_catalogs": [
+    "terminology/common-core.json",
+    "terminology/patterns.json"
+  ],
+  "production_calendar_boundary": {
+    "calendar_source_of_truth": "modern_astronomy_lunisolar",
+    "taiyi_year_boundary": "真实天文冬至交节瞬间",
+    "policy": "本目录只消费调用方提供的盘面/时支/节气日序证据，不以古法术目改写production换年边界。"
+  },
+  "entries": [
+    {
+      "key": "imperial_inspection",
+      "preferred_term": "天子巡狩之期",
+      "aliases": ["天子巡狩", "天子巡狩之期", "明天子巡狩之期术", "明天子巡狩之期術"],
+      "term_type": "source_specific_method",
+      "rule_id": "C62-IMPERIAL-INSPECTION",
+      "source_profile": "tongzong_volume5_imperial_inspection",
+      "runtime": "kintaiyi.imperial_inspection.imperial_inspection",
+      "primary_source": "太乙统宗宝鉴卷五",
+      "collation_source": "太乙金镜式经卷十",
+      "corner_positions": ["艮", "巽", "坤", "乾"],
+      "direction_by_tianmu": {
+        "乾": "东方",
+        "艮": "南方",
+        "巽": "西方",
+        "坤": "北方"
+      },
+      "month_pattern_conditions": ["囚", "挟", "格", "对"],
+      "boundary_notes": [
+        "巡狩年要求太乙与天目都显式落四维。",
+        "出方只按天目四维映射。",
+        "囚/挟/格/对只作显式行月条件，不从格局runtime自动推。",
+        "直接术文未给月份数值换算，因此month_number保持None。"
+      ]
+    },
+    {
+      "key": "current_time_method",
+      "preferred_term": "推太乙当时法",
+      "aliases": ["推太乙当时法", "推太乙當時法", "太乙当时法", "太乙當時法"],
+      "term_type": "layered_source_method",
+      "source_profile": "jinjing_volume1_current_time",
+      "primary_source": "太乙金镜式经卷一",
+      "layers": {
+        "core": {
+          "rule_ids": ["C69-TIANYI-PERIOD-RULER", "C69-TWELVE-GENERAL-OMEN", "C69-CURRENT-TIME-CORE"],
+          "runtime": "kintaiyi.jinjing_current_time.current_time_core",
+          "subruntimes": [
+            "kintaiyi.jinjing_current_time.tianyi_period_ruler",
+            "kintaiyi.jinjing_current_time.general_omen"
+          ],
+          "scope": ["十日干朝暮天乙治神", "魁罡禁居", "十二天将主事与吉凶"]
+        },
+        "liuren_overlay": {
+          "rule_ids": ["C69B-NOBLE-GROUND", "C69B-TWELVE-GENERAL-PLATE", "C69B-PALACE-BRANCH-PROJECTION", "C69B-CURRENT-TIME-LIUREN"],
+          "runtime": "kintaiyi.jinjing_current_time_liuren.current_time_liuren_overlay",
+          "scope": ["日宿分野支加时", "贵人落地", "顺逆布十二天将", "九宫到六壬地支有损adapter"]
+        }
+      },
+      "upstream": {
+        "huangdao_day_position": "C118",
+        "status": "available",
+        "external_inputs_still_required": ["公历日期到节气第几日", "朝/暮period"]
+      },
+      "boundary_notes": [
+        "天乙本神吉凶必须显式给王相/囚死气态，不能从其他旺衰模块自动猜。",
+        "辰罡/戌魁为禁居边界；source form戍保留见证，canonical地支写戌。",
+        "C69B九宫到十二支只作有损适配；中五不可投影。",
+        "当前不能把旧展示文本当作完整当时法算法替代。"
+      ]
+    }
+  ]
+}
