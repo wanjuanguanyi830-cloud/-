@@ -1,5 +1,7 @@
 # C81 紫庭旧 terminology.json 恢复可用性审计
 
+> **状态更新（2026-10-06）**：本文件保留为历史阶段记录。用户已重新提供研易楼藏《太乙紫庭祕訣》明钞本，目录页（PDF 第5–6页）已直接核验，未见“文昌九星值宫术”题名。文昌九星现行稳定规则归 `C70-TONGZONG-WENCHANG-NINE-STARS`（《太乙统宗宝鉴》卷六 NGJ）；现代整理本“附太乙文昌九星值宫术”只记为编辑层目录证据，来源仍未完全证明。旧文中的“紫庭 primary pending / 扫描未重新挂载 / C70 仅参校”等状态均已被本结论取代。当前依据见 `sources/c70-wenchang-nine-stars-source-separation-record.md`。
+
 日期：2026-10-05
 
 ## 目标
