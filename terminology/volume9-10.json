@@ -480,6 +480,42 @@
         "内卦相同或不同只作结构事实，来源未据此单独赋吉凶。",
         "不得把C41/C47两个周期合并成同一轨运，也不调用C38行限。"
       ]
+    },
+    {
+      "key": "taiyi_lishu_evidence",
+      "preferred_term": "太乙历数之期证据总纲",
+      "aliases": [
+        "明太乙历数之期术",
+        "太乙历数之期",
+        "帝王始终之期"
+      ],
+      "term_type": "explicit_evidence_bundle",
+      "rule_id": "C50-LISHU-EVIDENCE",
+      "source_profile": "tongzong_volume10_lishu_evidence",
+      "runtime": "kintaiyi.taiyi_lishu_evidence.taiyi_lishu_evidence_bundle",
+      "source_scope": "太乙统宗宝鉴卷十",
+      "required_evidence_classes": [
+        "即位年",
+        "太阳/阴主厄会",
+        "太乙入运气爻卦象",
+        "太游轨运卦爻",
+        "小游轨运卦爻",
+        "囚迫击格掩挟检查"
+      ],
+      "related_rules": [
+        "C43-V9-EHUI",
+        "C41-DY-HEX",
+        "C47-XY-HEX",
+        "C51-CLOUD-OMEN"
+      ],
+      "final_lifespan_formula": null,
+      "boundary_notes": [
+        "C50是证据聚合总纲，不等于C42卷九历数长短算法，也不等于C43厄会单法。",
+        "即使证据齐全，也不得压成来源未给出的唯一终年/寿数公式。",
+        "太阳/阴主及合神四神期、太乙入运气卦象等证据仍须显式输入。",
+        "囚迫击格掩挟必须显式检查；无格局时也要传空list。",
+        "C51登位旁云气是C50末段的独立观察解释层，不反向成为C50唯一结论。"
+      ]
     }
   ]
 }
