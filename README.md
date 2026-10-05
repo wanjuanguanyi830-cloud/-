@@ -12,6 +12,8 @@
 - [`src/kintaiyi/variants/`](src/kintaiyi/variants/)：现代／重构运行时，与古籍 canonical 物理隔离。
 - [`rules/variants/`](rules/variants/)：现代／重构 profile 的机器规则；当前含 `modern_liunian_nayin_2026`。
 - [`docs/taiyi_v1.md`](docs/taiyi_v1.md)：v1 整合包接口、兼容边界和待校项。
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)：术语／规则／算法／来源／总注册表分层。
+- [`docs/SOFTWARE_API.md`](docs/SOFTWARE_API.md)：桌面软件、Web/API、移动端的稳定调用说明。
 - [`rules/taiyi_v1.json`](rules/taiyi_v1.json)：canonical、原典短句、版本异文分层数据。
 - [`sources/`](sources/)：来源证据、异文、采用边界和参考快照。
 - [`tests/`](tests/)：规则回归、历史局例输入和差异报告。
