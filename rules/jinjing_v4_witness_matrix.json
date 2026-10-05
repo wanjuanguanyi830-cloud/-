@@ -333,8 +333,9 @@
         },
         "verification_scope": "opening_triplet_and_selected_later_reading_direct_visual_verified_not_full_contiguous_body",
         "pending": [
-          "五丈之沟以下至已核矛鋋段之间的连续逐字转录"
-        ]
+          "“五丈之沟居堑之水山林”之后至已核矛鋋段之间的连续逐字转录"
+        ],
+        "visible_continuation": "五丈之沟居堑之水山林"
       },
       "jingyou": {
         "parallel_rule": "JF4M-08"
@@ -565,7 +566,7 @@
       "witness": "NCL-06604",
       "rule_id": "J4M-08",
       "evidence": "user-supplied page image directly visually checked",
-      "effect": "verified opening three-urgency doctrine while preserving non-contiguous verification boundary"
+      "effect": "verified opening three-urgency doctrine and visible continuation 五丈之沟居堑之水山林 while preserving non-contiguous verification boundary"
     }
   }
 }
