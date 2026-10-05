@@ -182,7 +182,7 @@ def test_j4m_source_records_scan_witnesses_and_body_order_priority():
 def test_j4m08_chao_cuo_quote_variant_is_quarantined_not_silently_emended():
     _, rules = _rules()
     rule = {item["id"]: item for item in rules}["J4M-08"]
-    assert rule["collation_status"] == "jinjing_chao_cuo_quote_diverges_from_hanshu"
+    assert rule["collation_status"] == "jinjing_quote_diverges_from_jingyou_and_hanshu"
     assert any(
         "车骑三不当一" in item
         for item in rule["quotation_collation"]["jinjing_siku_volume4"]["examples"]
@@ -207,7 +207,7 @@ def test_j4m04_first_mover_victory_is_resolved_by_ancient_parallel_texts():
 def test_j4m05_two_conditions_are_disambiguated_without_importing_tongzong_expansions():
     _, rules = _rules()
     rule = {item["id"]: item for item in rules}["J4M-05"]
-    assert rule["collation_status"] == "two_conditions_disambiguated_by_tongzong_gloss"
+    assert rule["collation_status"] == "two_conditions_resolved_by_jingyou_parallel_and_tongzong_gloss"
     assert "出其门" in rule["collation_evidence"]["tongzong_volume5"]
     assert "用其二" in rule["collation_evidence"]["tongzong_volume5"]
     assert "兵额" in rule["collation_evidence"]["do_not_import"]
@@ -228,3 +228,40 @@ def test_j4m07_record_includes_explicit_formation_control_layer():
     assert "五行相克" in rule["canonical_summary"]
     assert "主阵五行克客阵则主胜" in rule["implementation_note"]
     assert "C66" in rule["completion_note"]
+
+
+def test_jingyou_volume4_variants_stay_separate_from_jinjing_canonical():
+    _, rules = _rules()
+    by_id = {item["id"]: item for item in rules}
+
+    j6 = by_id["J4M-06"]["source_variants"]["jingyou_fuying_volume4"]
+    assert j6["extra_vs_jinjing"] == [3, 7, 8]
+    assert j6["omitted_in_variant"] == [5]
+    assert j6["status"] == "separate_ancient_source_variant"
+
+    j7 = by_id["J4M-07"]["source_variants"]["jingyou_fuying_volume4"]
+    assert j7["canonical_override"] is False
+    assert j7["locator_status"] == "transcription_variant_pending_scan_check"
+
+    j9 = by_id["J4M-09"]["source_variants"]["jingyou_fuying_volume4"]
+    assert j9["inner_palaces_help_host"] == [1, 8, 3, 4]
+    assert by_id["J4M-09"]["canonical"]["inner_palaces_help_host"] == [8, 3, 4]
+
+
+def test_j4m10_dasha_bad_character_is_not_turned_into_a_formula():
+    _, rules = _rules()
+    rule = {item["id"]: item for item in rules}["J4M-10"]
+    assert "伏兵必败大煞之地" in rule["textual_variants"]["jinjing_siku_volume4"]
+    assert "奇兵必从大杀之地" in rule["textual_variants"]["jingyou_fuying_volume4"]
+    assert "不把《金镜》“败”单字解释成额外动作或胜负" in rule["textual_variants"]["policy"]
+
+
+def test_j4m11_conflicting_jingyou_event_readings_are_not_merged():
+    _, rules = _rules()
+    rule = {item["id"]: item for item in rules}["J4M-11"]
+    variant = rule["source_variants"]["jingyou_fuying_volume4"]
+    joined = " ".join(variant["distinct_readings"])
+    assert "迫击客大将宫" in joined
+    assert "从主人刑上来 -> 主人败" in joined
+    assert "《金镜》“从主人形上来客败”" in joined
+    assert variant["canonical_override"] is False
