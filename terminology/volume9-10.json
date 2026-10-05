@@ -380,6 +380,106 @@
         "余0视为本元第4560年。",
         "九段总长4560、总灾年57；正规化必须保留原witness。"
       ]
+    },
+    {
+      "key": "xiaoyou_hexagram",
+      "preferred_term": "小游轨运内外重卦",
+      "aliases": [
+        "小游轨运内卦所在术",
+        "小游轨运外卦所在术",
+        "小游内外相重之策术",
+        "小游重卦"
+      ],
+      "term_type": "source_specific_cycle_hexagram",
+      "rule_ids": [
+        "C47-XY-INNER",
+        "C47-XY-OUTER",
+        "C47-XY-HEX"
+      ],
+      "source_profile": "tongzong_volume9_xiaoyou",
+      "runtime": "kintaiyi.xiaoyou_hexagram.xiaoyou_heavy_hexagram",
+      "source_scope": "太乙统宗宝鉴卷九",
+      "inner": {
+        "big_cycle": 1920,
+        "small_cycle": 192,
+        "years_per_trigram": 24,
+        "moving_line_rate": "4年一爻"
+      },
+      "outer": {
+        "epoch_cycle": 360,
+        "trigram_cycle": 24,
+        "years_per_trigram": 3,
+        "three_talent": [
+          "理天",
+          "理地",
+          "理人"
+        ]
+      },
+      "combined_hexagram_cycle": 192,
+      "boundary_notes": [
+        "C47只计算小游卦运结构，不等于C103小游太乙位置。",
+        "不调用C38阳九百六行限，不使用大游epoch偏移。",
+        "只复用C41已校四象策数表，不复用C41积年算法。",
+        "不强制命名六十四卦；动爻只取内卦四年一爻。"
+      ]
+    },
+    {
+      "key": "xiaoyou_line_omens",
+      "preferred_term": "小游统卦行爻所主灾祥",
+      "aliases": [
+        "小游行爻灾祥",
+        "明小游统卦行爻所主灾祥术",
+        "小游爻辞灾祥"
+      ],
+      "term_type": "explicit_hexagram_omen_interpretation",
+      "rule_id": "C48-XY-OMEN",
+      "source_profile": "tongzong_volume10_xiaoyou_line_omens",
+      "runtime": "kintaiyi.xiaoyou_line_omens.xiaoyou_line_omens",
+      "upstream_rule_id": "C47-XY-HEX",
+      "source_scope": "在线见证卷十；部分目录/分页接卷九末，保持witness_volume_boundary_variant",
+      "required_explicit_inputs": [
+        "C47小游重卦结果",
+        "关囚掩迫击挟格对证据",
+        "动爻纳甲干支"
+      ],
+      "boundary_notes": [
+        "C48消费C47结构，但不自行重算小游卦运。",
+        "格局只加重灾象，不覆盖基础爻位判断。",
+        "动爻纳甲必须显式输入；不调用旧najia_for_yao，不因未命名六十四卦而伪造。",
+        "甲乙、庚辛等转录不稳处保留uncertain/collation，不静默选本。"
+      ]
+    },
+    {
+      "key": "dayou_xiaoyou_difference",
+      "preferred_term": "太小游行宫卦不同术",
+      "aliases": [
+        "太游小游行宫卦不同术",
+        "太、小游行宫卦不同术",
+        "太游小游区别"
+      ],
+      "term_type": "derived_source_comparison",
+      "rule_id": "C49-DY-XY-DIFF",
+      "source_profile": "tongzong_volume10_dayou_xiaoyou_difference",
+      "runtime": "kintaiyi.dayou_xiaoyou_difference.dayou_xiaoyou_difference",
+      "upstream_rule_ids": [
+        "C41-DY-HEX",
+        "C47-XY-HEX"
+      ],
+      "direct_distinction": {
+        "dayou": {
+          "years_per_inner_trigram": 36,
+          "symbolic_ce": "乾天之策"
+        },
+        "xiaoyou": {
+          "years_per_inner_trigram": 24,
+          "symbolic_ce": "坤地之策"
+        }
+      },
+      "boundary_notes": [
+        "C49只比较太游与小游当前内卦及其36年/24年职责差异。",
+        "内卦相同或不同只作结构事实，来源未据此单独赋吉凶。",
+        "不得把C41/C47两个周期合并成同一轨运，也不调用C38行限。"
+      ]
     }
   ]
 }
