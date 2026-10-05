@@ -1,6 +1,6 @@
 {
-  "schema_version": "1.0",
-  "audit_id": "C108-JINJING-V4-WITNESS-MATRIX",
+  "schema_version": "1.1",
+  "audit_id": "C109-JINJING-V4-WITNESS-AGREEMENT-PATTERNS",
   "date": "2026-10-05",
   "scope": "太乙金镜式经卷四军事十二法",
   "canonical_profile": "jinjing_siku_volume4",
@@ -390,5 +390,61 @@
       ],
       "hard_boundary": "NCL明写大胜证明传本文字存在，但不得以此补四库base_verdict。"
     }
-  ]
+  ],
+  "agreement_patterns": {
+    "NCL06604_JINGYOU_CLUSTER": {
+      "status": "observed_agreement_pattern_not_stemma",
+      "matches": [
+        {
+          "rule_id": "J4M-06",
+          "feature": "explicit calculation values and outbound directions",
+          "ncl": "1/2/3/4/6/7/8/9 with directions 西北/正南/东北/正东/正西/西南/正北/东南",
+          "jingyou": "same numeric-direction skeleton",
+          "siku": "1/2/4/5/6/9 with fuller battle-direction/terrain/formation/flag layers"
+        },
+        {
+          "rule_id": "J4M-09",
+          "feature": "inner palace group",
+          "ncl": [
+            1,
+            8,
+            3,
+            4
+          ],
+          "jingyou": [
+            1,
+            8,
+            3,
+            4
+          ],
+          "siku": [
+            8,
+            3,
+            4
+          ]
+        },
+        {
+          "rule_id": "J4M-11",
+          "feature": "主人刑/客刑 event branches",
+          "ncl": [
+            "主人刑→主人败",
+            "客刑→客败"
+          ],
+          "jingyou": [
+            "主人刑→主人败",
+            "客刑→客败"
+          ],
+          "siku": [
+            "主人形→客败"
+          ]
+        }
+      ],
+      "non_claims": [
+        "不据三条一致读法断定NCL抄自《福应经》或《福应经》抄自NCL。",
+        "不据一致读法建立抄本谱系、年代先后或共同祖本。",
+        "不把NCL与《福应经》合并成一个source profile。",
+        "仅记录当前可验证的文本一致现象。"
+      ]
+    }
+  }
 }
