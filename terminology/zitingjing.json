@@ -11,11 +11,10 @@
     "title": "太乙紫庭经"
   },
   "policy": [
-    "六项都以《太乙紫庭经》作为项目主来源目标，但证据等级逐项独立。",
+    "本目录只把研易楼明钞本/《太乙紫庭经》直接可证项目视为紫庭primary；跨来源旧术语仅保留恢复指针。",
     "只有direct_text_verified项目允许生成非空primary_result。",
-    "catalog_attested_text_pending只能证明传本目录关联，不能代替直接正文。",
-    "project_attribution_unverified不能标成紫庭canonical。",
-    "统宗、《三才世纬》及其他材料只作collation/source-specific profile，不得静默覆盖紫庭主来源。",
+    "研易楼明钞本目录未见“文昌九星值宫术”；现代整理本同名附篇不能反推原钞归属。",
+    "三旗行宫、九宫贵神与文昌九星的现行可执行规则均按各自直接来源分profile，不得静默覆盖紫庭主来源。",
     "旧术语库中的manuscript_form/source_page/old_term_record_id仍须从旧terminology.json或扫描页恢复。"
   ],
   "entries": [
@@ -175,11 +174,11 @@
         "附太乙文昌九星值宫术",
         "附太乙文昌九星值宮術"
       ],
-      "term_type": "primary_text_pending_term",
-      "primary_evidence_level": "prior_scan_confirmed_page_record_pending",
+      "term_type": "modern_edition_cross_source_recovery_pointer",
+      "primary_evidence_level": "ziting_manuscript_not_attested_modern_appendix_only",
       "primary_result_allowed": false,
       "runtime": null,
-      "source_section": "附太乙文昌九星值宫术",
+      "source_section": null,
       "collation_sources": [
         "tongzong_volume6",
         "sancai_shiwei_volume81"
@@ -235,15 +234,12 @@
       ],
       "cycle_status": "cross_source_unresolved",
       "boundary_notes": [
-        "研易楼藏《太乙紫庭祕訣》此前整理术语库时已经扫描，用户确认本地E盘仍有原件；因此不再记为“资料未取得”。",
-        "当前执行环境未重新挂载E盘原扫描，也未恢复旧terminology.json原始记录，所以紫庭文昌九星仍不能生成primary runtime。",
-        "旧kentang2017/kintaiyi的九星代码确实保留文曲、玄鳳、明維、昭搖、立華、華明、玄武、玄冥、雄明等词形，但该代码第1020-1024行明确标注来源为《太乙统宗宝鉴》卷六，不能直接反认成研易楼本逐字扫描结果。",
-        "C70统宗卷六NGJ可独立运行，但只属于统宗source profile；不得反填紫庭primary。",
-        "NGJ直接正文支持30年一星、270小周、2700大周、起一宫文昌顺九宫，并以年干建禄宫安当前直事星。",
-        "旧代码残留与C70-NGJ的文曲/文昌、昭搖/阴德、立華/招摇、雄明/维明及年干落宫差异继续并列，来源未定前不得静默统一。",
-        "另有CADAL见证出现每星十年等异读/内部冲突，作为独立witness保存，不覆盖NGJ profile。",
-        "C70只稳定计算直事星、入本星年数与年干落宫/分野；其余八星完整动态重排仍不支持。",
-        "2026-10-05公开网络恢复复核：可确认研易楼本181页/328M资源帖及现代出版目录中的“附太乙文昌九星值宮術”题名，但未取得该附篇直接影印页/逐字正文，故manuscript_form/source_page继续保持未恢复。"
+        "用户上传的研易楼藏《太乙紫庭祕訣》明钞本目录页列卷一至卷十二及后附项目，未见“文昌九星值宫术”题名。",
+        "因此文昌九星不再作为紫庭primary/pending；本条只保留旧terminology.json与现代整理附篇的跨来源恢复指针。",
+        "现代整理本目录中的“附太乙文昌九星值宮術”属于现代编辑层证据；其是否由《统宗》材料增补目前只作来源假说，不写成已证事实。",
+        "C70《太乙统宗宝鉴》卷六NGJ为当前直接可执行source profile：30年一星、270小周、2700大周。",
+        "旧kentang2017/kintaiyi九星代码明确标注来源《太乙统宗宝鉴》卷六；文曲、昭搖、立華等旧词形只作代码残留审计，不反认成研易楼本。",
+        "如未来取得另一完整研易楼原钞/异本并直接见到同篇，应新增独立ziting witness/profile，不覆盖C70。"
       ],
       "source_specific_profiles": {
         "tongzong_volume6_ngj": {
@@ -292,45 +288,22 @@
           }
         }
       },
-      "scan_share_leads": [
-        {
-          "site": "书格",
-          "title": "太乙紫庭祕訣 研易樓藏明鈔本",
-          "url": "https://www.shuge.org/meet/topic/96517/",
-          "reported_extent": "181单页灰度，328M",
-          "status": "public_share_page_reachable_external_storage_not_mounted",
-          "direct_manuscript_page_recovered": false,
-          "note": "资源帖与转存入口可见，但当前执行环境未挂载扫描文件；不能据资源帖生成manuscript_form/source_page。"
-        },
-        {
-          "site": "现代出版目录",
-          "titles": [
-            "星易圖書",
-            "進源書局"
-          ],
-          "status": "appendix_title_attested_no_direct_text",
-          "appendix_title": "附太乙文昌九星值宮術",
-          "direct_manuscript_page_recovered": false
-        }
-      ],
-      "legacy_scan_recovery": {
-        "status": "manuscript_previously_scanned_original_page_record_not_reattached",
-        "asset": "terminology/zitingjing-legacy-scan-recovery.json",
-        "user_confirmed_manuscript": "研易楼藏《太乙紫庭祕訣》明钞本",
-        "local_copy_status": "E盘仍存，当前执行环境未挂载",
-        "code_residue_status": "source_ambiguous_for_ziting; old config explicitly labels Tongzong volume 6",
-        "recovered_code_forms": [
-          "文曲",
-          "玄鳳",
-          "明維",
-          "昭搖",
-          "立華",
-          "華明",
-          "玄武",
-          "玄冥",
-          "雄明"
+      "ziting_catalog_status": "研易楼明钞本目录未见该题；现代整理本目录见“附太乙文昌九星值宮術”",
+      "known_executable_source_profile": "tongzong_volume6_ngj_wenchang_nine_stars",
+      "canonical_catalog": "terminology/wenchang-nine-stars.json",
+      "manuscript_toc_evidence": {
+        "manuscript": "研易楼藏《太乙紫庭祕訣》明钞本",
+        "pages": [
+          5,
+          6
         ],
-        "canonical_effect": "none_until_direct_page_or_original_terminology_record_is_reattached"
+        "status": "title_not_attested",
+        "note": "目录列十二卷及后附项目，未见“附太乙文昌九星值宫术”。"
+      },
+      "modern_edition_appendix": {
+        "title": "附太乙文昌九星值宮術",
+        "status": "modern_edition_catalog_attested_provenance_unresolved",
+        "inference": "可能为现代整理时收入的统宗相关材料；当前不作为研易楼原钞证据。"
       }
     },
     {
