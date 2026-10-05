@@ -22,9 +22,15 @@
       "ruleset": "jingyou-fuying-v4-military-11",
       "status": "implemented_source_specific",
       "runtime_catalog": "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog",
-      "pending_textual_uncertainty": [
-        "JF4M-02"
-      ]
+      "pending_textual_uncertainty": [],
+      "resolved_collation": {
+        "JF4M-02": {
+          "source_form": "大小将不相开",
+          "normalized_reading": "主客大小将无相关",
+          "normalized_semantics": "四将无同宫之关",
+          "confidence": "strong_parallel_witness_semantic_resolution"
+        }
+      }
     },
     "tongzong_volume5": {
       "source": "《太乙统宗宝鉴》卷五",
@@ -95,9 +101,10 @@
       ],
       "c8_relation": "C8-L2只消费/归一化five_generals事实",
       "c8_equivalent_formula": false,
-      "definition": "以始击掩击、文昌囚迫、主客大小将相关等来源条件判断五将发不发；三门事实与五将本体条件分栏。",
+      "definition": "以始击掩击、文昌囚迫、主客大小将之关等来源条件判断五将发不发；三门事实与五将本体条件分栏。",
       "boundary_notes": [
-        "杜塞取五将不发属于CORE-WUJIANG-READY跨层整合口径，不回写成J4M-02原文第四条件。",
+        "JF4M-02当前转录“大小将不相开”保留source form；经金镜/统宗同条与太乙格局关定义参校，算法按“四将无同宫之关”规范。",
+        "杜塞取五将不发属于CORE-WUJIANG-READY跨层整合口径，不回写成J4M-02/JF4M-02原文第四条件。",
         "C8-L2不是J4M-02或JF4M-02的公式实现。"
       ],
       "rule_ids": [
