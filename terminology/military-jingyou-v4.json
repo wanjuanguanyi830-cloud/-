@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "catalog_id": "taiyi-jingyou-fuying-v4-military-terminology-v1",
-  "scope": "source_record_jingyou_fuying_volume4_military",
+  "scope": "source_sensitive_jingyou_fuying_volume4_military",
   "status": "repository_source_specific_terminology_catalog",
   "legacy_terminology_json_migrated": false,
   "shared_catalogs": [
