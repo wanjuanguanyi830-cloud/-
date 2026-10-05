@@ -292,7 +292,8 @@
         ],
         "source_profile_effect": "none",
         "policy": "只描述NCL-06604证据完整度；不得以coverage状态改变jinjing_siku_volume4 canonical。"
-      }
+      },
+      "cross_source_note": "《太乙统宗宝鉴》卷五明确补述：太乙、天目不在开、休、生三门之下，则为门具。此为 TZ5 扩展证据，不静默回写四库《金镜》严格 profile。"
     },
     {
       "id": "J4M-02",
@@ -314,7 +315,7 @@
       },
       "implementation_status": "implemented_source_specific",
       "runtime": "kintaiyi.jinjing_v4_military.wujiang_fabu",
-      "implementation_note": "分栏保存始击掩击、文昌囚迫、主客大小将相关三组阻断条件，并把三门具/不具作为独立上游事实；不解析旧格局字符串。",
+      "implementation_note": "分栏保存始击掩击、文昌囚迫、主客大小将相关三组原典阻断条件；任一阻断明确为真即可短路判五将不发。三门具/不具仍作为独立上游事实；杜塞由 CORE-WUJIANG-READY 整合，不回写为本条原文条件。",
       "scan_locator": {
         "witness": "CADAL06056494",
         "carrier": "四库全书本《太乙金镜式经》卷一~卷四",
@@ -363,7 +364,8 @@
         ],
         "source_profile_effect": "none",
         "policy": "只描述NCL-06604证据完整度；不得以coverage状态改变jinjing_siku_volume4 canonical。"
-      }
+      },
+      "integration_note": "CORE-WUJIANG-READY 在跨层整合时接受上游 calc_blocked；按项目口径，杜塞取“五将不发”。该条件不列入 J4M-02 原文三项阻断，保持 source-specific 边界。"
     },
     {
       "id": "J4M-03",
