@@ -2,6 +2,7 @@ import pytest
 
 from kintaiyi.dayou_position_source_profiles import (
     PALACE_PATH,
+    TAOJIN_PATH,
     RECENT_WORK_RECOVERY,
     c107_catalog,
     dayou_position,
@@ -105,7 +106,7 @@ def test_c107_relation_layers_are_not_auto_applied():
 def test_c107_requires_explicit_profile_and_positive_count():
     with pytest.raises(TypeError):
         dayou_position(1)
-    with pytest.raises(ValueError, match="jinjing/tongzong"):
+    with pytest.raises(ValueError, match="jinjing/tongzong/taojin"):
         dayou_position(1, source_profile="mixed")
     with pytest.raises(ValueError):
         dayou_position(0, source_profile="jinjing")
@@ -116,3 +117,46 @@ def test_c107_catalog_has_no_default_profile():
     assert data["source_profile_required"] is True
     assert data["default_profile"] is None
     assert data["path"] == list(PALACE_PATH)
+
+
+@pytest.mark.parametrize(
+    "n,palace,year_in_palace",
+    [
+        (1, 7, 1),
+        (36, 7, 36),
+        (37, 6, 1),
+        (72, 6, 36),
+        (73, 4, 1),
+        (288, 8, 36),
+        (289, 7, 1),
+    ],
+)
+def test_c107_taojin_uses_its_own_reverse_route(n, palace, year_in_palace):
+    data = dayou_position(n, source_profile="taojin")
+    assert data["rule_id"] == "C107-DAYOU-TAOJIN"
+    assert data["source_profile"] == "taojin_dayou_position"
+    assert data["path"] == list(TAOJIN_PATH)
+    assert data["direction"] == "reverse"
+    assert data["surplus"] == 0
+    assert data["outer_cycle"] == data["small_cycle"] == 288
+    assert (data["palace"], data["year_in_palace"]) == (palace, year_in_palace)
+
+
+def test_c107_taojin_historical_553_example_reproduces_eighth_palace_year_13():
+    data = dayou_position(553, source_profile="taojin")
+    witness = data["source_witness"]
+
+    assert data["epoch"] == "唐高宗永徽五年甲寅"
+    assert (data["palace"], data["year_in_palace"]) == (8, 13)
+    assert witness["historical_check"]["accumulated_count"] == 553
+    assert witness["historical_check"]["expected_palace"] == 8
+    assert witness["historical_check"]["expected_year_in_palace"] == 13
+    assert witness["route"] == list(TAOJIN_PATH)
+
+
+def test_c107_catalog_separates_taojin_route_from_forward_profiles():
+    data = c107_catalog()
+    assert data["source_paths"]["jinjing"] == list(PALACE_PATH)
+    assert data["source_paths"]["tongzong"] == list(PALACE_PATH)
+    assert data["source_paths"]["taojin"] == list(TAOJIN_PATH)
+    assert data["profiles"]["taojin"]["direction"] == "reverse"
