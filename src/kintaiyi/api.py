@@ -64,6 +64,35 @@ def list_catalogs() -> list[dict[str, Any]]:
     return list(index["stable_catalogs"])
 
 
+def repository_status() -> dict[str, Any]:
+    """Build a live repository summary from the packaged canonical indexes."""
+    terminology_index = _load_json("terminology", "catalog-index.json")
+    catalogs = list(terminology_index["stable_catalogs"])
+    entry_count = 0
+    for meta in catalogs:
+        data = _load_json("terminology", _catalog_filename(meta["path"]))
+        entry_count += len(data.get("entries", []))
+
+    crosswalk = _load_json("terminology", "crosswalk.json")
+    operations = _load_json("registry", "operations.json")
+    return {
+        "public_api_version": registry_versions()["public_api_version"],
+        "stable_catalog_count": len(catalogs),
+        "stable_term_entry_count": entry_count,
+        "operation_count": len(operations["operations"]),
+        "operation_domains": sorted({
+            item["domain"] for item in operations["operations"]
+        }),
+        "legacy_terminology_json_migrated": bool(
+            terminology_index.get("legacy_terminology_json_migrated", False)
+        ),
+        "crosswalk_audit": crosswalk.get("audit_snapshot"),
+        "policy": (
+            "live summary derived from packaged indexes; counts are not manually duplicated"
+        ),
+    }
+
+
 def _catalog_filename(path: str) -> str:
     prefix = "terminology/"
     if not path.startswith(prefix):
