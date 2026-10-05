@@ -1,4 +1,4 @@
-"""C82 三基与天乙 / 地乙 / 直符同宫显式关系层。
+"""C83 三基与天乙 / 地乙 / 直符同宫显式关系层。
 
 来源：《太乙统宗宝鉴》卷六 / 卷七见证。
 
@@ -20,7 +20,7 @@ from __future__ import annotations
 import copy
 from typing import Any
 
-C82_VERSION = "taiyi-c82-three-bases-three-spirits-relations-v1"
+C83_VERSION = "taiyi-c83-three-bases-three-spirits-relations-v1"
 
 BASES = ("君基", "臣基", "民基")
 SPIRITS = ("天乙", "地乙", "直符")
@@ -129,7 +129,7 @@ POSITION_BOUNDARY = {
     "three_spirits_position_runtime": "C64",
     "auto_position_lookup_used": False,
     "auto_same_palace_inference_used": False,
-    "policy": "C82只消费显式关系证据，不调用C66/C64自动生成同宫。",
+    "policy": "C83只消费显式关系证据，不调用C66/C64自动生成同宫。",
 }
 
 CONDUCT_VALUES = frozenset(("favorable_source_conduct", "adverse_source_conduct"))
@@ -147,7 +147,7 @@ def _spirit(name: str, *, allow_legacy_zhifu_alias: bool) -> str:
     if name == "值符":
         if allow_legacy_zhifu_alias:
             return LEGACY_SPIRIT_ALIASES[name]
-        raise ValueError("值符不是C82 canonical名称；兼容时显式开启alias")
+        raise ValueError("值符不是C83 canonical名称；兼容时显式开启alias")
     raise ValueError("spirit须为天乙/地乙/直符")
 
 
@@ -185,7 +185,7 @@ def three_base_spirit_relation(
 
     if same_palace is None:
         status = "same_palace_unchecked"
-        pending.append("须显式确认是否同宫；C82不从C66/C64自动判断")
+        pending.append("须显式确认是否同宫；C83不从C66/C64自动判断")
     elif same_palace is False:
         status = "not_same_palace"
     elif rule["structure"] == "direct_omen":
@@ -204,8 +204,8 @@ def three_base_spirit_relation(
 
     return {
         "schema_version": "1.0",
-        "canonical": C82_VERSION,
-        "rule_id": "C82-THREE-BASES-THREE-SPIRITS",
+        "canonical": C83_VERSION,
+        "rule_id": "C83-THREE-BASES-THREE-SPIRITS",
         "source_profile": "tongzong_three_bases_three_spirits_relations",
         "base": base,
         "spirit": spirit,
@@ -230,8 +230,8 @@ def three_base_spirit_relation(
 
 def c82_catalog() -> dict[str, Any]:
     return {
-        "canonical": C82_VERSION,
-        "rule_id": "C82-THREE-BASES-THREE-SPIRITS",
+        "canonical": C83_VERSION,
+        "rule_id": "C83-THREE-BASES-THREE-SPIRITS",
         "source_profile": "tongzong_three_bases_three_spirits_relations",
         "bases": list(BASES),
         "spirits": list(SPIRITS),
