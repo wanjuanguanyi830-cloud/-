@@ -67,13 +67,14 @@ def test_low_dependency_candidates_are_explicit_and_exclude_cross_volume_helper(
         "V15-10",
         "V15-12",
         "V15-13",
+        "V15-14",
     ]
     assert "V17-D1" not in ids
 
 
 def test_j4m_and_c8_overlap_is_metadata_not_equivalence():
     assert rule_unit("V15-01")["overlaps"] == ["J4M-10"]
-    assert "独立source profile" in rule_unit("V15-01")["notes"]
+    assert "不把局例具体时支提升为通则" in rule_unit("V15-01")["notes"]
     assert rule_unit("V15-07")["overlaps"] == ["J4M-07", "J4M-08"]
     assert rule_unit("V15-08")["overlaps"] == ["C8-L2", "C8-L3"]
     assert rule_unit("V15-14")["overlaps"] == ["J4M-11", "J4M-12"]
