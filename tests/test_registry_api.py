@@ -167,11 +167,17 @@ def test_public_rule_facade_normalizes_source_rule_id_without_removing_original(
     assert explanation["rule_registry"]["count"] >= 1
 
 
-def test_source_record_only_jingyou_rule_is_not_promoted_to_calculation_runtime():
-    import pytest
+def test_all_jingyou_military_source_rules_resolve_through_public_rule_api():
+    source_rule_ids = [f"JF4M-{n:02d}" for n in range(1, 12)]
+    for rule_id in source_rule_ids:
+        candidates = rule_runtime_candidates(rule_id)
+        assert len(candidates) == 1
+        assert callable(resolve_runtime(candidates[0]["runtime"]))
 
-    with pytest.raises(KeyError):
-        calculate_rule("JF4M-04")
+    direction = calculate_rule("JF4M-06", 1)
+    assert direction["source_rule_id"] == "JF4M-06"
+    assert direction["rule_id"] == "JF4M-06"
+    assert direction["direction"] == "西北"
 
 
 def test_rule_discovery_connects_grouped_rules_to_public_operations():
@@ -207,11 +213,13 @@ def test_public_operation_names_are_unique_and_link_rules():
         assert callable(resolve_runtime(item["runtime"]))
 
 
-def test_source_record_only_rule_is_describable_but_not_executable():
+def test_jingyou_rule_is_describable_and_has_source_specific_runtime():
     descriptor = describe_rule("JF4M-04")
     assert descriptor["rule"]["count"] >= 1
-    assert descriptor["runtime_candidates"] == []
-    assert descriptor["operations"] == []
+    assert len(descriptor["runtime_candidates"]) == 1
+    assert descriptor["runtime_candidates"][0]["runtime"] == (
+        "kintaiyi.jingyou_fuying_v4_military.host_guest_action"
+    )
 
 
 def test_capabilities_are_lossless_projection_of_operation_registry():
