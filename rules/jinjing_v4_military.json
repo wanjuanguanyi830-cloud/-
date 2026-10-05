@@ -467,7 +467,7 @@
       },
       "implementation_status": "implemented_source_specific",
       "runtime": "kintaiyi.jinjing_v4_military.fengyun_feiniao_zhuzhan",
-      "implementation_note": "J4M-11 runtime继续逐字服从《金镜》四库本：迫击“大将宫”按本句主败、“从主人形上来”按本句客败；《福应经》有更展开且部分相反的平行读法，已单列 variant，绝不混入 canonical。无观测返回not_computable，单独“众来噪阵”仍不补胜负。",
+      "implementation_note": "外部观测事件必须显式声明 phenomenon 为风/云/飞鸟类；动作与目标只按《金镜》正文词面匹配，不做近义词扩张。C70 删除“大将宫冲击=迫击”的旧宽松匹配，并禁止缺 phenomenon 的事件靠动作字段触发断语。众来噪阵仍不单独补胜负；《福应经》冲突读法继续留在独立 JF4M profile。",
       "source_variants": {
         "jingyou_fuying_volume4": {
           "source_title": "释太乙风云飞鸟置战第五十三",
@@ -482,7 +482,13 @@
           "canonical_override": false
         }
       },
-      "collation_status": "jinjing_and_jingyou_have_material_event_reading_differences"
+      "collation_status": "source_event_schema_audited_strict_wording",
+      "canonical_constraints": {
+        "explicit_phenomenon_required": "每条事件必须显式为风、云、飞鸟、风云或风云飞鸟；不得只凭扶/冲突/迫击等动作字段生成断语。",
+        "no_synonym_expansion": "动作词只接受《金镜》正文明确写法；“迫击大将宫”不得自动把“冲击大将宫”等近义输入视为同一条。",
+        "noise_event": "单独“众来噪阵”仍只记观测，不生成独立胜负；《金镜》本句没有清楚给出其单独结果。",
+        "jingyou_conflict": "《福应经》对大将宫及主人刑/客刑有更展开且部分不同断语，只作独立 JF4M variant，不回写 J4M。"
+      }
     },
     {
       "id": "J4M-12",
