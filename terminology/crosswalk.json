@@ -14,7 +14,11 @@
     "stable_catalog_count": 12,
     "entry_count": 102,
     "exact_cross_entry_name_collisions": 0,
-    "status": "clean_at_snapshot"
+    "status": "clean_at_snapshot",
+    "rules_json_rule_id_count": 75,
+    "terminology_rule_id_count": 108,
+    "rules_missing_from_terminology": 0,
+    "rules_coverage_status": "complete_at_snapshot"
   },
   "bridges": [
     {
