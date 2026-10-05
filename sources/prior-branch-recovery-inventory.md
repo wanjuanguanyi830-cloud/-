@@ -453,3 +453,30 @@ C60 新增隔离：
 - `config.wufu_default`
 
 因此“最近两天旧工作回收”不仅是找回遗漏，也用于发现当前 main 仍残留的阶段性旧公式并阻止回流。
+
+
+### C98
+
+对 2026-10-04 `rules/dayou/dayou.json` / `rules/dayou/tianmu.json` 与当前 `cycles.py` 对比后，确认当前 legacy compatibility 仍有两处容易回流成“真源”的入口。
+
+处理：
+
+- `bigyo(profile="jinjing_tongzong")`
+  - 金镜 / 统宗混源；
+  - 保留数值兼容；
+  - 撤销 canonical；
+  - 默认路径 quarantine。
+- `bigyo_tianmu(profile="tongzong")`
+  - 旧 %180/+214 已被 2026-10-04 记录标为 deprecated_reference；
+  - 保留旧 API；
+  - 撤销 canonical；
+  - 默认路径 quarantine。
+
+新增 C60 登记：
+
+- `kintaiyi.cycles.bigyo.jinjing_tongzong`
+- `config.bigyo_default`
+- `kintaiyi.cycles.bigyo_tianmu.tongzong`
+- `config.bigyo_tianmu_default`
+
+这一步属于“旧工作回收时发现主线旧公式回流口并隔离”，不是把旧大游公式重新升格。
