@@ -18,6 +18,7 @@ GOD_ALIASES = {
     "陰主": "阴主",
     "陰德": "阴德",
     "大義": "大义",
+    "太蔟": "太簇",
 }
 SIXTEEN_GOD_WX = dict(zip(GODS, ELEMENTS))
 PALACE_POINT = {1: "乾", 2: "午", 3: "艮", 4: "卯", 6: "酉", 7: "坤", 8: "子", 9: "巽"}
