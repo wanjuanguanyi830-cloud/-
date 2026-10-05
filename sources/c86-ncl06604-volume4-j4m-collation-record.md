@@ -97,6 +97,18 @@ NCL p.62 正文写：
 
 处理：只登记 NCL manuscript reading，canonical_override=false。
 
+### J4M-11
+
+NCL p.62 正文标题写：
+
+**推太乙风云飞鸟助阵法**
+
+而标题后正文起句仍作：
+
+**经曰助战之法**
+
+因此“助阵法 / 助战之法”必须分栏保存。四库正文 canonical 仍为“推太乙风云飞鸟助战法”，NCL 标题只作 manuscript body-heading variant。
+
 ### J4M-12
 
 NCL p.63 正文写：
@@ -145,17 +157,40 @@ NCL p.61-p.62 明写：
 
 机器规则中明确 canonical_override=false。
 
-## 六、仍待精核
+
+
+## 六、J4M-12 西方白云“大胜”是传本文字，不是逻辑补全
+
+NCL p.64 西方条直接可见：
+
+**在西方有白云气在敌阵上，大胜，庚辛日弥佳。**
+
+这与四库扫描 profile 的当前读法不同：
+
+- 四库正文：只明确“庚辛日弥佳”，基础胜负未明；
+- NCL 明钞本：明确保留“大胜”。
+
+这项异文非常重要，因为它说明：
+
+1. 旧代码/其他整理里出现“西方白云=大胜”并非一定纯属现代推演；
+2. 但对 jinjing_siku_volume4 而言，仍不能因为另一本有“大胜”，就把四库本缺字用表格对称性补回；
+3. 正确处理是 source-specific：
+   - 四库 profile：base_verdict = null；
+   - NCL manuscript reading：base_verdict = 大胜；
+   - canonical_override = false。
+
+因此 C78/C85 的“不按五行或对称性补表”政策继续成立，而且现在有了更强的传本学解释。
+
+## 七、仍待精核
 
 本轮暂不强判：
 
 - J4M-03 首例“太蔟 / 太簇”在 NCL p.57 的精确字形；
-- J4M-11 标题“助战”字形与个别句读；
 - 十二法全段逐字异文。
 
 原因不是页码未知，而是当前第一轮只登记视觉上无歧义的关键项；疑难字必须在更高倍率下再判。
 
-## 七、仓库状态
+## 八、仓库状态
 
 rules/jinjing_v4_military.json：
 
@@ -163,8 +198,8 @@ rules/jinjing_v4_military.json：
 - evidence level: page_collated_for_volume4_j4m_locators_with_selected_readings
 - 新增 volume_boundaries
 - 十二条均新增 ncl_scan_locator
-- J4M-06/07/08/09/10/12 新增 manuscript_readings["NCL-06604"]
-- source.ncl_volume4_collation_version = c86-ncl06604-v4-j4m-locators-v1
+- J4M-06/07/08/09/10/11/12 新增 manuscript_readings["NCL-06604"]
+- source.ncl_volume4_collation_version = c86-ncl06604-v4-j4m-locators-and-key-readings-v2
 
 测试锁定：
 
@@ -174,7 +209,8 @@ rules/jinjing_v4_military.json：
 - 十二条 locator；
 - J4M-08 矛鋋；
 - J4M-09 NCL 含1宫但四库 canonical 不变；
-- J4M-10/J4M-12 标题 variant 不覆盖 canonical。
+- J4M-10/J4M-11/J4M-12 标题 variant 不覆盖 canonical；
+- J4M-12 NCL 西方白云“大胜”不回填四库 base_verdict。
 
 ## 结论
 
