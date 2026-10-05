@@ -42,38 +42,44 @@ def test_c98_taojin_requires_epoch_unless_explicit_compatibility_trial():
     assert "兼容试算" in trial["reason"]
 
 
-def test_c98_tianmu_default_deprecated_plus214_is_quarantined():
+def test_c98_tianmu_default_is_superseded_by_c104_tongzong_delegate():
     data = bigyo_tianmu(0)
     assert data["profile"] == "tongzong"
     assert data["offset"] == 214
-    assert data["canonical"] is None
-    assert data["canonical_equivalent"] is False
-    assert data["promotion_allowed"] is False
-    assert data["quarantined"] is True
-    assert "deprecated_reference" in data["reason"]
+    assert data["rule_id"] == "C104-DAYOU-TIANMU-TONGZONG"
+    assert data["canonical"] == "taiyi-c104-dayou-tianmu-source-profiles-v1"
+    assert data["canonical_equivalent"] is True
+    assert data["promotion_allowed"] is True
+    assert data["quarantined"] is False
+    assert data["canonical_delegate"]["profile_key"] == "tongzong"
 
 
-def test_c98_config_tianmu_default_is_same_quarantined_path():
+def test_c98_config_tianmu_default_is_c104_tongzong_delegate():
     data = config.bigyo_tianmu(0)
-    assert data["rule_id"] == "LEGACY-DAYOU-TIANMU-COMPAT"
-    assert data["quarantined"] is True
-    assert data["canonical"] is None
+    assert data["rule_id"] == "C104-DAYOU-TIANMU-TONGZONG"
+    assert data["quarantined"] is False
+    assert data["canonical_delegate"]["surplus"] == 214
 
 
-def test_c98_jinjing_tianmu_requires_explicit_epoch_and_remains_noncanonical():
-    missing = bigyo_tianmu(0, profile="jinjing")
-    assert missing["status"] == "not_computable"
-    assert missing["canonical"] is None
-    assert missing["quarantined"] is False
-
-    data = bigyo_tianmu(0, profile="jinjing", epoch_offset=0)
+def test_c98_jinjing_tianmu_now_delegates_to_c104_without_custom_offset():
+    data = bigyo_tianmu(0, profile="jinjing")
     assert data["god"] == DAYOU_TM_PATH[0]
     assert data["step_number"] == 1
+    assert data["rule_id"] == "C104-DAYOU-TIANMU-JINJING"
+    assert data["canonical_equivalent"] is True
+    assert data["promotion_allowed"] is True
+    assert data["quarantined"] is False
+    assert data["profile_metadata"]["yuan"] == 72
+
+
+def test_c98_non_source_tianmu_offset_remains_legacy_custom_trial():
+    data = bigyo_tianmu(0, profile="jinjing", epoch_offset=1)
+    assert data["rule_id"] == "LEGACY-DAYOU-TIANMU-CUSTOM-OFFSET"
     assert data["canonical"] is None
     assert data["canonical_equivalent"] is False
     assert data["promotion_allowed"] is False
     assert data["quarantined"] is False
-    assert "72→18" in data["reason"]
+    assert "不覆盖source-specific runtime" in data["reason"]
 
 
 @pytest.mark.parametrize("func,profile", [
