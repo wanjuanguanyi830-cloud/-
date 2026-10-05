@@ -579,7 +579,7 @@
       },
       "implementation_status": "implemented_source_specific",
       "runtime": "kintaiyi.jinjing_v4_military.fengyun_feiniao_zhuzhan",
-      "implementation_note": "外部观测事件必须显式声明 phenomenon 为风/云/飞鸟类；动作与目标只按《金镜》正文词面匹配，不做近义词扩张。C70 删除“大将宫冲击=迫击”的旧宽松匹配，并禁止缺 phenomenon 的事件靠动作字段触发断语。众来噪阵仍不单独补胜负；《福应经》冲突读法继续留在独立 JF4M profile。",
+      "implementation_note": "外部观测事件必须显式声明 phenomenon 为风/云/飞鸟类；动作与目标只按《金镜》正文词面匹配，不做近义词扩张。C75 删除“大将宫冲击=迫击”的旧宽松匹配，并禁止缺 phenomenon 的事件靠动作字段触发断语。众来噪阵仍不单独补胜负；《福应经》冲突读法继续留在独立 JF4M profile。",
       "source_variants": {
         "jingyou_fuying_volume4": {
           "source_title": "释太乙风云飞鸟置战第五十三",
@@ -633,7 +633,7 @@
       },
       "implementation_status": "implemented_source_specific",
       "runtime": "kintaiyi.jinjing_v4_military.yunqi_dingshengfu",
-      "implementation_note": "方位×颜色表按四库正文逐项保存；C69 删除此前由对称性推入的“西方白云=大胜”，保留庚辛日弥佳而基础胜负为未明。runtime 新增 cloud_bearer / subject_mode / verdict_subject 分栏：条文明确“客胜”时主体保持客；不以“若在我阵上亦尔”机械替换主客。日干、聚散动静及大将/参将位置继续分层，原文未列组合不补。 固定原则：不以五行常识补表，也不以表格对称性补表。",
+      "implementation_note": "方位×颜色表按四库正文逐项保存；C76 删除此前由对称性推入的“西方白云=大胜”，保留庚辛日弥佳而基础胜负为未明。runtime 新增 cloud_bearer / subject_mode / verdict_subject 分栏：条文明确“客胜”时主体保持客；不以“若在我阵上亦尔”机械替换主客。日干、聚散动静及大将/参将位置继续分层，原文未列组合不补。 固定原则：不以五行常识补表，也不以表格对称性补表。",
       "collation_status": "source_table_audited_no_symmetry_completion",
       "canonical_constraints": {
         "cloud_bearer_vs_verdict_subject": "云气所在阵与断语主体必须分栏；formation-type断语随我/敌阵解释，明确主客角色词不改写。",
