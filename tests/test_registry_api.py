@@ -277,3 +277,22 @@ def test_legacy_recovery_status_keeps_missing_store_blocked():
         item["recovered_from_original_store"] is False
         for item in status["priorities"]
     )
+
+
+def test_public_rule_api_computes_jf4m02_from_general_palaces():
+    result = calculate_rule(
+        "JF4M-02",
+        shiji_yanji=False,
+        wenchang_qiupo=False,
+        home_big=1,
+        home_vassal=3,
+        away_big=4,
+        away_vassal=6,
+        three_doors_ready=True,
+    )
+
+    assert result["rule_id"] == "JF4M-02"
+    assert result["source_rule_id"] == "JF4M-02"
+    assert result["five_generals_released"] is True
+    assert result["general_relation_pairs"] == []
+    assert result["normalized_semantics"] == "四将无同宫之关"
