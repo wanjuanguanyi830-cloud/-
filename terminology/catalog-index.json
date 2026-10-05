@@ -129,6 +129,16 @@
         "C94五福四太乙同域",
         "C113五福四神大小游遗留同宫"
       ]
+    },
+    {
+      "path": "terminology/ritual-timing.json",
+      "catalog_id": "taiyi-ritual-timing-terminology-v1",
+      "scope": "source_sensitive_ritual_timing",
+      "contains": [
+        "C62天子巡狩",
+        "C69推太乙当时法核心",
+        "C69B六壬叠盘"
+      ]
     }
   ],
   "migration_assets": [
