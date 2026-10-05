@@ -569,3 +569,32 @@ def test_c88_ncl_j4m06_direction_table_is_separate_from_siku():
     assert ncl["canonical_override"] is False
     assert "1/2/4/5/6/9" in rule["source_boundary_evidence"]["jinjing_siku_volume4"]
     assert "1/2/3/4/6/7/8/9" in rule["source_boundary_evidence"]["ncl_06604_ming_manuscript"]
+
+
+def test_c88_ncl_j4m06_direction_table_is_variant_not_siku_completion():
+    data, rules = _rules()
+    assert data["source"]["ncl_volume4_collation_version"] == "c88-ncl06604-j4m06-direction-table-v1"
+
+    rule = {item["id"]: item for item in rules}["J4M-06"]
+    ncl = rule["manuscript_readings"]["NCL-06604"]
+
+    assert ncl["explicit_calculation_values"] == [1, 2, 3, 4, 6, 7, 8, 9]
+    assert ncl["omitted_vs_siku"] == [5]
+    assert ncl["extra_vs_siku"] == [3, 7, 8]
+    assert ncl["direction_table"] == {
+        "1": "西北",
+        "2": "正南",
+        "3": "东北",
+        "4": "正东",
+        "6": "正西",
+        "7": "西南",
+        "8": "正北",
+        "9": "东南",
+    }
+    assert "景祐太乙福应经" in ncl["relation_to_jingyou"]
+    assert ncl["canonical_override"] is False
+
+    evidence = rule["source_boundary_evidence"]
+    assert "1/2/4/5/6/9" in evidence["jinjing_siku_volume4"]
+    assert "1/2/3/4/6/7/8/9" in evidence["ncl_06604_ming_manuscript"]
+    assert "不得互补缺数" in evidence["policy"]
