@@ -84,7 +84,7 @@
         "note": "标题及正文起于p.128；直使例续至p.129。"
       },
       "scan_rule_audit": {
-        "cycle": "C82",
+        "cycle": "C83",
         "status": "scan_structure_confirmed_conservative_cases",
         "locked_points": [
           "三门=开/休/生",
@@ -130,7 +130,7 @@
         "note": "标题起于p.129；末句续入p.130后接J4M-03。"
       },
       "scan_rule_audit": {
-        "cycle": "C82",
+        "cycle": "C83",
         "status": "scan_blockers_confirmed_layers_separated",
         "locked_points": [
           "始击无掩击",
@@ -208,7 +208,7 @@
         "note": "标题与首例p.130；第二例收于p.131。"
       },
       "scan_rule_audit": {
-        "cycle": "C82",
+        "cycle": "C83",
         "status": "scan_examples_confirmed_ancient_collation_preserved",
         "locked_points": [
           "客目克主目=>客胜",
@@ -271,7 +271,7 @@
         "note": "标题与主体p.131；互视其算句收于p.132。"
       },
       "scan_rule_audit": {
-        "cycle": "C82",
+        "cycle": "C83",
         "status": "scan_roles_confirmed_parallel_gloss_limited",
         "locked_points": [
           "陈兵原野先动为客后应为主",
