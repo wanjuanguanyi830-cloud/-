@@ -1,7 +1,7 @@
 """三门—五将—出师跨层资格链。
 
 本模块只做 orchestration，不创造新古法：
-- J4M-01 / TZ5：三门具不具；
+- J4M-01 / TZ2：三门具不具；
 - J4M-02：五将发不发的原典三阻断；
 - CORE-WUJIANG-READY：杜塞取“五将不发”；
 - J4M-05：算12/22/32、三门具、五将发、开休生出军。
@@ -20,7 +20,7 @@ from .jinjing_v4_military import (
     wujiang_fabu,
     zhimen_from_cycle_count,
 )
-from .tongzong_v5_doors import sanmen_jubu_tongzong_from_positions
+from .tongzong_v2_doors import taiyi_door_readiness
 
 PIPELINE_VERSION = "taiyi-military-readiness-pipeline-v1"
 BLOCKED_CALCS = frozenset({5, 15, 25, 35})
@@ -51,20 +51,23 @@ def _three_doors(
             taiyi_palace=taiyi_palace,
             tianmu=tianmu,
         )
-    elif profile == "tongzong_v5":
-        result = sanmen_jubu_tongzong_from_positions(
-            taiyi_palace=taiyi_palace,
-            tianmu=tianmu,
-            direct_gate=duty["direct_gate"],
-        )
+    elif profile == "tongzong_v2":
+        tz2 = taiyi_door_readiness(taiyi_palace, tianmu=tianmu)
         result = {
-            **result,
+            **tz2,
+            "three_doors_ready": tz2.get("door_ready"),
             "period_count": period_count,
+            "direct_gate": duty["direct_gate"],
+            "direct_gate_auspice": duty["auspice"],
             "within_240_cycle": duty["within_240_cycle"],
             "block_of_30": duty["block_of_30"],
+            "integration_note": (
+                "太乙门具按《统宗》卷二开门加太乙；"
+                "240/30直使仅作为卷四同条独立岁计吉凶事实。"
+            ),
         }
     else:
-        raise ValueError("three_doors_profile须为jinjing_strict或tongzong_v5")
+        raise ValueError("three_doors_profile须为jinjing_strict或tongzong_v2")
 
     return {"profile": profile, "duty": duty, "result": result}
 
@@ -149,7 +152,7 @@ def military_deployment_readiness(
             "deployment": deployment,
         },
         "policy": (
-            "只串接既有规则；《统宗》三门正面条件仅在显式选择tongzong_v5时使用，"
+            "只串接既有规则；《统宗》卷二太乙门具仅在显式选择tongzong_v2时使用，"
             "不回写J4M-01。杜塞只在CORE层折算为五将不发。"
         ),
     }
