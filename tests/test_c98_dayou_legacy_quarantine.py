@@ -89,3 +89,20 @@ def test_c98_non_source_tianmu_offset_remains_legacy_custom_trial():
 def test_c98_unknown_profiles_are_rejected(func, profile):
     with pytest.raises(ValueError):
         func(0, profile=profile)
+
+
+
+@pytest.mark.parametrize(
+    "profile,rule_id,offset",
+    [
+        ("jinjing", "C107-DAYOU-JINJING", 0),
+        ("tongzong", "C107-DAYOU-TONGZONG", 34),
+    ],
+)
+def test_c98_config_bigyo_explicit_profiles_delegate_c107(profile, rule_id, offset):
+    data = config.bigyo(0, profile=profile)
+    assert data["rule_id"] == rule_id
+    assert data["offset"] == offset
+    assert data["canonical_equivalent"] is True
+    assert data["promotion_allowed"] is True
+    assert data["quarantined"] is False
