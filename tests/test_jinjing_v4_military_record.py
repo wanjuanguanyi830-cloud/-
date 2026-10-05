@@ -354,3 +354,25 @@ def test_c80_j4m05_to_j4m10_scan_audit_locks_no_inference_boundaries():
 
     assert by_id["J4M-10"]["scan_rule_audit"]["status"] == "scan_nodes_confirmed_textual_uncertainty_preserved"
     assert any("不解释《金镜》‘败’字" in x for x in by_id["J4M-10"]["scan_rule_audit"]["forbidden_inference"])
+
+
+def test_c82_j4m01_to_j4m04_scan_audit_and_taicu_alias_boundaries():
+    _, rules = _rules()
+    by_id = {item["id"]: item for item in rules}
+
+    j1 = by_id["J4M-01"]["scan_rule_audit"]
+    assert j1["status"] == "scan_structure_confirmed_conservative_cases"
+    assert any("同落开" in x for x in j1["forbidden_inference"])
+
+    j2 = by_id["J4M-02"]["scan_rule_audit"]
+    assert j2["status"] == "scan_blockers_confirmed_layers_separated"
+    assert any("三门具不等于" in x for x in j2["forbidden_inference"])
+
+    j3 = by_id["J4M-03"]
+    assert j3["scan_rule_audit"]["status"] == "scan_examples_confirmed_ancient_collation_preserved"
+    assert j3["terminology_aliases"]["太蔟"]["canonical"] == "太簇"
+    assert "五行仍为金" in j3["terminology_aliases"]["太蔟"]["behavior"]
+
+    j4 = by_id["J4M-04"]["scan_rule_audit"]
+    assert j4["status"] == "scan_roles_confirmed_parallel_gloss_limited"
+    assert any("混合条件不扩写" in x for x in j4["forbidden_inference"])
