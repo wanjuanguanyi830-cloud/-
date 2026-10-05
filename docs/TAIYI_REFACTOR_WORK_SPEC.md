@@ -4455,6 +4455,105 @@ C60 新增四项：
 4. 等并行 NCL 校勘线稳定后统一最终 CI；
 5. 所有旧 compatibility 必须明确 canonical / quarantine 身份，禁止“能运行=真源”。
 
+## 9.90 C100 十六神繁简 / 旧字形别名回收（已实施）
+
+C99 已由并行术语线用于：
+
+`太簇 canonical 规范词形固定`
+
+因此本项改号 C100，避免编号冲突。
+
+来源：
+
+`integrate-taiyi-war-v1-20261004/rules/common/taiyi_space.py`
+
+只恢复 2026-10-04 已明确支持的神名字形别名：
+
+- 陽德 → 阳德；
+- 呂申 → 吕申；
+- 高叢 → 高丛；
+- 太陽 → 太阳；
+- 陰主 → 阴主；
+- 陰德 → 阴德；
+- 大義 → 大义；
+- 太炅 → 大炅。
+
+并与现行 / 已恢复别名统一：
+
+- 太神 → 大神；
+- 大旲 → 大炅。
+
+runtime 单一真源：
+
+`src/kintaiyi/taiyi_rules.py::GOD_ALIASES`
+
+术语参考：
+
+`terminology/sixteen_spirits.json`
+
+边界：
+
+- 只恢复字形归一；
+- 不恢复旧 warfare/common 的五行模型；
+- 不改变十六辰位置、九宫投影、七术或八占公式。
+
+详细记录：
+
+- `sources/c100-sixteen-spirit-glyph-alias-recovery-record.md`
+- `tests/test_c100_sixteen_spirit_aliases.py`
+
+## 9.91 旧 facade / warfare common 核销结论
+
+### 旧 kintaiyi.py
+
+2026-10-04 安全可复用部分已经完成：
+
+- selection validation → C95；
+- collect_core_snapshot → C95。
+
+其余：
+
+- `TaiyiCanonicalMixin`
+- `Taiyi(snapshot).pan()`
+- `project_legacy_pan()`
+
+都绑定旧周期或旧聚合路径。
+
+当前已有：
+
+- C11 pan v2；
+- C12 adapter / quarantine；
+- C30 structured contract；
+- C64/C66/C67/C68/C92 等 source-specific 周期层。
+
+因此旧 facade 不再整段恢复，状态：
+
+`safe_recovery_exhausted_rebuild_only_if_new_interface_needed`
+
+### 旧 warfare/common
+
+2026-10-04 公共层已核：
+
+- 十六环 / 九宫映射 → C96；
+- 五行五态核心 → 现行 taiyi_rules；
+- 大神加位 → 现行 taiyi_rules；
+- 火十二长生 → 现行 FIRE_STAGES；
+- 神名字形别名 → C100。
+
+其余旧 duplicate helper 不再复制。
+
+## 9.92 后续
+
+旧工作恢复仍只允许 2026-10-04 / 2026-10-05。
+
+下一步优先：
+
+1. 检查最近两天旧分支中仍未核销的非代码资料 / tests / docs；
+2. 对已经“有 API 但无 source-specific runtime”的大游行宫另立来源校勘，不从 C98 compatibility 反推；
+3. 完整 `terminology.json` 继续由 C81 阻塞；
+4. 保持 C60 隔离清单与 compatibility API 同步；
+5. 等并行 NCL 校勘线每批提交后，以最新 HEAD 全量 CI 为准。
+
 ## 10. 验收
 
 每批至少运行现有 pytest/ruff（若配置存在）。不得为了兼容把已确认错误公式改回去。兼容的是 API/keys/类型，不是错误答案。
