@@ -483,14 +483,23 @@
       },
       {
         "id": "R-JINJING-HUANGDAO",
-        "canonical": "C118《金镜》卷一黄道上游表包含二十四气黄道日度锚点、二十八宿宿度、列宿十二分野与一日一度推进helper。虚宿度转录未定时跨界返回not_computable；C118不计算现代天文黄经，不安十二天将，只为C69/C69B提供古表上游。production日期/真实节气与冬至换岁仍由现代天文历法负责。",
+        "canonical": "C118《金镜》卷一黄道上游表包含二十四气黄道日度锚点、二十八宿宿度、列宿十二分野与一日一度推进helper。虚宿四库公开转录缺整数主体；NCL-06604明钞本PDF第21页直接影像同样未补出整数，只见分数旁注，因此numeric_span继续为None，跨界返回not_computable。不得据365¼周天闭合或后世宿度表反推。本层不计算现代天文黄经，不安十二天将，只为C69/C69B提供古表上游。",
         "rule_ids": [
           "C118-SOLAR-TERM-ANCHOR",
           "C118-MANSION-SPAN",
           "C118-MANSION-DIVISION",
           "C118-TERM-DAY-POSITION"
         ],
-        "runtime": "kintaiyi.jinjing_huangdao_tables.term_day_position"
+        "runtime": "kintaiyi.jinjing_huangdao_tables.term_day_position",
+        "source_witness": {
+          "primary": "四库本《太乙金镜式经》卷一",
+          "manuscript": {
+            "id": "NCL-06604",
+            "edition": "明钞本",
+            "pdf_page": 21,
+            "effect": "confirms_missing_integer_ambiguity_only"
+          }
+        }
       },
       {
         "id": "R-XUANMING",
