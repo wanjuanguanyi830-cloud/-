@@ -223,11 +223,12 @@
         "推置阵随地法"
       ],
       "domain": "地形制阵",
-      "canonical_summary": "曲阵属水、锐阵属火、直阵属木、方阵属金、圆阵属土；阵形随地势而定，并可用五行生克参胜负。",
+      "canonical_summary": "曲阵水、锐阵火、直阵木、方阵金、圆阵土；先按地形制阵，主客既置阵后再以两阵五行相克取胜负。只有明确相克时判胜负，同类或相生不由本条扩写。",
       "dependencies": [
         "地形",
-        "主客阵形",
-        "五行"
+        "主阵阵形",
+        "客阵阵形",
+        "阵形五行"
       ],
       "target_crosswalk": {
         "layer": null,
@@ -235,7 +236,8 @@
       },
       "implementation_status": "implemented_source_specific",
       "runtime": "kintaiyi.jinjing_v4_military.zhizhen_suidi",
-      "implementation_note": "实现五类地形与五阵五行映射；未知地形不类推。"
+      "implementation_note": "实现五类地形与五阵五行映射，并补足正文明确的“主客置阵，次以五行相克而取胜负”：主阵五行克客阵则主胜，客阵五行克主阵则客胜；同类或相生不补胜负。未知地形不类推，兵种器械层仍归 J4M-08。",
+      "completion_note": "C66 补齐此前 runtime 漏掉的主客阵形五行相克胜负层；不改变地形->阵形表。"
     },
     {
       "id": "J4M-08",
