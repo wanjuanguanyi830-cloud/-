@@ -174,7 +174,7 @@
       "c115-ncl06604-j4m08-full-body-v1",
       "c120-ncl06604-j4m09-opening-boundary-v1"
     ],
-    "ncl_collation_completeness_version": "c123-ncl-j4m-completeness-v1",
+    "ncl_collation_completeness_version": "c124-ncl-j4m-completeness-v1",
     "ncl_collation_summary": {
       "witness": "NCL-06604",
       "counts": {
@@ -280,7 +280,7 @@
         "body_title": "推三门具不具"
       },
       "ncl_collation_status": {
-        "cycle": "C123",
+        "cycle": "C124",
         "status_group": "locator_only",
         "evidence_level": "page_locator_direct_visual_verified",
         "verified_points": [
@@ -351,7 +351,7 @@
         "body_title": "推五将发不发"
       },
       "ncl_collation_status": {
-        "cycle": "C123",
+        "cycle": "C124",
         "status_group": "locator_only",
         "evidence_level": "page_locator_direct_visual_verified",
         "verified_points": [
@@ -484,7 +484,7 @@
         "variant_classification": "dictionary_attested_traditional_variant"
       },
       "ncl_collation_status": {
-        "cycle": "C123",
+        "cycle": "C124",
         "status_group": "locator_only",
         "evidence_level": "page_locator_direct_visual_verified",
         "verified_points": [
@@ -566,7 +566,7 @@
         "body_title": "推主客"
       },
       "ncl_collation_status": {
-        "cycle": "C123",
+        "cycle": "C124",
         "status_group": "locator_only",
         "evidence_level": "page_locator_direct_visual_verified",
         "verified_points": [
@@ -661,7 +661,7 @@
         }
       },
       "ncl_collation_status": {
-        "cycle": "C123",
+        "cycle": "C124",
         "status_group": "selected_readings",
         "evidence_level": "numeric_variant_direct_visual_verified",
         "verified_points": [
@@ -908,7 +908,7 @@
         }
       },
       "ncl_collation_status": {
-        "cycle": "C123",
+        "cycle": "C124",
         "status_group": "full_rule",
         "evidence_level": "full_table_and_closing_direct_visual_verified",
         "verified_points": [
@@ -1044,7 +1044,7 @@
         }
       },
       "ncl_collation_status": {
-        "cycle": "C123",
+        "cycle": "C124",
         "status_group": "full_rule",
         "evidence_level": "full_body_structure_direct_visual_verified",
         "verified_points": [
@@ -1269,7 +1269,7 @@
         }
       },
       "ncl_collation_status": {
-        "cycle": "C123",
+        "cycle": "C124",
         "status_group": "full_rule",
         "evidence_level": "full_contiguous_body_direct_visual_verified",
         "verified_points": [
@@ -1423,7 +1423,7 @@
         }
       },
       "ncl_collation_status": {
-        "cycle": "C123",
+        "cycle": "C124",
         "status_group": "selected_readings",
         "evidence_level": "opening_and_palace_groups_direct_visual_verified",
         "verified_points": [
@@ -1515,7 +1515,7 @@
         }
       },
       "ncl_collation_status": {
-        "cycle": "C123",
+        "cycle": "C124",
         "status_group": "selected_readings",
         "evidence_level": "body_heading_direct_visual_verified",
         "verified_points": [
@@ -1668,7 +1668,7 @@
         }
       },
       "ncl_collation_status": {
-        "cycle": "C123",
+        "cycle": "C124",
         "status_group": "selected_readings",
         "evidence_level": "heading_and_key_event_readings_direct_visual_verified",
         "verified_points": [
@@ -1777,7 +1777,7 @@
         }
       },
       "ncl_collation_status": {
-        "cycle": "C123",
+        "cycle": "C124",
         "status_group": "selected_readings",
         "evidence_level": "heading_and_key_verdict_direct_visual_verified",
         "verified_points": [
