@@ -41,14 +41,15 @@ PRIMARY_LOCATORS = {
         "witness_context": "《太乙紫庭经》卷一段落",
     },
     "wenchang_nine_stars": {
-        "status": "legacy_scan_extraction_recovered_page_pending",
+        "status": "prior_scan_confirmed_page_record_pending",
         "section": "附太乙文昌九星值宫术",
         "url": None,
         "legacy_scan_recovery": {
             "asset": "terminology/zitingjing-legacy-scan-recovery.json",
-            "status": "prior_scan_extraction_recovered_direct_page_pending",
-            "recovered_forms": ["文曲", "玄鳳", "明維", "昭搖", "立華", "華明", "玄武", "玄冥", "雄明"],
-            "note": "用户确认研易楼明钞本此前整理术语库时已扫描；当前恢复的是旧派生实现残留，仍待E盘原扫描或旧terminology.json逐页复核。",
+            "status": "manuscript_previously_scanned_original_page_record_not_reattached",
+            "user_confirmed_manuscript": "研易楼藏《太乙紫庭祕訣》明钞本",
+            "local_copy_status": "E盘仍存，当前执行环境未挂载",
+            "code_residue_note": "旧config.py九星段明确标注来源为《太乙统宗宝鉴》卷六，因此其中词形不能直接认定为研易楼本逐字扫描结果。",
         },
         "catalog_witness": {
             "title": "太乙紫庭秘诀（现代整理本目录）",
@@ -68,7 +69,7 @@ PRIMARY_LOCATORS = {
                 "note": "分享帖称文本与北大本可互补，并列出多个网盘转存；当前未取得可逐页核读的扫描正文。",
             },
         ],
-        "witness_context": "该术附属于《太乙紫庭秘诀》传本系统；用户确认研易楼明钞本此前已在术语库整理阶段扫描，当前已恢复旧提取残留，但原扫描页/旧terminology.json尚未在本执行环境重新挂载。",
+        "witness_context": "该术附属于《太乙紫庭秘诀》传本系统；用户确认研易楼明钞本此前已在术语库整理阶段扫描且E盘仍有原件，但原扫描页/旧terminology.json尚未在本执行环境重新挂载。旧config.py九星残留明确标注为统宗卷六来源，不作为研易楼本逐字见证。",
     },
     "three_banners": {
         "status": "project_primary_attribution_unverified",
