@@ -293,7 +293,8 @@
         "source_profile_effect": "none",
         "policy": "只描述NCL-06604证据完整度；不得以coverage状态改变jinjing_siku_volume4 canonical。"
       },
-      "cross_source_note": "《太乙统宗宝鉴》卷五明确补述：太乙、天目不在开、休、生三门之下，则为门具。此为 TZ5 扩展证据，不静默回写四库《金镜》严格 profile。"
+      "cross_source_note": "《太乙统宗宝鉴》卷二“明太乙八门通变术”明确：开门加太乙宫，视天目不在开、休、生三门之下，为太乙之门具；并另列主门具、客门具。该正面补文与空间算法归TZ2独立profile，不静默回写四库《金镜》卷四canonical。",
+      "upstream_overlay_note": "位置辅助采用同书卷一李淳风古法“开门加太乙”；卷四240/30直使周期单独保存州郡门吉凶，不用直使门替换门具盘的开门锚点。"
     },
     {
       "id": "J4M-02",
