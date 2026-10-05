@@ -543,3 +543,62 @@ C103 已恢复并直接重核：
 
 - 大游太乙“所在宫”的金镜/统宗 source-specific 分层；
 - 当前 `bigyo(profile="jinjing_tongzong")` 继续隔离。
+
+
+## 9. C107 / C112 最新核销
+
+### C107 supersedes 旧“大游所在宫未完成”状态
+
+此前清单在 C106 后仍写：
+
+- 大游太乙“所在宫”的金镜/统宗 source-specific 分层未完成；
+- `bigyo(profile="jinjing_tongzong")` 继续隔离。
+
+现 C107 已完成：
+
+- 金镜：上元甲寅，4320 / 288 / 36，起7宫，顺八宫，不入中五；
+- 统宗：上元甲子，2880 / 288 / 36，宫盈差34，起7宫，顺八宫，不入中五；
+- 旧 `jinjing_tongzong` mixed profile 继续作为 compatibility quarantine，不再代表 canonical。
+
+因此“**大游所在宫 source-specific 分层未完成**”这一旧状态已被 C107 supersede。
+
+### C112 已恢复此前真正遗漏的四组关系
+
+本次重新检查旧分支后，确认以下四组关系此前已经完成过，但 main 尚无独立现行 runtime：
+
+- 五福 × 大游；
+- 五福 × 小游；
+- 四神 × 小游；
+- 大游 × 小游。
+
+来源旧实现：
+
+- `codex/c1-c7-canonical:src/kintaiyi/taiyi_cycles.py`
+- `codex/taiyi-rules-v2-20261005:src/kintaiyi/cycles.py`
+
+C112 没有直接复制旧代码，而是重新核《太乙统宗宝鉴》卷七 NGJ / CADAL 见证后恢复为：
+
+- `src/kintaiyi/wander_conjunctions.py`
+- `tests/test_c112_wander_conjunctions.py`
+- `sources/c112-recovered-wander-conjunctions-record.md`
+
+现状态：
+
+`recovered_prior_work_direct_source_reaudited`
+
+并继续遵守：
+
+- 不自动从 C67/C92/C103/C107 位置层推同宫；
+- 五福×大游两条来源分层保存；
+- 五福×小游显式要求有德/失德输入；
+- C65/C91/C94 已覆盖的 pair 不在 C112 重复实现。
+
+### 旧分支剩余重点
+
+完成 C112 后，目前旧分支真正需要继续处理的重点已收缩为：
+
+1. 旧 snapshot `Taiyi` / pan facade 是否值得按现行 source-specific runtime 重接；
+2. 旧 historical fixtures 是否还有未迁但仍符合现行来源边界的回归价值；
+3. 完整旧 `terminology.json` 仍为 `blocked_missing_original_store`。
+
+旧周期公式、旧 project canonical 与已经被后续校勘 supersede 的测试，不再列为“待并入完成品”。
