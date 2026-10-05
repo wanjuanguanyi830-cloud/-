@@ -11,7 +11,7 @@
     "master_store_policy": "本文件只做跨目录对账，不替代缺失的旧terminology.json。"
   },
   "audit_snapshot": {
-    "stable_catalog_count": 15,
+    "stable_catalog_count": 16,
     "entry_count": 148,
     "exact_cross_entry_name_collisions": 0,
     "status": "clean_at_snapshot",
@@ -313,21 +313,23 @@
     {
       "id": "CW-WENCHANG-C70",
       "left": {
-        "catalog": "terminology/zitingjing.json",
+        "catalog": "terminology/wenchang-nine-stars.json",
         "key": "wenchang_nine_stars",
         "term": "文昌九星",
-        "primary_status": "catalog_attested_text_pending"
+        "rule_id": "C70-TONGZONG-WENCHANG-NINE-STARS",
+        "source_profile": "tongzong_volume6_ngj_wenchang_nine_stars"
       },
       "right": {
-        "catalog": "terminology/zitingjing.json",
-        "key": "wenchang_nine_stars",
-        "source_profile": "tongzong_volume6_ngj_wenchang_nine_stars",
-        "rule_id": "C70-TONGZONG-WENCHANG-NINE-STARS"
+        "evidence_layer": "modern_edition_appendix",
+        "title": "附太乙文昌九星值宮術",
+        "yanyilou_manuscript_toc_attested": false,
+        "provenance": "unresolved"
       },
-      "relation": "same_topic_distinct_primary_and_source_specific_profile",
+      "relation": "direct_tongzong_profile_vs_modern_editorial_appendix",
       "forbidden_merge": [
-        "C70统宗runtime不得反填紫庭primary。",
-        "紫庭正文未取得前primary_result仍禁止生成。"
+        "研易楼明钞本目录未见该题，现代整理附篇不得反推原钞归属。",
+        "现代整理时是否收入统宗材料目前只作来源假说，不得写成已证事实。",
+        "C70按《太乙统宗宝鉴》卷六NGJ独立运行，不因现代附篇题名改变source profile。"
       ]
     },
     {
