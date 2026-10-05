@@ -78,3 +78,16 @@ def test_military_p0_profiles_remain_unmerged():
     assert policy["canonical_selected"] is None
     assert policy["cross_source_merge"] is False
     assert policy["c8_formula_equivalent"] is False
+
+
+def test_jingyou_five_generals_collation_is_resolved_in_p0_catalog():
+    data = _load()
+    profile = data["source_profiles"]["jingyou_fuying_volume4"]
+    entry = next(e for e in data["entries"] if e["key"] == "five_generals")
+
+    assert profile["pending_textual_uncertainty"] == []
+    resolved = profile["resolved_collation"]["JF4M-02"]
+    assert resolved["source_form"] == "大小将不相开"
+    assert resolved["normalized_reading"] == "主客大小将无相关"
+    assert resolved["normalized_semantics"] == "四将无同宫之关"
+    assert any("四将无同宫之关" in note for note in entry["boundary_notes"])
