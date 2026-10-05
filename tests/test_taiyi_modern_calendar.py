@@ -134,3 +134,17 @@ def test_production_context_includes_jie_based_solar_month():
     assert data["solar_month"]["start_term"] == "小暑"
     assert data["solar_month"]["month_build_branch"] == "未"
     assert data["solar_month"]["leap_month_effect"] == "none"
+
+
+
+def test_production_context_includes_resolved_month_count():
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+
+    data = production_calendar_context(
+        datetime(2026, 12, 10, 12, tzinfo=ZoneInfo("Asia/Shanghai"))
+    )
+    assert data["solar_month"]["month_build_branch"] == "子"
+    assert data["month_count"]["month_build_branch"] == "子"
+    assert data["month_count"]["result"]["count_type"] == "月计"
+    assert data["month_count"]["result"]["dun"] == "阳"
