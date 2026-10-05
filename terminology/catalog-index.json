@@ -211,6 +211,12 @@
       "asset_id": "taiyi-legacy-terminology-recovery-manifest-v1",
       "purpose": "对全部stable terminology建立可逆旧terminology.json恢复映射；旧ID/定义/notes/页码未知时保持null",
       "canonical_catalog": false
+    },
+    {
+      "path": "terminology/zitingjing-legacy-scan-recovery.json",
+      "asset_id": "zitingjing-legacy-scan-recovery-v1",
+      "purpose": "恢复此前研易楼明钞本扫描/术语整理留下的文昌九星派生词形与表格残留；原扫描页与旧terminology.json重新挂载前只作legacy witness",
+      "canonical_catalog": false
     }
   ],
   "supporting_assets": [
