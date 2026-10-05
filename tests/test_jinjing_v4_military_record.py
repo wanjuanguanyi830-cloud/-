@@ -623,3 +623,22 @@ def test_c99_taicu_is_fixed_as_project_canonical_form():
         "canonical=太簇" in item
         for item in ncl["page_collation_audit"]["nonblocking_source_glyph_checks"]
     )
+
+
+def test_c101_taicu_variant_is_dictionary_attested_but_canonical_stays_taicu():
+    data, rules = _rules()
+    assert data["source"]["terminology_policy_version"] == "c101-taicu-traditional-variant-v1"
+
+    rule = {item["id"]: item for item in rules}["J4M-03"]
+    alias = rule["terminology_aliases"]["太蔟"]
+    assert alias["canonical"] == "太簇"
+    assert alias["status"] == "dictionary_attested_traditional_variant"
+    assert alias["dictionary_evidence"]["entry"] == "太蔟"
+    assert alias["dictionary_evidence"]["reading"] == "tài cù"
+    assert alias["dictionary_evidence"]["statement"] == "亦作太簇"
+    assert "不得把太蔟标成OCR误字" in alias["behavior"]
+
+    policy = rule["terminology_policy"]
+    assert policy["canonical_form"] == "太簇"
+    assert policy["variant_classification"] == "dictionary_attested_traditional_variant"
+    assert policy["source_forms"] == ["太簇", "太蔟"]
