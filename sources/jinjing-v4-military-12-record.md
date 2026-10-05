@@ -457,3 +457,64 @@ C84 时 NCL-06604 只能确认书目与整卷扫描身份；C86 已通过 Wikime
 详见：
 - sources/c101-taicu-traditional-variant-record.md
 - sources/c102-taicu-global-alias-record.md
+
+
+## C87-C88：NCL 明钞本实质传本差异继续校勘（2026-10-05）
+
+### C87：J4M-11 主人刑 / 客刑双分支
+
+NCL-06604 p.63 明确保存：
+
+- 从主人刑上来 -> 主人败；
+- 从客刑上来 -> 客败。
+
+这一结构与《景祐太乙福应经》同构，而与四库当前“从主人形上来客败”存在实质冲突。
+
+因此不能仅按“形/刑”异体字处理，因为胜负主体也不同。NCL 与《福应经》只作独立 manuscript/source variant，不回写四库 J4M-11 runtime。
+
+详见：sources/c87-ncl06604-j4m11-event-readings-record.md。
+
+### C88：J4M-06 陈兵向背数表
+
+NCL-06604 p.59-p.60 直接核得数值/出军方向骨架：
+
+- 1 -> 西北
+- 2 -> 正南
+- 3 -> 东北
+- 4 -> 正东
+- 6 -> 正西
+- 7 -> 西南
+- 8 -> 正北
+- 9 -> 东南
+
+即明钞本为：
+
+**1/2/3/4/6/7/8/9，无5。**
+
+这一骨架与《景祐太乙福应经》同构；四库 profile 则继续是：
+
+**1/2/4/5/6/9。**
+
+处理原则：
+
+- 不拿 NCL / 《福应经》的 3/7/8 补四库；
+- 不拿四库的 5 补 NCL；
+- 不把两种表合成“1至9完整表”；
+- NCL 背地、阵形、旗色完整逐行转录仍待直接图像复核，不按其他传本复制。
+
+详见：sources/c88-ncl06604-j4m06-direction-table-record.md。
+
+## C104：J4M-03 alias canonical 单一真源（2026-10-05）
+
+C102 已把 太蔟 -> 太簇 加入公共 GOD_ALIASES。
+
+J4M-03 仍保留 source-specific alias metadata，用于记录四库 p.130 的来源字形；但 canonical 值不再独立写死，而读取公共 GOD_ALIASES。
+
+因此：
+
+- 公共十六神层提供 canonical 名；
+- J4M-03 只保留来源作用域；
+- 不自动把所有公共 alias 扩展成 J4M-03 古籍来源字形；
+- 规则、五行与 winner 均不改变。
+
+详见：sources/c104-j4m03-global-alias-sync-record.md。
