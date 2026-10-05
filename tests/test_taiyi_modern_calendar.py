@@ -148,3 +148,16 @@ def test_production_context_includes_resolved_month_count():
     assert data["month_count"]["month_build_branch"] == "子"
     assert data["month_count"]["result"]["count_type"] == "月计"
     assert data["month_count"]["result"]["dun"] == "阳"
+
+
+
+def test_production_context_includes_resolved_day_count():
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+
+    data = production_calendar_context(
+        datetime(2026, 3, 24, 12, tzinfo=ZoneInfo("Asia/Shanghai"))
+    )
+    assert data["day_count"]["result"]["count_type"] == "日计"
+    assert data["day_count"]["result"]["dun"] == "阳"
+    assert data["day_count"]["day_boundary_local"] == "00:00:00"
