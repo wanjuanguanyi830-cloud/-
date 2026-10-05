@@ -492,3 +492,23 @@ def test_c86_ncl06604_selected_manuscript_readings_stay_noncanonical():
     assert j12["west_white"]["day_stems_good"] == ["庚", "辛"]
     assert j12["canonical_override"] is False
     assert "基础胜负未明" in by_id["J4M-12"]["canonical_constraints"]["west_white"]
+
+
+def test_c86_ncl_toc_and_body_order_difference_is_preserved():
+    data, rules = _rules()
+    ncl = {item["id"]: item for item in data["source"]["scan_witnesses"]}["NCL-06604"]
+    headings = ncl["volume4_heading_collation"]
+
+    assert headings["toc_page"] == 55
+    assert headings["toc_titles"][9] == "推风云飞鸟助战法"
+    assert headings["toc_titles"][10] == "推奇兵伏兵法"
+    assert headings["body_titles"][9] == "推奇兵伏兵法"
+    assert headings["body_titles"][10] == "推太乙风云飞鸟助阵法"
+    assert "目录" in headings["order_difference"]
+    assert "正文" in headings["order_difference"]
+
+    by_id = {item["id"]: item for item in rules}
+    assert by_id["J4M-10"]["ncl_scan_locator"]["toc_title"] == "推奇兵伏兵法"
+    assert by_id["J4M-10"]["ncl_scan_locator"]["body_title"] == "推奇兵伏兵法"
+    assert by_id["J4M-11"]["ncl_scan_locator"]["toc_title"] == "推风云飞鸟助战法"
+    assert by_id["J4M-11"]["ncl_scan_locator"]["body_title"] == "推太乙风云飞鸟助阵法"
