@@ -386,7 +386,7 @@ def test_c84_access_boundary_is_preserved_but_c86_supersedes_page_pending():
 
     assert data["source"]["witness_audit_version"] == "c84-ncl06604-access-boundary-v1"
     assert data["source"]["ncl_volume4_collation_version"] == (
-        "c86-ncl06604-v4-j4m-locators-v1"
+        "c86-ncl06604-v4-j4m-locators-and-key-readings-v2"
     )
     assert ncl["status"] == (
         "volume4_scan_range_and_j4m_page_locators_verified_readings_in_progress"
