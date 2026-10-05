@@ -576,7 +576,7 @@
       },
       {
         "id": "R-JF4M-SOURCE-RECORDS",
-        "canonical": "《景祐太乙福应经》卷四 JF4M-01..11 作为独立 source profile 保存，11条均有《福应经》自身 source-specific runtime；不得调用《金镜》J4M平行函数替代。当前唯一保留的技术义文本pending是 JF4M-02‘大小将不相开’：字面见当前转录，但不自动等同J4M‘无相关’。JF4M-07地形表与JF4M-10风云飞鸟观测句已按当前卷四转录结构化；JF4M-10平行J4M-11，JF4M-11平行J4M-10，J4M-12无直接JF4M对应项。",
+        "canonical": "《景祐太乙福应经》卷四 JF4M-01..11 作为独立 source profile 保存，11条均有《福应经》自身 source-specific runtime；不得调用《金镜》J4M平行函数替代。JF4M-02当前转录原字形“大小将不相开”保留，经《金镜》《统宗》同条“无相关/相关”与太乙格局“主客大小将自相同宫为关”参校，算法规范为四将无同宫之关；中五不作八宫关位。JF4M-07地形表与JF4M-10风云飞鸟观测句已按当前卷四转录结构化；JF4M-10平行J4M-11，JF4M-11平行J4M-10，J4M-12无直接JF4M对应项。",
         "rule_ids": [
           "JF4M-01",
           "JF4M-02",
@@ -605,7 +605,11 @@
           "JF4M-10",
           "JF4M-11"
         ],
-        "runtime_catalog": "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog"
+        "runtime_catalog": "kintaiyi.jingyou_fuying_v4_military.jf4m_runtime_catalog",
+        "textual_pending": [],
+        "resolved_collation": [
+          "JF4M-02"
+        ]
       },
       {
         "id": "R-TONGZONG-MILITARY-V15-V17",
