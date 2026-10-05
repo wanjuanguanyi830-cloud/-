@@ -24,7 +24,8 @@
       "V17-D1"
     ],
     "jingyou_military_source_runtime_coverage": "11/11",
-    "jingyou_military_text_pending": [
+    "jingyou_military_text_pending": [],
+    "jingyou_military_resolved_collation": [
       "JF4M-02"
     ]
   },
@@ -884,7 +885,7 @@
       ],
       "forbidden_merge": [
         "JF4M-01..11已有《福应经》独立runtime；仍不得调用J4M平行runtime作为替代或补缺。",
-        "JF4M-02‘大小将不相开’技术义仍待核定；字面存在不等于可自动解释为J4M‘无相关’。",
+        "JF4M-02只在校勘层借金镜/统宗同条与关定义规范语义；source form仍保存‘大小将不相开’，不得把整条runtime合并成J4M-02。",
         "JF4M-10/11与J4M-11/10尾部次序不同，不能按编号机械对齐。",
         "福应经与金镜的方向表、1宫地内、主人刑/客刑败方、奇兵大杀句等差异继续分source profile。"
       ],
@@ -900,7 +901,15 @@
         "JF4M-09",
         "JF4M-10",
         "JF4M-11"
-      ]
+      ],
+      "resolved_collation": {
+        "JF4M-02": {
+          "source_form": "大小将不相开",
+          "normalized_reading": "主客大小将无相关",
+          "normalized_semantics": "四将无同宫之关",
+          "cross_source_merge": false
+        }
+      }
     },
     {
       "id": "CW-TONGZONG-V15-J4M",
