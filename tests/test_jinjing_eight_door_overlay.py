@@ -1,5 +1,6 @@
 from kintaiyi.jinjing_eight_door_overlay import (
     duty_door_overlay,
+    jinjing_year_open_door_contexts,
     open_door_overlay,
     taiyi_eight_door_context,
 )
@@ -55,3 +56,29 @@ def test_duty_door_overlay_places_current_direct_gate_at_anchor():
     assert context["taiyi_gate"] == "伤"
     assert context["tianmu_palace"] == 4
     assert context["tianmu_gate"] == "死"
+
+
+
+def test_jinjing_year_four_open_door_overlays_are_independent():
+    data = jinjing_year_open_door_contexts(
+        taiyi_palace=1,
+        host_big_palace=8,
+        guest_big_palace=3,
+        dingji_big_palace=4,
+    )
+    assert data["contexts"]["taiyi"]["palace_to_door"][1] == "开"
+    assert data["contexts"]["host_big"]["palace_to_door"][8] == "开"
+    assert data["contexts"]["guest_big"]["palace_to_door"][3] == "开"
+    assert data["contexts"]["dingji_big"]["palace_to_door"][4] == "开"
+    assert data["good_door_palaces"]["taiyi"] != data["good_door_palaces"]["host_big"]
+
+
+def test_jinjing_year_four_overlays_do_not_fake_center_general():
+    data = jinjing_year_open_door_contexts(
+        taiyi_palace=1,
+        host_big_palace=None,
+        guest_big_palace=3,
+        dingji_big_palace=None,
+    )
+    assert data["contexts"]["host_big"]["computable"] is False
+    assert data["contexts"]["dingji_big"]["computable"] is False
