@@ -8,6 +8,7 @@ from kintaiyi.state_spirit_cycles import TWELVE_PALACES
 ROOT = Path(__file__).parents[1]
 PALACE_FILE = ROOT / "terminology" / "palace_coordinates.json"
 SPIRIT_FILE = ROOT / "terminology" / "sixteen_spirits.json"
+WUFU_FILE = ROOT / "terminology" / "wufu_domains.json"
 
 
 def _load(path):
@@ -57,3 +58,38 @@ def test_recovered_terminology_assets_are_not_formula_sources():
         data = _load(path)
         assert data["status"] == "terminology_reference_not_formula_source"
         assert data["recovery"]["status"] == "recovered_prior_work_crosschecked"
+
+
+def test_recovered_wufu_domains_are_oct4_coordinate_work_only():
+    data = _load(WUFU_FILE)
+    assert data["recovery"]["original_file_commit"] == "fadab7ee3fa8"
+    assert data["recovery"]["original_file_commit_date"].startswith("2026-10-04")
+    assert data["recovery"]["time_window_policy"] == (
+        "only_2026-10-04_and_2026-10-05_prior_work"
+    )
+    assert data["boundary"]["status"] == "coordinate_reference_not_relation_formula"
+
+
+def test_recovered_wufu_domains_cover_all_sixteen_sectors_once():
+    data = _load(WUFU_FILE)
+    sectors = [
+        sector
+        for domain in data["domains"]
+        for sector in domain["sectors"]
+    ]
+    assert len(sectors) == 16
+    assert set(sectors) == set(taiyi_rules.SIXTEEN)
+
+
+def test_recovered_wufu_domain_palaces_match_c67_stable_route():
+    data = _load(WUFU_FILE)
+    assert [
+        (row["domain"], row["wufu_palace"], row["wufu_name"])
+        for row in data["domains"]
+    ] == [
+        ("乾", 1, "黄秘"),
+        ("艮", 3, "黄始"),
+        ("巽", 9, "黄室"),
+        ("坤", 7, "黄廷"),
+        ("中", 5, "玄室"),
+    ]
