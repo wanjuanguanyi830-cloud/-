@@ -1,0 +1,527 @@
+{
+  "schema_version": "1.0",
+  "catalog_id": "taiyi-jinjing-v4-military-terminology-v1",
+  "scope": "source_sensitive_jinjing_volume4_military_extended",
+  "status": "repository_source_profile_terminology_catalog",
+  "legacy_terminology_json_migrated": false,
+  "shared_catalogs": [
+    "terminology/common-core.json",
+    "terminology/patterns.json",
+    "terminology/military-p0.json"
+  ],
+  "source": {
+    "work": "太乙金镜式经",
+    "canonical_edition": "四库全书本",
+    "volume": 4,
+    "ruleset": "rules/jinjing_v4_military.json",
+    "canonical_order": "正文小标题顺序",
+    "manuscript_witness": "NCL-06604 明钞本"
+  },
+  "split_policy": {
+    "p0_catalog": "terminology/military-p0.json",
+    "p0_rule_ids": [
+      "J4M-01",
+      "J4M-02",
+      "J4M-03"
+    ],
+    "this_catalog_rule_ids": [
+      "J4M-04",
+      "J4M-05",
+      "J4M-06",
+      "J4M-07",
+      "J4M-08",
+      "J4M-09",
+      "J4M-10",
+      "J4M-11",
+      "J4M-12"
+    ],
+    "cross_source_merge": false,
+    "policy": "J4M-01..03继续由military-p0管理；J4M-04..12在本目录独立登记。NCL明钞只作manuscript witness，不覆盖四库canonical。"
+  },
+  "entries": [
+    {
+      "key": "host_guest_action_order",
+      "preferred_term": "主客先后动静",
+      "aliases": [
+        "推主客",
+        "主客先后",
+        "主客动静"
+      ],
+      "term_type": "jinjing_volume4_source_specific_method",
+      "rule_id": "J4M-04",
+      "source_profile": "jinjing_siku_volume4",
+      "runtime": "kintaiyi.jinjing_v4_military.zhuke_fa",
+      "body_title": "推主客",
+      "toc_aliases": [
+        "推主客"
+      ],
+      "domain": "主客先后动静",
+      "canonical_summary": "陈兵原野先动为客、后应为主；安居之势先动为主、后应为客。三门具、五将发、阴阳和时利以称兵、所向必克；《金镜》“先胜后负”经《武经总要》《太乙秘书》同段参校，确定为先起者胜、后起者败。三项皆不利时《金镜》只明言不利举兵、宜固守吉。",
+      "dependencies": [
+        "行动场景",
+        "先后次序",
+        "三门",
+        "五将",
+        "阴阳和不和"
+      ],
+      "implementation_status": "implemented_source_specific",
+      "scan_locator": {
+        "witness": "CADAL06056494",
+        "pages": [
+          131,
+          132
+        ],
+        "status": "visual_scan_verified"
+      },
+      "ncl_witness": {
+        "witness": "NCL-06604",
+        "pages": [
+          57,
+          58
+        ],
+        "collation_status": "locator_only",
+        "verified_points": [
+          "NCL数字页定位p.57-58"
+        ],
+        "canonical_effect": "none"
+      },
+      "boundary_notes": [
+        "陈兵原野与安居之势的先后角色相反，不能压成单一先动=客公式。",
+        "三门具、五将发、阴阳和为显式条件；有利条件下才落实先起者胜、后起者败。",
+        "本法不得与J4M-03主客相关五行相制或C8-L3邻近层合并。"
+      ]
+    },
+    {
+      "key": "dispatch_troops",
+      "preferred_term": "出师法",
+      "aliases": [
+        "推出师",
+        "推出师法",
+        "出师略地"
+      ],
+      "term_type": "jinjing_volume4_source_specific_method",
+      "rule_id": "J4M-05",
+      "source_profile": "jinjing_siku_volume4",
+      "runtime": "kintaiyi.jinjing_v4_military.chushi_fa",
+      "body_title": "推出师法",
+      "toc_aliases": [
+        "推出师"
+      ],
+      "domain": "出师略地",
+      "canonical_summary": "以算得十二、二十二、三十二并参五将发、三门具及三吉门，判断是否可出兵略地。",
+      "dependencies": [
+        "算数",
+        "三门",
+        "五将",
+        "开休生三吉门"
+      ],
+      "implementation_status": "implemented_source_specific",
+      "scan_locator": {
+        "witness": "CADAL06056494",
+        "pages": [
+          132
+        ],
+        "status": "visual_scan_verified"
+      },
+      "ncl_witness": {
+        "witness": "NCL-06604",
+        "pages": [
+          58
+        ],
+        "collation_status": "selected_readings",
+        "verified_points": [
+          "明钞本只列12、22",
+          "未见四库32"
+        ],
+        "canonical_effect": "none"
+      },
+      "boundary_notes": [
+        "四库canonical列12/22/32；NCL-06604明钞本只见12/22，未见32，必须作为source variant。",
+        "算数条件、三门具、五将发、开休生三吉门分栏；不得合成无来源单阈值。",
+        "不借《统宗》卷五兵额表扩写本法。"
+      ]
+    },
+    {
+      "key": "deploy_direction",
+      "preferred_term": "陈兵向背",
+      "aliases": [
+        "推陈兵向背",
+        "推障向背法",
+        "陈兵向背与阵旗"
+      ],
+      "term_type": "jinjing_volume4_source_specific_method",
+      "rule_id": "J4M-06",
+      "source_profile": "jinjing_siku_volume4",
+      "runtime": "kintaiyi.jinjing_v4_military.chenbing_xiangbei",
+      "body_title": "推陈兵向背",
+      "toc_aliases": [
+        "推障向背法"
+      ],
+      "domain": "陈兵向背与阵旗",
+      "canonical_summary": "按算数表定出军方向、战利方向、所背地形、阵型与旗色；正文明确列出一、二、四、五、六、九。",
+      "dependencies": [
+        "算数"
+      ],
+      "implementation_status": "implemented_source_specific",
+      "scan_locator": {
+        "witness": "CADAL06056494",
+        "pages": [
+          132,
+          133,
+          134
+        ],
+        "status": "visual_scan_verified"
+      },
+      "ncl_witness": {
+        "witness": "NCL-06604",
+        "pages": [
+          59,
+          60
+        ],
+        "collation_status": "full_rule",
+        "verified_points": [
+          "1/2/3/4/6/7/8/9完整表",
+          "出军/战利/背地/阵形/旗色",
+          "旁校字形",
+          "收尾句"
+        ],
+        "canonical_effect": "none"
+      },
+      "boundary_notes": [
+        "四库canonical只定义1/2/4/5/6/9；未列数不取个位、不借《统宗》补表。",
+        "NCL明钞本完整表为1/2/3/4/6/7/8/9，是独立manuscript variant，不覆盖四库canonical。",
+        "陈兵向背不等于《统宗》卷五陈兵出乡。"
+      ]
+    },
+    {
+      "key": "formation_by_terrain",
+      "preferred_term": "制阵随地法",
+      "aliases": [
+        "推制阵随地法",
+        "推置阵随地法",
+        "地形制阵"
+      ],
+      "term_type": "jinjing_volume4_source_specific_method",
+      "rule_id": "J4M-07",
+      "source_profile": "jinjing_siku_volume4",
+      "runtime": "kintaiyi.jinjing_v4_military.zhizhen_suidi",
+      "body_title": "推制阵随地法",
+      "toc_aliases": [
+        "推置阵随地法"
+      ],
+      "domain": "地形制阵",
+      "canonical_summary": "曲阵水、锐阵火、直阵木、方阵金、圆阵土；先按地形制阵，主客既置阵后再以两阵五行相克取胜负。只有明确相克时判胜负，同类或相生不由本条扩写。",
+      "dependencies": [
+        "地形",
+        "主阵阵形",
+        "客阵阵形",
+        "阵形五行"
+      ],
+      "implementation_status": "implemented_source_specific",
+      "scan_locator": {
+        "witness": "CADAL06056494",
+        "pages": [
+          134,
+          135
+        ],
+        "status": "visual_scan_verified"
+      },
+      "ncl_witness": {
+        "witness": "NCL-06604",
+        "pages": [
+          60
+        ],
+        "collation_status": "full_rule",
+        "verified_points": [
+          "五阵五行",
+          "主客五行相克",
+          "五类地形",
+          "顺逆吉凶",
+          "收尾观方置变"
+        ],
+        "canonical_effect": "none"
+      },
+      "boundary_notes": [
+        "地形→宜阵与主客阵形五行相克是两层；只有明确相克时判胜负。",
+        "同五行或相生关系不凭常识补胜负。",
+        "兵种器械随地应变属于J4M-08，不并入本条。"
+      ]
+    },
+    {
+      "key": "adapt_to_terrain",
+      "preferred_term": "随地制变",
+      "aliases": [
+        "推随地制变",
+        "推随地置变",
+        "临敌随形制变",
+        "矛鋋"
+      ],
+      "term_type": "jinjing_volume4_source_specific_method",
+      "rule_id": "J4M-08",
+      "source_profile": "jinjing_siku_volume4",
+      "runtime": "kintaiyi.jinjing_v4_military.suidi_zhibian",
+      "body_title": "推随地制变",
+      "toc_aliases": [
+        "推随地置变"
+      ],
+      "domain": "临敌随形制变",
+      "canonical_summary": "将士训练、地形与兵器为临战急务；不同地形利步兵、车骑、长兵、弓弩等，核心是临敌随形制变。",
+      "dependencies": [
+        "地形",
+        "兵种",
+        "器械",
+        "训练状态"
+      ],
+      "implementation_status": "implemented_source_specific",
+      "scan_locator": {
+        "witness": "CADAL06056494",
+        "pages": [
+          135,
+          136,
+          137
+        ],
+        "status": "visual_scan_verified"
+      },
+      "ncl_witness": {
+        "witness": "NCL-06604",
+        "pages": [
+          60,
+          61
+        ],
+        "collation_status": "full_rule",
+        "verified_points": [
+          "三急",
+          "五类地形兵种比例",
+          "训练段",
+          "器械/将帅段",
+          "指挥链",
+          "收尾",
+          "J4M-09边界"
+        ],
+        "canonical_effect": "none"
+      },
+      "boundary_notes": [
+        "三急、五类地形兵种/比例、训练、器械、将帅与指挥链分层保存，不转成现代战力分数。",
+        "C79/C115已核NCL‘矛鋋’字形；四库与NCL的三不当一/五不当一/十不当一等差异保留witness。",
+        "J4M-08与J4M-07地形制阵职责不同。"
+      ]
+    },
+    {
+      "key": "taiyi_outer_inner",
+      "preferred_term": "太乙在天外地内",
+      "aliases": [
+        "推太乙在天外地内法",
+        "天外地内",
+        "太乙助主客"
+      ],
+      "term_type": "jinjing_volume4_source_specific_method",
+      "rule_id": "J4M-09",
+      "source_profile": "jinjing_siku_volume4",
+      "runtime": "kintaiyi.jinjing_v4_military.taiyi_tianwai_dinei",
+      "body_title": "推太乙在天外地内法",
+      "toc_aliases": [
+        "推太乙在天外地内法"
+      ],
+      "domain": "太乙助主客",
+      "canonical_summary": "四库本《金镜》卷四正文记八、三、四为地内助主，九、二、七、六为天外助客，并要求门具将发后再决胜；一宫在本卷文字中未列入地内组。",
+      "dependencies": [
+        "太乙宫",
+        "三门",
+        "五将"
+      ],
+      "implementation_status": "implemented_source_specific",
+      "scan_locator": {
+        "witness": "CADAL06056494",
+        "pages": [
+          137,
+          138
+        ],
+        "status": "visual_scan_verified"
+      },
+      "ncl_witness": {
+        "witness": "NCL-06604",
+        "pages": [
+          61,
+          62
+        ],
+        "collation_status": "selected_readings",
+        "verified_points": [
+          "首句一八三四宫助主人",
+          "地内[1,8,3,4]",
+          "天外[9,2,7,6]",
+          "J4M-08→09页内边界"
+        ],
+        "canonical_effect": "none"
+      },
+      "boundary_notes": [
+        "四库canonical：8/3/4地内助主，9/2/7/6天外助客；1宫未定义。",
+        "NCL明钞与福应经/统宗把1宫列入地内助主，只作独立source variant。",
+        "助主客与三门/五将ready分栏；门将未同时具备时不宣称决胜。"
+      ]
+    },
+    {
+      "key": "odd_ambush",
+      "preferred_term": "奇伏法",
+      "aliases": [
+        "推奇伏法",
+        "推奇兵伏兵法",
+        "奇兵伏兵"
+      ],
+      "term_type": "jinjing_volume4_source_specific_method",
+      "rule_id": "J4M-10",
+      "source_profile": "jinjing_siku_volume4",
+      "runtime": "kintaiyi.jinjing_v4_military.qifu_fa",
+      "body_title": "推奇伏法",
+      "toc_aliases": [
+        "推奇兵伏兵法"
+      ],
+      "domain": "奇兵伏兵",
+      "canonical_summary": "奇兵取军数约三成；伏兵随地伏形，结合天目大煞、十二/二十二/三十二、十一/二十一/三十一及掩迫时机使用。",
+      "dependencies": [
+        "兵数",
+        "天目",
+        "算数",
+        "掩迫",
+        "地形"
+      ],
+      "implementation_status": "implemented_source_specific",
+      "scan_locator": {
+        "witness": "CADAL06056494",
+        "pages": [
+          138,
+          139
+        ],
+        "status": "visual_scan_verified"
+      },
+      "ncl_witness": {
+        "witness": "NCL-06604",
+        "pages": [
+          62
+        ],
+        "collation_status": "selected_readings",
+        "verified_points": [
+          "正文题推奇兵伏兵法"
+        ],
+        "canonical_effect": "none"
+      },
+      "boundary_notes": [
+        "奇兵约三成、伏兵12/22/32、隐迹11/21/31、天目大煞、掩迫与要害分栏。",
+        "NCL正文题‘推奇兵伏兵法’是标题variant；四库正文canonical仍为‘推奇伏法’。",
+        "不借卷十五近名奇兵伏兵算法补充。"
+      ]
+    },
+    {
+      "key": "wind_cloud_bird_support",
+      "preferred_term": "太乙风云飞鸟助战",
+      "aliases": [
+        "推太乙风云飞鸟助战法",
+        "推太乙风云飞鸟助阵法",
+        "风云飞鸟助战"
+      ],
+      "term_type": "jinjing_volume4_source_specific_method",
+      "rule_id": "J4M-11",
+      "source_profile": "jinjing_siku_volume4",
+      "runtime": "kintaiyi.jinjing_v4_military.fengyun_feiniao_zhuzhan",
+      "body_title": "推太乙风云飞鸟助战法",
+      "toc_aliases": [
+        "推风云飞鸟助战法"
+      ],
+      "domain": "风云飞鸟助战",
+      "canonical_summary": "观察风云飞鸟冲格、迫击、扶阵及其来自太乙、主客目、将宫、太岁太阴月建等方向，以判主客利害。",
+      "dependencies": [
+        "风云飞鸟观测",
+        "太乙宫",
+        "主目",
+        "客目",
+        "将宫",
+        "太岁",
+        "太阴",
+        "月建"
+      ],
+      "implementation_status": "implemented_source_specific",
+      "scan_locator": {
+        "witness": "CADAL06056494",
+        "pages": [
+          139,
+          140
+        ],
+        "status": "visual_scan_verified"
+      },
+      "ncl_witness": {
+        "witness": "NCL-06604",
+        "pages": [
+          62,
+          63
+        ],
+        "collation_status": "selected_readings",
+        "verified_points": [
+          "正文题推太乙风云飞鸟助阵法",
+          "正文起句助战之法",
+          "主人刑/客刑双分支",
+          "若干明确事件断语"
+        ],
+        "canonical_effect": "none"
+      },
+      "boundary_notes": [
+        "events必须是显式外部观测；不得从十精飞鸟、天气API或盘内位置伪造。",
+        "NCL明钞‘主人刑上来主人败/客刑上来客败’与四库相关句冲突，必须source-profile隔离。",
+        "缺phenomenon时不能仅凭动作字段触发古籍断语。"
+      ]
+    },
+    {
+      "key": "cloud_battle_outcome",
+      "preferred_term": "阵有风云气定胜负",
+      "aliases": [
+        "推阵有风云气定胜负",
+        "推对阵有云气定胜负",
+        "对阵云气"
+      ],
+      "term_type": "jinjing_volume4_source_specific_method",
+      "rule_id": "J4M-12",
+      "source_profile": "jinjing_siku_volume4",
+      "runtime": "kintaiyi.jinjing_v4_military.yunqi_dingshengfu",
+      "body_title": "推阵有风云气定胜负",
+      "toc_aliases": [
+        "推对阵有云气定胜负"
+      ],
+      "domain": "对阵云气",
+      "canonical_summary": "按云气所覆阵的方位、颜色、日干、聚散动静及所临将位综合判断；“若在我阵上亦尔”只允许同表用于我阵，不代表所有断语主体都改成云气所在阵。条文明写“客胜”等主客词时保留原角色。西方白云气本句只明“庚辛日弥佳”，不得按表格对称性补成“大胜”。",
+      "dependencies": [
+        "敌我方位",
+        "云气颜色",
+        "日干",
+        "云气形态",
+        "云气所临将位"
+      ],
+      "implementation_status": "implemented_source_specific",
+      "scan_locator": {
+        "witness": "CADAL06056494",
+        "pages": [
+          140,
+          141,
+          142,
+          143
+        ],
+        "status": "visual_scan_verified"
+      },
+      "ncl_witness": {
+        "witness": "NCL-06604",
+        "pages": [
+          63,
+          64
+        ],
+        "collation_status": "selected_readings",
+        "verified_points": [
+          "正文题推对阵有云气定胜负",
+          "西方白云大胜，庚辛日弥佳"
+        ],
+        "canonical_effect": "none"
+      },
+      "boundary_notes": [
+        "方位×颜色、日干、聚散动静、所临将位分层；未列组合不以五行常识或表格对称性补全。",
+        "NCL明钞西方白云明确‘大胜，庚辛日弥佳’；四库canonical当前只保留庚辛日弥佳而基础胜负未明，必须并列。",
+        "‘若在我阵上亦尔’不允许机械替换正文明确的主客角色。"
+      ]
+    }
+  ]
+}
