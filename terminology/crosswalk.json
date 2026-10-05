@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "taiyi-terminology-crosswalk-v1",
+  "status": "supporting_crosswalk_not_master_store",
+  "legacy_terminology_json_migrated": false,
+  "catalog_index": "terminology/catalog-index.json",
+  "audit_policy": {
+    "exact_name_collision_rule": "preferred_term + aliases按entry去重后，不允许两个不同entry无声明地共享同一精确词形。",
+    "self_alias_repeat": "同一entry内preferred_term重复出现在aliases时视为冗余，不算跨词条冲突。",
+    "conceptual_near_name_rule": "近名术可以建立crosswalk，但必须声明shared_core / related_layer / forbidden_merge之一。",
+    "master_store_policy": "本文件只做跨目录对账，不替代缺失的旧terminology.json。"
+  },
+  "audit_snapshot": {
+    "stable_catalog_count": 10,
+    "entry_count": 73,
+    "exact_cross_entry_name_collisions": 0,
+    "status": "clean_at_snapshot"
+  },
+  "bridges": [
+    {
+      "id": "CW-WUYIN",
+      "left": {"catalog": "terminology/d8-eight-divinations.json", "key": "wuyin", "term": "五音", "rule_id": "D8-03"},
+      "right": {"catalog": "terminology/wuyun-wuyin.json", "key": "wuyin_number", "term": "五音之数", "rule_id": "C37-V3-WYIN"},
+      "relation": "shared_core_distinct_source_method",
+      "shared_core": "算数尾数 -> 宫徵羽商角/五行/所象",
+      "forbidden_merge": ["不得把C37-V3-WYIN改写成D8-03同一source rule", "不得接入D8-08数有所主"]
+    },
+    {
+      "id": "CW-LENGTH",
+      "left": {"catalog": "terminology/d8-eight-divinations.json", "key": "calc_length", "term": "长短", "rule_id": "D8-02"},
+      "right": {"catalog": "terminology/volume9-10.json", "key": "dayou_lishu", "term": "历数长短", "rule_ids": ["C42-DY-LISHU", "C42-DY-ANJU"]},
+      "relation": "near_name_forbidden_merge",
+      "forbidden_merge": [
+        "D8-02按主客算数阈值判长短；C42按太游重卦/爻位/纳甲结构求历数与长短。",
+        "不得因都含“长短”而共享公式、输入或结论。"
+      ]
+    },
+    {
+      "id": "CW-DAYOU",
+      "members": [
+        {"catalog": "terminology/cycles.json", "key": "big_wander_position", "term": "大游太乙所在", "rule_ids": ["C107-DAYOU-JINJING", "C107-DAYOU-TONGZONG"]},
+        {"catalog": "terminology/cycles.json", "key": "big_wander_skyeye", "term": "大游天目", "rule_ids": ["C106-DAYOU-TIANMU-JINJING", "C106-DAYOU-TIANMU-TONGZONG"]},
+        {"catalog": "terminology/volume9-10.json", "key": "dayou_heavy_hexagram", "term": "太游内外重卦", "rule_id": "C41-DY-HEX"},
+        {"catalog": "terminology/relations.json", "key": "wander_conjunctions", "term": "五福四神大小游同宫关系", "rule_id": "C113-RECOVERED-WANDER-CONJUNCTIONS"}
+      ],
+      "relation": "same_domain_distinct_layers",
+      "forbidden_merge": [
+        "大游太乙位置、大游天目、重卦策数、同宫关系各自独立。",
+        "位置层不得自动生成C113同宫断语。"
+      ]
+    },
+    {
+      "id": "CW-YANGJIU-BAILIU",
+      "members": [
+        {"catalog": "terminology/cycles.json", "key": "yangjiu", "term": "阳九", "rule_id": "C36-YJ"},
+        {"catalog": "terminology/cycles.json", "key": "bailiu", "term": "百六", "rule_id": "C36-BL"},
+        {"catalog": "terminology/cycles.json", "key": "taiyou_limit_tracks", "term": "太游阳九百六行限", "rule_ids": ["C38-YJ-OUTER", "C38-BL-INNER"]},
+        {"catalog": "terminology/volume9-10.json", "key": "ehui_limit", "term": "厄会行限", "rule_id": "C43-V9-EHUI"},
+        {"catalog": "terminology/volume9-10.json", "key": "yinyang_nine_calamities", "term": "阴阳九厄水旱灾期", "rule_id": "C46-YJ-9E"}
+      ],
+      "relation": "related_limit_systems_distinct_formulas",
+      "forbidden_merge": [
+        "C36大小限、C38八宫行限、C43厄会神数、C46九厄时间轴不能互相替代。",
+        "旧pan阳九/百六地支值不等于C36大小限。"
+      ]
+    },
+    {
+      "id": "CW-THREE-BASES",
+      "position": {"catalog": "terminology/cycles.json", "key": "three_bases", "term": "三基", "rule_ids": ["C66-JUNJI", "C66-CHENJI", "C66-MINJI"]},
+      "relations": [
+        {"catalog": "terminology/relations.json", "key": "three_bases_wufu_same_palace", "rule_id": "C74-THREE-BASES-WUFU-SAME-PALACE"},
+        {"catalog": "terminology/relations.json", "key": "three_bases_three_spirits", "rule_id": "C90-THREE-BASES-THREE-SPIRITS"},
+        {"catalog": "terminology/relations.json", "key": "three_bases_other_spirits", "rule_id": "C91-THREE-BASES-OTHER-SPIRITS"}
+      ],
+      "relation": "position_to_explicit_relation_boundary",
+      "forbidden_merge": ["C66位置结果不得自动制造C74/C90/C91关系。"]
+    },
+    {
+      "id": "CW-WUFU",
+      "position": {"catalog": "terminology/cycles.json", "key": "five_blessings", "term": "五福太乙", "rule_ids": ["C67-WUFU-TONGZONG", "C67-WUFU-JINJING"]},
+      "relations": [
+        {"catalog": "terminology/relations.json", "key": "three_bases_wufu_same_palace", "rule_id": "C74-THREE-BASES-WUFU-SAME-PALACE"},
+        {"catalog": "terminology/relations.json", "key": "wufu_four_taiyi_domain", "rule_id": "C94-WUFU-FOUR-TAIYI-DOMAIN-RELATION"},
+        {"catalog": "terminology/relations.json", "key": "wander_conjunctions", "rule_id": "C113-RECOVERED-WANDER-CONJUNCTIONS"}
+      ],
+      "relation": "position_to_explicit_relation_boundary",
+      "forbidden_merge": ["C67位置不得自动判断三基同宫、四太乙同域或大小游同宫。"]
+    },
+    {
+      "id": "CW-FOUR-TAIYI",
+      "position": {"catalog": "terminology/cycles.json", "key": "four_taiyi", "term": "四太乙", "rule_ids": ["C64-TIANYI", "C64-DIYI", "C64-ZHIFU", "C92-FOUR-SPIRIT-POSITION"]},
+      "relations": [
+        {"catalog": "terminology/relations.json", "key": "three_spirit_same_palace", "rule_id": "C65-THREE-SPIRIT-SAME-PALACE"},
+        {"catalog": "terminology/relations.json", "key": "wufu_four_taiyi_domain", "rule_id": "C94-WUFU-FOUR-TAIYI-DOMAIN-RELATION"}
+      ],
+      "relation": "position_to_explicit_relation_boundary",
+      "name_policy": {"直符": "canonical", "值符": "explicit_legacy_alias_only"},
+      "forbidden_merge": ["C64/C92位置层不得自动触发C65/C94关系解释。"]
+    },
+    {
+      "id": "CW-PATTERN-EVIDENCE",
+      "pattern_catalog": {"catalog": "terminology/patterns.json", "term": "格局"},
+      "consumers": [
+        {"catalog": "terminology/volume9-10.json", "key": "governance_change", "rule_id": "C44-V9-GOV"},
+        {"catalog": "terminology/volume9-10.json", "key": "disaster_timing", "rule_ids": ["C45-V9-MONTH", "C45-V9-DAY", "C45-V9-DISASTER"]}
+      ],
+      "relation": "explicit_evidence_dependency",
+      "forbidden_merge": [
+        "C44/C45消费格局证据时不重算金镜格局。",
+        "不同source profile的格局不得因被卷九/十规则消费而统一成一个古籍公式。"
+      ]
+    }
+  ]
+}
