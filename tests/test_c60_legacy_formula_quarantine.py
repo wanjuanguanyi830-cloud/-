@@ -49,8 +49,6 @@ def test_c60_high_risk_known_wrong_or_nonequivalent_legacy_is_centralized():
         "config.wufu_default",
         "kintaiyi.cycles.bigyo.jinjing_tongzong",
         "config.bigyo_default",
-        "kintaiyi.cycles.bigyo_tianmu.tongzong",
-        "config.bigyo_tianmu_default",
     }
     assert required <= set(QUARANTINE)
 
@@ -120,9 +118,11 @@ def test_c60_matches_existing_module_level_false_equivalence_audits():
         assert audit["canonical_equivalent"] is False
 
 
-def test_c60_does_not_misclassify_valid_modern_profile_as_formula_error():
+def test_c60_does_not_misclassify_valid_modern_or_c104_profile_as_formula_error():
     assert not is_quarantined("modern_liunian_nayin_2026")
     assert not is_quarantined("MODERN-LIUNIAN-NAYIN")
+    assert not is_quarantined("kintaiyi.cycles.bigyo_tianmu.tongzong")
+    assert not is_quarantined("config.bigyo_tianmu_default")
 
 
 def test_c60_unknown_identifier_is_not_silently_classified():
@@ -153,5 +153,3 @@ def test_c60_preserves_specific_known_error_reasons():
     assert "金镜" in QUARANTINE["kintaiyi.cycles.bigyo.jinjing_tongzong"]["reason"]
     assert "+34" in QUARANTINE["kintaiyi.cycles.bigyo.jinjing_tongzong"]["reason"]
     assert "混合" in QUARANTINE["config.bigyo_default"]["reason"]
-    assert "%180/+214" in QUARANTINE["kintaiyi.cycles.bigyo_tianmu.tongzong"]["reason"]
-    assert "deprecated_reference" in QUARANTINE["config.bigyo_tianmu_default"]["reason"]
