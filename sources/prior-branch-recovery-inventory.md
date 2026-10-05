@@ -632,3 +632,75 @@ C114 已按《太乙统宗宝鉴》卷五 NGJ / CADAL 直接见证重核并恢�
 - 15 / 25 / 35 仍只有将军 + 吏士。
 
 完成 C114 后，旧 warfare fixture 的可迁历史回归价值基本核销完毕。
+
+
+## 11. 本轮旧分支恢复 closure
+
+再次将当前 main 与四个旧工作分支逐文件比较后：
+
+- `codex/c1-c7-canonical`
+- `codex/taiyi-base-motion-2026-10-04`
+- `codex/taiyi-rules-v2-20261005`
+- `integrate-taiyi-war-v1-20261004`
+
+仍显示 branch ahead，只说明这些分支保留了旧提交历史，**不等于还有可直接合并的现行工作**。
+
+经过 C92–C107、C113、C114 的回收与重核，当前未再发现一组同时满足以下条件的遗留成品：
+
+1. 2026-10-04 / 2026-10-05 已实际完成；
+2. main 尚无等价现行实现或测试；
+3. 没有被后续 source-specific 校勘 supersede；
+4. 可以在不恢复旧 project canonical / mixed profile / 自动关系推断的前提下安全并入。
+
+### 剩余旧分支内容的处置
+
+#### 已被现行实现覆盖
+
+- 公共坐标 / 十六神 / 大神加位 / 五态 helper；
+- 七术、八占主体；
+- 三基、五福、大小游位置；
+- 大游天目；
+- 四神 / 直符已核部分；
+- pan v2 schema / builder 的现行职责；
+- 七术历史例；
+- 八占三条历史例（C114）。
+
+#### 已被后续校勘 supersede，不应并入
+
+- 五福旧 +250 project canonical；
+- 金镜/统宗混合的大游 profile；
+- 旧四太乙 yuan 默认旋转；
+- 旧 `TaiyiCanonicalMixin` 对旧周期的直接委托；
+- 旧 `Taiyi(snapshot).pan()` 的自动 canonical 聚合路径；
+- `project_legacy_pan` 用新事实覆盖旧 flat key 的做法；
+- 旧 `source_variants.md` 中阶段性 canonical 数值；
+- 旧 mandatory tests 中已经变化的五音 / 周期 / facade 假设。
+
+#### 已保留为兼容或历史证据，不提升 canonical
+
+- 当前 `pan_adapter.py` 的 legacy snapshot -> v2 搬运；
+- C60 quarantine 中的旧 formula / wrapper；
+- Git 历史中的旧 validation report / warfare_v1 package；
+- 旧 branch 自身作为过程证据。
+
+#### 仍然阻塞
+
+唯一明确“此前存在、当前仍未取得原件”的旧本地资产仍是：
+
+`terminology.json`
+
+状态继续：
+
+`blocked_missing_original_store`
+
+在取得原文件 / schema 前：
+
+- 不人工重造；
+- 不根据零散迁移表伪造完整旧库；
+- C40 / C81 的 recovery map 与 availability audit 继续作为边界。
+
+### 结论
+
+就当前 **GitHub 可见分支与提交历史** 而言，本轮“完成但未并入”的安全可恢复工作已经基本核销。
+
+后续再看到旧分支 ahead 时，应先查本清单，不再把 ahead commit 数直接解释成“还有未完成迁移”。
