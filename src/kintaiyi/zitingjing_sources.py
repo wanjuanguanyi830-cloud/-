@@ -22,7 +22,7 @@ RULES = {
     "wenchang_nine_stars": {
         "legacy_name": "文昌九星",
         "primary_source": PRIMARY_SOURCE_ID,
-        "primary_evidence_level": "catalog_attested_text_pending",
+        "primary_evidence_level": "legacy_scan_extraction_recovered_page_pending",
         "collation_sources": ["tongzong_volume6", "sancai_shiwei_volume81"],
     },
     "wenchang_changes": {
@@ -90,6 +90,8 @@ def build_zitingjing_rule_sources(
         status = "primary_ready"
     elif evidence_level == "direct_text_verified":
         status = "primary_pending"
+    elif evidence_level == "legacy_scan_extraction_recovered_page_pending":
+        status = "primary_legacy_scan_recovered_page_pending"
     elif evidence_level == "catalog_attested_text_pending":
         status = "primary_text_pending"
     else:
@@ -113,8 +115,8 @@ def build_zitingjing_rule_sources(
         "status": status,
         "policy": (
             "《太乙紫庭经》是项目拟定的主来源目标，但证据等级必须逐条记录。"
-            "只有已定位直接正文的项目可注入primary_result；目录证据或项目归属"
-            "不能代替正文。统宗只作参校，不得静默覆盖。"
+            "只有已定位直接正文的项目可注入primary_result；旧扫描提取残留、目录证据或项目归属"
+            "不能代替重新挂载的逐页正文。统宗只作参校，不得静默覆盖。"
         ),
     }
 
@@ -153,7 +155,7 @@ def build_zitingjing_p1_sources(
         "rules": rules,
         "cross_source_merge": False,
         "policy": ("六项均保留《太乙紫庭经》为项目主来源目标，但证据等级不同；"
-                   "只有direct_text_verified可生成primary_result。统宗卷六/卷十只作参校。"),
+                   "只有direct_text_verified可生成primary_result；legacy_scan_extraction_recovered_page_pending仅表示旧扫描成果已恢复，仍须原页复核。统宗卷六/卷十只作参校。"),
     }
 
 
