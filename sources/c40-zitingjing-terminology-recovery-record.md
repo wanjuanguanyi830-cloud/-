@@ -122,3 +122,17 @@
 - 丢失旧备注或页码。
 
 待旧文件重新提供后，再按真实 schema 写一次性 migration adapter。
+
+
+## 2026-10-05 后续来源纠正：三旗 / 九宫贵神
+
+C40 建骨架时，三旗行宫、九宫贵神仍以“旧术语库可能属于紫庭”的恢复候选保存；该状态现已被后续直接来源校勘收紧。
+
+现行结论：
+
+- 三旗行宫可执行公式：`C126-TONGZONG-THREE-BANNERS`，直接来源《太乙统宗宝鉴》卷十；
+- 九宫贵神可执行公式：`C127-TONGZONG-NINE-PALACE-NOBLES`，直接来源《太乙统宗宝鉴》卷十；
+- 二者在 `terminology/zitingjing.json` 中继续存在，只是为了恢复旧 `terminology.json` 的记录身份以及核对研易楼明钞是否另有独立 witness；
+- 不能因为旧 migration map 位于 zitingjing 命名空间，就把 C126/C127 反标为紫庭来源。
+
+另外已递归检查当前仓库全部可见 Git 分支，均无历史 `terminology.json`。所以 C40 的“原旧库未取得”状态继续有效，但恢复途径已明确为真实本地/外部原文件，而不是未合并 Git 分支。
