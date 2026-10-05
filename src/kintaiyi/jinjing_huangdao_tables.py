@@ -1,4 +1,4 @@
-"""C115 《太乙金镜式经》卷一黄道日度 / 宿度 / 十二分野上游表。
+"""C118 《太乙金镜式经》卷一黄道日度 / 宿度 / 十二分野上游表。
 
 本层为 C69“推太乙当时法”的上游事实层，只实现卷一直接列出的：
 - 二十四气黄道日度所在立成；
@@ -20,7 +20,7 @@ import copy
 from fractions import Fraction
 from typing import Any
 
-C115_VERSION = "taiyi-c115-jinjing-huangdao-upstream-v1"
+C118_VERSION = "taiyi-c118-jinjing-huangdao-upstream-v1"
 
 MANSION_ORDER = (
     "斗", "牛", "女", "虚", "危", "室", "壁",
@@ -136,7 +136,7 @@ C69_UPSTREAM = {
         "宿->十二分野/地支",
         "节气第N日日度推进（遇虚宿未定边界则停止）",
     ],
-    "still_pending_after_c115": [
+    "still_pending_after_c118": [
         "以时加位到时支的完整位移规则",
         "依六壬式安天乙贵神及前五后六到十二支",
         "C69完整主客诸将落十二天将判定",
@@ -154,8 +154,8 @@ def solar_term_anchor(term: str) -> dict[str, Any]:
     data = SOLAR_TERM_ANCHORS[term]
     return {
         "schema_version": "1.0",
-        "canonical": C115_VERSION,
-        "rule_id": "C115-SOLAR-TERM-ANCHOR",
+        "canonical": C118_VERSION,
+        "rule_id": "C118-SOLAR-TERM-ANCHOR",
         "term": term,
         "mansion": data["mansion"],
         "degree": _fraction_payload(data["degree"]),
@@ -170,8 +170,8 @@ def mansion_span(mansion: str) -> dict[str, Any]:
     numeric = data["numeric_span"]
     return {
         "schema_version": "1.0",
-        "canonical": C115_VERSION,
-        "rule_id": "C115-MANSION-SPAN",
+        "canonical": C118_VERSION,
+        "rule_id": "C118-MANSION-SPAN",
         "mansion": mansion,
         "raw": data["raw"],
         "numeric_span": _fraction_payload(numeric) if numeric is not None else None,
@@ -187,8 +187,8 @@ def mansion_division(mansion: str) -> dict[str, Any]:
     row = next(item for item in DIVISIONS if mansion in item["mansions"])
     return {
         "schema_version": "1.0",
-        "canonical": C115_VERSION,
-        "rule_id": "C115-MANSION-DIVISION",
+        "canonical": C118_VERSION,
+        "rule_id": "C118-MANSION-DIVISION",
         "mansion": mansion,
         "division_mansions": list(row["mansions"]),
         "state": row["state"],
@@ -223,8 +223,8 @@ def term_day_position(term: str, day_number: int) -> dict[str, Any]:
         if span is None:
             return {
                 "schema_version": "1.0",
-                "canonical": C115_VERSION,
-                "rule_id": "C115-TERM-DAY-POSITION",
+                "canonical": C118_VERSION,
+                "rule_id": "C118-TERM-DAY-POSITION",
                 "computable": False,
                 "status": "blocked_ambiguous_mansion_span",
                 "term": term,
@@ -253,8 +253,8 @@ def term_day_position(term: str, day_number: int) -> dict[str, Any]:
     division = mansion_division(mansion)
     return {
         "schema_version": "1.0",
-        "canonical": C115_VERSION,
-        "rule_id": "C115-TERM-DAY-POSITION",
+        "canonical": C118_VERSION,
+        "rule_id": "C118-TERM-DAY-POSITION",
         "computable": True,
         "status": "ok",
         "term": term,
@@ -271,14 +271,14 @@ def term_day_position(term: str, day_number: int) -> dict[str, Any]:
     }
 
 
-def c115_catalog() -> dict[str, Any]:
+def c118_catalog() -> dict[str, Any]:
     return {
-        "canonical": C115_VERSION,
+        "canonical": C118_VERSION,
         "rule_ids": [
-            "C115-SOLAR-TERM-ANCHOR",
-            "C115-MANSION-SPAN",
-            "C115-MANSION-DIVISION",
-            "C115-TERM-DAY-POSITION",
+            "C118-SOLAR-TERM-ANCHOR",
+            "C118-MANSION-SPAN",
+            "C118-MANSION-DIVISION",
+            "C118-TERM-DAY-POSITION",
         ],
         "solar_term_anchors": {
             term: {
