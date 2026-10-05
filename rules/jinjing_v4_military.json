@@ -23,10 +23,10 @@
         "holding": "国立中央图书馆/国家图书馆（台湾）",
         "carrier": "明钞本《太乙金镜式经》十卷四册",
         "pages": 124,
-        "status": "independent_manuscript_witness_metadata_verified_page_locators_pending",
+        "status": "volume4_scan_range_and_j4m_page_locators_verified_readings_in_progress",
         "metadata_verified": "National Central Library record + Wikimedia Commons 124-page scan",
-        "locator_policy": "逐页图像未核到前，不分配 J4M 页码、不声称标题/关键字已由明钞本证实、不覆盖 jinjing_siku_volume4 canonical。",
-        "evidence_level": "bibliographic_and_whole_scan_identity_verified_not_page_collated",
+        "locator_policy": "NCL-06604 卷四 J4M 页级 locator 已由 C86 直接图像核验；明钞本读法作为 independent manuscript witness 分栏保存，不覆盖 jinjing_siku_volume4 canonical。",
+        "evidence_level": "page_collated_for_volume4_j4m_locators_with_selected_readings",
         "public_scan": {
           "commons_file": "NCL-06604 太乙金鏡式經.pdf",
           "pages": 124,
@@ -49,6 +49,50 @@
             "太蔟/太簇及J4M-11/12關鍵句的明鈔本字形"
           ],
           "reason": "当前可稳定访问书目与整卷扫描身份，但任意页直达/逐页检索在当前环境不稳定；未直接看见目标页图像前不得登记页级异文。",
+          "canonical_effect": "none",
+          "status": "superseded_for_volume4_page_access_by_C86",
+          "superseded_note": "C86 已通过 Wikimedia Commons page-specific high-resolution previews 直接核到卷四 p.55-p.64；C84 的页级 pending 仅保留为历史访问状态。"
+        },
+        "volume_boundaries": {
+          "volume2_end": {
+            "digital_scan_page": 42,
+            "evidence": "page image explicitly ends 太乙金镜卷第二"
+          },
+          "volume3_start": {
+            "digital_scan_page": 43,
+            "evidence": "page image explicitly begins 太乙金镜卷第三"
+          },
+          "volume3_end": {
+            "digital_scan_page": 54,
+            "evidence": "page image explicitly ends 太乙金镜卷第三终"
+          },
+          "volume4_start": {
+            "digital_scan_page": 55,
+            "evidence": "page image explicitly begins 太乙金镜卷第四; same page contains volume4 contents and J4M-01 opening"
+          },
+          "volume4_end": {
+            "digital_scan_page": 64,
+            "evidence": "page image explicitly ends 太乙金镜卷第四终"
+          }
+        },
+        "page_collation_audit": {
+          "cycle": "C86",
+          "date": "2026-10-05",
+          "verified_scope": "NCL-06604 digital scan p.55-p.64, volume4 twelve military methods",
+          "status": "j4m_01_12_page_locators_verified_selected_readings_collated",
+          "selected_readings_verified": [
+            "J4M-06正文题=推陈兵向背",
+            "J4M-07正文题=推制阵随地法",
+            "J4M-08正文题=推随地制变；萑苇竹萧段兵器=矛鋋，仍作弓弩三不当一",
+            "J4M-09地内组=一八三四，天外组=九二七六",
+            "J4M-10正文题=推奇兵伏兵法",
+            "J4M-12正文题=推对阵有云气定胜负"
+          ],
+          "still_pending": [
+            "J4M-03例文太蔟/太簇的明钞本字形需更高倍率确认",
+            "J4M-11正文标题助战字形与个别句读继续逐字校验",
+            "除已列关键点外的全段逐字异文表"
+          ],
           "canonical_effect": "none"
         }
       }
@@ -69,7 +113,8 @@
     ],
     "scan_locator_version": "c79-j4m-cadal-page-locators-v1",
     "witness_audit_version": "c84-ncl06604-access-boundary-v1",
-    "full_twelve_scan_audit_version": "c85-j4m01-12-scan-boundary-complete-v1"
+    "full_twelve_scan_audit_version": "c85-j4m01-12-scan-boundary-complete-v1",
+    "ncl_volume4_collation_version": "c86-ncl06604-v4-j4m-locators-v1"
   },
   "separation_policy": [
     "本表只记录四库本《太乙金镜式经》卷四十二法，不自动并入《太乙统宗宝鉴》卷五或旧代码同名函数。",
@@ -123,6 +168,16 @@
           "同落开、同落生、缺一端等《金镜》本句未展开组合不自动判三门具",
           "不把《统宗》补充说明静默改写成《金镜》canonical"
         ]
+      },
+      "ncl_scan_locator": {
+        "witness": "NCL-06604",
+        "edition": "明钞本",
+        "digital_scan_pages": [
+          55,
+          56
+        ],
+        "status": "visual_scan_verified",
+        "canonical_effect": "none"
       }
     },
     {
@@ -169,6 +224,15 @@
           "三门具不等于在未知五将阻断事实时直接宣称五将发",
           "不解析旧字符串格局代替结构化阻断事实"
         ]
+      },
+      "ncl_scan_locator": {
+        "witness": "NCL-06604",
+        "edition": "明钞本",
+        "digital_scan_pages": [
+          56
+        ],
+        "status": "visual_scan_verified",
+        "canonical_effect": "none"
       }
     },
     {
@@ -256,6 +320,16 @@
           "evidence": "四库卷四J4M-03首例写太蔟；runtime规范词形沿用太簇",
           "behavior": "输入接受太蔟，原输入保留，另输出canonical=太簇；五行仍为金。"
         }
+      },
+      "ncl_scan_locator": {
+        "witness": "NCL-06604",
+        "edition": "明钞本",
+        "digital_scan_pages": [
+          56,
+          57
+        ],
+        "status": "visual_scan_verified",
+        "canonical_effect": "none"
       }
     },
     {
@@ -311,6 +385,16 @@
           "混合条件不扩写",
           "J4M-04不覆盖J4M-03五行相关或D8-06多少胜负"
         ]
+      },
+      "ncl_scan_locator": {
+        "witness": "NCL-06604",
+        "edition": "明钞本",
+        "digital_scan_pages": [
+          57,
+          58
+        ],
+        "status": "visual_scan_verified",
+        "canonical_effect": "none"
       }
     },
     {
@@ -363,6 +447,15 @@
           "不得扩成所有尾数2",
           "不得导入《统宗》兵额表"
         ]
+      },
+      "ncl_scan_locator": {
+        "witness": "NCL-06604",
+        "edition": "明钞本",
+        "digital_scan_pages": [
+          58
+        ],
+        "status": "visual_scan_verified",
+        "canonical_effect": "none"
       }
     },
     {
@@ -436,6 +529,27 @@
           "不得对任意算数取个位",
           "不得用《福应经》或《统宗》3/7/8补表"
         ]
+      },
+      "ncl_scan_locator": {
+        "witness": "NCL-06604",
+        "edition": "明钞本",
+        "digital_scan_pages": [
+          59,
+          60
+        ],
+        "status": "visual_scan_verified",
+        "canonical_effect": "none"
+      },
+      "manuscript_readings": {
+        "NCL-06604": {
+          "body_title": "推陈兵向背",
+          "digital_scan_pages": [
+            59,
+            60
+          ],
+          "relation_to_siku": "agrees_with_siku_body_title_not_siku_toc_alias",
+          "canonical_override": false
+        }
       }
     },
     {
@@ -494,6 +608,25 @@
           "同类或相生不补胜负",
           "不得并入J4M-08兵种器械层"
         ]
+      },
+      "ncl_scan_locator": {
+        "witness": "NCL-06604",
+        "edition": "明钞本",
+        "digital_scan_pages": [
+          60
+        ],
+        "status": "visual_scan_verified",
+        "canonical_effect": "none"
+      },
+      "manuscript_readings": {
+        "NCL-06604": {
+          "body_title": "推制阵随地法",
+          "digital_scan_pages": [
+            60
+          ],
+          "relation_to_siku": "agrees_with_siku_body_title_not_siku_toc_alias",
+          "canonical_override": false
+        }
       }
     },
     {
@@ -582,6 +715,29 @@
           "比例不转现代战力分数",
           "不得以《汉书》/《福应经》静默改写本profile"
         ]
+      },
+      "ncl_scan_locator": {
+        "witness": "NCL-06604",
+        "edition": "明钞本",
+        "digital_scan_pages": [
+          60,
+          61
+        ],
+        "status": "visual_scan_verified",
+        "canonical_effect": "none"
+      },
+      "manuscript_readings": {
+        "NCL-06604": {
+          "body_title": "推随地制变",
+          "digital_scan_pages": [
+            60,
+            61
+          ],
+          "weapon_reading": "矛鋋",
+          "ratio_reading": "弓弩三不当一",
+          "relation_to_siku": "supports_C79_scan_correction_and_siku_body_title",
+          "canonical_override": false
+        }
       }
     },
     {
@@ -672,6 +828,39 @@
         "forbidden_inference": [
           "四库本本条未列1宫，不从其他古本补入canonical"
         ]
+      },
+      "ncl_scan_locator": {
+        "witness": "NCL-06604",
+        "edition": "明钞本",
+        "digital_scan_pages": [
+          61,
+          62
+        ],
+        "status": "visual_scan_verified",
+        "canonical_effect": "none"
+      },
+      "manuscript_readings": {
+        "NCL-06604": {
+          "body_title": "推太乙在天外地内法",
+          "digital_scan_pages": [
+            61,
+            62
+          ],
+          "inner_palaces_help_host": [
+            1,
+            8,
+            3,
+            4
+          ],
+          "outer_palaces_help_guest": [
+            9,
+            2,
+            7,
+            6
+          ],
+          "relation_to_siku": "substantive_variant_palace_1_present; agrees_with_jingyou_and_tongzong_on_inner_group",
+          "canonical_override": false
+        }
       }
     },
     {
@@ -727,6 +916,25 @@
           "军数非整十时不自定取整法",
           "不导入《福应经》居高/三五里variant"
         ]
+      },
+      "ncl_scan_locator": {
+        "witness": "NCL-06604",
+        "edition": "明钞本",
+        "digital_scan_pages": [
+          62
+        ],
+        "status": "visual_scan_verified",
+        "canonical_effect": "none"
+      },
+      "manuscript_readings": {
+        "NCL-06604": {
+          "body_title": "推奇兵伏兵法",
+          "digital_scan_pages": [
+            62
+          ],
+          "relation_to_siku": "matches_siku_toc_alias_but_differs_from_siku_body_title_推奇伏法",
+          "canonical_override": false
+        }
       }
     },
     {
@@ -800,6 +1008,16 @@
           "不得把众来噪阵补成主人败或其他固定胜负",
           "不得用《福应经》冲突读法回写《金镜》canonical"
         ]
+      },
+      "ncl_scan_locator": {
+        "witness": "NCL-06604",
+        "edition": "明钞本",
+        "digital_scan_pages": [
+          62,
+          63
+        ],
+        "status": "visual_scan_verified",
+        "canonical_effect": "none"
       }
     },
     {
@@ -860,6 +1078,27 @@
           "无云气时不得强制主客胜负",
           "正文未列的方色/形态组合保持未定义"
         ]
+      },
+      "ncl_scan_locator": {
+        "witness": "NCL-06604",
+        "edition": "明钞本",
+        "digital_scan_pages": [
+          63,
+          64
+        ],
+        "status": "visual_scan_verified",
+        "canonical_effect": "none"
+      },
+      "manuscript_readings": {
+        "NCL-06604": {
+          "body_title": "推对阵有云气定胜负",
+          "digital_scan_pages": [
+            63,
+            64
+          ],
+          "relation_to_siku": "matches_siku_toc_alias_but_differs_from_siku_body_title_推阵有风云气定胜负",
+          "canonical_override": false
+        }
       }
     }
   ]
