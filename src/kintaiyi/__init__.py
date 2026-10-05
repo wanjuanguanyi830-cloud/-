@@ -22,6 +22,7 @@ PUBLIC_MODERN_ENTRYPOINTS = {
 PUBLIC_API_ENTRYPOINTS = {
     "registry": "kintaiyi.api.registry_snapshot",
     "registry_versions": "kintaiyi.api.registry_versions",
+    "repository_status": "kintaiyi.api.repository_status",
     "get_term": "kintaiyi.api.get_term",
     "search_terms": "kintaiyi.api.search_terms",
     "get_rule": "kintaiyi.api.get_rule",
@@ -51,6 +52,7 @@ from .api import (
     operations_for_rule,
     registry_snapshot,
     registry_versions,
+    repository_status,
     rule_runtime_candidates,
     search_terms,
 )
@@ -65,6 +67,7 @@ __all__ = [
     "PUBLIC_API_ENTRYPOINTS",
     "registry_snapshot",
     "registry_versions",
+    "repository_status",
     "list_catalogs",
     "list_operations",
     "get_term",
