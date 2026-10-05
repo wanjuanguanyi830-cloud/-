@@ -100,6 +100,7 @@ def modern_month_count(moment: datetime) -> dict[str, Any]:
         "calendar": solar_month,
         "arithmetic": arithmetic,
         "cycle_historical_year": cycle_year,
+        "month_formula_year": cycle_year,
         "month_build_branch": solar_month["month_build_branch"],
         "accumulated_month": count,
         "result": core,
@@ -111,6 +112,7 @@ def modern_month_count(moment: datetime) -> dict[str, Any]:
         "guest_calc": core["guest_calc"],
         "policy": (
             "production月计以现代精确十二节切月；"
-            "闰月不额外推进，春节/朔日也不作为月计切换点。"
+            "month_formula_year仅服务积月公式，不是太乙岁标签。"
+            "太乙岁仍只在冬至瞬间切换；闰月不额外推进，春节/朔日也不作为月计切换点。"
         ),
     }
