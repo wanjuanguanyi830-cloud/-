@@ -44,6 +44,15 @@ def test_c81_library_no_match_is_not_misreported_as_nonexistence():
     assert ext["status"] == "no_retrievable_prior_file_found_in_current_recovery_pass"
     assert "not evidence" in ext["note"]
 
+    local = ext["user_reported_local_copy"]
+    assert local["location"] == "local E drive"
+    assert local["status"] == "exists_user_confirmed_not_mounted_in_current_runtime"
+
+    residue = ext["legacy_scan_extraction_residue"]
+    assert residue["asset"] == "terminology/zitingjing-legacy-scan-recovery.json"
+    assert residue["direct_manuscript_pages_reattached"] is False
+    assert residue["old_store_fields_recovered"] is False
+
 
 def test_c81_core_entries_match_c40_recovery_order():
     data = _status()
@@ -54,6 +63,13 @@ def test_c81_core_entries_match_c40_recovery_order():
     ]
     assert ordered == migration["recovery_order"]
     assert len(ordered) == 6
+    by_key = {item["key"]: item for item in data["core_entries"]}
+    assert by_key["wenchang_nine_stars"]["legacy_scan_extraction_residue_available"] is True
+    assert all(
+        not item["legacy_scan_extraction_residue_available"]
+        for key, item in by_key.items()
+        if key != "wenchang_nine_stars"
+    )
 
 
 def test_c81_manuscript_fields_are_not_faked():
@@ -84,3 +100,5 @@ def test_c81_unblock_contract_distinguishes_store_recovery_from_page_recovery():
     assert "exact historical terminology.json" in evidence
     assert "manuscript_form/source_page only" in evidence
     assert any("one-time adapter" in line for line in data["policy"])
+    assert any("C81 is an availability audit" in line for line in data["policy"])
+    assert any("parser_allowed remains false" in line for line in data["policy"])
