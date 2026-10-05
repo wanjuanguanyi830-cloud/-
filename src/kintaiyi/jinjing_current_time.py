@@ -174,12 +174,12 @@ FULL_FORMULA_BOUNDARY = {
         "twelve_general_direct_omens",
     ],
     "pending_upstream": [
-        "C115已提供二十四气日度/宿度/十二分野上游；虚宿边界仍有影印级歧义",
+        "C118已提供二十四气日度/宿度/十二分野上游；虚宿边界仍有影印级歧义",
         "日度加时位/时支",
         "依六壬式完整安天乙前后诸将",
     ],
     "complete_current_time_formula": False,
-    "policy": "C115已接通日度上游；在时支加位与完整六壬式安将未实现前，不把C69称为完整当时法。",
+    "policy": "C118已接通日度上游；在时支加位与完整六壬式安将未实现前，不把C69称为完整当时法。",
 }
 
 
