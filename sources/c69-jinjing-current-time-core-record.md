@@ -144,9 +144,9 @@ pending upstream：
 这表示“来源和核心表已确认”，不是“完整当时法已完成”。
 
 
-## 9. C115 上游接通状态
+## 9. C118 上游接通状态
 
-C115 已实现并重核卷一紧邻本条之前的三层上游：
+C118 已实现并重核卷一紧邻本条之前的三层上游：
 
 - 二十四气黄道日度所在立成；
 - 黄道宿度数立成；
@@ -160,7 +160,7 @@ C115 已实现并重核卷一紧邻本条之前的三层上游：
 
 现改为：
 
-`upstream_available_via_C115_with_xu_span_boundary`
+`upstream_available_via_C118_with_xu_span_boundary`
 
 仍未完成：
 
