@@ -4,8 +4,8 @@
   "status": "blocked_missing_original_store_with_reversible_mapping",
   "generated_from": {
     "catalog_index": "terminology/catalog-index.json",
-    "stable_catalog_count": 12,
-    "stable_entry_count": 102,
+    "stable_catalog_count": 13,
+    "stable_entry_count": 111,
     "migration_assets": [
       "terminology/zitingjing-migration-map.json",
       "terminology/ncl06604-legacy-reconciliation-map.json"
@@ -820,6 +820,343 @@
     },
     {
       "stable_ref": {
+        "catalog": "terminology/military-jinjing-v4.json",
+        "key": "adapt_to_terrain"
+      },
+      "preferred_term": "随地制变",
+      "aliases": [
+        "推随地制变",
+        "推随地置变",
+        "临敌随形制变",
+        "矛鋋"
+      ],
+      "current_rule_ids": [
+        "J4M-08"
+      ],
+      "current_source_profiles": [
+        "jinjing_siku_volume4"
+      ],
+      "migration_links": [
+        {
+          "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
+          "asset_entry_key": "j4m08_maoshan",
+          "rule_id": "J4M-08",
+          "role": "legacy_ncl_record_reconciliation",
+          "current_verified_pages": [
+            60,
+            61
+          ]
+        }
+      ],
+      "legacy_match_status": "migration_asset_available_old_store_fields_missing",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-jinjing-v4.json",
+        "key": "cloud_battle_outcome"
+      },
+      "preferred_term": "阵有风云气定胜负",
+      "aliases": [
+        "推阵有风云气定胜负",
+        "推对阵有云气定胜负",
+        "对阵云气"
+      ],
+      "current_rule_ids": [
+        "J4M-12"
+      ],
+      "current_source_profiles": [
+        "jinjing_siku_volume4"
+      ],
+      "migration_links": [
+        {
+          "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
+          "asset_entry_key": "j4m12_yunqi",
+          "rule_id": "J4M-12",
+          "role": "legacy_ncl_record_reconciliation",
+          "current_verified_pages": [
+            63,
+            64
+          ]
+        }
+      ],
+      "legacy_match_status": "migration_asset_available_old_store_fields_missing",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-jinjing-v4.json",
+        "key": "deploy_direction"
+      },
+      "preferred_term": "陈兵向背",
+      "aliases": [
+        "推陈兵向背",
+        "推障向背法",
+        "陈兵向背与阵旗"
+      ],
+      "current_rule_ids": [
+        "J4M-06"
+      ],
+      "current_source_profiles": [
+        "jinjing_siku_volume4"
+      ],
+      "migration_links": [
+        {
+          "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
+          "asset_entry_key": "j4m06_chenbing_xiangbei",
+          "rule_id": "J4M-06",
+          "role": "legacy_ncl_record_reconciliation",
+          "current_verified_pages": [
+            59,
+            60
+          ]
+        }
+      ],
+      "legacy_match_status": "migration_asset_available_old_store_fields_missing",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-jinjing-v4.json",
+        "key": "dispatch_troops"
+      },
+      "preferred_term": "出师法",
+      "aliases": [
+        "推出师",
+        "推出师法",
+        "出师略地"
+      ],
+      "current_rule_ids": [
+        "J4M-05"
+      ],
+      "current_source_profiles": [
+        "jinjing_siku_volume4"
+      ],
+      "migration_links": [
+        {
+          "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
+          "asset_entry_key": "j4m05_chushi_values",
+          "rule_id": "J4M-05",
+          "role": "legacy_ncl_record_reconciliation",
+          "current_verified_pages": [
+            58
+          ]
+        }
+      ],
+      "legacy_match_status": "migration_asset_available_old_store_fields_missing",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-jinjing-v4.json",
+        "key": "formation_by_terrain"
+      },
+      "preferred_term": "制阵随地法",
+      "aliases": [
+        "推制阵随地法",
+        "推置阵随地法",
+        "地形制阵"
+      ],
+      "current_rule_ids": [
+        "J4M-07"
+      ],
+      "current_source_profiles": [
+        "jinjing_siku_volume4"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-jinjing-v4.json",
+        "key": "host_guest_action_order"
+      },
+      "preferred_term": "主客先后动静",
+      "aliases": [
+        "推主客",
+        "主客先后",
+        "主客动静"
+      ],
+      "current_rule_ids": [
+        "J4M-04"
+      ],
+      "current_source_profiles": [
+        "jinjing_siku_volume4"
+      ],
+      "migration_links": [],
+      "legacy_match_status": "blocked_missing_original_store",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-jinjing-v4.json",
+        "key": "odd_ambush"
+      },
+      "preferred_term": "奇伏法",
+      "aliases": [
+        "推奇伏法",
+        "推奇兵伏兵法",
+        "奇兵伏兵"
+      ],
+      "current_rule_ids": [
+        "J4M-10"
+      ],
+      "current_source_profiles": [
+        "jinjing_siku_volume4"
+      ],
+      "migration_links": [
+        {
+          "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
+          "asset_entry_key": "j4m10_qibing_fubing_title",
+          "rule_id": "J4M-10",
+          "role": "legacy_ncl_record_reconciliation",
+          "current_verified_pages": [
+            62
+          ]
+        }
+      ],
+      "legacy_match_status": "migration_asset_available_old_store_fields_missing",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-jinjing-v4.json",
+        "key": "taiyi_outer_inner"
+      },
+      "preferred_term": "太乙在天外地内",
+      "aliases": [
+        "推太乙在天外地内法",
+        "天外地内",
+        "太乙助主客"
+      ],
+      "current_rule_ids": [
+        "J4M-09"
+      ],
+      "current_source_profiles": [
+        "jinjing_siku_volume4"
+      ],
+      "migration_links": [
+        {
+          "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
+          "asset_entry_key": "j4m09_inner_palaces",
+          "rule_id": "J4M-09",
+          "role": "legacy_ncl_record_reconciliation",
+          "current_verified_pages": [
+            61,
+            62
+          ]
+        }
+      ],
+      "legacy_match_status": "migration_asset_available_old_store_fields_missing",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
+        "catalog": "terminology/military-jinjing-v4.json",
+        "key": "wind_cloud_bird_support"
+      },
+      "preferred_term": "太乙风云飞鸟助战",
+      "aliases": [
+        "推太乙风云飞鸟助战法",
+        "推太乙风云飞鸟助阵法",
+        "风云飞鸟助战"
+      ],
+      "current_rule_ids": [
+        "J4M-11"
+      ],
+      "current_source_profiles": [
+        "jinjing_siku_volume4"
+      ],
+      "migration_links": [
+        {
+          "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
+          "asset_entry_key": "j4m11_fengyun_feiniao",
+          "rule_id": "J4M-11",
+          "role": "legacy_ncl_record_reconciliation",
+          "current_verified_pages": [
+            62,
+            63
+          ]
+        }
+      ],
+      "legacy_match_status": "migration_asset_available_old_store_fields_missing",
+      "legacy_fields": {
+        "old_term_record_id": null,
+        "manuscript_form": null,
+        "source_page": null,
+        "source_section": null,
+        "old_definition": null,
+        "old_notes": null,
+        "old_aliases": null
+      }
+    },
+    {
+      "stable_ref": {
         "catalog": "terminology/military-p0.json",
         "key": "effective_five_generals_readiness"
       },
@@ -859,7 +1196,10 @@
         "推五将发不发",
         "推五將發不發"
       ],
-      "current_rule_ids": [],
+      "current_rule_ids": [
+        "J4M-02",
+        "JF4M-02"
+      ],
       "current_source_profiles": [],
       "migration_links": [],
       "legacy_match_status": "blocked_missing_original_store",
@@ -887,10 +1227,24 @@
         "推主客相关",
         "推主客相关法"
       ],
-      "current_rule_ids": [],
+      "current_rule_ids": [
+        "J4M-03",
+        "JF4M-03"
+      ],
       "current_source_profiles": [],
-      "migration_links": [],
-      "legacy_match_status": "blocked_missing_original_store",
+      "migration_links": [
+        {
+          "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
+          "asset_entry_key": "j4m03_taicu",
+          "rule_id": "J4M-03",
+          "role": "legacy_ncl_record_reconciliation",
+          "current_verified_pages": [
+            56,
+            57
+          ]
+        }
+      ],
+      "legacy_match_status": "migration_asset_available_old_store_fields_missing",
       "legacy_fields": {
         "old_term_record_id": null,
         "manuscript_form": null,
@@ -944,7 +1298,10 @@
         "推三门具不具",
         "推三門具不具"
       ],
-      "current_rule_ids": [],
+      "current_rule_ids": [
+        "J4M-01",
+        "JF4M-01"
+      ],
       "current_source_profiles": [],
       "migration_links": [],
       "legacy_match_status": "blocked_missing_original_store",
@@ -2945,102 +3302,7 @@
       }
     }
   ],
-  "migration_only_candidates": [
-    {
-      "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
-      "asset_entry_key": "j4m03_taicu",
-      "rule_id": "J4M-03",
-      "canonical_term": "太簇",
-      "ncl_pages": [
-        56,
-        57
-      ],
-      "status": "migration_candidate_without_stable_entry",
-      "policy": "保留页级current_verified_evidence；旧record id/定义/notes仍等待原store，不据此自动创建stable term。"
-    },
-    {
-      "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
-      "asset_entry_key": "j4m05_chushi_values",
-      "rule_id": "J4M-05",
-      "canonical_term": "出师",
-      "ncl_pages": [
-        58
-      ],
-      "status": "migration_candidate_without_stable_entry",
-      "policy": "保留页级current_verified_evidence；旧record id/定义/notes仍等待原store，不据此自动创建stable term。"
-    },
-    {
-      "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
-      "asset_entry_key": "j4m06_chenbing_xiangbei",
-      "rule_id": "J4M-06",
-      "canonical_term": "陈兵向背",
-      "ncl_pages": [
-        59,
-        60
-      ],
-      "status": "migration_candidate_without_stable_entry",
-      "policy": "保留页级current_verified_evidence；旧record id/定义/notes仍等待原store，不据此自动创建stable term。"
-    },
-    {
-      "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
-      "asset_entry_key": "j4m08_maoshan",
-      "rule_id": "J4M-08",
-      "canonical_term": "矛鋋",
-      "ncl_pages": [
-        60,
-        61
-      ],
-      "status": "migration_candidate_without_stable_entry",
-      "policy": "保留页级current_verified_evidence；旧record id/定义/notes仍等待原store，不据此自动创建stable term。"
-    },
-    {
-      "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
-      "asset_entry_key": "j4m09_inner_palaces",
-      "rule_id": "J4M-09",
-      "canonical_term": "太乙在天外地内",
-      "ncl_pages": [
-        61,
-        62
-      ],
-      "status": "migration_candidate_without_stable_entry",
-      "policy": "保留页级current_verified_evidence；旧record id/定义/notes仍等待原store，不据此自动创建stable term。"
-    },
-    {
-      "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
-      "asset_entry_key": "j4m10_qibing_fubing_title",
-      "rule_id": "J4M-10",
-      "canonical_term": "奇伏",
-      "ncl_pages": [
-        62
-      ],
-      "status": "migration_candidate_without_stable_entry",
-      "policy": "保留页级current_verified_evidence；旧record id/定义/notes仍等待原store，不据此自动创建stable term。"
-    },
-    {
-      "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
-      "asset_entry_key": "j4m11_fengyun_feiniao",
-      "rule_id": "J4M-11",
-      "canonical_term": "风云飞鸟助战",
-      "ncl_pages": [
-        62,
-        63
-      ],
-      "status": "migration_candidate_without_stable_entry",
-      "policy": "保留页级current_verified_evidence；旧record id/定义/notes仍等待原store，不据此自动创建stable term。"
-    },
-    {
-      "asset": "terminology/ncl06604-legacy-reconciliation-map.json",
-      "asset_entry_key": "j4m12_yunqi",
-      "rule_id": "J4M-12",
-      "canonical_term": "阵有风云气定胜负",
-      "ncl_pages": [
-        63,
-        64
-      ],
-      "status": "migration_candidate_without_stable_entry",
-      "policy": "保留页级current_verified_evidence；旧record id/定义/notes仍等待原store，不据此自动创建stable term。"
-    }
-  ],
+  "migration_only_candidates": [],
   "merge_algorithm": [
     "取得旧store后先按old_term_record_id保留原记录身份，不重新编号。",
     "再用preferred_term/aliases做候选命中，不以近名自动合并。",
