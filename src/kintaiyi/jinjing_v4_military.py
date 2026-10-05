@@ -27,6 +27,7 @@
 """
 
 from .taiyi_rules import GOD_ALIASES as _GLOBAL_GOD_ALIASES
+from .jinjing_eight_door_overlay import taiyi_eight_door_context
 
 J4M_RULESET = "jinjing-siku-v4-military-12"
 J4M_SOURCE_PROFILE = "jinjing_siku_volume4"
@@ -311,6 +312,33 @@ def sanmen_jubu(*, taiyi_gate=None, tianmu_gate=None, direct_gate=None):
         "direct_gate_auspice": direct_gate_auspice,
         "auspice_table": dict(_GATE_AUSPICE),
         "policy": "只判正文明确组合；州郡岁计直门吉凶与门具事实分栏。",
+    }
+
+
+
+def sanmen_jubu_from_positions(*, taiyi_palace, tianmu, direct_gate=None):
+    """J4M-01 的位置入口。
+
+    先按《金镜》卷一“开门加太乙”生成太乙八门，再把天目十六宫位置
+    投影到外八宫，最后交给 J4M-01 严格判定。
+
+    注意：本入口仍保持《金镜》卷四保守边界；如果天目落伤/杜/景/死/惊，
+    J4M-01 本句没有明确给出“门具”正面结论，仍返回未定义。
+    """
+    context = taiyi_eight_door_context(taiyi_palace, tianmu=tianmu)
+    result = sanmen_jubu(
+        taiyi_gate=context["taiyi_gate"],
+        tianmu_gate=context["tianmu_gate"],
+        direct_gate=direct_gate,
+    )
+    return {
+        **result,
+        "input_mode": "positions",
+        "taiyi_palace": taiyi_palace,
+        "tianmu": tianmu,
+        "tianmu_palace": context["tianmu_palace"],
+        "eight_door_overlay": context["palace_to_door"],
+        "overlay_rule_id": context["rule_id"],
     }
 
 
