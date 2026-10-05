@@ -192,3 +192,13 @@ def test_j4m08_chao_cuo_quote_variant_is_quarantined_not_silently_emended():
         for item in rule["quotation_collation"]["hanshu_yuanang_chaocuo_zhuan"]["examples"]
     )
     assert "不得静默改写 runtime" in rule["quotation_collation"]["policy"]
+
+
+def test_j4m04_first_mover_victory_is_resolved_by_ancient_parallel_texts():
+    _, rules = _rules()
+    rule = {item["id"]: item for item in rules}["J4M-04"]
+    assert rule["collation_status"] == "resolved_first_mover_wins_in_favorable_triad"
+    assert "先胜后负" in rule["collation_evidence"]["jinjing_siku_volume4"]
+    assert "先起则胜" in rule["collation_evidence"]["wujing_zongyao_siku_houji_18"]
+    assert "先起则胜" in rule["collation_evidence"]["taiyi_mishu"]
+    assert "不自动回写" in rule["collation_evidence"]["policy"]
