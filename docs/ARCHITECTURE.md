@@ -58,3 +58,18 @@ registry/operations.json 只登记对软件稳定开放的 calculation operation
 ## 后续迁移原则
 
 旧本地 terminology.json 恢复后，只向当前 stable terminology catalogs 回填旧 term id、manuscript form、页码与 notes；不得覆盖已确认 rule/source 边界。未知旧词条保持 unmapped。
+
+
+## Rule-ID facade 与能力发现
+
+对有唯一 exact runtime 的规则，软件优先调用：
+
+- `calculate_rule(rule_id, ...)`：按 canonical/source-specific rule_id 解析 runtime；
+- `rule_runtime_candidates(rule_id)`：查看底层候选 runtime 与来源；
+- `operations_for_rule(rule_id)`：查看该规则是否有公开 operation alias；
+- `describe_rule(rule_id)`：合并规则元数据、runtime 与 operation；
+- `capabilities()`：按 domain 输出软件可展示的公开能力。
+
+`calculate_rule` 不会把 source-record-only 或 attribution-pending 条目升级为可执行算法。若 exact rule_id 对应的 runtime 明确要求 `source_profile`，且注册层能唯一得到 profile key，facade 才自动补入该 key。
+
+对于一个 operation 覆盖多个子 rule_id、但底层不是逐 rule exact runtime 的情况，应通过 operation alias 调用，而不是强行建立虚假的逐 rule runtime。
