@@ -95,7 +95,8 @@
             "J4M-06明钞本算表为1/2/3/4/6/7/8/9，无5；方向骨架与福应经同构",
             "J4M-06明钞本全表已由用户提供p.59-p.60页图直接核完；1/2/3/4/6/7/8/9的战利、背地、阵形、旗色不再pending",
             "J4M-07明钞本正文已由用户提供页图直接核：五阵五行、地形表、顺逆吉凶及收尾“观方置变”；地形异文作“地跨邪”",
-            "J4M-08明钞本开头“三急”已由用户提供页图直接核：士卒服习、随其地形、善用兵器；五丈之沟以下本图不作全文核定"
+            "J4M-08明钞本开头“三急”已由用户提供页图直接核：士卒服习、随其地形、善用兵器；五丈之沟以下本图不作全文核定",
+            "J4M-08明钞本正文已由用户连续页图核到收尾：五类地形兵种、训练/器械/将帅段及“临敌随形制变，此之要也”均直接确认"
           ],
           "still_pending": [
             "除已列关键点外的全段逐字异文表"
@@ -157,7 +158,7 @@
     "scan_locator_version": "c79-j4m-cadal-page-locators-v1",
     "witness_audit_version": "c84-ncl06604-access-boundary-v1",
     "full_twelve_scan_audit_version": "c85-j4m01-12-scan-boundary-complete-v1",
-    "ncl_volume4_collation_version": "c112-ncl06604-j4m08-opening-v2",
+    "ncl_volume4_collation_version": "c115-ncl06604-j4m08-full-body-v1",
     "terminology_policy_version": "c101-taicu-traditional-variant-v1",
     "ncl_volume4_collation_history": [
       "c86-ncl06604-v4-j4m-locators-v1",
@@ -168,7 +169,8 @@
       "c110-ncl06604-j4m06-full-table-v1",
       "c111-ncl06604-j4m07-body-v1",
       "c112-ncl06604-j4m08-opening-v1",
-      "c112-ncl06604-j4m08-opening-v2"
+      "c112-ncl06604-j4m08-opening-v2",
+      "c115-ncl06604-j4m08-full-body-v1"
     ]
   },
   "separation_policy": [
@@ -1022,12 +1024,12 @@
           ],
           "weapon_reading": "矛鋋",
           "ratio_reading": "弓弩三不当一",
-          "relation_to_siku": "supports_C79_scan_correction_and_siku_body_title",
+          "relation_to_siku": "C115 confirms NCL is a mixed textual witness: many J4M-08 ratios align with Siku, while 将不习兵 is 五不当一; all remain manuscript-specific.",
           "canonical_override": false,
           "opening_direct_visual": {
             "cycle": "C112",
             "digital_scan_page": 60,
-            "status": "opening_triplet_direct_visual_verified",
+            "status": "superseded_by_C115_full_contiguous_body",
             "source_attribution": "晁错",
             "opening_text": "晁错曰：用兵临战合用之急者有三：一曰士卒服习，二曰随其地形，三曰善用兵器。",
             "three_urgencies": [
@@ -1036,7 +1038,88 @@
               "善用兵器"
             ],
             "continuation_visible_only": "五丈之沟居堑之水山林",
-            "scope_policy": "本页可继续确认到“五丈之沟居堑之水山林”；其后仍被裁切，未直接看见的文字不据本图补写。"
+            "scope_policy": "本页可继续确认到“五丈之沟居堑之水山林”；其后仍被裁切，未直接看见的文字不据本图补写。",
+            "superseded_by": "C115"
+          },
+          "full_body_transcription": {
+            "cycle": "C115",
+            "status": "full_contiguous_body_direct_visual_verified",
+            "evidence": {
+              "witness": "NCL-06604",
+              "digital_scan_pages": [
+                60,
+                61
+              ],
+              "method": "user-supplied page images visually checked",
+              "note": "C112开头页与本轮后续页图可连续衔接；J4M-08收尾后直接进入J4M-09。"
+            },
+            "opening": "晁错曰：用兵临战合用之急者有三：一曰士卒服习，二曰随其地形，三曰善用兵器。",
+            "terrain_weapon_rows": [
+              {
+                "terrain_text": "五丈之沟居堑之水山林积石川泽丘阜草木所临",
+                "favored": "步兵",
+                "ratio_text": "车骑三不当一"
+              },
+              {
+                "terrain_text": "土山平陵曼行相属平原旷野",
+                "favored": "车骑",
+                "ratio_text": "步卒十不当一"
+              },
+              {
+                "terrain_text": "两阵相近平地浅草可前可后",
+                "favored": "长戟",
+                "ratio_text": "剑楯三不当一"
+              },
+              {
+                "terrain_text": "萑苇竹萧草木蒙笼枝叶接茂",
+                "favored": "矛鋋",
+                "ratio_text": "弓弩三不当一"
+              },
+              {
+                "terrain_text": "平阳相远山谷幽涧仰高临下",
+                "favored": "弓弩",
+                "ratio_text": "短兵百不当一"
+              }
+            ],
+            "training_block": {
+              "raw": "士不选练，卒不服习，起居不精，动静不禁，避难不反，前击后解，与金鼓之指相失，此士不习勤卒之过也，百不当一。",
+              "ratio_text": "百不当一",
+              "notable_readings": [
+                "动静不禁",
+                "避难不反",
+                "此士不习勤卒之过也"
+              ]
+            },
+            "equipment_and_general_block": {
+              "raw": "兵不完利，与空手同；中不能入，与无镞同；此将不习兵之过也，五不当一。",
+              "ratio_text": "五不当一",
+              "notable_readings": [
+                "仅列兵不完利/中不能入两组",
+                "此将不习兵之过也",
+                "五不当一"
+              ]
+            },
+            "command_block": {
+              "raw": "兵法曰：器械不利，以其卒与敌也；卒不可用，以其将与敌也；将不知兵，以其主与敌也；君不择将，以其国与敌也。此四者用兵之至要也。"
+            },
+            "closing_block": {
+              "raw": "是以太乙用兵之道，克敌于未来，制胜于未兆，临敌观变在于将也。故曰出兵当从奇门，临敌随形制变，此之要也。",
+              "next_rule_boundary": "随后直接题“推太乙在天外地内法”，进入J4M-09。"
+            },
+            "source_specific_differences": {
+              "against_siku_profile": [
+                "NCL车骑地写“土山平陵曼行相属平原旷野”；不以四库其他词形替换。",
+                "NCL训练段写“避难不反”。",
+                "NCL将不习兵段为“五不当一”；四库profile当前保存“十不当一”。"
+              ],
+              "mixed_witness_pattern": [
+                "车骑三不当一：与四库profile一致，不同于《汉书》/《福应经》二不当一。",
+                "矛鋋地弓弩三不当一：与四库profile一致，不同于《汉书》/《福应经》长戟二不当一。",
+                "士卒不习百不当一：与四库profile一致，不同于《汉书》/《福应经》百不当十。",
+                "将不习兵五不当一：数值与《汉书》/《福应经》五不当一接近，不同于四库profile十不当一。"
+              ],
+              "policy": "NCL作为独立明钞本逐句保存；不得按多数见证、对称性或所谓原典校正版静默改写四库runtime。"
+            }
           }
         }
       }
