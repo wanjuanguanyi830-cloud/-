@@ -116,6 +116,19 @@
         "C45岁中灾发",
         "C46阴阳九厄"
       ]
+    },
+    {
+      "path": "terminology/relations.json",
+      "catalog_id": "taiyi-relations-terminology-v1",
+      "scope": "explicit_relation_layers",
+      "contains": [
+        "C65三神同宫",
+        "C74三基五福",
+        "C90三基三神",
+        "C91三基四神大小游",
+        "C94五福四太乙同域",
+        "C113五福四神大小游遗留同宫"
+      ]
     }
   ],
   "migration_assets": [
