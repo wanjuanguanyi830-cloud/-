@@ -3,7 +3,7 @@
 本层的目标不是“猜公历日期”，而是约束外部历法解析结果如何进入
 已经校定的岁/月/日/时四计核心。
 
-当前不自动接受Gregorian datetime，原因：
+现代 production 已允许通过现代天文事实层解析岁计换年与冬/夏至半岁；但月计、日计、时计积数仍需各自历法上游。
 - 岁计具体日期何时切换积年，现有条文没有足够直接证据可在春节/立春/冬至间任选；
 - 月计《金镜》《统宗》存在历元/积月算法版本差异；
 - 日计依赖气朔积日与定朔；
@@ -65,10 +65,10 @@ def calendar_upstream_requirements(count_type: str) -> dict[str, Any]:
         "count_type": kind,
         "required_facts": list(spec["required"]),
         "optional_facts": list(spec["optional"]),
-        "automatic_gregorian_resolution": False,
+        "automatic_gregorian_resolution": kind == "岁计",
         "forbidden_guess": spec["forbidden_guess"],
         "source_boundary": {
-            "岁计": "积年历元明确；现代日期到积年切换点尚未统一自动化",
+            "岁计": "production统一以真实天文冬至瞬间换年；现代datetime可由modern_calendar解析",
             "月计": "需先按选定《金镜》或《统宗》历法profile求积月",
             "日计": "需先求气朔/经朔/定朔相关积日",
             "时计": "需先由实际冬夏至气应判半岁并求时计积数",
@@ -170,11 +170,13 @@ def calendar_automation_status() -> dict[str, Any]:
             "C119冬夏二至时计八门直使",
         ],
         "pending": [
-            "现代datetime -> source-specific岁计历史年边界",
             "《金镜》月计积月算法影印级常数/版本校勘与《统宗》profile分离",
             "现代日期 -> 气朔/经朔/定朔 -> 日计积日",
-            "现代datetime -> 实际冬至/夏至气应时刻 -> 时计半岁",
             "时计entry_count与C119 duty_time_real各自完整历法生成链",
         ],
-        "policy": "pending项目未解决前，不提供声称完全自动的现代日期排盘入口。",
+        "policy": (
+            "岁计换年与时计冬/夏至半岁已由现代天文层自动化；"
+            "月计/日计积数与时计entry_count、duty_time_real未解决前，"
+            "不声称四计datetime全自动完成。"
+        ),
     }
