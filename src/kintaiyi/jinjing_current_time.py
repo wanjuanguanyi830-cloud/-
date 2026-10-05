@@ -175,11 +175,13 @@ FULL_FORMULA_BOUNDARY = {
     ],
     "pending_upstream": [
         "C118已提供二十四气日度/宿度/十二分野上游；虚宿边界仍有影印级歧义",
-        "日度加时位/时支",
-        "依六壬式完整安天乙前后诸将",
+        "C69B已实现显式日度加时与六壬式十二天将叠盘",
+        "公历日期到节气第几日仍由上游历法提供",
+        "朝/暮仍须调用方显式给定",
+        "九宫到六壬十二支为有损adapter；严格调用可直接给entity_branches",
     ],
     "complete_current_time_formula": False,
-    "policy": "C118已接通日度上游；在时支加位与完整六壬式安将未实现前，不把C69称为完整当时法。",
+    "policy": "C118+C69B已补日度加时和六壬安将核心；在历法入口、朝暮自动判定与坐标无损接入未统一前，不把C69称为完全自动当时法。",
 }
 
 
@@ -274,7 +276,7 @@ def current_time_core(
         "complete_current_time_formula": False,
         "full_formula_boundary": copy.deepcopy(FULL_FORMULA_BOUNDARY),
         "policy": (
-            "C69只提供卷一直接表核心；完整推太乙当时法仍须二至后日度与时支排式。"
+            "C69直接表由C118+C69B接通日度与六壬叠盘；完整自动日期入口仍待历法/朝暮/坐标层统一。"
         ),
     }
 
