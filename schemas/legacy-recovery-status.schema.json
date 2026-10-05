@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/taiyi/legacy-recovery-status.schema.json",
+  "title": "Taiyi legacy terminology recovery status",
+  "type": "object",
+  "required": [
+    "legacy_store_status",
+    "ziting_recovery_status",
+    "original_schema_available",
+    "original_file_available",
+    "parser_allowed",
+    "synthetic_reconstruction_allowed",
+    "user_reported_local_copy",
+    "priorities",
+    "acceptable_unblock_evidence",
+    "non_substitutable_sources",
+    "policy"
+  ],
+  "properties": {
+    "legacy_store_status": {"type": "string"},
+    "ziting_recovery_status": {"type": "string"},
+    "original_schema_available": {"type": "boolean"},
+    "original_file_available": {"type": "boolean"},
+    "parser_allowed": {"type": "boolean"},
+    "synthetic_reconstruction_allowed": {"type": "boolean"},
+    "user_reported_local_copy": {"type": "object"},
+    "priorities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "key",
+          "priority",
+          "recovered_from_original_store",
+          "manuscript_form_recoverable_now",
+          "source_page_recoverable_now"
+        ],
+        "properties": {
+          "key": {"type": "string"},
+          "priority": {"type": "integer", "minimum": 1},
+          "recovered_from_original_store": {"type": "boolean"},
+          "manuscript_form_recoverable_now": {"type": "boolean"},
+          "source_page_recoverable_now": {"type": "boolean"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "acceptable_unblock_evidence": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "non_substitutable_sources": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "policy": {"type": "string"}
+  },
+  "additionalProperties": true
+}
