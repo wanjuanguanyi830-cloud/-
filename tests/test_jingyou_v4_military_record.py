@@ -51,7 +51,13 @@ def test_jingyou_qifu_and_weather_bird_material_differences_are_explicit():
     assert "从主人刑上来主人败" in joined
 
 
-def test_jingyou_record_only_profile_never_claims_runtime():
+def test_jingyou_ruleset_registers_all_source_specific_runtimes():
     _, rules = _rules()
-    assert all(r["implementation_status"] == "source_record_only" for r in rules)
-    assert all("runtime" not in r for r in rules)
+    assert all(
+        r["implementation_status"] == "implemented_source_specific"
+        for r in rules
+    )
+    assert all(
+        r["runtime"].startswith("kintaiyi.jingyou_fuying_v4_military.")
+        for r in rules
+    )
