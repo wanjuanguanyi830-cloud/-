@@ -28,6 +28,7 @@ MILITARY_P0_CROSSWALK = {
     "three_doors": {
         "legacy_name": "推三门具不具",
         "jinjing_rule_id": "J4M-01",
+        "jingyou_rule_id": "JF4M-01",
         "c8_relation": "C8-L2 consumes an upstream three_doors fact",
         "c8_equivalent_formula": False,
         "policy": "J4M-01若未实现，不得用C8归一化层冒充金镜公式。",
@@ -35,6 +36,7 @@ MILITARY_P0_CROSSWALK = {
     "five_generals": {
         "legacy_name": "推五将发不发",
         "jinjing_rule_id": "J4M-02",
+        "jingyou_rule_id": "JF4M-02",
         "c8_relation": "C8-L2 consumes an upstream five_generals fact",
         "c8_equivalent_formula": False,
         "policy": "J4M-02若未实现，不得用C8归一化层冒充金镜公式。",
@@ -42,6 +44,7 @@ MILITARY_P0_CROSSWALK = {
     "host_guest_relation": {
         "legacy_name": "推主客相关法",
         "jinjing_rule_id": "J4M-03",
+        "jingyou_rule_id": "JF4M-03",
         "c8_relation": "C8-L3 is host/guest movement ordering only; adjacent topic, not replacement",
         "c8_equivalent_formula": False,
         "policy": "J4M-03主客相关法与C8-L3主客动静不得合并。",
