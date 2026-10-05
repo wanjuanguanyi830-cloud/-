@@ -40,6 +40,35 @@
       "status": "recovered_from_prior_workflow_residue",
       "direct_manuscript_pages_reattached": false,
       "old_store_fields_recovered": false
+    },
+    "public_web_recovery": {
+      "checked_on": "2026-10-05",
+      "yanyilou_share_page": {
+        "site": "书格",
+        "title": "太乙紫庭祕訣 研易樓藏明鈔本",
+        "url": "https://www.shuge.org/meet/topic/96517/",
+        "status": "public_share_page_reachable_external_storage_not_mounted",
+        "reported_extent": "181单页灰度，328M",
+        "direct_manuscript_page_recovered": false
+      },
+      "published_edition_catalogs": [
+        {
+          "site": "星易圖書",
+          "url": "https://www.xinyi.hk/goods-7102.html",
+          "appendix_title_attested": "附太乙文昌九星值宮術"
+        },
+        {
+          "site": "進源書局",
+          "url": "https://www.chinyuan.com.tw/all_book/more?id=7195",
+          "appendix_title_attested": "附太乙文昌九星值宮術"
+        }
+      ],
+      "open_text_search": {
+        "direct_wenchang_appendix_text_found": false,
+        "direct_yanyilou_page_found": false,
+        "note": "公开检索可确认附篇题名与扫描资源存在，但未取得可逐字校读的研易楼明钞本附篇正文；搜索到的文昌九星正文仍主要属于《太乙统宗宝鉴》卷六，不可回填紫庭manuscript_form/source_page。"
+      },
+      "access_policy": "只记录公开可访问页面；未绕过付费/网盘访问限制，也未把外部统宗文本冒充研易楼本。"
     }
   },
   "migration_map": "terminology/zitingjing-migration-map.json",
@@ -131,6 +160,7 @@
     "When the original store becomes available, write a one-time adapter against the observed schema.",
     "A user-confirmed local copy or recovered derived scan residue does not make the old terminology.json schema available; parser_allowed remains false until the exact store is mounted.",
     "All five visible Git branches were recursively checked on 2026-10-05; no historical terminology.json was present. This narrows recovery to the exact local/previously uploaded store rather than an unmerged Git branch.",
-    "Three banners and nine-palace noble gods now have direct Tongzong volume10 runtimes; their legacy recovery entries remain only to recover old-store identity or prove an additional Ziting manuscript witness."
+    "Three banners and nine-palace noble gods now have direct Tongzong volume10 runtimes; their legacy recovery entries remain only to recover old-store identity or prove an additional Ziting manuscript witness.",
+    "Public-web recovery on 2026-10-05 confirmed the Yanyilou 181-page/328MB share record and the published appendix title, but recovered no directly readable Wenchang appendix manuscript page; manuscript_form/source_page therefore remain null."
   ]
 }
