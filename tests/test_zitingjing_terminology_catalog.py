@@ -7,6 +7,7 @@ from kintaiyi.zitingjing_sources import RULES, build_zitingjing_rule_sources
 
 
 CATALOG = Path("terminology/zitingjing.json")
+WENCHANG = Path("terminology/wenchang-nine-stars.json")
 MIGRATION = Path("terminology/zitingjing-migration-map.json")
 
 
@@ -14,24 +15,25 @@ def _load(path):
     return json.loads(Path(path).read_text(encoding="utf-8"))
 
 
-def test_zitingjing_catalog_covers_exactly_the_six_source_container_rules():
+def test_zitingjing_stable_catalog_excludes_wenchang_nine_stars_modern_appendix():
     data = _load(CATALOG)
     by_key = {entry["key"]: entry for entry in data["entries"]}
 
-    assert set(by_key) == set(RULES)
-    assert len(by_key) == 6
+    assert set(by_key) == set(RULES) - {"wenchang_nine_stars"}
+    assert len(by_key) == 5
+    assert "wenchang_nine_stars" not in by_key
 
-    for key, meta in RULES.items():
-        assert by_key[key]["primary_evidence_level"] == meta["primary_evidence_level"]
-        assert by_key[key]["preferred_term"] == meta["legacy_name"]
+    for key, entry in by_key.items():
+        assert entry["primary_evidence_level"] == RULES[key]["primary_evidence_level"]
+        assert entry["preferred_term"] == RULES[key]["legacy_name"]
 
 
-def test_primary_result_gate_matches_c18_runtime():
+def test_primary_result_gate_matches_c18_runtime_for_ziting_stable_entries():
     data = _load(CATALOG)
     by_key = {entry["key"]: entry for entry in data["entries"]}
 
     direct = {"taiyi_nine_stars", "wenchang_changes", "shiji_changes"}
-    blocked = {"wenchang_nine_stars", "three_banners", "nine_palace_nobles"}
+    blocked = {"three_banners", "nine_palace_nobles"}
 
     for key in direct:
         assert by_key[key]["primary_result_allowed"] is True
@@ -51,7 +53,38 @@ def test_primary_result_gate_matches_c18_runtime():
             )
 
 
-def test_zitingjing_stable_catalog_preserves_migration_aliases():
+def test_wenchang_nine_stars_keeps_legacy_source_slot_but_is_not_stable_ziting_term():
+    migration = _load(MIGRATION)
+    assert any(e["key"] == "wenchang_nine_stars" for e in migration["entries"])
+
+    wrapped = build_zitingjing_rule_sources("wenchang_nine_stars")
+    assert wrapped["primary_evidence_level"] == (
+        "ziting_manuscript_not_attested_modern_appendix_only"
+    )
+    assert wrapped["status"] == "modern_appendix_cross_source_recovery_pointer"
+    assert wrapped["primary_result_allowed"] is False
+    assert wrapped["known_source_rule_id"] == "C70-TONGZONG-WENCHANG-NINE-STARS"
+
+
+def test_independent_wenchang_catalog_is_tongzong_source_specific():
+    data = _load(WENCHANG)
+    entry = next(e for e in data["entries"] if e["key"] == "wenchang_nine_stars")
+
+    assert data["catalog_id"] == "taiyi-wenchang-nine-stars-terminology-v1"
+    assert entry["canonical_rule_id"] == "C70-TONGZONG-WENCHANG-NINE-STARS"
+    assert entry["canonical_source_profile"] == (
+        "tongzong_volume6_ngj_wenchang_nine_stars"
+    )
+    assert entry["ziting_manuscript_boundary"]["status"] == (
+        "not_attested_in_manuscript_toc"
+    )
+    assert entry["ziting_manuscript_boundary"]["scan_pages"] == [5, 6]
+    modern = entry["ziting_manuscript_boundary"]["modern_edition_appendix"]
+    assert modern["status"] == "modern_edition_catalog_attested_provenance_unresolved"
+    assert "来源假说" in modern["inference"]
+
+
+def test_zitingjing_stable_catalog_preserves_migration_aliases_for_remaining_entries():
     catalog = _load(CATALOG)
     migration = _load(MIGRATION)
 
@@ -60,20 +93,6 @@ def test_zitingjing_stable_catalog_preserves_migration_aliases():
 
     for key in stable:
         assert old[key] <= stable[key]
-
-
-def test_wenchang_nine_stars_is_modern_appendix_cross_source_pointer():
-    data = _load(CATALOG)
-    entry = next(e for e in data["entries"] if e["key"] == "wenchang_nine_stars")
-
-    assert entry["primary_evidence_level"] == "ziting_manuscript_not_attested_modern_appendix_only"
-    assert entry["primary_result_allowed"] is False
-    assert entry["runtime"] is None
-    assert entry["canonical_selected"] is None
-    assert entry["term_type"] == "modern_edition_cross_source_recovery_pointer"
-    assert entry["canonical_catalog"] == "terminology/wenchang-nine-stars.json"
-    assert entry["manuscript_toc_evidence"]["status"] == "title_not_attested"
-    assert entry["modern_edition_appendix"]["status"] == "modern_edition_catalog_attested_provenance_unresolved"
 
 
 def test_three_banners_and_nine_palace_nobles_are_cross_source_recovery_pointers():
@@ -115,15 +134,3 @@ def test_shiji_collation_keeps_ocr_corrections_separate_from_textual_variant():
         {"stem_group": "壬癸", "witness_label": "王", "normalized_element": "土"},
     ]
     assert "preserve_both_no_silent_merge" in entry["textual_variant_policy"]
-
-
-def test_wenchang_modern_appendix_does_not_restore_ziting_primary():
-    data = _load(CATALOG)
-    entry = next(e for e in data["entries"] if e["key"] == "wenchang_nine_stars")
-
-    assert entry["manuscript_toc_evidence"]["pages"] == [5, 6]
-    assert entry["manuscript_toc_evidence"]["status"] == "title_not_attested"
-    assert entry["modern_edition_appendix"]["title"] == "附太乙文昌九星值宮術"
-    assert "只作来源假说" in entry["modern_edition_appendix"]["inference"]
-    assert entry["primary_result_allowed"] is False
-    assert entry["runtime"] is None
