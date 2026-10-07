@@ -17,6 +17,7 @@ NON_TAIYI_YEAR_BOUNDARIES = ("元旦", "春节", "立春", "春分")
 PUBLIC_MODERN_ENTRYPOINTS = {
     "calendar_context": "kintaiyi.taiyi_modern_calendar.production_calendar_context",
     "pan_v2": "kintaiyi.taiyi_modern_pan.build_modern_pan_v2",
+    "minute_count": "kintaiyi.taiyi_modern_minute_count.modern_minute_count",
 }
 
 PUBLIC_API_ENTRYPOINTS = {
@@ -34,6 +35,7 @@ PUBLIC_API_ENTRYPOINTS = {
     "describe_rule": "kintaiyi.api.describe_rule",
     "capabilities": "kintaiyi.api.capabilities",
     "calendar_context": "kintaiyi.api.calendar_context",
+    "minute_count": "kintaiyi.api.minute_count",
     "build_pan": "kintaiyi.api.build_pan",
     "explain_result": "kintaiyi.api.explain_result",
 }
@@ -44,6 +46,7 @@ from .api import (
     calculate_rule,
     capabilities,
     calendar_context,
+    minute_count,
     describe_rule,
     explain_result,
     get_rule,
@@ -83,6 +86,7 @@ __all__ = [
     "describe_rule",
     "capabilities",
     "calendar_context",
+    "minute_count",
     "build_pan",
     "explain_result",
 ]
