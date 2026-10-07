@@ -260,7 +260,7 @@ def test_registry_versions_are_explicit_and_consistent():
 
 def test_repository_status_is_derived_from_live_indexes():
     status = repository_status()
-    assert status["public_api_version"] == "1.0"
+    assert status["public_api_version"] == "1.1"
     assert status["stable_catalog_count"] == len(list_catalogs())
     assert status["operation_count"] == len(list_operations())
     assert status["stable_term_entry_count"] > 0
