@@ -226,6 +226,11 @@ def production_boundary_registry() -> dict[str, Any]:
             "boundary": "子正/夜半起，每2小时一算",
             "effect": "00:00–01:59为第1时，依次至第12时",
         },
+        "taiyi_minute_extension": {
+            "boundary": "真实天文冬至/夏至瞬间起，每完整60秒一算",
+            "effect": "提供现代分计扩展；不是古籍四计第五法",
+            "source_profile": "production_modern_solstice_relative_minute_extension_v1",
+        },
         "policy": (
             "这些边界用途不同；只有taiyi_year.boundary有权改变太乙岁标签。"
         ),
@@ -233,8 +238,9 @@ def production_boundary_registry() -> dict[str, Any]:
 
 def production_calendar_context(moment: datetime) -> dict[str, Any]:
     """一次返回现代production四计所需的统一日历事实与计数结果。"""
-    # lazy import 避免 taiyi_modern_time_count -> taiyi_modern_calendar 的循环导入
+    # lazy import 避免 time/minute count -> taiyi_modern_calendar 的循环导入
     from .taiyi_modern_time_count import modern_time_count
+    from .taiyi_modern_minute_count import modern_minute_count
 
     return {
         "rule_id": RULE_ID,
@@ -248,11 +254,12 @@ def production_calendar_context(moment: datetime) -> dict[str, Any]:
         "month_count": modern_month_count(moment),
         "day_count": modern_day_count(moment),
         "time_count": modern_time_count(moment),
+        "minute_count": modern_minute_count(moment),
         "astronomy_provider": "astronomy-engine",
         "lunisolar_provider": "lunar_python",
         "policy": (
             "天文引擎提供冬夏至与十二节精确交节；现代农历库提供农历/干支事实。"
-            "production已自动生成岁/月/日/时四计所需计数；"
+            "production已自动生成岁/月/日/时四计及现代分计扩展所需计数；"
             "太乙岁由冬至决定，月界由十二节决定，日界/连续时序由中国标准民用日决定。"
         ),
     }

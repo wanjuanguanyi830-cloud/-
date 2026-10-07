@@ -190,7 +190,7 @@ def test_production_context_includes_resolved_year_count():
     assert data["year_count"]["result"]["dun"] == "阳"
 
 
-def test_production_context_contains_all_four_count_results():
+def test_production_context_contains_four_counts_and_minute_extension():
     from datetime import datetime
     from zoneinfo import ZoneInfo
 
@@ -201,6 +201,8 @@ def test_production_context_contains_all_four_count_results():
     assert data["month_count"]["result"]["count_type"] == "月计"
     assert data["day_count"]["result"]["count_type"] == "日计"
     assert data["time_count"]["result"]["count_type"] == "时计"
+    assert data["minute_count"]["result"]["count_type"] == "分计"
+    assert data["minute_count"]["extension_status"] == "stable_modern_extension"
 
 
 
@@ -262,3 +264,10 @@ def test_boundary_registry_distinguishes_winter_year_change_from_summer_time_res
     assert registry["taiyi_time_half"]["changes_taiyi_year"] == "冬至时是；夏至时否"
     assert "重启冬至半岁时计" in registry["taiyi_time_half"]["effect"]
     assert "重启夏至半岁时计" in registry["taiyi_time_half"]["effect"]
+
+
+def test_boundary_registry_declares_minute_as_modern_extension():
+    registry = production_boundary_registry()
+    minute = registry["taiyi_minute_extension"]
+    assert "每完整60秒一算" in minute["boundary"]
+    assert "不是古籍四计第五法" in minute["effect"]

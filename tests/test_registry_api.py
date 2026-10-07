@@ -1,10 +1,14 @@
 import json
+from datetime import datetime
 from importlib import resources
+from zoneinfo import ZoneInfo
 
 from kintaiyi.api import (
     calculate,
     calculate_rule,
     capabilities,
+    build_pan,
+    minute_count,
     describe_rule,
     explain_result,
     get_rule,
@@ -244,8 +248,8 @@ def test_capabilities_are_lossless_projection_of_operation_registry():
 
 def test_registry_versions_are_explicit_and_consistent():
     versions = registry_versions()
-    assert versions["public_api_version"] == "1.0"
-    assert versions["operations_api_version"] == "1.0"
+    assert versions["public_api_version"] == "1.1"
+    assert versions["operations_api_version"] == "1.1"
     assert versions["registry_schema_version"] == "1.0"
     assert versions["operations_schema_version"] == "1.0"
     assert versions["operations_registry_id"] == "taiyi-public-operations-v1"
@@ -256,7 +260,7 @@ def test_registry_versions_are_explicit_and_consistent():
 
 def test_repository_status_is_derived_from_live_indexes():
     status = repository_status()
-    assert status["public_api_version"] == "1.0"
+    assert status["public_api_version"] == "1.1"
     assert status["stable_catalog_count"] == len(list_catalogs())
     assert status["operation_count"] == len(list_operations())
     assert status["stable_term_entry_count"] > 0
@@ -361,4 +365,21 @@ def test_recovery_status_distinguishes_rule_source_gaps_from_legacy_witness_gaps
     )
     assert by_key["nine_palace_nobles"]["known_executable_rule_id"] == (
         "C127-TONGZONG-NINE-PALACE-NOBLES"
+    )
+
+
+def test_public_api_exposes_stable_minute_count_and_pan():
+    moment = datetime(2026, 10, 8, 20, 0, tzinfo=ZoneInfo("Asia/Shanghai"))
+    minute = minute_count(moment)
+    pan = build_pan(moment, count_type="分计")
+
+    assert minute["rule_id"] == "MODERN-TAIYI-MINUTE-COUNT"
+    assert minute["extension_status"] == "stable_modern_extension"
+    assert pan["meta"]["count_type"] == "分计"
+    assert pan["calendar"]["selected_count"]["rule_id"] == "MODERN-TAIYI-MINUTE-COUNT"
+
+    operations = {item["name"]: item for item in list_operations()}
+    assert operations["modern.minute_count"]["status"] == "stable"
+    assert operations["modern.minute_count"]["runtime"] == (
+        "kintaiyi.taiyi_modern_minute_count.modern_minute_count"
     )

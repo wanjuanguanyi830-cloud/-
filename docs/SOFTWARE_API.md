@@ -11,10 +11,10 @@ from kintaiyi import registry_versions
 
 versions = registry_versions()
 # {
-#   "public_api_version": "1.0",
+#   "public_api_version": "1.1",
 #   "registry_schema_version": "1.0",
 #   "operations_schema_version": "1.0",
-#   "operations_api_version": "1.0",
+#   "operations_api_version": "1.1",
 #   ...
 # }
 ```
@@ -100,12 +100,13 @@ operation name 是人类可读的软件别名；canonical 身份仍以 rule_id /
 ```python
 from datetime import datetime
 from zoneinfo import ZoneInfo
-from kintaiyi import calendar_context, build_pan
+from kintaiyi import calendar_context, minute_count, build_pan
 
 moment = datetime(2026, 12, 22, 12, 0, tzinfo=ZoneInfo("Asia/Shanghai"))
 
 facts = calendar_context(moment)
-pan = build_pan(moment, count_type="岁计")
+minute = minute_count(moment)
+pan = build_pan(moment, count_type="分计")
 ```
 
 现代 production 边界保持：
@@ -114,7 +115,9 @@ pan = build_pan(moment, count_type="岁计")
 - 元旦、春节、立春、春分不换太乙岁；
 - 月计使用十二节精确交节；
 - 日计使用 Asia/Shanghai 民用日；
-- 时计使用真实冬至/夏至半岁。
+- 时计使用真实冬至/夏至半岁；
+- 分计是明确标识的现代扩展：从当前真实冬/夏至瞬间起，每完整60秒推进一算；
+- 分计复用既有G2..G7核心，但不把C119时计直门外推成“分计直门”。
 
 ## 8. Source-specific result normalization
 
@@ -164,6 +167,8 @@ pan = build_pan(moment, count_type="岁计")
 - 用旧项目兼容公式覆盖已校来源 profile。
 
 内部目录未来可以继续整理，而上层软件只要 API v1 契约不变，就无需同步重构。
+
+分计来源边界与公式说明见 `sources/taiyi-modern-minute-count-record.md`。
 
 
 ## 13. 仓库/数据状态页

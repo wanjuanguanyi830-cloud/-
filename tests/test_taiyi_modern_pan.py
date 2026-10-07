@@ -9,8 +9,8 @@ TZ = ZoneInfo("Asia/Shanghai")
 MOMENT = datetime(2026, 3, 24, 12, 30, tzinfo=TZ)
 
 
-def test_modern_pan_v2_builds_all_four_count_types():
-    for kind in ("岁计", "月计", "日计", "时计"):
+def test_modern_pan_v2_builds_all_supported_count_types():
+    for kind in ("岁计", "月计", "日计", "时计", "分计"):
         pan = build_modern_pan_v2(MOMENT, count_type=kind)
         assert pan["schema_version"] == "2.0"
         assert pan["meta"]["count_type"] == kind
@@ -30,11 +30,13 @@ def test_modern_pan_v2_board_contains_core_generated_facts():
 def test_time_pan_v2_exposes_c119_direct_door_only_for_time_count():
     time_pan = build_modern_pan_v2(MOMENT, count_type="时计")
     year_pan = build_modern_pan_v2(MOMENT, count_type="岁计")
+    minute_pan = build_modern_pan_v2(MOMENT, count_type="分计")
 
     assert time_pan["board"]["doors"]["direct"]["door"] in {
         "开", "生", "惊", "休", "杜", "死", "伤", "景"
     }
     assert year_pan["board"]["doors"] == {}
+    assert minute_pan["board"]["doors"] == {}
 
 
 def test_modern_pan_v2_calendar_is_json_safe_iso_datetime():
@@ -167,3 +169,22 @@ def test_modern_pan_v2_winter_solstice_advances_taiyi_year_without_new_month():
     assert pan["calendar"]["solar_month"]["month_build_branch"] == "子"
     assert pan["calendar"]["selected_count"]["month_formula_year"] == 2027
     assert pan["calendar"]["taiyi_year"] == 2027
+
+
+def test_minute_pan_changes_on_the_next_absolute_minute():
+    from datetime import timedelta
+
+    first = build_modern_pan_v2(MOMENT, count_type="分计")
+    second = build_modern_pan_v2(MOMENT + timedelta(minutes=1), count_type="分计")
+
+    a = first["calendar"]["selected_count"]["entry_count"]
+    b = second["calendar"]["selected_count"]["entry_count"]
+    assert b == a + 1
+    assert first["meta"]["count_type"] == "分计"
+    assert second["meta"]["count_type"] == "分计"
+
+
+def test_minute_alias_is_accepted():
+    traditional = build_modern_pan_v2(MOMENT, count_type="分計")
+    simplified = build_modern_pan_v2(MOMENT, count_type="分计")
+    assert traditional == simplified

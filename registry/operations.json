@@ -18,6 +18,16 @@
       "status": "stable"
     },
     {
+      "name": "modern.minute_count",
+      "domain": "modern",
+      "rule_ids": [
+        "MODERN-TAIYI-MINUTE-COUNT"
+      ],
+      "runtime": "kintaiyi.taiyi_modern_minute_count.modern_minute_count",
+      "status": "stable",
+      "source_profile": "production_modern_solstice_relative_minute_extension_v1"
+    },
+    {
       "name": "modern.pan_v2",
       "domain": "modern",
       "rule_ids": [
@@ -313,5 +323,5 @@
       "source_profile": "tongzong_volume10_nine_palace_nobles"
     }
   ],
-  "api_version": "1.0"
+  "api_version": "1.1"
 }

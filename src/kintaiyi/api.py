@@ -391,6 +391,11 @@ def calendar_context(moment: Any) -> dict[str, Any]:
     return calculate("modern.calendar_context", moment)
 
 
+def minute_count(moment: Any) -> dict[str, Any]:
+    """Return the stable project-defined modern minute-count extension."""
+    return calculate("modern.minute_count", moment)
+
+
 def build_pan(
     moment: Any,
     *,
