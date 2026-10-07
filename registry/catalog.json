@@ -50,9 +50,9 @@
     "legacy_terminology_master_migrated": false
   },
   "public_api": {
-    "version": "1.0",
+    "version": "1.1",
     "facade": "kintaiyi.api",
-    "stability": "stable_v1",
+    "stability": "stable_v1_1",
     "breaking_change_policy": "breaking public API changes require a major API version bump"
   }
 }
