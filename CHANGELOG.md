@@ -1,5 +1,14 @@
 # 变更记录
 
+## 2026-10-08 — stable 分计 public API v1.1
+
+- 新增 `MODERN-TAIYI-MINUTE-COUNT`，明确标识为现代扩展而非古籍“四计”第五法。
+- 分计以真实冬/夏至瞬间为半岁起点，每完整60秒推进一算；同一绝对瞬间跨时区结果一致。
+- `calendar_context()` 新增 `minute_count`，`build_pan(..., count_type="分计")` 进入稳定 public API。
+- 新增 `modern.minute_count` operation；public/operations API 次版本升至 1.1。
+- 分计复用既有 G2..G7，不外推 C119 时计直门；旧 HOUR/四计行为保持兼容。
+- 来源与边界见 `sources/taiyi-modern-minute-count-record.md`。
+
 ## 2026-10-06 — 执行覆盖 stale pending 续扫
 
 - C23 的 V15-09/12/13 待实现项改为已由 C24 实现；C24 的 V15-10 后续项改为已由 C25 实现。
