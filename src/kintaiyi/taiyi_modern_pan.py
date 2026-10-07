@@ -1,7 +1,7 @@
 """现代 production calendar -> pan v2 适配器。
 
 只做事实搬运与JSON-safe序列化，不复制任何太乙算法。
-调用方必须显式选择岁计/月计/日计/时计；四盘不会混成一盘。
+调用方必须显式选择岁计/月计/日计/时计/分计；各盘不会混成一盘。
 """
 
 from __future__ import annotations
@@ -19,6 +19,7 @@ _COUNT_KEY = {
     "月计": "month_count",
     "日计": "day_count",
     "时计": "time_count",
+    "分计": "minute_count",
 }
 
 _ALIASES = {
@@ -26,6 +27,7 @@ _ALIASES = {
     "月": "月计", "月计": "月计",
     "日": "日计", "日计": "日计",
     "时": "时计", "時": "时计", "时计": "时计", "時計": "时计",
+    "分": "分计", "分計": "分计", "分计": "分计",
 }
 
 
@@ -33,7 +35,7 @@ def _kind(value: str) -> str:
     try:
         return _ALIASES[value]
     except (KeyError, TypeError) as exc:
-        raise ValueError("count_type须为岁计/月计/日计/时计") from exc
+        raise ValueError("count_type须为岁计/月计/日计/时计/分计") from exc
 
 
 def _json_calendar(value: Any) -> Any:
@@ -69,7 +71,7 @@ def build_modern_pan_v2(
     count_type: str,
     scenario: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    """一个现代datetime + 显式四计类型 -> pan v2。"""
+    """一个现代datetime + 显式计类型 -> pan v2。"""
     kind = _kind(count_type)
     context = production_calendar_context(moment)
     selected = context[_COUNT_KEY[kind]]
