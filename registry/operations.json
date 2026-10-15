@@ -343,7 +343,15 @@
       "runtime": "kintaiyi.reviewed_geju.reviewed_geju_facts",
       "status": "stable",
       "source_profile_required": true,
-      "source_profile": "maintainer_reviewed_geju_20261015_v1"
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "source_profiles": [
+        "maintainer_reviewed_geju_20261015_v1",
+        "maintainer_reviewed_geju_20261015_v1_1"
+      ],
+      "profile_fact_contracts": {
+        "maintainer_reviewed_geju_20261015_v1": "rules/reviewed_geju_v1.json",
+        "maintainer_reviewed_geju_20261015_v1_1": "rules/reviewed_geju_v1_1.json"
+      }
     }
   ],
   "api_version": "1.1"

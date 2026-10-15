@@ -15,9 +15,11 @@ from .taiyi_rules import (
     INTRINSIC_WX, PALACE_POINT, PALACE_WX, POSITION_WX, SIXTEEN,
     integer, qi_state, sector_to_nine_palace, validate_sector,
 )
-from .tongzong_v2_doors import three_readiness_bundle
+from .tongzong_v2_doors import (three_readiness_bundle, taiyi_door_readiness,
+                                 host_door_readiness, guest_door_readiness)
 
 PROFILE = "maintainer_reviewed_geju_20261015_v1"
+CENTER_DOOR_PROFILE = "maintainer_reviewed_geju_20261015_v1_1"
 RULE_ID = "REVIEWED-GEJU-V1"
 ROLE_NAMES = {
     "taiyi": "太乙", "wenchang": "文昌", "shiji": "始擊",
@@ -38,7 +40,7 @@ def digest(value):
 def reviewed_geju_facts(*, source_profile, chart_source_profile, taiyi, wenchang,
                         shiji, home_general, home_vassal, away_general,
                         away_vassal, home_cal, away_cal):
-    if source_profile != PROFILE:
+    if source_profile not in {PROFILE, CENTER_DOOR_PROFILE}:
         raise ValueError("explicit reviewed geju source profile required")
     if not isinstance(chart_source_profile, str) or not chart_source_profile.strip():
         raise ValueError("chart source profile required")
@@ -181,10 +183,24 @@ def reviewed_geju_facts(*, source_profile, chart_source_profile, taiyi, wenchang
                 event["extra_event_ids"] = sorted(e["event_id"] for e in extra)
                 event["parent_component_event_ids"] = sorted(members)
 
-    door_bundle = three_readiness_bundle(
-        taiyi_palace=taiyi, tianmu=wenchang, host_big_palace=home_general,
-        wenchang=wenchang, guest_big_palace=away_general, shiji=shiji,
-    )
+    center_door_policy = source_profile == CENTER_DOOR_PROFILE
+    if center_door_policy:
+        def center_door(name):
+            return {"status": "NOT_APPLICABLE_CENTER", "context": name, "computable": False,
+                    "anchor_palace": 5, "door_ready": None,
+                    "reason": "MAINTAINER_EXCLUDES_CENTER_FROM_EIGHT_DOORS"}
+        door_bundle = {
+            "taiyi": taiyi_door_readiness(taiyi, tianmu=wenchang),
+            "host": center_door("HOME") if home_general == 5 else host_door_readiness(
+                home_general, taiyi_palace=taiyi, wenchang=wenchang),
+            "guest": center_door("AWAY") if away_general == 5 else guest_door_readiness(
+                away_general, taiyi_palace=taiyi, shiji=shiji),
+        }
+    else:
+        door_bundle = three_readiness_bundle(
+            taiyi_palace=taiyi, tianmu=wenchang, host_big_palace=home_general,
+            wenchang=wenchang, guest_big_palace=away_general, shiji=shiji,
+        )
     blockers = [e["event_id"] for e in base if (
         (e["actors"] == ["shiji"] and e["pattern"] in {"掩", "擊"})
         or (e["actors"] == ["wenchang"] and e["pattern"] in {"囚", "迫"})
@@ -194,16 +210,22 @@ def reviewed_geju_facts(*, source_profile, chart_source_profile, taiyi, wenchang
     for name, key, calc in (("TAIYI", "taiyi", home_cal), ("HOME", "host", home_cal), ("AWAY", "guest", away_cal)):
         door = door_bundle[key]
         duse = calc in {5, 15, 25, 35}
+        if center_door_policy and door["status"] == "NOT_APPLICABLE_CENTER":
+            readiness[name] = {"door": door, "generals_blockers": sorted(blockers),
+                               "duse": duse, "computable": False, "ready": None,
+                               "not_applicable": True, "missing_reason": None,
+                               "applicability_reason": "CENTER_ANCHOR_EXCLUDED"}
+            continue
         known_blocked = bool(blockers) or duse
         computable = door["computable"] is True or known_blocked
         ready = False if known_blocked else door["door_ready"]
         readiness[name] = {"door": door, "generals_blockers": sorted(blockers),
                            "duse": duse, "computable": computable, "ready": ready,
                            "missing_reason": None if computable else "DOOR_ANCHOR_NOT_COMPUTABLE"}
-    result = {"rule_id": RULE_ID, "source_profile": PROFILE, "schema_version": "1.0",
+    result = {"rule_id": RULE_ID, "source_profile": source_profile, "schema_version": "1.0",
               "inputs": inputs, "input_hash": input_hash, "positions": positions,
               "events": sorted(events, key=lambda e: e["event_id"]), "readiness": readiness,
-              "complete": all(r["computable"] for r in readiness.values()),
+              "complete": all(r["computable"] or r.get("not_applicable") is True for r in readiness.values()),
               "calculation_profile_repaired_or_swapped": False,
               "door_time_basis": "SAME_SELECTED_MINUTE_CHART_FIXED_OPEN_ANCHOR_NOT_C119_DUTY_CYCLE",
               "ancient_board_exception_applied": False}

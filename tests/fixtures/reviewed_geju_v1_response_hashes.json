@@ -1,0 +1,2450 @@
+[
+  {
+    "board_id": "Y01",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 1,
+      "wenchang": "申",
+      "shiji": "坤",
+      "home_cal": 7,
+      "away_cal": 13,
+      "home_general": 7,
+      "home_vassal": 1,
+      "away_general": 3,
+      "away_vassal": 9
+    },
+    "content_hash": "95252e50a21b9db5e75e34f159c6f87c03e0bd84bd51f717e7ef829d5087f6fb"
+  },
+  {
+    "board_id": "Y02",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 1,
+      "wenchang": "酉",
+      "shiji": "戌",
+      "home_cal": 6,
+      "away_cal": 1,
+      "home_general": 6,
+      "home_vassal": 8,
+      "away_general": 1,
+      "away_vassal": 3
+    },
+    "content_hash": "1b8dfcaedcd6d653e3988fc205b2b53d391fd5d68dea643a14e8c43a071c3d33"
+  },
+  {
+    "board_id": "Y03",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 1,
+      "wenchang": "戌",
+      "shiji": "亥",
+      "home_cal": 1,
+      "away_cal": 40,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 5,
+      "away_vassal": 5
+    },
+    "content_hash": "24474046b3f7d2db087e8083cab09d0ec7de05b2e11d5c2d9392c3515f6b5047"
+  },
+  {
+    "board_id": "Y04",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 2,
+      "wenchang": "乾",
+      "shiji": "丑",
+      "home_cal": 25,
+      "away_cal": 17,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 7,
+      "away_vassal": 1
+    },
+    "content_hash": "ecda7f0a09f374d8e2668e62e89193bf0a13553ac47b5843314f0bbbc314937f"
+  },
+  {
+    "board_id": "Y05",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 2,
+      "wenchang": "乾",
+      "shiji": "寅",
+      "home_cal": 25,
+      "away_cal": 14,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 4,
+      "away_vassal": 2
+    },
+    "content_hash": "0d52405f33e00e409ab578e51c3c31c8028a7518eaf29203a393e0d84b39335a"
+  },
+  {
+    "board_id": "Y06",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 2,
+      "wenchang": "亥",
+      "shiji": "辰",
+      "home_cal": 25,
+      "away_cal": 10,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 1,
+      "away_vassal": 3
+    },
+    "content_hash": "cfad57a887ef73acd7ac87cf6014df072d5da1e46fde5c18415773f9825ab2b5"
+  },
+  {
+    "board_id": "Y07",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 3,
+      "wenchang": "子",
+      "shiji": "巳",
+      "home_cal": 8,
+      "away_cal": 25,
+      "home_general": 8,
+      "home_vassal": 4,
+      "away_general": 5,
+      "away_vassal": 5
+    },
+    "content_hash": "a0c01ed43d60a661a047e4a25c71632986727627d81485a89a1a114e7510d192"
+  },
+  {
+    "board_id": "Y08",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 3,
+      "wenchang": "丑",
+      "shiji": "坤",
+      "home_cal": 1,
+      "away_cal": 22,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 2,
+      "away_vassal": 6
+    },
+    "content_hash": "84e6f50990b9982f18c85591e5e7c964b8fa15897b95243222c915da12182482"
+  },
+  {
+    "board_id": "Y09",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 3,
+      "wenchang": "艮",
+      "shiji": "酉",
+      "home_cal": 3,
+      "away_cal": 15,
+      "home_general": 3,
+      "home_vassal": 9,
+      "away_general": 5,
+      "away_vassal": 5
+    },
+    "content_hash": "a996571c7e2903d65172cba13394d8a88ba614788445d56b4450ed4bc5b5ebc0"
+  },
+  {
+    "board_id": "Y10",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 4,
+      "wenchang": "寅",
+      "shiji": "乾",
+      "home_cal": 1,
+      "away_cal": 12,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 2,
+      "away_vassal": 6
+    },
+    "content_hash": "b8785c8e2bd2fa3b10ce491bb9c8cabf21edb943d15862d7b72c2d2e2162f508"
+  },
+  {
+    "board_id": "Y11",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 4,
+      "wenchang": "卯",
+      "shiji": "丑",
+      "home_cal": 4,
+      "away_cal": 4,
+      "home_general": 4,
+      "home_vassal": 2,
+      "away_general": 4,
+      "away_vassal": 2
+    },
+    "content_hash": "3de02ceb31c32e7cbb717c4ad4598f457c303f5d201f0fd93cb9e316b7eee395"
+  },
+  {
+    "board_id": "Y12",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 4,
+      "wenchang": "辰",
+      "shiji": "寅",
+      "home_cal": 37,
+      "away_cal": 1,
+      "home_general": 7,
+      "home_vassal": 1,
+      "away_general": 1,
+      "away_vassal": 3
+    },
+    "content_hash": "add3f48e92d95fadfec0adab79d79b7701b384fa00db5e526e9d0d85131e14e6"
+  },
+  {
+    "board_id": "Y13",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 6,
+      "wenchang": "巽",
+      "shiji": "辰",
+      "home_cal": 18,
+      "away_cal": 19,
+      "home_general": 8,
+      "home_vassal": 4,
+      "away_general": 9,
+      "away_vassal": 7
+    },
+    "content_hash": "f2d7d273187f4df0a5e4ebaedcbe545e308ee3b04afa8922bb0b78521c6ee838"
+  },
+  {
+    "board_id": "Y14",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 6,
+      "wenchang": "巳",
+      "shiji": "午",
+      "home_cal": 10,
+      "away_cal": 9,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 9,
+      "away_vassal": 7
+    },
+    "content_hash": "0b802eaa6ac703f59154288170a652b77ad90afdbf6e43bcd93011d6d503aa66"
+  },
+  {
+    "board_id": "Y15",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 6,
+      "wenchang": "午",
+      "shiji": "坤",
+      "home_cal": 9,
+      "away_cal": 7,
+      "home_general": 9,
+      "home_vassal": 7,
+      "away_general": 7,
+      "away_vassal": 1
+    },
+    "content_hash": "63a53304f5fa0f9fe07c7483e8ae186b93f5bc7e6bb0c1e4dc783a927489b71d"
+  },
+  {
+    "board_id": "Y16",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 7,
+      "wenchang": "未",
+      "shiji": "酉",
+      "home_cal": 1,
+      "away_cal": 33,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 3,
+      "away_vassal": 9
+    },
+    "content_hash": "3a4d029caabdd05e75822b4ded9b1c4dd373f383fe02dc244c7e2b865b436b8d"
+  },
+  {
+    "board_id": "Y17",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 7,
+      "wenchang": "坤",
+      "shiji": "亥",
+      "home_cal": 7,
+      "away_cal": 27,
+      "home_general": 7,
+      "home_vassal": 1,
+      "away_general": 7,
+      "away_vassal": 1
+    },
+    "content_hash": "7dd01d4c206f987729271b76d6e7ad67e7503e5513246eae99d85d96dedcc73e"
+  },
+  {
+    "board_id": "Y18",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 7,
+      "wenchang": "坤",
+      "shiji": "子",
+      "home_cal": 7,
+      "away_cal": 26,
+      "home_general": 7,
+      "home_vassal": 1,
+      "away_general": 6,
+      "away_vassal": 8
+    },
+    "content_hash": "15362a21fce673eaaa7179853e694a8b9149c395e50b9687752394e26426f387"
+  },
+  {
+    "board_id": "Y19",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 8,
+      "wenchang": "申",
+      "shiji": "艮",
+      "home_cal": 8,
+      "away_cal": 32,
+      "home_general": 8,
+      "home_vassal": 4,
+      "away_general": 2,
+      "away_vassal": 6
+    },
+    "content_hash": "5aac3461a63369ac172ee88f7df5feaba337bb1464e2fbf0664a6a3f67d86a2b"
+  },
+  {
+    "board_id": "Y20",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 8,
+      "wenchang": "酉",
+      "shiji": "辰",
+      "home_cal": 7,
+      "away_cal": 26,
+      "home_general": 7,
+      "home_vassal": 1,
+      "away_general": 6,
+      "away_vassal": 8
+    },
+    "content_hash": "97cfce80a3025e173a2790371f88a6f2aac073f13106a17cef62a06970a0621b"
+  },
+  {
+    "board_id": "Y21",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 8,
+      "wenchang": "戌",
+      "shiji": "巳",
+      "home_cal": 2,
+      "away_cal": 17,
+      "home_general": 2,
+      "home_vassal": 6,
+      "away_general": 7,
+      "away_vassal": 1
+    },
+    "content_hash": "483e0821bdfc1617d168156a872c01d71c117c882f26740fb4b4dc6a765d5f1f"
+  },
+  {
+    "board_id": "Y22",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 9,
+      "wenchang": "乾",
+      "shiji": "未",
+      "home_cal": 16,
+      "away_cal": 30,
+      "home_general": 6,
+      "home_vassal": 8,
+      "away_general": 5,
+      "away_vassal": 5
+    },
+    "content_hash": "8db9c045e9d36e7d8afd973933c3919066d52ad3cab59edc230038911ba1068b"
+  },
+  {
+    "board_id": "Y23",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 9,
+      "wenchang": "乾",
+      "shiji": "申",
+      "home_cal": 16,
+      "away_cal": 23,
+      "home_general": 6,
+      "home_vassal": 8,
+      "away_general": 3,
+      "away_vassal": 9
+    },
+    "content_hash": "57dceed3dbbc469b2fb8ddbcb5b1b6980ab734a526ac1d6323c795cf650b8890"
+  },
+  {
+    "board_id": "Y24",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 9,
+      "wenchang": "亥",
+      "shiji": "戌",
+      "home_cal": 16,
+      "away_cal": 17,
+      "home_general": 6,
+      "home_vassal": 8,
+      "away_general": 7,
+      "away_vassal": 1
+    },
+    "content_hash": "c3b836ac65ba0eb63e918599e70b9d96900db4af264c57235b71c73e9110ae2d"
+  },
+  {
+    "board_id": "Y25",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 1,
+      "wenchang": "子",
+      "shiji": "亥",
+      "home_cal": 39,
+      "away_cal": 40,
+      "home_general": 9,
+      "home_vassal": 7,
+      "away_general": 5,
+      "away_vassal": 5
+    },
+    "content_hash": "366522714aaf05b6ef2333e18db5c90bdf0d01ffc06eb9a9b9baa16876db841a"
+  },
+  {
+    "board_id": "Y26",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 1,
+      "wenchang": "丑",
+      "shiji": "艮",
+      "home_cal": 32,
+      "away_cal": 31,
+      "home_general": 2,
+      "home_vassal": 6,
+      "away_general": 1,
+      "away_vassal": 3
+    },
+    "content_hash": "57db29acbbc9527888f63aeb1775e6e06b4cc0af1a16429b97c590d391a30df7"
+  },
+  {
+    "board_id": "Y27",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 1,
+      "wenchang": "艮",
+      "shiji": "卯",
+      "home_cal": 31,
+      "away_cal": 28,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 8,
+      "away_vassal": 4
+    },
+    "content_hash": "8c675969b13e3ddc7b9e6980b902cf35d002fffaffa58aac1d850e6b2f99020a"
+  },
+  {
+    "board_id": "Y28",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 2,
+      "wenchang": "寅",
+      "shiji": "巽",
+      "home_cal": 14,
+      "away_cal": 9,
+      "home_general": 4,
+      "home_vassal": 2,
+      "away_general": 9,
+      "away_vassal": 7
+    },
+    "content_hash": "1daae1937c88422d7ca1d9d462933bd8dd883f2c68b9783e33f20ef210f4a5aa"
+  },
+  {
+    "board_id": "Y29",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 2,
+      "wenchang": "卯",
+      "shiji": "未",
+      "home_cal": 13,
+      "away_cal": 39,
+      "home_general": 3,
+      "home_vassal": 9,
+      "away_general": 9,
+      "away_vassal": 7
+    },
+    "content_hash": "c3f5c9c87cac94901e1206efa4ebf00b510b2fdfda4267932561b233fd054a7c"
+  },
+  {
+    "board_id": "Y30",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 2,
+      "wenchang": "辰",
+      "shiji": "申",
+      "home_cal": 10,
+      "away_cal": 32,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 2,
+      "away_vassal": 6
+    },
+    "content_hash": "73b2a2e5ce162512e1ac951017c343bf3284f4680ad9100d37db59189f9f719b"
+  },
+  {
+    "board_id": "Y31",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 3,
+      "wenchang": "巽",
+      "shiji": "酉",
+      "home_cal": 33,
+      "away_cal": 10,
+      "home_general": 3,
+      "home_vassal": 9,
+      "away_general": 5,
+      "away_vassal": 5
+    },
+    "content_hash": "7dabb2da9d04a0bed71dc582aa7582f8e072c02cf6b6d18b345d9d405e636d19"
+  },
+  {
+    "board_id": "Y32",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 3,
+      "wenchang": "巳",
+      "shiji": "子",
+      "home_cal": 25,
+      "away_cal": 8,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 8,
+      "away_vassal": 4
+    },
+    "content_hash": "2f7bbe13dd6be1a6ae826ac368264b10fa1bb7d60fd56a3814423bf169d7810f"
+  },
+  {
+    "board_id": "Y33",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 3,
+      "wenchang": "午",
+      "shiji": "艮",
+      "home_cal": 24,
+      "away_cal": 3,
+      "home_general": 4,
+      "home_vassal": 2,
+      "away_general": 3,
+      "away_vassal": 9
+    },
+    "content_hash": "663720edaaed76d0aba69ccf87ea4a1455c79411b6603d96a49bb464d8b4a5d4"
+  },
+  {
+    "board_id": "Y34",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 4,
+      "wenchang": "未",
+      "shiji": "卯",
+      "home_cal": 26,
+      "away_cal": 4,
+      "home_general": 6,
+      "home_vassal": 8,
+      "away_general": 4,
+      "away_vassal": 2
+    },
+    "content_hash": "42dcc06533537a411da654c310a9cc676c78ae148dbcf9fa8f5d2ef5cecfccbc"
+  },
+  {
+    "board_id": "Y35",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 4,
+      "wenchang": "坤",
+      "shiji": "巳",
+      "home_cal": 25,
+      "away_cal": 28,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 8,
+      "away_vassal": 4
+    },
+    "content_hash": "b2cc99f384c08b2398019748cd943808e908e15b0f6c6f8527b574e77dcffb1f"
+  },
+  {
+    "board_id": "Y36",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 4,
+      "wenchang": "坤",
+      "shiji": "午",
+      "home_cal": 25,
+      "away_cal": 27,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 7,
+      "away_vassal": 1
+    },
+    "content_hash": "0134ab6658f2797f478a84b289d2f99d0e517ea04c5f5c8c1a5098035e056c8e"
+  },
+  {
+    "board_id": "Y37",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 6,
+      "wenchang": "申",
+      "shiji": "坤",
+      "home_cal": 1,
+      "away_cal": 7,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 7,
+      "away_vassal": 1
+    },
+    "content_hash": "29007c8236e3f05b9cb5d3f2be07dc0a9fb235b93753a8bbb02698ad3074aeb8"
+  },
+  {
+    "board_id": "Y38",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 6,
+      "wenchang": "酉",
+      "shiji": "戌",
+      "home_cal": 6,
+      "away_cal": 35,
+      "home_general": 6,
+      "home_vassal": 8,
+      "away_general": 5,
+      "away_vassal": 5
+    },
+    "content_hash": "cc89143bdb1b13f1fc8401527c88c9e8bb97f53337a351cbd86cead89a7ade79"
+  },
+  {
+    "board_id": "Y39",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 6,
+      "wenchang": "戌",
+      "shiji": "亥",
+      "home_cal": 35,
+      "away_cal": 34,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 4,
+      "away_vassal": 2
+    },
+    "content_hash": "69fc8ba1732996ab6bfb86ab95ade1e09d2431502655e0b950bda796c171d292"
+  },
+  {
+    "board_id": "Y40",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 7,
+      "wenchang": "乾",
+      "shiji": "丑",
+      "home_cal": 27,
+      "away_cal": 19,
+      "home_general": 7,
+      "home_vassal": 1,
+      "away_general": 9,
+      "away_vassal": 7
+    },
+    "content_hash": "ad3ba5565cd2ec8692b2631e91fa274e5f844f3dae826a06175497ef5399100d"
+  },
+  {
+    "board_id": "Y41",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 7,
+      "wenchang": "乾",
+      "shiji": "寅",
+      "home_cal": 27,
+      "away_cal": 16,
+      "home_general": 7,
+      "home_vassal": 1,
+      "away_general": 6,
+      "away_vassal": 8
+    },
+    "content_hash": "c3708f1ebcbd464f278e57183ed1ce674c478f607ab1b95bfa9a89d1e64060f8"
+  },
+  {
+    "board_id": "Y42",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 7,
+      "wenchang": "亥",
+      "shiji": "辰",
+      "home_cal": 27,
+      "away_cal": 12,
+      "home_general": 7,
+      "home_vassal": 1,
+      "away_general": 2,
+      "away_vassal": 6
+    },
+    "content_hash": "266b8820199cb47c978af43290323fa4a10287f954f83a3935e8a52eb51e2b2c"
+  },
+  {
+    "board_id": "Y43",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 8,
+      "wenchang": "子",
+      "shiji": "巳",
+      "home_cal": 8,
+      "away_cal": 17,
+      "home_general": 8,
+      "home_vassal": 4,
+      "away_general": 7,
+      "away_vassal": 1
+    },
+    "content_hash": "829d4a923ef31d9f2b6dff836e975b44c30d92de2ea84e8f1fed730ced0102af"
+  },
+  {
+    "board_id": "Y44",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 8,
+      "wenchang": "丑",
+      "shiji": "坤",
+      "home_cal": 23,
+      "away_cal": 14,
+      "home_general": 3,
+      "home_vassal": 9,
+      "away_general": 4,
+      "away_vassal": 2
+    },
+    "content_hash": "47207508eaee654515ba00db38311f2e1ae290db7f0cc4a4fecc8c0519d9376d"
+  },
+  {
+    "board_id": "Y45",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 8,
+      "wenchang": "艮",
+      "shiji": "酉",
+      "home_cal": 32,
+      "away_cal": 7,
+      "home_general": 2,
+      "home_vassal": 6,
+      "away_general": 7,
+      "away_vassal": 1
+    },
+    "content_hash": "da9a523b7bc8da87fdca2289c4e432f3d4399b67756a61b968b24582c5728ca1"
+  },
+  {
+    "board_id": "Y46",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 9,
+      "wenchang": "寅",
+      "shiji": "乾",
+      "home_cal": 5,
+      "away_cal": 16,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 6,
+      "away_vassal": 8
+    },
+    "content_hash": "56d20d519406edfa0778d9863a7e9f273d1b57ab7749f06e28590380e974da6f"
+  },
+  {
+    "board_id": "Y47",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 9,
+      "wenchang": "卯",
+      "shiji": "丑",
+      "home_cal": 4,
+      "away_cal": 8,
+      "home_general": 4,
+      "home_vassal": 2,
+      "away_general": 8,
+      "away_vassal": 4
+    },
+    "content_hash": "1d5f788817c7e8c00e0e12d9587f611d84bed27da7445b15dc2846c99daef65e"
+  },
+  {
+    "board_id": "Y48",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 9,
+      "wenchang": "辰",
+      "shiji": "寅",
+      "home_cal": 1,
+      "away_cal": 5,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 5,
+      "away_vassal": 5
+    },
+    "content_hash": "5304acb1782c9a6b145febbde809c1473ddff714a38ff84596e1ded1d1f8772a"
+  },
+  {
+    "board_id": "Y49",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 1,
+      "wenchang": "巽",
+      "shiji": "辰",
+      "home_cal": 24,
+      "away_cal": 25,
+      "home_general": 4,
+      "home_vassal": 2,
+      "away_general": 5,
+      "away_vassal": 5
+    },
+    "content_hash": "4c1a69b7f4e39108f8e8aedf9b7b3ff3ddd5d1956a8af3a04b72c93f9e80645d"
+  },
+  {
+    "board_id": "Y50",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 1,
+      "wenchang": "巳",
+      "shiji": "午",
+      "home_cal": 16,
+      "away_cal": 15,
+      "home_general": 6,
+      "home_vassal": 8,
+      "away_general": 5,
+      "away_vassal": 5
+    },
+    "content_hash": "ad33b1777dc11efc3a1c420964bbd6621a73433251fc2f5b2d7e84fb4c1690cd"
+  },
+  {
+    "board_id": "Y51",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 1,
+      "wenchang": "午",
+      "shiji": "坤",
+      "home_cal": 15,
+      "away_cal": 13,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 3,
+      "away_vassal": 9
+    },
+    "content_hash": "25b351f41d3601318ebf3fe9b84f3fc3adee05fd47cffedefe29ed9160e1e800"
+  },
+  {
+    "board_id": "Y52",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 2,
+      "wenchang": "未",
+      "shiji": "酉",
+      "home_cal": 39,
+      "away_cal": 31,
+      "home_general": 9,
+      "home_vassal": 7,
+      "away_general": 1,
+      "away_vassal": 3
+    },
+    "content_hash": "a526e0bf8c11a5502df3e352325929ac0f75082c156e056df3ae946b6cd1db05"
+  },
+  {
+    "board_id": "Y53",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 2,
+      "wenchang": "坤",
+      "shiji": "亥",
+      "home_cal": 38,
+      "away_cal": 25,
+      "home_general": 8,
+      "home_vassal": 4,
+      "away_general": 5,
+      "away_vassal": 5
+    },
+    "content_hash": "c99ed62a8754560886456ffae1a96eed6cb7d20558bc118fe28a834d8f984df8"
+  },
+  {
+    "board_id": "Y54",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 2,
+      "wenchang": "坤",
+      "shiji": "子",
+      "home_cal": 38,
+      "away_cal": 24,
+      "home_general": 8,
+      "home_vassal": 4,
+      "away_general": 4,
+      "away_vassal": 2
+    },
+    "content_hash": "1844b50bd4374df1d60474aba37afd99ed2e284238bef7b29b2ada9fa3d805c3"
+  },
+  {
+    "board_id": "Y55",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 3,
+      "wenchang": "申",
+      "shiji": "艮",
+      "home_cal": 16,
+      "away_cal": 3,
+      "home_general": 6,
+      "home_vassal": 8,
+      "away_general": 3,
+      "away_vassal": 9
+    },
+    "content_hash": "d66fcc6c4822dcb0268cf5e9bbbd6052e8373c99ca1d463e334fbd4c22b03f1f"
+  },
+  {
+    "board_id": "Y56",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 3,
+      "wenchang": "酉",
+      "shiji": "辰",
+      "home_cal": 15,
+      "away_cal": 34,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 4,
+      "away_vassal": 2
+    },
+    "content_hash": "23ba1d9c75617ed932d8a0b7ee281dce8285461a578fd6979167c0ebd5bac10e"
+  },
+  {
+    "board_id": "Y57",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 3,
+      "wenchang": "戌",
+      "shiji": "巳",
+      "home_cal": 10,
+      "away_cal": 25,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 5,
+      "away_vassal": 5
+    },
+    "content_hash": "149fcbc22c3fb4f9fb29823a863fb4cec65a056e04855d0c88f6aa906f804c69"
+  },
+  {
+    "board_id": "Y58",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 4,
+      "wenchang": "乾",
+      "shiji": "未",
+      "home_cal": 12,
+      "away_cal": 26,
+      "home_general": 2,
+      "home_vassal": 6,
+      "away_general": 6,
+      "away_vassal": 8
+    },
+    "content_hash": "a0a106b554620b1e28ba91e81edd1b249e11e59aff04da77dc2bab44ec980068"
+  },
+  {
+    "board_id": "Y59",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 4,
+      "wenchang": "乾",
+      "shiji": "申",
+      "home_cal": 12,
+      "away_cal": 19,
+      "home_general": 2,
+      "home_vassal": 6,
+      "away_general": 9,
+      "away_vassal": 7
+    },
+    "content_hash": "b35b6e1c9c7ccf4e84cc74044b1eb71afb48710b59181d74ee387a0959391b2a"
+  },
+  {
+    "board_id": "Y60",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 4,
+      "wenchang": "亥",
+      "shiji": "戌",
+      "home_cal": 12,
+      "away_cal": 13,
+      "home_general": 2,
+      "home_vassal": 6,
+      "away_general": 3,
+      "away_vassal": 9
+    },
+    "content_hash": "d0c44f3117aa743468b4952d3999fa802d7cd18c6e4352c93c3dc03e4edfe040"
+  },
+  {
+    "board_id": "Y61",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 6,
+      "wenchang": "子",
+      "shiji": "亥",
+      "home_cal": 33,
+      "away_cal": 34,
+      "home_general": 3,
+      "home_vassal": 9,
+      "away_general": 4,
+      "away_vassal": 2
+    },
+    "content_hash": "eff3cd35d27952073543549fefe0adce61bf255969a51ccd83f7dd844428a803"
+  },
+  {
+    "board_id": "Y62",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 6,
+      "wenchang": "丑",
+      "shiji": "艮",
+      "home_cal": 26,
+      "away_cal": 25,
+      "home_general": 6,
+      "home_vassal": 8,
+      "away_general": 5,
+      "away_vassal": 5
+    },
+    "content_hash": "e245205ce2c39e952539cc73d25a2189a0948b7d95afc8570831a14279430ff9"
+  },
+  {
+    "board_id": "Y63",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 6,
+      "wenchang": "艮",
+      "shiji": "卯",
+      "home_cal": 25,
+      "away_cal": 22,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 2,
+      "away_vassal": 6
+    },
+    "content_hash": "32e76162e940a419771c5b4b6ff792d5f7a49e119992041f20c05b027328ae3c"
+  },
+  {
+    "board_id": "Y64",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 7,
+      "wenchang": "寅",
+      "shiji": "巽",
+      "home_cal": 16,
+      "away_cal": 11,
+      "home_general": 6,
+      "home_vassal": 8,
+      "away_general": 1,
+      "away_vassal": 3
+    },
+    "content_hash": "0a1005ac1aa8152ac549a4f2b206dba535ff74e624557a459b2038ac62ec7462"
+  },
+  {
+    "board_id": "Y65",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 7,
+      "wenchang": "卯",
+      "shiji": "未",
+      "home_cal": 15,
+      "away_cal": 1,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 1,
+      "away_vassal": 3
+    },
+    "content_hash": "54e1b70d4d32085c1c8aa82ced6d7c9cdf904122259236501469dc889e983206"
+  },
+  {
+    "board_id": "Y66",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 7,
+      "wenchang": "辰",
+      "shiji": "申",
+      "home_cal": 12,
+      "away_cal": 34,
+      "home_general": 2,
+      "home_vassal": 6,
+      "away_general": 4,
+      "away_vassal": 2
+    },
+    "content_hash": "64402be2bc50f81d6b4e1fd92b02fa460b055d44eceb9cc21f1c6265780811ff"
+  },
+  {
+    "board_id": "Y67",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 8,
+      "wenchang": "巽",
+      "shiji": "乾",
+      "home_cal": 25,
+      "away_cal": 2,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 2,
+      "away_vassal": 6
+    },
+    "content_hash": "036c34631382822f9372a50c7d03c2633463fd70fb34b8c44edf82d3b50d1bc2"
+  },
+  {
+    "board_id": "Y68",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 8,
+      "wenchang": "巳",
+      "shiji": "子",
+      "home_cal": 17,
+      "away_cal": 8,
+      "home_general": 7,
+      "home_vassal": 1,
+      "away_general": 8,
+      "away_vassal": 4
+    },
+    "content_hash": "8d5b1ad0aecbfd7709623cd9e652c3f457d29f1f4e8ac30f59a2bcd0b2787d9c"
+  },
+  {
+    "board_id": "Y69",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 8,
+      "wenchang": "午",
+      "shiji": "艮",
+      "home_cal": 16,
+      "away_cal": 32,
+      "home_general": 6,
+      "home_vassal": 8,
+      "away_general": 2,
+      "away_vassal": 6
+    },
+    "content_hash": "9366a0a6acfbea747fd9e69bfc320a74d2a7439de51e3b9f0d17c7f1e039d6d3"
+  },
+  {
+    "board_id": "Y70",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 9,
+      "wenchang": "未",
+      "shiji": "卯",
+      "home_cal": 30,
+      "away_cal": 4,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 4,
+      "away_vassal": 2
+    },
+    "content_hash": "e79ba42143c9cb20acd19b69dd8313c7b296526534166d78728b8480e88fad06"
+  },
+  {
+    "board_id": "Y71",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 9,
+      "wenchang": "坤",
+      "shiji": "巳",
+      "home_cal": 29,
+      "away_cal": 32,
+      "home_general": 9,
+      "home_vassal": 7,
+      "away_general": 2,
+      "away_vassal": 6
+    },
+    "content_hash": "598a52f6249c659a9d8c5f04322dbc85f4d758584306b9477606141285dcaadb"
+  },
+  {
+    "board_id": "Y72",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 9,
+      "wenchang": "坤",
+      "shiji": "午",
+      "home_cal": 29,
+      "away_cal": 31,
+      "home_general": 9,
+      "home_vassal": 7,
+      "away_general": 1,
+      "away_vassal": 3
+    },
+    "content_hash": "d35afb11f5ee988c5853f33e25b79dbbebf0d5cc6845b9fe32e0be555103266a"
+  },
+  {
+    "board_id": "N01",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 9,
+      "wenchang": "寅",
+      "shiji": "坤",
+      "home_cal": 5,
+      "away_cal": 29,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 9,
+      "away_vassal": 7
+    },
+    "content_hash": "841c09dd1570efb54a4b2cf8eff24c8cabea3d3763cadb62c04b76e86a3b1eda"
+  },
+  {
+    "board_id": "N02",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 9,
+      "wenchang": "卯",
+      "shiji": "戌",
+      "home_cal": 4,
+      "away_cal": 17,
+      "home_general": 4,
+      "home_vassal": 2,
+      "away_general": 7,
+      "away_vassal": 1
+    },
+    "content_hash": "b9a8d0ba3cb4412ab326d73540442ec3ae81b87bc5468d05370dd8a19b35101e"
+  },
+  {
+    "board_id": "N03",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 9,
+      "wenchang": "辰",
+      "shiji": "亥",
+      "home_cal": 1,
+      "away_cal": 16,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 6,
+      "away_vassal": 8
+    },
+    "content_hash": "ea72d969ec57bd725d80639c05b47cecc924538732ceda835309317ff5820da5"
+  },
+  {
+    "board_id": "N04",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 8,
+      "wenchang": "巽",
+      "shiji": "丑",
+      "home_cal": 25,
+      "away_cal": 33,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 3,
+      "away_vassal": 9
+    },
+    "content_hash": "d329bc8b04fb0965df1873fdbaea079611fdecb9ebdcc3657f0df3cec8fa350d"
+  },
+  {
+    "board_id": "N05",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 8,
+      "wenchang": "巽",
+      "shiji": "寅",
+      "home_cal": 25,
+      "away_cal": 30,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 1,
+      "away_vassal": 3
+    },
+    "content_hash": "03eadab779adc3afc8345dac7fd1f5ab00b7e9b7b66b7ad3ba1a1791707193c2"
+  },
+  {
+    "board_id": "N06",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 8,
+      "wenchang": "巳",
+      "shiji": "辰",
+      "home_cal": 17,
+      "away_cal": 26,
+      "home_general": 7,
+      "home_vassal": 1,
+      "away_general": 6,
+      "away_vassal": 8
+    },
+    "content_hash": "4f2931fdca5bd6eddcd3e83f0c4a974db88e9874d63edfa7afc0fca6d3dd7a45"
+  },
+  {
+    "board_id": "N07",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 7,
+      "wenchang": "午",
+      "shiji": "巳",
+      "home_cal": 2,
+      "away_cal": 3,
+      "home_general": 2,
+      "home_vassal": 6,
+      "away_general": 3,
+      "away_vassal": 9
+    },
+    "content_hash": "4290ba062dd31f25dc513ecdbdb6047d3e5cba26a2726a4ffb0862215991d2f2"
+  },
+  {
+    "board_id": "N08",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 7,
+      "wenchang": "未",
+      "shiji": "坤",
+      "home_cal": 1,
+      "away_cal": 7,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 7,
+      "away_vassal": 1
+    },
+    "content_hash": "9d125eb663acd9e6bc7f6f0cc0589997dc9af286d246b7db37c722341be11e10"
+  },
+  {
+    "board_id": "N09",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 7,
+      "wenchang": "坤",
+      "shiji": "酉",
+      "home_cal": 7,
+      "away_cal": 33,
+      "home_general": 7,
+      "home_vassal": 1,
+      "away_general": 3,
+      "away_vassal": 9
+    },
+    "content_hash": "12f77e8bbd5ec92a44f4f59b3616123062258eb96e4977e4fc9d7268117d209d"
+  },
+  {
+    "board_id": "N10",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 6,
+      "wenchang": "申",
+      "shiji": "乾",
+      "home_cal": 1,
+      "away_cal": 24,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 4,
+      "away_vassal": 2
+    },
+    "content_hash": "2f5b90e2b6aa3ce60994217dae8dd9cb33ce9f6a74aefe5776875b27a9b44d0e"
+  },
+  {
+    "board_id": "N11",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 6,
+      "wenchang": "酉",
+      "shiji": "丑",
+      "home_cal": 6,
+      "away_cal": 26,
+      "home_general": 6,
+      "home_vassal": 8,
+      "away_general": 6,
+      "away_vassal": 8
+    },
+    "content_hash": "e7380dfb0142dbd699d0de01f3bdaec69b2a7277e729484ea995b936790ab3cc"
+  },
+  {
+    "board_id": "N12",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 6,
+      "wenchang": "戌",
+      "shiji": "寅",
+      "home_cal": 35,
+      "away_cal": 23,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 3,
+      "away_vassal": 9
+    },
+    "content_hash": "2a4adc26cfc3eb3d3f1f765e488750a0bf8ccee9fe1a20e716016bee43521e64"
+  },
+  {
+    "board_id": "N13",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 4,
+      "wenchang": "乾",
+      "shiji": "辰",
+      "home_cal": 12,
+      "away_cal": 37,
+      "home_general": 2,
+      "home_vassal": 6,
+      "away_general": 7,
+      "away_vassal": 1
+    },
+    "content_hash": "7843662b71e09aafed2e57d112c08b789127fc1334952e6903598b5bdaeeb0af"
+  },
+  {
+    "board_id": "N14",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 4,
+      "wenchang": "亥",
+      "shiji": "午",
+      "home_cal": 12,
+      "away_cal": 27,
+      "home_general": 2,
+      "home_vassal": 6,
+      "away_general": 7,
+      "away_vassal": 1
+    },
+    "content_hash": "28c9081dee511686084b525119091e6fb343131c0f8566e994a106c074c4c253"
+  },
+  {
+    "board_id": "N15",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 4,
+      "wenchang": "子",
+      "shiji": "坤",
+      "home_cal": 11,
+      "away_cal": 25,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 5,
+      "away_vassal": 5
+    },
+    "content_hash": "df9d290fbd2e321ed3651c2af2b44c63af7369b88497556fdc2f2f0a744311fb"
+  },
+  {
+    "board_id": "N16",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 3,
+      "wenchang": "丑",
+      "shiji": "酉",
+      "home_cal": 1,
+      "away_cal": 15,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 5,
+      "away_vassal": 5
+    },
+    "content_hash": "1f51e4ac6a17fc8400df7b966645e67186bfedafdcb8c53edb2c530c5410d08a"
+  },
+  {
+    "board_id": "N17",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 3,
+      "wenchang": "艮",
+      "shiji": "亥",
+      "home_cal": 3,
+      "away_cal": 9,
+      "home_general": 3,
+      "home_vassal": 9,
+      "away_general": 9,
+      "away_vassal": 7
+    },
+    "content_hash": "3ed96b9b975772436a322fd5e4c8f952fc673132275138cb2e626ebc3a9eaffe"
+  },
+  {
+    "board_id": "N18",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 3,
+      "wenchang": "艮",
+      "shiji": "子",
+      "home_cal": 3,
+      "away_cal": 8,
+      "home_general": 3,
+      "home_vassal": 9,
+      "away_general": 8,
+      "away_vassal": 4
+    },
+    "content_hash": "1ee1ad3a61e600e913ea5146fa7281cfcb84767919b520f2fad3ba0c8eda6858"
+  },
+  {
+    "board_id": "N19",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 2,
+      "wenchang": "寅",
+      "shiji": "艮",
+      "home_cal": 14,
+      "away_cal": 16,
+      "home_general": 4,
+      "home_vassal": 2,
+      "away_general": 6,
+      "away_vassal": 8
+    },
+    "content_hash": "7de364bc42ea0e32f24b4979f0d345e96e4a4133c6ff6cda80f8e55798b5540c"
+  },
+  {
+    "board_id": "N20",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 2,
+      "wenchang": "卯",
+      "shiji": "辰",
+      "home_cal": 13,
+      "away_cal": 10,
+      "home_general": 3,
+      "home_vassal": 9,
+      "away_general": 5,
+      "away_vassal": 5
+    },
+    "content_hash": "efc365ae3e1426270b3bbcb54501ce7246fc659b6e31603edc695b5f79fba844"
+  },
+  {
+    "board_id": "N21",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 2,
+      "wenchang": "辰",
+      "shiji": "巳",
+      "home_cal": 10,
+      "away_cal": 1,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 1,
+      "away_vassal": 3
+    },
+    "content_hash": "dc7380b9db7bef4c1ba7cc85c84e52866995591f2107bddaa31d2721bc9289fa"
+  },
+  {
+    "board_id": "N22",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 1,
+      "wenchang": "巽",
+      "shiji": "未",
+      "home_cal": 24,
+      "away_cal": 14,
+      "home_general": 4,
+      "home_vassal": 2,
+      "away_general": 4,
+      "away_vassal": 2
+    },
+    "content_hash": "b9d4b77b498c21d893ffae806c2ac16fa891dad98255277a6efa4071724de6a2"
+  },
+  {
+    "board_id": "N23",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 1,
+      "wenchang": "巽",
+      "shiji": "申",
+      "home_cal": 24,
+      "away_cal": 7,
+      "home_general": 4,
+      "home_vassal": 2,
+      "away_general": 7,
+      "away_vassal": 1
+    },
+    "content_hash": "4b4f9c83abf0d8f64c2a9ceb6d4791c61218063df47bb6fa7a0a715c841fdfda"
+  },
+  {
+    "board_id": "N24",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 1,
+      "wenchang": "巳",
+      "shiji": "戌",
+      "home_cal": 16,
+      "away_cal": 1,
+      "home_general": 6,
+      "home_vassal": 8,
+      "away_general": 1,
+      "away_vassal": 3
+    },
+    "content_hash": "0940ad942b95f4e7dd83225b6e38280a9e9be1c5fea35e243a3492f01b8604f7"
+  },
+  {
+    "board_id": "N25",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 9,
+      "wenchang": "午",
+      "shiji": "亥",
+      "home_cal": 31,
+      "away_cal": 16,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 6,
+      "away_vassal": 8
+    },
+    "content_hash": "042a62b1503a49db01289fa8e00bb5ad976691d912cfc766ac1f9898686ead67"
+  },
+  {
+    "board_id": "N26",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 9,
+      "wenchang": "未",
+      "shiji": "艮",
+      "home_cal": 30,
+      "away_cal": 7,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 7,
+      "away_vassal": 1
+    },
+    "content_hash": "30456c54282f039da668955de745356b6376352f2a48a1d7d8c766d707a92081"
+  },
+  {
+    "board_id": "N27",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 9,
+      "wenchang": "坤",
+      "shiji": "卯",
+      "home_cal": 29,
+      "away_cal": 4,
+      "home_general": 9,
+      "home_vassal": 7,
+      "away_general": 4,
+      "away_vassal": 2
+    },
+    "content_hash": "76a6a4c43d61e3cf516e80a1f98682e233b897a6fb9bf20dcef8021eae2a729f"
+  },
+  {
+    "board_id": "N28",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 8,
+      "wenchang": "申",
+      "shiji": "巽",
+      "home_cal": 8,
+      "away_cal": 25,
+      "home_general": 8,
+      "home_vassal": 4,
+      "away_general": 5,
+      "away_vassal": 5
+    },
+    "content_hash": "ff42998958d28a995671b1c59ade46fa50f195c940fafdb612abc4f26e176c12"
+  },
+  {
+    "board_id": "N29",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 8,
+      "wenchang": "酉",
+      "shiji": "未",
+      "home_cal": 7,
+      "away_cal": 15,
+      "home_general": 7,
+      "home_vassal": 1,
+      "away_general": 5,
+      "away_vassal": 5
+    },
+    "content_hash": "ca2e161c482ab1b0542465728c80383a3d736d4520ed3fb98fecdbd5f09389ba"
+  },
+  {
+    "board_id": "N30",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 8,
+      "wenchang": "戌",
+      "shiji": "申",
+      "home_cal": 2,
+      "away_cal": 8,
+      "home_general": 2,
+      "home_vassal": 6,
+      "away_general": 8,
+      "away_vassal": 4
+    },
+    "content_hash": "22c2de13289ee650d496dc15a0f08bf5b459dd9057b25eafb7ba7ad71175721f"
+  },
+  {
+    "board_id": "N31",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 7,
+      "wenchang": "乾",
+      "shiji": "酉",
+      "home_cal": 27,
+      "away_cal": 28,
+      "home_general": 7,
+      "home_vassal": 1,
+      "away_general": 8,
+      "away_vassal": 4
+    },
+    "content_hash": "d2c6ffeb3dcf56adb1e0449edfeb3f07a3cb7d631f83bd3ef89cfe920e56c486"
+  },
+  {
+    "board_id": "N32",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 7,
+      "wenchang": "亥",
+      "shiji": "子",
+      "home_cal": 27,
+      "away_cal": 26,
+      "home_general": 7,
+      "home_vassal": 1,
+      "away_general": 6,
+      "away_vassal": 8
+    },
+    "content_hash": "326c650d16aaf8c15f2170bc63be5509cb0018c1ace8126658e79579e5b6b30c"
+  },
+  {
+    "board_id": "N33",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 7,
+      "wenchang": "子",
+      "shiji": "艮",
+      "home_cal": 26,
+      "away_cal": 18,
+      "home_general": 6,
+      "home_vassal": 8,
+      "away_general": 8,
+      "away_vassal": 4
+    },
+    "content_hash": "efd41a4afa67c4a5cdedabab9c3f3e8902d0a3e599e821c5760c4f80b08c89c7"
+  },
+  {
+    "board_id": "N34",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 6,
+      "wenchang": "丑",
+      "shiji": "卯",
+      "home_cal": 26,
+      "away_cal": 22,
+      "home_general": 6,
+      "home_vassal": 8,
+      "away_general": 2,
+      "away_vassal": 6
+    },
+    "content_hash": "9eab3349f8c224ec6997407e8f02cf36ad4b0915d068d79f2dcea3ec6d5cab21"
+  },
+  {
+    "board_id": "N35",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 6,
+      "wenchang": "艮",
+      "shiji": "巳",
+      "home_cal": 25,
+      "away_cal": 10,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 1,
+      "away_vassal": 3
+    },
+    "content_hash": "1446302f83e43d2afaa04393c695057d1191769d7838fa895b71936f1316797c"
+  },
+  {
+    "board_id": "N36",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 6,
+      "wenchang": "艮",
+      "shiji": "午",
+      "home_cal": 25,
+      "away_cal": 9,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 9,
+      "away_vassal": 7
+    },
+    "content_hash": "9869a3a0c793c6dca5c40f89662905a14703d633175da41e9fcf62c050c974d7"
+  },
+  {
+    "board_id": "N37",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 4,
+      "wenchang": "寅",
+      "shiji": "坤",
+      "home_cal": 1,
+      "away_cal": 25,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 5,
+      "away_vassal": 5
+    },
+    "content_hash": "a6af6ba8ab73a77134687477d52a5baa3921f2be4e67bf23ca7601b1082377a2"
+  },
+  {
+    "board_id": "N38",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 4,
+      "wenchang": "卯",
+      "shiji": "戌",
+      "home_cal": 4,
+      "away_cal": 13,
+      "home_general": 4,
+      "home_vassal": 2,
+      "away_general": 3,
+      "away_vassal": 9
+    },
+    "content_hash": "3e421c91b328550df44f117eaf94a2909119f4b3d5475a32544884b1846cf2bb"
+  },
+  {
+    "board_id": "N39",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 4,
+      "wenchang": "辰",
+      "shiji": "亥",
+      "home_cal": 27,
+      "away_cal": 12,
+      "home_general": 7,
+      "home_vassal": 1,
+      "away_general": 2,
+      "away_vassal": 6
+    },
+    "content_hash": "92372b5744ed8f718e6ebadfd89f4b2cae7c17b5762719ae29f94b81aedec363"
+  },
+  {
+    "board_id": "N40",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 3,
+      "wenchang": "巽",
+      "shiji": "丑",
+      "home_cal": 33,
+      "away_cal": 1,
+      "home_general": 3,
+      "home_vassal": 9,
+      "away_general": 1,
+      "away_vassal": 3
+    },
+    "content_hash": "0d7b4839654f48e0dcba2008a95f5ea81da893ab2bcc4977d5b02435e04c918f"
+  },
+  {
+    "board_id": "N41",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 3,
+      "wenchang": "巽",
+      "shiji": "寅",
+      "home_cal": 33,
+      "away_cal": 38,
+      "home_general": 3,
+      "home_vassal": 9,
+      "away_general": 8,
+      "away_vassal": 4
+    },
+    "content_hash": "533d4f56380fc0fa5909089b0f3361ac73d9e42da3312c4ec9814becf218b176"
+  },
+  {
+    "board_id": "N42",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 3,
+      "wenchang": "巳",
+      "shiji": "辰",
+      "home_cal": 25,
+      "away_cal": 34,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 4,
+      "away_vassal": 2
+    },
+    "content_hash": "a2d3a689e1a7a0aecaaec6c7ed442fe9e6de28028f687711c499989d37a501b8"
+  },
+  {
+    "board_id": "N43",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 2,
+      "wenchang": "午",
+      "shiji": "巳",
+      "home_cal": 2,
+      "away_cal": 1,
+      "home_general": 2,
+      "home_vassal": 6,
+      "away_general": 1,
+      "away_vassal": 3
+    },
+    "content_hash": "c8d20dcecc05505e787b38a9b3c9347fc22474c02dcaf9dae259f5f01ffca40b"
+  },
+  {
+    "board_id": "N44",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 2,
+      "wenchang": "未",
+      "shiji": "坤",
+      "home_cal": 39,
+      "away_cal": 38,
+      "home_general": 9,
+      "home_vassal": 7,
+      "away_general": 8,
+      "away_vassal": 4
+    },
+    "content_hash": "2bfc8a7dc0244fe9aa597af24bcfbc214ed6e82f7908af1b31c1e2850ecce9fc"
+  },
+  {
+    "board_id": "N45",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 2,
+      "wenchang": "坤",
+      "shiji": "酉",
+      "home_cal": 38,
+      "away_cal": 31,
+      "home_general": 8,
+      "home_vassal": 4,
+      "away_general": 1,
+      "away_vassal": 3
+    },
+    "content_hash": "e13420e987ce3ca2a3dff0f02412864ba3083f3aabe9a90ebdda0b0bbbaf2f9e"
+  },
+  {
+    "board_id": "N46",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 1,
+      "wenchang": "申",
+      "shiji": "乾",
+      "home_cal": 7,
+      "away_cal": 1,
+      "home_general": 7,
+      "home_vassal": 1,
+      "away_general": 1,
+      "away_vassal": 3
+    },
+    "content_hash": "dc2ebb75efdbe1975ab67d78ed6bb4ba0d11e5ffef51b36d6c0ceb982e4491a1"
+  },
+  {
+    "board_id": "N47",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 1,
+      "wenchang": "酉",
+      "shiji": "丑",
+      "home_cal": 6,
+      "away_cal": 32,
+      "home_general": 6,
+      "home_vassal": 8,
+      "away_general": 2,
+      "away_vassal": 6
+    },
+    "content_hash": "e908325e9ce84c221c3992e69e664f3602a0ca9a95d75eaa371e5bdf516c5f03"
+  },
+  {
+    "board_id": "N48",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 1,
+      "wenchang": "戌",
+      "shiji": "寅",
+      "home_cal": 1,
+      "away_cal": 29,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 9,
+      "away_vassal": 7
+    },
+    "content_hash": "f1e0e733400c6e475128c23df08b3e89cad73fa76ab08e2be5c5ceb1a91cc12c"
+  },
+  {
+    "board_id": "N49",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 9,
+      "wenchang": "乾",
+      "shiji": "辰",
+      "home_cal": 16,
+      "away_cal": 1,
+      "home_general": 6,
+      "home_vassal": 8,
+      "away_general": 1,
+      "away_vassal": 3
+    },
+    "content_hash": "da7d96621e5a03a7ed667c03b67c7fadd6d8c4e27285d47596ac7f067b80bd02"
+  },
+  {
+    "board_id": "N50",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 9,
+      "wenchang": "亥",
+      "shiji": "午",
+      "home_cal": 16,
+      "away_cal": 31,
+      "home_general": 6,
+      "home_vassal": 8,
+      "away_general": 1,
+      "away_vassal": 3
+    },
+    "content_hash": "898600d32386b04905da315b34fb0e34883b0989c8e25cdd3995016cb159ca32"
+  },
+  {
+    "board_id": "N51",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 9,
+      "wenchang": "子",
+      "shiji": "坤",
+      "home_cal": 15,
+      "away_cal": 29,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 9,
+      "away_vassal": 7
+    },
+    "content_hash": "692389ed5fd55a176139aa15f7b21fd4952c0100bd22e970e43a7cfb7921a402"
+  },
+  {
+    "board_id": "N52",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 8,
+      "wenchang": "丑",
+      "shiji": "酉",
+      "home_cal": 33,
+      "away_cal": 7,
+      "home_general": 3,
+      "home_vassal": 9,
+      "away_general": 7,
+      "away_vassal": 1
+    },
+    "content_hash": "0a228be3c8e9833fe9f0621250a44bec50600350059f89e39e56b4d40e2582f7"
+  },
+  {
+    "board_id": "N53",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 8,
+      "wenchang": "艮",
+      "shiji": "亥",
+      "home_cal": 32,
+      "away_cal": 1,
+      "home_general": 2,
+      "home_vassal": 6,
+      "away_general": 1,
+      "away_vassal": 3
+    },
+    "content_hash": "0319edd3a0c5ad4697450a62e6f11deed1997e2b70c2f96de846a886ebd5394a"
+  },
+  {
+    "board_id": "N54",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 8,
+      "wenchang": "艮",
+      "shiji": "子",
+      "home_cal": 32,
+      "away_cal": 8,
+      "home_general": 2,
+      "home_vassal": 6,
+      "away_general": 8,
+      "away_vassal": 4
+    },
+    "content_hash": "a788e8544ea5cc6a6e82ef806f6e54704899586dedf52a3d9192456e5a1cb4d5"
+  },
+  {
+    "board_id": "N55",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 7,
+      "wenchang": "寅",
+      "shiji": "艮",
+      "home_cal": 16,
+      "away_cal": 18,
+      "home_general": 6,
+      "home_vassal": 8,
+      "away_general": 8,
+      "away_vassal": 4
+    },
+    "content_hash": "392df127dd8e2d3ca4cfefc16846a3ed4cd2b6be55784734d491226e59ac3c14"
+  },
+  {
+    "board_id": "N56",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 7,
+      "wenchang": "卯",
+      "shiji": "辰",
+      "home_cal": 15,
+      "away_cal": 12,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 2,
+      "away_vassal": 6
+    },
+    "content_hash": "1730d2fcefa9563e0720ec6523434aa6dcb01e1a62b6b78bb64ff87fe339066e"
+  },
+  {
+    "board_id": "N57",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 7,
+      "wenchang": "辰",
+      "shiji": "巳",
+      "home_cal": 12,
+      "away_cal": 3,
+      "home_general": 2,
+      "home_vassal": 6,
+      "away_general": 3,
+      "away_vassal": 9
+    },
+    "content_hash": "767c33bc185d4e40defab702f2c7b122cebec284793c208f2ccbde25647142d9"
+  },
+  {
+    "board_id": "N58",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 6,
+      "wenchang": "巽",
+      "shiji": "未",
+      "home_cal": 18,
+      "away_cal": 8,
+      "home_general": 8,
+      "home_vassal": 4,
+      "away_general": 8,
+      "away_vassal": 4
+    },
+    "content_hash": "6beea951081ef3ba044fc2cd3a63c3fb7f7622ccaf0c5440d19189331e0e0957"
+  },
+  {
+    "board_id": "N59",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 6,
+      "wenchang": "巽",
+      "shiji": "申",
+      "home_cal": 18,
+      "away_cal": 1,
+      "home_general": 8,
+      "home_vassal": 4,
+      "away_general": 1,
+      "away_vassal": 3
+    },
+    "content_hash": "86fa3e4eec56423fb2dd0343eedb7d8e080a769c0c59adb4d2920d03ee7667d5"
+  },
+  {
+    "board_id": "N60",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 6,
+      "wenchang": "巳",
+      "shiji": "戌",
+      "home_cal": 10,
+      "away_cal": 35,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 5,
+      "away_vassal": 5
+    },
+    "content_hash": "ce70d4af3a63283a52e40491b1b7fb720336bfb032e315ccaebba0c5b6774ca1"
+  },
+  {
+    "board_id": "N61",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 4,
+      "wenchang": "午",
+      "shiji": "亥",
+      "home_cal": 27,
+      "away_cal": 22,
+      "home_general": 7,
+      "home_vassal": 1,
+      "away_general": 2,
+      "away_vassal": 6
+    },
+    "content_hash": "c1272878ee9cb5349f20b5a7edc8c75cf46d3b9b6b6441d6629ade0ac510efdb"
+  },
+  {
+    "board_id": "N62",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 4,
+      "wenchang": "未",
+      "shiji": "艮",
+      "home_cal": 26,
+      "away_cal": 3,
+      "home_general": 6,
+      "home_vassal": 8,
+      "away_general": 3,
+      "away_vassal": 9
+    },
+    "content_hash": "700c20d51df0961ac48c0a250093013fd38d52198b419f45fde36672bb177aa9"
+  },
+  {
+    "board_id": "N63",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 4,
+      "wenchang": "坤",
+      "shiji": "卯",
+      "home_cal": 25,
+      "away_cal": 4,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 4,
+      "away_vassal": 2
+    },
+    "content_hash": "e328148507ae8cd92f12f27211cb7fe836e49cb5417ce77b6f726344a3e2f9c8"
+  },
+  {
+    "board_id": "N64",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 3,
+      "wenchang": "申",
+      "shiji": "巽",
+      "home_cal": 16,
+      "away_cal": 33,
+      "home_general": 6,
+      "home_vassal": 8,
+      "away_general": 3,
+      "away_vassal": 9
+    },
+    "content_hash": "9665752b4f81eb4f3dbe84d8fe06e1e037b635ba993ced82ec5d10f76820ceb0"
+  },
+  {
+    "board_id": "N65",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 3,
+      "wenchang": "酉",
+      "shiji": "未",
+      "home_cal": 15,
+      "away_cal": 23,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 3,
+      "away_vassal": 9
+    },
+    "content_hash": "a9147158f11e2c0a7d66d52325b76e925dc18eae7853361cdac345589c595843"
+  },
+  {
+    "board_id": "N66",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 3,
+      "wenchang": "戌",
+      "shiji": "申",
+      "home_cal": 10,
+      "away_cal": 16,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 6,
+      "away_vassal": 8
+    },
+    "content_hash": "ba30aa85e9f895fa07886cd711888168e3190ed774b086f71f8ccf577c92b809"
+  },
+  {
+    "board_id": "N67",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 2,
+      "wenchang": "乾",
+      "shiji": "乾",
+      "home_cal": 25,
+      "away_cal": 26,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 6,
+      "away_vassal": 8
+    },
+    "content_hash": "a035acaeab009d8aa2fb9e0684bd06963549e9f45398d26889f83ccb8f708a90"
+  },
+  {
+    "board_id": "N68",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 2,
+      "wenchang": "亥",
+      "shiji": "子",
+      "home_cal": 25,
+      "away_cal": 24,
+      "home_general": 5,
+      "home_vassal": 5,
+      "away_general": 4,
+      "away_vassal": 2
+    },
+    "content_hash": "aca60928a4750abbecfaee7c989d3fe98e97a3efccc84305abea368c9c6078d1"
+  },
+  {
+    "board_id": "N69",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 2,
+      "wenchang": "子",
+      "shiji": "艮",
+      "home_cal": 24,
+      "away_cal": 16,
+      "home_general": 4,
+      "home_vassal": 2,
+      "away_general": 6,
+      "away_vassal": 8
+    },
+    "content_hash": "d13b43e35df80b41ac48ff53b125560dbb0b121e1c521e378dfc42c411e0a159"
+  },
+  {
+    "board_id": "N70",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 1,
+      "wenchang": "丑",
+      "shiji": "卯",
+      "home_cal": 32,
+      "away_cal": 28,
+      "home_general": 2,
+      "home_vassal": 6,
+      "away_general": 8,
+      "away_vassal": 4
+    },
+    "content_hash": "52dce75a1789883906442e674662be7792c6e22a5f1ed95fff1341a4501a2c58"
+  },
+  {
+    "board_id": "N71",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 1,
+      "wenchang": "艮",
+      "shiji": "巳",
+      "home_cal": 31,
+      "away_cal": 16,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 6,
+      "away_vassal": 8
+    },
+    "content_hash": "c7842ed5cd3d7b75f70ab16feb355b9070d48fda8f69b9142da3d803c89c09c1"
+  },
+  {
+    "board_id": "N72",
+    "inputs": {
+      "source_profile": "maintainer_reviewed_geju_20261015_v1",
+      "chart_source_profile": "FIVE_MODE_D37_D45_FT36_V1",
+      "taiyi": 1,
+      "wenchang": "艮",
+      "shiji": "午",
+      "home_cal": 31,
+      "away_cal": 15,
+      "home_general": 1,
+      "home_vassal": 3,
+      "away_general": 5,
+      "away_vassal": 5
+    },
+    "content_hash": "eb8993eeaf05804be29ac92107df13c4c9ca224a9507bec439086ca9ba972fb1"
+  }
+]

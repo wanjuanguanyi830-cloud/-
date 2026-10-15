@@ -1,0 +1,24 @@
+{
+  "version": "REVIEWED_GEJU_FACTS_V1_1",
+  "rule_id": "REVIEWED-GEJU-V1",
+  "source_profile": "maintainer_reviewed_geju_20261015_v1_1",
+  "parent": "rules/reviewed_geju_v1.json",
+  "parent_sha256": "5e52c10be2e57f604f025c961f5751638c691b1172bfcb93d2359176ea0f8346",
+  "direct_human_instruction": "在中宫不计算八门情况",
+  "door_anchor_center": {
+    "contexts": [
+      "HOME",
+      "AWAY"
+    ],
+    "palace": 5,
+    "applicability": "NOT_APPLICABLE_CENTER",
+    "eight_door_overlay_evaluated": false,
+    "door_ready": null,
+    "missing_reason": null,
+    "blocks_complete_assessment": false,
+    "football_points_generated": false
+  },
+  "other_evidence": "UNCHANGED_AND_PRESERVED",
+  "taiyi_center5": "STILL_REJECTED_AS_CHART_BUG",
+  "original_profile": "BYTE_IDENTICAL_RESPONSE_REGRESSION_REQUIRED"
+}
