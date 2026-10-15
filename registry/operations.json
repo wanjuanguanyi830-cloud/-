@@ -333,6 +333,17 @@
       "source_profile_required": true,
       "source_profile": "reviewed_minute_math_facts_20261015_v1",
       "fact_contract": "rules/reviewed_minute_input_facts_v1.json"
+    },
+    {
+      "name": "patterns.reviewed_minute_v1",
+      "domain": "reviewed_patterns",
+      "rule_ids": [
+        "REVIEWED-GEJU-V1"
+      ],
+      "runtime": "kintaiyi.reviewed_geju.reviewed_geju_facts",
+      "status": "stable",
+      "source_profile_required": true,
+      "source_profile": "maintainer_reviewed_geju_20261015_v1"
     }
   ],
   "api_version": "1.1"
