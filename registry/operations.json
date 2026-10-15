@@ -321,6 +321,18 @@
       "runtime": "kintaiyi.tongzong_volume10_spirits.nine_palace_nobles",
       "status": "stable",
       "source_profile": "tongzong_volume10_nine_palace_nobles"
+    },
+    {
+      "name": "facts.reviewed_minute_inputs_v1",
+      "domain": "mathematical_facts",
+      "rule_ids": [
+        "R-QI"
+      ],
+      "runtime": "kintaiyi.reviewed_minute_inputs.reviewed_minute_input_facts",
+      "status": "stable",
+      "source_profile_required": true,
+      "source_profile": "reviewed_minute_math_facts_20261015_v1",
+      "fact_contract": "rules/reviewed_minute_input_facts_v1.json"
     }
   ],
   "api_version": "1.1"
