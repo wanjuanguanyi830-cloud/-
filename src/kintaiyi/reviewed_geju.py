@@ -130,7 +130,9 @@ def reviewed_geju_facts(*, source_profile, chart_source_profile, taiyi, wenchang
                 closure_support.append([wc, sj])
     if closure_support:
         actual = {role for proof in closure_support for pair in proof for role in pair}
-        event = add("挾閉", actual, "wenchang,shiji", "間神", branch="VERIFIED_DOUBLE_EYE")
+        constituents = [e["event_id"] for e in base if e["pattern"] in {"囚", "迫", "擊"}
+                        and set(e["actors"]) <= {"wenchang", "shiji"}]
+        event = add("挾閉", actual, "wenchang,shiji", "間神", components=constituents, branch="VERIFIED_DOUBLE_EYE")
         event["eye_support_pairs"] = closure_support
     for target, supports in support_by_target.items():
         if closure_support and target in {"wenchang", "shiji"}:
@@ -165,12 +167,13 @@ def reviewed_geju_facts(*, source_profile, chart_source_profile, taiyi, wenchang
     # Enumerate verified groups before resolving the once-per-side policy.
     # All component membership remains available; no first-returned guard wins.
     if positions["wenchang"]["palace"] == away_vassal != 5 and home_vassal == away_general != 5:
+        all_members = {identity for p in parents for identity in p["component_event_ids"]}
         for branch in ("HOME", "AWAY"):
             grouped = [p for p in parents if p["branch"] == branch]
             if not grouped:
                 continue
             members = {identity for p in grouped for identity in p["component_event_ids"]}
-            extra = [e for e in base if e["pattern"] in {"掩", "迫", "關", "格"} and e["event_id"] not in members]
+            extra = [e for e in base if e["pattern"] in {"掩", "迫", "關", "格"} and e["event_id"] not in all_members]
             if extra:
                 event = add("四郭杜", ("away_vassal", "wenchang", "home_vassal", "away_general"), None, "復合",
                             components=[p["event_id"] for p in grouped], branch=branch)
