@@ -9,3 +9,7 @@ SiguGu emits every verified relation group and its actual constituent event IDs.
 Three door contexts keep the existing fixed-open Taiyi/host/guest TZ2 algorithm, with selected minute positions. No C119 minute-ordinal conversion is introduced. The reviewed generals criterion retains Shiji Yan/Ji, Wenchang Qiu/Po and generals Ge/Dui blockers, excludes Guan as blocker, and keeps per-context Duse. Unknown door facts remain unknown unless a known blocker already determines failure.
 
 Machine definition: rules/reviewed_geju_v1.json. No sports point, score or probability is generated here. Existing Jinjing and T7 source definitions and outputs retain their historical scope.
+
+## Center-door supplement V1.1
+
+Direct maintainer instruction: 在中宫不计算八门情况. The explicit V1.1 profile skips only a HOME/AWAY eight-door context whose general anchor is known center5. It returns NOT_APPLICABLE_CENTER with no door overlay and no ready verdict; unrelated evidence stays available. Taiyi center5 remains invalid. The original V1 profile and output hashes remain unchanged.
