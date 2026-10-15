@@ -1,0 +1,55 @@
+{
+  "contract_version": "REVIEWED_MINUTE_INPUT_FACTS_V1",
+  "source_profile": "reviewed_minute_math_facts_20261015_v1",
+  "authority": "Human maintainer: 采用数学计算结果  已确认为部分古籍错误 (2026-10-15)",
+  "existing_formula_dependencies": [
+    "taiyi_generals.host_guest_generals",
+    "taiyi_rules.qi_state",
+    "tongzong_v2_doors.three_readiness_bundle"
+  ],
+  "general_assertion_policy": "REJECT_MISMATCH_DO_NOT_REWRITE_SAVED_CHART",
+  "blocked_general_representation": "KNOWN_CENTER_5_PAIR_NOT_NORMAL_RELEASED_GENERALS",
+  "taiyi_center_allowed": false,
+  "qi": {
+    "generals": "INTRINSIC_VS_OWN_NINE_PALACE",
+    "eyes": "INTRINSIC_VS_OWN_SIXTEEN_SECTOR",
+    "states": [
+      "旺",
+      "相",
+      "休",
+      "囚",
+      "死"
+    ],
+    "death_full_name": "死绝",
+    "independent_absolute_state": false
+  },
+  "geometry": {
+    "even_target_sector_neighbor_distance": 2,
+    "odd_target_sector_neighbor_distance": 1,
+    "actors": "ONLY_EXACT_PALACE_CENTERS",
+    "classification": "GEOMETRY_ONLY_NOT_RULE_TRIGGER"
+  },
+  "doors": {
+    "basis": "EXACT_INPUT_CHART_POSITIONS_FIXED_OPEN_ANCHORS",
+    "taiyi_checks": [
+      "wenchang"
+    ],
+    "home_checks": [
+      "taiyi",
+      "wenchang"
+    ],
+    "away_checks": [
+      "taiyi",
+      "shiji"
+    ],
+    "time_duty_door_replacement": false
+  },
+  "old_source_profiles_unchanged": true,
+  "football_points_included": false,
+  "prediction_generation_enabled": false,
+  "general_source_profile_required": "tongzong_v2_general_formula_with_blockage",
+  "general_formula_not_inferred_from_chart_profile": true,
+  "full_chart_replay_verified_by_this_operation": false,
+  "cross_source_differences_are_not_automatically_bugs": true,
+  "fact_contract_id": "MINUTE-REVIEW-INPUT-FACTS-V1"
+}

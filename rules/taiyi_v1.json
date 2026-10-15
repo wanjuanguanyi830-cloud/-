@@ -726,6 +726,18 @@
         "runtime": "kintaiyi.tongzong_volume10_spirits.nine_palace_nobles",
         "source_record": "sources/c126-c127-tongzong-volume10-spirits-record.md"
       }
+    ],
+    "maintainer_reviewed_geju": [
+      {
+        "id": "REVIEWED-GEJU-V1",
+        "rule_id": "REVIEWED-GEJU-V1",
+        "name": "维护者审阅格局事实V1",
+        "runtime": "kintaiyi.reviewed_geju.reviewed_geju_facts",
+        "source_profile": "maintainer_reviewed_geju_20261015_v1",
+        "definition_reference": "rules/reviewed_geju_v1.json",
+        "source_record": "sources/reviewed-geju-20261015.md",
+        "canonical_scope": "EXPLICIT_REVIEWED_PROFILE_ONLY_NOT_HISTORICAL_JINJING_REPLACEMENT"
+      }
     ]
   },
   "source_excerpts": [

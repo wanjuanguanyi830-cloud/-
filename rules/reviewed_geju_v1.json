@@ -1,0 +1,116 @@
+{
+  "version": "REVIEWED_GEJU_FACTS_V1",
+  "rule_id": "REVIEWED-GEJU-V1",
+  "source_profile": "maintainer_reviewed_geju_20261015_v1",
+  "input": "EXACT_POSITIONS_FROM_CALLER_REPLAYED_PINNED_CHART_SOURCE_NO_G7_REPAIR",
+  "base_families": [
+    "掩",
+    "擊",
+    "囚",
+    "迫",
+    "關",
+    "格",
+    "對"
+  ],
+  "base_source": "jinjing_geju",
+  "flanking": {
+    "target_geometry": "EXACT_SIXTEEN_SECTOR_ADJACENT_CENTERS",
+    "center_target_offset": 2,
+    "intershen_target_offset": 1,
+    "intershen_eyes_are_targets_only": true,
+    "known_center_general_not_actor": true,
+    "common_taiyi_branch": {
+      "target_taiyi_or_its_same_left_right": true,
+      "actual_taiyi_or_coincident_support_required": true,
+      "opposition_excluded": true
+    },
+    "independent_same_side_two_generals": {
+      "remote_and_opposition_relative_taiyi_allowed": true,
+      "actual_target_left_right_required": true
+    },
+    "double_eye_closure": "BOTH_INTERSHEN_AND_ACTUAL_SUPPORT_UNION_CONTAINS_TAIYI_HOME_GENERAL_AWAY_GENERAL",
+    "normal_flank_once_per_target": true,
+    "still_can_fight": "THIS_GENERAL_OWN_INTRINSIC_VS_NINE_PALACE_WANG_XIANG_AND_SIDE_REGION",
+    "home_inner": [
+      1,
+      8,
+      3,
+      4
+    ],
+    "away_outer": [
+      9,
+      2,
+      7,
+      6
+    ],
+    "rest_prison_dead_block": true,
+    "dead_full_name": "死绝"
+  },
+  "sigugu": {
+    "wenchang": "EXACT_WENCHANG_PRISON_PLUS_VERIFIED_GENERAL_GUARD_GROUPS",
+    "shiji": "NINE_PALACE_AT_TAIYI_WITH_ACTUAL_AWAY_PRISON_OR_RELATED_GENERAL_GROUP",
+    "enumerate_all_groups_not_first_guard": true,
+    "component_lineage": true
+  },
+  "sigudu": {
+    "parent_required": true,
+    "coincidences": [
+      [
+        "away_vassal",
+        "wenchang_nine_palace"
+      ],
+      [
+        "home_vassal",
+        "away_general"
+      ]
+    ],
+    "extra_categories": [
+      "掩",
+      "迫",
+      "關",
+      "格"
+    ],
+    "extra_excludes_verified_parent_components": true,
+    "per_distinct_category": true
+  },
+  "doors": {
+    "source": "tongzong_volume2_eight_door_readiness",
+    "fixed_open_anchor_contexts": [
+      "TAIYI",
+      "HOME",
+      "AWAY"
+    ],
+    "blockers": {
+      "shiji": [
+        "掩",
+        "擊"
+      ],
+      "wenchang": [
+        "囚",
+        "迫"
+      ],
+      "generals": [
+        "格",
+        "對"
+      ]
+    },
+    "guard_not_blocker": true,
+    "duse": [
+      5,
+      15,
+      25,
+      35
+    ],
+    "context_calc": {
+      "TAIYI": "home_cal",
+      "HOME": "home_cal",
+      "AWAY": "away_cal"
+    },
+    "known_blocker_short_circuits_missing_door": true,
+    "otherwise_unknown_is_not_false": true,
+    "time_basis": "SELECTED_MINUTE_POSITIONS_FIXED_OPEN_SPATIAL_ALGORITHM_NOT_C119_PHASE_CONVERSION"
+  },
+  "n24_special_case": false,
+  "football_points": false,
+  "legacy_source_profiles_unchanged": true
+}
